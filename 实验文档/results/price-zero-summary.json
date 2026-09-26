@@ -1,0 +1,292 @@
+{
+  "schema": 2,
+  "purpose": "research",
+  "metadata": {
+    "method": "price",
+    "training_seed": 42,
+    "source_exposure": "Provided PRICE weights trained on all 26 source databases; supplemental reference, not matched 23/3 initialization"
+  },
+  "reference_manifest": null,
+  "primary_metric": "unique_query_q95",
+  "results": [
+    {
+      "database": "stats",
+      "run": 0,
+      "k": 0,
+      "metrics": {
+        "q50": 1.8709086476385313,
+        "q90": 12.460639948671917,
+        "q95": 35.55115320700651,
+        "q99": 580.0156479768492,
+        "price_shifted_q50": 1.8709036512032573,
+        "price_shifted_q90": 12.46061913480489,
+        "price_shifted_q95": 35.551149779515015,
+        "price_shifted_q99": 579.6716338229438,
+        "n": 2749,
+        "q_mean": 145.86747629112918,
+        "log_q95": 3.5708509520606624
+      },
+      "unique_query_metrics": {
+        "q50": 1.9537982430926426,
+        "q90": 13.356926481711257,
+        "q95": 39.520592438960115,
+        "q99": 596.3205878918287,
+        "price_shifted_q50": 1.9534040918493094,
+        "price_shifted_q90": 13.356500335720751,
+        "price_shifted_q95": 39.52049273002375,
+        "price_shifted_q99": 596.3069650666374,
+        "n": 2603,
+        "q_mean": 153.95439802083132,
+        "log_q95": 3.6768097325949642
+      },
+      "paired_vs_reference": null,
+      "paired_unique_vs_reference": null,
+      "reference_method": null,
+      "adapt_seconds": 0.0016596249770373106,
+      "inference": {
+        "batch1_p50_ms": 43.2385234744288,
+        "batch1_p95_ms": 53.47464028163812,
+        "device": "cpu",
+        "includes_feature_extraction": false,
+        "repeats": 30
+      },
+      "support_ids": [],
+      "support_pool_unique": 49959,
+      "overlapping_unique_removed": 41
+    },
+    {
+      "database": "genome",
+      "run": 0,
+      "k": 0,
+      "metrics": {
+        "q50": 1.654477178608826,
+        "q90": 5.172390759653637,
+        "q95": 15.670063892836309,
+        "q99": 116.81931320791391,
+        "price_shifted_q50": 1.6544771123309627,
+        "price_shifted_q90": 5.17239074088659,
+        "price_shifted_q95": 15.669739287054481,
+        "price_shifted_q99": 114.42269420198686,
+        "n": 2302,
+        "q_mean": 6.472046416182059,
+        "log_q95": 2.7517521337582327
+      },
+      "unique_query_metrics": {
+        "q50": 1.8938071789459996,
+        "q90": 5.2257305465514925,
+        "q95": 31.33616583353631,
+        "q99": 131.32392360029232,
+        "price_shifted_q50": 1.8938071749173018,
+        "price_shifted_q90": 5.225730527352702,
+        "price_shifted_q95": 31.3346901907447,
+        "price_shifted_q99": 128.76656223388034,
+        "n": 1699,
+        "q_mean": 7.932173124525596,
+        "log_q95": 3.444765172060071
+      },
+      "paired_vs_reference": null,
+      "paired_unique_vs_reference": null,
+      "reference_method": null,
+      "adapt_seconds": 0.0015025289030745625,
+      "inference": {
+        "batch1_p50_ms": 42.5764070241712,
+        "batch1_p95_ms": 42.800712428288534,
+        "device": "cpu",
+        "includes_feature_extraction": false,
+        "repeats": 30
+      },
+      "support_ids": [],
+      "support_pool_unique": 49609,
+      "overlapping_unique_removed": 164
+    },
+    {
+      "database": "ergastf1",
+      "run": 0,
+      "k": 0,
+      "metrics": {
+        "q50": 1.4315081223363118,
+        "q90": 6.448571384942585,
+        "q95": 14.575088089888382,
+        "q99": 67.97441004876545,
+        "price_shifted_q50": 1.4314976449058203,
+        "price_shifted_q90": 6.441164023611115,
+        "price_shifted_q95": 14.319584919000487,
+        "price_shifted_q99": 67.97434473664856,
+        "n": 1422,
+        "q_mean": 5.071207574626309,
+        "log_q95": 2.6793058939969727
+      },
+      "unique_query_metrics": {
+        "q50": 1.4658351839794366,
+        "q90": 6.664978799182129,
+        "q95": 15.292854470718373,
+        "q99": 64.14681340350097,
+        "price_shifted_q50": 1.4658341781630984,
+        "price_shifted_q90": 6.664679254234192,
+        "price_shifted_q95": 14.664013710182079,
+        "price_shifted_q99": 64.14676313470797,
+        "n": 1258,
+        "q_mean": 5.205156616366435,
+        "log_q95": 2.7272769485714243
+      },
+      "paired_vs_reference": null,
+      "paired_unique_vs_reference": null,
+      "reference_method": null,
+      "adapt_seconds": 0.0014253940898925066,
+      "inference": {
+        "batch1_p50_ms": 42.38751152297482,
+        "batch1_p95_ms": 42.75810114922933,
+        "device": "cpu",
+        "includes_feature_extraction": false,
+        "repeats": 30
+      },
+      "support_ids": [],
+      "support_pool_unique": 49705,
+      "overlapping_unique_removed": 294
+    }
+  ],
+  "aggregate": [
+    {
+      "database": "stats",
+      "k": 0,
+      "across_support_runs": {
+        "all_rows_q50": {
+          "mean": 1.8709086476385313,
+          "std": 0.0
+        },
+        "unique_query_q50": {
+          "mean": 1.9537982430926426,
+          "std": 0.0
+        },
+        "all_rows_q90": {
+          "mean": 12.460639948671917,
+          "std": 0.0
+        },
+        "unique_query_q90": {
+          "mean": 13.356926481711257,
+          "std": 0.0
+        },
+        "all_rows_q95": {
+          "mean": 35.55115320700651,
+          "std": 0.0
+        },
+        "unique_query_q95": {
+          "mean": 39.520592438960115,
+          "std": 0.0
+        },
+        "all_rows_q99": {
+          "mean": 580.0156479768492,
+          "std": 0.0
+        },
+        "unique_query_q99": {
+          "mean": 596.3205878918287,
+          "std": 0.0
+        },
+        "all_rows_q_mean": {
+          "mean": 145.86747629112918,
+          "std": 0.0
+        },
+        "unique_query_q_mean": {
+          "mean": 153.95439802083132,
+          "std": 0.0
+        }
+      }
+    },
+    {
+      "database": "genome",
+      "k": 0,
+      "across_support_runs": {
+        "all_rows_q50": {
+          "mean": 1.654477178608826,
+          "std": 0.0
+        },
+        "unique_query_q50": {
+          "mean": 1.8938071789459996,
+          "std": 0.0
+        },
+        "all_rows_q90": {
+          "mean": 5.172390759653637,
+          "std": 0.0
+        },
+        "unique_query_q90": {
+          "mean": 5.2257305465514925,
+          "std": 0.0
+        },
+        "all_rows_q95": {
+          "mean": 15.670063892836309,
+          "std": 0.0
+        },
+        "unique_query_q95": {
+          "mean": 31.33616583353631,
+          "std": 0.0
+        },
+        "all_rows_q99": {
+          "mean": 116.81931320791391,
+          "std": 0.0
+        },
+        "unique_query_q99": {
+          "mean": 131.32392360029232,
+          "std": 0.0
+        },
+        "all_rows_q_mean": {
+          "mean": 6.472046416182059,
+          "std": 0.0
+        },
+        "unique_query_q_mean": {
+          "mean": 7.932173124525596,
+          "std": 0.0
+        }
+      }
+    },
+    {
+      "database": "ergastf1",
+      "k": 0,
+      "across_support_runs": {
+        "all_rows_q50": {
+          "mean": 1.4315081223363118,
+          "std": 0.0
+        },
+        "unique_query_q50": {
+          "mean": 1.4658351839794366,
+          "std": 0.0
+        },
+        "all_rows_q90": {
+          "mean": 6.448571384942585,
+          "std": 0.0
+        },
+        "unique_query_q90": {
+          "mean": 6.664978799182129,
+          "std": 0.0
+        },
+        "all_rows_q95": {
+          "mean": 14.575088089888382,
+          "std": 0.0
+        },
+        "unique_query_q95": {
+          "mean": 15.292854470718373,
+          "std": 0.0
+        },
+        "all_rows_q99": {
+          "mean": 67.97441004876545,
+          "std": 0.0
+        },
+        "unique_query_q99": {
+          "mean": 64.14681340350097,
+          "std": 0.0
+        },
+        "all_rows_q_mean": {
+          "mean": 5.071207574626309,
+          "std": 0.0
+        },
+        "unique_query_q_mean": {
+          "mean": 5.205156616366435,
+          "std": 0.0
+        }
+      }
+    }
+  ],
+  "parameters": 10709330,
+  "parameter_bytes": 42837320,
+  "manifest_hash": "85f0c156a213e69ff1baf4ad8868cced05a5409f9fae067575fe786b093d839d",
+  "feature_extraction_and_label_acquisition_timed": false
+}

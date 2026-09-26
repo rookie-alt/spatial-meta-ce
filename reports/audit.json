@@ -1,0 +1,715 @@
+{
+  "scope": "all configured feature files; exact SQL duplicates; source feature validity",
+  "datasets": [
+    {
+      "split": "pretrain",
+      "db": "accidents",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "b4c53ef1d5d77cf35182cec8cdc236550800067c54cee9b0943a01568ef3bf73",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 19104615,
+        "max_counts": [
+          3,
+          4,
+          3,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 5537216000.0
+      },
+      "feature_sha256": "fa64d39bc83a38e80f4425a8ebafefd800ea8dff829fdc768d870c104449e769"
+    },
+    {
+      "split": "pretrain",
+      "db": "airline",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "9e5f7b0f2443fc3c7851215b337168fcf073099748741cf3b3fae3126e0150e9",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 31771931,
+        "max_counts": [
+          12,
+          12,
+          7,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 11370856.0
+      },
+      "feature_sha256": "aef2de10ec1dda5f8ba8d9a77f77e51da1a27857a5df9a03a958a04ea109ee79"
+    },
+    {
+      "split": "pretrain",
+      "db": "baseball",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "ebac72bca5d7e0fbf237b725bc9097e7e73fdec921398941972b83583b851837",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 24271043,
+        "max_counts": [
+          10,
+          12,
+          7,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 5707937792.0
+      },
+      "feature_sha256": "739873f345c26b656449ba1377e15a0f16516808e4fbc3d5a31ed420afe61ded"
+    },
+    {
+      "split": "pretrain",
+      "db": "basketball",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "266750e2d9980e950175124adc4f99062b6c22c7f970d102dccf7398c95dcb50",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 28125835,
+        "max_counts": [
+          10,
+          12,
+          7,
+          6
+        ],
+        "true_min": 10.0,
+        "true_max": 10093927424.0
+      },
+      "feature_sha256": "1ef2cf73aa56a0b867f933c72530ea9d53aeea8c82348dfd8945c9bf627bd086"
+    },
+    {
+      "split": "pretrain",
+      "db": "carcinogenesis",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "71e5e6ef1038d47344b9677251fce80829249e95d16ddf0374b3e11a1db997cd",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 19520380,
+        "max_counts": [
+          6,
+          10,
+          6,
+          6
+        ],
+        "true_min": 10.0,
+        "true_max": 52403536.0
+      },
+      "feature_sha256": "f0030f899d2cf04bb101ab018db15af1435e08965948fcff4433227b1dd8fd3f"
+    },
+    {
+      "split": "pretrain",
+      "db": "ccs",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "e4277f9d99574369a7beab275cd10e9dff89328511c171f92100238978bc3cb7",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 23042622,
+        "max_counts": [
+          7,
+          8,
+          5,
+          10
+        ],
+        "true_min": 10.0,
+        "true_max": 383282.0
+      },
+      "feature_sha256": "10847e906669c33899535aa0e8110927f7ce50069848014c390181971f1ac2ac"
+    },
+    {
+      "split": "pretrain",
+      "db": "consumer",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "d017b13d5e5709ea1617afd0c637e8ae432c652c1ffcf265623d1242b2176f3b",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 18497658,
+        "max_counts": [
+          3,
+          4,
+          3,
+          6
+        ],
+        "true_min": 10.0,
+        "true_max": 5539980.0
+      },
+      "feature_sha256": "6214901cc165f81b982836e0a6c947da0494cbc1f4423e3dd6ca430b6650fc9e"
+    },
+    {
+      "split": "pretrain",
+      "db": "credit",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "4f10a8e482c53f604e051f6881dcec1bbb2ffeeeba642f443c03e72dec233a6d",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 29676293,
+        "max_counts": [
+          9,
+          12,
+          7,
+          6
+        ],
+        "true_min": 10.0,
+        "true_max": 3292826624.0
+      },
+      "feature_sha256": "c69a1f2ef86283fb9be0640db100c6a3b52084dc896f390bf7a043aa300c3629"
+    },
+    {
+      "split": "pretrain",
+      "db": "employee",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "7858ac648f04a6aa667dfff59a4d3e69f894ddae6fb0cb4c127936fc3c3cd2a0",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 23632862,
+        "max_counts": [
+          7,
+          10,
+          6,
+          3
+        ],
+        "true_min": 10.0,
+        "true_max": 5124189.0
+      },
+      "feature_sha256": "29ea81fed7deae4f3a5f7301f73aba566073c49733b1078aee004584e5f61f06"
+    },
+    {
+      "split": "pretrain",
+      "db": "financial",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "6929c589dec5a20f0b3586ce7239c2ff88702d84bb025505d52e024fbfa217ff",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 30824862,
+        "max_counts": [
+          10,
+          12,
+          7,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 251170144.0
+      },
+      "feature_sha256": "fa671932a16cee9b95a2b5b792113b79ed90d698f45e222bff966196f871cf85"
+    },
+    {
+      "split": "pretrain",
+      "db": "fnhk",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "f57bbfc4308cd196f23bfd6e66da644e667f2abd8bb6cb7c28f222cc657fe52c",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 17089331,
+        "max_counts": [
+          3,
+          4,
+          3,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 58175728.0
+      },
+      "feature_sha256": "e62cc924dbcde9a8e1be7087b6ee29fc32f9517ca70d34919deb8e148a8fd911"
+    },
+    {
+      "split": "pretrain",
+      "db": "grants",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "63aeb873845dd3a7eee34746f79f4888f562545edb3b17e4fbb32e09917f5a0f",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 25837449,
+        "max_counts": [
+          10,
+          12,
+          7,
+          10
+        ],
+        "true_min": 10.0,
+        "true_max": 1737266.0
+      },
+      "feature_sha256": "f5c26a8aff94b7291c909f902101262cbf7e1a33490446b70e622620317a812a"
+    },
+    {
+      "split": "pretrain",
+      "db": "hepatitis",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "231b5328e0bf510a6e377435adf3764622c7a569114919d3936c6786d1c52a2f",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 34602340,
+        "max_counts": [
+          10,
+          12,
+          7,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 9587.0
+      },
+      "feature_sha256": "7a1345dfd3826088437d2376c125aa9225b37880aefc61ae7454927fae4a80e6"
+    },
+    {
+      "split": "pretrain",
+      "db": "hockey",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "8a9a64c6ee0583cda6626be7caa1975f86654a956fa02b23dee6f63db7571be7",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 21002598,
+        "max_counts": [
+          9,
+          12,
+          7,
+          9
+        ],
+        "true_min": 10.0,
+        "true_max": 14707609.0
+      },
+      "feature_sha256": "076b76c6341a7936871a862cc5baaf3fab41d41440ca7ab47e10fabf72d94a5d"
+    },
+    {
+      "split": "pretrain",
+      "db": "movielens",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "b7f4f5a3c15a14202472b5163f0103cb371a240b271af9b90a38fb296e55b144",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 35395555,
+        "max_counts": [
+          10,
+          12,
+          7,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 47679312.0
+      },
+      "feature_sha256": "b9a3d605499b156fccaeda3a71e4c78c3ef7dc695042620c8a85b1053b722f7f"
+    },
+    {
+      "split": "pretrain",
+      "db": "sakila",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "5622f4f05cd5a5195ceefa942a24b717e2928f9439937ba239dbce4a37025424",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 34415565,
+        "max_counts": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "true_min": 10.0,
+        "true_max": 27229757440.0
+      },
+      "feature_sha256": "72cb56957ce0b90dbab6711348a28951221aa394b1c9b4f38a7a5b02ab7da6d3"
+    },
+    {
+      "split": "pretrain",
+      "db": "sap",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 29714,
+      "workload_sha256": "b5627c2014fc7e5c570b427b8a4bf11472bd04fd50ea01dc6752fedba572429f",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 25347927,
+        "max_counts": [
+          5,
+          6,
+          4,
+          10
+        ],
+        "true_min": 10.0,
+        "true_max": 3420829.0
+      },
+      "feature_sha256": "b4b3dc8e0fbe9a754be444c6ce3f2728ff4893ac1781e857badf45e8abddd343"
+    },
+    {
+      "split": "pretrain",
+      "db": "seznam",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "3ef855cffe073b3d85037a3f3de34d00c51c82808de8dd393e16088774d86060",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 20165127,
+        "max_counts": [
+          4,
+          6,
+          4,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 315725248.0
+      },
+      "feature_sha256": "84bcd43e6633d15f51e6f6d805ffb423c8c5ce1b563893be7c74b14324fcc62b"
+    },
+    {
+      "split": "pretrain",
+      "db": "ssb",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "2b700aaa7fb300f96e461d8166a961106762a2040840edcca9d72a582bc8fa2a",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 25215188,
+        "max_counts": [
+          8,
+          8,
+          5,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 11997996.0
+      },
+      "feature_sha256": "8672de40996797c3014d0c72896cf9bc0bf0b983a641e651eef399855c090512"
+    },
+    {
+      "split": "pretrain",
+      "db": "talkingdata",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "fa65dc80c911bef4e01f49d76f95c1f085a6f41dd79033958b2967d7e5bdeaba",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 31613291,
+        "max_counts": [
+          10,
+          12,
+          7,
+          10
+        ],
+        "true_min": 10.0,
+        "true_max": 8044115968.0
+      },
+      "feature_sha256": "3009470992df1fa99a4180150b7e6ebb73f3fc428892981145348476425b2fee"
+    },
+    {
+      "split": "pretrain",
+      "db": "tournament",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "9490ed3bd9cb522aa33f59183eff05e885fb8157f0639c8f0efc7b6bfc17b621",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 27437832,
+        "max_counts": [
+          8,
+          12,
+          7,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 2408362752.0
+      },
+      "feature_sha256": "a8501628d26fb710f9a307b21cf73f98e64e14c0e1a5937293f8b15db5dadce7"
+    },
+    {
+      "split": "pretrain",
+      "db": "tpc_h",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "5c30ceb43d3c373d913f1390056be0eccf23dea095940cbfa12606e0e617522a",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 33185916,
+        "max_counts": [
+          11,
+          12,
+          7,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 5342119424.0
+      },
+      "feature_sha256": "05f081f7106330a36d533606bb7c44d89990059e5dd3b42dd124fce43d26413f"
+    },
+    {
+      "split": "pretrain",
+      "db": "tubepricing",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "9ec428107e95ca8aeb742252cb5b0589916d1f892bdefc382dc5f9843616ac58",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 24160520,
+        "max_counts": [
+          7,
+          10,
+          6,
+          10
+        ],
+        "true_min": 10.0,
+        "true_max": 115721.0
+      },
+      "feature_sha256": "74ad976616aeac19d968d88e857b32e76bcb50c2cf54c7f88bfa2719e56224f7"
+    },
+    {
+      "split": "pretrain",
+      "db": "chembl",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "b21b33af062be1203dea77096d62c07680085548cf6c5f0061231cabb1cab269",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 31403314,
+        "max_counts": [
+          11,
+          12,
+          7,
+          10
+        ],
+        "true_min": 10.0,
+        "true_max": 1956303104.0
+      },
+      "feature_sha256": "7f53bb21f699f12efa95b593ba746e49e9983ddc0278757ca19d2199c6d948ca"
+    },
+    {
+      "split": "pretrain",
+      "db": "legalacts",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 49504,
+      "workload_sha256": "4be49ba258b10c4a9e778e54ba57dce3a9ab638a2ed16b6c0258cba890d8eac9",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 19240100,
+        "max_counts": [
+          5,
+          6,
+          4,
+          10
+        ],
+        "true_min": 10.0,
+        "true_max": 1152969.0
+      },
+      "feature_sha256": "53d840ccf31dad603efdf7fc5083dd66413a6dae9811ca7e854ee59226ebc491"
+    },
+    {
+      "split": "pretrain",
+      "db": "telstra",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "019b3755d93491775aceb650e4ce1a9f5cc52d87711c77ce7ce2b5b59840aeeb",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 21349663,
+        "max_counts": [
+          5,
+          8,
+          5,
+          5
+        ],
+        "true_min": 10.0,
+        "true_max": 146423.0
+      },
+      "feature_sha256": "3224e94426c92ae78e377e987edff7d273f79a4a1c98e797a2ec7739708aa1ab"
+    },
+    {
+      "split": "finetune",
+      "db": "imdb",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 49999,
+      "workload_sha256": "44c3e3cd97118c90be5eef3b499ca465f320f38d12732c15c7462ed67b94b117",
+      "features_present": false
+    },
+    {
+      "split": "test",
+      "db": "imdb",
+      "workload_rows": 766,
+      "distinct_exact_sql": 521,
+      "workload_sha256": "589a29fabc0ddabf7dbaf238b95c2372007938b247d6b91aa3ba683b7842526d",
+      "features_present": true,
+      "features": {
+        "samples": 766,
+        "values_checked": 256350,
+        "max_counts": [
+          5,
+          8,
+          5,
+          4
+        ],
+        "true_min": 2.0,
+        "true_max": 12882774016.0
+      },
+      "feature_sha256": "c1b1d7a8abba4395394ed3c0c44122e84ccb5c50fbf4e92c8c803f28bd8f8c4b"
+    },
+    {
+      "split": "finetune",
+      "db": "stats",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 50000,
+      "workload_sha256": "14eaad5bd8bda11015332349aebba30e1f05c0f945beda3812cf78fa28c5b230",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 27980889,
+        "max_counts": [
+          12,
+          14,
+          8,
+          6
+        ],
+        "true_min": 10.0,
+        "true_max": 8804502528.0
+      },
+      "feature_sha256": "4baad1d37db9673065c06ff83a05880626364147c0be5ab85eaac7987079c281"
+    },
+    {
+      "split": "test",
+      "db": "stats",
+      "workload_rows": 2749,
+      "distinct_exact_sql": 2603,
+      "workload_sha256": "de80e6340a4d5004eb995f3fc815f51b3409a436562391667a9befc0e6465a71",
+      "features_present": true,
+      "features": {
+        "samples": 2749,
+        "values_checked": 1314687,
+        "max_counts": [
+          8,
+          12,
+          7,
+          10
+        ],
+        "true_min": 16.0,
+        "true_max": 79235424256.0
+      },
+      "feature_sha256": "499b231dd6b912c3658c4176443622ac5dec8c0a80ee5f8ada1b942e51983b14"
+    },
+    {
+      "split": "finetune",
+      "db": "genome",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 49773,
+      "workload_sha256": "b89815e5e7147e8221f2b7ddc6e1c722d03faca7fc6a25fa0fe5b884e5e23fe4",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 28674797,
+        "max_counts": [
+          9,
+          10,
+          6,
+          7
+        ],
+        "true_min": 10.0,
+        "true_max": 223305280.0
+      },
+      "feature_sha256": "4480cffd236b4e3e6b79857af4dbc212eab010a0e8b938747b7af4123c6db77b"
+    },
+    {
+      "split": "test",
+      "db": "genome",
+      "workload_rows": 2302,
+      "distinct_exact_sql": 1848,
+      "workload_sha256": "82e9c07cdbb84ee0eaaa926d1aaef83fec15f74a2ca113497f089c08e2dac391",
+      "features_present": true,
+      "features": {
+        "samples": 2302,
+        "values_checked": 942596,
+        "max_counts": [
+          9,
+          10,
+          6,
+          7
+        ],
+        "true_min": 24.0,
+        "true_max": 223304576.0
+      },
+      "feature_sha256": "22dd51bb6ba66937f87e1460ebabe560a914125702264c2463edb1e22876bf09"
+    },
+    {
+      "split": "finetune",
+      "db": "ergastf1",
+      "workload_rows": 50000,
+      "distinct_exact_sql": 49999,
+      "workload_sha256": "ce48ab88fbe97bb4910e980d3d14ec0602b4013a0c317059fd9a7f479226c4ae",
+      "features_present": true,
+      "features": {
+        "samples": 50000,
+        "values_checked": 28892550,
+        "max_counts": [
+          11,
+          12,
+          7,
+          10
+        ],
+        "true_min": 10.0,
+        "true_max": 25393315840.0
+      },
+      "feature_sha256": "39436b5267d9617e23de3597ddae58cdca7c01418e19334fcd6503063c619f53"
+    },
+    {
+      "split": "test",
+      "db": "ergastf1",
+      "workload_rows": 1422,
+      "distinct_exact_sql": 1383,
+      "workload_sha256": "04fc7ba6937eea21d6d63e57201bd597edd34b9d93816d528b97eb4302ad78b0",
+      "features_present": true,
+      "features": {
+        "samples": 1422,
+        "values_checked": 542036,
+        "max_counts": [
+          8,
+          12,
+          7,
+          9
+        ],
+        "true_min": 1.0,
+        "true_max": 22446548992.0
+      },
+      "feature_sha256": "1b3950b6570d4566dff5f06afcc1f3d8d414a20e1abbae7687dd9bc4e5fc692f"
+    }
+  ],
+  "missing": [
+    "/gly/weilin/PRICE-master/setup/features/finetune/imdb/features40.pkl"
+  ],
+  "exact_target_overlap": {
+    "imdb": 0,
+    "stats": 0,
+    "genome": 2,
+    "ergastf1": 0
+  }
+}

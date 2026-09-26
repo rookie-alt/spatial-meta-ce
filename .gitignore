@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Large artifacts (never commit checkpoints or caches)
+artifacts/
+runs/
+*.pth
+*.pt
+*.onnx
+*.npy
+*.pkl
+
+# OS
+.DS_Store
+
+# Local reports that may contain machine-specific absolute paths
+# (实验文档/results 是同步下来的精简结果，需要保留)

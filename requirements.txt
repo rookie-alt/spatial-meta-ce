@@ -1,0 +1,4 @@
+# Reuse the existing server environment; do not upgrade it for this project.
+torch==2.1.0
+numpy==1.26.1
+sqlglot==18.17.0

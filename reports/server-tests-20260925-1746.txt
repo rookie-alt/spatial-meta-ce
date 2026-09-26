@@ -1,0 +1,57 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+test_adaptation_and_outer_update_change_predictor (test_core.CoreTests.test_adaptation_and_outer_update_change_predictor) ... ok
+test_bad_values_rejected (test_core.CoreTests.test_bad_values_rejected) ... ok
+test_checkpoint_roundtrip_strict (test_core.CoreTests.test_checkpoint_roundtrip_strict) ... ok
+test_fomaml_scalar_gradient_and_isolation (test_core.CoreTests.test_fomaml_scalar_gradient_and_isolation) ... ok
+test_head_only_and_zero_step (test_core.CoreTests.test_head_only_and_zero_step) ... ok
+test_initial_pg_and_empty_groups (test_core.CoreTests.test_initial_pg_and_empty_groups) ... ok
+test_mask_hides_large_padding (test_core.CoreTests.test_mask_hides_large_padding) ... ok
+test_metrics_standard_and_shifted (test_core.CoreTests.test_metrics_standard_and_shifted) ... ok
+test_negative_predictions_keep_gradient (test_core.CoreTests.test_negative_predictions_keep_gradient) ... ok
+test_no_pg_ablation (test_core.CoreTests.test_no_pg_ablation) ... ok
+test_padding_and_permutation_invariance (test_core.CoreTests.test_padding_and_permutation_invariance) ... ok
+test_parameter_count (test_core.CoreTests.test_parameter_count) ... ok
+test_query_labels_do_not_change_adaptation (test_core.CoreTests.test_query_labels_do_not_change_adaptation) ... ok
+test_cache_manifest_tamper_rejected (test_data.DataTests.test_cache_manifest_tamper_rejected) ... ok
+test_cache_roundtrip_and_dedup (test_data.DataTests.test_cache_roundtrip_and_dedup) ... ok
+test_canonical_preserves_literals (test_data.DataTests.test_canonical_preserves_literals) ... ok
+test_database_overlap_rejected (test_data.DataTests.test_database_overlap_rejected) ... ok
+test_disjoint_reproducible_episode (test_data.DataTests.test_disjoint_reproducible_episode) ... ok
+test_misaligned_labels_fail (test_data.DataTests.test_misaligned_labels_fail) ... ok
+test_nonfinite_cache_rejected (test_data.DataTests.test_nonfinite_cache_rejected) ... ok
+test_adapted_checkpoint_cannot_be_reused_as_meta_initialization (test_integrity.IntegrityTests.test_adapted_checkpoint_cannot_be_reused_as_meta_initialization) ... {"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+ok
+test_baseline_forward_padding_matches_original (test_integrity.IntegrityTests.test_baseline_forward_padding_matches_original) ... ok
+test_cli_help (test_integrity.IntegrityTests.test_cli_help) ... ok
+test_price_output_transform (test_integrity.IntegrityTests.test_price_output_transform) ... ok
+test_price_validation_decodes_legacy_log_scale (test_integrity.IntegrityTests.test_price_validation_decodes_legacy_log_scale) ... ok
+test_resume_rejects_changed_hyperparameters (test_integrity.IntegrityTests.test_resume_rejects_changed_hyperparameters) ... n_features: 8!
+{"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+ok
+test_support_is_nested_and_excludes_test_hashes (test_integrity.IntegrityTests.test_support_is_nested_and_excludes_test_hashes) ... ok
+test_validation_plan_is_fixed_and_uses_all_shots (test_integrity.IntegrityTests.test_validation_plan_is_fixed_and_uses_all_shots) ... ok
+test_complete_tiny_evaluation (test_protocol.ProtocolTests.test_complete_tiny_evaluation) ... {"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+{"database": "t", "run": 0, "k": 0, "q50": 14.637452250667394, "q95": 18.879832479250652}
+{"database": "t", "run": 0, "k": 5, "q50": 14.442243963984282, "q95": 18.62804687557972}
+{"database": "t", "run": 1, "k": 0, "q50": 14.637452250667394, "q95": 18.879832479250652}
+{"database": "t", "run": 1, "k": 5, "q50": 14.442243963984282, "q95": 18.62804687557972}
+ok
+test_erm_runs (test_protocol.ProtocolTests.test_erm_runs) ... {"step": 1, "train_loss": 2.1423349380493164, "validation_macro_log_q95": 2.6883070518076844, "counts": {"support_presentations": 0, "query_presentations": 9, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.1124517917633057, "validation_macro_log_q95": 2.6841183950007386, "counts": {"support_presentations": 0, "query_presentations": 18, "backward_calls": 2, "optimizer_steps": 2}}
+ok
+test_resume_matches_uninterrupted (test_protocol.ProtocolTests.test_resume_matches_uninterrupted) ... {"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+ok
+test_validation_only_selection (test_protocol.ProtocolTests.test_validation_only_selection) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 3.581s
+
+OK

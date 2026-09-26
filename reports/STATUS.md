@@ -1,0 +1,45 @@
+# 实施状态与验证记录
+
+日期：2026-09-25
+
+## 已交付
+
+- 独立项目：本地 `spatial-meta-ce/`；服务器 `/gly/weilin/spatial-meta-ce/`。
+- 轻量集合模型 99,777 参数，纯 FP32 参数 399,108 字节。
+- 监督式 FOMAML / 同结构 ERM / 单库适应 / 严格 checkpoint / 固定源验证集选择。
+- PG、隔离 PRICE 原前向、随机初始化基线；正式运行器支持多种子、支持抽样重复、无 PG 与 head-only 消融。
+- 真实查询身份追溯、保守 SQL 规范化、分组动态 padding、重叠查询排除、标准/平滑 Q-error 分离。
+- 服务器最新测试：32 项全部通过，无跳过；见 `server-tests.txt`。
+- 原 PRICE-master 46 份审查源码 hash 未变；见 `original-source-check.json`。未启动 GPU 训练或停止现有任务。
+
+## 数据审计
+
+`audit.json` 涵盖 34 个配置分区，其中 33 个存在特征文件，累计 1,457,239 条样本通过字段长度、shape、有限值和非负 fanout 检查。IMDB finetune 特征缺失。该检查不等于重新执行所有 SQL 验证标签。
+
+已完成带查询追溯的缓存：fnhk-pretrain、chembl-pretrain、四目标 test、STATS/Genome/ErgastF1 finetune。其他源库原特征已全量审计，但尚未生成新格式缓存；完整 23/3 训练前运行 prepare。
+
+规范化后目标支持池中被移除的 test 重叠 unique query：STATS 41、Genome 164、ErgastF1 294。比 exact SQL 文本检查发现更多，是因为规范化统一了格式和标识符大小写。
+
+## 真实数据 smoke
+
+使用一个源训练库、一个源验证库，每种训练方法仅 3 个 meta-step；三个完整目标库使用少量真实查询，完成 0-shot/5-shot 全链路。详见 `smoke_summary.json`。
+
+单线程 CPU 的轻量模型 batch=1 推理 p50 约 0.92–0.94 ms（每次仅 5 个计时重复），5-shot 单步适应约 3.9–4.1 ms。仅作为工程检查，不是严谨性能 benchmark；不含特征提取和标签采集。
+
+不报告精度优越结论：训练预算极小且非正式协议。PRICE 用与小模型相同的 LR=1e-3 做诊断适应时明显恶化，原记录保留；正式运行器改为在源验证库单独搜索 PRICE 的 1e-6/1e-5/1e-4 学习率，尚未运行该正式搜索。
+
+## 未完成与阻塞
+
+**IMDB 完整闭环未完成。** `finetune` 统计缺少若干必要连接列/过滤列；第一条 SQL 因 `imdb_cc.movie_id` 无直方图而失败。`test` 统计也不完整；三个现有 PRICE 归档未包含完整特征或原始表。随机抽查 300 条 finetune SQL，仅 30 条可用当前统计完整生成。
+
+需要用户决定：补齐原始表/完整统计，或明确允许使用可生成的真实 finetune 子集并披露选择偏差，或暂缓 IMDB。没有自动启用 `--allow-exclusions`，没有伪造特征，没有拿 test 样本替代 support。
+
+尚未执行：正式 23/3 多种子训练、四库完整适应曲线、源验证超参数搜索、GPU 计时。相应运行入口已经实现，默认 dry-run 或显式命令启动，避免未经确认占用共享 GPU。
+
+## 最后同步状态
+
+代码和协议文档已部署，随后服务器实际环境的 32 项测试通过。最后一次补充同步本地 `server-tests.txt` 与本状态报告时 SSH 返回 `Permission denied (publickey,password)`，因此这两份最新证据暂以本地版本为准；没有把失败的同步报告为成功。正式实验运行器本地 dry-run 成功，未启动训练。
+
+## 研究解释
+
+模型参数更少、软件链路正确，不等于研究方法更优或已有创新性。元学习是否优于普通预训练+微调，需要同结构、同支持集、配对种子以及真实正式评估来判断。时间漂移和 PostgreSQL 插件仍属于后续阶段。

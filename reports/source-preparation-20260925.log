@@ -1,0 +1,6 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+{"database": "accidents", "split": "pretrain", "cached": false, "samples": 50000, "values_checked": 19104615, "max_counts": [3, 4, 3, 7], "true_min": 10.0, "true_max": 5537216000.0, "unique_queries": 50000, "excluded": 0, "regenerated": false, "elapsed_seconds": 99.92586381698493, "content_hash": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e"}
+{"database": "airline", "split": "pretrain", "cached": false, "samples": 50000, "values_checked": 31771931, "max_counts": [12, 12, 7, 7], "true_min": 10.0, "true_max": 11370856.0, "unique_queries": 50000, "excluded": 0, "regenerated": false, "elapsed_seconds": 126.90302997198887, "content_hash": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29"}
+{"database": "baseball", "split": "pretrain", "cached": false, "samples": 50000, "values_checked": 24271043, "max_counts": [10, 12, 7, 7], "true_min": 10.0, "true_max": 5707937792.0, "unique_queries": 50000, "excluded": 0, "regenerated": false, "elapsed_seconds": 109.63018840900622, "content_hash": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782"}

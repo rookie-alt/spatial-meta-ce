@@ -1,0 +1,22 @@
+{
+  "origin": "/gly/weilin/PRICE-master",
+  "commit": "0a9358eafb332201678e411ac35dc78141f751bd",
+  "license": "No LICENSE/NOTICE found in checkout. Private research reuse only; do not redistribute without checking upstream permission.",
+  "files": {
+    "price_baseline/encoder.py": {
+      "original_path": "model/encoder.py",
+      "upstream_sha256": "8880574f0ee668f3cf67f36c05ef1c2746ac59f95d03a6539af37ca4da65f6a9",
+      "adapted_sha256": "94f3060996cd9a9b3d60da08d525cc4ab8e1666c1eb4d53b3f610f5c248c6bce"
+    },
+    "price_baseline/module.py": {
+      "original_path": "model/module.py",
+      "upstream_sha256": "15d98eb2f1aed939dc53002302016098394e0602719e0d56df6c351a29f4f66e",
+      "adapted_sha256": "15d98eb2f1aed939dc53002302016098394e0602719e0d56df6c351a29f4f66e"
+    },
+    "price_features/features_tool.py": {
+      "original_path": "setup/features_tool.py",
+      "upstream_sha256": "f3bc51e63d76bcb5d5410ff4ba669e4a89c111f458d2b6c0f1fd1ab21065e2c9",
+      "adapted_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+    }
+  }
+}
