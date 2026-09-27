@@ -1,0 +1,47 @@
+{
+  "checkpoint": "runs/arch4k-sum-seed43-20260927/best.pt",
+  "strategy_source": "runs/adapt-default-strategy-20260927.json",
+  "chosen": {
+    "inner_steps": 5,
+    "inner_lr": 0.001,
+    "scope": "all",
+    "fallback": false
+  },
+  "device": "cuda",
+  "targets": [
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "config": {
+    "data_config": "configs/data.json",
+    "shots": [
+      0,
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "support_runs": 5,
+    "support_seed": 2026,
+    "training_seeds": [
+      42,
+      43,
+      44
+    ],
+    "inner_lr": 0.001,
+    "inner_steps": 5,
+    "adapt_scope": "all",
+    "loss": "smooth_l1",
+    "batch_size": 128,
+    "latency_repetitions": 30,
+    "model": {
+      "width": 64,
+      "use_pg": true,
+      "arch": "sum",
+      "layers": 2,
+      "heads": 4
+    }
+  }
+}
