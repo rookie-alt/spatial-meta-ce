@@ -1,0 +1,38 @@
+{
+  "inner_lr": 1e-06,
+  "device": "cuda",
+  "targets": [
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "lr_source": "runs/price-lr-search-20260926/result.json",
+  "config": {
+    "data_config": "configs/data.json",
+    "shots": [
+      0,
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "support_runs": 5,
+    "support_seed": 2026,
+    "training_seeds": [
+      42,
+      43,
+      44
+    ],
+    "inner_lr": 1e-06,
+    "inner_steps": 5,
+    "adapt_scope": "all",
+    "loss": "smooth_l1",
+    "batch_size": 128,
+    "latency_repetitions": 30,
+    "model": {
+      "width": 64,
+      "use_pg": true
+    }
+  }
+}
