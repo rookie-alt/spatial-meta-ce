@@ -56,3 +56,14 @@ C 只对 fanout 可行：缓存里 fanout 的顺序对应 join 顺序，但 join
 每轮 3 seed × 1 变体 FOMAML + 3 seed ERM = 6 个训练，占卡 1~6 并行，约 45 分钟；目标评估每个 checkpoint GPU 约 5 分钟。A→B→C 全做约 3~4 小时。
 
 代码改动：`model.py` 加 `pooling` / `encoder` 配置项（默认保持现结构，旧 checkpoint 可加载），新增单元测试（mask 下 sum 池化、attention 对 padding 不变），新分支 `feat/join-structure`。
+
+## 6. 实现与启动（2026-09-27）
+
+- 代码：`spatial_meta_ce/model.py` 新增 `arch` 参数（`set` / `sum` / `attn` / `attn_pair`）。`arch='set'` 的 config 与旧版一致，旧 checkpoint 可原样加载。
+- 参数量：set 99,777 / sum 132,545 / attn 199,745 / attn_pair 200,769（仍比 PRICE 小约 53 倍）。
+- attention 用 pre-norm、dropout=0，padding 用 `src_key_padding_mask` 屏蔽，池化前再次清零 padding。
+- 测试：新增 `tests/test_arch.py`（初值=PG、padding 屏蔽、batch 组合不变性、置换不变性、配对 embedding 对错位敏感、元梯度覆盖全部参数、checkpoint 往返），服务器 44 测试全部通过。
+- 配置：`configs/meta_{sum,attn,attn_pair}.json`（及 `erm_*`），除 `model` 外与 `meta.json` 完全相同。
+- 冒烟（100 步）：三变体均正常，速度 105~129 秒/100 步，2000 步约 35~45 分钟。
+- **执行顺序调整**：服务器 8 卡全空，三变体 × 3 seed 共 9 个训练同时启动（原计划是逐级做）。选择规则不变，仍只看源验证，只是节省时间。
+- 输出：`runs/arch-{sum,attn,attn_pair}-seed{42,43,44}-20260927/`
