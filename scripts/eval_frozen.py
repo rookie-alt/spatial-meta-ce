@@ -25,6 +25,7 @@ def main():
     p.add_argument('--device', default='cpu')
     p.add_argument('--config', default='configs/evaluation.json')
     p.add_argument('--reference', default='runs/pg_reference_20260926.json')
+    p.add_argument('--model-config', help='training config whose "model" must match the checkpoint')
     args = p.parse_args()
 
     chosen = json.loads(Path(args.search).read_text())['chosen']
@@ -33,6 +34,8 @@ def main():
     cfg = read_json(args.config)
     cfg.update(inner_steps=chosen['inner_steps'], inner_lr=chosen['inner_lr'] or cfg['inner_lr'],
                adapt_scope=chosen['scope'] or cfg['adapt_scope'])
+    if args.model_config:
+        cfg['model'] = read_json(args.model_config)['model']
     data = data_settings(cfg, args.config)
     data['splits']['test'] = TARGETS
     report = evaluate(cfg, data, args.out, args.device, checkpoint=args.checkpoint,
