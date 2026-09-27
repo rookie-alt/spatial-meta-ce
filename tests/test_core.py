@@ -126,6 +126,19 @@ class CoreTests(unittest.TestCase):
                 self.assertTrue(torch.equal(param, p[name]))
         self.assertTrue(torch.equal(m(b), forward(m, adapt(m, b, steps=0), b)))
 
+    def test_trajectory_matches_adapt(self):
+        from spatial_meta_ce.meta import adapt_trajectory
+        m = SetEstimator()
+        nn.init.normal_(m.head[-1].weight, std=0.01)
+        b = batch_samples([sample(2, y=50), sample(3, y=500)], 'cpu')
+        for scope in ('head', 'all'):
+            traj = adapt_trajectory(m, b, 0.01, [0, 1, 3], scope)
+            self.assertEqual(sorted(traj), [0, 1, 3])
+            for steps in (0, 1, 3):
+                ref = adapt(m, b, lr=0.01, steps=steps, scope=scope, training=False)
+                for key in ref:
+                    self.assertTrue(torch.allclose(ref[key], traj[steps][key], atol=1e-6))
+
     def test_negative_predictions_keep_gradient(self):
         m = SetEstimator()
         with torch.no_grad():

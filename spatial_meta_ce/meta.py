@@ -42,6 +42,34 @@ def adapt(model, support, lr=0.001, steps=5, scope='all', loss='smooth_l1', trai
     return params
 
 
+def adapt_trajectory(model, support, lr, record_steps, scope='all', loss='smooth_l1'):
+    """Evaluation-only adaptation that returns detached params after each step in
+    record_steps. Identical update rule to adapt(training=False), so one pass covers
+    every step count of a search grid."""
+    record_steps = sorted(set(int(s) for s in record_steps))
+    if not record_steps or record_steps[0] < 0 or lr <= 0 or scope not in ('all', 'head'):
+        raise ValueError('Invalid adaptation configuration')
+    params = OrderedDict(model.named_parameters())
+    out = {}
+    if 0 in record_steps:
+        out[0] = params
+    names = [n for n in params if scope == 'all' or n.startswith('head.')]
+    if not names:
+        raise ValueError('No adaptation parameters selected')
+    with torch.enable_grad():
+        for step in range(1, record_steps[-1] + 1):
+            objective = loss_value(forward(model, params, support), support['label'], loss)
+            grads = torch.autograd.grad(objective, [params[n] for n in names], create_graph=False)
+            if any(not torch.isfinite(g).all() for g in grads):
+                raise FloatingPointError('Nonfinite inner gradient')
+            updated = dict(zip(names, grads))
+            params = OrderedDict((n, (p - lr * updated[n] if n in updated else p).detach().requires_grad_(True))
+                                 for n, p in params.items())
+            if step in record_steps:
+                out[step] = params
+    return out
+
+
 def meta_loss(model, support, query, lr, steps, scope='all', loss='smooth_l1'):
     params = adapt(model, support, lr, steps, scope, loss)
     return loss_value(forward(model, params, query), query['label'], loss)
