@@ -1,0 +1,33 @@
+{
+  "data_config": "configs/data.json",
+  "model": {
+    "width": 64,
+    "use_pg": true,
+    "arch": "sum",
+    "layers": 2,
+    "heads": 4
+  },
+  "method": "erm",
+  "seed": 42,
+  "steps": 20000,
+  "meta_batch": 16,
+  "accumulation": 1,
+  "outer_lr": 0.0003,
+  "inner_lr": 0.001,
+  "inner_steps": 5,
+  "adapt_scope": "all",
+  "support_sizes": [
+    5,
+    10,
+    20,
+    50,
+    100
+  ],
+  "query_size": 256,
+  "loss": "smooth_l1",
+  "validate_every": 100,
+  "validation_runs": 5,
+  "validation_seed": 1729,
+  "patience": 10,
+  "min_delta": 0.0001
+}
