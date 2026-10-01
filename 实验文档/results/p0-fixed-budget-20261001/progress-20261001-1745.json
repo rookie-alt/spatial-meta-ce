@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-10-01T17:46:23.922925+08:00",
+  "status": "running long-budget time=2026-10-01T17:21:46+08:00",
+  "short_budget_summary": {
+    "budget": 4000,
+    "last_step": 4000,
+    "counts": {
+      "support_presentations": 0,
+      "query_presentations": 1621915,
+      "backward_calls": 16000,
+      "optimizer_steps": 4000
+    },
+    "total_seconds": 4629.900152668823,
+    "best_metric": 2.6753357966585374,
+    "best_step": 1500,
+    "sha256": {
+      "config.json": "8c3d0b0cbc821d8c15e6573829e625a0ce88e1e01d3510fe428e77492c4303f8",
+      "validation_manifest.json": "dd46e4b347a38ef566ad30b1fa5289d2630617059bd7bb61d2745e261b2e100c",
+      "history.json": "4355456084224208eecf6d0e7c12d6e9e1ec5bb84021b44ef20be4e4e48aa44d",
+      "last.pt": "37f3a6dbbf79c6d82b5a15e8db795d1055574849cea268205910ec9dbd3adacb",
+      "best.pt": "1402f9e4ba18c59792cb8195c5cd723ebd4c07ab93444405734ed5be14363cfb"
+    }
+  },
+  "current_step": 5442,
+  "current_counts": {
+    "support_presentations": 0,
+    "query_presentations": 2203772,
+    "backward_calls": 21768,
+    "optimizer_steps": 5442
+  },
+  "total_training_seconds": 6090.882480659988,
+  "latest_training_validation": {
+    "step": 5400,
+    "train_loss": 0.2846776843070984,
+    "validation_macro_log_q95": 2.843248700181521,
+    "counts": {
+      "support_presentations": 0,
+      "query_presentations": 2187180,
+      "backward_calls": 21600,
+      "optimizer_steps": 5400
+    }
+  },
+  "best_metric": 2.6753357966585374,
+  "best_unchanged_since_short_budget": true,
+  "short_history_prefix_verified": true,
+  "validation_manifest_verified": true,
+  "input_hashes_verified": true,
+  "final_decision_ready": false,
+  "comparison_result_ready": false
+}
