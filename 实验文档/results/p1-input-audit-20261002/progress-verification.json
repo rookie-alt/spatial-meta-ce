@@ -1,0 +1,81 @@
+{
+  "checked_at": "2026-10-02T14:08:28.789610+08:00",
+  "status": "running time=2026-10-02T14:04:29+08:00",
+  "progress": {
+    "group-0": {
+      "database": "chembl",
+      "checked_rows": 5000,
+      "rows": 50000,
+      "seconds": 201.87317710905336,
+      "errors": 0
+    },
+    "group-1": {
+      "database": "accidents",
+      "checked_rows": 10000,
+      "rows": 50000,
+      "seconds": 224.696209250018,
+      "errors": 0
+    },
+    "group-2": {
+      "database": "ccs",
+      "checked_rows": 10000,
+      "rows": 50000,
+      "seconds": 215.24013006081805,
+      "errors": 0
+    },
+    "group-3": {
+      "database": "fnhk",
+      "checked_rows": 10000,
+      "rows": 50000,
+      "seconds": 195.99555948702618,
+      "errors": 0
+    },
+    "group-4": {
+      "database": "sakila",
+      "checked_rows": 5000,
+      "rows": 50000,
+      "seconds": 233.3371832529083,
+      "errors": 0
+    },
+    "group-5": {
+      "database": "talkingdata",
+      "checked_rows": 5000,
+      "rows": 50000,
+      "seconds": 204.5725364428945,
+      "errors": 0
+    }
+  },
+  "finished_database_reports": [],
+  "latest_logs": {
+    "group-0.log": [
+      "{\"database\": \"chembl\", \"checked_rows\": 5000, \"rows\": 50000, \"seconds\": 201.87317710905336, \"errors\": 0}"
+    ],
+    "group-1.log": [
+      "{\"database\": \"accidents\", \"checked_rows\": 5000, \"rows\": 50000, \"seconds\": 162.67834878293797, \"errors\": 0}",
+      "{\"database\": \"accidents\", \"checked_rows\": 10000, \"rows\": 50000, \"seconds\": 224.696209250018, \"errors\": 0}"
+    ],
+    "group-2.log": [
+      "{\"database\": \"ccs\", \"checked_rows\": 5000, \"rows\": 50000, \"seconds\": 158.6509014298208, \"errors\": 0}",
+      "{\"database\": \"ccs\", \"checked_rows\": 10000, \"rows\": 50000, \"seconds\": 215.24013006081805, \"errors\": 0}"
+    ],
+    "group-3.log": [
+      "{\"database\": \"fnhk\", \"checked_rows\": 5000, \"rows\": 50000, \"seconds\": 145.17867941595614, \"errors\": 0}",
+      "{\"database\": \"fnhk\", \"checked_rows\": 10000, \"rows\": 50000, \"seconds\": 195.99555948702618, \"errors\": 0}"
+    ],
+    "group-4.log": [
+      "{\"database\": \"sakila\", \"checked_rows\": 5000, \"rows\": 50000, \"seconds\": 233.3371832529083, \"errors\": 0}"
+    ],
+    "group-5.log": [
+      "{\"database\": \"talkingdata\", \"checked_rows\": 5000, \"rows\": 50000, \"seconds\": 204.5725364428945, \"errors\": 0}"
+    ]
+  },
+  "final_summary_ready": false,
+  "worker_processes": [
+    "40134 40131       04:00 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases chembl legalacts telstra --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-0",
+    "40135 40131       04:00 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases accidents airline baseball basketball carcinogenesis --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-1",
+    "40136 40131       04:00 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases ccs consumer credit employee financial --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-2",
+    "40137 40131       04:00 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases fnhk grants hepatitis hockey movielens --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-3",
+    "40138 40131       04:00 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases sakila sap seznam ssb --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-4",
+    "40139 40131       04:00 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases talkingdata tournament tpc_h tubepricing --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-5"
+  ]
+}

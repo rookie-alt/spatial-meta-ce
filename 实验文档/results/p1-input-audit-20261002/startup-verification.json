@@ -1,0 +1,38 @@
+{
+  "started_at": "2026-10-02T14:04:29.287631+08:00",
+  "launcher_pid": 40131,
+  "command": "bash \u5b9e\u9a8c\u6587\u6863/results/p1-input-audit-20261002/launch.sh",
+  "run_directory": "/gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002",
+  "launch_log": "/gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002.launch.log",
+  "cpu_workers": 6,
+  "gpu_usage": false,
+  "scope": "26 source pretrain databases; full in-memory reconstruction; no cache writes, training or target access",
+  "verified_at": "2026-10-02T14:05:21.556532+08:00",
+  "status": "running time=2026-10-02T14:04:29+08:00",
+  "worker_pids": {
+    "group-4": 40138,
+    "group-2": 40136,
+    "group-0": 40134,
+    "group-1": 40135,
+    "group-5": 40139,
+    "group-3": 40137
+  },
+  "worker_processes": [
+    "40134 40131       00:52 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases chembl legalacts telstra --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-0",
+    "40135 40131       00:52 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases accidents airline baseball basketball carcinogenesis --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-1",
+    "40136 40131       00:52 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases ccs consumer credit employee financial --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-2",
+    "40137 40131       00:52 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases fnhk grants hepatitis hockey movielens --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-3",
+    "40138 40131       00:52 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases sakila sap seznam ssb --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-4",
+    "40139 40131       00:52 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases talkingdata tournament tpc_h tubepricing --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-5"
+  ],
+  "latest_logs": {
+    "group-3.log": [],
+    "group-4.log": [],
+    "group-0.log": [],
+    "group-5.log": [],
+    "group-1.log": [],
+    "group-2.log": []
+  },
+  "progress": {},
+  "launcher_log": []
+}
