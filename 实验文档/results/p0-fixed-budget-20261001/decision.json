@@ -1,0 +1,122 @@
+{
+  "primary_macro_ratio": 1.633618779158273,
+  "database_ratios": {
+    "chembl": 2.210888316104002,
+    "legalacts": 1.2892890316057377,
+    "telstra": 1.5294492080930293
+  },
+  "buckets": [
+    {
+      "database": "chembl",
+      "tables": 4,
+      "count": 451,
+      "short_q95": 48.0934966813718,
+      "long_q95": 110.68942411535124,
+      "ratio": 2.301546607199075
+    },
+    {
+      "database": "chembl",
+      "tables": 5,
+      "count": 375,
+      "short_q95": 205.9596974417066,
+      "long_q95": 274.0924737579958,
+      "ratio": 1.3308063527116658
+    },
+    {
+      "database": "chembl",
+      "tables": 6,
+      "count": 218,
+      "short_q95": 147.28833223170298,
+      "long_q95": 388.3457677733198,
+      "ratio": 2.636636330177215
+    },
+    {
+      "database": "chembl",
+      "tables": 7,
+      "count": 64,
+      "short_q95": 44.65345296405035,
+      "long_q95": 132.11051779937173,
+      "ratio": 2.958573391977803
+    },
+    {
+      "database": "legalacts",
+      "tables": 4,
+      "count": 302,
+      "short_q95": 17.14069802037356,
+      "long_q95": 22.099313951733812,
+      "ratio": 1.2892890316057377
+    },
+    {
+      "database": "telstra",
+      "tables": 4,
+      "count": 445,
+      "short_q95": 8.693675346304232,
+      "long_q95": 12.69208821304838,
+      "ratio": 1.4599220361321537
+    },
+    {
+      "database": "telstra",
+      "tables": 5,
+      "count": 172,
+      "short_q95": 10.642467736898706,
+      "long_q95": 17.052293393338047,
+      "ratio": 1.602287534705481
+    }
+  ],
+  "decision": "no_overall_improvement",
+  "adapted_macro_log_q95": {
+    "short_last": 2.8066395929547157,
+    "long_last": 2.723911560501073,
+    "short_best": 2.606371588162675,
+    "long_best": 2.7025399974560522,
+    "baseline": 2.606371588162675
+  },
+  "budget_summaries": {
+    "4000": {
+      "budget": 4000,
+      "last_step": 4000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1621915,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "total_seconds": 4629.900152668823,
+      "best_metric": 2.6753357966585374,
+      "best_step": 1500,
+      "sha256": {
+        "config.json": "8c3d0b0cbc821d8c15e6573829e625a0ce88e1e01d3510fe428e77492c4303f8",
+        "validation_manifest.json": "dd46e4b347a38ef566ad30b1fa5289d2630617059bd7bb61d2745e261b2e100c",
+        "history.json": "4355456084224208eecf6d0e7c12d6e9e1ec5bb84021b44ef20be4e4e48aa44d",
+        "last.pt": "37f3a6dbbf79c6d82b5a15e8db795d1055574849cea268205910ec9dbd3adacb",
+        "best.pt": "1402f9e4ba18c59792cb8195c5cd723ebd4c07ab93444405734ed5be14363cfb"
+      }
+    },
+    "20000": {
+      "budget": 20000,
+      "last_step": 20000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 8088630,
+        "backward_calls": 80000,
+        "optimizer_steps": 20000
+      },
+      "total_seconds": 24552.806011751993,
+      "best_metric": 2.6529157837158133,
+      "best_step": 16200,
+      "history_prefix_verified": true,
+      "validation_manifest_verified": true,
+      "sha256": {
+        "config.json": "3517acf0fd4375d443eedb625e450ba84d84596a1a250e2ddf03c367241b522e",
+        "validation_manifest.json": "dd46e4b347a38ef566ad30b1fa5289d2630617059bd7bb61d2745e261b2e100c",
+        "history.json": "3e0fbc9931517ce67f75d7b8adc5c83351f18681110ed0f53bb4c0916b7443a2",
+        "last.pt": "7c6cdfcf216a43b8fc697077ff8b9317aaa26c0f307468cfaf2616e8f636d90b",
+        "best.pt": "e14e63f5a5e8351ecf204a7e6e3aa0d330c6da3bb550e114f69b402b8bd0255b"
+      }
+    }
+  },
+  "target_evaluation_performed": false,
+  "limitations": [
+    "Single seed; presentation counts include repeated queries; current budget is not PRICE-scale; no causal exclusion from a negative outcome."
+  ]
+}

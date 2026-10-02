@@ -1,0 +1,22 @@
+{
+  "budget": 20000,
+  "last_step": 20000,
+  "counts": {
+    "support_presentations": 0,
+    "query_presentations": 8088630,
+    "backward_calls": 80000,
+    "optimizer_steps": 20000
+  },
+  "total_seconds": 24552.806011751993,
+  "best_metric": 2.6529157837158133,
+  "best_step": 16200,
+  "history_prefix_verified": true,
+  "validation_manifest_verified": true,
+  "sha256": {
+    "config.json": "3517acf0fd4375d443eedb625e450ba84d84596a1a250e2ddf03c367241b522e",
+    "validation_manifest.json": "dd46e4b347a38ef566ad30b1fa5289d2630617059bd7bb61d2745e261b2e100c",
+    "history.json": "3e0fbc9931517ce67f75d7b8adc5c83351f18681110ed0f53bb4c0916b7443a2",
+    "last.pt": "7c6cdfcf216a43b8fc697077ff8b9317aaa26c0f307468cfaf2616e8f636d90b",
+    "best.pt": "e14e63f5a5e8351ecf204a7e6e3aa0d330c6da3bb550e114f69b402b8bd0255b"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "budget": 4000,
+  "last_step": 4000,
+  "counts": {
+    "support_presentations": 0,
+    "query_presentations": 1621915,
+    "backward_calls": 16000,
+    "optimizer_steps": 4000
+  },
+  "total_seconds": 4629.900152668823,
+  "best_metric": 2.6753357966585374,
+  "best_step": 1500,
+  "sha256": {
+    "config.json": "8c3d0b0cbc821d8c15e6573829e625a0ce88e1e01d3510fe428e77492c4303f8",
+    "validation_manifest.json": "dd46e4b347a38ef566ad30b1fa5289d2630617059bd7bb61d2745e261b2e100c",
+    "history.json": "4355456084224208eecf6d0e7c12d6e9e1ec5bb84021b44ef20be4e4e48aa44d",
+    "last.pt": "37f3a6dbbf79c6d82b5a15e8db795d1055574849cea268205910ec9dbd3adacb",
+    "best.pt": "1402f9e4ba18c59792cb8195c5cd723ebd4c07ab93444405734ed5be14363cfb"
+  }
+}
