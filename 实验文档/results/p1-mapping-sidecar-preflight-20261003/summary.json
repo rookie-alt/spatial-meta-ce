@@ -1,0 +1,68 @@
+{
+  "state": "completed",
+  "databases": [
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "reports": [
+    {
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 47405,
+      "changed_unique_queries": 47405,
+      "unchanged_rows": 2595,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 2595,
+      "changed_fraction": 0.9481,
+      "sql_flags": {
+        "multiple_filters": 12673
+      },
+      "database": "chembl",
+      "roundtrip_passed": true,
+      "inputs_unchanged": true,
+      "seconds": 298.1049041659571
+    },
+    {
+      "rows": 50000,
+      "unique_queries": 49504,
+      "duplicate_rows": 496,
+      "changed_rows": 39468,
+      "changed_unique_queries": 39062,
+      "unchanged_rows": 10532,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 10532,
+      "changed_fraction": 0.78936,
+      "sql_flags": {
+        "multiple_filters": 8406
+      },
+      "database": "legalacts",
+      "roundtrip_passed": true,
+      "inputs_unchanged": true,
+      "seconds": 211.83209520298988
+    },
+    {
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 45287,
+      "changed_unique_queries": 45287,
+      "unchanged_rows": 4713,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 4713,
+      "changed_fraction": 0.90574,
+      "sql_flags": {
+        "multiple_filters": 3333
+      },
+      "database": "telstra",
+      "roundtrip_passed": true,
+      "inputs_unchanged": true,
+      "seconds": 225.68069498380646
+    }
+  ],
+  "rows": 150000,
+  "shuffle_seed": 42,
+  "audit_summary_sha256": "1228d153514f8e08ed27cf298119863b11e61e15347bc7ca2392dd9aa0f1c98f",
+  "completed_at": "2026-10-03T12:06:01.962552+08:00"
+}
