@@ -1,0 +1,243 @@
+{
+  "database": "employee",
+  "role": "train",
+  "workload_rows": 50000,
+  "source_feature_rows": 50000,
+  "cache_rows": 50000,
+  "unique_queries": 50000,
+  "source_feature_fields": [
+    "data_features",
+    "n_fanouts",
+    "n_filter_cols",
+    "n_join_cols",
+    "n_tables",
+    "pg_est_cards",
+    "true_cards"
+  ],
+  "cache_manifest_fields": [
+    "content_hash",
+    "inspection",
+    "provenance",
+    "rows",
+    "schema",
+    "transform",
+    "unique_queries"
+  ],
+  "cache_row_fields": [
+    "exact_hash",
+    "id",
+    "query_hash",
+    "source_line"
+  ],
+  "cache_regenerated": false,
+  "input_hashes": {
+    "workload": "7858ac648f04a6aa667dfff59a4d3e69f894ddae6fb0cb4c127936fc3c3cd2a0",
+    "source_features": "29ea81fed7deae4f3a5f7301f73aba566073c49733b1078aee004584e5f61f06",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "689e644f7cb4168b2617e5f35c2b873ad398ac1820aebacaa32c4423434b0120",
+    "statistics/fanout40.pkl": "dca517bb37ea3c41a27971eaeb15861f4e026d3dac213968a9e86b1f7c248540",
+    "statistics/histogram40.pkl": "d9738a5bae3c05f4ecfbb603c833daddb03ec69849720ae46fdd35d76a805aa2",
+    "statistics/size.pkl": "2c35148f41f18306f8b61c1dde01035a1fbc823db4d3237737988ac6be23a8ce",
+    "statistics/summary40.pkl": "c23b2a7d66b0e66787c7c13896d9035547a92f590cd53a85d51a6d0faadbf4fa"
+  },
+  "provenance_errors": [],
+  "inputs_unchanged": true,
+  "recreate_all_features": true,
+  "totals": {
+    "recreated_rows": 50000,
+    "checked_rows": 50000,
+    "rows_with_errors": 0,
+    "mapping_recoverable": 50000,
+    "sql_mapping_recoverable": 50000,
+    "rows_with_risk_flags": 8680
+  },
+  "sql_flags": {
+    "multiple_filters": 8680
+  },
+  "by_tables": {
+    "4": {
+      "rows": 18208,
+      "mapping_recoverable": 18208,
+      "sql_mapping_recoverable": 18208,
+      "errors": {}
+    },
+    "5": {
+      "rows": 8290,
+      "mapping_recoverable": 8290,
+      "sql_mapping_recoverable": 8290,
+      "errors": {}
+    },
+    "3": {
+      "rows": 12658,
+      "mapping_recoverable": 12658,
+      "sql_mapping_recoverable": 12658,
+      "errors": {}
+    },
+    "2": {
+      "rows": 8144,
+      "mapping_recoverable": 8144,
+      "sql_mapping_recoverable": 8144,
+      "errors": {}
+    },
+    "6": {
+      "rows": 2700,
+      "mapping_recoverable": 2700,
+      "sql_mapping_recoverable": 2700,
+      "errors": {}
+    }
+  },
+  "by_predicate": {
+    "EQ": {
+      "rows": 50000,
+      "mapping_recoverable": 50000,
+      "sql_mapping_recoverable": 50000,
+      "errors": {}
+    },
+    "GTE": {
+      "rows": 17227,
+      "mapping_recoverable": 17227,
+      "sql_mapping_recoverable": 17227,
+      "errors": {}
+    },
+    "LT": {
+      "rows": 41270,
+      "mapping_recoverable": 41270,
+      "sql_mapping_recoverable": 41270,
+      "errors": {}
+    }
+  },
+  "by_flag": {
+    "no_risk_flag": {
+      "rows": 41320,
+      "mapping_recoverable": 41320,
+      "sql_mapping_recoverable": 41320,
+      "errors": {}
+    },
+    "multiple_filters": {
+      "rows": 8680,
+      "mapping_recoverable": 8680,
+      "sql_mapping_recoverable": 8680,
+      "errors": {}
+    }
+  },
+  "first_failures": [],
+  "mapping_examples": [
+    {
+      "query_hash": "7400e29c27ffbac3e08dbe170d68c96b49ec0a12b20594e32c727280236c4ba5",
+      "source_line": 1,
+      "tables": [
+        "epy_ttl",
+        "epy_de",
+        "epy_slr",
+        "epy_dpm"
+      ],
+      "table_names": [
+        "titles",
+        "dept_emp",
+        "salaries",
+        "departments"
+      ],
+      "join_columns": [
+        "epy_ttl.emp_no",
+        "epy_de.dept_no",
+        "epy_de.emp_no",
+        "epy_slr.emp_no",
+        "epy_dpm.id"
+      ],
+      "filter_columns": [
+        "epy_slr.salary"
+      ],
+      "join_column_tables": [
+        0,
+        1,
+        1,
+        2,
+        3
+      ],
+      "filter_column_tables": [
+        2
+      ],
+      "fanout_join_columns": [
+        1,
+        4,
+        0,
+        2,
+        0,
+        3
+      ],
+      "counts": [
+        5,
+        6,
+        4,
+        1
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ",
+        "GTE"
+      ],
+      "mapping_recoverable": true
+    },
+    {
+      "query_hash": "d036570e83ec1b054d1975bce1b726e12f9b3704bf2ed9ea79ad3f631bf99d87",
+      "source_line": 2,
+      "tables": [
+        "epy_epy",
+        "epy_ttl",
+        "epy_dm",
+        "epy_slr"
+      ],
+      "table_names": [
+        "employees",
+        "titles",
+        "dept_manager",
+        "salaries"
+      ],
+      "join_columns": [
+        "epy_epy.emp_no",
+        "epy_ttl.emp_no",
+        "epy_dm.emp_no",
+        "epy_slr.emp_no"
+      ],
+      "filter_columns": [
+        "epy_epy.gender",
+        "epy_slr.salary"
+      ],
+      "join_column_tables": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "filter_column_tables": [
+        0,
+        3
+      ],
+      "fanout_join_columns": [
+        0,
+        3,
+        0,
+        1,
+        1,
+        2
+      ],
+      "counts": [
+        4,
+        6,
+        4,
+        2
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ",
+        "GTE"
+      ],
+      "mapping_recoverable": true
+    }
+  ],
+  "seconds": 522.1901726040523,
+  "stored_alignment_passed": true,
+  "alignment_passed": true,
+  "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+  "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+}

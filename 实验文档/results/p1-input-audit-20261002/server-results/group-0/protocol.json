@@ -1,0 +1,50 @@
+{
+  "started_at": "2026-10-02T14:04:31.165923+08:00",
+  "databases": [
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "data_splits": {
+    "train": [
+      "accidents",
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hepatitis",
+      "hockey",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "validation": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "test": [
+      "imdb",
+      "stats",
+      "genome",
+      "ergastf1"
+    ]
+  },
+  "recreate_all_features": true,
+  "scope": "pretrain source only; no cache writes, no training, no target evaluation",
+  "script_sha256": "58802d3a93fe8a0517f1a7423559aa50db95c3ef89537dc98a0363ccc61b13fe",
+  "sqlglot": "18.17.0"
+}

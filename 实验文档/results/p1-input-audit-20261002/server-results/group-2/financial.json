@@ -1,0 +1,252 @@
+{
+  "database": "financial",
+  "role": "train",
+  "workload_rows": 50000,
+  "source_feature_rows": 50000,
+  "cache_rows": 50000,
+  "unique_queries": 50000,
+  "source_feature_fields": [
+    "data_features",
+    "n_fanouts",
+    "n_filter_cols",
+    "n_join_cols",
+    "n_tables",
+    "pg_est_cards",
+    "true_cards"
+  ],
+  "cache_manifest_fields": [
+    "content_hash",
+    "inspection",
+    "provenance",
+    "rows",
+    "schema",
+    "transform",
+    "unique_queries"
+  ],
+  "cache_row_fields": [
+    "exact_hash",
+    "id",
+    "query_hash",
+    "source_line"
+  ],
+  "cache_regenerated": false,
+  "input_hashes": {
+    "workload": "6929c589dec5a20f0b3586ce7239c2ff88702d84bb025505d52e024fbfa217ff",
+    "source_features": "fa671932a16cee9b95a2b5b792113b79ed90d698f45e222bff966196f871cf85",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "4e84335b41d8f949f5e285a6e7d6e7a631c08335302d14fe424be6fb1dd31f85",
+    "statistics/fanout40.pkl": "399aba90ac443897bb1461e0aa5d0f8bbfcef92fc65fe4845e2e29068f147cb5",
+    "statistics/histogram40.pkl": "7fbe3de10d80d4026d5bf34bf807f2cc49d58abdc4d6b4a69a44ce6b649082fa",
+    "statistics/size.pkl": "8507726ac9bb56ce859680b4a202433b6553d5a6d355056fcced7eaf6728d45e",
+    "statistics/summary40.pkl": "31d8da32710e2b9faf86b99ab798fb0d726bc0be58b00df1f79c309c1754be58"
+  },
+  "provenance_errors": [],
+  "inputs_unchanged": true,
+  "recreate_all_features": true,
+  "totals": {
+    "recreated_rows": 50000,
+    "checked_rows": 50000,
+    "rows_with_errors": 0,
+    "mapping_recoverable": 50000,
+    "sql_mapping_recoverable": 50000,
+    "rows_with_risk_flags": 14806
+  },
+  "sql_flags": {
+    "multiple_filters": 14806
+  },
+  "by_tables": {
+    "5": {
+      "rows": 13494,
+      "mapping_recoverable": 13494,
+      "sql_mapping_recoverable": 13494,
+      "errors": {}
+    },
+    "3": {
+      "rows": 8662,
+      "mapping_recoverable": 8662,
+      "sql_mapping_recoverable": 8662,
+      "errors": {}
+    },
+    "6": {
+      "rows": 6820,
+      "mapping_recoverable": 6820,
+      "sql_mapping_recoverable": 6820,
+      "errors": {}
+    },
+    "4": {
+      "rows": 13648,
+      "mapping_recoverable": 13648,
+      "sql_mapping_recoverable": 13648,
+      "errors": {}
+    },
+    "2": {
+      "rows": 5056,
+      "mapping_recoverable": 5056,
+      "sql_mapping_recoverable": 5056,
+      "errors": {}
+    },
+    "7": {
+      "rows": 2320,
+      "mapping_recoverable": 2320,
+      "sql_mapping_recoverable": 2320,
+      "errors": {}
+    }
+  },
+  "by_predicate": {
+    "EQ": {
+      "rows": 50000,
+      "mapping_recoverable": 50000,
+      "sql_mapping_recoverable": 50000,
+      "errors": {}
+    },
+    "LT": {
+      "rows": 37177,
+      "mapping_recoverable": 37177,
+      "sql_mapping_recoverable": 37177,
+      "errors": {}
+    },
+    "GTE": {
+      "rows": 26883,
+      "mapping_recoverable": 26883,
+      "sql_mapping_recoverable": 26883,
+      "errors": {}
+    }
+  },
+  "by_flag": {
+    "no_risk_flag": {
+      "rows": 35194,
+      "mapping_recoverable": 35194,
+      "sql_mapping_recoverable": 35194,
+      "errors": {}
+    },
+    "multiple_filters": {
+      "rows": 14806,
+      "mapping_recoverable": 14806,
+      "sql_mapping_recoverable": 14806,
+      "errors": {}
+    }
+  },
+  "first_failures": [],
+  "mapping_examples": [
+    {
+      "query_hash": "d12569ed1c40990a3ed5b9fdf0fc61edae6d6955c0d73edb906aa56eb2734713",
+      "source_line": 1,
+      "tables": [
+        "fnc_acc",
+        "fnc_loan",
+        "fnc_cli",
+        "fnc_trn",
+        "fnc_ode"
+      ],
+      "table_names": [
+        "account",
+        "loan",
+        "client",
+        "trans",
+        "order1"
+      ],
+      "join_columns": [
+        "fnc_acc.account_id",
+        "fnc_acc.district_id",
+        "fnc_loan.account_id",
+        "fnc_cli.district_id",
+        "fnc_trn.account_id",
+        "fnc_ode.account_id"
+      ],
+      "filter_columns": [
+        "fnc_acc.frequency",
+        "fnc_ode.bank_to"
+      ],
+      "join_column_tables": [
+        0,
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "filter_column_tables": [
+        0,
+        4
+      ],
+      "fanout_join_columns": [
+        0,
+        5,
+        0,
+        4,
+        0,
+        2,
+        1,
+        3
+      ],
+      "counts": [
+        6,
+        8,
+        5,
+        2
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ"
+      ],
+      "mapping_recoverable": true
+    },
+    {
+      "query_hash": "2e586ada6b0b4f5c7f793b9cee1c25c46df8d08708c8c754212fb6a5413a11bc",
+      "source_line": 2,
+      "tables": [
+        "fnc_acc",
+        "fnc_trn",
+        "fnc_ode"
+      ],
+      "table_names": [
+        "account",
+        "trans",
+        "order1"
+      ],
+      "join_columns": [
+        "fnc_acc.account_id",
+        "fnc_trn.account_id",
+        "fnc_ode.account_id"
+      ],
+      "filter_columns": [
+        "fnc_trn.k_symbol",
+        "fnc_trn.amount",
+        "fnc_ode.k_symbol"
+      ],
+      "join_column_tables": [
+        0,
+        1,
+        2
+      ],
+      "filter_column_tables": [
+        1,
+        1,
+        2
+      ],
+      "fanout_join_columns": [
+        0,
+        1,
+        1,
+        2
+      ],
+      "counts": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ",
+        "LT"
+      ],
+      "mapping_recoverable": true
+    }
+  ],
+  "seconds": 792.4328164458275,
+  "stored_alignment_passed": true,
+  "alignment_passed": true,
+  "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+  "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+}

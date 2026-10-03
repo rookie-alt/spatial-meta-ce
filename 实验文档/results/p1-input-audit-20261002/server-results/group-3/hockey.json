@@ -1,0 +1,215 @@
+{
+  "database": "hockey",
+  "role": "train",
+  "workload_rows": 50000,
+  "source_feature_rows": 50000,
+  "cache_rows": 50000,
+  "unique_queries": 50000,
+  "source_feature_fields": [
+    "data_features",
+    "n_fanouts",
+    "n_filter_cols",
+    "n_join_cols",
+    "n_tables",
+    "pg_est_cards",
+    "true_cards"
+  ],
+  "cache_manifest_fields": [
+    "content_hash",
+    "inspection",
+    "provenance",
+    "rows",
+    "schema",
+    "transform",
+    "unique_queries"
+  ],
+  "cache_row_fields": [
+    "exact_hash",
+    "id",
+    "query_hash",
+    "source_line"
+  ],
+  "cache_regenerated": false,
+  "input_hashes": {
+    "workload": "8a9a64c6ee0583cda6626be7caa1975f86654a956fa02b23dee6f63db7571be7",
+    "source_features": "076b76c6341a7936871a862cc5baaf3fab41d41440ca7ab47e10fabf72d94a5d",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "348ec2787d04d71603b1353931ddafac6d170caac3d7f79e0f6838e84615771a",
+    "statistics/fanout40.pkl": "3467b1ef1ac6c77a3f834a8b915b449da6736b288dc21ce0aff230f3c9fc6242",
+    "statistics/histogram40.pkl": "c36c523a13fbc1388d524c15a1868e584c730383060d7c1cf71def2748f03a61",
+    "statistics/size.pkl": "9d8d554b9ea2f98429cb0b26cedf4139c07bffd080e24c1632686ceda76c39d8",
+    "statistics/summary40.pkl": "9f795320eef02e9007c52e1f409aeeedf83364d80f6ad513fba03ab7db580cde"
+  },
+  "provenance_errors": [],
+  "inputs_unchanged": true,
+  "recreate_all_features": true,
+  "totals": {
+    "recreated_rows": 50000,
+    "checked_rows": 50000,
+    "rows_with_errors": 0,
+    "mapping_recoverable": 50000,
+    "sql_mapping_recoverable": 50000,
+    "rows_with_risk_flags": 2429
+  },
+  "sql_flags": {
+    "multiple_filters": 2429
+  },
+  "by_tables": {
+    "2": {
+      "rows": 10857,
+      "mapping_recoverable": 10857,
+      "sql_mapping_recoverable": 10857,
+      "errors": {}
+    },
+    "3": {
+      "rows": 15455,
+      "mapping_recoverable": 15455,
+      "sql_mapping_recoverable": 15455,
+      "errors": {}
+    },
+    "4": {
+      "rows": 16275,
+      "mapping_recoverable": 16275,
+      "sql_mapping_recoverable": 16275,
+      "errors": {}
+    },
+    "5": {
+      "rows": 6064,
+      "mapping_recoverable": 6064,
+      "sql_mapping_recoverable": 6064,
+      "errors": {}
+    },
+    "6": {
+      "rows": 1177,
+      "mapping_recoverable": 1177,
+      "sql_mapping_recoverable": 1177,
+      "errors": {}
+    },
+    "7": {
+      "rows": 172,
+      "mapping_recoverable": 172,
+      "sql_mapping_recoverable": 172,
+      "errors": {}
+    }
+  },
+  "by_predicate": {
+    "EQ": {
+      "rows": 50000,
+      "mapping_recoverable": 50000,
+      "sql_mapping_recoverable": 50000,
+      "errors": {}
+    },
+    "LT": {
+      "rows": 8843,
+      "mapping_recoverable": 8843,
+      "sql_mapping_recoverable": 8843,
+      "errors": {}
+    },
+    "GTE": {
+      "rows": 5636,
+      "mapping_recoverable": 5636,
+      "sql_mapping_recoverable": 5636,
+      "errors": {}
+    }
+  },
+  "by_flag": {
+    "no_risk_flag": {
+      "rows": 47571,
+      "mapping_recoverable": 47571,
+      "sql_mapping_recoverable": 47571,
+      "errors": {}
+    },
+    "multiple_filters": {
+      "rows": 2429,
+      "mapping_recoverable": 2429,
+      "sql_mapping_recoverable": 2429,
+      "errors": {}
+    }
+  },
+  "first_failures": [],
+  "mapping_examples": [
+    {
+      "query_hash": "a77a81516a093a3b7f385dc49986085c2e3fc137119151086b0d35b1db1a2562",
+      "source_line": 1,
+      "tables": [
+        "hok_ssc",
+        "hok_tmh"
+      ],
+      "table_names": [
+        "scoringsc",
+        "teamshalf"
+      ],
+      "join_columns": [
+        "hok_ssc.year_tmid",
+        "hok_tmh.year_tmid"
+      ],
+      "filter_columns": [],
+      "join_column_tables": [
+        0,
+        1
+      ],
+      "filter_column_tables": [],
+      "fanout_join_columns": [
+        0,
+        1
+      ],
+      "counts": [
+        2,
+        2,
+        2,
+        0
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ"
+      ],
+      "mapping_recoverable": true
+    },
+    {
+      "query_hash": "0b8833f4918710d9e03564ca303a16b546ab65349f0a241e413027c8e1e97124",
+      "source_line": 2,
+      "tables": [
+        "hok_ssh",
+        "hok_mas"
+      ],
+      "table_names": [
+        "scoringshootout",
+        "master"
+      ],
+      "join_columns": [
+        "hok_ssh.playerid",
+        "hok_mas.p_id"
+      ],
+      "filter_columns": [
+        "hok_ssh.g"
+      ],
+      "join_column_tables": [
+        0,
+        1
+      ],
+      "filter_column_tables": [
+        0
+      ],
+      "fanout_join_columns": [
+        0,
+        1
+      ],
+      "counts": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ"
+      ],
+      "mapping_recoverable": true
+    }
+  ],
+  "seconds": 438.43022616696544,
+  "stored_alignment_passed": true,
+  "alignment_passed": true,
+  "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+  "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+}

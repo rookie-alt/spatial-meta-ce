@@ -1,0 +1,254 @@
+{
+  "database": "tpc_h",
+  "role": "train",
+  "workload_rows": 50000,
+  "source_feature_rows": 50000,
+  "cache_rows": 50000,
+  "unique_queries": 50000,
+  "source_feature_fields": [
+    "data_features",
+    "n_fanouts",
+    "n_filter_cols",
+    "n_join_cols",
+    "n_tables",
+    "pg_est_cards",
+    "true_cards"
+  ],
+  "cache_manifest_fields": [
+    "content_hash",
+    "inspection",
+    "provenance",
+    "rows",
+    "schema",
+    "transform",
+    "unique_queries"
+  ],
+  "cache_row_fields": [
+    "exact_hash",
+    "id",
+    "query_hash",
+    "source_line"
+  ],
+  "cache_regenerated": false,
+  "input_hashes": {
+    "workload": "5c30ceb43d3c373d913f1390056be0eccf23dea095940cbfa12606e0e617522a",
+    "source_features": "05f081f7106330a36d533606bb7c44d89990059e5dd3b42dd124fce43d26413f",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "5ab59be68a0864426292f48af8443c3f97b04ea1f5ebf5e3dfbd1c56cf698eea",
+    "statistics/fanout40.pkl": "2b6fe5ad04956d69b3a59c95c314b93b10d0b283cb4d8580bdfbbf23a87b5e21",
+    "statistics/histogram40.pkl": "77eed081573c5229b4e06cbf0be1c117d3df1a62f2cec2fe531e5dc0e4434104",
+    "statistics/size.pkl": "73bcc9b2d08104c508ddb08f14542f4e8cc7baf27233173c5beec245519b6914",
+    "statistics/summary40.pkl": "eeca41e92d93ed41f3c5fd409a1166ea0cfb19a96fa55d0f6cea43e9bc593baf"
+  },
+  "provenance_errors": [],
+  "inputs_unchanged": true,
+  "recreate_all_features": true,
+  "totals": {
+    "recreated_rows": 50000,
+    "checked_rows": 50000,
+    "rows_with_errors": 0,
+    "mapping_recoverable": 50000,
+    "sql_mapping_recoverable": 50000,
+    "rows_with_risk_flags": 12086
+  },
+  "sql_flags": {
+    "multiple_filters": 12086
+  },
+  "by_tables": {
+    "2": {
+      "rows": 6560,
+      "mapping_recoverable": 6560,
+      "sql_mapping_recoverable": 6560,
+      "errors": {}
+    },
+    "5": {
+      "rows": 11125,
+      "mapping_recoverable": 11125,
+      "sql_mapping_recoverable": 11125,
+      "errors": {}
+    },
+    "3": {
+      "rows": 9623,
+      "mapping_recoverable": 9623,
+      "sql_mapping_recoverable": 9623,
+      "errors": {}
+    },
+    "6": {
+      "rows": 6942,
+      "mapping_recoverable": 6942,
+      "sql_mapping_recoverable": 6942,
+      "errors": {}
+    },
+    "4": {
+      "rows": 12057,
+      "mapping_recoverable": 12057,
+      "sql_mapping_recoverable": 12057,
+      "errors": {}
+    },
+    "7": {
+      "rows": 3693,
+      "mapping_recoverable": 3693,
+      "sql_mapping_recoverable": 3693,
+      "errors": {}
+    }
+  },
+  "by_predicate": {
+    "EQ": {
+      "rows": 50000,
+      "mapping_recoverable": 50000,
+      "sql_mapping_recoverable": 50000,
+      "errors": {}
+    },
+    "GTE": {
+      "rows": 21577,
+      "mapping_recoverable": 21577,
+      "sql_mapping_recoverable": 21577,
+      "errors": {}
+    },
+    "LT": {
+      "rows": 29522,
+      "mapping_recoverable": 29522,
+      "sql_mapping_recoverable": 29522,
+      "errors": {}
+    }
+  },
+  "by_flag": {
+    "no_risk_flag": {
+      "rows": 37914,
+      "mapping_recoverable": 37914,
+      "sql_mapping_recoverable": 37914,
+      "errors": {}
+    },
+    "multiple_filters": {
+      "rows": 12086,
+      "mapping_recoverable": 12086,
+      "sql_mapping_recoverable": 12086,
+      "errors": {}
+    }
+  },
+  "first_failures": [],
+  "mapping_examples": [
+    {
+      "query_hash": "228dfb082b43e77924297b91a67cf94a1879373803776d17373454c4b03aeee2",
+      "source_line": 1,
+      "tables": [
+        "tpch_o",
+        "tpch_c"
+      ],
+      "table_names": [
+        "orders",
+        "customer"
+      ],
+      "join_columns": [
+        "tpch_o.o_custkey",
+        "tpch_c.c_custkey"
+      ],
+      "filter_columns": [
+        "tpch_o.o_totalprice",
+        "tpch_c.c_acctbal"
+      ],
+      "join_column_tables": [
+        0,
+        1
+      ],
+      "filter_column_tables": [
+        0,
+        1
+      ],
+      "fanout_join_columns": [
+        0,
+        1
+      ],
+      "counts": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ",
+        "GTE",
+        "LT"
+      ],
+      "mapping_recoverable": true
+    },
+    {
+      "query_hash": "2a9b21fc33e86f6e7b4cd290763b40c4ef74d9c013365620520ba570b6636ae4",
+      "source_line": 2,
+      "tables": [
+        "tpch_li",
+        "tpch_ps",
+        "tpch_p",
+        "tpch_o",
+        "tpch_c"
+      ],
+      "table_names": [
+        "lineitem",
+        "partsupp",
+        "part",
+        "orders",
+        "customer"
+      ],
+      "join_columns": [
+        "tpch_li.l_orderkey",
+        "tpch_li.l_suppkey",
+        "tpch_ps.ps_suppkey",
+        "tpch_ps.ps_partkey",
+        "tpch_p.p_partkey",
+        "tpch_o.o_custkey",
+        "tpch_o.o_orderkey",
+        "tpch_c.c_custkey"
+      ],
+      "filter_columns": [
+        "tpch_li.l_tax",
+        "tpch_li.l_partkey",
+        "tpch_p.p_brand",
+        "tpch_c.c_mktsegment"
+      ],
+      "join_column_tables": [
+        0,
+        0,
+        1,
+        1,
+        2,
+        3,
+        3,
+        4
+      ],
+      "filter_column_tables": [
+        0,
+        0,
+        2,
+        4
+      ],
+      "fanout_join_columns": [
+        5,
+        7,
+        0,
+        6,
+        1,
+        2,
+        3,
+        4
+      ],
+      "counts": [
+        8,
+        8,
+        5,
+        4
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ",
+        "GTE"
+      ],
+      "mapping_recoverable": true
+    }
+  ],
+  "seconds": 887.3201278978959,
+  "stored_alignment_passed": true,
+  "alignment_passed": true,
+  "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+  "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+}

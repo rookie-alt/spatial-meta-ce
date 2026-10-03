@@ -1,0 +1,10 @@
+{
+  "captured_at": "2026-10-02T14:39:41.053619+08:00",
+  "worker_processes": [
+    "40135 40131       35:12 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases accidents airline baseball basketball carcinogenesis --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-1",
+    "40136 40131       35:12 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases ccs consumer credit employee financial --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-2",
+    "40137 40131       35:12 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases fnhk grants hepatitis hockey movielens --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-3",
+    "40138 40131       35:12 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases sakila sap seznam ssb --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-4",
+    "40139 40131       35:12 /gly/weilin/PRICE-master/venv/bin/python -B -u scripts/audit_input_mapping.py --databases talkingdata tournament tpc_h tubepricing --recreate --output /gly/weilin/spatial-meta-ce/runs/p1-input-audit-20261002/group-5"
+  ]
+}
