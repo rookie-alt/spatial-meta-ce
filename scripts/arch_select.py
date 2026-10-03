@@ -31,13 +31,48 @@ from spatial_meta_ce.train import validation_plan
 TARGETS = {'imdb', 'stats', 'genome', 'ergastf1'}
 
 
+def checkpoint_pool(state: dict, data_config: dict) -> StorePool:
+    metadata = state['metadata']
+    exposed = set(metadata['train_databases']) | set(metadata['validation_databases'])
+    databases = data_config['splits']['validation']
+    if metadata.get('adapted_database'):
+        raise ValueError('Source selection requires an unadapted initialization')
+    if set(databases) != set(metadata['validation_databases']):
+        raise ValueError('Checkpoint source validation split changed')
+    if (exposed | set(databases)) & TARGETS:
+        raise ValueError('Source selection cannot include target databases')
+    mapping_config = metadata['training_signature'].get('mapping')
+    mapped = state['model_config'].get('arch') == 'sum_map'
+    if mapped != bool(mapping_config):
+        raise ValueError('Checkpoint mapping configuration disagrees with architecture')
+    pool = StorePool(data_config['cache_root'],
+                     mapping_root=mapping_config['root'] if mapped else None,
+                     mapping_mode=mapping_config['mode'] if mapped else 'mapping')
+    provenance = metadata.get('mapping_provenance', {})
+    if mapped and set(provenance) != exposed:
+        raise ValueError('Checkpoint mapping provenance is incomplete')
+    for db in databases:
+        store = pool.get('pretrain', db)
+        if metadata['manifest_hashes'].get(db) != store.manifest['content_hash']:
+            raise ValueError(f'Checkpoint validation cache changed: {db}')
+        if mapped and provenance[db] != store.mapping.provenance():
+            raise ValueError(f'Checkpoint mapping provenance changed: {db}')
+    return pool
+
+
 def evaluate_checkpoint(model, config, pool, episodes, device):
     model.eval()
     per_ep = []
     zero = defaultdict(lambda: ([], []))
     seen = set()
     for ep in episodes:
+        if ep['db'] in TARGETS:
+            raise ValueError('Source selection episode contains a target database')
         store = pool.get('pretrain', ep['db'])
+        for part in ('support', 'query'):
+            expected = [store.rows[int(i)]['query_hash'] for i in ep[part]]
+            if ep.get(f'{part}_hashes') != expected:
+                raise ValueError('Validation plan query hashes changed')
         support = store.batch(ep['support'], device)
         query = store.batch(ep['query'], device)
         params = adapt(model, support, config['inner_lr'], config['inner_steps'],
@@ -93,7 +128,8 @@ def main():
         exposed = set(state['metadata']['train_databases']) | set(state['metadata']['validation_databases'])
         if exposed & TARGETS:
             raise ValueError(f'{name} was trained on a target database')
-        r = evaluate_checkpoint(model, config, pool, episodes, args.device)
+        matching_pool = checkpoint_pool(state, data_config)
+        r = evaluate_checkpoint(model, config, matching_pool, episodes, args.device)
         r.update(path=path, model_config=model.config,
                  parameters=sum(t.numel() for t in model.parameters()),
                  best_step_metric=state['best_metric'])

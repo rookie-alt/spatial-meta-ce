@@ -1,0 +1,53 @@
+{
+  "training": {
+    "model": {
+      "width": 64,
+      "use_pg": true,
+      "layers": 2,
+      "heads": 4,
+      "arch": "sum_map"
+    },
+    "method": "erm",
+    "seed": 42,
+    "steps": 20,
+    "meta_batch": 4,
+    "accumulation": 1,
+    "outer_lr": 0.0003,
+    "inner_lr": 0.001,
+    "inner_steps": 5,
+    "adapt_scope": "all",
+    "support_sizes": [
+      5
+    ],
+    "query_size": 64,
+    "loss": "smooth_l1",
+    "validate_every": 10,
+    "validation_runs": 1,
+    "validation_seed": 1729,
+    "patience": 41,
+    "min_delta": 0.0001,
+    "purpose": "smoke-only; not research evidence",
+    "mapping": {
+      "root": "/gly/weilin/spatial-meta-ce/runs/p1-input-mapping-sidecar-preflight-20261003-verified",
+      "mode": "mapping"
+    }
+  },
+  "data": {
+    "cache_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+    "splits": {
+      "train": [
+        "chembl"
+      ],
+      "validation": [
+        "legalacts",
+        "telstra"
+      ],
+      "test": [
+        "imdb",
+        "stats",
+        "genome",
+        "ergastf1"
+      ]
+    }
+  }
+}

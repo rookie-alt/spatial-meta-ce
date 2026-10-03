@@ -1,0 +1,46 @@
+{
+  "last_step": 20,
+  "best_validation_macro_log_q95": 2.768594208143535,
+  "counts": {
+    "support_presentations": 0,
+    "query_presentations": 5520,
+    "backward_calls": 80,
+    "optimizer_steps": 20
+  },
+  "total_seconds": 6.467536003096029,
+  "parameters": 169665,
+  "purpose": "smoke-only; not research evidence",
+  "device": "cuda:0",
+  "optimizer_steps": 20,
+  "sample_plan_digest": "08e6c8e42c8904c9dbfca8972b23874da815a23cf9efc0b97175094b1609c663",
+  "sample_plan_episodes": 80,
+  "validation_plan_hash": "905bf4b9a1ae82537e63fdd578ea2fbcd6a6fbec1823bd9933a4540c29a79582",
+  "mapping_provenance": {
+    "chembl": {
+      "manifest_hash": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+      "jsonl_hash": "6c1b8c8af8be55a27387b38c64982ac67c33c1c8569e8b3e082233c409b6b019",
+      "mode": "shuffled_mapping"
+    },
+    "legalacts": {
+      "manifest_hash": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+      "jsonl_hash": "8eb67b4b12cb565a9ab71b65107cf5c08899d8db6c63317f4e17811eacf02df1",
+      "mode": "shuffled_mapping"
+    },
+    "telstra": {
+      "manifest_hash": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+      "jsonl_hash": "09fae9ed0d39929daa1246c8333cf984f0fbe17554a33b155fa8462ff75125a5",
+      "mode": "shuffled_mapping"
+    }
+  },
+  "checkpoint_roundtrip_exact": true,
+  "optimizer_changed_weights": true,
+  "cpu_gpu_max_abs_difference": 9.5367431640625e-07,
+  "cpu_gpu_tolerance": {
+    "rtol": 0.0001,
+    "atol": 0.0001
+  },
+  "checkpoint_sha256": "f04f2cc36e4ec3495c547eee17fa3e565145a85ddfa5b72fdbe84351bbbbc7d9",
+  "initialization_hash": "1fe96062be819ac30658e5d40fbf5b507b8b170b7723ad40f3c3f2e720ac77b1",
+  "gpu_seconds_including_data_load": 78.45763674587943,
+  "peak_memory_bytes": 80174592
+}

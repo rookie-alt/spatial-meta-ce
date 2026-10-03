@@ -1,0 +1,180 @@
+{
+  "status": "passed",
+  "purpose": "smoke-only; not research evidence",
+  "created_at": "2026-10-03T11:38:06.080201+00:00",
+  "gpu_index": "4",
+  "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+  "gpu_name": "NVIDIA GeForce RTX 3090",
+  "torch_version": "2.1.0+cu121",
+  "cuda_version": "12.1",
+  "source_data": {
+    "cache_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+    "splits": {
+      "train": [
+        "chembl"
+      ],
+      "validation": [
+        "legalacts",
+        "telstra"
+      ],
+      "test": [
+        "imdb",
+        "stats",
+        "genome",
+        "ergastf1"
+      ]
+    }
+  },
+  "target_databases_opened": [],
+  "code_hashes": {
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/baselines.py": "8c33abc32eca96add688000c389527ff76886bf5d8de84f797c3735edb5b2064",
+    "spatial_meta_ce/checkpoints.py": "efb21c956fb836938aaf7675f0d1eb047ef767e537576f47d6b591a5a3bdf504",
+    "spatial_meta_ce/cli.py": "5acff5d2e59274ac4a68c152f07383618b4e8851055e4a4b0340b706f1dc5022",
+    "spatial_meta_ce/data.py": "ce95da90f859d931aa68f39a86c7c81a47e41963b02097c62acd50cd3cae696f",
+    "spatial_meta_ce/evaluate.py": "4aeea67ed1fd23e435012ec6e662f7321b26fab119afacb34d0a51d390da98b3",
+    "spatial_meta_ce/features.py": "5a165cd905f7c7de9f73f98783b97d796412d8072b81690de66a26005d12162d",
+    "spatial_meta_ce/manifests.py": "fc96df193c36ade103b2116f777325afb6bb8fb0c368ff0516998fa33fac6d30",
+    "spatial_meta_ce/mappings.py": "9485b3991d5403a84ad70bf6565026585bda29ffbfc867112f7d4b9d54ded0af",
+    "spatial_meta_ce/meta.py": "10fe9bed655ba71bca3d77a2960c27aefb4e933a75e6f84fe4162581945a361f",
+    "spatial_meta_ce/metrics.py": "ec940c3b29bb5b165f560a369c9874cd9ec630d2bbc21e7f78893a64fe1c56a5",
+    "spatial_meta_ce/model.py": "d0e4fb717b7394c43a233fc7d01dfa27b484358a88959af9756792d9b779c68e",
+    "spatial_meta_ce/train.py": "3845c51b8b7a2fdfc327b63a7221f050afadfc56bef73ae6cefad6a0a30cec72",
+    "scripts/adapt_strategy_search.py": "d99beba1e79303311cd2222124afde8e7ca02977d72e26cede48b7a172187e19",
+    "scripts/arch_select.py": "2dd4fcc3ef8248c3d7d4dbe5a09992bf8fe0e7026fb1c674df84b0951bfe7a91",
+    "scripts/audit_input_mapping.py": "58802d3a93fe8a0517f1a7423559aa50db95c3ef89537dc98a0363ccc61b13fe",
+    "scripts/build_mapping_sidecar.py": "304601dba325a65743f1b5d3f49099602db1877ed982331236efc730daee8dc4",
+    "scripts/deploy.py": "239d6c0dead06d28a7f4d4869a35d9e941e9debd1df73e09547842b388e688d5",
+    "scripts/error_by_joins.py": "3aa6d4d3a8c296c37a954575677400e51cbd2b5181db8b188e54c6c1e1d8e3c2",
+    "scripts/eval_frozen.py": "20259b6dd2e1ebb902ebec47e08ad26a848cd892ca078c2fa456210a6c616502",
+    "scripts/mapping_smoke.py": "6f897a37f94150ccfed4d074a4be45c888d27a60d0ef376d7333d9724ecc4b96",
+    "scripts/price_fewshot.py": "cd615b2135f33d01bc79367f182fec51d733b804ac0a4ecd3225e201eaa3f1fd",
+    "scripts/price_lr_search.py": "d4aef9e168bb10d03570b7a8a4947770577943454937aaab6f33a8120b1a0d72",
+    "scripts/run_experiments.py": "1bda553623ba9f72928bb04403f8addd523d8addf5b5bee25ce536746616bcc1"
+  },
+  "code_digest": "85aadbd9145bc657a33ade223a5eb28898e91ef7359a72cd01d832b35590f66e",
+  "results": {
+    "sum": {
+      "last_step": 20,
+      "best_validation_macro_log_q95": 2.79686281435925,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 5520,
+        "backward_calls": 80,
+        "optimizer_steps": 20
+      },
+      "total_seconds": 4.517637401819229,
+      "parameters": 132545,
+      "purpose": "smoke-only; not research evidence",
+      "device": "cuda:0",
+      "optimizer_steps": 20,
+      "sample_plan_digest": "08e6c8e42c8904c9dbfca8972b23874da815a23cf9efc0b97175094b1609c663",
+      "sample_plan_episodes": 80,
+      "validation_plan_hash": "905bf4b9a1ae82537e63fdd578ea2fbcd6a6fbec1823bd9933a4540c29a79582",
+      "mapping_provenance": {},
+      "checkpoint_roundtrip_exact": true,
+      "optimizer_changed_weights": true,
+      "cpu_gpu_max_abs_difference": 0.0,
+      "cpu_gpu_tolerance": {
+        "rtol": 0.0001,
+        "atol": 0.0001
+      },
+      "checkpoint_sha256": "b7d02421d1b40947ff0458c22916a1603770c9b57a6c9fbe6b04ddca85e770e5",
+      "initialization_hash": "41e594b03ef19c56c3f236237da850929f2ec5c919702b44402dd9b2864d284a",
+      "gpu_seconds_including_data_load": 7.439222527202219,
+      "peak_memory_bytes": 73747456
+    },
+    "mapping": {
+      "last_step": 20,
+      "best_validation_macro_log_q95": 2.770136712275329,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 5520,
+        "backward_calls": 80,
+        "optimizer_steps": 20
+      },
+      "total_seconds": 10.142658661818132,
+      "parameters": 169665,
+      "purpose": "smoke-only; not research evidence",
+      "device": "cuda:0",
+      "optimizer_steps": 20,
+      "sample_plan_digest": "08e6c8e42c8904c9dbfca8972b23874da815a23cf9efc0b97175094b1609c663",
+      "sample_plan_episodes": 80,
+      "validation_plan_hash": "905bf4b9a1ae82537e63fdd578ea2fbcd6a6fbec1823bd9933a4540c29a79582",
+      "mapping_provenance": {
+        "chembl": {
+          "manifest_hash": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+          "jsonl_hash": "6c1b8c8af8be55a27387b38c64982ac67c33c1c8569e8b3e082233c409b6b019",
+          "mode": "mapping"
+        },
+        "legalacts": {
+          "manifest_hash": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+          "jsonl_hash": "8eb67b4b12cb565a9ab71b65107cf5c08899d8db6c63317f4e17811eacf02df1",
+          "mode": "mapping"
+        },
+        "telstra": {
+          "manifest_hash": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+          "jsonl_hash": "09fae9ed0d39929daa1246c8333cf984f0fbe17554a33b155fa8462ff75125a5",
+          "mode": "mapping"
+        }
+      },
+      "checkpoint_roundtrip_exact": true,
+      "optimizer_changed_weights": true,
+      "cpu_gpu_max_abs_difference": 4.76837158203125e-07,
+      "cpu_gpu_tolerance": {
+        "rtol": 0.0001,
+        "atol": 0.0001
+      },
+      "checkpoint_sha256": "b36982e142e72262edb5da7cd60ed4a622e20a883e2ab202bc65e093cf7998a3",
+      "initialization_hash": "1fe96062be819ac30658e5d40fbf5b507b8b170b7723ad40f3c3f2e720ac77b1",
+      "gpu_seconds_including_data_load": 83.61743283993565,
+      "peak_memory_bytes": 80174592
+    },
+    "shuffled_mapping": {
+      "last_step": 20,
+      "best_validation_macro_log_q95": 2.768594208143535,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 5520,
+        "backward_calls": 80,
+        "optimizer_steps": 20
+      },
+      "total_seconds": 6.467536003096029,
+      "parameters": 169665,
+      "purpose": "smoke-only; not research evidence",
+      "device": "cuda:0",
+      "optimizer_steps": 20,
+      "sample_plan_digest": "08e6c8e42c8904c9dbfca8972b23874da815a23cf9efc0b97175094b1609c663",
+      "sample_plan_episodes": 80,
+      "validation_plan_hash": "905bf4b9a1ae82537e63fdd578ea2fbcd6a6fbec1823bd9933a4540c29a79582",
+      "mapping_provenance": {
+        "chembl": {
+          "manifest_hash": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+          "jsonl_hash": "6c1b8c8af8be55a27387b38c64982ac67c33c1c8569e8b3e082233c409b6b019",
+          "mode": "shuffled_mapping"
+        },
+        "legalacts": {
+          "manifest_hash": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+          "jsonl_hash": "8eb67b4b12cb565a9ab71b65107cf5c08899d8db6c63317f4e17811eacf02df1",
+          "mode": "shuffled_mapping"
+        },
+        "telstra": {
+          "manifest_hash": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+          "jsonl_hash": "09fae9ed0d39929daa1246c8333cf984f0fbe17554a33b155fa8462ff75125a5",
+          "mode": "shuffled_mapping"
+        }
+      },
+      "checkpoint_roundtrip_exact": true,
+      "optimizer_changed_weights": true,
+      "cpu_gpu_max_abs_difference": 9.5367431640625e-07,
+      "cpu_gpu_tolerance": {
+        "rtol": 0.0001,
+        "atol": 0.0001
+      },
+      "checkpoint_sha256": "f04f2cc36e4ec3495c547eee17fa3e565145a85ddfa5b72fdbe84351bbbbc7d9",
+      "initialization_hash": "1fe96062be819ac30658e5d40fbf5b507b8b170b7723ad40f3c3f2e720ac77b1",
+      "gpu_seconds_including_data_load": 78.45763674587943,
+      "peak_memory_bytes": 80174592
+    }
+  }
+}

@@ -7,7 +7,7 @@ from .data import GROUP_DIMS
 #       'sum'       variant A: + masked sum pooling (log-cardinality is additive)
 #       'attn'      variant B: A + token self-attention across all groups
 #       'attn_pair' variant C: B + join-index embedding on fanout tokens
-ARCHES = ('set', 'sum', 'attn', 'attn_pair')
+ARCHES = ('set', 'sum', 'sum_map', 'attn', 'attn_pair')
 MAX_JOINS = 16
 
 
@@ -35,6 +35,11 @@ class SetEstimator(nn.Module):
             self.mixer = nn.TransformerEncoder(layer, layers, enable_nested_tensor=False)
         if arch == 'attn_pair':
             self.join_embedding = nn.Embedding(MAX_JOINS, width)
+        if arch == 'sum_map':
+            self.mapping_fusion = nn.Sequential(nn.Linear(2 * width, width), nn.ReLU(),
+                                                nn.Linear(width, width), nn.ReLU())
+            self.fanout_fusion = nn.Sequential(nn.Linear(5 * width, width), nn.ReLU(),
+                                               nn.Linear(width, width), nn.ReLU())
         per_group = 2 if arch == 'set' else 3
         self.head = nn.Sequential(nn.Linear(per_group * len(GROUP_DIMS) * width + 6, 128), nn.ReLU(),
                                   nn.Linear(128, 64), nn.ReLU(), nn.Linear(64, 1))
@@ -59,12 +64,60 @@ class SetEstimator(nn.Module):
         x = x.masked_fill(~valid.unsqueeze(-1), 0)
         return list(torch.split(x, lengths, dim=1))
 
+    @staticmethod
+    def _gather(tokens, indices, target_mask):
+        if indices.ndim != 2 or indices.dtype != torch.long:
+            raise ValueError('Mapping indices must be a two-dimensional LongTensor')
+        valid = indices >= 0
+        if valid.any() and indices[valid].max() >= tokens.shape[1]:
+            raise ValueError('Mapping index exceeds token range')
+        safe = indices.clamp_min(0)
+        gathered_mask = target_mask.gather(1, safe)
+        if (valid & ~gathered_mask).any():
+            raise ValueError('Mapping points to a padded token')
+        result = tokens.gather(1, safe.unsqueeze(-1).expand(-1, -1, tokens.shape[-1]))
+        return result.masked_fill(~valid.unsqueeze(-1), 0)
+
+    def _map_tokens(self, tokens, masks, mapping):
+        table_tokens = tokens[2]
+        join_indices = mapping['join_column_tables']
+        filter_indices = mapping['filter_column_tables']
+        fanout_indices = mapping['fanout_join_columns']
+        if join_indices.shape != masks[0].shape or filter_indices.shape != masks[3].shape:
+            raise ValueError('Mapping/token shape mismatch')
+        if fanout_indices.shape != masks[1].shape or fanout_indices.shape[1] % 2:
+            raise ValueError('Fanout mapping must contain complete directed pairs')
+        for indices, mask in zip((join_indices, fanout_indices, filter_indices),
+                                 (masks[0], masks[1], masks[3])):
+            if not torch.equal(indices >= 0, mask):
+                raise ValueError('Mapping presence disagrees with token mask')
+        join_tables = self._gather(table_tokens, join_indices, masks[2])
+        filter_tables = self._gather(table_tokens, filter_indices, masks[2])
+        joined = self.mapping_fusion(torch.cat([tokens[0], join_tables], dim=-1))
+        filtered = self.mapping_fusion(torch.cat([tokens[3], filter_tables], dim=-1))
+        fanout_join = self._gather(tokens[0], fanout_indices, masks[0])
+        opposite = fanout_indices.reshape(fanout_indices.shape[0], -1, 2).flip(-1).reshape_as(fanout_indices)
+        opposite_join = self._gather(tokens[0], opposite, masks[0])
+        fanout_tables = self._gather(join_tables, fanout_indices, masks[0])
+        opposite_tables = self._gather(join_tables, opposite, masks[0])
+        fanout = self.fanout_fusion(torch.cat(
+            [tokens[1], fanout_join, opposite_join, fanout_tables, opposite_tables], dim=-1))
+        return [joined.masked_fill(~masks[0].unsqueeze(-1), 0),
+                fanout.masked_fill(~masks[1].unsqueeze(-1), 0), table_tokens,
+                filtered.masked_fill(~masks[3].unsqueeze(-1), 0)]
+
     def forward(self, batch):
         masks = batch['masks']
+        if self.arch == 'sum_map' and 'mapping' not in batch:
+            raise ValueError('sum_map requires mapping indices')
+        if self.arch != 'sum_map' and 'mapping' in batch:
+            raise ValueError('Mapping indices supplied to an unmapped architecture')
         # Mask BEFORE the MLP as well: even arbitrary padding must not overflow.
         tokens = [encoder(x.masked_fill(~mask.unsqueeze(-1), 0))
                   for encoder, x, mask in zip(self.encoders, batch['groups'], masks)]
-        if self.arch in ('attn', 'attn_pair'):
+        if self.arch == 'sum_map':
+            tokens = self._map_tokens(tokens, masks, batch['mapping'])
+        elif self.arch in ('attn', 'attn_pair'):
             tokens = self._mix(tokens, masks)
         pooled = []
         for t, mask in zip(tokens, masks):

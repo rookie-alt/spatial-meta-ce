@@ -1,3 +1,4 @@
+import hashlib
 import json
 import random
 import time
@@ -39,7 +40,9 @@ def validation_plan(pool, databases, config):
                 si, qi = episode_indices(unique, k, config['query_size'], rng)
                 episodes.append({'db':db,'k':k,'run':run,'support':si.tolist(),'query':qi.tolist(),
                                  'support_ids':[store.rows[int(i)]['id'] for i in si],
-                                 'query_ids':[store.rows[int(i)]['id'] for i in qi]})
+                                 'query_ids':[store.rows[int(i)]['id'] for i in qi],
+                                 'support_hashes':[store.rows[int(i)]['query_hash'] for i in si],
+                                 'query_hashes':[store.rows[int(i)]['query_hash'] for i in qi]})
     return episodes
 
 
@@ -66,6 +69,23 @@ def validate(model, pool, episodes, config, device):
     return float(np.mean([r['metrics']['log_q95'] for r in records])), records
 
 
+def _legacy_sample_plan(config: dict, databases: list, pools: dict,
+                        pool: StorePool, steps: int, generator: dict) -> tuple[str, int]:
+    rng = np.random.default_rng(config['seed'] + 1)
+    previous = hashlib.sha256(b'').hexdigest()
+    for _ in range(steps * config['meta_batch']):
+        db = str(rng.choice(databases))
+        k = int(rng.choice(config['support_sizes']))
+        si, qi = episode_indices(pools[db], k, config['query_size'], rng)
+        store = pool.get('pretrain', db)
+        episode = {'db': db, 'support': [store.rows[int(i)]['query_hash'] for i in si],
+                   'query': [store.rows[int(i)]['query_hash'] for i in qi]}
+        previous = digest({'previous': previous, 'episode': episode})
+    if rng.bit_generator.state != generator:
+        raise ValueError('Legacy sampling RNG cannot be reconstructed')
+    return previous, steps * config['meta_batch']
+
+
 def train(config, data_config, output_dir, device='cpu', resume=None):
     validate_splits(data_config['splits'])
     for key in ['steps','meta_batch','accumulation','query_size','validate_every','validation_runs','patience']:
@@ -73,29 +93,47 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
             raise ValueError(f'{key} must be positive')
     if config['method'] not in ('fomaml','erm') or min(config['support_sizes']) < 1:
         raise ValueError('Invalid training method or support sizes')
+    mapped = config.get('model', {}).get('arch') == 'sum_map'
+    mapping_config = config.get('mapping')
+    if mapped and not mapping_config:
+        raise ValueError('sum_map training requires mapping configuration')
+    if not mapped and mapping_config:
+        raise ValueError('Mapping configuration requires sum_map architecture')
+    if mapping_config and mapping_config.get('mode') not in ('mapping', 'shuffled_mapping'):
+        raise ValueError('Invalid mapping mode')
     seed_all(config['seed'])
     output_dir = Path(output_dir)
     if output_dir.exists() and any(output_dir.iterdir()) and not resume:
         raise FileExistsError('Use a new run directory or explicit --resume')
     output_dir.mkdir(parents=True, exist_ok=True)
-    pool = StorePool(data_config['cache_root'])
+    pool = StorePool(data_config['cache_root'],
+                     mapping_root=mapping_config['root'] if mapping_config else None,
+                     mapping_mode=mapping_config['mode'] if mapping_config else 'mapping')
     splits = data_config['splits']
     hashes = {}
     pools = {}
+    mapping_provenance = {}
     for db in splits['train'] + splits['validation']:
         store = pool.get('pretrain', db)
         hashes[db] = store.manifest['content_hash']
         pools[db] = store.unique_indices()
+        if mapping_config:
+            mapping_provenance[db] = store.mapping.provenance()
     signature = {k:v for k,v in config.items() if k not in ('steps','data_config')}
     metadata = {'method':config['method'],'seed':config['seed'],
                 'train_databases':splits['train'],'validation_databases':splits['validation'],
-                'manifest_hashes':hashes,'training_signature':signature,
+                'manifest_hashes': hashes,
+                'training_signature':signature,
                 'purpose':config.get('purpose','research'),
                 'selection':'source-validation macro mean log-Q95 after adaptation'}
+    if mapping_config:
+        metadata = {**metadata, 'mapping_provenance': mapping_provenance}
     rng = np.random.default_rng(config['seed']+1)
     model = SetEstimator(**config['model']).to(device)
     start, best, bad = 0, float('inf'), 0
     history = []
+    sample_plan_digest = hashlib.sha256(b'').hexdigest()
+    sample_plan_episodes = 0
     counts = {'support_presentations':0,'query_presentations':0,'backward_calls':0,'optimizer_steps':0}
     total_seconds = 0.0
     if resume:
@@ -104,6 +142,14 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
             raise ValueError('Resume configuration or data manifest changed')
         start, best, bad = state['next_step'], state['best_metric'], state['bad_validations']
         history = state['extra']['history']
+        if 'sample_plan_digest' in state['extra']:
+            sample_plan_digest = state['extra']['sample_plan_digest']
+            sample_plan_episodes = state['extra']['sample_plan_episodes']
+        elif not mapped:
+            sample_plan_digest, sample_plan_episodes = _legacy_sample_plan(
+                config, splits['train'], pools, pool, start, state['extra']['generator'])
+        else:
+            raise ValueError('Mapped checkpoint is missing its sampling provenance')
         rng.bit_generator.state = state['extra']['generator']
         counts = state['extra']['counts']
         total_seconds = state['extra']['total_seconds']
@@ -127,6 +173,10 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
                 k = int(rng.choice(config['support_sizes']))
                 si, qi = episode_indices(pools[db], k, config['query_size'], rng)
                 store = pool.get('pretrain', db)
+                episode = {'db': db, 'support': [store.rows[int(i)]['query_hash'] for i in si],
+                           'query': [store.rows[int(i)]['query_hash'] for i in qi]}
+                sample_plan_digest = digest({'previous': sample_plan_digest, 'episode': episode})
+                sample_plan_episodes += 1
                 if config['method'] == 'fomaml':
                     support, query = store.batch(si,device), store.batch(qi,device)
                     objective = meta_loss(model,support,query,config['inner_lr'],config['inner_steps'],config['adapt_scope'],config['loss'])
@@ -156,6 +206,8 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
             history.append(row)
             print(json.dumps({k:v for k,v in row.items() if k!='validation'}),flush=True)
         extra = {'history':history,'generator':rng.bit_generator.state,'counts':counts,
+                 'sample_plan_digest': sample_plan_digest,
+                 'sample_plan_episodes': sample_plan_episodes,
                  'total_seconds':total_seconds+time.perf_counter()-started}
         save_checkpoint(output_dir/'last.pt',model,optimizer,last_step,best,bad,metadata,extra)
         if improved:

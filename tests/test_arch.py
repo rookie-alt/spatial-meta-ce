@@ -11,7 +11,7 @@ from spatial_meta_ce.model import ARCHES, SetEstimator
 from spatial_meta_ce.meta import meta_loss
 from spatial_meta_ce.checkpoints import save_checkpoint, load_checkpoint
 
-VARIANTS = [a for a in ARCHES if a != 'set']
+VARIANTS = [a for a in ARCHES if a not in ('set', 'sum_map')]
 
 
 def sample(n=2, empty=False, y=10.0):
