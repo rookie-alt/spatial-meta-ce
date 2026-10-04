@@ -17,5 +17,9 @@ runs/
 # OS
 .DS_Store
 
+# Generated knowledge-graph output and local Claude Code config
+graphify-out/
+.claude/
+
 # Local reports that may contain machine-specific absolute paths
 # (实验文档/results 是同步下来的精简结果，需要保留)
