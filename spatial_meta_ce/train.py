@@ -106,14 +106,17 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
     if output_dir.exists() and any(output_dir.iterdir()) and not resume:
         raise FileExistsError('Use a new run directory or explicit --resume')
     output_dir.mkdir(parents=True, exist_ok=True)
-    pool = StorePool(data_config['cache_root'],
+    splits = data_config['splits']
+    sources = splits['train'] + splits['validation']
+    # Opening a mapped store parses its whole sidecar (~3.5s). Keep every source
+    # store resident so uniform database sampling cannot thrash the LRU.
+    pool = StorePool(data_config['cache_root'], max_open=len(sources),
                      mapping_root=mapping_config['root'] if mapping_config else None,
                      mapping_mode=mapping_config['mode'] if mapping_config else 'mapping')
-    splits = data_config['splits']
     hashes = {}
     pools = {}
     mapping_provenance = {}
-    for db in splits['train'] + splits['validation']:
+    for db in sources:
         store = pool.get('pretrain', db)
         hashes[db] = store.manifest['content_hash']
         pools[db] = store.unique_indices()
