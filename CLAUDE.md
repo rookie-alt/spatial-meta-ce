@@ -75,3 +75,21 @@ python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic
 - 已适应 checkpoint 不能回到 `evaluate` 当独立元初始化反复适应（跨 episode 污染）。
 - `run_experiments.py` 默认只打印不执行，加 `--execute --device cuda` 才真跑。
 - 同一命令重试到第 3 次仍失败就停下汇报，不要循环重试。
+
+## graphify
+
+This project has a graphify knowledge graph at `graphify-out/`. **Two producers write the same filenames** (`graph.json`, `graph.html`, `GRAPH_REPORT.md`, `analysis.json`) — the later run wins:
+
+- **Evidence index** (sha256-bound, what you want for experiment/results questions): `experiment_graph.json`, `manifest.json`, `semantic.json` — built by `scripts/build_experiment_graph.py`
+- **graphify entity graph** (EXTRACTED/INFERRED edges, community structure): `graph.json` + `analysis.json` — built by `/graphify`
+
+Rules:
+
+- Before answering architecture or codebase questions, read `graphify-out/GRAPH_REPORT.md` for god nodes and community structure
+- For cross-module "how does X relate to Y" questions, prefer `graphify query "<question>"`, `graphify path "<A>" "<B>"`, or `graphify explain "<concept>"` over grep — these traverse the graph instead of scanning files
+- **After changing experiment results or Markdown**: rebuild the evidence index with
+  `python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic graphify-out/semantic.json`
+  It fails closed on stale hashes (`Semantic fragment stale`) — re-extract that file's semantics first.
+- **Do NOT use `graphify --update` for the evidence index**: incremental only adds and leaves obsolete evidence behind. The script itself says "rebuild rather than graphify --update to remove obsolete evidence."
+- `graphify update .` is AST-only and rebuilds the *entity* graph; running it overwrites `graph.json` from the evidence index. Run it only when you actually want the entity graph back.
+- Detail, measured costs and known pitfalls: local memory `spatial-meta-ce-graphify` (not in git).
