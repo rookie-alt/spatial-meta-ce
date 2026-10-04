@@ -167,6 +167,7 @@ def fake_record(seed: int, arm: str, parameters: int = 100) -> dict:
         "optimizer_steps": 4000,
         "initialization_hash": f"i{seed}",
         "parameters": parameters,
+        "manifest_hashes": {"a": f"c{seed}", "v": f"c{seed}"},
         "mapping_provenance": {
             d: {"manifest_hash": f"m{d}", "jsonl_hash": f"j{d}", "mode": arm}
             for d in ("a", "v")
@@ -208,6 +209,9 @@ class ProtocolTests(unittest.TestCase):
             lambda c: {**c, "model": {**c["model"], "arch": "attn"}},
             lambda c: {**c, "steps": 100},
             lambda c: {**c, "mapping": {**c["mapping"], "mode": "bad"}},
+            lambda c: {**c, "validate_every": 50},
+            lambda c: {**c, "validation_seed": 1},
+            lambda c: {**c, "mapping": {**c["mapping"], "root": "/elsewhere"}},
         ):
             with (
                 self.subTest(change=change),
@@ -261,6 +265,10 @@ class ProtocolTests(unittest.TestCase):
                 },
             ),
             "target": ("sum", lambda r: {**r, "train_databases": {"stats"}}),
+            "cache": (
+                "sum",
+                lambda r: {**r, "manifest_hashes": {"a": "x", "v": f"c{r['seed']}"}},
+            ),
         }
         for name, (arm, change) in cases.items():
             with self.subTest(name=name):

@@ -168,6 +168,7 @@ def main() -> None:
     args = parser.parse_args()
     data = data_settings(read_json(args.config), args.config)
     databases = data["splits"]["validation"]
+    sources = data["splits"]["train"] + databases
     if set(databases) & TARGETS:
         raise ValueError("Validation split contains a target database")
     matrix = read_json(args.runs)
@@ -237,7 +238,7 @@ def main() -> None:
             for name, result in results.items()
         },
         "comparisons": comparisons,
-        "sidecar_risks": sidecar_risks(mapping_root, databases) if mapping_root else [],
+        "sidecar_risks": sidecar_risks(mapping_root, sources) if mapping_root else [],
     }
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     Path(args.output).write_text(json.dumps(report, indent=2, allow_nan=False))

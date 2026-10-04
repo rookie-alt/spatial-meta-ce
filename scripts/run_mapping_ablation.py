@@ -38,6 +38,27 @@ SEEDS = (42, 43, 44)
 TARGETS = frozenset(("imdb", "stats", "genome", "ergastf1"))
 EXPECTED_ARCH = {"sum": "sum", "true": "sum_map", "shuffled": "sum_map"}
 EXPECTED_MODE = {"sum": None, "true": "mapping", "shuffled": "shuffled_mapping"}
+SOURCE26 = "/gly/weilin/spatial-meta-ce/runs/mapping-sidecars-source26-20261004"
+EXPECTED_MODEL = {"width": 64, "use_pg": True, "layers": 2, "heads": 4}
+FROZEN = {
+    "method": "erm",
+    "steps": 4000,
+    "meta_batch": 4,
+    "accumulation": 1,
+    "outer_lr": 0.0003,
+    "inner_lr": 0.001,
+    "inner_steps": 5,
+    "adapt_scope": "all",
+    "support_sizes": [5, 10, 20, 50, 100],
+    "query_size": 64,
+    "loss": "smooth_l1",
+    "validate_every": 100,
+    "validation_runs": 5,
+    "validation_seed": 1729,
+    "patience": 41,
+    "min_delta": 0.0001,
+    "data_config": "configs/data.json",
+}
 
 
 def arm_config_path(arm: str) -> Path:
@@ -63,13 +84,19 @@ def run_matrix(output_root: str) -> list:
 
 def load_run_config(arm: str, seed: int) -> dict:
     config = read_json(arm_config_path(arm))
-    mapping = config.get("mapping")
-    if config["model"].get("arch") != EXPECTED_ARCH[arm]:
-        raise ValueError(f"Frozen architecture changed for arm {arm}")
-    if (mapping or {}).get("mode") != EXPECTED_MODE[arm]:
-        raise ValueError(f"Frozen mapping mode changed for arm {arm}")
-    if config["method"] != "erm" or config["steps"] != 4000 or config["patience"] != 41:
-        raise ValueError("Frozen training budget changed")
+    expected_model = {**EXPECTED_MODEL, "arch": EXPECTED_ARCH[arm]}
+    expected_mapping = (
+        None
+        if EXPECTED_MODE[arm] is None
+        else {"root": SOURCE26, "mode": EXPECTED_MODE[arm]}
+    )
+    if config.get("model") != expected_model:
+        raise ValueError(f"Frozen model config changed for arm {arm}")
+    if config.get("mapping") != expected_mapping:
+        raise ValueError(f"Frozen mapping source or mode changed for arm {arm}")
+    changed = {k: (config.get(k), v) for k, v in FROZEN.items() if config.get(k) != v}
+    if changed:
+        raise ValueError(f"Frozen training config changed: {sorted(changed)}")
     return {**config, "seed": seed}
 
 
@@ -97,6 +124,7 @@ def verify_pairing(records: list) -> dict:
         "counts",
         "validation_plan_hash",
         "optimizer_steps",
+        "manifest_hashes",
     )
     capacity = {}
     for seed in sorted(by_seed):
@@ -165,6 +193,7 @@ def run_one(spec: dict, data: dict, device: str, gpu_index: str | None) -> dict:
         "counts": extra["counts"],
         "validation_plan_hash": file_hash(output / "validation_manifest.json"),
         "mapping_provenance": state["metadata"].get("mapping_provenance", {}),
+        "manifest_hashes": state["metadata"]["manifest_hashes"],
         "train_databases": set(state["metadata"]["train_databases"]),
         "validation_databases": set(state["metadata"]["validation_databases"]),
         "checkpoint_sha256": file_hash(output / "last.pt"),
@@ -231,6 +260,8 @@ def main() -> None:
     )
     args = parser.parse_args()
     if not args.execute:
+        for arm in ARMS:
+            load_run_config(arm, SEEDS[0])
         print(
             json.dumps(
                 {
@@ -241,6 +272,7 @@ def main() -> None:
                         "counts",
                         "validation_plan_hash",
                         "optimizer_steps",
+                        "manifest_hashes",
                         "sum_map initialization and capacity",
                     ],
                     "endpoint": "4+ table unique-query zero-shot Q95 on source validation",
@@ -263,6 +295,10 @@ def main() -> None:
     if output.exists():
         raise FileExistsError("Use a new run directory")
     output.mkdir(parents=True)
+    torch.set_num_threads(1)
+    torch.use_deterministic_algorithms(True)
+    torch.backends.cuda.matmul.allow_tf32 = False
+    torch.backends.cudnn.allow_tf32 = False
     run_all(output, data, args.device, args.gpu_index)
     print("Ablation outputs:", output)
 
