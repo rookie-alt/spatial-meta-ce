@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 46491,
+  "changed_unique_queries": 46491,
+  "unchanged_rows": 3509,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 3509,
+  "changed_fraction": 0.92982,
+  "sql_flags": {
+    "multiple_filters": 14457
+  },
+  "database": "basketball",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 245.6623706270475
+}

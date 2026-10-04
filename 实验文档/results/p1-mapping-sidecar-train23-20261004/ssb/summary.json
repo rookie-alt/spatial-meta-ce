@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 45535,
+  "changed_unique_queries": 45535,
+  "unchanged_rows": 4465,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 4465,
+  "changed_fraction": 0.9107,
+  "sql_flags": {
+    "multiple_filters": 9300
+  },
+  "database": "ssb",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 228.23833920015022
+}

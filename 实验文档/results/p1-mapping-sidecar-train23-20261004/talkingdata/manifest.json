@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "database": "talkingdata",
+  "split": "pretrain",
+  "shuffle_seed": 42,
+  "created_at": "2026-10-04T12:27:54.934723+08:00",
+  "cache_content_hash": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+  "audit_report_sha256": "09b6ef8dd585cf1563752674463a1da568a27ee4d14012f15ac35d5d5fb1b546",
+  "input_sha256": {
+    "workload": "fa65dc80c911bef4e01f49d76f95c1f085a6f41dd79033958b2967d7e5bdeaba",
+    "source_features": "3009470992df1fa99a4180150b7e6ebb73f3fc428892981145348476425b2fee",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "ddae51612a26a9813789d8dda3ebd53b332f340a36a8997500c54e41677e57ba",
+    "statistics/fanout40.pkl": "fc361a8dbb1e1f46f7873f090e3af887545aa62dd0f61c224a0ca37b617a5413",
+    "statistics/histogram40.pkl": "f531de360d55041a79f0117153a9f74a964fe203aa980c7d7530b06d14aab447",
+    "statistics/size.pkl": "3a683eec2591a7b8af5cd9fb98243e4add6f383c634678a565e3f7d9b9e576ec",
+    "statistics/summary40.pkl": "cfde51e97d848557795b4508ff3021da6d5da52ac1962358c019a22af3a62e4a",
+    "cache/cards.npy": "90f1bf1d2adc0b1c1552a9cce788c7c4e18cfa7d2abf0de3d6d1ba7dd9a048c7",
+    "cache/group0.npy": "c9dac58c2f24588e9dd88f92cdd589b1ef8669dee70932a33f85d0a728405d3d",
+    "cache/group1.npy": "b7b56131b1cfbfc0aca6856652ea3b0031cc5a4fb5343ce3ef4e87df3966b95d",
+    "cache/group2.npy": "710898a53803bbe301d5ebbcd121cc20153d5ad5a718bbf048034e0b56e5ddf3",
+    "cache/group3.npy": "3401c0232e0769adc0cb8bf8a776c8af13c6dd79e25deb0c6577f302d30a1856",
+    "cache/offsets.npy": "4bbe895dea4e9c13b3e888d42e3f7d75c564361e4130985b54a946a738030a08",
+    "cache/manifest.json": "bfb7e5e5be00b3400ad91b2459265469f45370d0608ee08d8a8293a6e9202d96"
+  },
+  "builder_sha256": "304601dba325a65743f1b5d3f49099602db1877ed982331236efc730daee8dc4",
+  "sqlglot": "18.17.0",
+  "jsonl_sha256": "0279efff9b0349615c91452c2cdb8c265a0e4fba9679eb288415662ca2d4d97e",
+  "interpretation": "Query-local structure only; predicate semantics not certified",
+  "shuffle": "Independent query-hash RNG; separate join/filter table marginals and even/odd fanout-column marginals",
+  "scope": "CPU source-only preflight; no training, cache writes or target reads"
+}

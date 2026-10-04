@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 43643,
+  "changed_unique_queries": 43643,
+  "unchanged_rows": 6357,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 6357,
+  "changed_fraction": 0.87286,
+  "sql_flags": {
+    "multiple_filters": 4130
+  },
+  "database": "seznam",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 217.8983070878312
+}

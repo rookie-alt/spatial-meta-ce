@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 47377,
+  "changed_unique_queries": 47377,
+  "unchanged_rows": 2623,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 2623,
+  "changed_fraction": 0.94754,
+  "sql_flags": {
+    "multiple_filters": 12086
+  },
+  "database": "tpc_h",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 277.35895789205097
+}

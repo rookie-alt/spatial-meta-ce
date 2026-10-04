@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 40086,
+  "changed_unique_queries": 40086,
+  "unchanged_rows": 9914,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 9914,
+  "changed_fraction": 0.80172,
+  "sql_flags": {
+    "multiple_filters": 14375
+  },
+  "database": "fnhk",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 192.9425609910395
+}

@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "database": "tournament",
+  "split": "pretrain",
+  "shuffle_seed": 42,
+  "created_at": "2026-10-04T12:31:57.240407+08:00",
+  "cache_content_hash": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+  "audit_report_sha256": "c9afb20d3a9aafb02fe6a4b611dcc1b760cebb3b156bb2d0faece69b7566a876",
+  "input_sha256": {
+    "workload": "9490ed3bd9cb522aa33f59183eff05e885fb8157f0639c8f0efc7b6bfc17b621",
+    "source_features": "a8501628d26fb710f9a307b21cf73f98e64e14c0e1a5937293f8b15db5dadce7",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "e1dfe0b39dd0a6cd35aaca2b29abe0b8a68ca6179f343d1522874ef3b51d16f9",
+    "statistics/fanout40.pkl": "dcfd3b9d51ea315c783d43fbcc15cf6de82425e3691f5a2174e4e5f2474b91d8",
+    "statistics/histogram40.pkl": "dd355bd86f57e6fb78818ee6f9cf24aff9f2d56271a9797088ba1033c5748beb",
+    "statistics/size.pkl": "823f0054884a4b5b162589d51832ab5a8d852e4c1603b7a62ed0a7af1051078f",
+    "statistics/summary40.pkl": "59d7577f37a457450360d4e6caa421a7eb346ca6b2852db82f7ecc896574df05",
+    "cache/cards.npy": "572624501b37d8e9f28bb9dfc328042afd832bb79ae64febb46594563a9f0668",
+    "cache/group0.npy": "87f22612b69beb484d35ab8532062f846aa06c7aab78c29ac156f6877d479b43",
+    "cache/group1.npy": "6fb1192134cef00b8e7a3907fa1b3888d6437a912e2f308b69c9f038b45bb093",
+    "cache/group2.npy": "32f64ec4841c51b2ed382dbd513aa177349e16fc4c9ce2f102ff7159e7269820",
+    "cache/group3.npy": "6ab4f44593be999f60f4ac2b609525f43dfd70303ebce0d4ab9d81c246d1d11a",
+    "cache/offsets.npy": "edd1ad9ddf7e78c24f6140329af97faed8313aca9b9370528d77f60f8b3d4a99",
+    "cache/manifest.json": "907c45b0be134437de7e654388cd604795cd42434f69b1ed7e3e636b6008ebd9"
+  },
+  "builder_sha256": "304601dba325a65743f1b5d3f49099602db1877ed982331236efc730daee8dc4",
+  "sqlglot": "18.17.0",
+  "jsonl_sha256": "2c26467ecd2447dbf255fff2cc8b91758957284bcd5b8e53f8f551f558ea2361",
+  "interpretation": "Query-local structure only; predicate semantics not certified",
+  "shuffle": "Independent query-hash RNG; separate join/filter table marginals and even/odd fanout-column marginals",
+  "scope": "CPU source-only preflight; no training, cache writes or target reads"
+}

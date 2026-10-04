@@ -1,0 +1,234 @@
+{
+  "state": "completed",
+  "audit_summary_sha256": "1228d153514f8e08ed27cf298119863b11e61e15347bc7ca2392dd9aa0f1c98f",
+  "shuffle_seed": 42,
+  "rows": 1150000,
+  "reports": [
+    {
+      "database": "accidents",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.76468,
+      "seconds": 205.4,
+      "sql_flags": {
+        "multiple_filters": 9890
+      }
+    },
+    {
+      "database": "airline",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.94004,
+      "seconds": 266.1,
+      "sql_flags": {
+        "multiple_filters": 13477
+      }
+    },
+    {
+      "database": "baseball",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.92326,
+      "seconds": 223.0,
+      "sql_flags": {
+        "multiple_filters": 10135
+      }
+    },
+    {
+      "database": "basketball",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.92982,
+      "seconds": 245.7,
+      "sql_flags": {
+        "multiple_filters": 14457
+      }
+    },
+    {
+      "database": "carcinogenesis",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.863,
+      "seconds": 198.0,
+      "sql_flags": {
+        "multiple_filters": 9671
+      }
+    },
+    {
+      "database": "ccs",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.88442,
+      "seconds": 221.1,
+      "sql_flags": {
+        "multiple_filters": 11512
+      }
+    },
+    {
+      "database": "consumer",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.84682,
+      "seconds": 204.0,
+      "sql_flags": {
+        "multiple_filters": 16923
+      }
+    },
+    {
+      "database": "credit",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.95518,
+      "seconds": 265.7,
+      "sql_flags": {
+        "multiple_filters": 19789
+      }
+    },
+    {
+      "database": "employee",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.92466,
+      "seconds": 215.6,
+      "sql_flags": {
+        "multiple_filters": 8680
+      }
+    },
+    {
+      "database": "financial",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.95672,
+      "seconds": 265.5,
+      "sql_flags": {
+        "multiple_filters": 14806
+      }
+    },
+    {
+      "database": "fnhk",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.80172,
+      "seconds": 192.9,
+      "sql_flags": {
+        "multiple_filters": 14375
+      }
+    },
+    {
+      "database": "grants",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.92018,
+      "seconds": 242.1,
+      "sql_flags": {
+        "multiple_filters": 11758
+      }
+    },
+    {
+      "database": "hepatitis",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.96508,
+      "seconds": 286.1,
+      "sql_flags": {}
+    },
+    {
+      "database": "hockey",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.88346,
+      "seconds": 206.6,
+      "sql_flags": {
+        "multiple_filters": 2429
+      }
+    },
+    {
+      "database": "movielens",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.98528,
+      "seconds": 289.6,
+      "sql_flags": {}
+    },
+    {
+      "database": "sakila",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.96052,
+      "seconds": 296.3,
+      "sql_flags": {
+        "multiple_filters": 11253
+      }
+    },
+    {
+      "database": "sap",
+      "rows": 50000,
+      "unique_queries": 29714,
+      "changed_fraction": 0.88346,
+      "seconds": 260.9,
+      "sql_flags": {
+        "multiple_filters": 24618
+      }
+    },
+    {
+      "database": "seznam",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.87286,
+      "seconds": 217.9,
+      "sql_flags": {
+        "multiple_filters": 4130
+      }
+    },
+    {
+      "database": "ssb",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.9107,
+      "seconds": 228.2,
+      "sql_flags": {
+        "multiple_filters": 9300
+      }
+    },
+    {
+      "database": "talkingdata",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.95274,
+      "seconds": 275.5,
+      "sql_flags": {
+        "multiple_filters": 8324
+      }
+    },
+    {
+      "database": "tournament",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.93768,
+      "seconds": 241.4,
+      "sql_flags": {
+        "multiple_filters": 3518
+      }
+    },
+    {
+      "database": "tpc_h",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.94754,
+      "seconds": 277.4,
+      "sql_flags": {
+        "multiple_filters": 12086
+      }
+    },
+    {
+      "database": "tubepricing",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "changed_fraction": 0.90026,
+      "seconds": 223.0,
+      "sql_flags": {
+        "multiple_filters": 4889
+      }
+    }
+  ]
+}

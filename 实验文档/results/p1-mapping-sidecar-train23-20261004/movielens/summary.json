@@ -1,0 +1,16 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 49264,
+  "changed_unique_queries": 49264,
+  "unchanged_rows": 736,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 736,
+  "changed_fraction": 0.98528,
+  "sql_flags": {},
+  "database": "movielens",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 289.6412541400641
+}

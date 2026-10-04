@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 46884,
+  "changed_unique_queries": 46884,
+  "unchanged_rows": 3116,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 3116,
+  "changed_fraction": 0.93768,
+  "sql_flags": {
+    "multiple_filters": 3518
+  },
+  "database": "tournament",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 241.40528402291238
+}

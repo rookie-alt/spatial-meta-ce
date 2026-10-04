@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 47637,
+  "changed_unique_queries": 47637,
+  "unchanged_rows": 2363,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 2363,
+  "changed_fraction": 0.95274,
+  "sql_flags": {
+    "multiple_filters": 8324
+  },
+  "database": "talkingdata",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 275.4974723858759
+}
