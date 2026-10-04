@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -22,8 +23,10 @@ from scripts.run_mapping_ablation import (
     EXPECTED_ARCH,
     EXPECTED_MODE,
     SEEDS,
+    configure_determinism,
     initial_state,
     load_run_config,
+    run_all,
     run_matrix,
     verify_pairing,
 )
@@ -168,6 +171,8 @@ def fake_record(seed: int, arm: str, parameters: int = 100) -> dict:
         "initialization_hash": f"i{seed}",
         "parameters": parameters,
         "manifest_hashes": {"a": f"c{seed}", "v": f"c{seed}"},
+        "seconds": 1.0,
+        "peak_memory_bytes": 1024,
         "mapping_provenance": {
             d: {"manifest_hash": f"m{d}", "jsonl_hash": f"j{d}", "mode": arm}
             for d in ("a", "v")
@@ -282,6 +287,32 @@ class ProtocolTests(unittest.TestCase):
             verify_pairing(fake_matrix()[:-1])
         with self.assertRaises(ValueError):
             verify_pairing([r for r in fake_matrix() if r["arm"] != "sum"])
+
+    def test_gpu_occupancy_is_checked_once_not_once_per_run(self):
+        seen = []
+
+        def fake_run_one(spec, data, device, gpu_uuid):
+            seen.append(gpu_uuid)
+            return fake_record(spec["seed"], spec["arm"])
+
+        with tempfile.TemporaryDirectory() as d:
+            with (
+                patch("scripts.run_mapping_ablation.run_one", side_effect=fake_run_one),
+                patch(
+                    "scripts.run_mapping_ablation.available_gpu", return_value="uuid-x"
+                ) as guard,
+            ):
+                report = run_all(Path(d), {}, "cuda:0", "4")
+        self.assertEqual(guard.call_count, 1)
+        self.assertEqual(len(seen), 9)
+        self.assertEqual(report["pairing"]["seeds"], list(SEEDS))
+
+    def test_determinism_sets_cublas_workspace_before_first_use(self):
+        with patch.dict(os.environ):
+            os.environ.pop("CUBLAS_WORKSPACE_CONFIG", None)
+            configure_determinism()
+            self.assertEqual(os.environ["CUBLAS_WORKSPACE_CONFIG"], ":4096:8")
+            torch.use_deterministic_algorithms(False)
 
 
 class ResidentStoreTests(unittest.TestCase):

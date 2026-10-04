@@ -109,6 +109,43 @@ def initial_state(config: dict) -> dict:
     }
 
 
+SHARED_KEYS = (
+    "sample_plan_digest",
+    "sample_plan_episodes",
+    "counts",
+    "validation_plan_hash",
+    "optimizer_steps",
+    "manifest_hashes",
+)
+
+
+def verify_seed_group(group: dict, seed: int) -> dict:
+    """One seed's three arms must be perfectly paired; returns the capacity note."""
+    if set(group) != set(ARMS):
+        raise ValueError(f"Seed {seed} is missing an arm")
+    for key in SHARED_KEYS:
+        if len({json.dumps(group[a][key], sort_keys=True) for a in ARMS}) != 1:
+            raise ValueError(f"Seed {seed} arms disagree on {key}")
+    if group["true"]["initialization_hash"] != group["shuffled"]["initialization_hash"]:
+        raise ValueError(f"Seed {seed} mapping arms do not share initialization")
+    if group["true"]["parameters"] != group["shuffled"]["parameters"]:
+        raise ValueError(f"Seed {seed} mapping arms differ in capacity")
+    left = {
+        db: (v["manifest_hash"], v["jsonl_hash"])
+        for db, v in group["true"]["mapping_provenance"].items()
+    }
+    right = {
+        db: (v["manifest_hash"], v["jsonl_hash"])
+        for db, v in group["shuffled"]["mapping_provenance"].items()
+    }
+    if left != right or not left:
+        raise ValueError(f"Seed {seed} mapping arms read different sidecars")
+    for record in group.values():
+        if (record["train_databases"] | record["validation_databases"]) & TARGETS:
+            raise ValueError(f"Seed {seed} run trained on a target database")
+    return {"sum": group["sum"]["parameters"], "sum_map": group["true"]["parameters"]}
+
+
 def verify_pairing(records: list) -> dict:
     """Every arm of a seed must share the same sample stream and validation plan."""
     if {r["seed"] for r in records} != set(SEEDS):
@@ -118,46 +155,9 @@ def verify_pairing(records: list) -> dict:
     by_seed = defaultdict(dict)
     for record in records:
         by_seed[record["seed"]][record["arm"]] = record
-    shared = (
-        "sample_plan_digest",
-        "sample_plan_episodes",
-        "counts",
-        "validation_plan_hash",
-        "optimizer_steps",
-        "manifest_hashes",
-    )
-    capacity = {}
-    for seed in sorted(by_seed):
-        group = by_seed[seed]
-        if set(group) != set(ARMS):
-            raise ValueError(f"Seed {seed} is missing an arm")
-        for key in shared:
-            if len({json.dumps(group[a][key], sort_keys=True) for a in ARMS}) != 1:
-                raise ValueError(f"Seed {seed} arms disagree on {key}")
-        if (
-            group["true"]["initialization_hash"]
-            != group["shuffled"]["initialization_hash"]
-        ):
-            raise ValueError(f"Seed {seed} mapping arms do not share initialization")
-        if group["true"]["parameters"] != group["shuffled"]["parameters"]:
-            raise ValueError(f"Seed {seed} mapping arms differ in capacity")
-        left = {
-            db: (v["manifest_hash"], v["jsonl_hash"])
-            for db, v in group["true"]["mapping_provenance"].items()
-        }
-        right = {
-            db: (v["manifest_hash"], v["jsonl_hash"])
-            for db, v in group["shuffled"]["mapping_provenance"].items()
-        }
-        if left != right or not left:
-            raise ValueError(f"Seed {seed} mapping arms read different sidecars")
-        capacity[seed] = {
-            "sum": group["sum"]["parameters"],
-            "sum_map": group["true"]["parameters"],
-        }
-        for record in group.values():
-            if (record["train_databases"] | record["validation_databases"]) & TARGETS:
-                raise ValueError(f"Seed {seed} run trained on a target database")
+    capacity = {
+        seed: verify_seed_group(group, seed) for seed, group in sorted(by_seed.items())
+    }
     return {
         "seeds": sorted(by_seed),
         "arms": list(ARMS),
@@ -166,10 +166,9 @@ def verify_pairing(records: list) -> dict:
     }
 
 
-def run_one(spec: dict, data: dict, device: str, gpu_index: str | None) -> dict:
+def run_one(spec: dict, data: dict, device: str, gpu_uuid: str) -> dict:
     config = load_run_config(spec["arm"], spec["seed"])
     initial = initial_state(config)
-    gpu_uuid = available_gpu(gpu_index) if gpu_index is not None else "cpu"
     if device.startswith("cuda"):
         torch.cuda.reset_peak_memory_stats()
         torch.cuda.synchronize()
@@ -211,13 +210,26 @@ def serialise(record: dict) -> dict:
     return {k: (sorted(v) if isinstance(v, set) else v) for k, v in record.items()}
 
 
+def configure_determinism() -> None:
+    # CuBLAS needs this before first use or deterministic mode aborts the run.
+    os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+    torch.set_num_threads(1)
+    torch.use_deterministic_algorithms(True)
+    torch.backends.cuda.matmul.allow_tf32 = False
+    torch.backends.cudnn.allow_tf32 = False
+
+
 def run_all(output: Path, data: dict, device: str, gpu_index: str | None) -> dict:
+    # Check occupancy once: after run one starts, our own process owns the GPU.
+    gpu_uuid = available_gpu(gpu_index) if gpu_index is not None else "cpu"
     records = []
     for spec in run_matrix(str(output)):
-        record = run_one(spec, data, device, gpu_index)
+        record = run_one(spec, data, device, gpu_uuid)
         records.append(record)
-        if len(records) == len(ARMS):
-            verify_pairing(records)
+        if len(records) % len(ARMS) == 0:
+            verify_seed_group(
+                {r["arm"]: r for r in records[-len(ARMS) :]}, record["seed"]
+            )
         print(
             json.dumps(
                 {
@@ -295,10 +307,7 @@ def main() -> None:
     if output.exists():
         raise FileExistsError("Use a new run directory")
     output.mkdir(parents=True)
-    torch.set_num_threads(1)
-    torch.use_deterministic_algorithms(True)
-    torch.backends.cuda.matmul.allow_tf32 = False
-    torch.backends.cudnn.allow_tf32 = False
+    configure_determinism()
     run_all(output, data, args.device, args.gpu_index)
     print("Ablation outputs:", output)
 
