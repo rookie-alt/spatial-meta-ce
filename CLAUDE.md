@@ -66,6 +66,7 @@ python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic
 - token 计数是 UTF-8/4 估算，**不是模型 tokenizer 实测**，报告里不能写成实测值。
 - 输出落在 `graphify-out/`（约 14 MB，生成物，不提交）。预览用 `.claude/launch.json` 里的 `experiment-graph` 配置（`http.server 8777` 服务该目录）。
 - 对应测试：`tests/test_experiment_graph.py`、`tests/test_graph_build.py`。
+- **何时更新、如何查询、当前索引规模**：见本机记忆 `spatial-meta-ce-graphify`（不进 git）。两个要点：重要改动后**整体重建**，不要 `graphify --update`（增量只增不删，会留过时证据）；提问前先 `/graphify query` 查索引，别逐个读文件。
 
 ## 常见坑
 
