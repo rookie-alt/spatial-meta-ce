@@ -11,6 +11,8 @@ import json
 import math
 import os
 import platform
+import shutil
+import subprocess
 import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
@@ -61,7 +63,7 @@ def safe_reference_sql(table: str, column: str, value: object) -> tuple[str, tup
 def parse_query(sql: str) -> dict:
     tree = sqlglot.parse_one(sql, read="postgres")
     if not isinstance(tree, exp.Select):
-        raise ValueError("Expected one SELECT")
+        raise TypeError("Expected one SELECT")
     table_nodes = list(tree.find_all(exp.Table))
     tables = [t.alias_or_name for t in table_nodes]
     aliases = {t.alias_or_name: t.name for t in table_nodes}
@@ -124,19 +126,19 @@ def parse_query(sql: str) -> dict:
         unsupported.add("unsupported_predicate")
     if any(not list(p.find_all(exp.Column)) for p in filters):
         unsupported.add("unresolved_filter")
-    return dict(
-        tables=tables, table_names=[aliases[t] for t in tables],
-        join_columns=ordered_join, filter_columns=ordered_filter,
-        predicates=sorted({type(p).__name__ for p in joins} | {k for kinds in filters_by_col.values() for k in kinds}),
-        boolean_tree=where.this.sql(dialect="postgres") if where else None,
-        on_trees=[j.args["on"].sql(dialect="postgres") for j in tree.find_all(exp.Join) if j.args.get("on")],
-        repeated={c: kinds for c, kinds in filters_by_col.items() if len(kinds) > 1},
-        unsupported=sorted(unsupported),
-        counts=[len(ordered_join), 2 * len(joins), len(tables), len(ordered_filter)],
-        join_column_tables=[tables.index(c.split('.')[0]) for c in ordered_join],
-        filter_column_tables=[tables.index(c.split('.')[0]) for c in ordered_filter],
-        filter_expressions=[p.sql(dialect="postgres") for p in filters],
-    )
+    return {
+        "tables": tables, "table_names": [aliases[t] for t in tables],
+        "join_columns": ordered_join, "filter_columns": ordered_filter,
+        "predicates": sorted({type(p).__name__ for p in joins} | {k for kinds in filters_by_col.values() for k in kinds}),
+        "boolean_tree": where.this.sql(dialect="postgres") if where else None,
+        "on_trees": [j.args["on"].sql(dialect="postgres") for j in tree.find_all(exp.Join) if j.args.get("on")],
+        "repeated": {c: kinds for c, kinds in filters_by_col.items() if len(kinds) > 1},
+        "unsupported": sorted(unsupported),
+        "counts": [len(ordered_join), 2 * len(joins), len(tables), len(ordered_filter)],
+        "join_column_tables": [tables.index(c.split('.')[0]) for c in ordered_join],
+        "filter_column_tables": [tables.index(c.split('.')[0]) for c in ordered_filter],
+        "filter_expressions": [p.sql(dialect="postgres") for p in filters],
+    }
 
 
 def source_files(project: Path, source: Path, db: str) -> dict[str, Path]:
@@ -188,13 +190,13 @@ def verify_db(project: Path, source: Path, db: str, matrix: dict) -> dict:
     reports = list((project / "runs/p1-input-audit-20261002").glob(f"group-*/{db}.json"))
     if len(reports) != 1 or report_digest(reports[0]) != manifest["audit_report_sha256"]:
         raise ValueError(f"Frozen P1 audit report mismatch: {db}")
-    return dict(input_sha256=checked, mapping_manifest_sha256=file_hash(mpath),
-                mapping_jsonl_sha256=manifest["jsonl_sha256"],
-                audit_report_sha256=manifest["audit_report_sha256"],
-                cache_content_hash=frozen["content_hash"],
-                cache_manifest=frozen, source_path=str(files["workload"]),
-                mapping_path=str(sidecar / "mapping.jsonl"),
-                cache_path=str(cache))
+    return {"input_sha256": checked, "mapping_manifest_sha256": file_hash(mpath),
+                "mapping_jsonl_sha256": manifest["jsonl_sha256"],
+                "audit_report_sha256": manifest["audit_report_sha256"],
+                "cache_content_hash": frozen["content_hash"],
+                "cache_manifest": frozen, "source_path": str(files["workload"]),
+                "mapping_path": str(sidecar / "mapping.jsonl"),
+                "cache_path": str(cache)}
 
 
 def scan_database(project: Path, source: Path, db: str, gate: dict, out: Path) -> dict:
@@ -224,6 +226,7 @@ def scan_database(project: Path, source: Path, db: str, gate: dict, out: Path) -
         raise ValueError(f"Unexpected unique-query count: {db}")
     rows, unique, mismatches, risk, old_risk = 0, set(), Counter(), Counter(), Counter()
     repeats, examples = Counter(), []
+    by_tables, by_status, by_predicate, flag_cross_tab = Counter(), Counter(), Counter(), Counter()
     with Path(gate["source_path"]).open() as stream, (out / f"{db}-parse_rows.jsonl").open("w") as sink:
         for line_no, line in enumerate(stream, 1):
             if not line.strip():
@@ -259,12 +262,20 @@ def scan_database(project: Path, source: Path, db: str, gate: dict, out: Path) -
                     errors.append(key)
             if independent != baseline or independent != (offsets[index + 1] - offsets[index]).tolist():
                 errors.append("counts/offsets")
+            expected_multiple = bool(parsed["repeated"])
+            actual_multiple = "multiple_filters" in old["flags"]
+            if expected_multiple != actual_multiple:
+                errors.append("multiple_filters_flag")
             if errors:
                 mismatches.update(errors)
                 if len(examples) < 12:
                     examples.append({"line": line_no, "errors": errors})
             risk.update(parsed["unsupported"])
             old_risk.update(old["flags"])
+            by_tables[len(parsed["tables"])] += 1
+            by_predicate["+".join(parsed["predicates"])] += 1
+            by_status["mismatch" if errors else ("unsupported" if parsed["unsupported"] else "parsed")] += 1
+            flag_cross_tab[f"independent_multiple={int(expected_multiple)}/legacy_multiple={int(actual_multiple)}"] += 1
             repeats[identity] += 1
             unique.add(identity)
             record = dict(database=db, split="pretrain", source_line=line_no,
@@ -277,11 +288,13 @@ def scan_database(project: Path, source: Path, db: str, gate: dict, out: Path) -
         raise ValueError(f"Incomplete source rows / unique-query mapping: {db}")
     if any(repeats[h] != len(row["source_lines"]) for h, row in maps.items()):
         raise ValueError(f"Inconsistent repeated query group: {db}")
-    summary = dict(database=db, status="completed" if not mismatches and not risk else "failed",
-                   source_rows=rows, unique_queries=len(unique), duplicate_groups=sum(v>1 for v in repeats.values()),
-                   mismatches=dict(mismatches), unsupported=dict(risk), legacy_flags=dict(old_risk),
-                   mismatch_examples=examples, parse_rows_file=f"{db}-parse_rows.jsonl",
-                   parse_rows_sha256=file_hash(out / f"{db}-parse_rows.jsonl"))
+    summary = {"database": db, "status": "completed" if not mismatches and not risk else "failed",
+                   "source_rows": rows, "unique_queries": len(unique), "duplicate_groups": sum(v>1 for v in repeats.values()),
+                   "mismatches": dict(mismatches), "unsupported": dict(risk), "legacy_flags": dict(old_risk),
+        "by_tables": dict(by_tables), "by_predicate": dict(by_predicate),
+        "row_status": dict(by_status), "multiple_filters_cross_tab": dict(flag_cross_tab),
+                   "mismatch_examples": examples, "parse_rows_file": f"{db}-parse_rows.jsonl",
+                   "parse_rows_sha256": file_hash(out / f"{db}-parse_rows.jsonl")}
     write_json(out / f"{db}-parse_summary.json", summary)
     return summary
 
@@ -291,46 +304,54 @@ def main() -> int:
     parser.add_argument("--project", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--source-commit", required=True, help="Verified local Git commit SHA")
     args = parser.parse_args()
     project, source, out = args.project.resolve(), args.source.resolve(), args.out.resolve()
     if out == project or not out.is_relative_to(project / "runs") or out.exists():
         raise ValueError("Output must be a fresh runs/ subdirectory")
     if sqlglot.__version__ != "18.17.0":
         raise ValueError("Frozen SQLGlot version required")
+    if len(args.source_commit) != 40 or any(ch not in "0123456789abcdef" for ch in args.source_commit):
+        raise ValueError("Expected full source Git commit SHA")
     if os.environ.get("CUDA_VISIBLE_DEVICES") != "":
         raise ValueError("Set CUDA_VISIBLE_DEVICES= to enforce CPU-only execution")
     out.mkdir(parents=True)
     matrix_path = project / "runs/p1-mapping-ablation-20261004/ablation_runs.json"
     matrix = json.loads(matrix_path.read_text())
     protocol_path = project / "实验文档/13-P2源侧语义与真实选择率审计协议.md"
-    metadata = dict(created_at=datetime.now(timezone.utc).astimezone().isoformat(),
-                    protocol_sha256=file_hash(protocol_path), matrix_sha256=file_hash(matrix_path),
-                    script_sha256=file_hash(Path(__file__)), python=platform.python_version(),
-                    numpy=np.__version__, sqlglot=sqlglot.__version__,
-                    source=str(source), databases=DATABASES, workers=1, gpu_visible=False,
-                    training=False, inference=False, target_data_read=False,
-                    database_access=False)
+    metadata = {"created_at": datetime.now(timezone.utc).astimezone().isoformat(),
+                    "protocol_sha256": file_hash(protocol_path), "matrix_sha256": file_hash(matrix_path),
+                    "script_sha256": file_hash(Path(__file__)),
+                    "test_sha256": file_hash(project / "tests/test_p2_audit.py"),
+                    "source_commit": args.source_commit,
+                    "source_commit_verification": "supplied_by_local_checkout; server has no project Git checkout",
+                    "postgresql_version": None if not shutil.which("psql") else subprocess.check_output(["psql", "--version"], text=True).strip(),
+                    "python": platform.python_version(),
+                    "numpy": np.__version__, "sqlglot": sqlglot.__version__,
+                    "source": str(source), "databases": DATABASES, "workers": 1, "gpu_visible": False,
+                    "training": False, "inference": False, "target_data_read": False,
+                    "database_access": False}
     write_json(out / "protocol.json", metadata)
     gates = {}
     try:
         for db in DATABASES:
             gates[db] = verify_db(project, source, db, matrix)
     except (OSError, KeyError, ValueError) as error:
-        write_json(out / "preflight.json", dict(status="failed", reason=str(error), databases=list(gates)))
+        write_json(out / "preflight.json", {"status": "failed", "reason": str(error), "databases": list(gates)})
         raise
-    write_json(out / "preflight.json", dict(status="completed", databases={db: {
+    write_json(out / "preflight.json", {"status": "completed", "databases": {db: {
         k:v for k,v in info.items() if k not in ("cache_manifest", "mapping_path", "cache_path", "source_path")
-    } for db, info in gates.items()}))
+    } for db, info in gates.items()}})
     results=[]
     for db in DATABASES:
         try:
             results.append(scan_database(project, source, db, gates[db], out))
         except (OSError, KeyError, ValueError, sqlglot.errors.ParseError) as error:
-            write_json(out / "summary.json", dict(status="failed", database=db, reason=str(error), completed=results))
+            write_json(out / "summary.json", {"status": "failed", "database": db, "reason": str(error), "completed": results})
             raise
     status="completed" if all(x["status"]=="completed" for x in results) else "failed"
-    write_json(out / "summary.json", dict(status=status, databases=results, phase_b="planned", phase_g1="planned", phase_c="planned",
-                                          training=False, inference=False, target_data_read=False))
+    write_json(out / "summary.json", {"status": status, "databases": results, "phase_b": "planned", "phase_g1": "planned", "phase_c": "planned",
+                                          "training": False, "inference": False, "target_data_read": False})
     return 0 if status=="completed" else 1
 
 

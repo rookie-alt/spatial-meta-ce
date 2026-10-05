@@ -1,7 +1,7 @@
 """Isolated checks for the source-only P2 auditor; never open target data."""
 import unittest
 
-from scripts.audit_p2_source import parse_query, three_valued, safe_reference_sql
+from scripts.audit_p2_source import parse_query, safe_reference_sql, three_valued
 
 
 class P2ParserTests(unittest.TestCase):
