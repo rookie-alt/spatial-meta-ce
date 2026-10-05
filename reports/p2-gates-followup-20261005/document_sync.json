@@ -1,0 +1,10 @@
+{
+  "status": "blocked_unknown_server_document",
+  "code_deployment": "completed_and_verified",
+  "local_documents": "committed_and_pushed",
+  "server_document_sync": "not_performed",
+  "reason": "Server progress document differs from accepted Git history; preflight prevented the entire document/report copy. Preserve remote manual edits.",
+  "server_progress_sha256": "b7c6592249333e1d46a5b5b073fd24b2d9f6696c537c438f4d8a4a40b94f9101",
+  "server_backup_local": "/tmp/spatial-meta-ce-server-progress-before-sync-20261005.md",
+  "next_action": "Reconcile server progress document ownership/content before a guarded document synchronization."
+}
