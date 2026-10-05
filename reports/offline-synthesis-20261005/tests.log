@@ -1,0 +1,13 @@
+test_changed_record_without_matching_aggregate_fails (test_reproduce.ReproduceTests.test_changed_record_without_matching_aggregate_fails) ... ok
+test_complete_export_and_deterministic_regeneration (test_reproduce.ReproduceTests.test_complete_export_and_deterministic_regeneration) ... ok
+test_duplicate_episode_cannot_pass_count_check (test_reproduce.ReproduceTests.test_duplicate_episode_cannot_pass_count_check) ... ok
+test_p0_geometric_ratio_drift_fails (test_reproduce.ReproduceTests.test_p0_geometric_ratio_drift_fails) ... ok
+test_p1_within_seed_sampling_mismatch_fails (test_reproduce.ReproduceTests.test_p1_within_seed_sampling_mismatch_fails) ... ok
+test_reference_cannot_be_relabelled_zero_shot (test_reproduce.ReproduceTests.test_reference_cannot_be_relabelled_zero_shot) ... ok
+test_source_split_mismatch_fails (test_reproduce.ReproduceTests.test_source_split_mismatch_fails) ... ok
+test_support_identity_mismatch_fails (test_reproduce.ReproduceTests.test_support_identity_mismatch_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.603s
+
+OK

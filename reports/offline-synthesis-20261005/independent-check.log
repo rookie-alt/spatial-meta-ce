@@ -1,0 +1,4 @@
+Independent NumPy recomputation: 252 per-initialization rows and 108 aggregates passed.
+All 36 historical source files equal committed Git content and source SHA256.
+Whole-grid Q95 comparisons supporting report statements passed; no cherry-picked K.
+Three changed/new Markdown documents: local links passed.
