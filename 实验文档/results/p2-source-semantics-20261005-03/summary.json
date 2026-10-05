@@ -1,0 +1,114 @@
+{
+  "status": "completed",
+  "databases": [
+    {
+      "database": "chembl",
+      "status": "completed",
+      "source_rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_groups": 0,
+      "mismatches": {},
+      "unsupported": {},
+      "legacy_flags": {
+        "multiple_filters": 12673
+      },
+      "by_tables": {
+        "4": 13549,
+        "6": 6425,
+        "2": 5888,
+        "3": 10165,
+        "5": 11672,
+        "7": 2301
+      },
+      "by_predicate": {
+        "EQ+GTE+LT": 18027,
+        "EQ": 9708,
+        "EQ+LT": 16557,
+        "EQ+GTE": 5708
+      },
+      "row_status": {
+        "parsed": 50000
+      },
+      "multiple_filters_cross_tab": {
+        "independent_multiple=0/legacy_multiple=0": 37327,
+        "independent_multiple=1/legacy_multiple=1": 12673
+      },
+      "mismatch_examples": [],
+      "parse_rows_file": "chembl-parse_rows.jsonl",
+      "parse_rows_sha256": "517695906b762a21cfffb7bcd4802154cbc21637d5b40dc3479a8bc17656a113"
+    },
+    {
+      "database": "legalacts",
+      "status": "completed",
+      "source_rows": 50000,
+      "unique_queries": 49504,
+      "duplicate_groups": 496,
+      "mismatches": {},
+      "unsupported": {},
+      "legacy_flags": {
+        "multiple_filters": 8406
+      },
+      "by_tables": {
+        "4": 9298,
+        "3": 20571,
+        "2": 20131
+      },
+      "by_predicate": {
+        "EQ": 8228,
+        "EQ+GTE": 7882,
+        "EQ+LT": 24051,
+        "EQ+GTE+LT": 9839
+      },
+      "row_status": {
+        "parsed": 50000
+      },
+      "multiple_filters_cross_tab": {
+        "independent_multiple=0/legacy_multiple=0": 41594,
+        "independent_multiple=1/legacy_multiple=1": 8406
+      },
+      "mismatch_examples": [],
+      "parse_rows_file": "legalacts-parse_rows.jsonl",
+      "parse_rows_sha256": "15d0687442bb9b8007bc9dd75e85fb4bae8a7d06c251cc80bdb29f1fc281965b"
+    },
+    {
+      "database": "telstra",
+      "status": "completed",
+      "source_rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_groups": 0,
+      "mismatches": {},
+      "unsupported": {},
+      "legacy_flags": {
+        "multiple_filters": 3333
+      },
+      "by_tables": {
+        "3": 17501,
+        "4": 14785,
+        "5": 5526,
+        "2": 12188
+      },
+      "by_predicate": {
+        "EQ+LT": 36946,
+        "EQ": 6406,
+        "EQ+GTE+LT": 3333,
+        "EQ+GTE": 3315
+      },
+      "row_status": {
+        "parsed": 50000
+      },
+      "multiple_filters_cross_tab": {
+        "independent_multiple=0/legacy_multiple=0": 46667,
+        "independent_multiple=1/legacy_multiple=1": 3333
+      },
+      "mismatch_examples": [],
+      "parse_rows_file": "telstra-parse_rows.jsonl",
+      "parse_rows_sha256": "7b7f08cca736c559135c2b10e46b2c45b07484940f220e62b07248d9075bfabb"
+    }
+  ],
+  "phase_b": "planned",
+  "phase_g1": "planned",
+  "phase_c": "planned",
+  "training": false,
+  "inference": false,
+  "target_data_read": false
+}

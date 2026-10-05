@@ -1,0 +1,55 @@
+{
+  "status": "blocked",
+  "reference_self_check": "blocked_postgresql_unavailable",
+  "actual_workload_types": "blocked_snapshot_unverified",
+  "encoding": "completed",
+  "independence": "shared_sqlglot_parser; independently implemented histogram interpolation; no PostgreSQL oracle",
+  "limitations": "Numeric histograms and dsct EQ checked against frozen tokens; no SQL true selectivity/NULL/collation/type certification.",
+  "databases": [
+    {
+      "database": "chembl",
+      "status": "completed",
+      "counts": {
+        "unique_queries": 50000,
+        "filter_column_slots": 155166,
+        "filter_token_verified": 155166,
+        "table_slots": 209484,
+        "table_aggregates_verified": 209484
+      },
+      "discrepancies": {},
+      "examples": [],
+      "max_token_abs_difference": 2.9801948797647526e-08,
+      "max_aggregate_abs_difference": 7.399393031626289e-08
+    },
+    {
+      "database": "legalacts",
+      "status": "completed",
+      "counts": {
+        "unique_queries": 49504,
+        "filter_column_slots": 113956,
+        "filter_token_verified": 113956,
+        "table_slots": 137744,
+        "table_aggregates_verified": 137744
+      },
+      "discrepancies": {},
+      "examples": [],
+      "max_token_abs_difference": 2.9800381606825965e-08,
+      "max_aggregate_abs_difference": 5.7872132974701174e-08
+    },
+    {
+      "database": "telstra",
+      "status": "completed",
+      "counts": {
+        "unique_queries": 50000,
+        "filter_column_slots": 117609,
+        "filter_token_verified": 117609,
+        "table_slots": 163649,
+        "table_aggregates_verified": 163649
+      },
+      "discrepancies": {},
+      "examples": [],
+      "max_token_abs_difference": 2.9801727530198718e-08,
+      "max_aggregate_abs_difference": 2.9801727530198718e-08
+    }
+  ]
+}

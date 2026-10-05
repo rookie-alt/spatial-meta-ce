@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-10-05T17:55:51.912325+08:00",
+  "protocol_sha256": "789f796c672c3bcef8cd0d5366f00488c487ec9620ec27ca54f979479373f1f0",
+  "matrix_sha256": "eacac2d945f89eb7bfcc71070f21f140a68813a68c137a8ba1c4f9bfdb98f6cd",
+  "script_sha256": "ba0a1d343418edca7fe92408d4491c293a4ea973432c94e2253bdcb185e35033",
+  "test_sha256": "267dbceb675f99460e12eb85a7c679980bbec7edc498ebceb1ce05b3e7dbd892",
+  "source_commit": "a24bcb151de888360c34f76e9f5df19a9ba91b7b",
+  "source_commit_verification": "supplied_by_local_checkout; server has no project Git checkout",
+  "postgresql_version": null,
+  "python": "3.11.4",
+  "numpy": "1.26.1",
+  "sqlglot": "18.17.0",
+  "source": "/gly/weilin/PRICE-master",
+  "databases": [
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "workers": 1,
+  "gpu_visible": false,
+  "training": false,
+  "inference": false,
+  "target_data_read": false,
+  "database_access": false
+}

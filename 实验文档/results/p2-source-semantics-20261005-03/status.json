@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "scope": "source validation chembl/legalacts/telstra pretrain only",
+  "run": "p2-source-semantics-20261005-03",
+  "overall": "blocked",
+  "G0": "completed",
+  "A": "completed",
+  "B": {
+    "reference_self_check": "blocked_postgresql_unavailable",
+    "actual_workload_types": "blocked_snapshot_unverified",
+    "frozen_encoding": "completed",
+    "overall": "blocked"
+  },
+  "G1": "blocked_snapshot_unverified",
+  "C": "blocked",
+  "C_reason": "No verified same-version source tables or PostgreSQL reference; C count plan not frozen, no COUNT(*) executed and no true selectivity results.",
+  "A_parser_independence": "Implementation independent; SQLGlot 18.17.0 shared with prior identity parser; no independent engine execution.",
+  "no_target_read": true,
+  "no_training": true,
+  "no_inference": true,
+  "no_database_count": true,
+  "row_artifacts": [
+    {
+      "database": "chembl",
+      "server_file": "/gly/weilin/spatial-meta-ce/runs/p2-source-semantics-20261005-03/chembl-parse_rows.jsonl",
+      "lines": 50000,
+      "bytes": 59691374,
+      "sha256": "517695906b762a21cfffb7bcd4802154cbc21637d5b40dc3479a8bc17656a113"
+    },
+    {
+      "database": "legalacts",
+      "server_file": "/gly/weilin/spatial-meta-ce/runs/p2-source-semantics-20261005-03/legalacts-parse_rows.jsonl",
+      "lines": 50000,
+      "bytes": 46952890,
+      "sha256": "15d0687442bb9b8007bc9dd75e85fb4bae8a7d06c251cc80bdb29f1fc281965b"
+    },
+    {
+      "database": "telstra",
+      "server_file": "/gly/weilin/spatial-meta-ce/runs/p2-source-semantics-20261005-03/telstra-parse_rows.jsonl",
+      "lines": 50000,
+      "bytes": 46690865,
+      "sha256": "7b7f08cca736c559135c2b10e46b2c45b07484940f220e62b07248d9075bfabb"
+    }
+  ],
+  "inputs_commit": "a24bcb151de888360c34f76e9f5df19a9ba91b7b",
+  "script_sha256": {
+    "A": "ba0a1d343418edca7fe92408d4491c293a4ea973432c94e2253bdcb185e35033",
+    "B": "0b85a64b5bbfa95a72d4fd8b1a63c110b3a2a411f4083c4ae5de4a04b76c20ac"
+  },
+  "server_tests": "160 passed with isolated graphifyy 0.6.7 / tree_sitter 0.25.2 / tree_sitter_python 0.23.6, no global server environment modification",
+  "result_boundary": "Encoding agreement verifies frozen statistics-to-feature arithmetic, not ground-truth selectivity or SQL type/NULL semantics."
+}

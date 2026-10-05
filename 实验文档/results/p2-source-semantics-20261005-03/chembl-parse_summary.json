@@ -1,0 +1,36 @@
+{
+  "database": "chembl",
+  "status": "completed",
+  "source_rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_groups": 0,
+  "mismatches": {},
+  "unsupported": {},
+  "legacy_flags": {
+    "multiple_filters": 12673
+  },
+  "by_tables": {
+    "4": 13549,
+    "6": 6425,
+    "2": 5888,
+    "3": 10165,
+    "5": 11672,
+    "7": 2301
+  },
+  "by_predicate": {
+    "EQ+GTE+LT": 18027,
+    "EQ": 9708,
+    "EQ+LT": 16557,
+    "EQ+GTE": 5708
+  },
+  "row_status": {
+    "parsed": 50000
+  },
+  "multiple_filters_cross_tab": {
+    "independent_multiple=0/legacy_multiple=0": 37327,
+    "independent_multiple=1/legacy_multiple=1": 12673
+  },
+  "mismatch_examples": [],
+  "parse_rows_file": "chembl-parse_rows.jsonl",
+  "parse_rows_sha256": "517695906b762a21cfffb7bcd4802154cbc21637d5b40dc3479a8bc17656a113"
+}
