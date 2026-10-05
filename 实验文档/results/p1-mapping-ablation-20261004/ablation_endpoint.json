@@ -1,0 +1,1270 @@
+{
+  "purpose": "p1 mapping ablation endpoint; source-only; not target-tuned",
+  "metric": "unique-query zero-shot q-error Q95, 4+ tables, macro over source validation",
+  "plan": {
+    "databases": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "unique_queries": 149504,
+    "plan_digest": "64b7c119b3d8b8b4c401d4dd4ae6d92230d2027719b3277b248f958165c2bd3e"
+  },
+  "runs": {
+    "sum-seed42": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.588865595105742,
+            "q95": 68.23347862000948
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.491483791748339,
+            "q95": 104.81765453770367
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.935083665807848,
+            "q95": 9.712128769340556
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.6627645396507873,
+            "q95": 15.67468149584954
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5798467735976232,
+            "q95": 7.993539317886522
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.0055033128447373,
+            "q95": 11.940625323846943
+          }
+        }
+      },
+      "macro_four_plus_q95": 44.14432045246672,
+      "plan_digest": "64b7c119b3d8b8b4c401d4dd4ae6d92230d2027719b3277b248f958165c2bd3e",
+      "unique_queries": 149504
+    },
+    "true-seed42": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.5017615768344763,
+            "q95": 77.89124640289563
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.391065631341351,
+            "q95": 140.13799323749845
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 2.052443828762804,
+            "q95": 9.39309914056313
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.7283803271349645,
+            "q95": 16.13342437695717
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5529529266122781,
+            "q95": 7.860789068790725
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.0209033040751203,
+            "q95": 13.919160744560033
+          }
+        }
+      },
+      "macro_four_plus_q95": 56.730192786338556,
+      "plan_digest": "64b7c119b3d8b8b4c401d4dd4ae6d92230d2027719b3277b248f958165c2bd3e",
+      "unique_queries": 149504
+    },
+    "shuffled-seed42": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.6411512946931235,
+            "q95": 85.28740220186923
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.7020909423776622,
+            "q95": 145.84598802147525
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.7156885945975073,
+            "q95": 9.291658094375356
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.703418807233821,
+            "q95": 14.481189612975625
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5473256205576078,
+            "q95": 7.591767400443293
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.8659728502834718,
+            "q95": 8.778846654671344
+          }
+        }
+      },
+      "macro_four_plus_q95": 56.36867476304074,
+      "plan_digest": "64b7c119b3d8b8b4c401d4dd4ae6d92230d2027719b3277b248f958165c2bd3e",
+      "unique_queries": 149504
+    },
+    "sum-seed43": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.501760029134757,
+            "q95": 72.84529846441608
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.449300406215654,
+            "q95": 111.06934477965865
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.7115644500905487,
+            "q95": 10.011676317353535
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.5614254378293966,
+            "q95": 16.489633473097882
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5196055604422605,
+            "q95": 7.421053569770544
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.943992442049276,
+            "q95": 9.82076396960996
+          }
+        }
+      },
+      "macro_four_plus_q95": 45.7932474074555,
+      "plan_digest": "64b7c119b3d8b8b4c401d4dd4ae6d92230d2027719b3277b248f958165c2bd3e",
+      "unique_queries": 149504
+    },
+    "true-seed43": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.6364538175423253,
+            "q95": 81.8107806751862
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.7537356208092385,
+            "q95": 129.25199978430288
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.8483271125820262,
+            "q95": 9.706998483144018
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.8357114076514245,
+            "q95": 15.240330350487149
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.507212419132915,
+            "q95": 5.250102868876333
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.7877584984808896,
+            "q95": 7.395430588498945
+          }
+        }
+      },
+      "macro_four_plus_q95": 50.62925357442966,
+      "plan_digest": "64b7c119b3d8b8b4c401d4dd4ae6d92230d2027719b3277b248f958165c2bd3e",
+      "unique_queries": 149504
+    },
+    "shuffled-seed43": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.4785421352827077,
+            "q95": 80.8349835242264
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.4375518164652794,
+            "q95": 155.01196366698147
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.5493238568466374,
+            "q95": 9.825507105913507
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.6275028646793377,
+            "q95": 16.179073815482003
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.4688178289155536,
+            "q95": 6.577517489253069
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.824406338157749,
+            "q95": 10.58474000520208
+          }
+        }
+      },
+      "macro_four_plus_q95": 60.59192582922186,
+      "plan_digest": "64b7c119b3d8b8b4c401d4dd4ae6d92230d2027719b3277b248f958165c2bd3e",
+      "unique_queries": 149504
+    },
+    "sum-seed44": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.351579360613216,
+            "q95": 58.329058981262406
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.080037658253943,
+            "q95": 85.9917624891532
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.6343864162473647,
+            "q95": 9.748679735628286
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.6186353755305194,
+            "q95": 16.778525341508427
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.7237703438857175,
+            "q95": 10.429453610065362
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.6753994251001165,
+            "q95": 17.80597032416913
+          }
+        }
+      },
+      "macro_four_plus_q95": 40.192086051610254,
+      "plan_digest": "64b7c119b3d8b8b4c401d4dd4ae6d92230d2027719b3277b248f958165c2bd3e",
+      "unique_queries": 149504
+    },
+    "true-seed44": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.682290305107955,
+            "q95": 77.12197655504485
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.7329750095793277,
+            "q95": 114.75805778665165
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.7246581484132972,
+            "q95": 9.190283575211042
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.715456407910043,
+            "q95": 14.46755016562984
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5521344201726381,
+            "q95": 7.918362076798612
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.073536925573259,
+            "q95": 13.225171911918796
+          }
+        }
+      },
+      "macro_four_plus_q95": 47.483593288066764,
+      "plan_digest": "64b7c119b3d8b8b4c401d4dd4ae6d92230d2027719b3277b248f958165c2bd3e",
+      "unique_queries": 149504
+    },
+    "shuffled-seed44": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.6749513994519134,
+            "q95": 103.54225112309638
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.74368366136612,
+            "q95": 160.2915960009229
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.5910812605596287,
+            "q95": 9.33906389968474
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.665335595425611,
+            "q95": 14.88945677115487
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.4695327700101823,
+            "q95": 6.733636882312419
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.8405467742955277,
+            "q95": 10.491123302268104
+          }
+        }
+      },
+      "macro_four_plus_q95": 61.8907253581153,
+      "plan_digest": "64b7c119b3d8b8b4c401d4dd4ae6d92230d2027719b3277b248f958165c2bd3e",
+      "unique_queries": 149504
+    }
+  },
+  "comparisons": [
+    {
+      "seed": 42,
+      "database": "chembl",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 33947,
+      "left_q95": 140.13799323749845,
+      "right_q95": 145.84598802147525,
+      "q95_ratio": 0.9608628604639003,
+      "left_better_fraction": 0.5455857660470734,
+      "mean_log_q_delta": -0.04620659004734859,
+      "median_log_q_delta": -0.038295745849609375
+    },
+    {
+      "seed": 42,
+      "database": "legalacts",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 9178,
+      "left_q95": 16.13342437695717,
+      "right_q95": 14.481189612975625,
+      "q95_ratio": 1.1140952372104214,
+      "left_better_fraction": 0.48071475266942687,
+      "mean_log_q_delta": 0.022759609131892317,
+      "median_log_q_delta": 0.029567241668701172
+    },
+    {
+      "seed": 42,
+      "database": "telstra",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 20311,
+      "left_q95": 13.919160744560033,
+      "right_q95": 8.778846654671344,
+      "q95_ratio": 1.585534101698138,
+      "left_better_fraction": 0.36517158190143273,
+      "mean_log_q_delta": 0.1120049493294774,
+      "median_log_q_delta": 0.10226046574966041
+    },
+    {
+      "seed": 42,
+      "database": "pooled",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 63436,
+      "left_q95": 49.34558050900943,
+      "right_q95": 52.216944856462476,
+      "q95_ratio": 0.9450108704110122,
+      "left_better_fraction": 0.47843495806797404,
+      "mean_log_q_delta": 0.014427850212910346,
+      "median_log_q_delta": 0.019716262817382812
+    },
+    {
+      "seed": 42,
+      "database": "chembl",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 33947,
+      "left_q95": 140.13799323749845,
+      "right_q95": 104.81765453770367,
+      "q95_ratio": 1.3369693669980929,
+      "left_better_fraction": 0.4651957463104251,
+      "mean_log_q_delta": 0.028456974899158216,
+      "median_log_q_delta": 0.039058685302734375
+    },
+    {
+      "seed": 42,
+      "database": "legalacts",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 9178,
+      "left_q95": 16.13342437695717,
+      "right_q95": 15.67468149584954,
+      "q95_ratio": 1.0292664882045035,
+      "left_better_fraction": 0.4651340161255175,
+      "mean_log_q_delta": 0.01452849266134483,
+      "median_log_q_delta": 0.03428959846496582
+    },
+    {
+      "seed": 42,
+      "database": "telstra",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 20311,
+      "left_q95": 13.919160744560033,
+      "right_q95": 11.940625323846943,
+      "q95_ratio": 1.1656978061912473,
+      "left_better_fraction": 0.526955836738713,
+      "mean_log_q_delta": 0.021193326577281877,
+      "median_log_q_delta": -0.01842784881591797
+    },
+    {
+      "seed": 42,
+      "database": "pooled",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 63436,
+      "left_q95": 49.34558050900943,
+      "right_q95": 45.058186287315635,
+      "q95_ratio": 1.0951523923833735,
+      "left_better_fraction": 0.48496122075792925,
+      "mean_log_q_delta": 0.024116102665028043,
+      "median_log_q_delta": 0.014228878678874679
+    },
+    {
+      "seed": 42,
+      "database": "chembl",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 33947,
+      "left_q95": 145.84598802147525,
+      "right_q95": 104.81765453770367,
+      "q95_ratio": 1.391425792388947,
+      "left_better_fraction": 0.44174742981706777,
+      "mean_log_q_delta": 0.0746635649465068,
+      "median_log_q_delta": 0.044587135314941406
+    },
+    {
+      "seed": 42,
+      "database": "legalacts",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 9178,
+      "left_q95": 14.481189612975625,
+      "right_q95": 15.67468149584954,
+      "q95_ratio": 0.9238586198265057,
+      "left_better_fraction": 0.5174329919372412,
+      "mean_log_q_delta": -0.008231116470547487,
+      "median_log_q_delta": -0.022951461052238997
+    },
+    {
+      "seed": 42,
+      "database": "telstra",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 20311,
+      "left_q95": 8.778846654671344,
+      "right_q95": 11.940625323846943,
+      "q95_ratio": 0.735208284036756,
+      "left_better_fraction": 0.6469893161341145,
+      "mean_log_q_delta": -0.09081162275219552,
+      "median_log_q_delta": -0.09317922592163086
+    },
+    {
+      "seed": 42,
+      "database": "pooled",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 63436,
+      "left_q95": 52.216944856462476,
+      "right_q95": 45.058186287315635,
+      "q95_ratio": 1.158878089843623,
+      "left_better_fraction": 0.5184122580238351,
+      "mean_log_q_delta": 0.009688252452117699,
+      "median_log_q_delta": -0.013413190841674805
+    },
+    {
+      "seed": 43,
+      "database": "chembl",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 33947,
+      "left_q95": 129.25199978430288,
+      "right_q95": 155.01196366698147,
+      "q95_ratio": 0.8338195112603065,
+      "left_better_fraction": 0.45794915603735237,
+      "mean_log_q_delta": 0.02342712042435901,
+      "median_log_q_delta": 0.031975746154785156
+    },
+    {
+      "seed": 43,
+      "database": "legalacts",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 9178,
+      "left_q95": 15.240330350487149,
+      "right_q95": 16.179073815482003,
+      "q95_ratio": 0.941977923106046,
+      "left_better_fraction": 0.48202222706472,
+      "mean_log_q_delta": 0.017666068251234478,
+      "median_log_q_delta": 0.010570049285888672
+    },
+    {
+      "seed": 43,
+      "database": "telstra",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 20311,
+      "left_q95": 7.395430588498945,
+      "right_q95": 10.58474000520208,
+      "q95_ratio": 0.6986879776795948,
+      "left_better_fraction": 0.5982472551819211,
+      "mean_log_q_delta": -0.0757801114538802,
+      "median_log_q_delta": -0.11478710174560547
+    },
+    {
+      "seed": 43,
+      "database": "pooled",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 63436,
+      "left_q95": 51.52504912351904,
+      "right_q95": 50.067050069080246,
+      "q95_ratio": 1.0291209298815711,
+      "left_better_fraction": 0.5063528595750048,
+      "mean_log_q_delta": -0.009170663539381667,
+      "median_log_q_delta": -0.005383456957433808
+    },
+    {
+      "seed": 43,
+      "database": "chembl",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 33947,
+      "left_q95": 129.25199978430288,
+      "right_q95": 111.06934477965865,
+      "q95_ratio": 1.1637054314195812,
+      "left_better_fraction": 0.5039620585029605,
+      "mean_log_q_delta": 0.0459283498816539,
+      "median_log_q_delta": -0.006018638610839844
+    },
+    {
+      "seed": 43,
+      "database": "legalacts",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 9178,
+      "left_q95": 15.240330350487149,
+      "right_q95": 16.489633473097882,
+      "q95_ratio": 0.9242370593228214,
+      "left_better_fraction": 0.4701460013074744,
+      "mean_log_q_delta": 0.04047049774043036,
+      "median_log_q_delta": 0.03295879996642359
+    },
+    {
+      "seed": 43,
+      "database": "telstra",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 20311,
+      "left_q95": 7.395430588498945,
+      "right_q95": 9.82076396960996,
+      "q95_ratio": 0.7530402534246693,
+      "left_better_fraction": 0.5953424252867904,
+      "mean_log_q_delta": -0.11345802167056716,
+      "median_log_q_delta": -0.16998603374360854
+    },
+    {
+      "seed": 43,
+      "database": "pooled",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 63436,
+      "left_q95": 51.52504912351904,
+      "right_q95": 48.79727019381062,
+      "q95_ratio": 1.0559002361991636,
+      "left_better_fraction": 0.5283277634150956,
+      "mean_log_q_delta": -0.005893782023720206,
+      "median_log_q_delta": -0.04375074783525079
+    },
+    {
+      "seed": 43,
+      "database": "chembl",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 33947,
+      "left_q95": 155.01196366698147,
+      "right_q95": 111.06934477965865,
+      "q95_ratio": 1.395632286968983,
+      "left_better_fraction": 0.50481633134003,
+      "mean_log_q_delta": 0.0225012294572949,
+      "median_log_q_delta": -0.00829315185546875
+    },
+    {
+      "seed": 43,
+      "database": "legalacts",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 9178,
+      "left_q95": 16.179073815482003,
+      "right_q95": 16.489633473097882,
+      "q95_ratio": 0.9811663698818689,
+      "left_better_fraction": 0.47101765090433645,
+      "mean_log_q_delta": 0.022804429489195876,
+      "median_log_q_delta": 0.015639953208422153
+    },
+    {
+      "seed": 43,
+      "database": "telstra",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 20311,
+      "left_q95": 10.58474000520208,
+      "right_q95": 9.82076396960996,
+      "q95_ratio": 1.0777919149626465,
+      "left_better_fraction": 0.5799812909260992,
+      "mean_log_q_delta": -0.03767791021668697,
+      "median_log_q_delta": -0.058002471923828125
+    },
+    {
+      "seed": 43,
+      "database": "pooled",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 63436,
+      "left_q95": 50.067050069080246,
+      "right_q95": 48.79727019381062,
+      "q95_ratio": 1.02602153502084,
+      "left_better_fraction": 0.523992685541333,
+      "mean_log_q_delta": 0.0032768815156614655,
+      "median_log_q_delta": -0.024561762809753418
+    },
+    {
+      "seed": 44,
+      "database": "chembl",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 33947,
+      "left_q95": 114.75805778665165,
+      "right_q95": 160.2915960009229,
+      "q95_ratio": 0.7159330910024185,
+      "left_better_fraction": 0.4740330515214894,
+      "mean_log_q_delta": -0.04361451548772867,
+      "median_log_q_delta": 0.04989910125732422
+    },
+    {
+      "seed": 44,
+      "database": "legalacts",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 9178,
+      "left_q95": 14.46755016562984,
+      "right_q95": 14.88945677115487,
+      "q95_ratio": 0.9716640699516732,
+      "left_better_fraction": 0.507191109174112,
+      "mean_log_q_delta": 0.0010533614978062685,
+      "median_log_q_delta": -0.007094264384511995
+    },
+    {
+      "seed": 44,
+      "database": "telstra",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 20311,
+      "left_q95": 13.225171911918796,
+      "right_q95": 10.491123302268104,
+      "q95_ratio": 1.2606058980414052,
+      "left_better_fraction": 0.31495248879917287,
+      "mean_log_q_delta": 0.10939940793472096,
+      "median_log_q_delta": 0.10839176177978516
+    },
+    {
+      "seed": 44,
+      "database": "pooled",
+      "role": "primary; mapping information only",
+      "left": "true",
+      "right": "shuffled",
+      "queries": 63436,
+      "left_q95": 51.71175340934323,
+      "right_q95": 61.53675353936218,
+      "q95_ratio": 0.8403393165072585,
+      "left_better_fraction": 0.42789583201967335,
+      "mean_log_q_delta": 0.011840235341557762,
+      "median_log_q_delta": 0.07136619332714833
+    },
+    {
+      "seed": 44,
+      "database": "chembl",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 33947,
+      "left_q95": 114.75805778665165,
+      "right_q95": 85.9917624891532,
+      "q95_ratio": 1.334523848154955,
+      "left_better_fraction": 0.39443838925383684,
+      "mean_log_q_delta": 0.16814810830500704,
+      "median_log_q_delta": 0.12069034576416016
+    },
+    {
+      "seed": 44,
+      "database": "legalacts",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 9178,
+      "left_q95": 14.46755016562984,
+      "right_q95": 16.778525341508427,
+      "q95_ratio": 0.8622658947171322,
+      "left_better_fraction": 0.525168882109392,
+      "mean_log_q_delta": -0.012274149735434706,
+      "median_log_q_delta": -0.034984588623046875
+    },
+    {
+      "seed": 44,
+      "database": "telstra",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 20311,
+      "left_q95": 13.225171911918796,
+      "right_q95": 17.80597032416913,
+      "q95_ratio": 0.7427380631971212,
+      "left_better_fraction": 0.7439810939884791,
+      "mean_log_q_delta": -0.23026088994058824,
+      "median_log_q_delta": -0.21839427947998047
+    },
+    {
+      "seed": 44,
+      "database": "pooled",
+      "role": "secondary; capacity is confounded",
+      "left": "true",
+      "right": "sum",
+      "queries": 63436,
+      "left_q95": 51.71175340934323,
+      "right_q95": 41.92578666308512,
+      "q95_ratio": 1.2334116429322595,
+      "left_better_fraction": 0.5252695630241503,
+      "mean_log_q_delta": 0.014481410410097846,
+      "median_log_q_delta": -0.02700209617614746
+    },
+    {
+      "seed": 44,
+      "database": "chembl",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 33947,
+      "left_q95": 160.2915960009229,
+      "right_q95": 85.9917624891532,
+      "q95_ratio": 1.8640343139977125,
+      "left_better_fraction": 0.38574837246295696,
+      "mean_log_q_delta": 0.2117626237927357,
+      "median_log_q_delta": 0.18761873245239258
+    },
+    {
+      "seed": 44,
+      "database": "legalacts",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 9178,
+      "left_q95": 14.88945677115487,
+      "right_q95": 16.778525341508427,
+      "q95_ratio": 0.8874115256315055,
+      "left_better_fraction": 0.5265853127042929,
+      "mean_log_q_delta": -0.013327511233240975,
+      "median_log_q_delta": -0.01956343650817871
+    },
+    {
+      "seed": 44,
+      "database": "telstra",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 20311,
+      "left_q95": 10.491123302268104,
+      "right_q95": 17.80597032416913,
+      "q95_ratio": 0.5891913280360723,
+      "left_better_fraction": 0.8040963024961844,
+      "mean_log_q_delta": -0.3396602978753092,
+      "median_log_q_delta": -0.37201786041259766
+    },
+    {
+      "seed": 44,
+      "database": "pooled",
+      "role": "secondary; capacity is confounded",
+      "left": "shuffled",
+      "right": "sum",
+      "queries": 63436,
+      "left_q95": 61.53675353936218,
+      "right_q95": 41.92578666308512,
+      "q95_ratio": 1.4677542972269177,
+      "left_better_fraction": 0.5400718834731068,
+      "mean_log_q_delta": 0.002641175068540057,
+      "median_log_q_delta": -0.056845903396606445
+    }
+  ],
+  "sidecar_risks": [
+    {
+      "database": "accidents",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 38234,
+      "changed_fraction": 0.76468,
+      "unchanged_rows": 11766,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 11766,
+      "sql_flags": {
+        "multiple_filters": 9890
+      }
+    },
+    {
+      "database": "airline",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 47002,
+      "changed_fraction": 0.94004,
+      "unchanged_rows": 2998,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 2998,
+      "sql_flags": {
+        "multiple_filters": 13477
+      }
+    },
+    {
+      "database": "baseball",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 46163,
+      "changed_fraction": 0.92326,
+      "unchanged_rows": 3837,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 3837,
+      "sql_flags": {
+        "multiple_filters": 10135
+      }
+    },
+    {
+      "database": "basketball",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 46491,
+      "changed_fraction": 0.92982,
+      "unchanged_rows": 3509,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 3509,
+      "sql_flags": {
+        "multiple_filters": 14457
+      }
+    },
+    {
+      "database": "carcinogenesis",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 43150,
+      "changed_fraction": 0.863,
+      "unchanged_rows": 6850,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 6850,
+      "sql_flags": {
+        "multiple_filters": 9671
+      }
+    },
+    {
+      "database": "ccs",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 44221,
+      "changed_fraction": 0.88442,
+      "unchanged_rows": 5779,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 5779,
+      "sql_flags": {
+        "multiple_filters": 11512
+      }
+    },
+    {
+      "database": "consumer",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 42341,
+      "changed_fraction": 0.84682,
+      "unchanged_rows": 7659,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 7659,
+      "sql_flags": {
+        "multiple_filters": 16923
+      }
+    },
+    {
+      "database": "credit",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 47759,
+      "changed_fraction": 0.95518,
+      "unchanged_rows": 2241,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 2241,
+      "sql_flags": {
+        "multiple_filters": 19789
+      }
+    },
+    {
+      "database": "employee",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 46233,
+      "changed_fraction": 0.92466,
+      "unchanged_rows": 3767,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 3767,
+      "sql_flags": {
+        "multiple_filters": 8680
+      }
+    },
+    {
+      "database": "financial",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 47836,
+      "changed_fraction": 0.95672,
+      "unchanged_rows": 2164,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 2164,
+      "sql_flags": {
+        "multiple_filters": 14806
+      }
+    },
+    {
+      "database": "fnhk",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 40086,
+      "changed_fraction": 0.80172,
+      "unchanged_rows": 9914,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 9914,
+      "sql_flags": {
+        "multiple_filters": 14375
+      }
+    },
+    {
+      "database": "grants",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 46009,
+      "changed_fraction": 0.92018,
+      "unchanged_rows": 3991,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 3991,
+      "sql_flags": {
+        "multiple_filters": 11758
+      }
+    },
+    {
+      "database": "hepatitis",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 48254,
+      "changed_fraction": 0.96508,
+      "unchanged_rows": 1746,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 1746,
+      "sql_flags": {}
+    },
+    {
+      "database": "hockey",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 44173,
+      "changed_fraction": 0.88346,
+      "unchanged_rows": 5827,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 5827,
+      "sql_flags": {
+        "multiple_filters": 2429
+      }
+    },
+    {
+      "database": "movielens",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 49264,
+      "changed_fraction": 0.98528,
+      "unchanged_rows": 736,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 736,
+      "sql_flags": {}
+    },
+    {
+      "database": "sakila",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 48026,
+      "changed_fraction": 0.96052,
+      "unchanged_rows": 1974,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 1974,
+      "sql_flags": {
+        "multiple_filters": 11253
+      }
+    },
+    {
+      "database": "sap",
+      "rows": 50000,
+      "unique_queries": 29714,
+      "duplicate_rows": 20286,
+      "changed_rows": 44173,
+      "changed_fraction": 0.88346,
+      "unchanged_rows": 5827,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 5827,
+      "sql_flags": {
+        "multiple_filters": 24618
+      }
+    },
+    {
+      "database": "seznam",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 43643,
+      "changed_fraction": 0.87286,
+      "unchanged_rows": 6357,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 6357,
+      "sql_flags": {
+        "multiple_filters": 4130
+      }
+    },
+    {
+      "database": "ssb",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 45535,
+      "changed_fraction": 0.9107,
+      "unchanged_rows": 4465,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 4465,
+      "sql_flags": {
+        "multiple_filters": 9300
+      }
+    },
+    {
+      "database": "talkingdata",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 47637,
+      "changed_fraction": 0.95274,
+      "unchanged_rows": 2363,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 2363,
+      "sql_flags": {
+        "multiple_filters": 8324
+      }
+    },
+    {
+      "database": "tournament",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 46884,
+      "changed_fraction": 0.93768,
+      "unchanged_rows": 3116,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 3116,
+      "sql_flags": {
+        "multiple_filters": 3518
+      }
+    },
+    {
+      "database": "tpc_h",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 47377,
+      "changed_fraction": 0.94754,
+      "unchanged_rows": 2623,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 2623,
+      "sql_flags": {
+        "multiple_filters": 12086
+      }
+    },
+    {
+      "database": "tubepricing",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 45013,
+      "changed_fraction": 0.90026,
+      "unchanged_rows": 4987,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 4987,
+      "sql_flags": {
+        "multiple_filters": 4889
+      }
+    },
+    {
+      "database": "chembl",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 47405,
+      "changed_fraction": 0.9481,
+      "unchanged_rows": 2595,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 2595,
+      "sql_flags": {
+        "multiple_filters": 12673
+      }
+    },
+    {
+      "database": "legalacts",
+      "rows": 50000,
+      "unique_queries": 49504,
+      "duplicate_rows": 496,
+      "changed_rows": 39468,
+      "changed_fraction": 0.78936,
+      "unchanged_rows": 10532,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 10532,
+      "sql_flags": {
+        "multiple_filters": 8406
+      }
+    },
+    {
+      "database": "telstra",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "duplicate_rows": 0,
+      "changed_rows": 45287,
+      "changed_fraction": 0.90574,
+      "unchanged_rows": 4713,
+      "unchangeable_rows": 0,
+      "random_unchanged_rows": 4713,
+      "sql_flags": {
+        "multiple_filters": 3333
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "purpose": "read-only frozen checkpoint final head bias audit; no forward pass",
+  "completed_at": "2026-10-04T13:44:34.327786+00:00",
+  "training": false,
+  "inference": false,
+  "target_data_read": false,
+  "checkpoint_hashes_verified": 9,
+  "records": {
+    "sum-seed42": {
+      "checkpoint_sha256": "e6a0efbb5788b515d231f536abefb562793d0ba99c9ba1b0084396d059980291",
+      "last_layer_bias": -0.0022389700170606375,
+      "steps": 4000
+    },
+    "sum-seed43": {
+      "checkpoint_sha256": "02208de5f6ed79288d133c330abd65f393418990aaef179ac567fb971df0fbbe",
+      "last_layer_bias": -0.003421880304813385,
+      "steps": 4000
+    },
+    "sum-seed44": {
+      "checkpoint_sha256": "5072b7efe5566dc8c35e2bba643aa50a06c7ca9005b5cca1183fbd502480dfae",
+      "last_layer_bias": 0.011494305916130543,
+      "steps": 4000
+    },
+    "true-seed42": {
+      "checkpoint_sha256": "3986c2de8f57fa7cbb5ae011f3207ebc5a20154304b40d634dae8be88ec77abf",
+      "last_layer_bias": -0.002930508693680167,
+      "steps": 4000
+    },
+    "true-seed43": {
+      "checkpoint_sha256": "80ef9c9ceff99a2a0aa01b9e24f3430a71974b4fba8b291ba02e5fdae5ca0a56",
+      "last_layer_bias": -0.007926393300294876,
+      "steps": 4000
+    },
+    "true-seed44": {
+      "checkpoint_sha256": "7ac167f5152824dda7e06b11cac88c3a576e17fde2b5b957d4e55f3858ca14e0",
+      "last_layer_bias": 0.0005329379928298295,
+      "steps": 4000
+    },
+    "shuffled-seed42": {
+      "checkpoint_sha256": "3d3ad049e2388ea30aa2a6b8d40b8363eae4d485c756b95ab0f98a8ec6d45ddd",
+      "last_layer_bias": -0.004480117931962013,
+      "steps": 4000
+    },
+    "shuffled-seed43": {
+      "checkpoint_sha256": "958aa525ed855f671c37d16a7c256ff4738d9dc34ddf0a1c33a8c27d9751edc1",
+      "last_layer_bias": -0.0024478097911924124,
+      "steps": 4000
+    },
+    "shuffled-seed44": {
+      "checkpoint_sha256": "491111b5b808518e40aa9280cf397a5259b20be0a0b92cfc94dc57b26672a1c4",
+      "last_layer_bias": -0.00015113415429368615,
+      "steps": 4000
+    }
+  }
+}

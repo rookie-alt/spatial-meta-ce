@@ -1,0 +1,1694 @@
+{
+  "purpose": "p1 mapping ablation; source-only; not target-tuned",
+  "created_at": "2026-10-04T09:58:17.885863+00:00",
+  "device": "cuda",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "arms": [
+    "sum",
+    "true",
+    "shuffled"
+  ],
+  "pairing": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "arms": [
+      "sum",
+      "true",
+      "shuffled"
+    ],
+    "shared_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+    "parameters": {
+      "42": {
+        "sum": 132545,
+        "sum_map": 169665
+      },
+      "43": {
+        "sum": 132545,
+        "sum_map": 169665
+      },
+      "44": {
+        "sum": 132545,
+        "sum_map": 169665
+      }
+    }
+  },
+  "runs": [
+    {
+      "arm": "sum",
+      "seed": 42,
+      "config": "/gly/weilin/spatial-meta-ce/configs/p1_map_sum.json",
+      "output": "/gly/weilin/spatial-meta-ce/runs/p1-mapping-ablation-20261004/sum-seed42",
+      "config_sha256": "62ee5464638381601fff9f9ab6bfa5671bd41977a1b7034590d8c4c7abef48a4",
+      "initialization_hash": "41e594b03ef19c56c3f236237da850929f2ec5c919702b44402dd9b2864d284a",
+      "parameters": 132545,
+      "optimizer_steps": 4000,
+      "sample_plan_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+      "sample_plan_episodes": 16000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1621915,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "mapping_provenance": {},
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoint_sha256": "e6a0efbb5788b515d231f536abefb562793d0ba99c9ba1b0084396d059980291",
+      "device": "cuda",
+      "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+      "peak_memory_bytes": 78653952,
+      "seconds": 988.9845181789715,
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.6753357966585374,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1621915,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 981.7150840749964,
+        "parameters": 132545,
+        "purpose": "p1-mapping-ablation sum arm; frozen 4000-step budget; source-only"
+      }
+    },
+    {
+      "arm": "true",
+      "seed": 42,
+      "config": "/gly/weilin/spatial-meta-ce/configs/p1_map_true.json",
+      "output": "/gly/weilin/spatial-meta-ce/runs/p1-mapping-ablation-20261004/true-seed42",
+      "config_sha256": "a9c1a359d7c4695b4b003730a1435a5246f259779741cf63e5f4b23fc33f4bc9",
+      "initialization_hash": "1fe96062be819ac30658e5d40fbf5b507b8b170b7723ad40f3c3f2e720ac77b1",
+      "parameters": 169665,
+      "optimizer_steps": 4000,
+      "sample_plan_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+      "sample_plan_episodes": 16000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1621915,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "mapping_provenance": {
+        "accidents": {
+          "manifest_hash": "a142a6a4f14c38fd03cd0e87d476fe7e4bbd492d4bbae1ced164a46d08504902",
+          "jsonl_hash": "5343c3bbb70f201c15aad66fbc1867a8820ee83e7a8071061382b36ceebfd24f",
+          "mode": "mapping"
+        },
+        "airline": {
+          "manifest_hash": "0915c9cc2a123db66f8bbea534ec6112cca07f48269e7736e8b266761835f140",
+          "jsonl_hash": "ab8e21ea8c29cfcb851c6c0362f8bb0f8205e6a20308f3aee2d924d118976e4d",
+          "mode": "mapping"
+        },
+        "baseball": {
+          "manifest_hash": "b30db40424f32fbcde4cd12d639ec8d9fd7aec8097f58a785fa73295ab5abe34",
+          "jsonl_hash": "6930576de2272ff8c31273136378e02860fcaabdf2774d15a864839bdba83712",
+          "mode": "mapping"
+        },
+        "basketball": {
+          "manifest_hash": "90b2ebecc485a393f8bd18cb91a1001f3219121219c57906f77ae8181d4e90ef",
+          "jsonl_hash": "4feec7275b07e8a5c8e083a12dcd240960253ab95b8f2eade7da793d8fd5765f",
+          "mode": "mapping"
+        },
+        "carcinogenesis": {
+          "manifest_hash": "d7aec8b9c6d3bdd026a8a541156aa8debbdebc44ded2b337761e94703fa19f1c",
+          "jsonl_hash": "79aef2fc3316c1e69462685eac1ba1a2d51cb7f6338b483eb883a0379c161f9d",
+          "mode": "mapping"
+        },
+        "ccs": {
+          "manifest_hash": "74e97e0cc2be2511233d38a2bc4174637dbc0f2c56e1a2588d5039792469eab4",
+          "jsonl_hash": "c86a4f8900fa10fff50fd6cc8e478de4c8aca835ae3d1145647f7738d1a25d91",
+          "mode": "mapping"
+        },
+        "consumer": {
+          "manifest_hash": "8ca3868033d93fa3d5ec76a34dd07f1d2937c4afc4e2efdc48f952d70f4c107a",
+          "jsonl_hash": "c3abc7c1d9d332291b251fdd28d9b7e469762f722bab5e9ac3309e33de4f3450",
+          "mode": "mapping"
+        },
+        "credit": {
+          "manifest_hash": "ae0496329b2fdb9e3c9c7a2c7525e87a077c5ddad3e47142d41c3bcd29829c30",
+          "jsonl_hash": "39d1fd0f483d6b458be3014792904066794629220b140600cdbf32f35404231b",
+          "mode": "mapping"
+        },
+        "employee": {
+          "manifest_hash": "68fd3f06eec4f5821dc806916aeb663a94bfd1997c0924c814c9f689becb0d14",
+          "jsonl_hash": "70a2adecf2b77b8308389fc2564176e529a9ab38a16da19dd8f484564fa56fa6",
+          "mode": "mapping"
+        },
+        "financial": {
+          "manifest_hash": "2f013adfc1088f3c3bad60aa158d845d150e9f9f16b6664bf8a5f6ac97ce21e3",
+          "jsonl_hash": "fb85daaf83a2bca9a4be96e1122e5e0e9c0be7f496827942d3a314a18fe73bcf",
+          "mode": "mapping"
+        },
+        "fnhk": {
+          "manifest_hash": "11b2bb98105873ae94909e300dab2fdee3219f6ddec9c30831097a9a98630fc3",
+          "jsonl_hash": "c3d7757779ad9bc850038a9cbed51ece54afc2ed4668c397241d5afebb5a3d3b",
+          "mode": "mapping"
+        },
+        "grants": {
+          "manifest_hash": "d0ef826490c074efc5681f71f6dbaf5498d716170c2d23b9b3c04edf44cdbf44",
+          "jsonl_hash": "d03ab32eb1871521565f2414d1e401622528788776280069f08c78ae1f61cce9",
+          "mode": "mapping"
+        },
+        "hepatitis": {
+          "manifest_hash": "22db1fd4835f0d472bb25f8a0008fed9662b6b93e9a94106e9a062aa7066b8d6",
+          "jsonl_hash": "529da346bf74eb0e93917187f533589ee52e3c6d45883871ca48766f4e8cee81",
+          "mode": "mapping"
+        },
+        "hockey": {
+          "manifest_hash": "fe6d993054187700f449f1d2cea38748152b62f2d7027bb7eb35236e831198d4",
+          "jsonl_hash": "a878c2cef3eb2e386eb51a35de5dfb9192ec7c33b1c7a478078a06d4c4a7808d",
+          "mode": "mapping"
+        },
+        "movielens": {
+          "manifest_hash": "dfd771d3814c1d69255f9bdaf46a949d929efbed454cec277b45d54cefeeb506",
+          "jsonl_hash": "1ef22b8b094f08e203f225b4251a26d4c848fa9eaecbed7eaba12978075a9807",
+          "mode": "mapping"
+        },
+        "sakila": {
+          "manifest_hash": "69111234ad60532b44a409e0e7009ec139b828d0f16e2ea7a00a2d57fe0e1fb4",
+          "jsonl_hash": "116d454edfad81fdaecfdea29655cf99ac7f02a9971a9a943dabd66ebf49060d",
+          "mode": "mapping"
+        },
+        "sap": {
+          "manifest_hash": "a0b247f07722c032efff20ffff1d4aec9ebb100d697fe39aba60b75205d1e4e3",
+          "jsonl_hash": "66abcd609fb1263b7690c878d9dfc8d811518fec51ee8042285ea60390991e37",
+          "mode": "mapping"
+        },
+        "seznam": {
+          "manifest_hash": "40efac924aeb91c770cdb7c532d7f6001bd1328f9df598100098e7edb8ca37df",
+          "jsonl_hash": "2d90cdccc9e086b7146cbe24b85b7cec5a1959c6d74ba9f2260130c7016a818d",
+          "mode": "mapping"
+        },
+        "ssb": {
+          "manifest_hash": "54cf2caecbe3533c86e4e35373694f3d8379b54f5311de9f6a33300a195bc68f",
+          "jsonl_hash": "4bcca56ee9c376d0fb20349341b81ce3bb3acdbbbf33686bf64b083ded2c130e",
+          "mode": "mapping"
+        },
+        "talkingdata": {
+          "manifest_hash": "8abff4ad93c3be4aac082f127a1377f2af9625489391d06c997cb1c5918e3fd9",
+          "jsonl_hash": "0279efff9b0349615c91452c2cdb8c265a0e4fba9679eb288415662ca2d4d97e",
+          "mode": "mapping"
+        },
+        "tournament": {
+          "manifest_hash": "b25f50528132bbd59ce5221b9eb187c1c1f8d154940f54cdc0cfd16440be4370",
+          "jsonl_hash": "2c26467ecd2447dbf255fff2cc8b91758957284bcd5b8e53f8f551f558ea2361",
+          "mode": "mapping"
+        },
+        "tpc_h": {
+          "manifest_hash": "d549adee1f518a82c64013ff02ff4fef109760e8b92cb14050881b647bf883ee",
+          "jsonl_hash": "3abbeff7ca866319f0a6c499b1b5b283ca41964d77d1c8300346cf4ef560420f",
+          "mode": "mapping"
+        },
+        "tubepricing": {
+          "manifest_hash": "67f400f5160011a3b62cf146d1deb0ca812e3d24f707861a2841f4a801ea927b",
+          "jsonl_hash": "b7500191bd78818a639d743a91291163f117e4235e828f6e9d7b4009150c1def",
+          "mode": "mapping"
+        },
+        "chembl": {
+          "manifest_hash": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+          "jsonl_hash": "6c1b8c8af8be55a27387b38c64982ac67c33c1c8569e8b3e082233c409b6b019",
+          "mode": "mapping"
+        },
+        "legalacts": {
+          "manifest_hash": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+          "jsonl_hash": "8eb67b4b12cb565a9ab71b65107cf5c08899d8db6c63317f4e17811eacf02df1",
+          "mode": "mapping"
+        },
+        "telstra": {
+          "manifest_hash": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+          "jsonl_hash": "09fae9ed0d39929daa1246c8333cf984f0fbe17554a33b155fa8462ff75125a5",
+          "mode": "mapping"
+        }
+      },
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoint_sha256": "3986c2de8f57fa7cbb5ae011f3207ebc5a20154304b40d634dae8be88ec77abf",
+      "device": "cuda",
+      "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+      "peak_memory_bytes": 95317504,
+      "seconds": 1467.5178734660149,
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.692197965736031,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1621915,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 1363.8477122059558,
+        "parameters": 169665,
+        "purpose": "p1-mapping-ablation true-mapping arm; frozen 4000-step budget; source-only"
+      }
+    },
+    {
+      "arm": "shuffled",
+      "seed": 42,
+      "config": "/gly/weilin/spatial-meta-ce/configs/p1_map_shuffled.json",
+      "output": "/gly/weilin/spatial-meta-ce/runs/p1-mapping-ablation-20261004/shuffled-seed42",
+      "config_sha256": "3fe495c429e50bdf1a490974931c9d2113618b3e51f0109e6dadb231ffaba30a",
+      "initialization_hash": "1fe96062be819ac30658e5d40fbf5b507b8b170b7723ad40f3c3f2e720ac77b1",
+      "parameters": 169665,
+      "optimizer_steps": 4000,
+      "sample_plan_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+      "sample_plan_episodes": 16000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1621915,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "mapping_provenance": {
+        "accidents": {
+          "manifest_hash": "a142a6a4f14c38fd03cd0e87d476fe7e4bbd492d4bbae1ced164a46d08504902",
+          "jsonl_hash": "5343c3bbb70f201c15aad66fbc1867a8820ee83e7a8071061382b36ceebfd24f",
+          "mode": "shuffled_mapping"
+        },
+        "airline": {
+          "manifest_hash": "0915c9cc2a123db66f8bbea534ec6112cca07f48269e7736e8b266761835f140",
+          "jsonl_hash": "ab8e21ea8c29cfcb851c6c0362f8bb0f8205e6a20308f3aee2d924d118976e4d",
+          "mode": "shuffled_mapping"
+        },
+        "baseball": {
+          "manifest_hash": "b30db40424f32fbcde4cd12d639ec8d9fd7aec8097f58a785fa73295ab5abe34",
+          "jsonl_hash": "6930576de2272ff8c31273136378e02860fcaabdf2774d15a864839bdba83712",
+          "mode": "shuffled_mapping"
+        },
+        "basketball": {
+          "manifest_hash": "90b2ebecc485a393f8bd18cb91a1001f3219121219c57906f77ae8181d4e90ef",
+          "jsonl_hash": "4feec7275b07e8a5c8e083a12dcd240960253ab95b8f2eade7da793d8fd5765f",
+          "mode": "shuffled_mapping"
+        },
+        "carcinogenesis": {
+          "manifest_hash": "d7aec8b9c6d3bdd026a8a541156aa8debbdebc44ded2b337761e94703fa19f1c",
+          "jsonl_hash": "79aef2fc3316c1e69462685eac1ba1a2d51cb7f6338b483eb883a0379c161f9d",
+          "mode": "shuffled_mapping"
+        },
+        "ccs": {
+          "manifest_hash": "74e97e0cc2be2511233d38a2bc4174637dbc0f2c56e1a2588d5039792469eab4",
+          "jsonl_hash": "c86a4f8900fa10fff50fd6cc8e478de4c8aca835ae3d1145647f7738d1a25d91",
+          "mode": "shuffled_mapping"
+        },
+        "consumer": {
+          "manifest_hash": "8ca3868033d93fa3d5ec76a34dd07f1d2937c4afc4e2efdc48f952d70f4c107a",
+          "jsonl_hash": "c3abc7c1d9d332291b251fdd28d9b7e469762f722bab5e9ac3309e33de4f3450",
+          "mode": "shuffled_mapping"
+        },
+        "credit": {
+          "manifest_hash": "ae0496329b2fdb9e3c9c7a2c7525e87a077c5ddad3e47142d41c3bcd29829c30",
+          "jsonl_hash": "39d1fd0f483d6b458be3014792904066794629220b140600cdbf32f35404231b",
+          "mode": "shuffled_mapping"
+        },
+        "employee": {
+          "manifest_hash": "68fd3f06eec4f5821dc806916aeb663a94bfd1997c0924c814c9f689becb0d14",
+          "jsonl_hash": "70a2adecf2b77b8308389fc2564176e529a9ab38a16da19dd8f484564fa56fa6",
+          "mode": "shuffled_mapping"
+        },
+        "financial": {
+          "manifest_hash": "2f013adfc1088f3c3bad60aa158d845d150e9f9f16b6664bf8a5f6ac97ce21e3",
+          "jsonl_hash": "fb85daaf83a2bca9a4be96e1122e5e0e9c0be7f496827942d3a314a18fe73bcf",
+          "mode": "shuffled_mapping"
+        },
+        "fnhk": {
+          "manifest_hash": "11b2bb98105873ae94909e300dab2fdee3219f6ddec9c30831097a9a98630fc3",
+          "jsonl_hash": "c3d7757779ad9bc850038a9cbed51ece54afc2ed4668c397241d5afebb5a3d3b",
+          "mode": "shuffled_mapping"
+        },
+        "grants": {
+          "manifest_hash": "d0ef826490c074efc5681f71f6dbaf5498d716170c2d23b9b3c04edf44cdbf44",
+          "jsonl_hash": "d03ab32eb1871521565f2414d1e401622528788776280069f08c78ae1f61cce9",
+          "mode": "shuffled_mapping"
+        },
+        "hepatitis": {
+          "manifest_hash": "22db1fd4835f0d472bb25f8a0008fed9662b6b93e9a94106e9a062aa7066b8d6",
+          "jsonl_hash": "529da346bf74eb0e93917187f533589ee52e3c6d45883871ca48766f4e8cee81",
+          "mode": "shuffled_mapping"
+        },
+        "hockey": {
+          "manifest_hash": "fe6d993054187700f449f1d2cea38748152b62f2d7027bb7eb35236e831198d4",
+          "jsonl_hash": "a878c2cef3eb2e386eb51a35de5dfb9192ec7c33b1c7a478078a06d4c4a7808d",
+          "mode": "shuffled_mapping"
+        },
+        "movielens": {
+          "manifest_hash": "dfd771d3814c1d69255f9bdaf46a949d929efbed454cec277b45d54cefeeb506",
+          "jsonl_hash": "1ef22b8b094f08e203f225b4251a26d4c848fa9eaecbed7eaba12978075a9807",
+          "mode": "shuffled_mapping"
+        },
+        "sakila": {
+          "manifest_hash": "69111234ad60532b44a409e0e7009ec139b828d0f16e2ea7a00a2d57fe0e1fb4",
+          "jsonl_hash": "116d454edfad81fdaecfdea29655cf99ac7f02a9971a9a943dabd66ebf49060d",
+          "mode": "shuffled_mapping"
+        },
+        "sap": {
+          "manifest_hash": "a0b247f07722c032efff20ffff1d4aec9ebb100d697fe39aba60b75205d1e4e3",
+          "jsonl_hash": "66abcd609fb1263b7690c878d9dfc8d811518fec51ee8042285ea60390991e37",
+          "mode": "shuffled_mapping"
+        },
+        "seznam": {
+          "manifest_hash": "40efac924aeb91c770cdb7c532d7f6001bd1328f9df598100098e7edb8ca37df",
+          "jsonl_hash": "2d90cdccc9e086b7146cbe24b85b7cec5a1959c6d74ba9f2260130c7016a818d",
+          "mode": "shuffled_mapping"
+        },
+        "ssb": {
+          "manifest_hash": "54cf2caecbe3533c86e4e35373694f3d8379b54f5311de9f6a33300a195bc68f",
+          "jsonl_hash": "4bcca56ee9c376d0fb20349341b81ce3bb3acdbbbf33686bf64b083ded2c130e",
+          "mode": "shuffled_mapping"
+        },
+        "talkingdata": {
+          "manifest_hash": "8abff4ad93c3be4aac082f127a1377f2af9625489391d06c997cb1c5918e3fd9",
+          "jsonl_hash": "0279efff9b0349615c91452c2cdb8c265a0e4fba9679eb288415662ca2d4d97e",
+          "mode": "shuffled_mapping"
+        },
+        "tournament": {
+          "manifest_hash": "b25f50528132bbd59ce5221b9eb187c1c1f8d154940f54cdc0cfd16440be4370",
+          "jsonl_hash": "2c26467ecd2447dbf255fff2cc8b91758957284bcd5b8e53f8f551f558ea2361",
+          "mode": "shuffled_mapping"
+        },
+        "tpc_h": {
+          "manifest_hash": "d549adee1f518a82c64013ff02ff4fef109760e8b92cb14050881b647bf883ee",
+          "jsonl_hash": "3abbeff7ca866319f0a6c499b1b5b283ca41964d77d1c8300346cf4ef560420f",
+          "mode": "shuffled_mapping"
+        },
+        "tubepricing": {
+          "manifest_hash": "67f400f5160011a3b62cf146d1deb0ca812e3d24f707861a2841f4a801ea927b",
+          "jsonl_hash": "b7500191bd78818a639d743a91291163f117e4235e828f6e9d7b4009150c1def",
+          "mode": "shuffled_mapping"
+        },
+        "chembl": {
+          "manifest_hash": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+          "jsonl_hash": "6c1b8c8af8be55a27387b38c64982ac67c33c1c8569e8b3e082233c409b6b019",
+          "mode": "shuffled_mapping"
+        },
+        "legalacts": {
+          "manifest_hash": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+          "jsonl_hash": "8eb67b4b12cb565a9ab71b65107cf5c08899d8db6c63317f4e17811eacf02df1",
+          "mode": "shuffled_mapping"
+        },
+        "telstra": {
+          "manifest_hash": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+          "jsonl_hash": "09fae9ed0d39929daa1246c8333cf984f0fbe17554a33b155fa8462ff75125a5",
+          "mode": "shuffled_mapping"
+        }
+      },
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoint_sha256": "3d3ad049e2388ea30aa2a6b8d40b8363eae4d485c756b95ab0f98a8ec6d45ddd",
+      "device": "cuda",
+      "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+      "peak_memory_bytes": 95317504,
+      "seconds": 1455.1101431099232,
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.703424040071522,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1621915,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 1349.461894686101,
+        "parameters": 169665,
+        "purpose": "p1-mapping-ablation shuffled-mapping arm; frozen 4000-step budget; source-only"
+      }
+    },
+    {
+      "arm": "sum",
+      "seed": 43,
+      "config": "/gly/weilin/spatial-meta-ce/configs/p1_map_sum.json",
+      "output": "/gly/weilin/spatial-meta-ce/runs/p1-mapping-ablation-20261004/sum-seed43",
+      "config_sha256": "62ee5464638381601fff9f9ab6bfa5671bd41977a1b7034590d8c4c7abef48a4",
+      "initialization_hash": "2b41095eded23ce12a50b3b00c37c81399fc0d98b6f789a02a0bf587fe11cfcb",
+      "parameters": 132545,
+      "optimizer_steps": 4000,
+      "sample_plan_digest": "0f6c168bf17f34421ab8a7cde703b919796d8b0d998ca6fe8f052bbdba9fd4af",
+      "sample_plan_episodes": 16000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1612925,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "mapping_provenance": {},
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoint_sha256": "02208de5f6ed79288d133c330abd65f393418990aaef179ac567fb971df0fbbe",
+      "device": "cuda",
+      "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+      "peak_memory_bytes": 78653952,
+      "seconds": 979.745879551163,
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.6729326618820743,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1612925,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 973.4722925808746,
+        "parameters": 132545,
+        "purpose": "p1-mapping-ablation sum arm; frozen 4000-step budget; source-only"
+      }
+    },
+    {
+      "arm": "true",
+      "seed": 43,
+      "config": "/gly/weilin/spatial-meta-ce/configs/p1_map_true.json",
+      "output": "/gly/weilin/spatial-meta-ce/runs/p1-mapping-ablation-20261004/true-seed43",
+      "config_sha256": "a9c1a359d7c4695b4b003730a1435a5246f259779741cf63e5f4b23fc33f4bc9",
+      "initialization_hash": "486d07f1ad400f1bdc9c92e188ac9dadd6f12fb2abde4f4f4cd88e90e4e323fb",
+      "parameters": 169665,
+      "optimizer_steps": 4000,
+      "sample_plan_digest": "0f6c168bf17f34421ab8a7cde703b919796d8b0d998ca6fe8f052bbdba9fd4af",
+      "sample_plan_episodes": 16000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1612925,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "mapping_provenance": {
+        "accidents": {
+          "manifest_hash": "a142a6a4f14c38fd03cd0e87d476fe7e4bbd492d4bbae1ced164a46d08504902",
+          "jsonl_hash": "5343c3bbb70f201c15aad66fbc1867a8820ee83e7a8071061382b36ceebfd24f",
+          "mode": "mapping"
+        },
+        "airline": {
+          "manifest_hash": "0915c9cc2a123db66f8bbea534ec6112cca07f48269e7736e8b266761835f140",
+          "jsonl_hash": "ab8e21ea8c29cfcb851c6c0362f8bb0f8205e6a20308f3aee2d924d118976e4d",
+          "mode": "mapping"
+        },
+        "baseball": {
+          "manifest_hash": "b30db40424f32fbcde4cd12d639ec8d9fd7aec8097f58a785fa73295ab5abe34",
+          "jsonl_hash": "6930576de2272ff8c31273136378e02860fcaabdf2774d15a864839bdba83712",
+          "mode": "mapping"
+        },
+        "basketball": {
+          "manifest_hash": "90b2ebecc485a393f8bd18cb91a1001f3219121219c57906f77ae8181d4e90ef",
+          "jsonl_hash": "4feec7275b07e8a5c8e083a12dcd240960253ab95b8f2eade7da793d8fd5765f",
+          "mode": "mapping"
+        },
+        "carcinogenesis": {
+          "manifest_hash": "d7aec8b9c6d3bdd026a8a541156aa8debbdebc44ded2b337761e94703fa19f1c",
+          "jsonl_hash": "79aef2fc3316c1e69462685eac1ba1a2d51cb7f6338b483eb883a0379c161f9d",
+          "mode": "mapping"
+        },
+        "ccs": {
+          "manifest_hash": "74e97e0cc2be2511233d38a2bc4174637dbc0f2c56e1a2588d5039792469eab4",
+          "jsonl_hash": "c86a4f8900fa10fff50fd6cc8e478de4c8aca835ae3d1145647f7738d1a25d91",
+          "mode": "mapping"
+        },
+        "consumer": {
+          "manifest_hash": "8ca3868033d93fa3d5ec76a34dd07f1d2937c4afc4e2efdc48f952d70f4c107a",
+          "jsonl_hash": "c3abc7c1d9d332291b251fdd28d9b7e469762f722bab5e9ac3309e33de4f3450",
+          "mode": "mapping"
+        },
+        "credit": {
+          "manifest_hash": "ae0496329b2fdb9e3c9c7a2c7525e87a077c5ddad3e47142d41c3bcd29829c30",
+          "jsonl_hash": "39d1fd0f483d6b458be3014792904066794629220b140600cdbf32f35404231b",
+          "mode": "mapping"
+        },
+        "employee": {
+          "manifest_hash": "68fd3f06eec4f5821dc806916aeb663a94bfd1997c0924c814c9f689becb0d14",
+          "jsonl_hash": "70a2adecf2b77b8308389fc2564176e529a9ab38a16da19dd8f484564fa56fa6",
+          "mode": "mapping"
+        },
+        "financial": {
+          "manifest_hash": "2f013adfc1088f3c3bad60aa158d845d150e9f9f16b6664bf8a5f6ac97ce21e3",
+          "jsonl_hash": "fb85daaf83a2bca9a4be96e1122e5e0e9c0be7f496827942d3a314a18fe73bcf",
+          "mode": "mapping"
+        },
+        "fnhk": {
+          "manifest_hash": "11b2bb98105873ae94909e300dab2fdee3219f6ddec9c30831097a9a98630fc3",
+          "jsonl_hash": "c3d7757779ad9bc850038a9cbed51ece54afc2ed4668c397241d5afebb5a3d3b",
+          "mode": "mapping"
+        },
+        "grants": {
+          "manifest_hash": "d0ef826490c074efc5681f71f6dbaf5498d716170c2d23b9b3c04edf44cdbf44",
+          "jsonl_hash": "d03ab32eb1871521565f2414d1e401622528788776280069f08c78ae1f61cce9",
+          "mode": "mapping"
+        },
+        "hepatitis": {
+          "manifest_hash": "22db1fd4835f0d472bb25f8a0008fed9662b6b93e9a94106e9a062aa7066b8d6",
+          "jsonl_hash": "529da346bf74eb0e93917187f533589ee52e3c6d45883871ca48766f4e8cee81",
+          "mode": "mapping"
+        },
+        "hockey": {
+          "manifest_hash": "fe6d993054187700f449f1d2cea38748152b62f2d7027bb7eb35236e831198d4",
+          "jsonl_hash": "a878c2cef3eb2e386eb51a35de5dfb9192ec7c33b1c7a478078a06d4c4a7808d",
+          "mode": "mapping"
+        },
+        "movielens": {
+          "manifest_hash": "dfd771d3814c1d69255f9bdaf46a949d929efbed454cec277b45d54cefeeb506",
+          "jsonl_hash": "1ef22b8b094f08e203f225b4251a26d4c848fa9eaecbed7eaba12978075a9807",
+          "mode": "mapping"
+        },
+        "sakila": {
+          "manifest_hash": "69111234ad60532b44a409e0e7009ec139b828d0f16e2ea7a00a2d57fe0e1fb4",
+          "jsonl_hash": "116d454edfad81fdaecfdea29655cf99ac7f02a9971a9a943dabd66ebf49060d",
+          "mode": "mapping"
+        },
+        "sap": {
+          "manifest_hash": "a0b247f07722c032efff20ffff1d4aec9ebb100d697fe39aba60b75205d1e4e3",
+          "jsonl_hash": "66abcd609fb1263b7690c878d9dfc8d811518fec51ee8042285ea60390991e37",
+          "mode": "mapping"
+        },
+        "seznam": {
+          "manifest_hash": "40efac924aeb91c770cdb7c532d7f6001bd1328f9df598100098e7edb8ca37df",
+          "jsonl_hash": "2d90cdccc9e086b7146cbe24b85b7cec5a1959c6d74ba9f2260130c7016a818d",
+          "mode": "mapping"
+        },
+        "ssb": {
+          "manifest_hash": "54cf2caecbe3533c86e4e35373694f3d8379b54f5311de9f6a33300a195bc68f",
+          "jsonl_hash": "4bcca56ee9c376d0fb20349341b81ce3bb3acdbbbf33686bf64b083ded2c130e",
+          "mode": "mapping"
+        },
+        "talkingdata": {
+          "manifest_hash": "8abff4ad93c3be4aac082f127a1377f2af9625489391d06c997cb1c5918e3fd9",
+          "jsonl_hash": "0279efff9b0349615c91452c2cdb8c265a0e4fba9679eb288415662ca2d4d97e",
+          "mode": "mapping"
+        },
+        "tournament": {
+          "manifest_hash": "b25f50528132bbd59ce5221b9eb187c1c1f8d154940f54cdc0cfd16440be4370",
+          "jsonl_hash": "2c26467ecd2447dbf255fff2cc8b91758957284bcd5b8e53f8f551f558ea2361",
+          "mode": "mapping"
+        },
+        "tpc_h": {
+          "manifest_hash": "d549adee1f518a82c64013ff02ff4fef109760e8b92cb14050881b647bf883ee",
+          "jsonl_hash": "3abbeff7ca866319f0a6c499b1b5b283ca41964d77d1c8300346cf4ef560420f",
+          "mode": "mapping"
+        },
+        "tubepricing": {
+          "manifest_hash": "67f400f5160011a3b62cf146d1deb0ca812e3d24f707861a2841f4a801ea927b",
+          "jsonl_hash": "b7500191bd78818a639d743a91291163f117e4235e828f6e9d7b4009150c1def",
+          "mode": "mapping"
+        },
+        "chembl": {
+          "manifest_hash": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+          "jsonl_hash": "6c1b8c8af8be55a27387b38c64982ac67c33c1c8569e8b3e082233c409b6b019",
+          "mode": "mapping"
+        },
+        "legalacts": {
+          "manifest_hash": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+          "jsonl_hash": "8eb67b4b12cb565a9ab71b65107cf5c08899d8db6c63317f4e17811eacf02df1",
+          "mode": "mapping"
+        },
+        "telstra": {
+          "manifest_hash": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+          "jsonl_hash": "09fae9ed0d39929daa1246c8333cf984f0fbe17554a33b155fa8462ff75125a5",
+          "mode": "mapping"
+        }
+      },
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoint_sha256": "80ef9c9ceff99a2a0aa01b9e24f3430a71974b4fba8b291ba02e5fdae5ca0a56",
+      "device": "cuda",
+      "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+      "peak_memory_bytes": 95317504,
+      "seconds": 1450.67991994787,
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.6953348451357493,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1612925,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 1349.4213719831314,
+        "parameters": 169665,
+        "purpose": "p1-mapping-ablation true-mapping arm; frozen 4000-step budget; source-only"
+      }
+    },
+    {
+      "arm": "shuffled",
+      "seed": 43,
+      "config": "/gly/weilin/spatial-meta-ce/configs/p1_map_shuffled.json",
+      "output": "/gly/weilin/spatial-meta-ce/runs/p1-mapping-ablation-20261004/shuffled-seed43",
+      "config_sha256": "3fe495c429e50bdf1a490974931c9d2113618b3e51f0109e6dadb231ffaba30a",
+      "initialization_hash": "486d07f1ad400f1bdc9c92e188ac9dadd6f12fb2abde4f4f4cd88e90e4e323fb",
+      "parameters": 169665,
+      "optimizer_steps": 4000,
+      "sample_plan_digest": "0f6c168bf17f34421ab8a7cde703b919796d8b0d998ca6fe8f052bbdba9fd4af",
+      "sample_plan_episodes": 16000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1612925,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "mapping_provenance": {
+        "accidents": {
+          "manifest_hash": "a142a6a4f14c38fd03cd0e87d476fe7e4bbd492d4bbae1ced164a46d08504902",
+          "jsonl_hash": "5343c3bbb70f201c15aad66fbc1867a8820ee83e7a8071061382b36ceebfd24f",
+          "mode": "shuffled_mapping"
+        },
+        "airline": {
+          "manifest_hash": "0915c9cc2a123db66f8bbea534ec6112cca07f48269e7736e8b266761835f140",
+          "jsonl_hash": "ab8e21ea8c29cfcb851c6c0362f8bb0f8205e6a20308f3aee2d924d118976e4d",
+          "mode": "shuffled_mapping"
+        },
+        "baseball": {
+          "manifest_hash": "b30db40424f32fbcde4cd12d639ec8d9fd7aec8097f58a785fa73295ab5abe34",
+          "jsonl_hash": "6930576de2272ff8c31273136378e02860fcaabdf2774d15a864839bdba83712",
+          "mode": "shuffled_mapping"
+        },
+        "basketball": {
+          "manifest_hash": "90b2ebecc485a393f8bd18cb91a1001f3219121219c57906f77ae8181d4e90ef",
+          "jsonl_hash": "4feec7275b07e8a5c8e083a12dcd240960253ab95b8f2eade7da793d8fd5765f",
+          "mode": "shuffled_mapping"
+        },
+        "carcinogenesis": {
+          "manifest_hash": "d7aec8b9c6d3bdd026a8a541156aa8debbdebc44ded2b337761e94703fa19f1c",
+          "jsonl_hash": "79aef2fc3316c1e69462685eac1ba1a2d51cb7f6338b483eb883a0379c161f9d",
+          "mode": "shuffled_mapping"
+        },
+        "ccs": {
+          "manifest_hash": "74e97e0cc2be2511233d38a2bc4174637dbc0f2c56e1a2588d5039792469eab4",
+          "jsonl_hash": "c86a4f8900fa10fff50fd6cc8e478de4c8aca835ae3d1145647f7738d1a25d91",
+          "mode": "shuffled_mapping"
+        },
+        "consumer": {
+          "manifest_hash": "8ca3868033d93fa3d5ec76a34dd07f1d2937c4afc4e2efdc48f952d70f4c107a",
+          "jsonl_hash": "c3abc7c1d9d332291b251fdd28d9b7e469762f722bab5e9ac3309e33de4f3450",
+          "mode": "shuffled_mapping"
+        },
+        "credit": {
+          "manifest_hash": "ae0496329b2fdb9e3c9c7a2c7525e87a077c5ddad3e47142d41c3bcd29829c30",
+          "jsonl_hash": "39d1fd0f483d6b458be3014792904066794629220b140600cdbf32f35404231b",
+          "mode": "shuffled_mapping"
+        },
+        "employee": {
+          "manifest_hash": "68fd3f06eec4f5821dc806916aeb663a94bfd1997c0924c814c9f689becb0d14",
+          "jsonl_hash": "70a2adecf2b77b8308389fc2564176e529a9ab38a16da19dd8f484564fa56fa6",
+          "mode": "shuffled_mapping"
+        },
+        "financial": {
+          "manifest_hash": "2f013adfc1088f3c3bad60aa158d845d150e9f9f16b6664bf8a5f6ac97ce21e3",
+          "jsonl_hash": "fb85daaf83a2bca9a4be96e1122e5e0e9c0be7f496827942d3a314a18fe73bcf",
+          "mode": "shuffled_mapping"
+        },
+        "fnhk": {
+          "manifest_hash": "11b2bb98105873ae94909e300dab2fdee3219f6ddec9c30831097a9a98630fc3",
+          "jsonl_hash": "c3d7757779ad9bc850038a9cbed51ece54afc2ed4668c397241d5afebb5a3d3b",
+          "mode": "shuffled_mapping"
+        },
+        "grants": {
+          "manifest_hash": "d0ef826490c074efc5681f71f6dbaf5498d716170c2d23b9b3c04edf44cdbf44",
+          "jsonl_hash": "d03ab32eb1871521565f2414d1e401622528788776280069f08c78ae1f61cce9",
+          "mode": "shuffled_mapping"
+        },
+        "hepatitis": {
+          "manifest_hash": "22db1fd4835f0d472bb25f8a0008fed9662b6b93e9a94106e9a062aa7066b8d6",
+          "jsonl_hash": "529da346bf74eb0e93917187f533589ee52e3c6d45883871ca48766f4e8cee81",
+          "mode": "shuffled_mapping"
+        },
+        "hockey": {
+          "manifest_hash": "fe6d993054187700f449f1d2cea38748152b62f2d7027bb7eb35236e831198d4",
+          "jsonl_hash": "a878c2cef3eb2e386eb51a35de5dfb9192ec7c33b1c7a478078a06d4c4a7808d",
+          "mode": "shuffled_mapping"
+        },
+        "movielens": {
+          "manifest_hash": "dfd771d3814c1d69255f9bdaf46a949d929efbed454cec277b45d54cefeeb506",
+          "jsonl_hash": "1ef22b8b094f08e203f225b4251a26d4c848fa9eaecbed7eaba12978075a9807",
+          "mode": "shuffled_mapping"
+        },
+        "sakila": {
+          "manifest_hash": "69111234ad60532b44a409e0e7009ec139b828d0f16e2ea7a00a2d57fe0e1fb4",
+          "jsonl_hash": "116d454edfad81fdaecfdea29655cf99ac7f02a9971a9a943dabd66ebf49060d",
+          "mode": "shuffled_mapping"
+        },
+        "sap": {
+          "manifest_hash": "a0b247f07722c032efff20ffff1d4aec9ebb100d697fe39aba60b75205d1e4e3",
+          "jsonl_hash": "66abcd609fb1263b7690c878d9dfc8d811518fec51ee8042285ea60390991e37",
+          "mode": "shuffled_mapping"
+        },
+        "seznam": {
+          "manifest_hash": "40efac924aeb91c770cdb7c532d7f6001bd1328f9df598100098e7edb8ca37df",
+          "jsonl_hash": "2d90cdccc9e086b7146cbe24b85b7cec5a1959c6d74ba9f2260130c7016a818d",
+          "mode": "shuffled_mapping"
+        },
+        "ssb": {
+          "manifest_hash": "54cf2caecbe3533c86e4e35373694f3d8379b54f5311de9f6a33300a195bc68f",
+          "jsonl_hash": "4bcca56ee9c376d0fb20349341b81ce3bb3acdbbbf33686bf64b083ded2c130e",
+          "mode": "shuffled_mapping"
+        },
+        "talkingdata": {
+          "manifest_hash": "8abff4ad93c3be4aac082f127a1377f2af9625489391d06c997cb1c5918e3fd9",
+          "jsonl_hash": "0279efff9b0349615c91452c2cdb8c265a0e4fba9679eb288415662ca2d4d97e",
+          "mode": "shuffled_mapping"
+        },
+        "tournament": {
+          "manifest_hash": "b25f50528132bbd59ce5221b9eb187c1c1f8d154940f54cdc0cfd16440be4370",
+          "jsonl_hash": "2c26467ecd2447dbf255fff2cc8b91758957284bcd5b8e53f8f551f558ea2361",
+          "mode": "shuffled_mapping"
+        },
+        "tpc_h": {
+          "manifest_hash": "d549adee1f518a82c64013ff02ff4fef109760e8b92cb14050881b647bf883ee",
+          "jsonl_hash": "3abbeff7ca866319f0a6c499b1b5b283ca41964d77d1c8300346cf4ef560420f",
+          "mode": "shuffled_mapping"
+        },
+        "tubepricing": {
+          "manifest_hash": "67f400f5160011a3b62cf146d1deb0ca812e3d24f707861a2841f4a801ea927b",
+          "jsonl_hash": "b7500191bd78818a639d743a91291163f117e4235e828f6e9d7b4009150c1def",
+          "mode": "shuffled_mapping"
+        },
+        "chembl": {
+          "manifest_hash": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+          "jsonl_hash": "6c1b8c8af8be55a27387b38c64982ac67c33c1c8569e8b3e082233c409b6b019",
+          "mode": "shuffled_mapping"
+        },
+        "legalacts": {
+          "manifest_hash": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+          "jsonl_hash": "8eb67b4b12cb565a9ab71b65107cf5c08899d8db6c63317f4e17811eacf02df1",
+          "mode": "shuffled_mapping"
+        },
+        "telstra": {
+          "manifest_hash": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+          "jsonl_hash": "09fae9ed0d39929daa1246c8333cf984f0fbe17554a33b155fa8462ff75125a5",
+          "mode": "shuffled_mapping"
+        }
+      },
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoint_sha256": "958aa525ed855f671c37d16a7c256ff4738d9dc34ddf0a1c33a8c27d9751edc1",
+      "device": "cuda",
+      "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+      "peak_memory_bytes": 95317504,
+      "seconds": 1440.4930655369535,
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.7219336103553693,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1612925,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 1337.484629910905,
+        "parameters": 169665,
+        "purpose": "p1-mapping-ablation shuffled-mapping arm; frozen 4000-step budget; source-only"
+      }
+    },
+    {
+      "arm": "sum",
+      "seed": 44,
+      "config": "/gly/weilin/spatial-meta-ce/configs/p1_map_sum.json",
+      "output": "/gly/weilin/spatial-meta-ce/runs/p1-mapping-ablation-20261004/sum-seed44",
+      "config_sha256": "62ee5464638381601fff9f9ab6bfa5671bd41977a1b7034590d8c4c7abef48a4",
+      "initialization_hash": "d6de7a6d529a407d0fc22d0e1bd4cea86697a26e6f629f8ee331da87d5ecf224",
+      "parameters": 132545,
+      "optimizer_steps": 4000,
+      "sample_plan_digest": "dfec680356815814be1649a404484e13034fa6008f12035cc9635be0c8070f4d",
+      "sample_plan_episodes": 16000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1608345,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "mapping_provenance": {},
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoint_sha256": "5072b7efe5566dc8c35e2bba643aa50a06c7ca9005b5cca1183fbd502480dfae",
+      "device": "cuda",
+      "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+      "peak_memory_bytes": 78653952,
+      "seconds": 963.9939385761973,
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.6843834250884693,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1608345,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 957.0027491280343,
+        "parameters": 132545,
+        "purpose": "p1-mapping-ablation sum arm; frozen 4000-step budget; source-only"
+      }
+    },
+    {
+      "arm": "true",
+      "seed": 44,
+      "config": "/gly/weilin/spatial-meta-ce/configs/p1_map_true.json",
+      "output": "/gly/weilin/spatial-meta-ce/runs/p1-mapping-ablation-20261004/true-seed44",
+      "config_sha256": "a9c1a359d7c4695b4b003730a1435a5246f259779741cf63e5f4b23fc33f4bc9",
+      "initialization_hash": "0f6200673137a65c9e38c7ad1049c206603165b562086990870ae119a90c7ed4",
+      "parameters": 169665,
+      "optimizer_steps": 4000,
+      "sample_plan_digest": "dfec680356815814be1649a404484e13034fa6008f12035cc9635be0c8070f4d",
+      "sample_plan_episodes": 16000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1608345,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "mapping_provenance": {
+        "accidents": {
+          "manifest_hash": "a142a6a4f14c38fd03cd0e87d476fe7e4bbd492d4bbae1ced164a46d08504902",
+          "jsonl_hash": "5343c3bbb70f201c15aad66fbc1867a8820ee83e7a8071061382b36ceebfd24f",
+          "mode": "mapping"
+        },
+        "airline": {
+          "manifest_hash": "0915c9cc2a123db66f8bbea534ec6112cca07f48269e7736e8b266761835f140",
+          "jsonl_hash": "ab8e21ea8c29cfcb851c6c0362f8bb0f8205e6a20308f3aee2d924d118976e4d",
+          "mode": "mapping"
+        },
+        "baseball": {
+          "manifest_hash": "b30db40424f32fbcde4cd12d639ec8d9fd7aec8097f58a785fa73295ab5abe34",
+          "jsonl_hash": "6930576de2272ff8c31273136378e02860fcaabdf2774d15a864839bdba83712",
+          "mode": "mapping"
+        },
+        "basketball": {
+          "manifest_hash": "90b2ebecc485a393f8bd18cb91a1001f3219121219c57906f77ae8181d4e90ef",
+          "jsonl_hash": "4feec7275b07e8a5c8e083a12dcd240960253ab95b8f2eade7da793d8fd5765f",
+          "mode": "mapping"
+        },
+        "carcinogenesis": {
+          "manifest_hash": "d7aec8b9c6d3bdd026a8a541156aa8debbdebc44ded2b337761e94703fa19f1c",
+          "jsonl_hash": "79aef2fc3316c1e69462685eac1ba1a2d51cb7f6338b483eb883a0379c161f9d",
+          "mode": "mapping"
+        },
+        "ccs": {
+          "manifest_hash": "74e97e0cc2be2511233d38a2bc4174637dbc0f2c56e1a2588d5039792469eab4",
+          "jsonl_hash": "c86a4f8900fa10fff50fd6cc8e478de4c8aca835ae3d1145647f7738d1a25d91",
+          "mode": "mapping"
+        },
+        "consumer": {
+          "manifest_hash": "8ca3868033d93fa3d5ec76a34dd07f1d2937c4afc4e2efdc48f952d70f4c107a",
+          "jsonl_hash": "c3abc7c1d9d332291b251fdd28d9b7e469762f722bab5e9ac3309e33de4f3450",
+          "mode": "mapping"
+        },
+        "credit": {
+          "manifest_hash": "ae0496329b2fdb9e3c9c7a2c7525e87a077c5ddad3e47142d41c3bcd29829c30",
+          "jsonl_hash": "39d1fd0f483d6b458be3014792904066794629220b140600cdbf32f35404231b",
+          "mode": "mapping"
+        },
+        "employee": {
+          "manifest_hash": "68fd3f06eec4f5821dc806916aeb663a94bfd1997c0924c814c9f689becb0d14",
+          "jsonl_hash": "70a2adecf2b77b8308389fc2564176e529a9ab38a16da19dd8f484564fa56fa6",
+          "mode": "mapping"
+        },
+        "financial": {
+          "manifest_hash": "2f013adfc1088f3c3bad60aa158d845d150e9f9f16b6664bf8a5f6ac97ce21e3",
+          "jsonl_hash": "fb85daaf83a2bca9a4be96e1122e5e0e9c0be7f496827942d3a314a18fe73bcf",
+          "mode": "mapping"
+        },
+        "fnhk": {
+          "manifest_hash": "11b2bb98105873ae94909e300dab2fdee3219f6ddec9c30831097a9a98630fc3",
+          "jsonl_hash": "c3d7757779ad9bc850038a9cbed51ece54afc2ed4668c397241d5afebb5a3d3b",
+          "mode": "mapping"
+        },
+        "grants": {
+          "manifest_hash": "d0ef826490c074efc5681f71f6dbaf5498d716170c2d23b9b3c04edf44cdbf44",
+          "jsonl_hash": "d03ab32eb1871521565f2414d1e401622528788776280069f08c78ae1f61cce9",
+          "mode": "mapping"
+        },
+        "hepatitis": {
+          "manifest_hash": "22db1fd4835f0d472bb25f8a0008fed9662b6b93e9a94106e9a062aa7066b8d6",
+          "jsonl_hash": "529da346bf74eb0e93917187f533589ee52e3c6d45883871ca48766f4e8cee81",
+          "mode": "mapping"
+        },
+        "hockey": {
+          "manifest_hash": "fe6d993054187700f449f1d2cea38748152b62f2d7027bb7eb35236e831198d4",
+          "jsonl_hash": "a878c2cef3eb2e386eb51a35de5dfb9192ec7c33b1c7a478078a06d4c4a7808d",
+          "mode": "mapping"
+        },
+        "movielens": {
+          "manifest_hash": "dfd771d3814c1d69255f9bdaf46a949d929efbed454cec277b45d54cefeeb506",
+          "jsonl_hash": "1ef22b8b094f08e203f225b4251a26d4c848fa9eaecbed7eaba12978075a9807",
+          "mode": "mapping"
+        },
+        "sakila": {
+          "manifest_hash": "69111234ad60532b44a409e0e7009ec139b828d0f16e2ea7a00a2d57fe0e1fb4",
+          "jsonl_hash": "116d454edfad81fdaecfdea29655cf99ac7f02a9971a9a943dabd66ebf49060d",
+          "mode": "mapping"
+        },
+        "sap": {
+          "manifest_hash": "a0b247f07722c032efff20ffff1d4aec9ebb100d697fe39aba60b75205d1e4e3",
+          "jsonl_hash": "66abcd609fb1263b7690c878d9dfc8d811518fec51ee8042285ea60390991e37",
+          "mode": "mapping"
+        },
+        "seznam": {
+          "manifest_hash": "40efac924aeb91c770cdb7c532d7f6001bd1328f9df598100098e7edb8ca37df",
+          "jsonl_hash": "2d90cdccc9e086b7146cbe24b85b7cec5a1959c6d74ba9f2260130c7016a818d",
+          "mode": "mapping"
+        },
+        "ssb": {
+          "manifest_hash": "54cf2caecbe3533c86e4e35373694f3d8379b54f5311de9f6a33300a195bc68f",
+          "jsonl_hash": "4bcca56ee9c376d0fb20349341b81ce3bb3acdbbbf33686bf64b083ded2c130e",
+          "mode": "mapping"
+        },
+        "talkingdata": {
+          "manifest_hash": "8abff4ad93c3be4aac082f127a1377f2af9625489391d06c997cb1c5918e3fd9",
+          "jsonl_hash": "0279efff9b0349615c91452c2cdb8c265a0e4fba9679eb288415662ca2d4d97e",
+          "mode": "mapping"
+        },
+        "tournament": {
+          "manifest_hash": "b25f50528132bbd59ce5221b9eb187c1c1f8d154940f54cdc0cfd16440be4370",
+          "jsonl_hash": "2c26467ecd2447dbf255fff2cc8b91758957284bcd5b8e53f8f551f558ea2361",
+          "mode": "mapping"
+        },
+        "tpc_h": {
+          "manifest_hash": "d549adee1f518a82c64013ff02ff4fef109760e8b92cb14050881b647bf883ee",
+          "jsonl_hash": "3abbeff7ca866319f0a6c499b1b5b283ca41964d77d1c8300346cf4ef560420f",
+          "mode": "mapping"
+        },
+        "tubepricing": {
+          "manifest_hash": "67f400f5160011a3b62cf146d1deb0ca812e3d24f707861a2841f4a801ea927b",
+          "jsonl_hash": "b7500191bd78818a639d743a91291163f117e4235e828f6e9d7b4009150c1def",
+          "mode": "mapping"
+        },
+        "chembl": {
+          "manifest_hash": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+          "jsonl_hash": "6c1b8c8af8be55a27387b38c64982ac67c33c1c8569e8b3e082233c409b6b019",
+          "mode": "mapping"
+        },
+        "legalacts": {
+          "manifest_hash": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+          "jsonl_hash": "8eb67b4b12cb565a9ab71b65107cf5c08899d8db6c63317f4e17811eacf02df1",
+          "mode": "mapping"
+        },
+        "telstra": {
+          "manifest_hash": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+          "jsonl_hash": "09fae9ed0d39929daa1246c8333cf984f0fbe17554a33b155fa8462ff75125a5",
+          "mode": "mapping"
+        }
+      },
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoint_sha256": "7ac167f5152824dda7e06b11cac88c3a576e17fde2b5b957d4e55f3858ca14e0",
+      "device": "cuda",
+      "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+      "peak_memory_bytes": 95317504,
+      "seconds": 1429.0798183591105,
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.6587163363815853,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1608345,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 1329.112222339958,
+        "parameters": 169665,
+        "purpose": "p1-mapping-ablation true-mapping arm; frozen 4000-step budget; source-only"
+      }
+    },
+    {
+      "arm": "shuffled",
+      "seed": 44,
+      "config": "/gly/weilin/spatial-meta-ce/configs/p1_map_shuffled.json",
+      "output": "/gly/weilin/spatial-meta-ce/runs/p1-mapping-ablation-20261004/shuffled-seed44",
+      "config_sha256": "3fe495c429e50bdf1a490974931c9d2113618b3e51f0109e6dadb231ffaba30a",
+      "initialization_hash": "0f6200673137a65c9e38c7ad1049c206603165b562086990870ae119a90c7ed4",
+      "parameters": 169665,
+      "optimizer_steps": 4000,
+      "sample_plan_digest": "dfec680356815814be1649a404484e13034fa6008f12035cc9635be0c8070f4d",
+      "sample_plan_episodes": 16000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1608345,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "mapping_provenance": {
+        "accidents": {
+          "manifest_hash": "a142a6a4f14c38fd03cd0e87d476fe7e4bbd492d4bbae1ced164a46d08504902",
+          "jsonl_hash": "5343c3bbb70f201c15aad66fbc1867a8820ee83e7a8071061382b36ceebfd24f",
+          "mode": "shuffled_mapping"
+        },
+        "airline": {
+          "manifest_hash": "0915c9cc2a123db66f8bbea534ec6112cca07f48269e7736e8b266761835f140",
+          "jsonl_hash": "ab8e21ea8c29cfcb851c6c0362f8bb0f8205e6a20308f3aee2d924d118976e4d",
+          "mode": "shuffled_mapping"
+        },
+        "baseball": {
+          "manifest_hash": "b30db40424f32fbcde4cd12d639ec8d9fd7aec8097f58a785fa73295ab5abe34",
+          "jsonl_hash": "6930576de2272ff8c31273136378e02860fcaabdf2774d15a864839bdba83712",
+          "mode": "shuffled_mapping"
+        },
+        "basketball": {
+          "manifest_hash": "90b2ebecc485a393f8bd18cb91a1001f3219121219c57906f77ae8181d4e90ef",
+          "jsonl_hash": "4feec7275b07e8a5c8e083a12dcd240960253ab95b8f2eade7da793d8fd5765f",
+          "mode": "shuffled_mapping"
+        },
+        "carcinogenesis": {
+          "manifest_hash": "d7aec8b9c6d3bdd026a8a541156aa8debbdebc44ded2b337761e94703fa19f1c",
+          "jsonl_hash": "79aef2fc3316c1e69462685eac1ba1a2d51cb7f6338b483eb883a0379c161f9d",
+          "mode": "shuffled_mapping"
+        },
+        "ccs": {
+          "manifest_hash": "74e97e0cc2be2511233d38a2bc4174637dbc0f2c56e1a2588d5039792469eab4",
+          "jsonl_hash": "c86a4f8900fa10fff50fd6cc8e478de4c8aca835ae3d1145647f7738d1a25d91",
+          "mode": "shuffled_mapping"
+        },
+        "consumer": {
+          "manifest_hash": "8ca3868033d93fa3d5ec76a34dd07f1d2937c4afc4e2efdc48f952d70f4c107a",
+          "jsonl_hash": "c3abc7c1d9d332291b251fdd28d9b7e469762f722bab5e9ac3309e33de4f3450",
+          "mode": "shuffled_mapping"
+        },
+        "credit": {
+          "manifest_hash": "ae0496329b2fdb9e3c9c7a2c7525e87a077c5ddad3e47142d41c3bcd29829c30",
+          "jsonl_hash": "39d1fd0f483d6b458be3014792904066794629220b140600cdbf32f35404231b",
+          "mode": "shuffled_mapping"
+        },
+        "employee": {
+          "manifest_hash": "68fd3f06eec4f5821dc806916aeb663a94bfd1997c0924c814c9f689becb0d14",
+          "jsonl_hash": "70a2adecf2b77b8308389fc2564176e529a9ab38a16da19dd8f484564fa56fa6",
+          "mode": "shuffled_mapping"
+        },
+        "financial": {
+          "manifest_hash": "2f013adfc1088f3c3bad60aa158d845d150e9f9f16b6664bf8a5f6ac97ce21e3",
+          "jsonl_hash": "fb85daaf83a2bca9a4be96e1122e5e0e9c0be7f496827942d3a314a18fe73bcf",
+          "mode": "shuffled_mapping"
+        },
+        "fnhk": {
+          "manifest_hash": "11b2bb98105873ae94909e300dab2fdee3219f6ddec9c30831097a9a98630fc3",
+          "jsonl_hash": "c3d7757779ad9bc850038a9cbed51ece54afc2ed4668c397241d5afebb5a3d3b",
+          "mode": "shuffled_mapping"
+        },
+        "grants": {
+          "manifest_hash": "d0ef826490c074efc5681f71f6dbaf5498d716170c2d23b9b3c04edf44cdbf44",
+          "jsonl_hash": "d03ab32eb1871521565f2414d1e401622528788776280069f08c78ae1f61cce9",
+          "mode": "shuffled_mapping"
+        },
+        "hepatitis": {
+          "manifest_hash": "22db1fd4835f0d472bb25f8a0008fed9662b6b93e9a94106e9a062aa7066b8d6",
+          "jsonl_hash": "529da346bf74eb0e93917187f533589ee52e3c6d45883871ca48766f4e8cee81",
+          "mode": "shuffled_mapping"
+        },
+        "hockey": {
+          "manifest_hash": "fe6d993054187700f449f1d2cea38748152b62f2d7027bb7eb35236e831198d4",
+          "jsonl_hash": "a878c2cef3eb2e386eb51a35de5dfb9192ec7c33b1c7a478078a06d4c4a7808d",
+          "mode": "shuffled_mapping"
+        },
+        "movielens": {
+          "manifest_hash": "dfd771d3814c1d69255f9bdaf46a949d929efbed454cec277b45d54cefeeb506",
+          "jsonl_hash": "1ef22b8b094f08e203f225b4251a26d4c848fa9eaecbed7eaba12978075a9807",
+          "mode": "shuffled_mapping"
+        },
+        "sakila": {
+          "manifest_hash": "69111234ad60532b44a409e0e7009ec139b828d0f16e2ea7a00a2d57fe0e1fb4",
+          "jsonl_hash": "116d454edfad81fdaecfdea29655cf99ac7f02a9971a9a943dabd66ebf49060d",
+          "mode": "shuffled_mapping"
+        },
+        "sap": {
+          "manifest_hash": "a0b247f07722c032efff20ffff1d4aec9ebb100d697fe39aba60b75205d1e4e3",
+          "jsonl_hash": "66abcd609fb1263b7690c878d9dfc8d811518fec51ee8042285ea60390991e37",
+          "mode": "shuffled_mapping"
+        },
+        "seznam": {
+          "manifest_hash": "40efac924aeb91c770cdb7c532d7f6001bd1328f9df598100098e7edb8ca37df",
+          "jsonl_hash": "2d90cdccc9e086b7146cbe24b85b7cec5a1959c6d74ba9f2260130c7016a818d",
+          "mode": "shuffled_mapping"
+        },
+        "ssb": {
+          "manifest_hash": "54cf2caecbe3533c86e4e35373694f3d8379b54f5311de9f6a33300a195bc68f",
+          "jsonl_hash": "4bcca56ee9c376d0fb20349341b81ce3bb3acdbbbf33686bf64b083ded2c130e",
+          "mode": "shuffled_mapping"
+        },
+        "talkingdata": {
+          "manifest_hash": "8abff4ad93c3be4aac082f127a1377f2af9625489391d06c997cb1c5918e3fd9",
+          "jsonl_hash": "0279efff9b0349615c91452c2cdb8c265a0e4fba9679eb288415662ca2d4d97e",
+          "mode": "shuffled_mapping"
+        },
+        "tournament": {
+          "manifest_hash": "b25f50528132bbd59ce5221b9eb187c1c1f8d154940f54cdc0cfd16440be4370",
+          "jsonl_hash": "2c26467ecd2447dbf255fff2cc8b91758957284bcd5b8e53f8f551f558ea2361",
+          "mode": "shuffled_mapping"
+        },
+        "tpc_h": {
+          "manifest_hash": "d549adee1f518a82c64013ff02ff4fef109760e8b92cb14050881b647bf883ee",
+          "jsonl_hash": "3abbeff7ca866319f0a6c499b1b5b283ca41964d77d1c8300346cf4ef560420f",
+          "mode": "shuffled_mapping"
+        },
+        "tubepricing": {
+          "manifest_hash": "67f400f5160011a3b62cf146d1deb0ca812e3d24f707861a2841f4a801ea927b",
+          "jsonl_hash": "b7500191bd78818a639d743a91291163f117e4235e828f6e9d7b4009150c1def",
+          "mode": "shuffled_mapping"
+        },
+        "chembl": {
+          "manifest_hash": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+          "jsonl_hash": "6c1b8c8af8be55a27387b38c64982ac67c33c1c8569e8b3e082233c409b6b019",
+          "mode": "shuffled_mapping"
+        },
+        "legalacts": {
+          "manifest_hash": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+          "jsonl_hash": "8eb67b4b12cb565a9ab71b65107cf5c08899d8db6c63317f4e17811eacf02df1",
+          "mode": "shuffled_mapping"
+        },
+        "telstra": {
+          "manifest_hash": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+          "jsonl_hash": "09fae9ed0d39929daa1246c8333cf984f0fbe17554a33b155fa8462ff75125a5",
+          "mode": "shuffled_mapping"
+        }
+      },
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoint_sha256": "491111b5b808518e40aa9280cf397a5259b20be0a0b92cfc94dc57b26672a1c4",
+      "device": "cuda",
+      "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+      "peak_memory_bytes": 95317504,
+      "seconds": 1437.8143393339124,
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.7641896820698193,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1608345,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 1340.8029539610725,
+        "parameters": 169665,
+        "purpose": "p1-mapping-ablation shuffled-mapping arm; frozen 4000-step budget; source-only"
+      }
+    }
+  ]
+}

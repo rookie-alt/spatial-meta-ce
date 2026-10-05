@@ -1,0 +1,114 @@
+{
+  "purpose": "source-only repeated-range boolean and frozen histogram feature consistency audit",
+  "completed_at": "2026-10-05T03:03:49.170785+00:00",
+  "script_sha256": "be09c081e2413346d603d2a540265407f9d44ce9f36a884ad120170a75aacf9b",
+  "training": false,
+  "inference": false,
+  "target_data_read": false,
+  "databases": [
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "minimum_tables": 4,
+  "tolerance_abs": 1e-06,
+  "input_sha256": {
+    "ablation_runs.json": "eacac2d945f89eb7bfcc71070f21f140a68813a68c137a8ba1c4f9bfdb98f6cd"
+  },
+  "limitations": "Only the flagged 4+ source unique queries are re-parsed. Histogram selectivity is not observed database selectivity; cached table aggregation is checked on flagged rows only. No causality or endpoint change.",
+  "per_database": {
+    "chembl": {
+      "primary_n": 33947,
+      "flagged_unique_n": 9123,
+      "focus_flagged_n": 416,
+      "or_queries": 0,
+      "repeated_queries": 9123,
+      "range_columns": 10474,
+      "unsupported_pattern": 0,
+      "empty_or_reversed": 0,
+      "below_histogram_min": 0,
+      "above_histogram_max": 0,
+      "patterns": {
+        "GTE+LT": 10474
+      },
+      "selectivity_max_abs_diff": 2.975688206952043e-08,
+      "selectivity_mismatch_gt_tolerance": 0,
+      "table_aggregate_max_abs_diff": 6.443511024745163e-08,
+      "sidecar_manifest_sha256": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+      "sidecar_jsonl_sha256": "6c1b8c8af8be55a27387b38c64982ac67c33c1c8569e8b3e082233c409b6b019",
+      "workload_sha256": "b21b33af062be1203dea77096d62c07680085548cf6c5f0061231cabb1cab269",
+      "audit_report_sha256_verified": true,
+      "all_unique_rows": 50000,
+      "all_row_flags": {
+        "multiple_filters": 12673
+      },
+      "all_row_predicate_types": {
+        "EQ": 50000,
+        "GTE": 23735,
+        "LT": 34584
+      }
+    },
+    "legalacts": {
+      "primary_n": 9178,
+      "flagged_unique_n": 979,
+      "focus_flagged_n": null,
+      "or_queries": 0,
+      "repeated_queries": 979,
+      "range_columns": 1015,
+      "unsupported_pattern": 0,
+      "empty_or_reversed": 0,
+      "below_histogram_min": 0,
+      "above_histogram_max": 0,
+      "patterns": {
+        "GTE+LT": 1015
+      },
+      "selectivity_max_abs_diff": 2.6862944424443924e-08,
+      "selectivity_mismatch_gt_tolerance": 0,
+      "table_aggregate_max_abs_diff": 3.693969763407523e-08,
+      "sidecar_manifest_sha256": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+      "sidecar_jsonl_sha256": "8eb67b4b12cb565a9ab71b65107cf5c08899d8db6c63317f4e17811eacf02df1",
+      "workload_sha256": "4be49ba258b10c4a9e778e54ba57dce3a9ab638a2ed16b6c0258cba890d8eac9",
+      "audit_report_sha256_verified": true,
+      "all_unique_rows": 49504,
+      "all_row_flags": {
+        "multiple_filters": 8322
+      },
+      "all_row_predicate_types": {
+        "EQ": 49504,
+        "GTE": 17566,
+        "LT": 33552
+      }
+    },
+    "telstra": {
+      "primary_n": 20311,
+      "flagged_unique_n": 782,
+      "focus_flagged_n": 99,
+      "or_queries": 0,
+      "repeated_queries": 782,
+      "range_columns": 782,
+      "unsupported_pattern": 0,
+      "empty_or_reversed": 0,
+      "below_histogram_min": 0,
+      "above_histogram_max": 0,
+      "patterns": {
+        "GTE+LT": 782
+      },
+      "selectivity_max_abs_diff": 2.9798152056947913e-08,
+      "selectivity_mismatch_gt_tolerance": 0,
+      "table_aggregate_max_abs_diff": 0.0,
+      "sidecar_manifest_sha256": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+      "sidecar_jsonl_sha256": "09fae9ed0d39929daa1246c8333cf984f0fbe17554a33b155fa8462ff75125a5",
+      "workload_sha256": "019b3755d93491775aceb650e4ce1a9f5cc52d87711c77ce7ce2b5b59840aeeb",
+      "audit_report_sha256_verified": true,
+      "all_unique_rows": 50000,
+      "all_row_flags": {
+        "multiple_filters": 3333
+      },
+      "all_row_predicate_types": {
+        "EQ": 50000,
+        "LT": 40279,
+        "GTE": 6648
+      }
+    }
+  }
+}
