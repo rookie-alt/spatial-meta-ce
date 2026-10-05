@@ -20,6 +20,7 @@ import numpy as np
 import sqlglot
 from sqlglot import exp
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from spatial_meta_ce.manifests import canonical_sql, file_hash
 
 DATABASES = ("chembl", "legalacts", "telstra")
