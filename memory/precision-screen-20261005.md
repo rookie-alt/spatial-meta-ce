@@ -11,3 +11,11 @@
 - 只授权本轮4臂seed42；seed43/44、少样本策略搜索、目标评估和数据库部署不自动执行。非有限数、OOM、来源/配对不符立即停，不改lr/batch/阈值重试。
 - 先落盘协议/本记忆，再创建feat/precision-screen-20261005；本轮仅提交本记忆新增文件，不提交另一窗口未跟踪的AGENTS.md或其他memory文件。
 - 模型支持mse和width配置，无需改损失/模型本体；新入口复用train/checkpoint/endpoint。先RED后GREEN，服务器只读PRICE环境，隔离现有graphify依赖；验证状态和启动状态分开。
+
+## 用户暂缓训练（2026-10-05，本轮最终状态）
+
+用户明确：“如果八张卡都在忙的话就先不训练吧，等下次再试。”因此本轮不启动正式GPU训练/GPU smoke，不排队、不建自动重试或监控。下次用户要求继续时先现场查卡；只有空闲卡与全部工程门槛同时满足才运行，不沿用历史忙闲状态。
+
+已完成：协议和本记忆先落盘，创建并推送 feat/precision-screen-20261005，协议提交7f249d9。实现只到TDD测试草案；scripts/run_precision_screen.py和矩阵配置尚未创建，不是实现完成。
+
+首次RED日志 reports/precision-screen-20261005/tdd-red.log 是缺少运行器的导入失败，不是正式训练失败。为避免未完成草案阻塞既有测试发现，已移到 reports/precision-screen-20261005/precision_screen_tests_draft.py；不是可运行/已通过的新测试，不放在tests/。下次从草案恢复测试、实现运行器、跑CPU/服务器回归与GPU smoke再检查启动门槛。正式四臂均not_started；没有checkpoint或新精度结果。
