@@ -6,10 +6,10 @@ from pathlib import Path
 import torch
 from torch import nn
 
+from spatial_meta_ce.checkpoints import load_checkpoint, save_checkpoint
 from spatial_meta_ce.data import batch_samples
-from spatial_meta_ce.model import ARCHES, SetEstimator
 from spatial_meta_ce.meta import meta_loss
-from spatial_meta_ce.checkpoints import save_checkpoint, load_checkpoint
+from spatial_meta_ce.model import ARCHES, SetEstimator
 
 VARIANTS = [a for a in ARCHES if a not in ('set', 'sum_map')]
 

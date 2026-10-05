@@ -30,10 +30,10 @@ def main():
         print('Dry run only. Add --execute AFTER reserving a GPU or CPU budget.')
         return
     import torch
-    from spatial_meta_ce.cli import read_json,data_settings,safe_output
-    from spatial_meta_ce.train import train
-    from spatial_meta_ce.checkpoints import load_checkpoint
+
+    from spatial_meta_ce.cli import data_settings, read_json, safe_output
     from spatial_meta_ce.evaluate import evaluate
+    from spatial_meta_ce.train import train
     torch.set_num_threads(args.threads)
     output=Path(args.output).resolve()
     dc=data_settings(read_json(ROOT/'configs/data.json'),ROOT/'configs/data.json')
@@ -56,11 +56,12 @@ def main():
                 score,path,cfg=min(trials,key=lambda x:x[0])
                 chosen.append({'variant':variant,'method':method,'seed':seed,'score':score,'path':path,'config':cfg})
     # Tune supplementary adaptation baselines on source validation only.
-    from spatial_meta_ce.data import StorePool
-    from spatial_meta_ce.train import validation_plan, validate, seed_all
-    from spatial_meta_ce.baselines import PriceAdapter
-    from spatial_meta_ce.model import SetEstimator
     import numpy as np
+
+    from spatial_meta_ce.baselines import PriceAdapter
+    from spatial_meta_ce.data import StorePool
+    from spatial_meta_ce.model import SetEstimator
+    from spatial_meta_ce.train import seed_all, validate, validation_plan
     vp=StorePool(dc['cache_root'])
     vc=read_json(ROOT/'configs/meta.json')
     episodes=validation_plan(vp,dc['splits']['validation'],vc)

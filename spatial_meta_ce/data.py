@@ -1,11 +1,16 @@
-import math
 from collections import OrderedDict
 from pathlib import Path
 
 import numpy as np
 import torch
 
-from .mappings import MAPPING_KEYS, MAPPING_MODES, TARGETS, MappingStore, validate_mapping
+from .mappings import (
+    MAPPING_KEYS,
+    MAPPING_MODES,
+    TARGETS,
+    MappingStore,
+    validate_mapping,
+)
 
 GROUP_DIMS = (40, 40, 4, 43)
 TRANSFORM_VERSION = 'price40-group-logfanout-v1'

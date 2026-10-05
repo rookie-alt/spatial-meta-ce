@@ -148,13 +148,13 @@ def merge_fragments(fragments: list[dict]) -> dict:
             if key in edges and edges[key] != dict(edge, id=key):
                 raise ValueError(f"Conflicting evidence: {key}")
             edges = {**edges, key: dict(edge, id=key)}
-    return dict(
-        nodes=[nodes[k] for k in sorted(nodes)],
-        edges=[edges[k] for k in sorted(edges)],
-        hyperedges=[h for f in fragments for h in f.get("hyperedges", [])],
-        input_tokens=sum(f.get("input_tokens", 0) for f in fragments),
-        output_tokens=sum(f.get("output_tokens", 0) for f in fragments),
-    )
+    return {
+        "nodes": [nodes[k] for k in sorted(nodes)],
+        "edges": [edges[k] for k in sorted(edges)],
+        "hyperedges": [h for f in fragments for h in f.get("hyperedges", [])],
+        "input_tokens": sum(f.get("input_tokens", 0) for f in fragments),
+        "output_tokens": sum(f.get("output_tokens", 0) for f in fragments),
+    }
 
 
 def project_relations(extraction: dict) -> dict:
@@ -166,64 +166,64 @@ def project_relations(extraction: dict) -> dict:
             continue
         relation_id = "relation_" + edge["id"]
         extra_nodes.append(
-            dict(
-                id=relation_id,
-                label=edge["relation"],
-                file_type="rationale",
-                entity_type="EvidenceRelation",
-                source_file=edge.get("source_file"),
-                source_location=edge.get("source_location"),
-                sha256=edge.get("sha256"),
-                confidence=edge["confidence"],
-                confidence_score=edge["confidence_score"],
-            )
+            {
+                "id": relation_id,
+                "label": edge["relation"],
+                "file_type": "rationale",
+                "entity_type": "EvidenceRelation",
+                "source_file": edge.get("source_file"),
+                "source_location": edge.get("source_location"),
+                "sha256": edge.get("sha256"),
+                "confidence": edge["confidence"],
+                "confidence_score": edge["confidence_score"],
+            }
         )
         edges.extend([dict(edge, target=relation_id), dict(edge, source=relation_id)])
-    return dict(
-        nodes=[dict(n) for n in extraction["nodes"]] + extra_nodes,
-        edges=edges,
-        hyperedges=extraction.get("hyperedges", []),
-        directed=True,
-    )
+    return {
+        "nodes": [dict(n) for n in extraction["nodes"]] + extra_nodes,
+        "edges": edges,
+        "hyperedges": extraction.get("hyperedges", []),
+        "directed": True,
+    }
 
 
 def file_fragment(root: Path, files: list[Path]) -> dict:
-    return dict(
-        nodes=[
-            dict(
-                id=artifact_id(str(p.relative_to(root))),
-                label=str(p.relative_to(root)),
-                file_type="code" if p.suffix == ".py" else "document",
-                entity_type="Artifact",
-                source_file=str(p.relative_to(root)),
-                source_location=None,
-                sha256=digest(p),
-                status=None,
-                date=None,
-                branch=None,
-                commit=None,
-                validation_state="recorded_not_reexecuted",
-            )
+    return {
+        "nodes": [
+            {
+                "id": artifact_id(str(p.relative_to(root))),
+                "label": str(p.relative_to(root)),
+                "file_type": "code" if p.suffix == ".py" else "document",
+                "entity_type": "Artifact",
+                "source_file": str(p.relative_to(root)),
+                "source_location": None,
+                "sha256": digest(p),
+                "status": None,
+                "date": None,
+                "branch": None,
+                "commit": None,
+                "validation_state": "recorded_not_reexecuted",
+            }
             for p in files
         ],
-        edges=[],
-    )
+        "edges": [],
+    }
 
 
 def attach_sources(fragment: dict) -> dict:
     nodes = {n["id"] for n in fragment["nodes"]}
     edges = [
-        dict(
-            source=artifact_id(n["source_file"]),
-            target=n["id"],
-            relation="documents",
-            confidence="EXTRACTED",
-            confidence_score=1.0,
-            weight=1.0,
-            source_file=n["source_file"],
-            source_location=n.get("source_location"),
-            sha256=n.get("sha256"),
-        )
+        {
+            "source": artifact_id(n["source_file"]),
+            "target": n["id"],
+            "relation": "documents",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "weight": 1.0,
+            "source_file": n["source_file"],
+            "source_location": n.get("source_location"),
+            "sha256": n.get("sha256"),
+        }
         for n in fragment["nodes"]
         if n.get("source_file")
         and n["id"] != artifact_id(n["source_file"])
@@ -236,7 +236,7 @@ def ast_fragment(root: Path, paths: list[Path], out: Path) -> dict:
     from graphify.extract import extract
 
     original = (
-        extract(paths, cache_root=out.parent) if paths else dict(nodes=[], edges=[])
+        extract(paths, cache_root=out.parent) if paths else {"nodes": [], "edges": []}
     )
 
     def resolve_source(value: str) -> Path:
@@ -286,12 +286,12 @@ def ast_fragment(root: Path, paths: list[Path], out: Path) -> dict:
         for e in original["edges"]
         if e["source"] in mapping and e["target"] in mapping
     ]
-    return dict(
-        nodes=nodes,
-        edges=edges,
-        hyperedges=[],
-        external_edges_omitted=len(original["edges"]) - len(edges),
-    )
+    return {
+        "nodes": nodes,
+        "edges": edges,
+        "hyperedges": [],
+        "external_edges_omitted": len(original["edges"]) - len(edges),
+    }
 
 
 def normalize_structured(fragment: dict) -> dict:
@@ -302,17 +302,17 @@ def normalize_structured(fragment: dict) -> dict:
         if n.get("type") == "artifact"
     ]
     links = [
-        dict(
-            source=artifact_id(n["source_file"]),
-            target=n["id"],
-            relation="indexes_json",
-            confidence="EXTRACTED",
-            confidence_score=1.0,
-            weight=1.0,
-            source_file=n["source_file"],
-            source_location="",
-            sha256=n["sha256"],
-        )
+        {
+            "source": artifact_id(n["source_file"]),
+            "target": n["id"],
+            "relation": "indexes_json",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "weight": 1.0,
+            "source_file": n["source_file"],
+            "source_location": "",
+            "sha256": n["sha256"],
+        }
         for n in nodes
         if n.get("type") == "artifact"
     ]
@@ -335,17 +335,17 @@ def git_snapshot(root: Path) -> dict:
             ["git", "-C", str(root), *args], check=True, capture_output=True, text=True
         ).stdout.strip()
 
-    return dict(
-        branch=read(["branch", "--show-current"]),
-        head=read(["rev-parse", "HEAD"]),
-        dirty=bool(read(["status", "--porcelain"])),
-        scope="capture_only_not_experiment_provenance",
-    )
+    return {
+        "branch": read(["branch", "--show-current"]),
+        "head": read(["rev-parse", "HEAD"]),
+        "dirty": bool(read(["status", "--porcelain"])),
+        "scope": "capture_only_not_experiment_provenance",
+    }
 
 
 def load_semantic(root: Path, files: list[Path], semantic: Path | None) -> dict:
     if not files:
-        return dict(nodes=[], edges=[], source_hashes={})
+        return {"nodes": [], "edges": [], "source_hashes": {}}
     if semantic is None:
         raise ValueError(
             "Markdown requires --semantic with content-hash-bound extraction"
@@ -438,14 +438,14 @@ def export_outputs(
     cohesion = score_all(graph, communities)
     labels = label_communities(graph, communities)
     questions = suggest_questions(graph, communities, labels)
-    analysis = dict(
-        communities={str(k): v for k, v in communities.items()},
-        cohesion=cohesion,
-        labels=labels,
-        gods=god_nodes(graph),
-        surprises=surprising_connections(graph, communities),
-        questions=questions,
-    )
+    analysis = {
+        "communities": {str(k): v for k, v in communities.items()},
+        "cohesion": cohesion,
+        "labels": labels,
+        "gods": god_nodes(graph),
+        "surprises": surprising_connections(graph, communities),
+        "questions": questions,
+    }
     report = generate(
         graph,
         communities,
@@ -454,7 +454,7 @@ def export_outputs(
         analysis["gods"],
         analysis["surprises"],
         detection,
-        dict(input=extraction["input_tokens"], output=extraction["output_tokens"]),
+        {"input": extraction["input_tokens"], "output": extraction["output_tokens"]},
         str(root),
         suggested_questions=questions,
     )
@@ -496,7 +496,7 @@ def export_outputs(
             r"## Community Hubs \(Navigation\).*?(?=## )",
             "",
             report,
-            flags=re.S,
+            flags=re.DOTALL,
         )
         (staging / "GRAPH_REPORT.md").write_text(report, encoding="utf-8")
         for name in ("graph.json", "graph.html", "GRAPH_REPORT.md"):
@@ -540,7 +540,7 @@ def build(root: Path, out: Path, semantic: Path | None) -> dict:
     if out == root:
         raise ValueError("Output cannot be the source root")
     selected = select_files(root)
-    files = sorted(set(p for group in selected.values() for p in group))
+    files = sorted({p for group in selected.values() for p in group})
     words = sum(len(p.read_text(encoding="utf-8").split()) for p in files)
     if len(files) > MAX_FILES or words > MAX_WORDS:
         groups = Counter(str(p.relative_to(root)).split("/")[0] for p in files)
@@ -548,11 +548,11 @@ def build(root: Path, out: Path, semantic: Path | None) -> dict:
             f"Corpus exceeds limit: {len(files)} files, {words} words; narrow scope: {groups.most_common(5)}"
         )
     before = source_snapshot(root, files)
-    capture = dict(
-        created_at=datetime.now(timezone.utc).isoformat(),
-        root=str(root),
-        git=git_snapshot(root),
-    )
+    capture = {
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "root": str(root),
+        "git": git_snapshot(root),
+    }
     out.mkdir(parents=True, exist_ok=True)
     sem = load_semantic(root, selected["document"], semantic)
     ast = ast_fragment(root, selected["code"], out)
@@ -567,12 +567,12 @@ def build(root: Path, out: Path, semantic: Path | None) -> dict:
     )
     if source_snapshot(root, files) != before:
         raise ValueError("Source changed during build; retry from a consistent capture")
-    detection = dict(
-        total_files=len(files),
-        total_words=words,
-        warning="Selected evidence corpus; whitespace word counts undercount Chinese text.",
-        files={key: [str(p) for p in paths] for key, paths in selected.items()},
-    )
+    detection = {
+        "total_files": len(files),
+        "total_words": words,
+        "warning": "Selected evidence corpus; whitespace word counts undercount Chinese text.",
+        "files": {key: [str(p) for p in paths] for key, paths in selected.items()},
+    }
     export_outputs(extraction, detection, out, root, capture)
     atomic_json(
         out / "experiment_graph.json",
@@ -585,7 +585,7 @@ def build(root: Path, out: Path, semantic: Path | None) -> dict:
     )
     atomic_json(
         out / "manifest.json",
-        dict(sources=before, capture=capture, selected=detection["files"]),
+        {"sources": before, "capture": capture, "selected": detection["files"]},
     )
     atomic_json(
         out / "cost.json",
@@ -603,7 +603,7 @@ def build(root: Path, out: Path, semantic: Path | None) -> dict:
             "words_whitespace_estimate": words,
         },
     )
-    logging.info(
+    logging.getLogger(__name__).info(
         "Built %s files, %s nodes, %s evidence edges",
         len(files),
         len(extraction["nodes"]),

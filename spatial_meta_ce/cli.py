@@ -7,7 +7,7 @@ from pathlib import Path
 
 import torch
 
-from .data import FeatureStore, StorePool
+from .data import StorePool
 from .features import inspect_features, prepare_database
 from .manifests import file_hash, validate_splits
 
@@ -83,15 +83,15 @@ def prepare(data, databases=None, allow_exclusions=False):
     selected=set(databases) if databases else None
     pairs=[('pretrain',db) for db in data['splits']['train']+data['splits']['validation']]
     pairs += [(split,db) for db in data['splits']['test'] for split in ('test','finetune')]
-    if selected and selected-set(db for _,db in pairs): raise ValueError('Unknown database')
+    if selected and selected-{db for _,db in pairs}: raise ValueError('Unknown database')
     for split,db in pairs:
         if selected is None or db in selected:
             print(json.dumps(prepare_database(data['data_root'],data['cache_root'],db,split,allow_exclusions)),flush=True)
 
 
 def smoke(config,data,output):
-    from .train import train
     from .evaluate import evaluate
+    from .train import train
     tiny=copy.deepcopy(config)
     tiny.update(steps=3,meta_batch=1,accumulation=1,inner_steps=1,support_sizes=[5],query_size=8,
                 validate_every=1,validation_runs=1,purpose='smoke-not-research')
@@ -114,7 +114,7 @@ def smoke(config,data,output):
 
 
 def adapt_one(config,data,output,args):
-    from .checkpoints import load_checkpoint,save_checkpoint
+    from .checkpoints import load_checkpoint, save_checkpoint
     from .evaluate import support_plan
     from .meta import adapt
     if not args.checkpoint or not args.database or args.k<1:
@@ -167,7 +167,7 @@ def main():
         value=getattr(args,arg)
         if value is not None: config[key]=value
     if args.no_pg: config['model']['use_pg']=False
-    stamp=datetime.datetime.now().strftime('%Y%m%d-%H%M%S-%f')
+    stamp=datetime.datetime.now(datetime.timezone.utc).astimezone().strftime('%Y%m%d-%H%M%S-%f')
     output=safe_output(args.output or str(PROJECT/'runs'/f'{args.command}-{stamp}'),data)
     if args.command=='audit':
         audit(data,output/'audit.json')

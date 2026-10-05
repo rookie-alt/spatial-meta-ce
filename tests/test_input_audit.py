@@ -12,7 +12,12 @@ import numpy as np
 import torch
 
 from scripts.audit_input_mapping import (
-    ROOT, audit_database, feature_groups_match, main, query_layout, source_databases,
+    ROOT,
+    audit_database,
+    feature_groups_match,
+    main,
+    query_layout,
+    source_databases,
 )
 from spatial_meta_ce.features import write_cache
 from spatial_meta_ce.manifests import file_hash, read_workload
@@ -74,8 +79,8 @@ class InputAuditTests(unittest.TestCase):
     def test_non_equi_and_nested_query_are_not_certified(self):
         for sql, flag in (
             ('select count(*) from a,b where a.id>b.id', 'non_equi_join'),
-            ('select count(*) from a,b where a.id=b.id and a.x in '
-             '(select c.x from c where c.v=1)', 'subquery'),
+            (('select count(*) from a,b where a.id=b.id and a.x in '
+             '(select c.x from c where c.v=1)'), 'subquery'),
         ):
             with self.subTest(flag=flag):
                 self.assertIn(flag, query_layout(sql)['flags'])

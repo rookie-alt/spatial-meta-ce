@@ -147,7 +147,7 @@ def main():
         key = (s, lr, scope, fallback)
         per_seed = {c: float(np.mean(v[key])) for c, v in per_ckpt.items()}
         by_db, by_k = {}, {}
-        for c, v in per_ckpt.items():
+        for v in per_ckpt.values():
             for x, ep in zip(v[key], info):
                 by_db.setdefault(ep['db'], []).append(x)
                 by_k.setdefault(ep['k'], []).append(x)

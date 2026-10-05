@@ -137,8 +137,9 @@ def self_check() -> None:
 
 def audit_sql(root: Path, database: str, selected: dict, source_hash: str) -> dict:
     sys.path.insert(0, str(root))
-    from scripts.audit_input_mapping import query_layout
     from sqlglot import exp, parse_one
+
+    from scripts.audit_input_mapping import query_layout
 
     workload = (
         root / "../PRICE-master/datas/workloads/pretrain" / database / "workloads.sql"

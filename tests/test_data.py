@@ -8,9 +8,13 @@ import torch
 
 AVAILABLE = importlib.util.find_spec('spatial_meta_ce.manifests') is not None
 if AVAILABLE:
-    from spatial_meta_ce.manifests import validate_splits, canonical_sql, read_workload, episode_indices
-    from spatial_meta_ce.features import write_cache, verify_alignment
     from spatial_meta_ce.data import FeatureStore
+    from spatial_meta_ce.features import verify_alignment, write_cache
+    from spatial_meta_ce.manifests import (
+        canonical_sql,
+        episode_indices,
+        validate_splits,
+    )
 
 
 class DataTests(unittest.TestCase):
@@ -59,10 +63,11 @@ class DataTests(unittest.TestCase):
 
     def test_cache_manifest_tamper_rejected(self):
         import json
+
         from test_protocol import fixtures
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)
-            cfg,dc=fixtures(root)
+            _cfg,dc=fixtures(root)
             path=Path(dc['cache_root'])/'pretrain/a'
             f=path/'manifest.json'
             manifest=json.loads(f.read_text())

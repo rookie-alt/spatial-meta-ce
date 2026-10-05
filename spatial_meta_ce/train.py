@@ -53,7 +53,7 @@ def validate(model, pool, episodes, config, device):
         store = pool.get('pretrain', ep['db'])
         support = store.batch(ep['support'], device)
         query = store.batch(ep['query'], device)
-        from .baselines import PriceAdapter, price_support, price_log_predictions
+        from .baselines import PriceAdapter, price_log_predictions, price_support
         is_price = isinstance(model, PriceAdapter)
         if is_price:
             support = price_support(support)

@@ -15,20 +15,20 @@ from scripts.build_experiment_graph import (
 
 class GraphBuildTests(unittest.TestCase):
     def test_preserves_multiple_relations_and_deduplicates_identical_evidence(self):
-        nodes = [dict(id=n, label=n, source_file="a.md") for n in ("a", "b")]
-        first = dict(
-            source="a",
-            target="b",
-            relation="supports",
-            source_file="a.md",
-            source_location="4",
-            sha256="abc",
-            confidence="EXTRACTED",
-            confidence_score=1.0,
-        )
-        fragment = dict(
-            nodes=nodes, edges=[first, dict(first, relation="references"), first]
-        )
+        nodes = [{"id": n, "label": n, "source_file": "a.md"} for n in ("a", "b")]
+        first = {
+            "source": "a",
+            "target": "b",
+            "relation": "supports",
+            "source_file": "a.md",
+            "source_location": "4",
+            "sha256": "abc",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+        }
+        fragment = {
+            "nodes": nodes, "edges": [first, dict(first, relation="references"), first]
+        }
         original = copy.deepcopy(fragment)
         result = merge_fragments([fragment])
         self.assertEqual(fragment, original)
@@ -41,25 +41,25 @@ class GraphBuildTests(unittest.TestCase):
 
     def test_rejects_dangling_edge_and_conflicting_node_id(self):
         with self.assertRaises(ValueError):
-            merge_fragments([dict(nodes=[], edges=[dict(source="x", target="y")])])
+            merge_fragments([{"nodes": [], "edges": [{"source": "x", "target": "y"}]}])
         with self.assertRaises(ValueError):
             merge_fragments(
                 [
-                    dict(
-                        nodes=[
-                            dict(id="x", source_file="a.md"),
-                            dict(id="x", source_file="b.md"),
+                    {
+                        "nodes": [
+                            {"id": "x", "source_file": "a.md"},
+                            {"id": "x", "source_file": "b.md"},
                         ],
-                        edges=[],
-                    )
+                        "edges": [],
+                    }
                 ]
             )
 
     def test_atomic_json_replaces_instead_of_growing_old_graph(self):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / "graph.json"
-            atomic_json(path, dict(nodes=["old", "new"], edges=[]))
-            atomic_json(path, dict(nodes=["new"], edges=[]))
+            atomic_json(path, {"nodes": ["old", "new"], "edges": []})
+            atomic_json(path, {"nodes": ["new"], "edges": []})
             self.assertEqual(json.loads(path.read_text())["nodes"], ["new"])
             self.assertEqual(list(Path(folder).glob("*.tmp")), [])
 
@@ -69,19 +69,19 @@ class GraphBuildTests(unittest.TestCase):
             path = root / "a.md"
             path.write_text("unverified\n", encoding="utf-8")
             sha = hashlib.sha256(path.read_bytes()).hexdigest()
-            fragment = dict(
-                source_hashes={"a.md": sha},
-                nodes=[
-                    dict(
-                        id="a",
-                        source_file="a.md",
-                        source_location="1",
-                        sha256=sha,
-                        status="unverified",
-                    )
+            fragment = {
+                "source_hashes": {"a.md": sha},
+                "nodes": [
+                    {
+                        "id": "a",
+                        "source_file": "a.md",
+                        "source_location": "1",
+                        "sha256": sha,
+                        "status": "unverified",
+                    }
                 ],
-                edges=[],
-            )
+                "edges": [],
+            }
             validate_semantic(root, fragment, [path])
             self.assertEqual(fragment["nodes"][0]["status"], "unverified")
             path.write_text("completed\n", encoding="utf-8")
@@ -89,33 +89,32 @@ class GraphBuildTests(unittest.TestCase):
                 validate_semantic(root, fragment, [path])
             with self.assertRaises(ValueError):
                 validate_semantic(
-                    root, dict(source_hashes={}, nodes=[], edges=[]), [path]
+                    root, {"source_hashes": {}, "nodes": [], "edges": []}, [path]
                 )
 
     def test_rejects_unsafe_semantic_paths_and_invalid_confidence(self):
-        with tempfile.TemporaryDirectory() as folder:
-            with self.assertRaises(ValueError):
-                validate_semantic(
-                    Path(folder), dict(source_hashes={"../x.md": "x"}), []
-                )
-        nodes = [dict(id=n, source_file="a.md") for n in ("a", "b")]
+        with tempfile.TemporaryDirectory() as folder, self.assertRaises(ValueError):
+            validate_semantic(
+                Path(folder), {"source_hashes": {"../x.md": "x"}}, []
+            )
+        nodes = [{"id": n, "source_file": "a.md"} for n in ("a", "b")]
         with self.assertRaises(ValueError):
             merge_fragments(
                 [
-                    dict(
-                        nodes=nodes,
-                        edges=[
-                            dict(
-                                source="a",
-                                target="b",
-                                relation="supports",
-                                confidence="EXTRACTED",
-                                confidence_score=0.5,
-                                source_file="a.md",
-                                source_location="1",
-                            )
+                    {
+                        "nodes": nodes,
+                        "edges": [
+                            {
+                                "source": "a",
+                                "target": "b",
+                                "relation": "supports",
+                                "confidence": "EXTRACTED",
+                                "confidence_score": 0.5,
+                                "source_file": "a.md",
+                                "source_location": "1",
+                            }
                         ],
-                    )
+                    }
                 ]
             )
 
@@ -220,7 +219,7 @@ class GraphBuildTests(unittest.TestCase):
             )
 
     def test_rejects_unsafe_ids_external_claims_and_output(self):
-        from scripts.build_experiment_graph import build, artifact_id
+        from scripts.build_experiment_graph import artifact_id, build
 
         with self.assertRaisesRegex(ValueError, "ASCII"):
             merge_fragments(
@@ -268,10 +267,10 @@ class GraphBuildTests(unittest.TestCase):
             merge_fragments([first, second])
 
     def test_graph_is_deterministic_and_inputs_are_immutable(self):
-        fragment = dict(
-            nodes=[dict(id="b", source_file="a"), dict(id="a", source_file="a")],
-            edges=[],
-        )
+        fragment = {
+            "nodes": [{"id": "b", "source_file": "a"}, {"id": "a", "source_file": "a"}],
+            "edges": [],
+        }
         self.assertEqual(merge_fragments([fragment]), merge_fragments([fragment]))
         self.assertEqual([n["id"] for n in fragment["nodes"]], ["b", "a"])
 

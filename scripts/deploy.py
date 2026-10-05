@@ -4,7 +4,6 @@ Never stores credentials; refuses to overwrite remote manual changes or artifact
 """
 import argparse
 import base64
-import hashlib
 import json
 import shlex
 import subprocess

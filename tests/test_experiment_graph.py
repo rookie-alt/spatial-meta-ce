@@ -1,7 +1,9 @@
 import concurrent.futures
+import functools
 import hashlib
 import importlib.util
 import json
+import operator
 import os
 import subprocess
 import sys
@@ -98,7 +100,7 @@ class ExperimentGraphTests(unittest.TestCase):
             f"实验文档/results/{name}/summary.json"
             for name in ["history", "manifests", "progress", "log", "stale"]
         ]
-        for path in sum(accepted.values(), []) + rejected:
+        for path in functools.reduce(operator.iadd, accepted.values(), []) + rejected:
             self.write(path, {})
         selected = self.adapter.select_files(self.root)
         self.assertEqual(set(selected), {"code", "document", "json"})
@@ -490,7 +492,7 @@ class ExperimentGraphTests(unittest.TestCase):
         self.write("configs/a.json", {"seed": 1})
         environment = {**os.environ, "PYTHONDONTWRITEBYTECODE": "1"}
         args = [sys.executable, str(MODULE), "--root", str(self.root)]
-        result = subprocess.run(args, capture_output=True, text=True, env=environment)
+        result = subprocess.run(args, capture_output=True, text=True, env=environment, check=False)
         self.assertEqual(result.returncode, 0, result.stderr)
         graph = json.loads(result.stdout)
         self.assertEqual(
@@ -502,7 +504,7 @@ class ExperimentGraphTests(unittest.TestCase):
         self.assertGreater(graph["input_tokens"], 0)
         self.assertGreater(graph["output_tokens"], 0)
         self.write("configs/a.json", "{bad}")
-        result = subprocess.run(args, capture_output=True, text=True, env=environment)
+        result = subprocess.run(args, capture_output=True, text=True, env=environment, check=False)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("JSON", result.stderr)
         self.assertEqual(result.stdout, "")

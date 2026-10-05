@@ -1,5 +1,5 @@
-import copy
 import contextlib
+import copy
 import io
 import json
 import sys
@@ -8,15 +8,23 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import numpy as np
+from test_input_audit import ROOT, audit_fixture
+
 from scripts.audit_input_mapping import query_layout, source_databases
 from scripts.build_mapping_sidecar import (
-    build_database, build_record, build_records, load_final_audit, main, shuffle_mapping,
-    summarize_shuffle, validate_marginals, validate_output_path, validate_row,
+    build_database,
+    build_record,
+    build_records,
+    load_final_audit,
+    main,
+    shuffle_mapping,
+    summarize_shuffle,
+    validate_marginals,
+    validate_output_path,
+    validate_row,
 )
 from spatial_meta_ce.data import FeatureStore
 from spatial_meta_ce.manifests import digest, file_hash
-from test_input_audit import ROOT, audit_fixture
 
 
 def row(sql: str, query_hash: str = 'hash-x', line: int = 1) -> dict:
@@ -241,9 +249,9 @@ class MappingSidecarIntegrationTests(unittest.TestCase):
 
     def test_cli_requires_external_audit_summary_hash(self) -> None:
         with patch.object(sys, 'argv', ['build_mapping_sidecar.py', '--audit', 'audit',
-                                        '--output', 'out']), self.assertRaises(SystemExit):
-            with contextlib.redirect_stderr(io.StringIO()):
-                main()
+                                        '--output', 'out']), self.assertRaises(SystemExit), \
+                contextlib.redirect_stderr(io.StringIO()):
+            main()
 
     def test_incomplete_final_audit_or_changed_input_hash_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

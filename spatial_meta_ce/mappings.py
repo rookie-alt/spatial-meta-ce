@@ -92,7 +92,7 @@ class MappingStore:
     @staticmethod
     def _validate_record(record: dict) -> None:
         if not isinstance(record, dict):
-            raise ValueError("Mapping record must be an object")
+            raise ValueError("Mapping record must be an object")  # noqa: TRY004 - preserve the mapping-validation ValueError API.
         key, lines = record.get("query_hash"), record.get("source_lines")
         if not isinstance(key, str) or not key:
             raise ValueError("Invalid mapping query_hash")
@@ -106,7 +106,7 @@ class MappingStore:
         true = record.get("mapping")
         shuffled = record.get("shuffled_mapping")
         if not isinstance(true, dict) or not isinstance(shuffled, dict):
-            raise ValueError("Both mapping modes must be present")
+            raise ValueError("Both mapping modes must be present")  # noqa: TRY004 - preserve the mapping-validation ValueError API.
         counts = true.get("counts")
         validate_mapping(true, counts)
         validate_mapping(shuffled, counts)
@@ -147,12 +147,11 @@ class MappingStore:
                     or actual != float(value)
                 ):
                     raise ValueError(f"Mapping/cache cardinality mismatch: {field}")
-            if row["source_line"] == record["source_line"]:
-                if (
-                    row["id"] != record["id"]
-                    or row.get("exact_hash") != record["exact_hash"]
-                ):
-                    raise ValueError("Mapping/cache first-row identity mismatch")
+            if row["source_line"] == record["source_line"] and (
+                row["id"] != record["id"]
+                or row.get("exact_hash") != record["exact_hash"]
+            ):
+                raise ValueError("Mapping/cache first-row identity mismatch")
             coverage.setdefault(key, []).append(row["source_line"])
         if set(coverage) != set(self.records):
             raise ValueError("Mapping sidecar query coverage mismatch")

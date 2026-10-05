@@ -13,8 +13,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from spatial_meta_ce.cli import read_json, data_settings  # noqa: E402
-from spatial_meta_ce.evaluate import evaluate  # noqa: E402
+from spatial_meta_ce.cli import data_settings, read_json
+from spatial_meta_ce.evaluate import evaluate
 
 TARGETS = ['stats', 'genome', 'ergastf1']
 
@@ -42,9 +42,9 @@ def main():
     for row in report['aggregate']:
         a = row['across_support_runs']
         fi = a.get('paired_unique', {}).get('fraction_queries_improved', float('nan'))
-        print('%-10s k=%3d q50=%7.3f q95_all=%8.3f q95_uniq=%9.3f improved=%.3f' % (
-            row['database'], row['k'], a['all_rows_q50']['mean'], a['all_rows_q95']['mean'],
-            a['unique_query_q95']['mean'], fi))
+        print(f"{row['database']:<10s} k={row['k']:3d} "
+              f"q50={a['all_rows_q50']['mean']:7.3f} q95_all={a['all_rows_q95']['mean']:8.3f} "
+              f"q95_uniq={a['unique_query_q95']['mean']:9.3f} improved={fi:.3f}")
 
 
 if __name__ == '__main__':

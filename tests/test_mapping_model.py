@@ -1,5 +1,5 @@
-import copy
 import contextlib
+import copy
 import io
 import json
 import tempfile
@@ -15,8 +15,8 @@ from spatial_meta_ce.checkpoints import load_checkpoint, save_checkpoint
 from spatial_meta_ce.data import FeatureStore, StorePool, batch_samples
 from spatial_meta_ce.features import write_cache
 from spatial_meta_ce.manifests import file_hash
-from spatial_meta_ce.model import SetEstimator
 from spatial_meta_ce.meta import meta_loss
+from spatial_meta_ce.model import SetEstimator
 from spatial_meta_ce.train import train
 
 

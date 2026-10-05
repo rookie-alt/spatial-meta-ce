@@ -1,5 +1,4 @@
 import importlib.util
-import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -9,10 +8,10 @@ import torch
 
 AVAILABLE = importlib.util.find_spec('spatial_meta_ce.train') is not None
 if AVAILABLE:
-    from spatial_meta_ce.train import train, select_best
-    from spatial_meta_ce.evaluate import evaluate, support_plan
     from spatial_meta_ce.checkpoints import load_checkpoint
+    from spatial_meta_ce.evaluate import evaluate
     from spatial_meta_ce.features import write_cache
+    from spatial_meta_ce.train import select_best, train
 
 
 def fixtures(root):

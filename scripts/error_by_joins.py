@@ -7,10 +7,9 @@ looking at target databases here is analysis, not tuning.
 import argparse
 import csv
 import json
+import sys
 from collections import defaultdict
 from pathlib import Path
-
-import sys
 
 import numpy as np
 

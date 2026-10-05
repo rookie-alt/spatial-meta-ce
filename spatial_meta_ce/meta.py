@@ -46,7 +46,7 @@ def adapt_trajectory(model, support, lr, record_steps, scope='all', loss='smooth
     """Evaluation-only adaptation that returns detached params after each step in
     record_steps. Identical update rule to adapt(training=False), so one pass covers
     every step count of a search grid."""
-    record_steps = sorted(set(int(s) for s in record_steps))
+    record_steps = sorted({int(s) for s in record_steps})
     if not record_steps or record_steps[0] < 0 or lr <= 0 or scope not in ('all', 'head'):
         raise ValueError('Invalid adaptation configuration')
     params = OrderedDict(model.named_parameters())

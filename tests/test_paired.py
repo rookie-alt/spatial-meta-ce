@@ -3,13 +3,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import numpy as np
-import torch
-
-from spatial_meta_ce.data import StorePool
-from spatial_meta_ce.evaluate import evaluate
-from spatial_meta_ce.features import write_cache
 from test_protocol import fixtures
+
+from spatial_meta_ce.evaluate import evaluate
 
 
 class PairedProtocolTests(unittest.TestCase):
@@ -33,8 +29,8 @@ class PairedProtocolTests(unittest.TestCase):
             ec={'shots':[0,5],'support_runs':2,'support_seed':2026,'inner_lr':0.01,
                 'inner_steps':1,'adapt_scope':'all','loss':'smooth_l1','batch_size':8,
                 'latency_repetitions':1,'model':cfg['model']}
-            a=evaluate(ec,dc,root/'a','cpu',baseline='pg')
-            b=evaluate(ec,dc,root/'b','cpu',baseline='random',training_seed=8)
+            evaluate(ec,dc,root/'a','cpu',baseline='pg')
+            evaluate(ec,dc,root/'b','cpu',baseline='random',training_seed=8)
             am=json.loads((root/'a'/'manifest.json').read_text())
             bm=json.loads((root/'b'/'manifest.json').read_text())
             self.assertEqual(am['episodes'],bm['episodes'])

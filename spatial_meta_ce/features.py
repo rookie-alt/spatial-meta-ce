@@ -176,7 +176,7 @@ def prepare_database(data_root, cache_root, database, split, allow_exclusions=Fa
             regenerated = True
         else:
             engine = extractor(data_root, database, split)
-            for i in sorted(set([0, len(rows)//2, len(rows)-1])):
+            for i in sorted({0, len(rows)//2, len(rows)-1}):
                 with contextlib.redirect_stdout(io.StringIO()):
                     ret = engine.create_sql_features(lower_except_quotes(rows[i]['sql']))
                 if ret is None or any(int(a) != int(data[k][i]) for a,k in zip(ret[1:], COUNT_KEYS)):

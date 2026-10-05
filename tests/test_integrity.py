@@ -1,21 +1,17 @@
-import copy
-import importlib.util
 import tempfile
 import unittest
-from collections import OrderedDict
 from pathlib import Path
 
 import numpy as np
 import torch
+from test_protocol import fixtures
 from torch import nn
 
-from spatial_meta_ce.data import batch_samples, FeatureStore
-from spatial_meta_ce.evaluate import support_plan
-from spatial_meta_ce.features import write_cache
 from spatial_meta_ce.baselines import price_log_predictions
 from spatial_meta_ce.checkpoints import load_checkpoint
+from spatial_meta_ce.data import FeatureStore, batch_samples
+from spatial_meta_ce.evaluate import support_plan
 from spatial_meta_ce.train import train, validation_plan
-from test_protocol import fixtures
 
 
 class IntegrityTests(unittest.TestCase):
@@ -78,9 +74,9 @@ class IntegrityTests(unittest.TestCase):
                 evaluate(ec,dc,root/'eval',checkpoint=root/'adapted.pt')
 
     def test_price_validation_decodes_legacy_log_scale(self):
-        from spatial_meta_ce.train import validate
-        from spatial_meta_ce.data import StorePool
         from spatial_meta_ce.baselines import PriceAdapter
+        from spatial_meta_ce.data import StorePool
+        from spatial_meta_ce.train import validate
         class KnownPrice(PriceAdapter):
             def __init__(self):
                 nn.Module.__init__(self)
@@ -96,14 +92,15 @@ class IntegrityTests(unittest.TestCase):
             self.assertLess(abs(score),1e-5)
 
     def test_cli_help(self):
-        import subprocess,sys
-        result=subprocess.run([sys.executable,'-m','spatial_meta_ce.cli','--help'],capture_output=True,text=True)
+        import subprocess
+        import sys
+        result=subprocess.run([sys.executable,'-m','spatial_meta_ce.cli','--help'],capture_output=True,text=True,check=False)
         self.assertEqual(result.returncode,0)
         self.assertIn('prepare',result.stdout)
 
     def test_baseline_forward_padding_matches_original(self):
-        from vendor.price_baseline.encoder import RegressionModel
         from spatial_meta_ce.baselines import PriceAdapter
+        from vendor.price_baseline.encoder import RegressionModel
         with tempfile.TemporaryDirectory() as d:
             original=RegressionModel(2,2,2,2,40,4,43,512,1024,1,256,6,8,0.2)
             original.eval()

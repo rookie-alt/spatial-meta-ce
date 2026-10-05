@@ -11,6 +11,7 @@ import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from scripts.arch_select import checkpoint_pool
 from scripts.mapping_ablation_endpoint import (
     bucket_q95,
     paired_comparison,
@@ -31,11 +32,10 @@ from scripts.run_mapping_ablation import (
     verify_pairing,
 )
 from spatial_meta_ce import data as data_module
+from spatial_meta_ce.checkpoints import load_checkpoint
 from spatial_meta_ce.cli import read_json as cli_read_json
 from spatial_meta_ce.data import StorePool, batch_samples
 from spatial_meta_ce.features import write_cache
-from scripts.arch_select import checkpoint_pool
-from spatial_meta_ce.checkpoints import load_checkpoint
 from spatial_meta_ce.manifests import file_hash
 from spatial_meta_ce.model import SetEstimator
 from spatial_meta_ce.train import train
@@ -223,10 +223,9 @@ class ProtocolTests(unittest.TestCase):
                 patch(
                     "scripts.run_mapping_ablation.read_json",
                     side_effect=lambda path, change=change: change(original(path)),
-                ),
+                ),self.assertRaises(ValueError)
             ):
-                with self.assertRaises(ValueError):
-                    load_run_config("true", 42)
+                load_run_config("true", 42)
 
     def test_initial_state_is_seed_deterministic_and_arm_specific(self):
         config = load_run_config("true", 42)
@@ -295,18 +294,17 @@ class ProtocolTests(unittest.TestCase):
             seen.append(gpu_uuid)
             return fake_record(spec["seed"], spec["arm"])
 
-        with tempfile.TemporaryDirectory() as d:
-            with (
-                patch("scripts.run_mapping_ablation.run_one", side_effect=fake_run_one),
-                patch(
-                    "scripts.run_mapping_ablation.available_gpu", return_value="uuid-x"
-                ) as guard,
-            ):
-                report = run_all(Path(d), {}, "cuda:0", "4")
+        with (
+            tempfile.TemporaryDirectory() as d,
+            patch("scripts.run_mapping_ablation.run_one", side_effect=fake_run_one),
+            patch(
+                "scripts.run_mapping_ablation.available_gpu", return_value="uuid-x"
+            ) as guard,
+        ):
+            report = run_all(Path(d), {}, "cuda:0", "4")
         self.assertEqual(guard.call_count, 1)
         self.assertEqual(len(seen), 9)
         self.assertEqual(report["pairing"]["seeds"], list(SEEDS))
-
     def test_determinism_sets_cublas_workspace_before_first_use(self):
         with patch.dict(os.environ):
             os.environ.pop("CUBLAS_WORKSPACE_CONFIG", None)

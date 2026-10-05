@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from spatial_meta_ce.cli import data_settings, read_json, safe_output
-from spatial_meta_ce.data import FeatureStore, GROUP_DIMS
+from spatial_meta_ce.data import GROUP_DIMS, FeatureStore
 from spatial_meta_ce.features import COUNT_KEYS, extractor, lower_except_quotes
 from spatial_meta_ce.manifests import file_hash, read_workload
 
@@ -198,7 +198,7 @@ def audit_database(data: dict, database: str, output: Path, recreate: bool) -> d
             errors.append('duplicate_query_pg_conflict')
         try:
             layout = query_layout(row['sql'])
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - retain every failed row/database in audit reports.
             layout = {'tables': [], 'counts': [], 'flags': ['parse_failed'],
                       'predicate_types': [], 'mapping_recoverable': False}
             errors.append('parse_failed')
@@ -239,7 +239,7 @@ def audit_database(data: dict, database: str, output: Path, recreate: bool) -> d
                         if i < original_rows and not feature_groups_match(result[0], original['data_features'][i]):
                             errors.append('recreate_source_features')
                         totals['recreated_rows'] += 1
-                except Exception as exc:
+                except Exception as exc:  # noqa: BLE001 - retain every failed row/database in audit reports.
                     errors.append('recreate_failed')
                     if len(failures) < 10:
                         failures.append({'id': row['id'], 'error': f'{type(exc).__name__}: {exc}'[:300]})
@@ -319,7 +319,7 @@ def main() -> None:
     for database in databases:
         try:
             report = audit_database(data, database, output, args.recreate)
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - retain every failed row/database in audit reports.
             report = {'database': database, 'alignment_passed': False,
                       'fatal_error': f'{type(exc).__name__}: {exc}'}
             write_report(output / f'{database}.json', report)

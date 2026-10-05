@@ -17,7 +17,13 @@ import sqlglot
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts.audit_input_mapping import feature_groups_match, provenance_checks, query_layout, source_databases, write_report
+from scripts.audit_input_mapping import (
+    feature_groups_match,
+    provenance_checks,
+    query_layout,
+    source_databases,
+    write_report,
+)
 from spatial_meta_ce.cli import data_settings, read_json, safe_output
 from spatial_meta_ce.data import FeatureStore
 from spatial_meta_ce.manifests import digest, file_hash, read_workload

@@ -1,9 +1,7 @@
 import copy
 import importlib.util
-import math
 import tempfile
 import unittest
-from collections import OrderedDict
 from pathlib import Path
 
 import numpy as np
@@ -12,11 +10,11 @@ from torch import nn
 
 AVAILABLE = importlib.util.find_spec('spatial_meta_ce') is not None
 if AVAILABLE:
+    from spatial_meta_ce.checkpoints import load_checkpoint, save_checkpoint
     from spatial_meta_ce.data import batch_samples
-    from spatial_meta_ce.model import SetEstimator
     from spatial_meta_ce.meta import adapt, forward, meta_loss
     from spatial_meta_ce.metrics import summarize
-    from spatial_meta_ce.checkpoints import save_checkpoint, load_checkpoint
+    from spatial_meta_ce.model import SetEstimator
 
 
 def sample(n=2, empty=False, y=10.0):
