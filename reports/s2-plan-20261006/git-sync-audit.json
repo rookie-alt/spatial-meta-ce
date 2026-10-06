@@ -1,0 +1,370 @@
+{
+  "captured_at": "2026-10-06T05:03:21.937983+00:00",
+  "reference_point": "after origin fetch, before S2 documentation commit; not a future push assertion",
+  "origin_url": "https://gitee.com/william-forest/spatial-meta-ce.git",
+  "baseline_before_new_plan_branch": {
+    "local_branches": 29,
+    "tracked_synchronized": 19,
+    "historical_local_only_covered_elsewhere": 8,
+    "agent_worktree_branches": 2,
+    "unique_unpublished_commits": 0
+  },
+  "branches": [
+    {
+      "branch": "audit/p1-input-mapping-20261002",
+      "head": "90522679b32193563442f69fadb6e2a0e2accd31",
+      "upstream": "origin/audit/p1-input-mapping-20261002",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "audit/p1-source-boolean-selectivity-20261005",
+      "head": "5409cd81f323c620bc76db800869e1c7753004d5",
+      "upstream": "origin/audit/p1-source-boolean-selectivity-20261005",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "audit/p1-source-sql-semantics-20261005",
+      "head": "244fa7b0955c4cf03e23953e3a184cb39f6b2be9",
+      "upstream": null,
+      "ahead": null,
+      "behind": null,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "audit/p2-gates-followup-20261005",
+      "head": "4aa6e2b6c097dc41957482e917de514065362326",
+      "upstream": "origin/audit/p2-gates-followup-20261005",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "audit/p2-source-semantics-20261005",
+      "head": "204a24c3efb7647e633482835615d8df27a8ab54",
+      "upstream": "origin/audit/p2-source-semantics-20261005",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "chore/historical-lint-20261005",
+      "head": "204a24c3efb7647e633482835615d8df27a8ab54",
+      "upstream": null,
+      "ahead": null,
+      "behind": null,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "docs/offline-data-mainline-20261005",
+      "head": "2143deef2fefbab76f9acbebf91609a7b74a2217",
+      "upstream": "origin/docs/offline-data-mainline-20261005",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "docs/offline-results-synthesis-20261005",
+      "head": "28b550562f172b66468d7ba57ba71f0e62943733",
+      "upstream": "origin/docs/offline-results-synthesis-20261005",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "docs/p0-source-results-20261001",
+      "head": "06e77c060f69ac958cde7b4003f650916d6b3955",
+      "upstream": "origin/docs/p0-source-results-20261001",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "docs/p2-source-semantics-protocol-20261005",
+      "head": "3356a87e3365b2590883b759f837ad7b2d3ee520",
+      "upstream": "origin/docs/p2-source-semantics-protocol-20261005",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "docs/s2-source-exposure-plan-20261006",
+      "head": "8811819d284940f39cddf6ebe57ec2ee4bb645a6",
+      "upstream": null,
+      "ahead": null,
+      "behind": null,
+      "unpublished_vs_all_origin": 0,
+      "category": "new_plan_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "experiment/p0-fixed-budget-20261001",
+      "head": "1dd6a227541dd3fc5d990ed277bc9c8908b36ce9",
+      "upstream": "origin/experiment/p0-fixed-budget-20261001",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "experiment/p1-drift-decomposition-20261004",
+      "head": "244fa7b0955c4cf03e23953e3a184cb39f6b2be9",
+      "upstream": null,
+      "ahead": null,
+      "behind": null,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "experiment/p1-mapping-endpoint-20261004",
+      "head": "244fa7b0955c4cf03e23953e3a184cb39f6b2be9",
+      "upstream": null,
+      "ahead": null,
+      "behind": null,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "experiment/p1-pg-representation-20261004",
+      "head": "244fa7b0955c4cf03e23953e3a184cb39f6b2be9",
+      "upstream": null,
+      "ahead": null,
+      "behind": null,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "experiment/p1-prediction-drift-20261004",
+      "head": "244fa7b0955c4cf03e23953e3a184cb39f6b2be9",
+      "upstream": null,
+      "ahead": null,
+      "behind": null,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "experiment/p1-source-structural-residual-20261004",
+      "head": "244fa7b0955c4cf03e23953e3a184cb39f6b2be9",
+      "upstream": null,
+      "ahead": null,
+      "behind": null,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "experiment/p1-tail-diagnosis-20261004",
+      "head": "244fa7b0955c4cf03e23953e3a184cb39f6b2be9",
+      "upstream": null,
+      "ahead": null,
+      "behind": null,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "experiment/s1-source-diagnosis-20261006",
+      "head": "8811819d284940f39cddf6ebe57ec2ee4bb645a6",
+      "upstream": "origin/experiment/s1-source-diagnosis-20261006",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "feat/adapt-strategy-search",
+      "head": "be96baba52320e1af5e269f97d047b5a5c88408d",
+      "upstream": "origin/feat/adapt-strategy-search",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "feat/input-mapping-sidecar-preflight",
+      "head": "26c7237374bc8ed786b67375651a0371b278fe39",
+      "upstream": "origin/feat/input-mapping-sidecar-preflight",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "feat/join-structure",
+      "head": "2cfe323e87036bf84c36a7ed0929f13fbee6a497",
+      "upstream": "origin/feat/join-structure",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "feat/mapping-model-gpu-smoke",
+      "head": "244fa7b0955c4cf03e23953e3a184cb39f6b2be9",
+      "upstream": "origin/feat/mapping-model-gpu-smoke",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "feat/precision-screen-20261005",
+      "head": "c20d63e49785560e9b2493db0405db2a4518e92f",
+      "upstream": "origin/feat/precision-screen-20261005",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "feat/precision-screen-execute-20261006",
+      "head": "773e4511d194c0ffb2393c963e3cbdb0d7ac023c",
+      "upstream": "origin/feat/precision-screen-execute-20261006",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "feat/price-fewshot-gpu",
+      "head": "2d99584af7a2c12f8830dd02bb614ebc218b402a",
+      "upstream": "origin/feat/price-fewshot-gpu",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "feat/price-lr-search",
+      "head": "12c2d31cc2b768cdaa818579afae5522b4fe2336",
+      "upstream": "origin/feat/price-lr-search",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "main",
+      "head": "54c502ee074466f123dfcce719c80d4767097e95",
+      "upstream": "origin/main",
+      "ahead": 0,
+      "behind": 0,
+      "unpublished_vs_all_origin": 0,
+      "category": "project_branch",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "worktree-agent-a58ac9bc491fafd68",
+      "head": "e1d6d80fb907260bb0fe1b97f05ba3d3f96d337b",
+      "upstream": null,
+      "ahead": null,
+      "behind": null,
+      "unpublished_vs_all_origin": 0,
+      "category": "agent_worktree",
+      "unpublished_vs_live_origin_heads": 0
+    },
+    {
+      "branch": "worktree-agent-abf1190433d27b5ca",
+      "head": "e1d6d80fb907260bb0fe1b97f05ba3d3f96d337b",
+      "upstream": null,
+      "ahead": null,
+      "behind": null,
+      "unpublished_vs_all_origin": 0,
+      "category": "agent_worktree",
+      "unpublished_vs_live_origin_heads": 0
+    }
+  ],
+  "worktrees": [
+    {
+      "path": "/Users/williamlin/Downloads/13/spatial-meta-ce",
+      "status": "?? \"\\345\\256\\236\\351\\252\\214\\346\\226\\207\\346\\241\\243/16-S2\\346\\272\\220\\350\\256\\255\\347\\273\\203\\346\\233\\235\\345\\205\\211\\344\\270\\216\\346\\256\\213\\345\\267\\256\\347\\233\\221\\347\\235\\243\\345\\210\\206\\345\\270\\203\\350\\257\\212\\346\\226\\255\\346\\226\\271\\346\\241\\210.md\"",
+      "interpretation": "project plan WIP"
+    },
+    {
+      "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/agent-a58ac9bc491fafd68",
+      "status": "?? progress-semantic.json",
+      "interpretation": "agent-generated semantic fragment; excluded from commit/push"
+    },
+    {
+      "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/agent-abf1190433d27b5ca",
+      "status": "?? s1-semantic.json",
+      "interpretation": "agent-generated semantic fragment; excluded from commit/push"
+    }
+  ],
+  "screenshot": {
+    "default_base": "refs/remotes/origin/feat/paired-eval-and-exp-docs",
+    "branch_diff": "399 files changed, 719853 insertions(+), 65 deletions(-)",
+    "matches_plus_minus": true,
+    "interpretation": "cumulative branch changes relative to default base, not uncommitted or unpushed changes"
+  },
+  "actions": {
+    "merge": false,
+    "delete": false,
+    "force_push": false,
+    "push_old_branch_aliases": false,
+    "plan_branch_to_commit_and_push": "docs/s2-source-exposure-plan-20261006"
+  },
+  "training": false,
+  "s2_execution": false,
+  "live_origin_heads_verified_at": "2026-10-06T05:12:11.754356+00:00",
+  "live_origin_heads": {
+    "audit/p1-input-mapping-20261002": "90522679b32193563442f69fadb6e2a0e2accd31",
+    "audit/p1-source-boolean-selectivity-20261005": "5409cd81f323c620bc76db800869e1c7753004d5",
+    "audit/p2-gates-followup-20261005": "4aa6e2b6c097dc41957482e917de514065362326",
+    "audit/p2-source-semantics-20261005": "204a24c3efb7647e633482835615d8df27a8ab54",
+    "docs/offline-data-mainline-20261005": "2143deef2fefbab76f9acbebf91609a7b74a2217",
+    "docs/offline-results-synthesis-20261005": "28b550562f172b66468d7ba57ba71f0e62943733",
+    "docs/p0-source-results-20261001": "06e77c060f69ac958cde7b4003f650916d6b3955",
+    "docs/p2-source-semantics-protocol-20261005": "3356a87e3365b2590883b759f837ad7b2d3ee520",
+    "experiment/p0-fixed-budget-20261001": "1dd6a227541dd3fc5d990ed277bc9c8908b36ce9",
+    "experiment/s1-source-diagnosis-20261006": "8811819d284940f39cddf6ebe57ec2ee4bb645a6",
+    "feat/adapt-strategy-search": "be96baba52320e1af5e269f97d047b5a5c88408d",
+    "feat/input-mapping-sidecar-preflight": "26c7237374bc8ed786b67375651a0371b278fe39",
+    "feat/join-structure": "2cfe323e87036bf84c36a7ed0929f13fbee6a497",
+    "feat/mapping-model-gpu-smoke": "244fa7b0955c4cf03e23953e3a184cb39f6b2be9",
+    "feat/paired-eval-and-exp-docs": "e1d6d80fb907260bb0fe1b97f05ba3d3f96d337b",
+    "feat/precision-screen-20261005": "c20d63e49785560e9b2493db0405db2a4518e92f",
+    "feat/precision-screen-execute-20261006": "773e4511d194c0ffb2393c963e3cbdb0d7ac023c",
+    "feat/price-fewshot-gpu": "2d99584af7a2c12f8830dd02bb614ebc218b402a",
+    "feat/price-lr-search": "12c2d31cc2b768cdaa818579afae5522b4fe2336",
+    "main": "54c502ee074466f123dfcce719c80d4767097e95"
+  },
+  "stale_remote_ref_dependency": false
+}

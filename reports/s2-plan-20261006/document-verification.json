@@ -1,0 +1,20 @@
+{
+  "purpose": "S2 planning-document verification, not dataset replay or experiment",
+  "checked_at": "2026-10-06T05:11:23.402680+00:00",
+  "s2_execution": false,
+  "training": false,
+  "inference": false,
+  "server_connected": false,
+  "document_sha256": {
+    "实验文档/16-S2源训练曝光与残差监督分布诊断方案.md": "ea67591a9ee971182c5cb40377a0a994fada3a110600da3fa6828e409e8bbb4f",
+    "实验文档/99-进度与下一步.md": "350e00bae06c326c1bc35d12f70c6cfa39d0b1921c07793b8d604a8b1cad8929"
+  },
+  "checks": {
+    "local_markdown_targets_exist": true,
+    "utf8_lf": true,
+    "planned_not_execution_state_explicit": true,
+    "replay_constants_match_recorded_source": true,
+    "coefficient_formula_checked_against_training_implementation": true,
+    "sparse_unique_query_and_resource_limits_explicit": true
+  }
+}
