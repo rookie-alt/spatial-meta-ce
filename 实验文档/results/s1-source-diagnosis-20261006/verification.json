@@ -1,0 +1,11 @@
+{
+  "purpose": "independent arithmetic over recorded predictions only",
+  "scalar_and_tail_checks": 282,
+  "input_hashes_verified": 16,
+  "formal_metrics_reproduced": true,
+  "tail_counts_reproduced": true,
+  "sparse_q99_rules_verified": true,
+  "training": false,
+  "inference": false,
+  "target_data_read": false
+}
