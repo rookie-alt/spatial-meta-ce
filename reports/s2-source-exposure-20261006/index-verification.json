@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "status": "rebuilt_verified",
+  "files": 225,
+  "nodes": 3130,
+  "edges": 6850,
+  "source_sha256_verified": true,
+  "semantic_documents": 22,
+  "s2_nodes": 53,
+  "external_valueerror_unverified": true,
+  "evidence_policy": "recorded_not_reexecuted",
+  "not_experiment_execution": true
+}

@@ -1,0 +1,6 @@
+test_ast_unbound_external_symbol_keeps_edges_without_file_hash (test_graph_build.GraphBuildTests.test_ast_unbound_external_symbol_keeps_edges_without_file_hash) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.339s
+
+OK

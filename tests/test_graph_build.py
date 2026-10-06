@@ -159,6 +159,86 @@ class GraphBuildTests(unittest.TestCase):
                 "<html><head></head><body></body></html>", {"nodes": [], "edges": []}
             )
 
+    def test_ast_unbound_external_symbol_keeps_edges_without_file_hash(self):
+        from scripts.build_experiment_graph import ast_fragment
+        from unittest.mock import patch
+
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder).resolve()
+            code = root / "a.py"
+            code.write_text("def example():\n    raise ValueError('fixture')\n")
+            original = {
+                "nodes": [
+                    {
+                        "id": "example",
+                        "label": "example",
+                        "file_type": "code",
+                        "source_file": str(code),
+                        "source_location": "1",
+                    },
+                    {
+                        "id": "valueerror",
+                        "label": "ValueError",
+                        "file_type": "code",
+                        "source_file": "",
+                        "source_location": "",
+                    },
+                ],
+                "edges": [
+                    {
+                        "source": "example",
+                        "target": "valueerror",
+                        "relation": "raises",
+                        "source_file": str(code),
+                        "confidence": "EXTRACTED",
+                        "source_location": "2",
+                    }
+                ],
+            }
+            with patch("graphify.extract.extract", return_value=original):
+                result = ast_fragment(root, [code], root / "graphify-out")
+            external = next(n for n in result["nodes"] if n["label"] == "ValueError")
+            self.assertTrue(external["external_reference"])
+            self.assertIsNone(external["sha256"])
+            self.assertIsNone(external["source_file"])
+            self.assertEqual(external["validation_state"], "external_unverified")
+            self.assertEqual(len(result["edges"]), 1)
+            self.assertEqual(result["edges"][0]["target"], external["id"])
+            self.assertEqual(
+                result["edges"][0]["sha256"],
+                hashlib.sha256(code.read_bytes()).hexdigest(),
+            )
+            from scripts.build_experiment_graph import build
+
+            workspace = Path(__file__).resolve().parents[1]
+            with (
+                tempfile.TemporaryDirectory(dir=workspace) as output,
+                patch("graphify.extract.extract", return_value=original),
+                patch(
+                    "scripts.build_experiment_graph.git_snapshot",
+                    return_value={
+                        "branch": "fixture",
+                        "head": "fixture",
+                        "dirty": True,
+                    },
+                ),
+                patch(
+                    "scripts.experiment_evidence.select_files",
+                    return_value={"code": [code], "document": [], "json": []},
+                ),
+            ):
+                exported = build(root, Path(output), None)
+                self.assertTrue((Path(output) / "graph.html").exists())
+                self.assertTrue(
+                    any(n.get("external_reference") for n in exported["nodes"])
+                )
+            original["nodes"][1]["source_file"] = str(root)
+            with (
+                patch("graphify.extract.extract", return_value=original),
+                self.assertRaises(ValueError),
+            ):
+                ast_fragment(root, [code], root / "graphify-out")
+
     def test_ast_ids_are_portable_between_roots(self):
         from scripts.build_experiment_graph import ast_fragment
 

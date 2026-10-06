@@ -1,0 +1,2652 @@
+{
+  "schema": 1,
+  "purpose": "S2 public source-only exposure and residual supervision diagnosis; not model selection or causal verification",
+  "replay_verified": true,
+  "causal_explanation_verified": false,
+  "training": false,
+  "inference": false,
+  "adaptation": false,
+  "target_data_read": false,
+  "database_count": false,
+  "input_sha256": {
+    "configs/data.json": "a9057d65c7cb220bd21e7cd67dacbc15c0c20dcc87f61d9b3e6470c0ea094d90",
+    "configs/precision_screen.json": "cd401ea8b361c6e8b003ddae24c5a743b9768b04efe52db1503f7346f5ad5112",
+    "实验文档/16-S2源训练曝光与残差监督分布诊断方案.md": "ea67591a9ee971182c5cb40377a0a994fada3a110600da3fa6828e409e8bbb4f",
+    "实验文档/results/precision-screen-20261006/summary.json": "3fd40103ba5ce19c93c3fa7861a5012c902a4237da5ba7502b5add7b04eae78a",
+    "实验文档/results/precision-screen-20261006/status.json": "eb535f744e7006fdbf9c6c031314bbda2936d1a12b6d4d801d791431822fcc99",
+    "实验文档/results/precision-screen-20261006/preflight.json": "3b037edd777a7e39259033b020ffff8015cbb4cd6bd169ab8453b16bc5d8bfe8",
+    "实验文档/results/precision-screen-20261006/verification.json": "d65973e918e1c40321f25850bbaa5cba5699dfb36bab02d5fe4ea36f632bea91",
+    "实验文档/results/s1-source-diagnosis-20261006-verified/summary.json": "d4adf1d1a2908d8093122b1020c8172233ccf19e6d63eb4b52e99da1d06e2199",
+    "实验文档/results/s1-source-diagnosis-20261006-verified/verification.json": "6e28ca3ba3f1a33674835f8a59ee3e79fe4503c4d97c9fa31a67ee03d8f4c7ed",
+    "实验文档/results/s1-source-diagnosis-20261006-verified/strata.csv": "52b29a6542e72dbaa0a7d60d3fe761337efa512638c2d18bff79559cf7c873d6",
+    "artifacts/cache/pretrain/accidents/manifest.json": "ff823dfdc94051780b91ef76c914da20566869c9e3967cb8ab2edf58343493c8",
+    "artifacts/cache/pretrain/accidents/cards.npy": "d83d6b61a164725e27d002838c20a5ffeb118bae46d4dec55e53425b277a295e",
+    "artifacts/cache/pretrain/accidents/offsets.npy": "9a8e987650f56bedd5e9d1ba50fdc2708a53fc56981387b4c0ceb36b011f4b9a",
+    "artifacts/cache/pretrain/airline/manifest.json": "6589e7d1ce5cf600fed5dd66edaa8abaf65d8aa1a2d09bee220183c8a9512784",
+    "artifacts/cache/pretrain/airline/cards.npy": "cfb64e792d8408ed18bbc1816ea1787f07d8b380bb2dab95a6d6a4d274802078",
+    "artifacts/cache/pretrain/airline/offsets.npy": "402b46d9718404efe3d1df0ac955f7fb58dfb307109b42217570e3944ad3d61a",
+    "artifacts/cache/pretrain/baseball/manifest.json": "f350876bc121289364d1cee386dc97bace304721a3e2fa093d11c19c61b78663",
+    "artifacts/cache/pretrain/baseball/cards.npy": "296e50ca9c59ad7b093aaf47e8941d4801fb8f51e765f6e7a2158545d7f3005d",
+    "artifacts/cache/pretrain/baseball/offsets.npy": "88bbd1df94192c00382f53a1ffa74901ff72dae12e6dccd3a0c17f7de4c233a1",
+    "artifacts/cache/pretrain/basketball/manifest.json": "c420cb4d1eee71ead3ade34e984da0383f79b6e8ed94ebe141fb7548e83425fb",
+    "artifacts/cache/pretrain/basketball/cards.npy": "00adac236b23bb8d98cc9605ea2873791693685afa0ae3f4562acba24a973a47",
+    "artifacts/cache/pretrain/basketball/offsets.npy": "b62996411885fcbed1851d322fb233539ad844ed3cb4e6b3d9260b5e90548820",
+    "artifacts/cache/pretrain/carcinogenesis/manifest.json": "498e869ada2f116b16a4965c673d70853dc4a52c97fd1558a855639d3d3b8a8a",
+    "artifacts/cache/pretrain/carcinogenesis/cards.npy": "c354ba3839278a953544ecb8966452929e95b1f6eb1a4bb31f8318cc3e96168d",
+    "artifacts/cache/pretrain/carcinogenesis/offsets.npy": "9682518426e98975b96f0f488dd2619a14b2c502b7db4db30bb27f2e51e2a041",
+    "artifacts/cache/pretrain/ccs/manifest.json": "3f9ae6a5525076144f5022421379e9acf2d0bf912a91c7c08184c57edbe35ca8",
+    "artifacts/cache/pretrain/ccs/cards.npy": "0bcae93f11d1e3fd437d6915eba35bf16530688c127b002a522165279c89f418",
+    "artifacts/cache/pretrain/ccs/offsets.npy": "8c01b196a0b46486a4b1c9e3a747066ebc256caa7445006a9fa50bbe98c3dc42",
+    "artifacts/cache/pretrain/consumer/manifest.json": "0b0a636ba7d76732118dc945f41cec78ae5224c53323ab293f128a3f0a8b581a",
+    "artifacts/cache/pretrain/consumer/cards.npy": "e69f129c80eeb7a495b9c25a4f784314d7fef11fc1b588b88151f3246cde3fb5",
+    "artifacts/cache/pretrain/consumer/offsets.npy": "0985381120cc783323def07a79d6941096bdda763db62711ed33b54cdd48f7e0",
+    "artifacts/cache/pretrain/credit/manifest.json": "f90d8a803685831149d93db11acce01b2dd4e87e83004cecadcaedfd0a0f7fe3",
+    "artifacts/cache/pretrain/credit/cards.npy": "2c070c8f8b48f9796ee287b87220d300bce3a53c93beae0861de006740e4b024",
+    "artifacts/cache/pretrain/credit/offsets.npy": "f5effbb3b84c0f58fe0c60c6b29ecbbb15732fd5d529534e0495ef10ba116ec6",
+    "artifacts/cache/pretrain/employee/manifest.json": "65f521f7bfcfdb10948d00c535448bda0ad74281ebedba9f0c18acba90164f62",
+    "artifacts/cache/pretrain/employee/cards.npy": "265c467b4859407ff187a3bd0e9fd06958de26d63b330d3c5890228dbeaf299b",
+    "artifacts/cache/pretrain/employee/offsets.npy": "6fe5fb1e9083f7b0a5fcc849861146310a0824283921c8266c929478ddb7706a",
+    "artifacts/cache/pretrain/financial/manifest.json": "65876ead6f557da3fce5436d5e50bb713d784778848e73444bc7187be6bb92a8",
+    "artifacts/cache/pretrain/financial/cards.npy": "f9c56c95325996092556efba925385728d2183eefc950062b050226c26b11b3b",
+    "artifacts/cache/pretrain/financial/offsets.npy": "5664ebedeb8e65c603630de52d51da209825dce02edc7effe74e11c28c312248",
+    "artifacts/cache/pretrain/fnhk/manifest.json": "3ee5edd07c8dd9aa85a388464dfbe59a38f3caef12585743daf1b240d9b11144",
+    "artifacts/cache/pretrain/fnhk/cards.npy": "f1955531581ca84da2f43322180dc81948b5d6d769a56cb4ca74e1ada018be05",
+    "artifacts/cache/pretrain/fnhk/offsets.npy": "e04ae3913227a53e2caf53d3a4cbd6caa76312c07d41f0c99fe7b04625e15f44",
+    "artifacts/cache/pretrain/grants/manifest.json": "24c2032c6e7c9acb4365a0125fcdc3cae5f7e6b99c487f642e5cb216609ed5dc",
+    "artifacts/cache/pretrain/grants/cards.npy": "8dd25d48ddfb768694c280d02dac94ff1ed560e9df60c1ef03ea11c91b01f909",
+    "artifacts/cache/pretrain/grants/offsets.npy": "b69e63f1af739bd00dad5e6e3ef6ac1d6696bdb0c66525eed8562dd01eb0bb24",
+    "artifacts/cache/pretrain/hepatitis/manifest.json": "e83a753d466350f365c6c6a6b493f23f9c086dd0018c24722f2215cf483d4e09",
+    "artifacts/cache/pretrain/hepatitis/cards.npy": "68c63cc91f48404c8c184920aa768d29d61cbe5cdd88043bfa2f19c8ba8f2906",
+    "artifacts/cache/pretrain/hepatitis/offsets.npy": "8fd267f5e47437a77bd1df0aba785449973a24e39a10878ea24d4b7a19183e87",
+    "artifacts/cache/pretrain/hockey/manifest.json": "81188aa035bf803d41e1568b47bf68f7f4da65c3acc69255c7d9a3c4d2673ede",
+    "artifacts/cache/pretrain/hockey/cards.npy": "33d5f7c715b14ea5f7b7ca17cc1a990380a7f679702e5091f83eb5139aaeadc3",
+    "artifacts/cache/pretrain/hockey/offsets.npy": "a04d6165694649dd0fbcac09f9ceb79e7f9963f0ef0619f8973b180449a17037",
+    "artifacts/cache/pretrain/movielens/manifest.json": "0e76c11fa83601ecb4c938de42f2eb71a3670e3a729d8a61f5d97b126b36c2f4",
+    "artifacts/cache/pretrain/movielens/cards.npy": "ad6965d936a28dfd670df04c2bf8ae2adff05b9e9fc2c39f5560febcb1faf8d8",
+    "artifacts/cache/pretrain/movielens/offsets.npy": "ec1487b92daec5021a701eafa08aeaa5e5b83f3f428855ee1757ba14fbb5c8b5",
+    "artifacts/cache/pretrain/sakila/manifest.json": "9a518b7c4b045457f93081106cb506942af8c8dbc775f5a8d43bc92bf129fcb5",
+    "artifacts/cache/pretrain/sakila/cards.npy": "cc54f41ed372b5a9f1b4419e48de533683a5e3c337d945429d855cdf866325c0",
+    "artifacts/cache/pretrain/sakila/offsets.npy": "366f327c620ef81ef9a03acd5945e6be604a7cdee656d993b9cf15b3c17bfd0e",
+    "artifacts/cache/pretrain/sap/manifest.json": "9e12062c46ff20acd7677153f3f21dcabef189017bf5faf710647b536e3288a9",
+    "artifacts/cache/pretrain/sap/cards.npy": "403415761905e7726b59206cb416cfc283a3dd4e60b0e5e4cd96d37ffc8707c0",
+    "artifacts/cache/pretrain/sap/offsets.npy": "b04e881cd077c601897bcd9a6c08fed94610b51e37fe4c3d14d2262a41131a9b",
+    "artifacts/cache/pretrain/seznam/manifest.json": "f8440202f24c5cd2c1a968da575561aabf7fbad4fae37d33e2ad8b37c6282f1f",
+    "artifacts/cache/pretrain/seznam/cards.npy": "f54aafe9c185ac01f1af8931290d540938147a72a2ebc5931f8394947fde07f9",
+    "artifacts/cache/pretrain/seznam/offsets.npy": "61e59e988cddb59d8e5b190e23526046ac7001fb68510405416f7a407b8a3377",
+    "artifacts/cache/pretrain/ssb/manifest.json": "b47234152f17846696b680d723336cb03e999c5a9902bff765a76dbbc4adb942",
+    "artifacts/cache/pretrain/ssb/cards.npy": "d11e9b9b81271a28a3e2227bc6f2b9f1e97dc460e5d02e0be4f51431ce7326f9",
+    "artifacts/cache/pretrain/ssb/offsets.npy": "f7abd5fa82d9380dd6d5afc6c8250698186bf9fab161df81a9a6eb4d003d56cb",
+    "artifacts/cache/pretrain/talkingdata/manifest.json": "bfb7e5e5be00b3400ad91b2459265469f45370d0608ee08d8a8293a6e9202d96",
+    "artifacts/cache/pretrain/talkingdata/cards.npy": "90f1bf1d2adc0b1c1552a9cce788c7c4e18cfa7d2abf0de3d6d1ba7dd9a048c7",
+    "artifacts/cache/pretrain/talkingdata/offsets.npy": "4bbe895dea4e9c13b3e888d42e3f7d75c564361e4130985b54a946a738030a08",
+    "artifacts/cache/pretrain/tournament/manifest.json": "907c45b0be134437de7e654388cd604795cd42434f69b1ed7e3e636b6008ebd9",
+    "artifacts/cache/pretrain/tournament/cards.npy": "572624501b37d8e9f28bb9dfc328042afd832bb79ae64febb46594563a9f0668",
+    "artifacts/cache/pretrain/tournament/offsets.npy": "edd1ad9ddf7e78c24f6140329af97faed8313aca9b9370528d77f60f8b3d4a99",
+    "artifacts/cache/pretrain/tpc_h/manifest.json": "ac4e675c5f07232f453df70a7e082847b9286ecd750e0073469103e83be28760",
+    "artifacts/cache/pretrain/tpc_h/cards.npy": "fb6bad69aad696754fa20fe1158dd0c05aa89aacc34a703c168d6a7c5beb2606",
+    "artifacts/cache/pretrain/tpc_h/offsets.npy": "28ce6f939a0fd02c0eeb621d89fb02fa00be5292f197125e2dcdc8184b5892c0",
+    "artifacts/cache/pretrain/tubepricing/manifest.json": "cb3460d9aefbb3c3e10ed5022185fd9050168eda1dd2a0864a351f6cbc31bc90",
+    "artifacts/cache/pretrain/tubepricing/cards.npy": "e9358398d218aba1df4ba13164baf428cec747764ff76718285b8573188e32a4",
+    "artifacts/cache/pretrain/tubepricing/offsets.npy": "2f8ebe70fb5bbfbccfd873d6a315cd10934d63e24c2c4a81f862e0f8d84fe3a1",
+    "artifacts/cache/pretrain/chembl/manifest.json": "7a936bbe92c1f919bb4a9d8e0276f1cba418f93e1bb0a5595b51cf0c8d837952",
+    "artifacts/cache/pretrain/chembl/cards.npy": "11d638adede17523c34893ca37f8fc13c728c01af2146991f58034a670adbd44",
+    "artifacts/cache/pretrain/chembl/offsets.npy": "a401fdb739eedc1902faed45b5e068d33b4c262bc5aa7b7a3425be6071f19765",
+    "artifacts/cache/pretrain/legalacts/manifest.json": "a87b4ceb61d687f0f0525ea763422b4b8f29cad4bb56b664ee6d305f40e7d225",
+    "artifacts/cache/pretrain/legalacts/cards.npy": "13a9afe2b62e5c6697367993e4ded72d1a025ee26b425b8c04446e10aba76dd3",
+    "artifacts/cache/pretrain/legalacts/offsets.npy": "67aa46828a9dcfb2a9f1335c11f8658882333025ea394a17d863f249f50c9144",
+    "artifacts/cache/pretrain/telstra/manifest.json": "3df79cbd9b0913d1cb8d6f7b0b58eca8bf9ef7094f2048657ade2fc49c8ec144",
+    "artifacts/cache/pretrain/telstra/cards.npy": "c15f05bdb013320516f0ead9fbef0b776870e061d930847e3833014c47ef291a",
+    "artifacts/cache/pretrain/telstra/offsets.npy": "9f1d6fd6d8cda47162da4592acf3486a3bcf6448813a610758db33c9643f77e6"
+  },
+  "code_sha256": {
+    "scripts/run_s2_diagnosis.py": "ebd27feb784a71032fcf58042deace5163334ded676f96b5413480c3d62e2f24",
+    "scripts/s2_source_replay.py": "d43672471f8bb5fed740071a4bd8a69e3dd8c45824e2d44ad0cb731aed2dac0a",
+    "scripts/s2_exposure_stats.py": "b488a1668d419231432bfd5addcd135344fc4edd24b9e44cf6b27687215e92d3",
+    "scripts/s2_verify.py": "111c40bec9c08525da057684da4c634bc919c52641ceaf1c37f75baaa18d27fe",
+    "scripts/run_s1_diagnosis.py": "dec92951af79b3bb87bebe6affa08bc441e99d8521a73798180cf14d5412c4ef"
+  },
+  "sample_plan_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+  "prefixes": {
+    "1000": {
+      "digest": "3d5e4c482e6ba18850d8ae658fc923bffbad0952a3e8fab74a9b192c2cdde0e4",
+      "episodes": 4000,
+      "presentations": 403725,
+      "support_role_presentations": 147725,
+      "query_role_presentations": 256000,
+      "nominal_mass": 1000.0
+    },
+    "2000": {
+      "digest": "f9f7a52aed9f6fb87856de495b42e649c75913a201f868fc6dd8e3c0fce9348f",
+      "episodes": 8000,
+      "presentations": 811505,
+      "support_role_presentations": 299505,
+      "query_role_presentations": 512000,
+      "nominal_mass": 2000.0
+    },
+    "4000": {
+      "digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+      "episodes": 16000,
+      "presentations": 1621915,
+      "support_role_presentations": 597915,
+      "query_role_presentations": 1024000,
+      "nominal_mass": 4000.0
+    }
+  },
+  "source_pool": {
+    "accidents": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "airline": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "baseball": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "basketball": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "carcinogenesis": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "ccs": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "consumer": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "credit": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "employee": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "financial": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "fnhk": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "grants": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "hepatitis": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "hockey": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "movielens": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "sakila": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "sap": {
+      "raw_rows": 50000,
+      "unique_queries": 29714,
+      "duplicates": 20286
+    },
+    "seznam": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "ssb": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "talkingdata": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "tournament": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "tpc_h": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "tubepricing": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "chembl": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    },
+    "legalacts": {
+      "raw_rows": 50000,
+      "unique_queries": 49504,
+      "duplicates": 496
+    },
+    "telstra": {
+      "raw_rows": 50000,
+      "unique_queries": 50000,
+      "duplicates": 0
+    }
+  },
+  "distribution_summary": {
+    "prefixes": {
+      "1000": {
+        "accidents": {
+          "episodes": 166,
+          "k_counts": {
+            "5": 36,
+            "10": 32,
+            "20": 35,
+            "50": 31,
+            "100": 32
+          },
+          "repeat_counts": {
+            "0": 35911,
+            "1": 11837,
+            "2": 2027,
+            "3-5": 225,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.71822,
+            "1": 0.23674,
+            "2": 0.04054,
+            "3-5": 0.0045,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 4.0
+          }
+        },
+        "airline": {
+          "episodes": 187,
+          "k_counts": {
+            "5": 39,
+            "10": 38,
+            "20": 38,
+            "50": 34,
+            "100": 38
+          },
+          "repeat_counts": {
+            "0": 34312,
+            "1": 12944,
+            "2": 2413,
+            "3-5": 331,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.68624,
+            "1": 0.25888,
+            "2": 0.04826,
+            "3-5": 0.00662,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "baseball": {
+          "episodes": 191,
+          "k_counts": {
+            "5": 42,
+            "10": 38,
+            "20": 40,
+            "50": 38,
+            "100": 33
+          },
+          "repeat_counts": {
+            "0": 34345,
+            "1": 12857,
+            "2": 2470,
+            "3-5": 328,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.6869,
+            "1": 0.25714,
+            "2": 0.0494,
+            "3-5": 0.00656,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "basketball": {
+          "episodes": 187,
+          "k_counts": {
+            "5": 37,
+            "10": 45,
+            "20": 40,
+            "50": 39,
+            "100": 26
+          },
+          "repeat_counts": {
+            "0": 34840,
+            "1": 12680,
+            "2": 2190,
+            "3-5": 290,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.6968,
+            "1": 0.2536,
+            "2": 0.0438,
+            "3-5": 0.0058,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "carcinogenesis": {
+          "episodes": 153,
+          "k_counts": {
+            "5": 28,
+            "10": 29,
+            "20": 34,
+            "50": 31,
+            "100": 31
+          },
+          "repeat_counts": {
+            "0": 36569,
+            "1": 11500,
+            "2": 1753,
+            "3-5": 178,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.73138,
+            "1": 0.23,
+            "2": 0.03506,
+            "3-5": 0.00356,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "ccs": {
+          "episodes": 188,
+          "k_counts": {
+            "5": 43,
+            "10": 34,
+            "20": 45,
+            "50": 34,
+            "100": 32
+          },
+          "repeat_counts": {
+            "0": 34574,
+            "1": 12782,
+            "2": 2353,
+            "3-5": 291,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.69148,
+            "1": 0.25564,
+            "2": 0.04706,
+            "3-5": 0.00582,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "consumer": {
+          "episodes": 185,
+          "k_counts": {
+            "5": 39,
+            "10": 38,
+            "20": 35,
+            "50": 38,
+            "100": 35
+          },
+          "repeat_counts": {
+            "0": 34527,
+            "1": 12762,
+            "2": 2416,
+            "3-5": 295,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.69054,
+            "1": 0.25524,
+            "2": 0.04832,
+            "3-5": 0.0059,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 4.0
+          }
+        },
+        "credit": {
+          "episodes": 192,
+          "k_counts": {
+            "5": 42,
+            "10": 32,
+            "20": 34,
+            "50": 42,
+            "100": 42
+          },
+          "repeat_counts": {
+            "0": 33587,
+            "1": 13430,
+            "2": 2604,
+            "3-5": 379,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.67174,
+            "1": 0.2686,
+            "2": 0.05208,
+            "3-5": 0.00758,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "employee": {
+          "episodes": 176,
+          "k_counts": {
+            "5": 30,
+            "10": 43,
+            "20": 38,
+            "50": 30,
+            "100": 35
+          },
+          "repeat_counts": {
+            "0": 35133,
+            "1": 12413,
+            "2": 2199,
+            "3-5": 255,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.70266,
+            "1": 0.24826,
+            "2": 0.04398,
+            "3-5": 0.0051,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "financial": {
+          "episodes": 176,
+          "k_counts": {
+            "5": 32,
+            "10": 39,
+            "20": 48,
+            "50": 23,
+            "100": 34
+          },
+          "repeat_counts": {
+            "0": 35409,
+            "1": 12161,
+            "2": 2156,
+            "3-5": 274,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.70818,
+            "1": 0.24322,
+            "2": 0.04312,
+            "3-5": 0.00548,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "fnhk": {
+          "episodes": 155,
+          "k_counts": {
+            "5": 33,
+            "10": 29,
+            "20": 29,
+            "50": 21,
+            "100": 43
+          },
+          "repeat_counts": {
+            "0": 36043,
+            "1": 11840,
+            "2": 1905,
+            "3-5": 212,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.72086,
+            "1": 0.2368,
+            "2": 0.0381,
+            "3-5": 0.00424,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "grants": {
+          "episodes": 162,
+          "k_counts": {
+            "5": 28,
+            "10": 35,
+            "20": 32,
+            "50": 27,
+            "100": 40
+          },
+          "repeat_counts": {
+            "0": 35709,
+            "1": 12025,
+            "2": 1994,
+            "3-5": 272,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.71418,
+            "1": 0.2405,
+            "2": 0.03988,
+            "3-5": 0.00544,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "hepatitis": {
+          "episodes": 172,
+          "k_counts": {
+            "5": 37,
+            "10": 31,
+            "20": 35,
+            "50": 39,
+            "100": 30
+          },
+          "repeat_counts": {
+            "0": 35509,
+            "1": 12131,
+            "2": 2094,
+            "3-5": 266,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.71018,
+            "1": 0.24262,
+            "2": 0.04188,
+            "3-5": 0.00532,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "hockey": {
+          "episodes": 173,
+          "k_counts": {
+            "5": 35,
+            "10": 32,
+            "20": 37,
+            "50": 28,
+            "100": 41
+          },
+          "repeat_counts": {
+            "0": 35025,
+            "1": 12472,
+            "2": 2196,
+            "3-5": 307,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.7005,
+            "1": 0.24944,
+            "2": 0.04392,
+            "3-5": 0.00614,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 4.0
+          }
+        },
+        "movielens": {
+          "episodes": 163,
+          "k_counts": {
+            "5": 36,
+            "10": 28,
+            "20": 26,
+            "50": 35,
+            "100": 38
+          },
+          "repeat_counts": {
+            "0": 35603,
+            "1": 12094,
+            "2": 2065,
+            "3-5": 238,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.71206,
+            "1": 0.24188,
+            "2": 0.0413,
+            "3-5": 0.00476,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "sakila": {
+          "episodes": 194,
+          "k_counts": {
+            "5": 31,
+            "10": 27,
+            "20": 42,
+            "50": 46,
+            "100": 48
+          },
+          "repeat_counts": {
+            "0": 32967,
+            "1": 13730,
+            "2": 2897,
+            "3-5": 406,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.65934,
+            "1": 0.2746,
+            "2": 0.05794,
+            "3-5": 0.00812,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "sap": {
+          "episodes": 170,
+          "k_counts": {
+            "5": 37,
+            "10": 28,
+            "20": 35,
+            "50": 32,
+            "100": 38
+          },
+          "repeat_counts": {
+            "0": 16487,
+            "1": 9789,
+            "2": 2766,
+            "3-5": 669,
+            "6-10": 3,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.5548562966951606,
+            "1": 0.3294406676987279,
+            "2": 0.09308743353301474,
+            "3-5": 0.02251463956384196,
+            "6-10": 0.00010096250925489668,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "seznam": {
+          "episodes": 167,
+          "k_counts": {
+            "5": 35,
+            "10": 41,
+            "20": 31,
+            "50": 26,
+            "100": 34
+          },
+          "repeat_counts": {
+            "0": 35929,
+            "1": 11816,
+            "2": 2007,
+            "3-5": 248,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.71858,
+            "1": 0.23632,
+            "2": 0.04014,
+            "3-5": 0.00496,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "ssb": {
+          "episodes": 160,
+          "k_counts": {
+            "5": 33,
+            "10": 25,
+            "20": 39,
+            "50": 35,
+            "100": 28
+          },
+          "repeat_counts": {
+            "0": 36272,
+            "1": 11693,
+            "2": 1829,
+            "3-5": 206,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.72544,
+            "1": 0.23386,
+            "2": 0.03658,
+            "3-5": 0.00412,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "talkingdata": {
+          "episodes": 192,
+          "k_counts": {
+            "5": 47,
+            "10": 36,
+            "20": 41,
+            "50": 27,
+            "100": 41
+          },
+          "repeat_counts": {
+            "0": 34091,
+            "1": 13056,
+            "2": 2498,
+            "3-5": 355,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.68182,
+            "1": 0.26112,
+            "2": 0.04996,
+            "3-5": 0.0071,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "tournament": {
+          "episodes": 155,
+          "k_counts": {
+            "5": 29,
+            "10": 32,
+            "20": 32,
+            "50": 25,
+            "100": 37
+          },
+          "repeat_counts": {
+            "0": 36303,
+            "1": 11627,
+            "2": 1876,
+            "3-5": 194,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.72606,
+            "1": 0.23254,
+            "2": 0.03752,
+            "3-5": 0.00388,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "tpc_h": {
+          "episodes": 145,
+          "k_counts": {
+            "5": 26,
+            "10": 39,
+            "20": 27,
+            "50": 29,
+            "100": 24
+          },
+          "repeat_counts": {
+            "0": 37648,
+            "1": 10670,
+            "2": 1535,
+            "3-5": 147,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.75296,
+            "1": 0.2134,
+            "2": 0.0307,
+            "3-5": 0.00294,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 5.0
+          }
+        },
+        "tubepricing": {
+          "episodes": 191,
+          "k_counts": {
+            "5": 40,
+            "10": 38,
+            "20": 40,
+            "50": 34,
+            "100": 39
+          },
+          "repeat_counts": {
+            "0": 34011,
+            "1": 13155,
+            "2": 2489,
+            "3-5": 345,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.68022,
+            "1": 0.2631,
+            "2": 0.04978,
+            "3-5": 0.0069,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 1.0,
+            "max": 4.0
+          }
+        }
+      },
+      "2000": {
+        "accidents": {
+          "episodes": 342,
+          "k_counts": {
+            "5": 67,
+            "10": 62,
+            "20": 73,
+            "50": 61,
+            "100": 79
+          },
+          "repeat_counts": {
+            "0": 24766,
+            "1": 17352,
+            "2": 6066,
+            "3-5": 1814,
+            "6-10": 2,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.49532,
+            "1": 0.34704,
+            "2": 0.12132,
+            "3-5": 0.03628,
+            "6-10": 4e-05,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 7.0
+          }
+        },
+        "airline": {
+          "episodes": 355,
+          "k_counts": {
+            "5": 69,
+            "10": 74,
+            "20": 72,
+            "50": 60,
+            "100": 80
+          },
+          "repeat_counts": {
+            "0": 24312,
+            "1": 17405,
+            "2": 6377,
+            "3-5": 1901,
+            "6-10": 5,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.48624,
+            "1": 0.3481,
+            "2": 0.12754,
+            "3-5": 0.03802,
+            "6-10": 0.0001,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 7.0
+          }
+        },
+        "baseball": {
+          "episodes": 355,
+          "k_counts": {
+            "5": 78,
+            "10": 76,
+            "20": 67,
+            "50": 76,
+            "100": 58
+          },
+          "repeat_counts": {
+            "0": 24960,
+            "1": 17260,
+            "2": 6104,
+            "3-5": 1673,
+            "6-10": 3,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.4992,
+            "1": 0.3452,
+            "2": 0.12208,
+            "3-5": 0.03346,
+            "6-10": 6e-05,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "basketball": {
+          "episodes": 377,
+          "k_counts": {
+            "5": 77,
+            "10": 83,
+            "20": 71,
+            "50": 77,
+            "100": 69
+          },
+          "repeat_counts": {
+            "0": 23652,
+            "1": 17672,
+            "2": 6634,
+            "3-5": 2033,
+            "6-10": 9,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.47304,
+            "1": 0.35344,
+            "2": 0.13268,
+            "3-5": 0.04066,
+            "6-10": 0.00018,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "carcinogenesis": {
+          "episodes": 317,
+          "k_counts": {
+            "5": 71,
+            "10": 61,
+            "20": 67,
+            "50": 54,
+            "100": 64
+          },
+          "repeat_counts": {
+            "0": 26438,
+            "1": 16957,
+            "2": 5268,
+            "3-5": 1337,
+            "6-10": 0,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.52876,
+            "1": 0.33914,
+            "2": 0.10536,
+            "3-5": 0.02674,
+            "6-10": 0.0,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 2.0,
+            "max": 5.0
+          }
+        },
+        "ccs": {
+          "episodes": 360,
+          "k_counts": {
+            "5": 73,
+            "10": 69,
+            "20": 82,
+            "50": 67,
+            "100": 69
+          },
+          "repeat_counts": {
+            "0": 24314,
+            "1": 17531,
+            "2": 6352,
+            "3-5": 1799,
+            "6-10": 4,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.48628,
+            "1": 0.35062,
+            "2": 0.12704,
+            "3-5": 0.03598,
+            "6-10": 8e-05,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "consumer": {
+          "episodes": 352,
+          "k_counts": {
+            "5": 75,
+            "10": 65,
+            "20": 61,
+            "50": 78,
+            "100": 73
+          },
+          "repeat_counts": {
+            "0": 24353,
+            "1": 17547,
+            "2": 6233,
+            "3-5": 1862,
+            "6-10": 5,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.48706,
+            "1": 0.35094,
+            "2": 0.12466,
+            "3-5": 0.03724,
+            "6-10": 0.0001,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "credit": {
+          "episodes": 365,
+          "k_counts": {
+            "5": 68,
+            "10": 58,
+            "20": 73,
+            "50": 83,
+            "100": 83
+          },
+          "repeat_counts": {
+            "0": 23260,
+            "1": 17868,
+            "2": 6755,
+            "3-5": 2108,
+            "6-10": 9,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.4652,
+            "1": 0.35736,
+            "2": 0.1351,
+            "3-5": 0.04216,
+            "6-10": 0.00018,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 7.0
+          }
+        },
+        "employee": {
+          "episodes": 351,
+          "k_counts": {
+            "5": 68,
+            "10": 78,
+            "20": 76,
+            "50": 59,
+            "100": 70
+          },
+          "repeat_counts": {
+            "0": 24687,
+            "1": 17566,
+            "2": 6066,
+            "3-5": 1673,
+            "6-10": 8,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.49374,
+            "1": 0.35132,
+            "2": 0.12132,
+            "3-5": 0.03346,
+            "6-10": 0.00016,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "financial": {
+          "episodes": 367,
+          "k_counts": {
+            "5": 69,
+            "10": 85,
+            "20": 83,
+            "50": 64,
+            "100": 66
+          },
+          "repeat_counts": {
+            "0": 24349,
+            "1": 17488,
+            "2": 6231,
+            "3-5": 1924,
+            "6-10": 8,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.48698,
+            "1": 0.34976,
+            "2": 0.12462,
+            "3-5": 0.03848,
+            "6-10": 0.00016,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 7.0
+          }
+        },
+        "fnhk": {
+          "episodes": 331,
+          "k_counts": {
+            "5": 63,
+            "10": 70,
+            "20": 57,
+            "50": 53,
+            "100": 88
+          },
+          "repeat_counts": {
+            "0": 24923,
+            "1": 17410,
+            "2": 5947,
+            "3-5": 1714,
+            "6-10": 6,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.49846,
+            "1": 0.3482,
+            "2": 0.11894,
+            "3-5": 0.03428,
+            "6-10": 0.00012,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "grants": {
+          "episodes": 347,
+          "k_counts": {
+            "5": 72,
+            "10": 69,
+            "20": 59,
+            "50": 62,
+            "100": 85
+          },
+          "repeat_counts": {
+            "0": 24311,
+            "1": 17616,
+            "2": 6180,
+            "3-5": 1887,
+            "6-10": 6,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.48622,
+            "1": 0.35232,
+            "2": 0.1236,
+            "3-5": 0.03774,
+            "6-10": 0.00012,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "hepatitis": {
+          "episodes": 349,
+          "k_counts": {
+            "5": 65,
+            "10": 69,
+            "20": 70,
+            "50": 78,
+            "100": 67
+          },
+          "repeat_counts": {
+            "0": 24716,
+            "1": 17335,
+            "2": 6181,
+            "3-5": 1764,
+            "6-10": 4,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.49432,
+            "1": 0.3467,
+            "2": 0.12362,
+            "3-5": 0.03528,
+            "6-10": 8e-05,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "hockey": {
+          "episodes": 349,
+          "k_counts": {
+            "5": 69,
+            "10": 68,
+            "20": 67,
+            "50": 69,
+            "100": 76
+          },
+          "repeat_counts": {
+            "0": 24417,
+            "1": 17595,
+            "2": 6190,
+            "3-5": 1794,
+            "6-10": 4,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.48834,
+            "1": 0.3519,
+            "2": 0.1238,
+            "3-5": 0.03588,
+            "6-10": 8e-05,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "movielens": {
+          "episodes": 341,
+          "k_counts": {
+            "5": 70,
+            "10": 63,
+            "20": 59,
+            "50": 72,
+            "100": 77
+          },
+          "repeat_counts": {
+            "0": 24664,
+            "1": 17411,
+            "2": 6198,
+            "3-5": 1724,
+            "6-10": 3,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.49328,
+            "1": 0.34822,
+            "2": 0.12396,
+            "3-5": 0.03448,
+            "6-10": 6e-05,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "sakila": {
+          "episodes": 365,
+          "k_counts": {
+            "5": 82,
+            "10": 54,
+            "20": 66,
+            "50": 78,
+            "100": 85
+          },
+          "repeat_counts": {
+            "0": 23306,
+            "1": 17852,
+            "2": 6765,
+            "3-5": 2072,
+            "6-10": 5,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.46612,
+            "1": 0.35704,
+            "2": 0.1353,
+            "3-5": 0.04144,
+            "6-10": 0.0001,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "sap": {
+          "episodes": 352,
+          "k_counts": {
+            "5": 66,
+            "10": 65,
+            "20": 61,
+            "50": 81,
+            "100": 79
+          },
+          "repeat_counts": {
+            "0": 8564,
+            "1": 10760,
+            "2": 6642,
+            "3-5": 3692,
+            "6-10": 56,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.2882143097529784,
+            "1": 0.36211886652756275,
+            "2": 0.22353099549034125,
+            "3-5": 0.12425119472302619,
+            "6-10": 0.0018846335060914048,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "seznam": {
+          "episodes": 343,
+          "k_counts": {
+            "5": 68,
+            "10": 83,
+            "20": 66,
+            "50": 64,
+            "100": 62
+          },
+          "repeat_counts": {
+            "0": 25491,
+            "1": 17113,
+            "2": 5781,
+            "3-5": 1612,
+            "6-10": 3,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.50982,
+            "1": 0.34226,
+            "2": 0.11562,
+            "3-5": 0.03224,
+            "6-10": 6e-05,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 2.0,
+            "max": 7.0
+          }
+        },
+        "ssb": {
+          "episodes": 326,
+          "k_counts": {
+            "5": 69,
+            "10": 67,
+            "20": 74,
+            "50": 58,
+            "100": 58
+          },
+          "repeat_counts": {
+            "0": 26228,
+            "1": 17043,
+            "2": 5402,
+            "3-5": 1323,
+            "6-10": 4,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.52456,
+            "1": 0.34086,
+            "2": 0.10804,
+            "3-5": 0.02646,
+            "6-10": 8e-05,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 2.0,
+            "max": 7.0
+          }
+        },
+        "talkingdata": {
+          "episodes": 352,
+          "k_counts": {
+            "5": 82,
+            "10": 71,
+            "20": 69,
+            "50": 53,
+            "100": 77
+          },
+          "repeat_counts": {
+            "0": 24586,
+            "1": 17537,
+            "2": 6151,
+            "3-5": 1724,
+            "6-10": 2,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.49172,
+            "1": 0.35074,
+            "2": 0.12302,
+            "3-5": 0.03448,
+            "6-10": 4e-05,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "tournament": {
+          "episodes": 313,
+          "k_counts": {
+            "5": 61,
+            "10": 69,
+            "20": 67,
+            "50": 48,
+            "100": 68
+          },
+          "repeat_counts": {
+            "0": 26559,
+            "1": 16814,
+            "2": 5337,
+            "3-5": 1288,
+            "6-10": 2,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.53118,
+            "1": 0.33628,
+            "2": 0.10674,
+            "3-5": 0.02576,
+            "6-10": 4e-05,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "tpc_h": {
+          "episodes": 326,
+          "k_counts": {
+            "5": 58,
+            "10": 71,
+            "20": 57,
+            "50": 70,
+            "100": 70
+          },
+          "repeat_counts": {
+            "0": 25568,
+            "1": 17136,
+            "2": 5789,
+            "3-5": 1502,
+            "6-10": 5,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.51136,
+            "1": 0.34272,
+            "2": 0.11578,
+            "3-5": 0.03004,
+            "6-10": 0.0001,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 0.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        },
+        "tubepricing": {
+          "episodes": 365,
+          "k_counts": {
+            "5": 79,
+            "10": 72,
+            "20": 75,
+            "50": 70,
+            "100": 69
+          },
+          "repeat_counts": {
+            "0": 24046,
+            "1": 17685,
+            "2": 6463,
+            "3-5": 1802,
+            "6-10": 4,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.48092,
+            "1": 0.3537,
+            "2": 0.12926,
+            "3-5": 0.03604,
+            "6-10": 8e-05,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 2.0,
+            "max": 6.0
+          }
+        }
+      },
+      "4000": {
+        "accidents": {
+          "episodes": 694,
+          "k_counts": {
+            "5": 142,
+            "10": 130,
+            "20": 150,
+            "50": 122,
+            "100": 150
+          },
+          "repeat_counts": {
+            "0": 12170,
+            "1": 17245,
+            "2": 12114,
+            "3-5": 8318,
+            "6-10": 153,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.2434,
+            "1": 0.3449,
+            "2": 0.24228,
+            "3-5": 0.16636,
+            "6-10": 0.00306,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "airline": {
+          "episodes": 682,
+          "k_counts": {
+            "5": 151,
+            "10": 134,
+            "20": 130,
+            "50": 124,
+            "100": 143
+          },
+          "repeat_counts": {
+            "0": 12662,
+            "1": 17279,
+            "2": 12001,
+            "3-5": 7911,
+            "6-10": 147,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.25324,
+            "1": 0.34558,
+            "2": 0.24002,
+            "3-5": 0.15822,
+            "6-10": 0.00294,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 8.0
+          }
+        },
+        "baseball": {
+          "episodes": 711,
+          "k_counts": {
+            "5": 151,
+            "10": 140,
+            "20": 138,
+            "50": 146,
+            "100": 136
+          },
+          "repeat_counts": {
+            "0": 11916,
+            "1": 17214,
+            "2": 12355,
+            "3-5": 8333,
+            "6-10": 182,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.23832,
+            "1": 0.34428,
+            "2": 0.2471,
+            "3-5": 0.16666,
+            "6-10": 0.00364,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 8.0
+          }
+        },
+        "basketball": {
+          "episodes": 705,
+          "k_counts": {
+            "5": 132,
+            "10": 149,
+            "20": 150,
+            "50": 137,
+            "100": 137
+          },
+          "repeat_counts": {
+            "0": 12168,
+            "1": 17186,
+            "2": 12112,
+            "3-5": 8345,
+            "6-10": 189,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.24336,
+            "1": 0.34372,
+            "2": 0.24224,
+            "3-5": 0.1669,
+            "6-10": 0.00378,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "carcinogenesis": {
+          "episodes": 665,
+          "k_counts": {
+            "5": 142,
+            "10": 128,
+            "20": 136,
+            "50": 117,
+            "100": 142
+          },
+          "repeat_counts": {
+            "0": 12853,
+            "1": 17626,
+            "2": 11974,
+            "3-5": 7421,
+            "6-10": 126,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.25706,
+            "1": 0.35252,
+            "2": 0.23948,
+            "3-5": 0.14842,
+            "6-10": 0.00252,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "ccs": {
+          "episodes": 714,
+          "k_counts": {
+            "5": 160,
+            "10": 137,
+            "20": 149,
+            "50": 130,
+            "100": 138
+          },
+          "repeat_counts": {
+            "0": 12004,
+            "1": 17105,
+            "2": 12303,
+            "3-5": 8453,
+            "6-10": 135,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.24008,
+            "1": 0.3421,
+            "2": 0.24606,
+            "3-5": 0.16906,
+            "6-10": 0.0027,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 8.0
+          }
+        },
+        "consumer": {
+          "episodes": 722,
+          "k_counts": {
+            "5": 151,
+            "10": 141,
+            "20": 135,
+            "50": 159,
+            "100": 136
+          },
+          "repeat_counts": {
+            "0": 11738,
+            "1": 16945,
+            "2": 12327,
+            "3-5": 8801,
+            "6-10": 189,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.23476,
+            "1": 0.3389,
+            "2": 0.24654,
+            "3-5": 0.17602,
+            "6-10": 0.00378,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "credit": {
+          "episodes": 720,
+          "k_counts": {
+            "5": 139,
+            "10": 138,
+            "20": 139,
+            "50": 146,
+            "100": 158
+          },
+          "repeat_counts": {
+            "0": 11424,
+            "1": 16766,
+            "2": 12471,
+            "3-5": 9115,
+            "6-10": 224,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.22848,
+            "1": 0.33532,
+            "2": 0.24942,
+            "3-5": 0.1823,
+            "6-10": 0.00448,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "employee": {
+          "episodes": 700,
+          "k_counts": {
+            "5": 134,
+            "10": 155,
+            "20": 134,
+            "50": 123,
+            "100": 154
+          },
+          "repeat_counts": {
+            "0": 11910,
+            "1": 17152,
+            "2": 12387,
+            "3-5": 8398,
+            "6-10": 153,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.2382,
+            "1": 0.34304,
+            "2": 0.24774,
+            "3-5": 0.16796,
+            "6-10": 0.00306,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 8.0
+          }
+        },
+        "financial": {
+          "episodes": 697,
+          "k_counts": {
+            "5": 144,
+            "10": 152,
+            "20": 140,
+            "50": 140,
+            "100": 121
+          },
+          "repeat_counts": {
+            "0": 12678,
+            "1": 17391,
+            "2": 11872,
+            "3-5": 7913,
+            "6-10": 146,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.25356,
+            "1": 0.34782,
+            "2": 0.23744,
+            "3-5": 0.15826,
+            "6-10": 0.00292,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "fnhk": {
+          "episodes": 659,
+          "k_counts": {
+            "5": 125,
+            "10": 139,
+            "20": 126,
+            "50": 123,
+            "100": 146
+          },
+          "repeat_counts": {
+            "0": 13032,
+            "1": 17285,
+            "2": 11940,
+            "3-5": 7621,
+            "6-10": 122,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.26064,
+            "1": 0.3457,
+            "2": 0.2388,
+            "3-5": 0.15242,
+            "6-10": 0.00244,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 8.0
+          }
+        },
+        "grants": {
+          "episodes": 684,
+          "k_counts": {
+            "5": 142,
+            "10": 128,
+            "20": 133,
+            "50": 134,
+            "100": 147
+          },
+          "repeat_counts": {
+            "0": 12374,
+            "1": 17245,
+            "2": 12091,
+            "3-5": 8129,
+            "6-10": 161,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.24748,
+            "1": 0.3449,
+            "2": 0.24182,
+            "3-5": 0.16258,
+            "6-10": 0.00322,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 8.0
+          }
+        },
+        "hepatitis": {
+          "episodes": 714,
+          "k_counts": {
+            "5": 137,
+            "10": 135,
+            "20": 147,
+            "50": 153,
+            "100": 142
+          },
+          "repeat_counts": {
+            "0": 11733,
+            "1": 16992,
+            "2": 12334,
+            "3-5": 8745,
+            "6-10": 196,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.23466,
+            "1": 0.33984,
+            "2": 0.24668,
+            "3-5": 0.1749,
+            "6-10": 0.00392,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "hockey": {
+          "episodes": 661,
+          "k_counts": {
+            "5": 132,
+            "10": 131,
+            "20": 118,
+            "50": 129,
+            "100": 151
+          },
+          "repeat_counts": {
+            "0": 12753,
+            "1": 17506,
+            "2": 11834,
+            "3-5": 7790,
+            "6-10": 117,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.25506,
+            "1": 0.35012,
+            "2": 0.23668,
+            "3-5": 0.1558,
+            "6-10": 0.00234,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 8.0
+          }
+        },
+        "movielens": {
+          "episodes": 715,
+          "k_counts": {
+            "5": 145,
+            "10": 125,
+            "20": 127,
+            "50": 159,
+            "100": 159
+          },
+          "repeat_counts": {
+            "0": 11238,
+            "1": 16925,
+            "2": 12549,
+            "3-5": 9090,
+            "6-10": 198,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.22476,
+            "1": 0.3385,
+            "2": 0.25098,
+            "3-5": 0.1818,
+            "6-10": 0.00396,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "sakila": {
+          "episodes": 727,
+          "k_counts": {
+            "5": 156,
+            "10": 119,
+            "20": 141,
+            "50": 145,
+            "100": 166
+          },
+          "repeat_counts": {
+            "0": 11089,
+            "1": 16705,
+            "2": 12625,
+            "3-5": 9353,
+            "6-10": 228,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.22178,
+            "1": 0.3341,
+            "2": 0.2525,
+            "3-5": 0.18706,
+            "6-10": 0.00456,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "sap": {
+          "episodes": 691,
+          "k_counts": {
+            "5": 121,
+            "10": 137,
+            "20": 141,
+            "50": 153,
+            "100": 139
+          },
+          "repeat_counts": {
+            "0": 2603,
+            "1": 6646,
+            "2": 7984,
+            "3-5": 11482,
+            "6-10": 999,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.08760180386349868,
+            "1": 0.22366561216934777,
+            "2": 0.2686948912970317,
+            "3-5": 0.38641717708824125,
+            "6-10": 0.033620515581880596,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 1.0,
+            "median": 2.0,
+            "p90": 4.0,
+            "max": 10.0
+          }
+        },
+        "seznam": {
+          "episodes": 724,
+          "k_counts": {
+            "5": 135,
+            "10": 179,
+            "20": 133,
+            "50": 131,
+            "100": 146
+          },
+          "repeat_counts": {
+            "0": 11730,
+            "1": 16934,
+            "2": 12416,
+            "3-5": 8724,
+            "6-10": 196,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.2346,
+            "1": 0.33868,
+            "2": 0.24832,
+            "3-5": 0.17448,
+            "6-10": 0.00392,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 8.0
+          }
+        },
+        "ssb": {
+          "episodes": 677,
+          "k_counts": {
+            "5": 127,
+            "10": 143,
+            "20": 147,
+            "50": 123,
+            "100": 137
+          },
+          "repeat_counts": {
+            "0": 12721,
+            "1": 17389,
+            "2": 12102,
+            "3-5": 7665,
+            "6-10": 123,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.25442,
+            "1": 0.34778,
+            "2": 0.24204,
+            "3-5": 0.1533,
+            "6-10": 0.00246,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 8.0
+          }
+        },
+        "talkingdata": {
+          "episodes": 716,
+          "k_counts": {
+            "5": 150,
+            "10": 155,
+            "20": 131,
+            "50": 132,
+            "100": 148
+          },
+          "repeat_counts": {
+            "0": 11758,
+            "1": 17092,
+            "2": 12342,
+            "3-5": 8629,
+            "6-10": 179,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.23516,
+            "1": 0.34184,
+            "2": 0.24684,
+            "3-5": 0.17258,
+            "6-10": 0.00358,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "tournament": {
+          "episodes": 661,
+          "k_counts": {
+            "5": 133,
+            "10": 130,
+            "20": 136,
+            "50": 124,
+            "100": 138
+          },
+          "repeat_counts": {
+            "0": 12994,
+            "1": 17634,
+            "2": 11841,
+            "3-5": 7408,
+            "6-10": 123,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.25988,
+            "1": 0.35268,
+            "2": 0.23682,
+            "3-5": 0.14816,
+            "6-10": 0.00246,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 10.0
+          }
+        },
+        "tpc_h": {
+          "episodes": 657,
+          "k_counts": {
+            "5": 118,
+            "10": 145,
+            "20": 121,
+            "50": 129,
+            "100": 144
+          },
+          "repeat_counts": {
+            "0": 13020,
+            "1": 17471,
+            "2": 11839,
+            "3-5": 7538,
+            "6-10": 132,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.2604,
+            "1": 0.34942,
+            "2": 0.23678,
+            "3-5": 0.15076,
+            "6-10": 0.00264,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 9.0
+          }
+        },
+        "tubepricing": {
+          "episodes": 704,
+          "k_counts": {
+            "5": 156,
+            "10": 148,
+            "20": 134,
+            "50": 129,
+            "100": 137
+          },
+          "repeat_counts": {
+            "0": 12248,
+            "1": 17215,
+            "2": 12273,
+            "3-5": 8098,
+            "6-10": 166,
+            "11+": 0
+          },
+          "repeat_shares": {
+            "0": 0.24496,
+            "1": 0.3443,
+            "2": 0.24546,
+            "3-5": 0.16196,
+            "6-10": 0.00332,
+            "11+": 0.0
+          },
+          "repeat_quantile_method": "linear",
+          "repeat_quantiles": {
+            "min": 0.0,
+            "p10": 0.0,
+            "median": 1.0,
+            "p90": 3.0,
+            "max": 8.0
+          }
+        }
+      }
+    },
+    "minimum_unique": 200,
+    "weighted_quantiles": "inverse_ecdf",
+    "unweighted_quantiles": "linear"
+  },
+  "definitions": {
+    "nominal_mass": "1/[4*(K+64)] per presentation, not actual gradient contribution",
+    "support_counter": "Historical ERM support_presentations=0; support-role rows are supervised in merged query counter",
+    "r_ref": "FP64 log(max(true,1))-log(max(pg,1))",
+    "r_fp32": "Each FP64 log separately cast FP32 then promoted and subtracted",
+    "pg_direction": "FP64 r_ref positive/negative/zero only",
+    "sparse": "<200 pool or sampled distinct unique queries: counts/mass only",
+    "weighted_quantiles": "inverse weighted empirical CDF; unweighted: NumPy linear",
+    "directory_trust": "Input and output directories must not be concurrently modified; hashes do not defend against same-privilege malicious replacement"
+  },
+  "runtime": {
+    "python": "3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]",
+    "numpy": "1.26.1",
+    "seconds": 110.1169473240152,
+    "peak_rss_kib_linux": 559988,
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "cuda_visible_devices": "",
+    "memory_budget_bytes": 4294967296,
+    "timeout_seconds": 1800
+  },
+  "completed_at": "2026-10-06T06:11:43.441832+00:00"
+}

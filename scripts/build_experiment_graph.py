@@ -244,6 +244,8 @@ def ast_fragment(root: Path, paths: list[Path], out: Path) -> dict:
         result = path if path.is_absolute() else root / path
         if not result.resolve().is_relative_to(root.resolve()):
             raise ValueError("AST source outside root")
+        if not result.is_file():
+            raise ValueError("AST source must be a file")
         return result
 
     mapping = {
@@ -251,7 +253,9 @@ def ast_fragment(root: Path, paths: list[Path], out: Path) -> dict:
         + hashlib.sha256(
             json.dumps(
                 [
-                    str(resolve_source(n["source_file"]).relative_to(root)),
+                    str(resolve_source(n["source_file"]).relative_to(root))
+                    if n.get("source_file")
+                    else None,
                     n.get("label"),
                     n.get("source_location"),
                 ]
@@ -266,9 +270,16 @@ def ast_fragment(root: Path, paths: list[Path], out: Path) -> dict:
         dict(
             n,
             id=mapping[n["id"]],
-            source_file=str(resolve_source(n["source_file"]).relative_to(root)),
-            sha256=digest(resolve_source(n["source_file"])),
-            validation_state="static_not_executed",
+            source_file=str(resolve_source(n["source_file"]).relative_to(root))
+            if n.get("source_file")
+            else None,
+            sha256=digest(resolve_source(n["source_file"]))
+            if n.get("source_file")
+            else None,
+            external_reference=not bool(n.get("source_file")),
+            validation_state="static_not_executed"
+            if n.get("source_file")
+            else "external_unverified",
         )
         for n in original["nodes"]
     ]
@@ -365,7 +376,8 @@ def label_communities(graph: Any, communities: dict) -> dict:
             for n in members
         )
         sources = Counter(
-            graph.nodes[n].get("source_file", "").split("/")[0] for n in members
+            (graph.nodes[n].get("source_file") or "external").split("/")[0]
+            for n in members
         )
         labels[cid] = (
             f"{sources.most_common(1)[0][0]} / {kinds.most_common(1)[0][0]} {cid}"
