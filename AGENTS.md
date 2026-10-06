@@ -89,10 +89,12 @@ ssh myserver 'cd /gly/weilin/spatial-meta-ce && PYTHONDONTWRITEBYTECODE=1 CUDA_V
 
 详见 [graphify 项目记忆](memory/spatial-meta-ce-graphify.md)。
 
-- 实验/结果问题优先使用 hash 绑定的证据索引；检查与当前文件的绑定是否有效。
+- **默认不运行 graphify**，日常问答、代码/文档修改、实验收尾和提交不要求图谱查询、语义提取或重建，直接核对原始协议、代码、结果 JSON/CSV 与 Git。
+- 用户明确要求时使用；确需跨文档关系梳理或论文集中整理时，先说明价值、范围与耗时并获用户确认。保留工具和已有产物，不自动更新或卸载。
+- 按需使用已有索引前检查来源覆盖及 hash；缺失或过期回到原始来源，不擅自重建。
 - `experiment_graph.json`、`manifest.json`、`semantic.json` 由 `scripts/build_experiment_graph.py` 消费或生成。
 - graphify 实体图与证据索引的部分输出同名，后运行者会覆盖；不能把两种图的口径混用。
-- 重要文档或结果更新后，先刷新受影响 Markdown 的语义及 SHA256 绑定，再整体重建证据索引。
+- 获准重建时，先重新提取变化 Markdown 的语义并绑定 SHA256，再整体重建证据索引；普通文档或结果更新不自动触发。
 - 不用 `graphify --update` 更新证据索引；它会留下过时证据。记忆中的历史节点数和耗时不是当前实测。
 - 共享工作区或侧对话仅新增记忆文件时，不擅自重建、覆盖主任务正在使用的生成索引；把待刷新事项交给主执行任务。
 

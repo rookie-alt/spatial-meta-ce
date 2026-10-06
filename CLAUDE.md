@@ -66,7 +66,9 @@ python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic
 - token 计数是 UTF-8/4 估算，**不是模型 tokenizer 实测**，报告里不能写成实测值。
 - 输出落在 `graphify-out/`（约 14 MB，生成物，不提交）。预览用 `.claude/launch.json` 里的 `experiment-graph` 配置（`http.server 8777` 服务该目录）。
 - 对应测试：`tests/test_experiment_graph.py`、`tests/test_graph_build.py`。
-- **何时更新、如何查询、当前索引规模**：见本机记忆 `spatial-meta-ce-graphify`（不进 git）。两个要点：重要改动后**整体重建**，不要 `graphify --update`（增量只增不删，会留过时证据）；提问前先 `/graphify query` 查索引，别逐个读文件。
+- **默认不运行 graphify**，不把图谱查询、语义提取或重建作为问答、修改、实验收尾或提交的前置步骤；日常直接核对协议、代码、结果 JSON/CSV 和 Git。
+- 用户明确要求图谱时才使用；确需跨文档关系梳理或论文集中整理时，先说明价值、范围与耗时并获用户确认，再重建。保留工具与已有产物，不卸载、不自动更新。
+- 使用已有索引前检查来源覆盖和 SHA256；过期或缺失就回到原始来源，不为回答问题擅自重建。重建时先刷新变化文档的语义，再整体重建，不用 `graphify --update`。详见 [按需图谱规则](memory/spatial-meta-ce-graphify.md)。
 
 ## 常见坑
 
@@ -85,11 +87,11 @@ This project has a graphify knowledge graph at `graphify-out/`. **Two producers 
 
 Rules:
 
-- Before answering architecture or codebase questions, read `graphify-out/GRAPH_REPORT.md` for god nodes and community structure
-- For cross-module "how does X relate to Y" questions, prefer `graphify query "<question>"`, `graphify path "<A>" "<B>"`, or `graphify explain "<concept>"` over grep — these traverse the graph instead of scanning files
-- **After changing experiment results or Markdown**: rebuild the evidence index with
+- Graphify is optional and off by default: no mandatory graph reads, queries, semantic extraction or rebuilds for routine work. Read primary files directly.
+- Use it only at the user's request or after they confirm a justified need, scope and cost. Existing graph files are not authorization to run it.
+- When a rebuild is authorized, re-extract changed Markdown semantics and rebuild the evidence index with
   `python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic graphify-out/semantic.json`
-  It fails closed on stale hashes (`Semantic fragment stale`) — re-extract that file's semantics first.
+  Stale source hashes must fail closed; never relabel stale semantics by updating hashes alone.
 - **Do NOT use `graphify --update` for the evidence index**: incremental only adds and leaves obsolete evidence behind. The script itself says "rebuild rather than graphify --update to remove obsolete evidence."
 - `graphify update .` is AST-only and rebuilds the *entity* graph; running it overwrites `graph.json` from the evidence index. Run it only when you actually want the entity graph back.
 - Detail, measured costs and known pitfalls: local memory `spatial-meta-ce-graphify` (not in git).
