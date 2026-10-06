@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-MAX_FILES = 200
+MAX_FILES = 250
 MAX_WORDS = 2_000_000
 MAX_VIZ_NODES = 5000
 CONFIDENCES = {"EXTRACTED", "INFERRED", "AMBIGUOUS"}

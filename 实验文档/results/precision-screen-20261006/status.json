@@ -1,0 +1,13 @@
+{
+  "status": "completed",
+  "arms": {
+    "A_w64_smooth": "completed",
+    "B_w64_mse": "completed",
+    "C_w128_smooth": "completed",
+    "D_w128_mse": "completed"
+  },
+  "updated_at": "2026-10-05T19:16:01.805883+00:00",
+  "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+  "smoke": false,
+  "seconds": 3723.6618571099825
+}

@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "protocol_sha256": "ccc5d39f4f8acc87e8daeee2cd65c55f05730e42802c6321ca51bfd598a87152",
+  "data_config": "configs/data.json",
+  "source_binding_sha256": "3d708226437e105c88562970fdd0b2ccf711a833105b4ec8c66d899aa61f79a6",
+  "timeout_seconds": 43200,
+  "training": {
+    "method": "erm", "seed": 42, "steps": 4000,
+    "meta_batch": 4, "accumulation": 1, "query_size": 64,
+    "support_sizes": [5, 10, 20, 50, 100],
+    "outer_lr": 0.0003, "inner_lr": 0.001, "inner_steps": 0,
+    "adapt_scope": "all", "validate_every": 100,
+    "validation_runs": 5, "validation_seed": 1729,
+    "patience": 41, "min_delta": 0.0001
+  },
+  "model": {"arch": "sum", "use_pg": true, "layers": 2, "heads": 4},
+  "arms": {
+    "A_w64_smooth": {"width": 64, "loss": "smooth_l1"},
+    "B_w64_mse": {"width": 64, "loss": "mse"},
+    "C_w128_smooth": {"width": 128, "loss": "smooth_l1"},
+    "D_w128_mse": {"width": 128, "loss": "mse"}
+  }
+}

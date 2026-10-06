@@ -1,0 +1,22 @@
+{
+  "result_sha256": {
+    "status.json": "eb535f744e7006fdbf9c6c031314bbda2936d1a12b6d4d801d791431822fcc99",
+    "summary.json": "3fd40103ba5ce19c93c3fa7861a5012c902a4237da5ba7502b5add7b04eae78a",
+    "runs.json": "cded14192195bd965ab72b58d224e528e915c02fc6d378869dc30ecb045e3a6b",
+    "preflight.json": "3b037edd777a7e39259033b020ffff8015cbb4cd6bd169ab8453b16bc5d8bfe8"
+  },
+  "pairing_verified": true,
+  "decision_recomputed": {
+    "decision": "no_candidate",
+    "candidates": [],
+    "baseline": "A_w64_smooth",
+    "primary_improvement": {
+      "A_w64_smooth": 0.0,
+      "B_w64_mse": -0.34471715081232457,
+      "C_w128_smooth": -0.01558709161860694,
+      "D_w128_mse": -0.162380007516308
+    }
+  },
+  "duration_seconds": 3723.6618571099825,
+  "no_target_evaluation": true
+}

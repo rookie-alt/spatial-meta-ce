@@ -1,0 +1,594 @@
+{
+  "purpose": "research-source-only-single-seed",
+  "runs": [
+    {
+      "arm": "A_w64_smooth",
+      "config": {
+        "method": "erm",
+        "seed": 42,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "query_size": 64,
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 0,
+        "adapt_scope": "all",
+        "validate_every": 100,
+        "validation_runs": 5,
+        "validation_seed": 1729,
+        "patience": 41,
+        "min_delta": 0.0001,
+        "model": {
+          "arch": "sum",
+          "use_pg": true,
+          "layers": 2,
+          "heads": 4,
+          "width": 64
+        },
+        "loss": "smooth_l1",
+        "data_config": "configs/data.json",
+        "purpose": "research"
+      },
+      "output": "/gly/weilin/spatial-meta-ce/runs/precision-screen-20261006/A_w64_smooth",
+      "initialization_hash": "41e594b03ef19c56c3f236237da850929f2ec5c919702b44402dd9b2864d284a",
+      "parameters": 132545,
+      "optimizer_steps": 4000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1621915,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "sample_plan_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+      "sample_plan_episodes": 16000,
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "checkpoint_sha256": "398d0142f2015431e488c906a0250a8e2bc97ebce51599381627bb4366d5724b",
+      "endpoint_rows_sha256": "ea5a63537c802922708da4fe3526675cac8fbd2695d41c3be11f81cc1c10a319",
+      "checkpoint_checks": {
+        "roundtrip_exact": true,
+        "optimizer_changed_weights": true,
+        "cpu_device_max_abs_difference": 4.76837158203125e-07,
+        "checkpoint_steps": 4000
+      },
+      "endpoint": {
+        "per_database": {
+          "chembl": {
+            "all_tables": {
+              "queries": 50000,
+              "q50": 2.588865595105742,
+              "q95": 68.23347862000948
+            },
+            "four_plus_tables": {
+              "queries": 33947,
+              "q50": 3.491483791748339,
+              "q95": 104.81765453770367
+            }
+          },
+          "legalacts": {
+            "all_tables": {
+              "queries": 49504,
+              "q50": 1.935083665807848,
+              "q95": 9.712128769340556
+            },
+            "four_plus_tables": {
+              "queries": 9178,
+              "q50": 2.6627645396507873,
+              "q95": 15.67468149584954
+            }
+          },
+          "telstra": {
+            "all_tables": {
+              "queries": 50000,
+              "q50": 1.5798467735976232,
+              "q95": 7.993539317886522
+            },
+            "four_plus_tables": {
+              "queries": 20311,
+              "q50": 2.0055033128447373,
+              "q95": 11.940625323846943
+            }
+          }
+        },
+        "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+        "unique_queries": 149504,
+        "macro_four_plus_q95": 44.14432045246672,
+        "macro_all_table_q95": 28.646382235745516
+      },
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.5733689057584117,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1621915,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 868.1090766459238,
+        "parameters": 132545,
+        "purpose": "research"
+      },
+      "seconds": 910.83953960496,
+      "peak_memory_bytes": 78653952
+    },
+    {
+      "arm": "B_w64_mse",
+      "config": {
+        "method": "erm",
+        "seed": 42,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "query_size": 64,
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 0,
+        "adapt_scope": "all",
+        "validate_every": 100,
+        "validation_runs": 5,
+        "validation_seed": 1729,
+        "patience": 41,
+        "min_delta": 0.0001,
+        "model": {
+          "arch": "sum",
+          "use_pg": true,
+          "layers": 2,
+          "heads": 4,
+          "width": 64
+        },
+        "loss": "mse",
+        "data_config": "configs/data.json",
+        "purpose": "research"
+      },
+      "output": "/gly/weilin/spatial-meta-ce/runs/precision-screen-20261006/B_w64_mse",
+      "initialization_hash": "41e594b03ef19c56c3f236237da850929f2ec5c919702b44402dd9b2864d284a",
+      "parameters": 132545,
+      "optimizer_steps": 4000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1621915,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "sample_plan_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+      "sample_plan_episodes": 16000,
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "checkpoint_sha256": "166471b47b2a53fff2db00997a6fbf23a85ea237d3298cb0ffd997e8faff0369",
+      "endpoint_rows_sha256": "a7b299f67776ae43f8cf3e627b1e0d66deb1a161a62755af458f0873c5f93826",
+      "checkpoint_checks": {
+        "roundtrip_exact": true,
+        "optimizer_changed_weights": true,
+        "cpu_device_max_abs_difference": 9.5367431640625e-07,
+        "checkpoint_steps": 4000
+      },
+      "endpoint": {
+        "per_database": {
+          "chembl": {
+            "all_tables": {
+              "queries": 50000,
+              "q50": 2.7983717190680766,
+              "q95": 89.63896869297541
+            },
+            "four_plus_tables": {
+              "queries": 33947,
+              "q50": 3.8617333408737378,
+              "q95": 147.8113670651535
+            }
+          },
+          "legalacts": {
+            "all_tables": {
+              "queries": 49504,
+              "q50": 2.2385668356959085,
+              "q95": 11.536951187633802
+            },
+            "four_plus_tables": {
+              "queries": 9178,
+              "q50": 2.860890698566257,
+              "q95": 22.40874088006437
+            }
+          },
+          "telstra": {
+            "all_tables": {
+              "queries": 50000,
+              "q50": 1.5676853591255204,
+              "q95": 6.7246209515487685
+            },
+            "four_plus_tables": {
+              "queries": 20311,
+              "q50": 1.8393920886781954,
+              "q95": 7.864766524943946
+            }
+          }
+        },
+        "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+        "unique_queries": 149504,
+        "macro_four_plus_q95": 59.361624823387274,
+        "macro_all_table_q95": 35.96684694405266
+      },
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.552278644485585,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1621915,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 861.0973940498661,
+        "parameters": 132545,
+        "purpose": "research"
+      },
+      "seconds": 904.5139062837698,
+      "peak_memory_bytes": 78653952
+    },
+    {
+      "arm": "C_w128_smooth",
+      "config": {
+        "method": "erm",
+        "seed": 42,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "query_size": 64,
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 0,
+        "adapt_scope": "all",
+        "validate_every": 100,
+        "validation_runs": 5,
+        "validation_seed": 1729,
+        "patience": 41,
+        "min_delta": 0.0001,
+        "model": {
+          "arch": "sum",
+          "use_pg": true,
+          "layers": 2,
+          "heads": 4,
+          "width": 128
+        },
+        "loss": "smooth_l1",
+        "data_config": "configs/data.json",
+        "purpose": "research"
+      },
+      "output": "/gly/weilin/spatial-meta-ce/runs/precision-screen-20261006/C_w128_smooth",
+      "initialization_hash": "e1476a35f21f44afec6dcabab6c388a92a8b4ec5ae1e3a4eb4876cd5478b4f99",
+      "parameters": 288641,
+      "optimizer_steps": 4000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1621915,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "sample_plan_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+      "sample_plan_episodes": 16000,
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "checkpoint_sha256": "7180ce0b491765e0d37ae1c8458c952779f1756eaea96ba247af82d54e4da493",
+      "endpoint_rows_sha256": "7fd1830d9da7e236bd1b6e49956d8973a82eb004b46021a0dcfd2205243a9dd3",
+      "checkpoint_checks": {
+        "roundtrip_exact": true,
+        "optimizer_changed_weights": true,
+        "cpu_device_max_abs_difference": 4.76837158203125e-07,
+        "checkpoint_steps": 4000
+      },
+      "endpoint": {
+        "per_database": {
+          "chembl": {
+            "all_tables": {
+              "queries": 50000,
+              "q50": 2.5565166913294393,
+              "q95": 69.45549218330015
+            },
+            "four_plus_tables": {
+              "queries": 33947,
+              "q50": 3.4469641418561388,
+              "q95": 103.60378814214833
+            }
+          },
+          "legalacts": {
+            "all_tables": {
+              "queries": 49504,
+              "q50": 1.724307408696533,
+              "q95": 9.647862824209785
+            },
+            "four_plus_tables": {
+              "queries": 9178,
+              "q50": 2.67968946181644,
+              "q95": 15.506586496197473
+            }
+          },
+          "telstra": {
+            "all_tables": {
+              "queries": 50000,
+              "q50": 1.6360842059936083,
+              "q95": 9.923360789014858
+            },
+            "four_plus_tables": {
+              "queries": 20311,
+              "q50": 2.231487960868174,
+              "q95": 15.386831421055565
+            }
+          }
+        },
+        "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+        "unique_queries": 149504,
+        "macro_four_plus_q95": 44.83240201980046,
+        "macro_all_table_q95": 29.675571932174932
+      },
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.5456938569013023,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1621915,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 849.1091703670099,
+        "parameters": 288641,
+        "purpose": "research"
+      },
+      "seconds": 890.8480564681813,
+      "peak_memory_bytes": 87642624
+    },
+    {
+      "arm": "D_w128_mse",
+      "config": {
+        "method": "erm",
+        "seed": 42,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "query_size": 64,
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 0,
+        "adapt_scope": "all",
+        "validate_every": 100,
+        "validation_runs": 5,
+        "validation_seed": 1729,
+        "patience": 41,
+        "min_delta": 0.0001,
+        "model": {
+          "arch": "sum",
+          "use_pg": true,
+          "layers": 2,
+          "heads": 4,
+          "width": 128
+        },
+        "loss": "mse",
+        "data_config": "configs/data.json",
+        "purpose": "research"
+      },
+      "output": "/gly/weilin/spatial-meta-ce/runs/precision-screen-20261006/D_w128_mse",
+      "initialization_hash": "e1476a35f21f44afec6dcabab6c388a92a8b4ec5ae1e3a4eb4876cd5478b4f99",
+      "parameters": 288641,
+      "optimizer_steps": 4000,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 1621915,
+        "backward_calls": 16000,
+        "optimizer_steps": 4000
+      },
+      "sample_plan_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+      "sample_plan_episodes": 16000,
+      "validation_plan_hash": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "checkpoint_sha256": "d3447cca6f27730919e32066f382dc8d44df836d497b36bbac408991a38cab05",
+      "endpoint_rows_sha256": "87fead9a93a69c88b49424e3c8a6e9e0557f697184e2fe9f84fbc7649049d7bc",
+      "checkpoint_checks": {
+        "roundtrip_exact": true,
+        "optimizer_changed_weights": true,
+        "cpu_device_max_abs_difference": 4.76837158203125e-07,
+        "checkpoint_steps": 4000
+      },
+      "endpoint": {
+        "per_database": {
+          "chembl": {
+            "all_tables": {
+              "queries": 50000,
+              "q50": 2.795494064213245,
+              "q95": 80.15640078808626
+            },
+            "four_plus_tables": {
+              "queries": 33947,
+              "q50": 3.870186083714671,
+              "q95": 127.79514425885013
+            }
+          },
+          "legalacts": {
+            "all_tables": {
+              "queries": 49504,
+              "q50": 1.9448555846712026,
+              "q95": 9.829952555131456
+            },
+            "four_plus_tables": {
+              "queries": 9178,
+              "q50": 2.713840829881641,
+              "q95": 15.354948087626424
+            }
+          },
+          "telstra": {
+            "all_tables": {
+              "queries": 50000,
+              "q50": 1.6471897556928918,
+              "q95": 8.256372006884478
+            },
+            "four_plus_tables": {
+              "queries": 20311,
+              "q50": 2.0211663900674766,
+              "q95": 10.787334271545173
+            }
+          }
+        },
+        "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+        "unique_queries": 149504,
+        "macro_four_plus_q95": 51.312475539340575,
+        "macro_all_table_q95": 32.74757511670073
+      },
+      "summary": {
+        "last_step": 4000,
+        "best_validation_macro_log_q95": 2.589557445165113,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1621915,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        },
+        "total_seconds": 888.9169930708595,
+        "parameters": 288641,
+        "purpose": "research"
+      },
+      "seconds": 932.2022925689816,
+      "peak_memory_bytes": 87642624
+    }
+  ],
+  "decision": "no_candidate",
+  "candidates": [],
+  "baseline": "A_w64_smooth",
+  "primary_improvement": {
+    "A_w64_smooth": 0.0,
+    "B_w64_mse": -0.34471715081232457,
+    "C_w128_smooth": -0.01558709161860694,
+    "D_w128_mse": -0.162380007516308
+  }
+}

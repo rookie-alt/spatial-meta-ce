@@ -1,0 +1,186 @@
+{
+  "purpose": "read-only independent recorded-row recomputation; no inference or training",
+  "sources_rehashed": 26,
+  "runs": [
+    {
+      "arm": "A_w64_smooth",
+      "rows": 149504,
+      "checkpoint_and_rows_sha256_verified": true,
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.588865595105742,
+            "q95": 68.23347862000948
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.491483791748339,
+            "q95": 104.81765453770367
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.935083665807848,
+            "q95": 9.712128769340556
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.6627645396507873,
+            "q95": 15.67468149584954
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5798467735976232,
+            "q95": 7.993539317886522
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.0055033128447373,
+            "q95": 11.940625323846943
+          }
+        }
+      },
+      "macro_four_plus_q95": 44.14432045246672
+    },
+    {
+      "arm": "B_w64_mse",
+      "rows": 149504,
+      "checkpoint_and_rows_sha256_verified": true,
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.7983717190680766,
+            "q95": 89.63896869297541
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.8617333408737378,
+            "q95": 147.8113670651535
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 2.2385668356959085,
+            "q95": 11.536951187633802
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.860890698566257,
+            "q95": 22.40874088006437
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5676853591255204,
+            "q95": 6.7246209515487685
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.8393920886781954,
+            "q95": 7.864766524943946
+          }
+        }
+      },
+      "macro_four_plus_q95": 59.36162482338727
+    },
+    {
+      "arm": "C_w128_smooth",
+      "rows": 149504,
+      "checkpoint_and_rows_sha256_verified": true,
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.5565166913294393,
+            "q95": 69.45549218330015
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.4469641418561388,
+            "q95": 103.60378814214833
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.724307408696533,
+            "q95": 9.647862824209785
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.67968946181644,
+            "q95": 15.506586496197473
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.6360842059936083,
+            "q95": 9.923360789014858
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.231487960868174,
+            "q95": 15.386831421055565
+          }
+        }
+      },
+      "macro_four_plus_q95": 44.832402019800455
+    },
+    {
+      "arm": "D_w128_mse",
+      "rows": 149504,
+      "checkpoint_and_rows_sha256_verified": true,
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.795494064213245,
+            "q95": 80.15640078808626
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.870186083714671,
+            "q95": 127.79514425885013
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.9448555846712026,
+            "q95": 9.829952555131456
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.713840829881641,
+            "q95": 15.354948087626424
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.6471897556928918,
+            "q95": 8.256372006884478
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.0211663900674766,
+            "q95": 10.787334271545173
+          }
+        }
+      },
+      "macro_four_plus_q95": 51.312475539340575
+    }
+  ]
+}

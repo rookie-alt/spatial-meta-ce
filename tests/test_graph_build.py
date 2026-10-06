@@ -27,7 +27,8 @@ class GraphBuildTests(unittest.TestCase):
             "confidence_score": 1.0,
         }
         fragment = {
-            "nodes": nodes, "edges": [first, dict(first, relation="references"), first]
+            "nodes": nodes,
+            "edges": [first, dict(first, relation="references"), first],
         }
         original = copy.deepcopy(fragment)
         result = merge_fragments([fragment])
@@ -94,9 +95,7 @@ class GraphBuildTests(unittest.TestCase):
 
     def test_rejects_unsafe_semantic_paths_and_invalid_confidence(self):
         with tempfile.TemporaryDirectory() as folder, self.assertRaises(ValueError):
-            validate_semantic(
-                Path(folder), {"source_hashes": {"../x.md": "x"}}, []
-            )
+            validate_semantic(Path(folder), {"source_hashes": {"../x.md": "x"}}, [])
         nodes = [{"id": n, "source_file": "a.md"} for n in ("a", "b")]
         with self.assertRaises(ValueError):
             merge_fragments(
@@ -265,6 +264,34 @@ class GraphBuildTests(unittest.TestCase):
         }
         with self.assertRaisesRegex(ValueError, "Conflicting"):
             merge_fragments([first, second])
+
+    def test_file_limit_allows_206_and_rejects_251_before_output(self):
+        from unittest.mock import patch
+
+        from scripts.build_experiment_graph import build
+
+        workspace = Path(__file__).resolve().parents[1]
+        with (
+            tempfile.TemporaryDirectory() as inputs,
+            tempfile.TemporaryDirectory(dir=workspace) as outputs,
+            patch("scripts.build_experiment_graph.git_snapshot", return_value={}),
+        ):
+            root, parent = Path(inputs), Path(outputs)
+            configs = root / "configs"
+            configs.mkdir()
+            for index in range(206):
+                (configs / f"c{index}.json").write_text('{"seed":42}')
+            out = parent / "accepted"
+            build(root, out, None)
+            self.assertEqual(
+                len(json.loads((out / "manifest.json").read_text())["sources"]), 206
+            )
+            for index in range(206, 251):
+                (configs / f"c{index}.json").write_text('{"seed":42}')
+            rejected = parent / "rejected"
+            with self.assertRaisesRegex(ValueError, "Corpus exceeds limit: 251 files"):
+                build(root, rejected, None)
+            self.assertFalse(rejected.exists())
 
     def test_graph_is_deterministic_and_inputs_are_immutable(self):
         fragment = {
