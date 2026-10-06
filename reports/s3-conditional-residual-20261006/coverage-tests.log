@@ -1,0 +1,43 @@
+test_199_200_threshold_and_exposure_observed (test_s3_conditional_analysis.ConditionalAnalysisTests.test_199_200_threshold_and_exposure_observed) ... ok
+test_empty_common_and_noncommon_are_retained (test_s3_conditional_analysis.ConditionalAnalysisTests.test_empty_common_and_noncommon_are_retained) ... ok
+test_equal_weights_use_full_database_denominators (test_s3_conditional_analysis.ConditionalAnalysisTests.test_equal_weights_use_full_database_denominators) ... ok
+test_full_means_include_noncommon_and_mass_coverage (test_s3_conditional_analysis.ConditionalAnalysisTests.test_full_means_include_noncommon_and_mass_coverage) ... ok
+test_group_segment_sum_handles_empty_and_unsorted_missing_keys (test_s3_conditional_analysis.ConditionalAnalysisTests.test_group_segment_sum_handles_empty_and_unsorted_missing_keys) ... ok
+test_million_fractional_weights_match_independent_fp64_sum (test_s3_conditional_analysis.ConditionalAnalysisTests.test_million_fractional_weights_match_independent_fp64_sum) ... ok
+test_missing_validation_guard (test_s3_conditional_analysis.ConditionalAnalysisTests.test_missing_validation_guard) ... ok
+test_pg_boundaries_and_complete_union (test_s3_conditional_analysis.ConditionalAnalysisTests.test_pg_boundaries_and_complete_union) ... ok
+test_quantiles_directions_and_fp32_definition (test_s3_conditional_analysis.ConditionalAnalysisTests.test_quantiles_directions_and_fp32_definition) ... ok
+test_rejects_invalid_input_and_uses_only_final_prefix (test_s3_conditional_analysis.ConditionalAnalysisTests.test_rejects_invalid_input_and_uses_only_final_prefix) ... ok
+test_signed_cancellation_and_label_independent_conditions_weights (test_s3_conditional_analysis.ConditionalAnalysisTests.test_signed_cancellation_and_label_independent_conditions_weights) ... ok
+test_streams_40_layers_without_mutating_inputs (test_s3_conditional_analysis.ConditionalAnalysisTests.test_streams_40_layers_without_mutating_inputs) ... ok
+test_validation_guard_requires_one_sufficient_individual_cell (test_s3_conditional_analysis.ConditionalAnalysisTests.test_validation_guard_requires_one_sufficient_individual_cell) ... ok
+test_zero_exposure_preserves_pool_database_coverage (test_s3_conditional_analysis.ConditionalAnalysisTests.test_zero_exposure_preserves_pool_database_coverage) ... ok
+test_cleanup_timeout_keeps_original_failure_and_failed_state (test_s3_runner.S3RunnerTests.test_cleanup_timeout_keeps_original_failure_and_failed_state) ... ok
+test_four_counts_first_occurrence_and_conflict (test_s3_runner.S3RunnerTests.test_four_counts_first_occurrence_and_conflict) ... ok
+test_frozen_contract (test_s3_runner.S3RunnerTests.test_frozen_contract) ... ok
+test_import_and_dry_run_no_torch_or_source_reads (test_s3_runner.S3RunnerTests.test_import_and_dry_run_no_torch_or_source_reads) ... ok
+test_launcher_and_alarm (test_s3_runner.S3RunnerTests.test_launcher_and_alarm) ... ok
+test_old_denominators_are_not_silently_changed (test_s3_runner.S3RunnerTests.test_old_denominators_are_not_silently_changed) ... ok
+test_output_paths_no_overwrite_or_symlinks (test_s3_runner.S3RunnerTests.test_output_paths_no_overwrite_or_symlinks) ... ok
+test_positive_old_denominators (test_s3_runner.S3RunnerTests.test_positive_old_denominators) ... ok
+test_success_supervision_verifies_every_byte (test_s3_runner.S3RunnerTests.test_success_supervision_verifies_every_byte) ... ok
+test_supervisor_failure_timeout_and_manifest (test_s3_runner.S3RunnerTests.test_supervisor_failure_timeout_and_manifest) ... ok
+test_synthetic_analysis_pipeline_and_changed_source_stop (test_s3_runner.S3RunnerTests.test_synthetic_analysis_pipeline_and_changed_source_stop) ... ok
+test_worker_ownership_and_failure_state (test_s3_runner.S3RunnerTests.test_worker_ownership_and_failure_state) ... ok
+test_alignment_standardization_cancellation_and_macro_guard (test_s3_verify.VerificationTests.test_alignment_standardization_cancellation_and_macro_guard) ... ok
+test_every_field_corruption_rejected (test_s3_verify.VerificationTests.test_every_field_corruption_rejected) ... ok
+test_full_stream_independent_fixture_and_immutable_inputs (test_s3_verify.VerificationTests.test_full_stream_independent_fixture_and_immutable_inputs) ... ok
+test_independent_linear_and_weighted_quantiles_direction_reference (test_s3_verify.VerificationTests.test_independent_linear_and_weighted_quantiles_direction_reference) ... ok
+test_input_guards (test_s3_verify.VerificationTests.test_input_guards) ... ok
+test_layers_guard_and_json_structural_comparison (test_s3_verify.VerificationTests.test_layers_guard_and_json_structural_comparison) ... ok
+test_mass_accumulation_tolerance_and_row_tolerance (test_s3_verify.VerificationTests.test_mass_accumulation_tolerance_and_row_tolerance) ... ok
+test_missing_duplicate_extra_columns_nan_and_integer_types (test_s3_verify.VerificationTests.test_missing_duplicate_extra_columns_nan_and_integer_types) ... ok
+test_pg_boundaries_and_local_identity (test_s3_verify.VerificationTests.test_pg_boundaries_and_local_identity) ... ok
+test_pool_database_coverage_includes_unsampled_pool_members (test_s3_verify.VerificationTests.test_pool_database_coverage_includes_unsampled_pool_members) ... ok
+test_producer_integration_mixed_labels_and_sparse_macro (test_s3_verify.VerificationTests.test_producer_integration_mixed_labels_and_sparse_macro) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 4.301s
+
+OK
+{"purpose": "S3 dry-run, no inputs opened or analysis executed", "output": "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpwtbn_r67/runs/dry", "timeout_seconds": 1800, "address_space_bytes": 4294967296}

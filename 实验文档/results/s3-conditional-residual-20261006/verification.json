@@ -1,0 +1,20 @@
+{
+  "groups": 40,
+  "rows": {
+    "conditions": 851004,
+    "residuals": 851004,
+    "alignment": 640
+  },
+  "checks": {
+    "complete_layers": true,
+    "unique_layers": true,
+    "all_fields_and_values": true,
+    "replay_conservation": true
+  },
+  "source_rehashed_after": true,
+  "code_rehashed_after": true,
+  "s2_pool_denominators_reproduced": true,
+  "s1_strata_denominators_reproduced": true,
+  "sampling_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+  "sampling_certification": "Exact full-sequence digest and historical counters; no checkpoint RNG read"
+}

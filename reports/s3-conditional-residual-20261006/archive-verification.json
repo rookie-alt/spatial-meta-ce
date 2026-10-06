@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "server_run": "/gly/weilin/spatial-meta-ce/runs/s3-conditional-residual-20261006",
+  "server_sha256": {
+    "summary.json": "a2fa09ab3444ee794b2dd769287698cdaebb11248087d9379112293f8bdb6db7",
+    "output-manifest.json": "fd36f81b4fa0dadfc480857e3ebcd4687b1f794a1f7d98babd9fb93ea72d7888",
+    "conditions.csv": "a6e9e43f4ff25eada8af71fe84dace2238798949c87951f736aebc4ff62f61a9",
+    "residuals.csv": "02859850e4a82e4faf738bc0d7ea8546afb24b885b3722daa87e487d846a47fb",
+    "protocol.json": "57e8e9510207e69873bb7b290e45e7990c600e0f87bcf60b4b0b2a923029ab4d",
+    "verification.json": "fc889969581852b83cb246a228f93679d69e24960948d83afde70776943d945f",
+    "alignment.csv": "4c6f13de535aeafd96f14108df65ec29e9dfe9961666584d3cb49cfd25be2221",
+    "status.json": "2ca656f3b290aaed610a3697366def180bfcf4c274aef001490ee06368ca0967"
+  },
+  "download_bytes_match": true,
+  "compressed": {
+    "conditions.csv": {
+      "archive": "conditions.csv.gz",
+      "uncompressed_sha256": "a6e9e43f4ff25eada8af71fe84dace2238798949c87951f736aebc4ff62f61a9",
+      "gzip_sha256": "7e9eb503bf8891a40e9c5fad5c960bf3281898a25a72c86d926204c032b597d2",
+      "rows": 851004,
+      "csv_lf": true,
+      "server_bytes": 99195654,
+      "gzip_bytes": 7418063
+    },
+    "residuals.csv": {
+      "archive": "residuals.csv.gz",
+      "uncompressed_sha256": "02859850e4a82e4faf738bc0d7ea8546afb24b885b3722daa87e487d846a47fb",
+      "gzip_sha256": "4950ff9ce0f3d3e15777208ba44e90f24e8e4cc7a3be2d0bafd928718064c1d2",
+      "rows": 851004,
+      "csv_lf": true,
+      "server_bytes": 128338362,
+      "gzip_bytes": 10161255
+    }
+  }
+}

@@ -1,0 +1,35 @@
+scripts/audit_input_mapping.py:19:1: E402 Module level import not at top of file
+scripts/audit_input_mapping.py:20:1: E402 Module level import not at top of file
+scripts/audit_input_mapping.py:21:1: E402 Module level import not at top of file
+scripts/audit_input_mapping.py:22:1: E402 Module level import not at top of file
+scripts/build_mapping_sidecar.py:20:1: E402 Module level import not at top of file
+scripts/build_mapping_sidecar.py:27:1: E402 Module level import not at top of file
+scripts/build_mapping_sidecar.py:28:1: E402 Module level import not at top of file
+scripts/build_mapping_sidecar.py:29:1: E402 Module level import not at top of file
+scripts/deploy.py:49:45: E701 Multiple statements on one line (colon)
+scripts/deploy.py:51:94: E701 Multiple statements on one line (colon)
+scripts/deploy.py:52:72: E701 Multiple statements on one line (colon)
+scripts/eval_frozen.py:13:1: E402 Module level import not at top of file
+scripts/eval_frozen.py:14:1: E402 Module level import not at top of file
+scripts/price_fewshot.py:16:1: E402 Module level import not at top of file
+scripts/price_fewshot.py:17:1: E402 Module level import not at top of file
+scripts/run_experiments.py:95:30: E701 Multiple statements on one line (colon)
+spatial_meta_ce/cli.py:26:38: E701 Multiple statements on one line (colon)
+spatial_meta_ce/cli.py:30:31: E701 Multiple statements on one line (colon)
+spatial_meta_ce/cli.py:55:21: E702 Multiple statements on one line (semicolon)
+spatial_meta_ce/cli.py:59:36: E701 Multiple statements on one line (colon)
+spatial_meta_ce/cli.py:64:40: E701 Multiple statements on one line (colon)
+spatial_meta_ce/cli.py:66:46: E701 Multiple statements on one line (colon)
+spatial_meta_ce/cli.py:77:23: E701 Multiple statements on one line (colon)
+spatial_meta_ce/cli.py:86:52: E701 Multiple statements on one line (colon)
+spatial_meta_ce/cli.py:130:42: E702 Multiple statements on one line (semicolon)
+spatial_meta_ce/cli.py:161:22: E701 Multiple statements on one line (colon)
+spatial_meta_ce/cli.py:168:29: E701 Multiple statements on one line (colon)
+spatial_meta_ce/cli.py:169:18: E701 Multiple statements on one line (colon)
+spatial_meta_ce/cli.py:185:30: E701 Multiple statements on one line (colon)
+tests/test_integrity.py:50:25: E702 Multiple statements on one line (semicolon)
+tests/test_integrity.py:66:25: E702 Multiple statements on one line (semicolon)
+tests/test_integrity.py:116:24: E701 Multiple statements on one line (colon)
+tests/test_p2_semantics.py:19:36: E702 Multiple statements on one line (semicolon)
+tests/test_paired.py:28:25: E702 Multiple statements on one line (semicolon)
+Found 34 errors.

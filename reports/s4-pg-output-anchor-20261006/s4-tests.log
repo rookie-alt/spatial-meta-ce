@@ -1,0 +1,49 @@
+test_canonical_checkpoint_does_not_require_legacy_scale_one (test_s4_anchor.S4AnchorTests.test_canonical_checkpoint_does_not_require_legacy_scale_one) ... ok
+test_cleanup_reaps_only_own_group_and_has_bounded_escalation (test_s4_anchor.S4AnchorTests.test_cleanup_reaps_only_own_group_and_has_bounded_escalation) ... ok
+test_cpu_real_run_config_roundtrip_and_pg_rows (test_s4_anchor.S4AnchorTests.test_cpu_real_run_config_roundtrip_and_pg_rows) ... ok
+test_data_and_gpu_guards (test_s4_anchor.S4AnchorTests.test_data_and_gpu_guards) ... ok
+test_execute_smoke_and_formal_success_and_rehash_failure (test_s4_anchor.S4AnchorTests.test_execute_smoke_and_formal_success_and_rehash_failure) ... ok
+test_execute_stops_b_after_failed_baseline_and_preserves_records (test_s4_anchor.S4AnchorTests.test_execute_stops_b_after_failed_baseline_and_preserves_records) ... ok
+test_frozen_and_runtime_preflight (test_s4_anchor.S4AnchorTests.test_frozen_and_runtime_preflight) ... ok
+test_frozen_plan_and_explicit_scales (test_s4_anchor.S4AnchorTests.test_frozen_plan_and_explicit_scales) ... ok
+test_gpu_initial_idle_and_live_own_pid (test_s4_anchor.S4AnchorTests.test_gpu_initial_idle_and_live_own_pid) ... ok
+test_main_dry_run_busy_and_supervision (test_s4_anchor.S4AnchorTests.test_main_dry_run_busy_and_supervision) ... ok
+test_manifest_rejects_missing_hashes_symlinks_and_changes (test_s4_anchor.S4AnchorTests.test_manifest_rejects_missing_hashes_symlinks_and_changes) ... ok
+test_no_silent_false_verification (test_s4_anchor.S4AnchorTests.test_no_silent_false_verification) ... ok
+test_ordered_pg_identity_matches_independent_verifier (test_s4_anchor.S4AnchorTests.test_ordered_pg_identity_matches_independent_verifier) ... ok
+test_output_fresh_and_symlink_protected (test_s4_anchor.S4AnchorTests.test_output_fresh_and_symlink_protected) ... ok
+test_plan_changes_fail_closed (test_s4_anchor.S4AnchorTests.test_plan_changes_fail_closed) ... ok
+test_supervisor_success_and_output_verification_failure (test_s4_anchor.S4AnchorTests.test_supervisor_success_and_output_verification_failure) ... ok
+test_supervisor_timeout_cleanup_error_and_no_premature_completion (test_s4_anchor.S4AnchorTests.test_supervisor_timeout_cleanup_error_and_no_premature_completion) ... ok
+test_worker_and_deadlines_mocked_full_flow (test_s4_anchor.S4AnchorTests.test_worker_and_deadlines_mocked_full_flow) ... ok
+test_worker_original_error_survives_supervisor_failure (test_s4_anchor.S4AnchorTests.test_worker_original_error_survives_supervisor_failure) ... ok
+test_bad_rows_fail_closed (test_s4_anchor_evidence.EvidenceTests.test_bad_rows_fail_closed) ... ok
+test_baseline_reproduction (test_s4_anchor_evidence.EvidenceTests.test_baseline_reproduction) ... ok
+test_checkpoint_checks (test_s4_anchor_evidence.EvidenceTests.test_checkpoint_checks) ... ok
+test_choose_exact_boundary (test_s4_anchor_evidence.EvidenceTests.test_choose_exact_boundary) ... ok
+test_choose_guardrail_boundary (test_s4_anchor_evidence.EvidenceTests.test_choose_guardrail_boundary) ... ok
+test_choose_invalid_metrics (test_s4_anchor_evidence.EvidenceTests.test_choose_invalid_metrics) ... ok
+test_formal_run_passes (test_s4_anchor_evidence.EvidenceTests.test_formal_run_passes) ... ok
+test_fp32_direction_is_not_reference_direction (test_s4_anchor_evidence.EvidenceTests.test_fp32_direction_is_not_reference_direction) ... ok
+test_frozen_fields (test_s4_anchor_evidence.EvidenceTests.test_frozen_fields) ... ok
+test_frozen_hashes_and_counts (test_s4_anchor_evidence.EvidenceTests.test_frozen_hashes_and_counts) ... ok
+test_pair_passes (test_s4_anchor_evidence.EvidenceTests.test_pair_passes) ... ok
+test_pair_rejects_missing_duplicate_and_changed_identity (test_s4_anchor_evidence.EvidenceTests.test_pair_rejects_missing_duplicate_and_changed_identity) ... ok
+test_q_overflow_and_missing_bucket (test_s4_anchor_evidence.EvidenceTests.test_q_overflow_and_missing_bucket) ... ok
+test_rows_metrics_independent (test_s4_anchor_evidence.EvidenceTests.test_rows_metrics_independent) ... ok
+test_scale_rejected (test_s4_anchor_evidence.EvidenceTests.test_scale_rejected) ... ok
+test_smoke_budget (test_s4_anchor_evidence.EvidenceTests.test_smoke_budget) ... ok
+test_source_coverage_and_protocol (test_s4_anchor_evidence.EvidenceTests.test_source_coverage_and_protocol) ... ok
+test_strata_minimum (test_s4_anchor_evidence.EvidenceTests.test_strata_minimum) ... ok
+test_verify_rows_and_order_pairing (test_s4_anchor_evidence.EvidenceTests.test_verify_rows_and_order_pairing) ... ok
+test_verify_rows_rejects_forged_endpoint (test_s4_anchor_evidence.EvidenceTests.test_verify_rows_rejects_forged_endpoint) ... ok
+test_initialization_hash_and_capacity_unchanged (test_s4_model.PGAnchorModelTests.test_initialization_hash_and_capacity_unchanged) ... ok
+test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) ... ok
+test_legacy_forward_and_gradient_identical (test_s4_model.PGAnchorModelTests.test_legacy_forward_and_gradient_identical) ... ok
+test_same_inputs_live_head_and_forward_difference (test_s4_model.PGAnchorModelTests.test_same_inputs_live_head_and_forward_difference) ... ok
+test_zero_anchor_roundtrip_and_legacy_checkpoint (test_s4_model.PGAnchorModelTests.test_zero_anchor_roundtrip_and_legacy_checkpoint) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 1.616s
+
+OK

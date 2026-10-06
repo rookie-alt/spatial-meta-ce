@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "experiment": "S4 PG output anchor contrast",
+  "status": "deferred_gpu_busy",
+  "cpu_engineering": "verified",
+  "gpu_smoke": "not_started",
+  "formal_arms": {
+    "A_anchor1": "not_started",
+    "B_anchor0": "not_started"
+  },
+  "training_executed": false,
+  "source_inference_executed": false,
+  "target_data_read": false,
+  "original_shared_server_model_modified": false,
+  "isolated_cpu_stage": "/gly/weilin/spatial-meta-ce/runs/s4-cpu-validation-20261006",
+  "validation": {
+    "local_tests": 333,
+    "server_cpu_tests": 333,
+    "s4_tests": 45,
+    "new_and_changed_module_coverage": 93.50473612990528
+  },
+  "protocol_sha256": "d63c4f503f55eb87b59896e54f0379768e8829c8d48f2bad0a3f6224b53e0be3",
+  "auto_retry": false,
+  "queue_created": false,
+  "graphify_executed": false,
+  "code_sha256": {
+    "spatial_meta_ce/model.py": "0d6d7c4c3a04368bb7ae03a99018cfd343f37f8dc1182443ac169d19928022a4",
+    "scripts/run_s4_anchor.py": "90621c024e971f41041361b33cbdd36ae389183f3fceaeef62573922efcbf179",
+    "scripts/s4_anchor_evidence.py": "1db8bf133c5f31b29e768cb394efdf51bdf89e11f953f1d807e7425b036d76cb",
+    "configs/s4_anchor.json": "2af6061826db95bf812df98f940336fd3395b29e475f3b12aa435e7f6269e518"
+  }
+}

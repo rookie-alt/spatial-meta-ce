@@ -12,8 +12,13 @@ MAX_JOINS = 16
 
 
 class SetEstimator(nn.Module):
-    def __init__(self, width=64, use_pg=True, arch='set', layers=2, heads=4):
+    def __init__(self, width=64, use_pg=True, arch='set', layers=2, heads=4,
+                 pg_output_scale=1.0):
         super().__init__()
+        if (isinstance(pg_output_scale, bool)
+                or not isinstance(pg_output_scale, (int, float))
+                or pg_output_scale not in (0.0, 1.0)):
+            raise ValueError('pg_output_scale must be 0 or 1')
         if width < 1:
             raise ValueError('width must be positive')
         if arch not in ARCHES:
@@ -22,6 +27,9 @@ class SetEstimator(nn.Module):
         self.config = {'width': width, 'use_pg': use_pg}
         if arch != 'set':
             self.config.update({'arch': arch, 'layers': layers, 'heads': heads})
+        self.pg_output_scale = float(pg_output_scale)
+        if self.pg_output_scale != 1.0:
+            self.config = {**self.config, 'pg_output_scale': self.pg_output_scale}
         self.use_pg = use_pg
         self.arch = arch
         self.encoders = nn.ModuleList([
@@ -130,4 +138,5 @@ class SetEstimator(nn.Module):
         pg = batch['pg_log'] if self.use_pg else torch.zeros_like(batch['pg_log'])
         log_cartesian = (batch['groups'][2][:, :, 0] * masks[2]).sum(1)
         x = torch.cat([*pooled, torch.log1p(batch['counts']), pg[:, None], log_cartesian[:, None]], dim=1)
-        return pg + self.head(x).squeeze(-1)
+        anchor = pg if self.pg_output_scale == 1.0 else torch.zeros_like(pg)
+        return anchor + self.head(x).squeeze(-1)

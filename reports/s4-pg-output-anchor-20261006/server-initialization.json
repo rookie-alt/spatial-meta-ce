@@ -1,0 +1,15 @@
+{
+  "torch": "2.1.0+cu121",
+  "cuda_visible_devices": "",
+  "stage_files_verified": 377,
+  "arms": {
+    "A_anchor1": {
+      "initialization_hash": "41e594b03ef19c56c3f236237da850929f2ec5c919702b44402dd9b2864d284a",
+      "parameters": 132545
+    },
+    "B_anchor0": {
+      "initialization_hash": "41e594b03ef19c56c3f236237da850929f2ec5c919702b44402dd9b2864d284a",
+      "parameters": 132545
+    }
+  }
+}
