@@ -1,0 +1,399 @@
+test_batch_composition_invariance (test_arch.ArchTests.test_batch_composition_invariance) ... ok
+test_checkpoint_roundtrip (test_arch.ArchTests.test_checkpoint_roundtrip) ... ok
+test_initial_prediction_is_pg (test_arch.ArchTests.test_initial_prediction_is_pg) ... ok
+test_mask_hides_large_padding (test_arch.ArchTests.test_mask_hides_large_padding) ... ok
+test_meta_gradient_reaches_all_parameters (test_arch.ArchTests.test_meta_gradient_reaches_all_parameters) ... ok
+test_pair_embedding_is_order_sensitive (test_arch.ArchTests.test_pair_embedding_is_order_sensitive) ... ok
+test_permutation_invariance (test_arch.ArchTests.test_permutation_invariance) ... ok
+test_set_config_unchanged (test_arch.ArchTests.test_set_config_unchanged) ... ok
+test_unknown_arch (test_arch.ArchTests.test_unknown_arch) ... ok
+test_adaptation_and_outer_update_change_predictor (test_core.CoreTests.test_adaptation_and_outer_update_change_predictor) ... ok
+test_bad_values_rejected (test_core.CoreTests.test_bad_values_rejected) ... ok
+test_checkpoint_roundtrip_strict (test_core.CoreTests.test_checkpoint_roundtrip_strict) ... ok
+test_fomaml_scalar_gradient_and_isolation (test_core.CoreTests.test_fomaml_scalar_gradient_and_isolation) ... ok
+test_head_only_and_zero_step (test_core.CoreTests.test_head_only_and_zero_step) ... ok
+test_initial_pg_and_empty_groups (test_core.CoreTests.test_initial_pg_and_empty_groups) ... ok
+test_mask_hides_large_padding (test_core.CoreTests.test_mask_hides_large_padding) ... ok
+test_metrics_standard_and_shifted (test_core.CoreTests.test_metrics_standard_and_shifted) ... ok
+test_negative_predictions_keep_gradient (test_core.CoreTests.test_negative_predictions_keep_gradient) ... ok
+test_no_pg_ablation (test_core.CoreTests.test_no_pg_ablation) ... ok
+test_padding_and_permutation_invariance (test_core.CoreTests.test_padding_and_permutation_invariance) ... ok
+test_parameter_count (test_core.CoreTests.test_parameter_count) ... ok
+test_query_labels_do_not_change_adaptation (test_core.CoreTests.test_query_labels_do_not_change_adaptation) ... ok
+test_trajectory_matches_adapt (test_core.CoreTests.test_trajectory_matches_adapt) ... ok
+test_cache_manifest_tamper_rejected (test_data.DataTests.test_cache_manifest_tamper_rejected) ... ok
+test_cache_roundtrip_and_dedup (test_data.DataTests.test_cache_roundtrip_and_dedup) ... ok
+test_canonical_preserves_literals (test_data.DataTests.test_canonical_preserves_literals) ... ok
+test_database_overlap_rejected (test_data.DataTests.test_database_overlap_rejected) ... ok
+test_disjoint_reproducible_episode (test_data.DataTests.test_disjoint_reproducible_episode) ... ok
+test_misaligned_labels_fail (test_data.DataTests.test_misaligned_labels_fail) ... ok
+test_nonfinite_cache_rejected (test_data.DataTests.test_nonfinite_cache_rejected) ... ok
+test_10000_query_rows_omitted_hash_pointer_and_controlled_nodes (test_experiment_graph.ExperimentGraphTests.test_10000_query_rows_omitted_hash_pointer_and_controlled_nodes) ... ok
+test_cli_integration (test_experiment_graph.ExperimentGraphTests.test_cli_integration) ... ok
+test_dates_preserve_offset_only_explicit_metadata (test_experiment_graph.ExperimentGraphTests.test_dates_preserve_offset_only_explicit_metadata) ... ok
+test_duplicates_repeated_builds_and_concurrency_deterministic (test_experiment_graph.ExperimentGraphTests.test_duplicates_repeated_builds_and_concurrency_deterministic) ... ok
+test_edges_provenance_and_weight (test_experiment_graph.ExperimentGraphTests.test_edges_provenance_and_weight) ... ok
+test_empty_inputs (test_experiment_graph.ExperimentGraphTests.test_empty_inputs) ... ok
+test_experiment_related_edges_inferred_never_produces (test_experiment_graph.ExperimentGraphTests.test_experiment_related_edges_inferred_never_produces) ... ok
+test_explicit_references_only_existing_safe_paths (test_experiment_graph.ExperimentGraphTests.test_explicit_references_only_existing_safe_paths) ... ok
+test_exponent_overflow_fails_with_json_context (test_experiment_graph.ExperimentGraphTests.test_exponent_overflow_fails_with_json_context) ... ok
+test_false_target_evaluation_limitations_checks_and_risk_retained (test_experiment_graph.ExperimentGraphTests.test_false_target_evaluation_limitations_checks_and_risk_retained) ... ok
+test_invalid_api_types (test_experiment_graph.ExperimentGraphTests.test_invalid_api_types) ... ok
+test_invalid_json_nonfinite_duplicate_keys_and_nonobject (test_experiment_graph.ExperimentGraphTests.test_invalid_json_nonfinite_duplicate_keys_and_nonobject) ... ok
+test_local_reference_endpoint_and_symlink_unresolved (test_experiment_graph.ExperimentGraphTests.test_local_reference_endpoint_and_symlink_unresolved) ... ok
+test_nested_checks_preserved_while_large_values_are_bounded (test_experiment_graph.ExperimentGraphTests.test_nested_checks_preserved_while_large_values_are_bounded) ... ok
+test_protocol_rules_distinct_from_recorded_conclusions (test_experiment_graph.ExperimentGraphTests.test_protocol_rules_distinct_from_recorded_conclusions) ... ok
+test_references_only_read_bounded_whitelisted_json (test_experiment_graph.ExperimentGraphTests.test_references_only_read_bounded_whitelisted_json) ... ok
+test_size_and_field_limits_fail_clearly (test_experiment_graph.ExperimentGraphTests.test_size_and_field_limits_fail_clearly) ... ok
+test_source_change_clears_old_fields_and_same_stem_not_merged (test_experiment_graph.ExperimentGraphTests.test_source_change_clears_old_fields_and_same_stem_not_merged) ... ok
+test_stable_ids_same_stem_and_pointer_boundary (test_experiment_graph.ExperimentGraphTests.test_stable_ids_same_stem_and_pointer_boundary) ... ok
+test_structured_limitations_and_decision_rules_retained (test_experiment_graph.ExperimentGraphTests.test_structured_limitations_and_decision_rules_retained) ... ok
+test_symlink_selection_and_extract_traversal (test_experiment_graph.ExperimentGraphTests.test_symlink_selection_and_extract_traversal) ... ok
+test_unknown_metadata_and_actual_parsed_field_values (test_experiment_graph.ExperimentGraphTests.test_unknown_metadata_and_actual_parsed_field_values) ... ok
+test_unlisted_input_rejected (test_experiment_graph.ExperimentGraphTests.test_unlisted_input_rejected) ... ok
+test_whitelist_exclusions_and_sensitive_names (test_experiment_graph.ExperimentGraphTests.test_whitelist_exclusions_and_sensitive_names) ... ok
+test_ast_ids_are_portable_between_roots (test_graph_build.GraphBuildTests.test_ast_ids_are_portable_between_roots) ... ok
+test_ast_unbound_external_symbol_keeps_edges_without_file_hash (test_graph_build.GraphBuildTests.test_ast_unbound_external_symbol_keeps_edges_without_file_hash) ... ok
+test_atomic_json_replaces_instead_of_growing_old_graph (test_graph_build.GraphBuildTests.test_atomic_json_replaces_instead_of_growing_old_graph) ... ok
+test_duplicate_non_placeholder_nodes_are_rejected (test_graph_build.GraphBuildTests.test_duplicate_non_placeholder_nodes_are_rejected) ... ok
+test_file_limit_allows_206_and_rejects_251_before_output (test_graph_build.GraphBuildTests.test_file_limit_allows_206_and_rejects_251_before_output) ... ok
+test_graph_is_deterministic_and_inputs_are_immutable (test_graph_build.GraphBuildTests.test_graph_is_deterministic_and_inputs_are_immutable) ... ok
+test_html_evidence_is_script_safe_and_has_source_metadata (test_graph_build.GraphBuildTests.test_html_evidence_is_script_safe_and_has_source_metadata) ... ok
+test_json_build_export_and_rebuild_clears_old_fields (test_graph_build.GraphBuildTests.test_json_build_export_and_rebuild_clears_old_fields) ... ok
+test_preserves_multiple_relations_and_deduplicates_identical_evidence (test_graph_build.GraphBuildTests.test_preserves_multiple_relations_and_deduplicates_identical_evidence) ... ok
+test_rejects_dangling_edge_and_conflicting_node_id (test_graph_build.GraphBuildTests.test_rejects_dangling_edge_and_conflicting_node_id) ... ok
+test_rejects_unsafe_ids_external_claims_and_output (test_graph_build.GraphBuildTests.test_rejects_unsafe_ids_external_claims_and_output) ... ok
+test_rejects_unsafe_semantic_paths_and_invalid_confidence (test_graph_build.GraphBuildTests.test_rejects_unsafe_semantic_paths_and_invalid_confidence) ... ok
+test_semantic_sources_must_match_current_content_and_cover_documents (test_graph_build.GraphBuildTests.test_semantic_sources_must_match_current_content_and_cover_documents) ... ok
+test_cache_and_source_corruption_are_reported (test_input_audit.InputAuditIntegrationTests.test_cache_and_source_corruption_are_reported) ... ok
+test_cli_reports_source_failure_and_rejects_overwrite (test_input_audit.InputAuditIntegrationTests.test_cli_reports_source_failure_and_rejects_overwrite) ... ok
+test_every_row_recreation_mismatch_is_counted (test_input_audit.InputAuditIntegrationTests.test_every_row_recreation_mismatch_is_counted) ... ok
+test_full_recreation_preserves_repeated_rows_and_inputs (test_input_audit.InputAuditIntegrationTests.test_full_recreation_preserves_repeated_rows_and_inputs) ... ok
+test_mapping_denominator_is_independent_of_recreation_failure (test_input_audit.InputAuditIntegrationTests.test_mapping_denominator_is_independent_of_recreation_failure) ... ok
+test_partial_audit_cannot_claim_full_alignment (test_input_audit.InputAuditIntegrationTests.test_partial_audit_cannot_claim_full_alignment) ... ok
+test_recreation_failure_does_not_drop_rows (test_input_audit.InputAuditIntegrationTests.test_recreation_failure_does_not_drop_rows) ... ok
+test_complex_predicate_types_are_reported (test_input_audit.InputAuditTests.test_complex_predicate_types_are_reported) ... ok
+test_constant_equal_column_is_not_a_valid_join (test_input_audit.InputAuditTests.test_constant_equal_column_is_not_a_valid_join) ... ok
+test_feature_comparison_checks_shape_values_and_empty_groups (test_input_audit.InputAuditTests.test_feature_comparison_checks_shape_values_and_empty_groups) ... ok
+test_join_filter_overlap_is_reported_without_inventing_filter_token (test_input_audit.InputAuditTests.test_join_filter_overlap_is_reported_without_inventing_filter_token) ... ok
+test_literal_left_and_multiple_filters_are_visible (test_input_audit.InputAuditTests.test_literal_left_and_multiple_filters_are_visible) ... ok
+test_negated_and_unsupported_filters_are_flagged (test_input_audit.InputAuditTests.test_negated_and_unsupported_filters_are_flagged) ... ok
+test_non_equi_and_nested_query_are_not_certified (test_input_audit.InputAuditTests.test_non_equi_and_nested_query_are_not_certified) ... ok
+test_on_join_and_missing_where_are_reported (test_input_audit.InputAuditTests.test_on_join_and_missing_where_are_reported) ... ok
+test_repeated_join_column_uses_same_histogram_token (test_input_audit.InputAuditTests.test_repeated_join_column_uses_same_histogram_token) ... ok
+test_reverse_join_flips_fanout_histogram_indices (test_input_audit.InputAuditTests.test_reverse_join_flips_fanout_histogram_indices) ... ok
+test_self_join_aliases_are_local_and_tree_is_connected (test_input_audit.InputAuditTests.test_self_join_aliases_are_local_and_tree_is_connected) ... ok
+test_target_or_unknown_database_is_rejected (test_input_audit.InputAuditTests.test_target_or_unknown_database_is_rejected) ... ok
+test_token_order_and_fanout_direction (test_input_audit.InputAuditTests.test_token_order_and_fanout_direction) ... ok
+test_unqualified_columns_are_not_positionally_guessed (test_input_audit.InputAuditTests.test_unqualified_columns_are_not_positionally_guessed) ... ok
+test_adapted_checkpoint_cannot_be_reused_as_meta_initialization (test_integrity.IntegrityTests.test_adapted_checkpoint_cannot_be_reused_as_meta_initialization) ... {"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+ok
+test_baseline_forward_padding_matches_original (test_integrity.IntegrityTests.test_baseline_forward_padding_matches_original) ... ok
+test_cli_help (test_integrity.IntegrityTests.test_cli_help) ... ok
+test_price_output_transform (test_integrity.IntegrityTests.test_price_output_transform) ... ok
+test_price_validation_decodes_legacy_log_scale (test_integrity.IntegrityTests.test_price_validation_decodes_legacy_log_scale) ... ok
+test_resume_rejects_changed_hyperparameters (test_integrity.IntegrityTests.test_resume_rejects_changed_hyperparameters) ... n_features: 8!
+{"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+ok
+test_support_is_nested_and_excludes_test_hashes (test_integrity.IntegrityTests.test_support_is_nested_and_excludes_test_hashes) ... ok
+test_validation_plan_is_fixed_and_uses_all_shots (test_integrity.IntegrityTests.test_validation_plan_is_fixed_and_uses_all_shots) ... ok
+test_bucket_respects_table_threshold (test_mapping_ablation.EndpointTests.test_bucket_respects_table_threshold) ... ok
+test_paired_comparison_detects_per_query_improvement (test_mapping_ablation.EndpointTests.test_paired_comparison_detects_per_query_improvement) ... ok
+test_plan_digest_binds_query_identity_and_shape (test_mapping_ablation.EndpointTests.test_plan_digest_binds_query_identity_and_shape) ... ok
+test_run_endpoint_on_trained_fixture_is_finite_and_stable (test_mapping_ablation.EndpointTests.test_run_endpoint_on_trained_fixture_is_finite_and_stable) ... {"step": 1, "train_loss": 1.3620862364768982, "validation_macro_log_q95": 1.9069673708527402, "counts": {"support_presentations": 0, "query_presentations": 6, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 1.3098021745681763, "validation_macro_log_q95": 1.8971889308541134, "counts": {"support_presentations": 0, "query_presentations": 12, "backward_calls": 4, "optimizer_steps": 2}}
+ok
+test_sidecar_risks_are_reported_verbatim (test_mapping_ablation.EndpointTests.test_sidecar_risks_are_reported_verbatim) ... ok
+test_determinism_sets_cublas_workspace_before_first_use (test_mapping_ablation.ProtocolTests.test_determinism_sets_cublas_workspace_before_first_use) ... ok
+test_frozen_configs_declare_arm_identity_and_budget (test_mapping_ablation.ProtocolTests.test_frozen_configs_declare_arm_identity_and_budget) ... ok
+test_gpu_occupancy_is_checked_once_not_once_per_run (test_mapping_ablation.ProtocolTests.test_gpu_occupancy_is_checked_once_not_once_per_run) ... {"arm": "sum", "seed": 42, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "true", "seed": 42, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "shuffled", "seed": 42, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "sum", "seed": 43, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "true", "seed": 43, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "shuffled", "seed": 43, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "sum", "seed": 44, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "true", "seed": 44, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "shuffled", "seed": 44, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+ok
+test_initial_state_is_seed_deterministic_and_arm_specific (test_mapping_ablation.ProtocolTests.test_initial_state_is_seed_deterministic_and_arm_specific) ... ok
+test_matrix_is_nine_runs_in_seed_major_order (test_mapping_ablation.ProtocolTests.test_matrix_is_nine_runs_in_seed_major_order) ... ok
+test_pairing_accepts_complete_matrix_and_reports_capacity (test_mapping_ablation.ProtocolTests.test_pairing_accepts_complete_matrix_and_reports_capacity) ... ok
+test_pairing_rejects_every_violation (test_mapping_ablation.ProtocolTests.test_pairing_rejects_every_violation) ... ok
+test_tampered_frozen_config_is_rejected (test_mapping_ablation.ProtocolTests.test_tampered_frozen_config_is_rejected) ... ok
+test_pool_reopens_nothing_when_capacity_covers_all_sources (test_mapping_ablation.ResidentStoreTests.test_pool_reopens_nothing_when_capacity_covers_all_sources) ... ok
+test_training_does_not_reopen_mapped_source_stores (test_mapping_ablation.ResidentStoreTests.test_training_does_not_reopen_mapped_source_stores) ... {"step": 1, "train_loss": 1.5149455666542053, "validation_macro_log_q95": 1.9119241527169064, "counts": {"support_presentations": 0, "query_presentations": 6, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 1.4275348782539368, "validation_macro_log_q95": 1.9055337003319577, "counts": {"support_presentations": 0, "query_presentations": 12, "backward_calls": 4, "optimizer_steps": 2}}
+{"step": 3, "train_loss": 1.3542115092277527, "validation_macro_log_q95": 1.8968057921974972, "counts": {"support_presentations": 0, "query_presentations": 18, "backward_calls": 6, "optimizer_steps": 3}}
+{"step": 4, "train_loss": 1.3335239887237549, "validation_macro_log_q95": 1.8854380539505795, "counts": {"support_presentations": 0, "query_presentations": 24, "backward_calls": 8, "optimizer_steps": 4}}
+{"step": 5, "train_loss": 1.2987321019172668, "validation_macro_log_q95": 1.8708851626961545, "counts": {"support_presentations": 0, "query_presentations": 30, "backward_calls": 10, "optimizer_steps": 5}}
+{"step": 6, "train_loss": 1.2581694722175598, "validation_macro_log_q95": 1.8525303295700863, "counts": {"support_presentations": 0, "query_presentations": 36, "backward_calls": 12, "optimizer_steps": 6}}
+{"step": 7, "train_loss": 1.318471074104309, "validation_macro_log_q95": 1.829648583277972, "counts": {"support_presentations": 0, "query_presentations": 42, "backward_calls": 14, "optimizer_steps": 7}}
+{"step": 8, "train_loss": 1.3161792755126953, "validation_macro_log_q95": 1.8013938954918698, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 16, "optimizer_steps": 8}}
+{"step": 9, "train_loss": 1.407762348651886, "validation_macro_log_q95": 1.7667564443199948, "counts": {"support_presentations": 0, "query_presentations": 54, "backward_calls": 18, "optimizer_steps": 9}}
+{"step": 10, "train_loss": 1.347410261631012, "validation_macro_log_q95": 1.7244708231537655, "counts": {"support_presentations": 0, "query_presentations": 60, "backward_calls": 20, "optimizer_steps": 10}}
+{"step": 11, "train_loss": 1.224141538143158, "validation_macro_log_q95": 1.6733362964241818, "counts": {"support_presentations": 0, "query_presentations": 66, "backward_calls": 22, "optimizer_steps": 11}}
+{"step": 12, "train_loss": 1.1881309747695923, "validation_macro_log_q95": 1.611722557887347, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 24, "optimizer_steps": 12}}
+ok
+test_unmapped_batch_has_no_mapping_and_sum_predicts (test_mapping_ablation.ResidentStoreTests.test_unmapped_batch_has_no_mapping_and_sum_predicts) ... ok
+test_arch_selection_uses_checkpoint_mapping_mode (test_mapping_model.MappingIntegrationTests.test_arch_selection_uses_checkpoint_mapping_mode) ... ok
+test_duplicate_missing_hash_source_lines_cards_counts_and_indices_rejected (test_mapping_model.MappingIntegrationTests.test_duplicate_missing_hash_source_lines_cards_counts_and_indices_rejected) ... ok
+test_full_chain_and_shuffled_mode_return_indices_only (test_mapping_model.MappingIntegrationTests.test_full_chain_and_shuffled_mode_return_indices_only) ... ok
+test_legacy_unmapped_checkpoint_resumes_with_reconstructed_digest (test_mapping_model.MappingIntegrationTests.test_legacy_unmapped_checkpoint_resumes_with_reconstructed_digest) ... ok
+test_mapping_config_is_required_and_target_reads_rejected (test_mapping_model.MappingIntegrationTests.test_mapping_config_is_required_and_target_reads_rejected) ... ok
+test_smoke_configuration_and_pairing_are_fixed (test_mapping_model.MappingIntegrationTests.test_smoke_configuration_and_pairing_are_fixed) ... ok
+test_smoke_run_passes_source_only_valid_splits (test_mapping_model.MappingIntegrationTests.test_smoke_run_passes_source_only_valid_splits) ... ok
+test_tampered_jsonl_cache_or_manifest_rejected (test_mapping_model.MappingIntegrationTests.test_tampered_jsonl_cache_or_manifest_rejected) ... ok
+test_train_pairing_resume_and_source_validation (test_mapping_model.MappingIntegrationTests.test_train_pairing_resume_and_source_validation) ... ok
+test_batch_padding_and_no_numeric_changes (test_mapping_model.MappingModelTests.test_batch_padding_and_no_numeric_changes) ... ok
+test_each_relation_changes_prediction_and_gradients_are_finite (test_mapping_model.MappingModelTests.test_each_relation_changes_prediction_and_gradients_are_finite) ... ok
+test_fanout_fusion_consumes_both_table_encodings (test_mapping_model.MappingModelTests.test_fanout_fusion_consumes_both_table_encodings) ... ok
+test_initial_prediction_is_pg_and_checkpoint_roundtrip (test_mapping_model.MappingModelTests.test_initial_prediction_is_pg_and_checkpoint_roundtrip) ... ok
+test_mapping_initialization_is_identical_for_both_modes (test_mapping_model.MappingModelTests.test_mapping_initialization_is_identical_for_both_modes) ... ok
+test_missing_mapping_and_unmapped_arch_do_not_silently_fallback (test_mapping_model.MappingModelTests.test_missing_mapping_and_unmapped_arch_do_not_silently_fallback) ... ok
+test_mixed_mapping_presence_modes_or_bad_indices_rejected (test_mapping_model.MappingModelTests.test_mixed_mapping_presence_modes_or_bad_indices_rejected) ... ok
+test_padding_batch_composition_and_inputs_are_immutable (test_mapping_model.MappingModelTests.test_padding_batch_composition_and_inputs_are_immutable) ... ok
+test_table_join_filter_and_pair_reordering_is_invariant (test_mapping_model.MappingModelTests.test_table_join_filter_and_pair_reordering_is_invariant) ... ok
+test_zero_join_fanout_and_filter_support_meta_gradients (test_mapping_model.MappingModelTests.test_zero_join_fanout_and_filter_support_meta_gradients) ... ok
+test_cli_requires_external_audit_summary_hash (test_mapping_sidecar.MappingSidecarIntegrationTests.test_cli_requires_external_audit_summary_hash) ... ok
+test_every_identity_label_and_count_mismatch_is_rejected (test_mapping_sidecar.MappingSidecarIntegrationTests.test_every_identity_label_and_count_mismatch_is_rejected) ... ok
+test_incomplete_final_audit_or_changed_input_hash_is_rejected (test_mapping_sidecar.MappingSidecarIntegrationTests.test_incomplete_final_audit_or_changed_input_hash_is_rejected) ... ok
+test_original_report_failure_cannot_be_hidden_by_top_summary (test_mapping_sidecar.MappingSidecarIntegrationTests.test_original_report_failure_cannot_be_hidden_by_top_summary) ... ok
+test_roundtrip_verifies_all_rows_and_keeps_input_hashes (test_mapping_sidecar.MappingSidecarIntegrationTests.test_roundtrip_verifies_all_rows_and_keeps_input_hashes) ... ok
+test_trusted_summary_hash_rejects_replacement (test_mapping_sidecar.MappingSidecarIntegrationTests.test_trusted_summary_hash_rejects_replacement) ... ok
+test_constant_marginals_are_reported_as_unchangeable (test_mapping_sidecar.MappingSidecarTests.test_constant_marginals_are_reported_as_unchangeable) ... ok
+test_direction_swaps_and_join_filter_mixing_are_rejected (test_mapping_sidecar.MappingSidecarTests.test_direction_swaps_and_join_filter_mixing_are_rejected) ... ok
+test_duplicate_hash_deduplicates_but_preserves_all_source_lines (test_mapping_sidecar.MappingSidecarTests.test_duplicate_hash_deduplicates_but_preserves_all_source_lines) ... ok
+test_duplicate_hash_with_different_mapping_or_labels_is_rejected (test_mapping_sidecar.MappingSidecarTests.test_duplicate_hash_with_different_mapping_or_labels_is_rejected) ... ok
+test_output_rejects_original_cache_and_existing_directory (test_mapping_sidecar.MappingSidecarTests.test_output_rejects_original_cache_and_existing_directory) ... ok
+test_record_preserves_query_identity_and_fanout_direction (test_mapping_sidecar.MappingSidecarTests.test_record_preserves_query_identity_and_fanout_direction) ... ok
+test_risk_flags_remain_visible (test_mapping_sidecar.MappingSidecarTests.test_risk_flags_remain_visible) ... ok
+test_shuffle_is_deterministic_immutable_and_preserves_marginals (test_mapping_sidecar.MappingSidecarTests.test_shuffle_is_deterministic_immutable_and_preserves_marginals) ... ok
+test_source_only_and_symlink_boundaries (test_mapping_sidecar.MappingSidecarTests.test_source_only_and_symlink_boundaries) ... ok
+test_unsupported_layout_is_not_silently_dropped (test_mapping_sidecar.MappingSidecarTests.test_unsupported_layout_is_not_silently_dropped) ... ok
+test_ambiguous_unqualified_column_rejected (test_p2_audit.P2ParserTests.test_ambiguous_unqualified_column_rejected) ... ok
+test_from_where_and_reversed_bound (test_p2_audit.P2ParserTests.test_from_where_and_reversed_bound) ... ok
+test_join_on_and_outer_join_not_projected (test_p2_audit.P2ParserTests.test_join_on_and_outer_join_not_projected) ... ok
+test_or_and_unsupported_remain_visible (test_p2_audit.P2ParserTests.test_or_and_unsupported_remain_visible) ... ok
+test_reference_sql_never_uses_unescaped_identifier_or_literal (test_p2_audit.P2ParserTests.test_reference_sql_never_uses_unescaped_identifier_or_literal) ... ok
+test_sql_three_valued_logic (test_p2_audit.P2ParserTests.test_sql_three_valued_logic) ... ok
+test_aggregation_uses_all_columns_but_ebo_only_top_four (test_p2_semantics.P2SemanticsTests.test_aggregation_uses_all_columns_but_ebo_only_top_four) ... ok
+test_histogram_boundaries_and_empty_range (test_p2_semantics.P2SemanticsTests.test_histogram_boundaries_and_empty_range) ... ok
+test_null_and_range_intersection_without_legacy_operator_order (test_p2_semantics.P2SemanticsTests.test_null_and_range_intersection_without_legacy_operator_order) ... ok
+test_evaluation_reports_unique_and_paired_metrics (test_paired.PairedProtocolTests.test_evaluation_reports_unique_and_paired_metrics) ... {"database": "t", "run": 0, "k": 0, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+ok
+test_paired_manifest_is_shared_across_methods (test_paired.PairedProtocolTests.test_paired_manifest_is_shared_across_methods) ... {"database": "t", "run": 0, "k": 0, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 0, "k": 5, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 1, "k": 0, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 1, "k": 5, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 0, "k": 0, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 0, "k": 5, "q50": 14.58523117065914, "q95": 18.812476137070515, "unique_q95": 18.812476137070515}
+{"database": "t", "run": 1, "k": 0, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 1, "k": 5, "q50": 14.58523117065914, "q95": 18.812476137070515, "unique_q95": 18.812476137070515}
+ok
+test_cache_bytes_and_manifest_bind_to_history (test_precision_screen.PrecisionScreenTests.test_cache_bytes_and_manifest_bind_to_history) ... ok
+test_cache_symlink_rejected_before_read (test_precision_screen.PrecisionScreenTests.test_cache_symlink_rejected_before_read) ... ok
+test_candidate_thresholds_and_guard (test_precision_screen.PrecisionScreenTests.test_candidate_thresholds_and_guard) ... ok
+test_candidate_tie_uses_capacity_then_name (test_precision_screen.PrecisionScreenTests.test_candidate_tie_uses_capacity_then_name) ... ok
+test_changed_frozen_config_and_protocol_are_rejected (test_precision_screen.PrecisionScreenTests.test_changed_frozen_config_and_protocol_are_rejected) ... ok
+test_cli_dry_run_and_supervised_execution (test_precision_screen.PrecisionScreenTests.test_cli_dry_run_and_supervised_execution) ... ok
+test_cpu_four_arm_smoke_pairing (test_precision_screen.PrecisionScreenTests.test_cpu_four_arm_smoke_pairing) ... {"step": 1, "train_loss": 1.416424036026001, "validation_macro_log_q95": 2.1039036754264067, "counts": {"support_presentations": 0, "query_presentations": 5, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 1.5086106061935425, "validation_macro_log_q95": 2.102668011535568, "counts": {"support_presentations": 0, "query_presentations": 10, "backward_calls": 2, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.7040436267852783, "validation_macro_log_q95": 2.1039036754264067, "counts": {"support_presentations": 0, "query_presentations": 5, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 4.072964668273926, "validation_macro_log_q95": 2.102668011535568, "counts": {"support_presentations": 0, "query_presentations": 10, "backward_calls": 2, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 1.416424036026001, "validation_macro_log_q95": 2.1039119008673857, "counts": {"support_presentations": 0, "query_presentations": 5, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 1.5086188316345215, "validation_macro_log_q95": 2.1025043967856596, "counts": {"support_presentations": 0, "query_presentations": 10, "backward_calls": 2, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.7040436267852783, "validation_macro_log_q95": 2.1039119008673857, "counts": {"support_presentations": 0, "query_presentations": 5, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 4.072997093200684, "validation_macro_log_q95": 2.1025043967856596, "counts": {"support_presentations": 0, "query_presentations": 10, "backward_calls": 2, "optimizer_steps": 2}}
+ok
+test_endpoint_identity_includes_database_truth_and_tables (test_precision_screen.PrecisionScreenTests.test_endpoint_identity_includes_database_truth_and_tables) ... ok
+test_exact_source_splits_required (test_precision_screen.PrecisionScreenTests.test_exact_source_splits_required) ... ok
+test_failed_arm_stops_following_arms (test_precision_screen.PrecisionScreenTests.test_failed_arm_stops_following_arms) ... ok
+test_frozen_four_arm_plan_and_no_adaptation (test_precision_screen.PrecisionScreenTests.test_frozen_four_arm_plan_and_no_adaptation) ... ok
+test_gpu_gate (test_precision_screen.PrecisionScreenTests.test_gpu_gate) ... ok
+test_historical_source_bundle_is_frozen (test_precision_screen.PrecisionScreenTests.test_historical_source_bundle_is_frozen) ... ok
+test_linux_parent_death_setup_failure_and_success (test_precision_screen.PrecisionScreenTests.test_linux_parent_death_setup_failure_and_success) ... ok
+test_nonfinite_and_incomplete_results_rejected (test_precision_screen.PrecisionScreenTests.test_nonfinite_and_incomplete_results_rejected) ... ok
+test_output_rejects_old_run_and_symlinks (test_precision_screen.PrecisionScreenTests.test_output_rejects_old_run_and_symlinks) ... ok
+test_pairing_failure_stops_at_second_arm (test_precision_screen.PrecisionScreenTests.test_pairing_failure_stops_at_second_arm) ... ok
+test_raw_prediction_nonfinite_and_overflow_rejected (test_precision_screen.PrecisionScreenTests.test_raw_prediction_nonfinite_and_overflow_rejected) ... ok
+test_real_sigterm_reaps_supervised_child (test_precision_screen.PrecisionScreenTests.test_real_sigterm_reaps_supervised_child) ... ok
+test_supervisor_nonzero_and_missing_completion (test_precision_screen.PrecisionScreenTests.test_supervisor_nonzero_and_missing_completion) ... ok
+test_supervisor_success (test_precision_screen.PrecisionScreenTests.test_supervisor_success) ... ok
+test_termination_exit_race (test_precision_screen.PrecisionScreenTests.test_termination_exit_race) ... ok
+test_timeout_escalates_and_preserves_completed_arms (test_precision_screen.PrecisionScreenTests.test_timeout_escalates_and_preserves_completed_arms) ... ok
+test_timeout_terminates_own_group (test_precision_screen.PrecisionScreenTests.test_timeout_terminates_own_group) ... ok
+test_unresolved_cache_root_symlink_rejected (test_precision_screen.PrecisionScreenTests.test_unresolved_cache_root_symlink_rejected) ... ok
+test_worker_orchestration_with_mocked_execution (test_precision_screen.PrecisionScreenTests.test_worker_orchestration_with_mocked_execution) ... ok
+test_worker_output_rejects_outside_and_non_owned_directory (test_precision_screen.PrecisionScreenTests.test_worker_output_rejects_outside_and_non_owned_directory) ... ok
+test_worker_requires_timeout_parent (test_precision_screen.PrecisionScreenTests.test_worker_requires_timeout_parent) ... ok
+test_complete_tiny_evaluation (test_protocol.ProtocolTests.test_complete_tiny_evaluation) ... {"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+{"database": "t", "run": 0, "k": 0, "q50": 14.637452250667394, "q95": 18.879832479250652, "unique_q95": 18.879832479250652}
+{"database": "t", "run": 0, "k": 5, "q50": 14.442243963984282, "q95": 18.62804687557972, "unique_q95": 18.62804687557972}
+{"database": "t", "run": 1, "k": 0, "q50": 14.637452250667394, "q95": 18.879832479250652, "unique_q95": 18.879832479250652}
+{"database": "t", "run": 1, "k": 5, "q50": 14.442243963984282, "q95": 18.62804687557972, "unique_q95": 18.62804687557972}
+ok
+test_erm_runs (test_protocol.ProtocolTests.test_erm_runs) ... {"step": 1, "train_loss": 2.1423349380493164, "validation_macro_log_q95": 2.6883070518076844, "counts": {"support_presentations": 0, "query_presentations": 9, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.1124517917633057, "validation_macro_log_q95": 2.6841183950007386, "counts": {"support_presentations": 0, "query_presentations": 18, "backward_calls": 2, "optimizer_steps": 2}}
+ok
+test_resume_matches_uninterrupted (test_protocol.ProtocolTests.test_resume_matches_uninterrupted) ... {"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+ok
+test_validation_only_selection (test_protocol.ProtocolTests.test_validation_only_selection) ... ok
+test_budget_exhausted_never_launches (test_s1_source_analysis.S1AnalysisTests.test_budget_exhausted_never_launches) ... ok
+test_cache_loader_rejects_modified_arrays_and_bad_manifest (test_s1_source_analysis.S1AnalysisTests.test_cache_loader_rejects_modified_arrays_and_bad_manifest) ... ok
+test_cardinality_and_table_bins_partition_all_rows (test_s1_source_analysis.S1AnalysisTests.test_cardinality_and_table_bins_partition_all_rows) ... ok
+test_factor_pairs_and_pg_residual_accounting (test_s1_source_analysis.S1AnalysisTests.test_factor_pairs_and_pg_residual_accounting) ... ok
+test_global_and_primary_coverage (test_s1_source_analysis.S1AnalysisTests.test_global_and_primary_coverage) ... ok
+test_integration_reads_only_approved_arrays_and_exports (test_s1_source_analysis.S1AnalysisTests.test_integration_reads_only_approved_arrays_and_exports) ... ok
+test_loader_aligns_shuffled_rows_and_rejects_identity_damage (test_s1_source_analysis.S1AnalysisTests.test_loader_aligns_shuffled_rows_and_rejects_identity_damage) ... ok
+test_modules_do_not_import_torch (test_s1_source_analysis.S1AnalysisTests.test_modules_do_not_import_torch) ... ok
+test_nonfinite_or_overflow_is_rejected (test_s1_source_analysis.S1AnalysisTests.test_nonfinite_or_overflow_is_rejected) ... ok
+test_output_is_new_and_does_not_overlap_inputs (test_s1_source_analysis.S1AnalysisTests.test_output_is_new_and_does_not_overlap_inputs) ... ok
+test_pair_sign_and_tie_reference_are_explicit (test_s1_source_analysis.S1AnalysisTests.test_pair_sign_and_tie_reference_are_explicit) ... ok
+test_parent_cli_dry_run (test_s1_source_analysis.S1AnalysisTests.test_parent_cli_dry_run) ... ok
+test_pg_conditioned_cells_apply_q99_gate (test_s1_source_analysis.S1AnalysisTests.test_pg_conditioned_cells_apply_q99_gate) ... ok
+test_pg_direction_uses_reference_not_float32_rounding (test_s1_source_analysis.S1AnalysisTests.test_pg_direction_uses_reference_not_float32_rounding) ... ok
+test_pg_nonfinite_and_sparse_boundary (test_s1_source_analysis.S1AnalysisTests.test_pg_nonfinite_and_sparse_boundary) ... ok
+test_prediction_read_rechecks_hash (test_s1_source_analysis.S1AnalysisTests.test_prediction_read_rechecks_hash) ... ok
+test_q99_suppressed_for_cells_below_1000 (test_s1_source_analysis.S1AnalysisTests.test_q99_suppressed_for_cells_below_1000) ... ok
+test_raw_and_official_metrics_are_separate (test_s1_source_analysis.S1AnalysisTests.test_raw_and_official_metrics_are_separate) ... ok
+test_runner_frozen_inputs_and_no_target_paths (test_s1_source_analysis.S1AnalysisTests.test_runner_frozen_inputs_and_no_target_paths) ... ok
+test_sparse_cells_remain_counted_without_detailed_metrics (test_s1_source_analysis.S1AnalysisTests.test_sparse_cells_remain_counted_without_detailed_metrics) ... ok
+test_supervisor_timeout_reaps_own_child (test_s1_source_analysis.S1AnalysisTests.test_supervisor_timeout_reaps_own_child) ... ok
+test_supervisor_verifies_exports_before_completed (test_s1_source_analysis.S1AnalysisTests.test_supervisor_verifies_exports_before_completed) ... ok
+test_tail_sample_gates_include_459_row_fixed_tail (test_s1_source_analysis.S1AnalysisTests.test_tail_sample_gates_include_459_row_fixed_tail) ... ok
+test_tail_ties_are_preserved_and_query_sets_paired (test_s1_source_analysis.S1AnalysisTests.test_tail_ties_are_preserved_and_query_sets_paired) ... ok
+test_worker_lifecycle_without_resource_side_effects (test_s1_source_analysis.S1AnalysisTests.test_worker_lifecycle_without_resource_side_effects) ... ok
+test_worker_rejects_parent_platform_and_ownership (test_s1_source_analysis.S1AnalysisTests.test_worker_rejects_parent_platform_and_ownership) ... ok
+test_cross_database_hashes_are_not_deduplicated (test_s2_exposure_stats.StatisticsTests.test_cross_database_hashes_are_not_deduplicated) ... ok
+test_equal_database_pool_and_unweighted_quantiles (test_s2_exposure_stats.StatisticsTests.test_equal_database_pool_and_unweighted_quantiles) ... ok
+test_exposure_reports_global_and_within_database_mass_shares (test_s2_exposure_stats.StatisticsTests.test_exposure_reports_global_and_within_database_mass_shares) ... ok
+test_fixed_boundaries_and_complete_axes (test_s2_exposure_stats.StatisticsTests.test_fixed_boundaries_and_complete_axes) ... ok
+test_fp32_rounding_does_not_change_reference_direction (test_s2_exposure_stats.StatisticsTests.test_fp32_rounding_does_not_change_reference_direction) ... ok
+test_inputs_remain_unchanged (test_s2_exposure_stats.StatisticsTests.test_inputs_remain_unchanged) ... ok
+test_invalid_inputs_fail_instead_of_dropping_rows (test_s2_exposure_stats.StatisticsTests.test_invalid_inputs_fail_instead_of_dropping_rows) ... ok
+test_small_pool_remains_sparse_and_empty_exposure_is_undefined (test_s2_exposure_stats.StatisticsTests.test_small_pool_remains_sparse_and_empty_exposure_is_undefined) ... ok
+test_sparse_unique_cannot_be_inflated_by_repeats (test_s2_exposure_stats.StatisticsTests.test_sparse_unique_cannot_be_inflated_by_repeats) ... ok
+test_unequal_database_sizes_keep_equal_and_pooled_estimands_separate (test_s2_exposure_stats.StatisticsTests.test_unequal_database_sizes_keep_equal_and_pooled_estimands_separate) ... ok
+test_unweighted_linear_and_weighted_ecdf_are_distinct (test_s2_exposure_stats.StatisticsTests.test_unweighted_linear_and_weighted_ecdf_are_distinct) ... ok
+test_weighted_quantiles_inverse_ecdf (test_s2_exposure_stats.StatisticsTests.test_weighted_quantiles_inverse_ecdf) ... ok
+test_zero_denominator_and_comparison_conservation (test_s2_exposure_stats.StatisticsTests.test_zero_denominator_and_comparison_conservation) ... ok
+test_zero_source_nonzero_validation_is_not_smoothed (test_s2_exposure_stats.StatisticsTests.test_zero_source_nonzero_validation_is_not_smoothed) ... ok
+test_analysis_pipeline_uses_real_synthetic_statistics_and_verifier (test_s2_runner.S2RunnerTests.test_analysis_pipeline_uses_real_synthetic_statistics_and_verifier) ... ok
+test_csv_utf8_lf_and_json_no_nan (test_s2_runner.S2RunnerTests.test_csv_utf8_lf_and_json_no_nan) ... ok
+test_fresh_process_no_torch_or_training (test_s2_runner.S2RunnerTests.test_fresh_process_no_torch_or_training) ... ok
+test_launcher_and_absolute_deadline (test_s2_runner.S2RunnerTests.test_launcher_and_absolute_deadline) ... ok
+test_output_must_be_fresh_under_runs (test_s2_runner.S2RunnerTests.test_output_must_be_fresh_under_runs) ... ok
+test_owned_worker_success_failure_and_memory_error_states (test_s2_runner.S2RunnerTests.test_owned_worker_success_failure_and_memory_error_states) ... ok
+test_supervisor_nonzero_timeout_and_bad_manifest (test_s2_runner.S2RunnerTests.test_supervisor_nonzero_timeout_and_bad_manifest) ... ok
+test_supervisor_success_requires_all_hashes (test_s2_runner.S2RunnerTests.test_supervisor_success_requires_all_hashes) ... ok
+test_worker_rejects_unowned_or_gpu_execution (test_s2_runner.S2RunnerTests.test_worker_rejects_unowned_or_gpu_execution) ... ok
+test_cache_first_identity_and_no_features (test_s2_source_replay.S2ReplayTests.test_cache_first_identity_and_no_features) ... ok
+test_conflicting_duplicates_stop_without_filter (test_s2_source_replay.S2ReplayTests.test_conflicting_duplicates_stop_without_filter) ... ok
+test_fresh_process_never_imports_torch_or_models (test_s2_source_replay.S2ReplayTests.test_fresh_process_never_imports_torch_or_models) ... ok
+test_frozen_contract_and_hashes (test_s2_source_replay.S2ReplayTests.test_frozen_contract_and_hashes) ... ok
+test_invalid_sampling_and_digest_block (test_s2_source_replay.S2ReplayTests.test_invalid_sampling_and_digest_block) ... ok
+test_manifest_identity_shape_offsets_and_values (test_s2_source_replay.S2ReplayTests.test_manifest_identity_shape_offsets_and_values) ... ok
+test_replay_matches_independent_original_calls_and_chain (test_s2_source_replay.S2ReplayTests.test_replay_matches_independent_original_calls_and_chain) ... ok
+test_target_and_symlink_refused_before_read (test_s2_source_replay.S2ReplayTests.test_target_and_symlink_refused_before_read) ... ok
+test_complete_fixture (test_s2_verify.VerifyTests.test_complete_fixture) ... ok
+test_corruption_rejected (test_s2_verify.VerifyTests.test_corruption_rejected) ... ok
+test_missing_duplicate_nan_rejected (test_s2_verify.VerifyTests.test_missing_duplicate_nan_rejected) ... ok
+test_replay_corruption (test_s2_verify.VerifyTests.test_replay_corruption) ... ok
+test_199_200_threshold_and_exposure_observed (test_s3_conditional_analysis.ConditionalAnalysisTests.test_199_200_threshold_and_exposure_observed) ... ok
+test_empty_common_and_noncommon_are_retained (test_s3_conditional_analysis.ConditionalAnalysisTests.test_empty_common_and_noncommon_are_retained) ... ok
+test_equal_weights_use_full_database_denominators (test_s3_conditional_analysis.ConditionalAnalysisTests.test_equal_weights_use_full_database_denominators) ... ok
+test_full_means_include_noncommon_and_mass_coverage (test_s3_conditional_analysis.ConditionalAnalysisTests.test_full_means_include_noncommon_and_mass_coverage) ... ok
+test_group_segment_sum_handles_empty_and_unsorted_missing_keys (test_s3_conditional_analysis.ConditionalAnalysisTests.test_group_segment_sum_handles_empty_and_unsorted_missing_keys) ... ok
+test_million_fractional_weights_match_independent_fp64_sum (test_s3_conditional_analysis.ConditionalAnalysisTests.test_million_fractional_weights_match_independent_fp64_sum) ... ok
+test_missing_validation_guard (test_s3_conditional_analysis.ConditionalAnalysisTests.test_missing_validation_guard) ... ok
+test_pg_boundaries_and_complete_union (test_s3_conditional_analysis.ConditionalAnalysisTests.test_pg_boundaries_and_complete_union) ... ok
+test_quantiles_directions_and_fp32_definition (test_s3_conditional_analysis.ConditionalAnalysisTests.test_quantiles_directions_and_fp32_definition) ... ok
+test_rejects_invalid_input_and_uses_only_final_prefix (test_s3_conditional_analysis.ConditionalAnalysisTests.test_rejects_invalid_input_and_uses_only_final_prefix) ... ok
+test_signed_cancellation_and_label_independent_conditions_weights (test_s3_conditional_analysis.ConditionalAnalysisTests.test_signed_cancellation_and_label_independent_conditions_weights) ... ok
+test_streams_40_layers_without_mutating_inputs (test_s3_conditional_analysis.ConditionalAnalysisTests.test_streams_40_layers_without_mutating_inputs) ... ok
+test_validation_guard_requires_one_sufficient_individual_cell (test_s3_conditional_analysis.ConditionalAnalysisTests.test_validation_guard_requires_one_sufficient_individual_cell) ... ok
+test_zero_exposure_preserves_pool_database_coverage (test_s3_conditional_analysis.ConditionalAnalysisTests.test_zero_exposure_preserves_pool_database_coverage) ... ok
+test_cleanup_timeout_keeps_original_failure_and_failed_state (test_s3_runner.S3RunnerTests.test_cleanup_timeout_keeps_original_failure_and_failed_state) ... ok
+test_four_counts_first_occurrence_and_conflict (test_s3_runner.S3RunnerTests.test_four_counts_first_occurrence_and_conflict) ... ok
+test_frozen_contract (test_s3_runner.S3RunnerTests.test_frozen_contract) ... ok
+test_import_and_dry_run_no_torch_or_source_reads (test_s3_runner.S3RunnerTests.test_import_and_dry_run_no_torch_or_source_reads) ... ok
+test_launcher_and_alarm (test_s3_runner.S3RunnerTests.test_launcher_and_alarm) ... ok
+test_old_denominators_are_not_silently_changed (test_s3_runner.S3RunnerTests.test_old_denominators_are_not_silently_changed) ... ok
+test_output_paths_no_overwrite_or_symlinks (test_s3_runner.S3RunnerTests.test_output_paths_no_overwrite_or_symlinks) ... ok
+test_positive_old_denominators (test_s3_runner.S3RunnerTests.test_positive_old_denominators) ... ok
+test_success_supervision_verifies_every_byte (test_s3_runner.S3RunnerTests.test_success_supervision_verifies_every_byte) ... ok
+test_supervisor_failure_timeout_and_manifest (test_s3_runner.S3RunnerTests.test_supervisor_failure_timeout_and_manifest) ... ok
+test_synthetic_analysis_pipeline_and_changed_source_stop (test_s3_runner.S3RunnerTests.test_synthetic_analysis_pipeline_and_changed_source_stop) ... ok
+test_worker_ownership_and_failure_state (test_s3_runner.S3RunnerTests.test_worker_ownership_and_failure_state) ... ok
+test_alignment_standardization_cancellation_and_macro_guard (test_s3_verify.VerificationTests.test_alignment_standardization_cancellation_and_macro_guard) ... ok
+test_every_field_corruption_rejected (test_s3_verify.VerificationTests.test_every_field_corruption_rejected) ... ok
+test_full_stream_independent_fixture_and_immutable_inputs (test_s3_verify.VerificationTests.test_full_stream_independent_fixture_and_immutable_inputs) ... ok
+test_independent_linear_and_weighted_quantiles_direction_reference (test_s3_verify.VerificationTests.test_independent_linear_and_weighted_quantiles_direction_reference) ... ok
+test_input_guards (test_s3_verify.VerificationTests.test_input_guards) ... ok
+test_layers_guard_and_json_structural_comparison (test_s3_verify.VerificationTests.test_layers_guard_and_json_structural_comparison) ... ok
+test_mass_accumulation_tolerance_and_row_tolerance (test_s3_verify.VerificationTests.test_mass_accumulation_tolerance_and_row_tolerance) ... ok
+test_missing_duplicate_extra_columns_nan_and_integer_types (test_s3_verify.VerificationTests.test_missing_duplicate_extra_columns_nan_and_integer_types) ... ok
+test_pg_boundaries_and_local_identity (test_s3_verify.VerificationTests.test_pg_boundaries_and_local_identity) ... ok
+test_pool_database_coverage_includes_unsampled_pool_members (test_s3_verify.VerificationTests.test_pool_database_coverage_includes_unsampled_pool_members) ... ok
+test_producer_integration_mixed_labels_and_sparse_macro (test_s3_verify.VerificationTests.test_producer_integration_mixed_labels_and_sparse_macro) ... ok
+test_canonical_checkpoint_does_not_require_legacy_scale_one (test_s4_anchor.S4AnchorTests.test_canonical_checkpoint_does_not_require_legacy_scale_one) ... ok
+test_cleanup_reaps_only_own_group_and_has_bounded_escalation (test_s4_anchor.S4AnchorTests.test_cleanup_reaps_only_own_group_and_has_bounded_escalation) ... ok
+test_cpu_real_run_config_roundtrip_and_pg_rows (test_s4_anchor.S4AnchorTests.test_cpu_real_run_config_roundtrip_and_pg_rows) ... ok
+test_data_and_gpu_guards (test_s4_anchor.S4AnchorTests.test_data_and_gpu_guards) ... ok
+test_execute_smoke_and_formal_success_and_rehash_failure (test_s4_anchor.S4AnchorTests.test_execute_smoke_and_formal_success_and_rehash_failure) ... ok
+test_execute_stops_b_after_failed_baseline_and_preserves_records (test_s4_anchor.S4AnchorTests.test_execute_stops_b_after_failed_baseline_and_preserves_records) ... ok
+test_frozen_and_runtime_preflight (test_s4_anchor.S4AnchorTests.test_frozen_and_runtime_preflight) ... ok
+test_frozen_plan_and_explicit_scales (test_s4_anchor.S4AnchorTests.test_frozen_plan_and_explicit_scales) ... ok
+test_gpu_initial_idle_and_live_own_pid (test_s4_anchor.S4AnchorTests.test_gpu_initial_idle_and_live_own_pid) ... ok
+test_initial_gpu_query_failure_is_recorded_without_training (test_s4_anchor.S4AnchorTests.test_initial_gpu_query_failure_is_recorded_without_training) ... ok
+test_main_dry_run_busy_and_supervision (test_s4_anchor.S4AnchorTests.test_main_dry_run_busy_and_supervision) ... ok
+test_manifest_rejects_missing_hashes_symlinks_and_changes (test_s4_anchor.S4AnchorTests.test_manifest_rejects_missing_hashes_symlinks_and_changes) ... ok
+test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision (test_s4_anchor.S4AnchorTests.test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision) ... ok
+test_no_silent_false_verification (test_s4_anchor.S4AnchorTests.test_no_silent_false_verification) ... ok
+test_ordered_pg_identity_matches_independent_verifier (test_s4_anchor.S4AnchorTests.test_ordered_pg_identity_matches_independent_verifier) ... ok
+test_output_fresh_and_symlink_protected (test_s4_anchor.S4AnchorTests.test_output_fresh_and_symlink_protected) ... ok
+test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) ... ok
+test_plan_changes_fail_closed (test_s4_anchor.S4AnchorTests.test_plan_changes_fail_closed) ... ok
+test_supervisor_success_and_output_verification_failure (test_s4_anchor.S4AnchorTests.test_supervisor_success_and_output_verification_failure) ... ok
+test_supervisor_timeout_cleanup_error_and_no_premature_completion (test_s4_anchor.S4AnchorTests.test_supervisor_timeout_cleanup_error_and_no_premature_completion) ... ok
+test_worker_and_deadlines_mocked_full_flow (test_s4_anchor.S4AnchorTests.test_worker_and_deadlines_mocked_full_flow) ... ok
+test_worker_original_error_survives_supervisor_failure (test_s4_anchor.S4AnchorTests.test_worker_original_error_survives_supervisor_failure) ... ok
+test_bad_rows_fail_closed (test_s4_anchor_evidence.EvidenceTests.test_bad_rows_fail_closed) ... ok
+test_baseline_reproduction (test_s4_anchor_evidence.EvidenceTests.test_baseline_reproduction) ... ok
+test_checkpoint_checks (test_s4_anchor_evidence.EvidenceTests.test_checkpoint_checks) ... ok
+test_choose_exact_boundary (test_s4_anchor_evidence.EvidenceTests.test_choose_exact_boundary) ... ok
+test_choose_guardrail_boundary (test_s4_anchor_evidence.EvidenceTests.test_choose_guardrail_boundary) ... ok
+test_choose_invalid_metrics (test_s4_anchor_evidence.EvidenceTests.test_choose_invalid_metrics) ... ok
+test_formal_run_passes (test_s4_anchor_evidence.EvidenceTests.test_formal_run_passes) ... ok
+test_fp32_direction_is_not_reference_direction (test_s4_anchor_evidence.EvidenceTests.test_fp32_direction_is_not_reference_direction) ... ok
+test_frozen_fields (test_s4_anchor_evidence.EvidenceTests.test_frozen_fields) ... ok
+test_frozen_hashes_and_counts (test_s4_anchor_evidence.EvidenceTests.test_frozen_hashes_and_counts) ... ok
+test_pair_passes (test_s4_anchor_evidence.EvidenceTests.test_pair_passes) ... ok
+test_pair_rejects_missing_duplicate_and_changed_identity (test_s4_anchor_evidence.EvidenceTests.test_pair_rejects_missing_duplicate_and_changed_identity) ... ok
+test_q_overflow_and_missing_bucket (test_s4_anchor_evidence.EvidenceTests.test_q_overflow_and_missing_bucket) ... ok
+test_rows_metrics_independent (test_s4_anchor_evidence.EvidenceTests.test_rows_metrics_independent) ... ok
+test_scale_rejected (test_s4_anchor_evidence.EvidenceTests.test_scale_rejected) ... ok
+test_smoke_budget (test_s4_anchor_evidence.EvidenceTests.test_smoke_budget) ... ok
+test_source_coverage_and_protocol (test_s4_anchor_evidence.EvidenceTests.test_source_coverage_and_protocol) ... ok
+test_strata_minimum (test_s4_anchor_evidence.EvidenceTests.test_strata_minimum) ... ok
+test_verify_rows_and_order_pairing (test_s4_anchor_evidence.EvidenceTests.test_verify_rows_and_order_pairing) ... ok
+test_verify_rows_rejects_forged_endpoint (test_s4_anchor_evidence.EvidenceTests.test_verify_rows_rejects_forged_endpoint) ... ok
+test_initialization_hash_and_capacity_unchanged (test_s4_model.PGAnchorModelTests.test_initialization_hash_and_capacity_unchanged) ... ok
+test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) ... ok
+test_legacy_forward_and_gradient_identical (test_s4_model.PGAnchorModelTests.test_legacy_forward_and_gradient_identical) ... ok
+test_same_inputs_live_head_and_forward_difference (test_s4_model.PGAnchorModelTests.test_same_inputs_live_head_and_forward_difference) ... ok
+test_zero_anchor_roundtrip_and_legacy_checkpoint (test_s4_model.PGAnchorModelTests.test_zero_anchor_roundtrip_and_legacy_checkpoint) ... ok
+
+----------------------------------------------------------------------
+Ran 335 tests in 20.687s
+
+OK
+{"purpose": "S2 dry-run, no inputs opened or analysis executed", "output": "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpj7_m7oz8/runs/dry", "timeout_seconds": 1800, "address_space_bytes": 4294967296}
+{"purpose": "S3 dry-run, no inputs opened or analysis executed", "output": "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpawkbn810/runs/dry", "timeout_seconds": 1800, "address_space_bytes": 4294967296}

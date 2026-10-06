@@ -1,0 +1,9 @@
+{
+  "getpid": 47409,
+  "status_pid_fields": [
+    "Pid:\t47409"
+  ],
+  "sched_header": "python (46216, #threads: 1)",
+  "pid_namespace": "pid:[4026534397]",
+  "kernel": "3.10.0-1160.el7.x86_64"
+}

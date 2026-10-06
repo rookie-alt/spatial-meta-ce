@@ -1,0 +1,98 @@
+test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) ... 
+  test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=456, status='Pid:\t123\n') ... ERROR
+  test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=456, status='Pid:\t123\nNSpid:\t456\t123\n') ... ERROR
+  test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=123, status='Pid:\t123\nNSpid:\t123\n') ... ERROR
+  test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=None, status='Pid:\t999\n') ... ERROR
+  test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=None, status='Pid:\t123\nNSpid:\t789\t123\n') ... ERROR
+  test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=None, status='Pid:\t123\n') ... ERROR
+test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) ... ERROR
+test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision (test_s4_anchor.S4AnchorTests.test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision) ... 
+  test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision (test_s4_anchor.S4AnchorTests.test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision) (pid=456) ... ERROR
+  test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision (test_s4_anchor.S4AnchorTests.test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision) (pid=123) ... FAIL
+
+======================================================================
+ERROR: test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=456, status='Pid:\t123\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 81, in test_own_nvml_pid_from_kernel_metadata_and_fail_closed
+    self.assertEqual(s.own_nvml_pid(), expected)
+                     ^^^^^^^^^^^^^^
+AttributeError: module 'scripts.run_s4_anchor' has no attribute 'own_nvml_pid'
+
+======================================================================
+ERROR: test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=456, status='Pid:\t123\nNSpid:\t456\t123\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 81, in test_own_nvml_pid_from_kernel_metadata_and_fail_closed
+    self.assertEqual(s.own_nvml_pid(), expected)
+                     ^^^^^^^^^^^^^^
+AttributeError: module 'scripts.run_s4_anchor' has no attribute 'own_nvml_pid'
+
+======================================================================
+ERROR: test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=123, status='Pid:\t123\nNSpid:\t123\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 81, in test_own_nvml_pid_from_kernel_metadata_and_fail_closed
+    self.assertEqual(s.own_nvml_pid(), expected)
+                     ^^^^^^^^^^^^^^
+AttributeError: module 'scripts.run_s4_anchor' has no attribute 'own_nvml_pid'
+
+======================================================================
+ERROR: test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=None, status='Pid:\t999\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 79, in test_own_nvml_pid_from_kernel_metadata_and_fail_closed
+    with self.assertRaises(RuntimeError): s.own_nvml_pid()
+                                          ^^^^^^^^^^^^^^
+AttributeError: module 'scripts.run_s4_anchor' has no attribute 'own_nvml_pid'
+
+======================================================================
+ERROR: test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=None, status='Pid:\t123\nNSpid:\t789\t123\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 79, in test_own_nvml_pid_from_kernel_metadata_and_fail_closed
+    with self.assertRaises(RuntimeError): s.own_nvml_pid()
+                                          ^^^^^^^^^^^^^^
+AttributeError: module 'scripts.run_s4_anchor' has no attribute 'own_nvml_pid'
+
+======================================================================
+ERROR: test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed) (expected=None, status='Pid:\t123\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 79, in test_own_nvml_pid_from_kernel_metadata_and_fail_closed
+    with self.assertRaises(RuntimeError): s.own_nvml_pid()
+                                          ^^^^^^^^^^^^^^
+AttributeError: module 'scripts.run_s4_anchor' has no attribute 'own_nvml_pid'
+
+======================================================================
+ERROR: test_own_nvml_pid_from_kernel_metadata_and_fail_closed (test_s4_anchor.S4AnchorTests.test_own_nvml_pid_from_kernel_metadata_and_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 83, in test_own_nvml_pid_from_kernel_metadata_and_fail_closed
+    with self.assertRaises(RuntimeError): s.own_nvml_pid()
+                                          ^^^^^^^^^^^^^^
+AttributeError: module 'scripts.run_s4_anchor' has no attribute 'own_nvml_pid'
+
+======================================================================
+ERROR: test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision (test_s4_anchor.S4AnchorTests.test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision) (pid=456)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 93, in test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision
+    self.assertEqual(s.gpu_gate('cuda','4',expected_uuid='GPU-one'), 'GPU-one')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/run_s4_anchor.py", line 177, in gpu_gate
+    raise GPUBusy("Selected GPU has external processes; no retry")
+scripts.run_s4_anchor.GPUBusy: Selected GPU has external processes; no retry
+
+======================================================================
+FAIL: test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision (test_s4_anchor.S4AnchorTests.test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision) (pid=123)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 95, in test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision
+    with self.assertRaises(s.GPUBusy):s.gpu_gate('cuda','4',expected_uuid='GPU-one')
+AssertionError: GPUBusy not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.004s
+
+FAILED (failures=1, errors=8)

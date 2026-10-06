@@ -1,0 +1,9 @@
+{
+  "status": "failed",
+  "arms": {
+    "A_anchor1": "verified",
+    "B_anchor0": "failed"
+  },
+  "updated_at": "2026-10-06T13:54:34.311478+00:00",
+  "error": "GPUBusy: Selected GPU has external processes; no retry"
+}

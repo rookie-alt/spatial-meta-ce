@@ -1,0 +1,19 @@
+{
+  "updated_at": "2026-10-06T14:16:46.420096+00:00",
+  "backup": "/gly/weilin/spatial-meta-ce/runs/s4-pidfix-backup-20261006",
+  "changes": {
+    "scripts/run_s4_anchor.py": {
+      "old_sha256": "90621c024e971f41041361b33cbdd36ae389183f3fceaeef62573922efcbf179",
+      "new_sha256": "7006dc02d14e9c2d39c34be63863d655d51037ed6b21a533e93dbd7794ba17e9"
+    },
+    "tests/test_s4_anchor.py": {
+      "old_sha256": "541861fcf17bcd7deb1a4748050b8269eb37655970c0076138ed754262f91fe7",
+      "new_sha256": "2e5d35044157c4adec1dcf8399335a74ac150e64bf598d7896b6eaff512142c3"
+    }
+  },
+  "scientific_protocol_unchanged": true,
+  "failed_run_preserved": true
+}
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html

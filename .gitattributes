@@ -5,3 +5,5 @@
 "实验文档/results/s3-conditional-residual-20261006/*.csv.gz" -text
 reports/s3-conditional-residual-20261006/*.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 reports/s4-pg-output-anchor-20261006/*.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+reports/s4-pg-output-anchor-execute-20261006/*.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+"实验文档/results/s4-pg-output-anchor-20261006-pidfix/*.csv" -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

@@ -1,0 +1,17 @@
+{
+  "purpose": "controlled CUDA context PID diagnosis, not training or model smoke",
+  "updated_at": "2026-10-06T14:05:47.197308+00:00",
+  "gpu_uuid": "GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d",
+  "getpid": 47444,
+  "status": [
+    "Pid:\t47444"
+  ],
+  "sched_header": "python (71953, #threads: 64)",
+  "before": "3, GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d, 1, 0",
+  "before_pids": [],
+  "after": "3, GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d, 304, 0",
+  "nvml_pids_after_own_context": [
+    71953
+  ],
+  "cuda_visible_devices": "3"
+}

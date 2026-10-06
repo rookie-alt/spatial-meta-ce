@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import platform
+import re
 import secrets
 import signal
 import subprocess
@@ -132,12 +133,39 @@ def validate_output(path: Path, data: dict) -> Path:
     return precision.validate_output(path, data, ROOT)
 
 
+def own_nvml_pid() -> int:
+    try:
+        fields = {
+            line.partition(":")[0]: line.partition(":")[2].split()
+            for line in Path("/proc/self/status").read_text().splitlines()
+        }
+        if fields.get("Pid") != [str(os.getpid())]:
+            raise ValueError("Process metadata does not identify this process")
+        header = Path("/proc/self/sched").read_text().splitlines()[0]
+        match = re.search(r" \((\d+), #threads: \d+\)$", header)
+        if match is None or int(match[1]) < 1:
+            raise ValueError("Unknown kernel scheduler PID format")
+        pid = int(match[1])
+        if "NSpid" in fields:
+            chain = [int(value) for value in fields["NSpid"]]
+            if (
+                not chain
+                or chain[-1] != os.getpid()
+                or any(value < 1 for value in chain)
+            ):
+                raise ValueError("Invalid PID namespace chain")
+            if len(chain) > 1 and chain[0] != pid:
+                raise ValueError("Kernel PID sources disagree")
+        return pid
+    except (OSError, ValueError, IndexError) as error:
+        raise RuntimeError("Cannot authenticate own NVML process PID") from error
+
+
 def gpu_gate(
     device: str,
     index: str,
     expected_uuid: str | None = None,
     initial: bool = False,
-    controlled: tuple = (),
 ) -> str:
     if (
         device != "cuda"
@@ -170,7 +198,7 @@ def gpu_gate(
     _, uuid, memory, utilization = [v.strip() for v in selected[0]]
     if expected_uuid is not None and uuid != expected_uuid:
         raise ValueError("GPU UUID changed")
-    allowed = {os.getpid(), *controlled}
+    allowed = set() if initial else {own_nvml_pid()}
     for row in apps.splitlines():
         gpu, pid = [p.strip() for p in row.split(",")]
         if gpu == uuid and (initial or int(pid) not in allowed):
@@ -221,6 +249,8 @@ def preflight(data: dict, index: str) -> tuple:
             "python": sys.version,
             "gpu_uuid": uuid,
             "gpu_index": index,
+            "process_id": os.getpid(),
+            "nvml_process_id": own_nvml_pid(),
             "protocol_sha256": file_hash(ROOT / PROTOCOL),
             "config_sha256": file_hash(CONFIG),
             "source_binding": SOURCE_BINDING,

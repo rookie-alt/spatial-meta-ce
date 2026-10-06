@@ -41,7 +41,10 @@ class S4AnchorTests(unittest.TestCase):
         )
 
     def test_gpu_initial_idle_and_live_own_pid(self):
-        with patch.dict(os.environ, {"CUDA_VISIBLE_DEVICES": "4"}):
+        with (
+            patch.dict(os.environ, {"CUDA_VISIBLE_DEVICES": "4"}),
+            patch.object(s, "own_nvml_pid", return_value=os.getpid()),
+        ):
             with patch.object(
                 s.subprocess, "check_output", side_effect=["4, GPU-one, 0, 0\n", ""]
             ):
@@ -61,6 +64,64 @@ class S4AnchorTests(unittest.TestCase):
             ):
                 with self.assertRaises(s.GPUBusy):
                     s.gpu_gate("cuda", "4", expected_uuid="GPU-one")
+
+    def test_own_nvml_pid_from_kernel_metadata_and_fail_closed(self):
+        cases = [
+            ("Pid:\t123\n", "python (456, #threads: 1)\n", 456),
+            ("Pid:\t123\nNSpid:\t456\t123\n", "python (456, #threads: 1)\n", 456),
+            ("Pid:\t123\nNSpid:\t123\n", "python (123, #threads: 1)\n", 123),
+            ("Pid:\t999\n", "python (456, #threads: 1)\n", None),
+            ("Pid:\t123\nNSpid:\t789\t123\n", "python (456, #threads: 1)\n", None),
+            ("Pid:\t123\n", "unknown kernel format\n", None),
+        ]
+        for status, sched, expected in cases:
+            with (
+                self.subTest(expected=expected, status=status),
+                patch.object(s.os, "getpid", return_value=123),
+                patch.object(s.Path, "read_text", side_effect=[status, sched]),
+            ):
+                if expected is None:
+                    with self.assertRaises(RuntimeError):
+                        s.own_nvml_pid()
+                else:
+                    self.assertEqual(s.own_nvml_pid(), expected)
+        with patch.object(s.Path, "read_text", side_effect=OSError("unreadable")):
+            with self.assertRaises(RuntimeError):
+                s.own_nvml_pid()
+
+    def test_namespace_gpu_gate_allows_only_kernel_pid_not_namespace_collision(self):
+        with (
+            patch.dict(os.environ, {"CUDA_VISIBLE_DEVICES": "4"}),
+            patch.object(s.os, "getpid", return_value=123),
+        ):
+            for pid, expected in [(456, True), (123, False), (999, False)]:
+                with (
+                    self.subTest(pid=pid),
+                    patch.object(
+                        s.Path,
+                        "read_text",
+                        side_effect=["Pid:\t123\n", "python (456, #threads: 1)\n"],
+                    ),
+                    patch.object(
+                        s.subprocess,
+                        "check_output",
+                        side_effect=["4, GPU-one, 300, 50\n", f"GPU-one, {pid}\n"],
+                    ),
+                ):
+                    if expected:
+                        self.assertEqual(
+                            s.gpu_gate("cuda", "4", expected_uuid="GPU-one"), "GPU-one"
+                        )
+                    else:
+                        with self.assertRaises(s.GPUBusy):
+                            s.gpu_gate("cuda", "4", expected_uuid="GPU-one")
+            with patch.object(
+                s.subprocess,
+                "check_output",
+                side_effect=["4, GPU-one, 300, 0\n", "GPU-one, 456\n"],
+            ):
+                with self.assertRaises(s.GPUBusy):
+                    s.gpu_gate("cuda", "4", initial=True)
 
     def test_no_silent_false_verification(self):
         self.assertEqual(s.require_passed({"passed": True}), {"passed": True})
@@ -165,6 +226,7 @@ class S4AnchorTests(unittest.TestCase):
             s.frozen_inputs()
         with (
             patch.object(s, "gpu_gate", return_value="GPU-test"),
+            patch.object(s, "own_nvml_pid", return_value=123),
             patch.object(s.platform, "python_version", return_value="3.11.4"),
             patch.object(s.torch, "__version__", "2.1.0+cu121"),
             patch.object(s.np, "__version__", "1.26.1"),
