@@ -216,7 +216,7 @@ class S7VerificationIntegrationTests(unittest.TestCase):
         import json
 
         from scripts.run_s7_diagnosis import cohort_report
-        from scripts.s2_source_replay import digest
+        from scripts.s2_source_replay import digest, replay
 
         data = S7Tests().fixture()
         train = list(core.TRAIN)
@@ -227,13 +227,17 @@ class S7VerificationIntegrationTests(unittest.TestCase):
         }
         for c in caches.values():
             c["indices"] = np.arange(400)
-        states = {
-            db: {
-                "support": np.ones(400, dtype=np.int64),
-                "query": np.zeros(400, dtype=np.int64),
-            }
-            for db in train
+        config = {
+            "seed": 42,
+            "steps": 160,
+            "meta_batch": 1,
+            "accumulation": 1,
+            "query_size": 2,
+            "support_sizes": [1, 2],
         }
+        sampled = replay(caches, train, config, prefixes=(config["steps"],))
+        snapshot = sampled["prefixes"][config["steps"]]
+        states = snapshot["databases"]
         (root / "configs").mkdir()
         core.write_json(root / "configs/data.json", {"splits": {"train": train}})
         samples, predictions, entries, sources = [], [], [], {}
@@ -250,7 +254,12 @@ class S7VerificationIntegrationTests(unittest.TestCase):
                     ).hexdigest()
                 },
             }
-            for cohort, candidates in (("seen", list(range(400))), ("unseen", [])):
+            seen, unseen = core.memberships(states[db])
+            counts = states[db]["support"] + states[db]["query"]
+            for cohort, candidates in (
+                ("seen", seen.tolist()),
+                ("unseen", unseen.tolist()),
+            ):
                 chosen = core.deterministic_sample(
                     db, cohort, data["query_hash"], candidates, 2048
                 )
@@ -265,7 +274,7 @@ class S7VerificationIntegrationTests(unittest.TestCase):
                         "selected_identity_digest": digest(
                             [data["query_hash"][i] for i in chosen]
                         ),
-                        "sample_presentations": len(chosen),
+                        "sample_presentations": int(counts[chosen].sum()),
                         "pool_cardinality_counts": {
                             k: int(m[candidates].sum()) for k, m in masks.items()
                         },
@@ -283,7 +292,7 @@ class S7VerificationIntegrationTests(unittest.TestCase):
                         "unique_position": i,
                         "raw_index": i,
                         "query_hash": data["query_hash"][i],
-                        "presentations": 1,
+                        "presentations": int(counts[i]),
                         **{k: float(data[k][i]) for k in ("true", "pg", "n_tables")},
                     }
                     samples.append(r)
@@ -301,14 +310,14 @@ class S7VerificationIntegrationTests(unittest.TestCase):
             ("source-predictions.jsonl", predictions),
         ):
             (root / name).write_text("".join(json.dumps(r) + "\n" for r in rows))
-        replay_digest = digest("synthetic-replay")
+        replay_digest = sampled["digest"]
         core.write_json(
             root / "sample-plan.json",
             {
                 "cohorts": entries,
                 "sample_digest": replay_digest,
-                "episodes": 16000,
-                "presentations": len(samples),
+                "episodes": snapshot["episodes"],
+                "presentations": snapshot["presentations"],
                 "selected_rows_sha256": hashlib.sha256(
                     (root / "sample-manifest.jsonl").read_bytes()
                 ).hexdigest(),
@@ -323,10 +332,11 @@ class S7VerificationIntegrationTests(unittest.TestCase):
                 "runs": [
                     {
                         "sample_plan_digest": replay_digest,
-                        "sample_plan_episodes": 16000,
+                        "sample_plan_episodes": snapshot["episodes"],
+                        "config": config,
                         "counts": {
                             "support_presentations": 0,
-                            "query_presentations": len(samples),
+                            "query_presentations": snapshot["presentations"],
                         },
                     }
                 ]
@@ -348,19 +358,23 @@ class S7VerificationIntegrationTests(unittest.TestCase):
                             "log_pred": float(data[arm][i]),
                         }
                         stream.write(json.dumps(r) + "\n")
-        gen = {
-            "rows": [
-                {
-                    "database": db,
-                    "cohort": cohort,
-                    "statistics": cohort_report(data)
-                    if cohort == "seen"
-                    else [{"bucket": "all", "n": 0, "status": "below_min_cell_n"}],
+        gen = {"rows": []}
+        for db in train:
+            seen, unseen = core.memberships(states[db])
+            for cohort, members in (("seen", seen), ("unseen", unseen)):
+                member = {
+                    k: ([v[i] for i in members] if k == "query_hash" else v[members])
+                    for k, v in data.items()
                 }
-                for db in train
-                for cohort in ("seen", "unseen")
-            ]
-        }
+                gen["rows"].append(
+                    {
+                        "database": db,
+                        "cohort": cohort,
+                        "statistics": cohort_report(member)
+                        if len(members)
+                        else [{"bucket": "all", "n": 0, "status": "below_min_cell_n"}],
+                    }
+                )
         gen["rows"].extend(
             {
                 "database": db,
@@ -394,7 +408,9 @@ class S7VerificationIntegrationTests(unittest.TestCase):
             p.write_text(text)
             p2 = root / "generalization.json"
             gen = json.loads(p2.read_text())
-            gen["rows"][0]["statistics"][0]["A"]["q95"] += 1
+            next(row for row in gen["rows"] if row["database"] == "chembl")[
+                "statistics"
+            ][0]["A"]["q95"] += 1
             core.write_json(p2, gen)
             with self.assertRaises(ValueError):
                 verify(root, root, hist, caches, states)
@@ -548,6 +564,67 @@ class S7VerificationIntegrationTests(unittest.TestCase):
                     with self.assertRaises(ValueError):
                         verify(root, root, hist, caches, states)
                     path.write_text(original)
+
+    def test_role_swaps_and_joint_preserving_redistribution_are_rejected(self):
+        from copy import deepcopy
+
+        from scripts.s7_independent_verify import verify
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            hist, caches, states = self.make(root)
+            self.assertTrue(verify(root, root, hist, caches, states)["passed"])
+            altered = deepcopy(states)
+            for row in altered.values():
+                row["support"], row["query"] = row["query"], row["support"]
+            with self.assertRaisesRegex(ValueError, "role"):
+                verify(root, root, hist, caches, altered)
+            altered = deepcopy(states)
+            for row in altered.values():
+                row["query"] += row["support"]
+                row["support"][:] = 0
+            with self.assertRaisesRegex(ValueError, "role"):
+                verify(root, root, hist, caches, altered)
+
+    def test_independent_role_replay_rejects_unsigned_order_and_boolean_accumulation(
+        self,
+    ):
+        import json
+        from copy import deepcopy
+
+        from scripts.s7_independent_verify import independent_roles
+
+        with tempfile.TemporaryDirectory() as tmp:
+            hist, caches, _ = self.make(Path(tmp))
+            config = json.loads((hist / "summary.json").read_text())["runs"][0][
+                "config"
+            ]
+            malformed = deepcopy(caches)
+            malformed["accidents"]["indices"] = malformed["accidents"][
+                "indices"
+            ].astype(np.uint64)[::-1]
+            with self.assertRaisesRegex(ValueError, "pool"):
+                independent_roles(malformed, config)
+            with self.assertRaisesRegex(ValueError, "support"):
+                independent_roles(caches, {**config, "accumulation": True})
+
+    def test_sparse_pairs_reject_nonfinite_and_overflow_before_count_only_return(self):
+        from scripts.s7_independent_verify import pair_check
+
+        record = {"n": 1, "status": "below_min_cell_n"}
+        data = S7Tests().fixture(1)
+        mask = np.ones(1, dtype=bool)
+        for arm in ("A", "B"):
+            for invalid in (np.nan, np.inf, -np.inf, 2000.0, -1e200):
+                with self.subTest(arm=arm, invalid=invalid):
+                    data[arm][:] = invalid
+                    with self.assertRaisesRegex(ValueError, "finite|overflow"):
+                        pair_check(record, data, mask)
+                data[arm][:] = 0
+        pair_check(record, data, mask)
+        pair_check(
+            {"n": 0, "status": "below_min_cell_n"}, data, np.zeros(1, dtype=bool)
+        )
 
 
 class ArchiveOverviewTests(unittest.TestCase):

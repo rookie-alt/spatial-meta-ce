@@ -1,0 +1,4 @@
+database,all_rows,unique_queries,support_pool_unique,overlapping_unique_removed
+stats,2749,2603,49959,41
+genome,2302,1699,49609,164
+ergastf1,1422,1258,49705,294

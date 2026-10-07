@@ -1,0 +1,6 @@
+test_independent_role_replay_rejects_unsigned_order_and_boolean_accumulation (test_s7_diagnosis.S7VerificationIntegrationTests.test_independent_role_replay_rejects_unsigned_order_and_boolean_accumulation) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.234s
+
+OK

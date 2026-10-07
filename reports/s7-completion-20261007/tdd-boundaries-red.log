@@ -1,0 +1,14 @@
+test_independent_role_replay_rejects_unsigned_order_and_boolean_accumulation (test_s7_diagnosis.S7VerificationIntegrationTests.test_independent_role_replay_rejects_unsigned_order_and_boolean_accumulation) ... FAIL
+
+======================================================================
+FAIL: test_independent_role_replay_rejects_unsigned_order_and_boolean_accumulation (test_s7_diagnosis.S7VerificationIntegrationTests.test_independent_role_replay_rejects_unsigned_order_and_boolean_accumulation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 600, in test_independent_role_replay_rejects_unsigned_order_and_boolean_accumulation
+    with self.assertRaisesRegex(ValueError, "pool"):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.244s
+
+FAILED (failures=1)

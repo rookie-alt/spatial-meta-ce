@@ -1,0 +1,25 @@
+setUpClass (test_paper_results.PaperResultsTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (test_paper_results.PaperResultsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_paper_results.py", line 21, in setUpClass
+    cls.data = paper.load_evidence(ROOT)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/build_paper_results.py", line 336, in load_evidence
+    endpoints, tradeoffs = source_tables(root)
+                           ^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/build_paper_results.py", line 300, in source_tables
+    metrics = index_rows(read_csv(root, f'{RESULTS}/{directory}/metrics.csv'),
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/build_paper_results.py", line 88, in index_rows
+    require(key not in result, f'Duplicate evidence row: {key}')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/build_paper_results.py", line 49, in require
+    raise ValueError(message)
+ValueError: Duplicate evidence row: ('A_anchor1', 'chembl', 'all_tables')
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.280s
+
+FAILED (errors=1)

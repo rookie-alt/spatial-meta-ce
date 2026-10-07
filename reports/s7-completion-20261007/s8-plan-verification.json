@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "protocol_sha256": "bff361147fa86385cf479a866eb7384ed2b1d214e86740fde68cd118cf60af2b",
+  "state": "draft/not_started",
+  "selected_holdout_by_identity": [
+    "accidents",
+    "grants",
+    "employee",
+    "hockey"
+  ],
+  "training_database_count": 19,
+  "pooled_features": 774,
+  "last_hidden_features": 64,
+  "probes": 4,
+  "training_executed": false,
+  "inference_executed": false,
+  "budget_approved": false,
+  "review": "Design is a limited linear readout reachability/representation-level probe; x/h dimension and parameter class differ, not pure compression causality. Fresh F0 excludes H; H historically seen, not blind. Proposed resource cap requires separate approval."
+}

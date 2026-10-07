@@ -1,0 +1,5 @@
+bucket,cohort,database_count,improved_databases,worse_databases,median_relative_q95_change_b_vs_a
+all,seen,23,14,9,-0.0020198622094179663
+all,unseen,23,16,7,-0.03105053441852923
+four_plus,seen,20,11,9,-0.009791647270163795
+four_plus,unseen,20,13,7,-0.05639004566346312

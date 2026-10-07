@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "files": 8,
+  "local_links_checked": 282,
+  "missing": [],
+  "method": "ignore fenced and inline code before parsing markdown links"
+}

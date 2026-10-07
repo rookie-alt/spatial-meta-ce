@@ -1,0 +1,14 @@
+{
+  "reports/s7-completion-20261007/tdd-red.log": {
+    "raw_sha256": "af7cbc8c391a870b80d2fbfdd0852a2de651860651bbc6cc91c25200b8ce2f45",
+    "display_sha256": "62c286dce40fb60f15cedb28799eed1b5a6fdf8810c4bfe4bccac34618d9c746",
+    "raw_gzip": "reports/s7-completion-20261007/tdd-red.log.gz",
+    "normalization": "trailing whitespace only; exact original retained in gzip"
+  },
+  "reports/s7-completion-20261007/final-all-ruff.log": {
+    "raw_sha256": "6a9e972102c95d9fa25e306701856c6292bc2950f67db92c5bdb36933d54806d",
+    "display_sha256": "0967b3bc2a02c26028960e7855a605480b44e56f277df36ade072163c3407147",
+    "raw_gzip": "reports/s7-completion-20261007/final-all-ruff.log.gz",
+    "normalization": "trailing whitespace only; exact original retained in gzip"
+  }
+}

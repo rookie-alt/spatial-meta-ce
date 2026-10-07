@@ -48,13 +48,27 @@ def percentile(values, percent):
 
 
 def numbers(pred, true):
-    if len(pred) != len(true) or not len(true):
-        raise ValueError("Incomplete verification denominator")
+    pred, true = np.asarray(pred, dtype=np.float64), np.asarray(true, dtype=np.float64)
+    if (
+        pred.ndim != 1
+        or pred.shape != true.shape
+        or not len(true)
+        or not np.isfinite(pred).all()
+        or not np.isfinite(true).all()
+        or (true < 0).any()
+    ):
+        raise ValueError("Nonfinite/invalid verification values or denominator")
     label = np.array([math.log(max(float(y), 1)) for y in true])
-    effective = np.array([max(float(p), 0) for p in pred])
-    q = np.array([math.exp(abs(p - y)) for p, y in zip(effective, label)])
-    raw = np.asarray(pred) - label
-    signed = effective - label
+    effective = np.maximum(pred, 0)
+    try:
+        q = np.array([math.exp(abs(p - y)) for p, y in zip(effective, label)])
+    except OverflowError as error:
+        raise ValueError("Q-error overflow in verification") from error
+    raw, signed = pred - label, effective - label
+    with np.errstate(over="ignore", invalid="ignore"):
+        squared = raw * raw
+    if not np.isfinite(q).all() or not np.isfinite(squared).all():
+        raise ValueError("Raw error overflow in verification")
     return q, raw, signed
 
 
@@ -93,6 +107,12 @@ def close(actual, expected):
 
 def pair_check(record, data, mask):
     n = int(mask.sum())
+    if n:
+        t, pg = data["true"][mask], data["pg"][mask]
+        if not np.isfinite(pg).all() or (pg < 0).any():
+            raise ValueError("Nonfinite/invalid PG verification values")
+        for pred in (data["A"][mask], data["B"][mask], np.log(np.maximum(pg, 1))):
+            numbers(pred, t)
     if n < 200:
         close(record, {"n": n, "status": "below_min_cell_n"})
         return
@@ -179,6 +199,60 @@ def digest(value):
     ).hexdigest()
 
 
+def independent_roles(caches, config):
+    """Replay role-specific identities without calling the production sampler."""
+    for key in ("steps", "meta_batch", "query_size", "seed"):
+        if type(config[key]) is not int or config[key] < (0 if key == "seed" else 1):
+            raise ValueError("Invalid independent role replay configuration")
+    sizes = config["support_sizes"]
+    if (
+        type(config["accumulation"]) is not int
+        or config["accumulation"] != 1
+        or not sizes
+        or len(set(sizes)) != len(sizes)
+        or any(type(k) is not int or k < 1 for k in sizes)
+    ):
+        raise ValueError("Invalid independent role support sizes")
+    roles, positions = {}, {}
+    for db in TRAIN:
+        indices = np.asarray(caches[db]["indices"])
+        if (
+            indices.ndim != 1
+            or indices.dtype.kind not in "iu"
+            or len(indices) != len(caches[db]["query_hash"])
+            or len(indices) < max(sizes) + config["query_size"]
+            or (indices < 0).any()
+            or (indices[1:] <= indices[:-1]).any()
+        ):
+            raise ValueError("Invalid independent role source pool")
+        roles[db] = {
+            role: np.zeros(len(indices), dtype=np.int64)
+            for role in ("support", "query")
+        }
+        positions[db] = {int(raw): i for i, raw in enumerate(indices)}
+    rng = np.random.default_rng(config["seed"] + 1)
+    previous, presentations = hashlib.sha256(b"").hexdigest(), 0
+    episodes = config["steps"] * config["meta_batch"]
+    for _ in range(episodes):
+        db, k = str(rng.choice(TRAIN)), int(rng.choice(sizes))
+        raw = rng.choice(
+            caches[db]["indices"], size=k + config["query_size"], replace=False
+        )
+        chosen = [positions[db][int(index)] for index in raw]
+        episode = {"db": db}
+        for role, members in (("support", chosen[:k]), ("query", chosen[k:])):
+            episode[role] = [caches[db]["query_hash"][i] for i in members]
+            np.add.at(roles[db][role], members, 1)
+        previous = digest({"previous": previous, "episode": episode})
+        presentations += len(chosen)
+    return {
+        "digest": previous,
+        "episodes": episodes,
+        "presentations": presentations,
+        "databases": roles,
+    }
+
+
 def verify(output, data_root, s6_run, caches, states):
     output, data_root, s6_run = map(Path, (output, data_root, s6_run))
     complete_keys(states, TRAIN, "training database states")
@@ -215,6 +289,19 @@ def verify(output, data_root, s6_run, caches, states):
         )
     ):
         raise ValueError("Sample replay summary binding mismatch")
+    rebuilt = independent_roles(caches, frozen["config"])
+    if (
+        rebuilt["digest"] != plan["sample_digest"]
+        or rebuilt["episodes"] != plan["episodes"]
+        or rebuilt["presentations"] != presentations
+    ):
+        raise ValueError("Independent role replay digest/count mismatch")
+    for db in TRAIN:
+        for role in ("support", "query"):
+            if not np.array_equal(states[db][role], rebuilt["databases"][db][role]):
+                raise ValueError(
+                    f"Independent per-query role exposure mismatch: {db}/{role}"
+                )
     sample = [
         json.loads(line)
         for line in (output / "sample-manifest.jsonl").read_text().splitlines()
@@ -472,6 +559,11 @@ def verify(output, data_root, s6_run, caches, states):
         "purpose": "independent-math-quantile-and-identity-verification",
         "sample_queries": len(sample),
         "cohorts": len(plan["cohorts"]),
+        "role_exposure_verified": True,
+        "role_presentations": {
+            role: sum(int(row[role].sum()) for row in rebuilt["databases"].values())
+            for role in ("support", "query")
+        },
         "verified_statistic_cells": verified_cells,
         "tail_partition_unique": int(base.sum()),
         "s6_decision": "no_candidate",

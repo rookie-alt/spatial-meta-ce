@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "base_revision": "8fe6de4defb45d29719f358bd722cf5b5f96cee6",
+  "branch": "feat/s7-completion-and-paper-20261007",
+  "full_tests": 481,
+  "s7_tests": 27,
+  "paper_tests": 15,
+  "test_seconds": 44.86,
+  "changed_files_ruff_passed": true,
+  "full_repository_ruff_passed": false,
+  "existing_ruff_issues": 110,
+  "historical_files_unchanged": 333,
+  "local_markdown_links_checked": 284,
+  "scientific_paper_inputs": 70,
+  "original_14_sources": 36,
+  "paper_outputs_byte_identical": 20,
+  "paper_artifacts": {
+    "csv": 14,
+    "svg": 4,
+    "source_json": 1
+  },
+  "server_recheck_passed": true,
+  "server_files_rehashed_before_after": 210,
+  "source_samples": 94208,
+  "role_presentations": {
+    "support": 597915,
+    "query": 1024000
+  },
+  "code_sha256": {
+    "scripts/s7_independent_verify.py": "0cdb02e1b899e155f04ff3bd68749fb5dd2926f3ad48328005a060a91f90527b",
+    "scripts/build_paper_results.py": "8b74bd99a81cba9e72927352df787f9611cfc69b079b89ac20c63b31987a599f",
+    "tests/test_s7_diagnosis.py": "d74e79d53f6d2f0803564fd627e584174232ac4a942d634af014576aaab8e192",
+    "tests/test_paper_results.py": "0408468e546e234147d68f3a211f19ee579b058216cb8c0a5b1d81e479f1bd02",
+    "reports/s7-completion-20261007/recheck_server.py": "d0f921464c308798c7e25b4709d95cec3f67787e573146c629df9d2de8db3c3f"
+  },
+  "s8_protocol": "draft/not_started",
+  "s8_budget_approved": false,
+  "imdb_complete_support": "blocked_missing_authenticated_support_input",
+  "p2_real_database": "blocked_snapshot_unverified/deferred",
+  "full_thesis_finalized": false,
+  "new_training": false,
+  "new_inference": false,
+  "target_raw_data_read": false,
+  "database_count": false,
+  "server_deployment": false,
+  "graphify_updated": false,
+  "independent_paper_review": "passed after path-alias fix"
+}

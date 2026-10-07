@@ -1,0 +1,51 @@
+Actual CLI rebuild: {
+  "artifacts": 19,
+  "chapter_written": true,
+  "input_files_checked": 70,
+  "original_14_sources_checked": 36,
+  "source_endpoint_cells": 36,
+  "status": "success",
+  "target_cells": 108,
+  "target_episode_records": 1260
+}
+
+{
+  "status": "passed",
+  "baseline": "8fe6de4",
+  "python": "/opt/anaconda3/bin/python",
+  "target_episode_records_checked": 1260,
+  "original_14_sources_checked": 36,
+  "input_files_checked": 70,
+  "target_cells": 108,
+  "support_initialization_cells": 252,
+  "source_endpoint_cells": 36,
+  "artifact_counts": {
+    "csv": 14,
+    "svg": 4,
+    "json": 1,
+    "chapter": 1
+  },
+  "two_actual_cli_exports_byte_identical": true,
+  "output_hashes_and_chapter_binding_checked": true,
+  "all_108_target_table_display_values_checked_against_csv": true,
+  "markdown_local_links_checked": 10,
+  "whitespace_checked": true,
+  "current_input_hashes_checked_after_exports": true,
+  "live_progress_and_agents_not_authenticated": true,
+  "historical_results_not_written": true,
+  "limitations": [
+    "Only own targeted tests and ruff, not full suite",
+    "No new experiment, raw data certification, training, server or network access",
+    "Source raw predictions not re-quantiled; certified historical endpoints/CSV only"
+  ],
+  "svg_validation": {
+    "formal_artifacts": "SVG only; QuickLook PNGs are non-authoritative previews",
+    "viewbox_width": 768,
+    "all_4_svg_xml_checked": true,
+    "all_3_target_figures_24_points_checked": true,
+    "source_figure_12_points_checked": true,
+    "target_legends_visually_checked_on_regenerated_local_previews": true
+  },
+  "p2_gate_not_source_history_certification_wording_checked": true,
+  "final_targeted_test_summary": "Ran 14 tests in 0.772s"
+}
