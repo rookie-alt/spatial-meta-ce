@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "purpose": "s8-engineering-smoke-not-research",
+  "formal_ready": false,
+  "error": "Small-matrix smoke probe numerical verification failed",
+  "seconds": 54.095614722929895
+}

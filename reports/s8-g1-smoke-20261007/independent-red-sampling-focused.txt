@@ -1,0 +1,23 @@
+test_valid_complete_smoke_and_limits (test_s8_independent.IndependentSmokeTests.test_valid_complete_smoke_and_limits) ... ERROR
+
+======================================================================
+ERROR: test_valid_complete_smoke_and_limits (test_s8_independent.IndependentSmokeTests.test_valid_complete_smoke_and_limits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 134, in test_valid_complete_smoke_and_limits
+    result = self.verify()
+             ^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 127, in verify
+    return verify_smoke(self.root, self.bindings, self.panels, self.caches)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 316, in verify_smoke
+    exposed = _episodes(episodes, panels, caches)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 199, in _episodes
+    raise ValueError(f'episode exact RNG replay mismatch: row {index}')
+ValueError: episode exact RNG replay mismatch: row 0
+
+----------------------------------------------------------------------
+Ran 1 test in 0.582s
+
+FAILED (errors=1)

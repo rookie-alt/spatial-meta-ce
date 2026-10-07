@@ -1,0 +1,23 @@
+{
+  "performed": "actual read-only SSH runtime precheck",
+  "numpy": "1.26.1",
+  "torch": "2.1.0+cu121",
+  "torch_threads": 4,
+  "torch_interop": 4,
+  "backend_counters": [
+    {
+      "backend": "NumPy OpenBLAS64",
+      "symbol": "openblas_get_num_threads64_",
+      "threads": 4
+    },
+    {
+      "backend": "Torch libgomp",
+      "symbol": "omp_get_max_threads",
+      "threads": 4
+    }
+  ],
+  "threadpoolctl_available": false,
+  "package_created_at_precheck": false,
+  "smoke_output_created_at_precheck": false,
+  "PRICE_environment_modified": false
+}

@@ -1,0 +1,20 @@
+{
+  "local_package": "/private/tmp/s8-g1-execution-412sqpll",
+  "server_package": "/gly/weilin/spatial-meta-ce/runs/s8-g1-execution-code-20261007",
+  "file_sha256": {
+    "scripts/run_s8_smoke.py": "482c079454603488a650961ae23528b936ecb720472bd8faf2ea13fd5eaab900",
+    "scripts/run_s8_preflight.py": "fa10dddf083f4eb4d157b294df53afdfdd0c22cdd44bd0d0c3348d6896d5adcd",
+    "scripts/s8_independent_verify.py": "466999a9839efd48bdc0f5670b7c049d5d1a7693efc4921df7cb9c115d4af8c0",
+    "scripts/s2_source_replay.py": "d43672471f8bb5fed740071a4bd8a69e3dd8c45824e2d44ad0cb731aed2dac0a",
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/data.py": "1f490f1891e4222edcd25b598df32c287c3914ff185477f6ae76c566cfeacd17",
+    "spatial_meta_ce/model.py": "0d6d7c4c3a04368bb7ae03a99018cfd343f37f8dc1182443ac169d19928022a4",
+    "spatial_meta_ce/manifests.py": "fc96df193c36ade103b2116f777325afb6bb8fb0c368ff0516998fa33fac6d30",
+    "spatial_meta_ce/mappings.py": "fa52a3cc64b23cb14f704573bdb079569dab22ef18c137eab2800765d1ff07fe",
+    "spatial_meta_ce/checkpoints.py": "efb21c956fb836938aaf7675f0d1eb047ef767e537576f47d6b591a5a3bdf504",
+    "spatial_meta_ce/s8_contract.py": "398f23977399ba9dbda15513aff508f6f326c40fd8cd53be51c9f49acacbf558",
+    "spatial_meta_ce/s8_probe.py": "93abad1c9d4a2ae5ebec83a4b05b0b476d020d415b4df1cb7aa4776d731df154",
+    "spatial_meta_ce/s8_state.py": "4afe46d43d94e5e608b49e3b3f2e3593cd4bdf127b95a422f964e25b99d843f7",
+    "实验文档/27-S8G1运行器与真实smoke协议.md": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f"
+  }
+}

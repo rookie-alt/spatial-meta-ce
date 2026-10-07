@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "mode": "smoke",
+  "purpose": "s8-engineering-smoke-not-research",
+  "protocol_sha256": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+  "source_binding_sha256": "6a0a121dce6d84a167f0bb672f2ee80b1de6f61099b654426975e5b15d9e8fe0",
+  "panel_identity_digest": "07656938be67b52d5d417028414f0045765397e3025623be67ff8316f014983d",
+  "train_databases": [
+    "airline",
+    "baseball",
+    "basketball",
+    "carcinogenesis",
+    "ccs",
+    "consumer",
+    "credit",
+    "financial",
+    "fnhk",
+    "hepatitis",
+    "movielens",
+    "sakila",
+    "sap",
+    "seznam",
+    "ssb",
+    "talkingdata",
+    "tournament",
+    "tpc_h",
+    "tubepricing"
+  ],
+  "holdout_databases": [
+    "accidents",
+    "grants",
+    "employee",
+    "hockey"
+  ],
+  "validation_databases": [
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "model_config": {
+    "width": 64,
+    "use_pg": true,
+    "arch": "sum",
+    "layers": 2,
+    "heads": 4,
+    "pg_output_scale": 1.0
+  },
+  "seed": 42,
+  "train_steps": 2,
+  "meta_batch": 4,
+  "query_size": 64,
+  "support_sizes": [
+    5,
+    10,
+    20,
+    50,
+    100
+  ],
+  "batch_size": 128,
+  "threads": 4,
+  "probe_fit_per_database": 64,
+  "probe_adam_steps": 2,
+  "timeout_seconds": 1800,
+  "address_space_bytes": 12884901888,
+  "resourcefixedfields": {
+    "batch_size": 128,
+    "threads": 4,
+    "probe_fit_per_database": 64,
+    "probe_adam_steps": 2,
+    "timeout_seconds": 1800,
+    "address_space_bytes": 12884901888
+  }
+}

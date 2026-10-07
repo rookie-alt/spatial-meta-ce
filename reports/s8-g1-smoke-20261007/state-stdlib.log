@@ -1,0 +1,7 @@
+stdlib-only import/API and frozen contract literals: PASS
+fixture_binding_sha256=adc0eee589540e9a235e461be4a297851197f57d27ff6b37b662dbba9bd7e1e4
+python=/opt/anaconda3/bin/python
+python_version=3.11.7
+actual_training=False; actual_smoke=False; formal_ready=False
+spatial_meta_ce/s8_state.py_sha256=4afe46d43d94e5e608b49e3b3f2e3593cd4bdf127b95a422f964e25b99d843f7
+tests/test_s8_state.py_sha256=7feee52a40cb2b361c9769c8ae0b1d75e2d60160f442a86d54271d8e8c63ca76

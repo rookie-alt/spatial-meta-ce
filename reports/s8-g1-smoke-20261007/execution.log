@@ -1,0 +1,9 @@
+S8 smoke: fresh P-only F0/reload complete
+Traceback (most recent call last):
+  File "/gly/weilin/spatial-meta-ce/runs/s8-g1-execution-code-20261007/scripts/run_s8_smoke.py", line 611, in <module>
+    main()
+  File "/gly/weilin/spatial-meta-ce/runs/s8-g1-execution-code-20261007/scripts/run_s8_smoke.py", line 605, in main
+    execute(args.data_root, args.output)
+  File "/gly/weilin/spatial-meta-ce/runs/s8-g1-execution-code-20261007/scripts/run_s8_smoke.py", line 477, in execute
+    raise ValueError('Small-matrix smoke probe numerical verification failed')
+ValueError: Small-matrix smoke probe numerical verification failed

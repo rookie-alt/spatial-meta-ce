@@ -1,0 +1,23 @@
+test_runner_H_nomination_hash_and_metrics_purpose (test_s8_independent.IndependentSmokeTests.test_runner_H_nomination_hash_and_metrics_purpose) ... ERROR
+
+======================================================================
+ERROR: test_runner_H_nomination_hash_and_metrics_purpose (test_s8_independent.IndependentSmokeTests.test_runner_H_nomination_hash_and_metrics_purpose)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 276, in test_runner_H_nomination_hash_and_metrics_purpose
+    self.assertTrue(self.verify()['passed'])
+                    ^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 233, in verify
+    return verify_smoke(self.root, self.bindings, self.panels, self.caches)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 446, in verify_smoke
+    nomination_sha, loads = _events(run_dir)
+                            ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 178, in _events
+    raise ValueError("H semantic event requires database/hash metadata")
+ValueError: H semantic event requires database/hash metadata
+
+----------------------------------------------------------------------
+Ran 1 test in 0.540s
+
+FAILED (errors=1)

@@ -1,0 +1,79 @@
+test_even_recomputed_body_digest_rejects_wrong_decision_or_binding (test_s8_state.NominationTests.test_even_recomputed_body_digest_rejects_wrong_decision_or_binding) ... ok
+test_formal_gate_recomputed_on_read (test_s8_state.NominationTests.test_formal_gate_recomputed_on_read) ... ok
+test_formal_selection_and_no_candidate_remain_distinct_from_smoke (test_s8_state.NominationTests.test_formal_selection_and_no_candidate_remain_distinct_from_smoke) ... ok
+test_missing_formal_metrics_and_invalid_bindings_leave_no_seal (test_s8_state.NominationTests.test_missing_formal_metrics_and_invalid_bindings_leave_no_seal) ... ok
+test_missing_seal_and_bad_file_sha_block_h (test_s8_state.NominationTests.test_missing_seal_and_bad_file_sha_block_h) ... ok
+test_modified_source_protocol_panel_auxiliary_and_mode_block_h (test_s8_state.NominationTests.test_modified_source_protocol_panel_auxiliary_and_mode_block_h) ... ok
+test_noncanonical_duplicate_keys_and_nonfinite_json_block_h (test_s8_state.NominationTests.test_noncanonical_duplicate_keys_and_nonfinite_json_block_h) ... ok
+test_overwrite_rejected_and_original_bytes_unchanged (test_s8_state.NominationTests.test_overwrite_rejected_and_original_bytes_unchanged) ... ok
+test_smoke_never_selects_or_reads_metrics (test_s8_state.NominationTests.test_smoke_never_selects_or_reads_metrics) ... ok
+test_symlink_final_parent_ancestor_and_dotdot_rejected (test_s8_state.NominationTests.test_symlink_final_parent_ancestor_and_dotdot_rejected) ... ok
+test_tamper_and_recomputed_file_hash_do_not_bypass_body_digest (test_s8_state.NominationTests.test_tamper_and_recomputed_file_hash_do_not_bypass_body_digest) ... ok
+test_both_references_and_each_all_four_plus_quantile_protect (test_s8_state.SelectionTests.test_both_references_and_each_all_four_plus_quantile_protect) ...
+  test_both_references_and_each_all_four_plus_quantile_protect (test_s8_state.SelectionTests.test_both_references_and_each_all_four_plus_quantile_protect) (cohort='all', quantile='q95', ref='A_h_adam') ... ERROR
+  test_both_references_and_each_all_four_plus_quantile_protect (test_s8_state.SelectionTests.test_both_references_and_each_all_four_plus_quantile_protect) (cohort='all', quantile='q95', ref='F0') ... ERROR
+  test_both_references_and_each_all_four_plus_quantile_protect (test_s8_state.SelectionTests.test_both_references_and_each_all_four_plus_quantile_protect) (cohort='four_plus', quantile='q95', ref='A_h_adam') ... ERROR
+  test_both_references_and_each_all_four_plus_quantile_protect (test_s8_state.SelectionTests.test_both_references_and_each_all_four_plus_quantile_protect) (cohort='four_plus', quantile='q95', ref='F0') ... ERROR
+test_macro_not_pooled_or_each_database_gate (test_s8_state.SelectionTests.test_macro_not_pooled_or_each_database_gate) ... ok
+test_missing_extra_arms_database_cohort_or_quantile_rejected (test_s8_state.SelectionTests.test_missing_extra_arms_database_cohort_or_quantile_rejected) ... ok
+test_no_candidate_is_a_valid_development_decision (test_s8_state.SelectionTests.test_no_candidate_is_a_valid_development_decision) ... ok
+test_sparse_four_plus_and_unpaired_counts_rejected (test_s8_state.SelectionTests.test_sparse_four_plus_and_unpaired_counts_rejected) ... ok
+test_sparse_nonfinite_invalid_counts_and_quantiles_rejected (test_s8_state.SelectionTests.test_sparse_nonfinite_invalid_counts_and_quantiles_rejected) ... ok
+test_threshold_equality_and_tie_order (test_s8_state.SelectionTests.test_threshold_equality_and_tie_order) ... ok
+test_all_required_fields_are_mandatory (test_s8_state.SignatureTests.test_all_required_fields_are_mandatory) ... ok
+test_bad_sha_and_type_rejected (test_s8_state.SignatureTests.test_bad_sha_and_type_rejected) ... ok
+test_fixed_model_and_no_unsafe_overrides (test_s8_state.SignatureTests.test_fixed_model_and_no_unsafe_overrides) ... ok
+test_literal_partitions_match_frozen_contract (test_s8_state.SignatureTests.test_literal_partitions_match_frozen_contract) ... ok
+test_mode_purpose_steps_and_frozen_controls (test_s8_state.SignatureTests.test_mode_purpose_steps_and_frozen_controls) ... ok
+test_signature_is_canonical_and_binds_auxiliary_fields (test_s8_state.SignatureTests.test_signature_is_canonical_and_binds_auxiliary_fields) ... ok
+test_unknown_target_heldout_and_changed_order_rejected (test_s8_state.SignatureTests.test_unknown_target_heldout_and_changed_order_rejected) ... ok
+test_unsafe_auxiliary_database_and_non_json_values_rejected (test_s8_state.SignatureTests.test_unsafe_auxiliary_database_and_non_json_values_rejected) ... ok
+
+======================================================================
+ERROR: test_both_references_and_each_all_four_plus_quantile_protect (test_s8_state.SelectionTests.test_both_references_and_each_all_four_plus_quantile_protect) (cohort='all', quantile='q95', ref='A_h_adam')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_state.py", line 190, in test_both_references_and_each_all_four_plus_quantile_protect
+    self.assertIsNone(select_candidate(data)['candidate'])
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_state.py", line 166, in select_candidate
+    raise ValueError('S8 inverted Q quantiles')
+ValueError: S8 inverted Q quantiles
+
+======================================================================
+ERROR: test_both_references_and_each_all_four_plus_quantile_protect (test_s8_state.SelectionTests.test_both_references_and_each_all_four_plus_quantile_protect) (cohort='all', quantile='q95', ref='F0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_state.py", line 190, in test_both_references_and_each_all_four_plus_quantile_protect
+    self.assertIsNone(select_candidate(data)['candidate'])
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_state.py", line 166, in select_candidate
+    raise ValueError('S8 inverted Q quantiles')
+ValueError: S8 inverted Q quantiles
+
+======================================================================
+ERROR: test_both_references_and_each_all_four_plus_quantile_protect (test_s8_state.SelectionTests.test_both_references_and_each_all_four_plus_quantile_protect) (cohort='four_plus', quantile='q95', ref='A_h_adam')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_state.py", line 190, in test_both_references_and_each_all_four_plus_quantile_protect
+    self.assertIsNone(select_candidate(data)['candidate'])
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_state.py", line 166, in select_candidate
+    raise ValueError('S8 inverted Q quantiles')
+ValueError: S8 inverted Q quantiles
+
+======================================================================
+ERROR: test_both_references_and_each_all_four_plus_quantile_protect (test_s8_state.SelectionTests.test_both_references_and_each_all_four_plus_quantile_protect) (cohort='four_plus', quantile='q95', ref='F0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_state.py", line 190, in test_both_references_and_each_all_four_plus_quantile_protect
+    self.assertIsNone(select_candidate(data)['candidate'])
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_state.py", line 166, in select_candidate
+    raise ValueError('S8 inverted Q quantiles')
+ValueError: S8 inverted Q quantiles
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.038s
+
+FAILED (errors=4)

@@ -1,0 +1,28 @@
+test_SHA_selection_does_not_read_labels (test_s8_independent.IndependentSmokeTests.test_SHA_selection_does_not_read_labels) ... ok
+test_empty_and_small_cells_have_no_metrics (test_s8_independent.IndependentSmokeTests.test_empty_and_small_cells_have_no_metrics) ... ok
+test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) ... ok
+test_episode_counters_are_global_one_based (test_s8_independent.IndependentSmokeTests.test_episode_counters_are_global_one_based) ... ok
+test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) ... ok
+test_large_integer_source_value_is_not_rounded_into_match (test_s8_independent.IndependentSmokeTests.test_large_integer_source_value_is_not_rounded_into_match) ... ok
+test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) ... ok
+test_metrics_top_level_purpose_never_research (test_s8_independent.IndependentSmokeTests.test_metrics_top_level_purpose_never_research) ... ok
+test_minimum_cell_n_200_boundary (test_s8_independent.IndependentSmokeTests.test_minimum_cell_n_200_boundary) ... ok
+test_no_production_imports_or_percentile_reuse (test_s8_independent.IndependentSmokeTests.test_no_production_imports_or_percentile_reuse) ... ok
+test_nomination_and_events_bound_and_ordered (test_s8_independent.IndependentSmokeTests.test_nomination_and_events_bound_and_ordered) ... ok
+test_nonfinite_and_overflow_even_below_200 (test_s8_independent.IndependentSmokeTests.test_nonfinite_and_overflow_even_below_200) ... ok
+test_panel_sha_order_is_not_trusted (test_s8_independent.IndependentSmokeTests.test_panel_sha_order_is_not_trusted) ... ok
+test_pool_at_least_1224_is_not_mocked (test_s8_independent.IndependentSmokeTests.test_pool_at_least_1224_is_not_mocked) ... ok
+test_raw_sampling_order_differs_from_panel_sha_order (test_s8_independent.IndependentSmokeTests.test_raw_sampling_order_differs_from_panel_sha_order) ... ok
+test_required_artifacts_and_malformed_json_raise (test_s8_independent.IndependentSmokeTests.test_required_artifacts_and_malformed_json_raise) ... ok
+test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) ... ok
+test_runner_H_nomination_hash_and_metrics_purpose (test_s8_independent.IndependentSmokeTests.test_runner_H_nomination_hash_and_metrics_purpose) ... ok
+test_smoke_binding_and_split_mutations (test_s8_independent.IndependentSmokeTests.test_smoke_binding_and_split_mutations) ... ok
+test_sorted_linear_interpolation_known_values (test_s8_independent.IndependentSmokeTests.test_sorted_linear_interpolation_known_values) ... ok
+test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) ... ok
+test_valid_complete_smoke_and_limits (test_s8_independent.IndependentSmokeTests.test_valid_complete_smoke_and_limits) ... ok
+test_verifier_does_not_modify_artifacts (test_s8_independent.IndependentSmokeTests.test_verifier_does_not_modify_artifacts) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 29.355s
+
+OK

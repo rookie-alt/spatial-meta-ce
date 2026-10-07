@@ -1,0 +1,14 @@
+PLC0206 Extracting value from dictionary without calling `.items()`
+   --> scripts/run_s8_smoke.py:317:13
+    |
+315 |             raise ValueError('Frozen forward representation bridge failed')
+316 |         result['label'] = batch['label']
+317 |         for name in blocks:
+    |             ^^^^^^^^^^^^^^
+318 |             blocks[name].append(result[name].detach().cpu().numpy())
+    |             ------------
+319 |     return {name: np.concatenate(values) for name, values in blocks.items()}
+    |
+help: Use `for name, value in blocks.items()` instead
+
+Found 1 error.

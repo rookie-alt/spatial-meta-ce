@@ -1,0 +1,38 @@
+{
+  "evidence_kind": "synthetic_unit_fixture_only_not_real_smoke",
+  "real_smoke_executed_or_verified": false,
+  "sample_api_return": {
+    "passed": true,
+    "purpose": "smoke-not-research",
+    "mode": "smoke",
+    "formal_ready": false,
+    "verified_counts": {
+      "databases": 26,
+      "episodes": 8,
+      "metric_cells": 52,
+      "training_unique_exposed": 772,
+      "P": 19456,
+      "V": 768,
+      "H": 128
+    },
+    "query_count": 20352,
+    "panel_identity_digest": "719a50176fbcf7395e4ef03a8e4b78d373d3b79d0b5446a68f6f2d70fdfb1a5a",
+    "nomination_sha256": "aa47c5df48091754942df36214559304781c175393ca847ba0104e333445e07c",
+    "nomination_event_order_verified": true,
+    "H_semantic_load_events": 1,
+    "actual_H_access_order_verified": false,
+    "full_linear_optimality_verified": false,
+    "source_file_provenance_verified": false,
+    "units": {
+      "predictions": "natural_log_cardinality",
+      "q50": "dimensionless_q_error",
+      "q95": "dimensionless_q_error",
+      "raw_log_mae": "natural_log_cardinality",
+      "raw_log_mse": "squared_natural_log_cardinality"
+    }
+  },
+  "source_sha256": {
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py": "466999a9839efd48bdc0f5670b7c049d5d1a7693efc4921df7cb9c115d4af8c0",
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py": "89d8468ee7f3545eb038f8b958942a2996a855d4295038419f27697161420426"
+  }
+}

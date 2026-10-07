@@ -1,0 +1,735 @@
+test_empty_and_small_cells_have_no_metrics (test_s8_independent.IndependentSmokeTests.test_empty_and_small_cells_have_no_metrics) ... FAIL
+test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) ...
+  test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='missingP') ... FAIL
+  test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='missingH') ... FAIL
+  test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='duplicate') ... FAIL
+  test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='extra') ... FAIL
+  test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='cohort') ... FAIL
+  test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='true') ... FAIL
+  test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='pg') ... FAIL
+  test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='n_tables') ... FAIL
+  test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='missing_arm') ... FAIL
+test_episode_counters_are_global_one_based (test_s8_independent.IndependentSmokeTests.test_episode_counters_are_global_one_based) ... FAIL
+test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) ...
+  test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='missing') ... FAIL
+  test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='duplicate') ... FAIL
+  test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='reorder') ... FAIL
+  test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='Q') ... FAIL
+  test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='H') ... FAIL
+  test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='V') ... FAIL
+  test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='target') ... FAIL
+  test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='hash') ... FAIL
+  test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='raw_instead_position') ... FAIL
+  test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='step') ... FAIL
+test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) ...
+  test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='missing') ... FAIL
+  test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='duplicate') ... FAIL
+  test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='extra') ... FAIL
+  test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='count') ... FAIL
+  test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='status') ... FAIL
+  test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='percentile') ... FAIL
+  test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='raw') ... FAIL
+  test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='nan') ... FAIL
+  test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='small_detail') ... FAIL
+test_nomination_and_events_bound_and_ordered (test_s8_independent.IndependentSmokeTests.test_nomination_and_events_bound_and_ordered) ... ok
+test_nonfinite_and_overflow_even_below_200 (test_s8_independent.IndependentSmokeTests.test_nonfinite_and_overflow_even_below_200) ...
+  test_nonfinite_and_overflow_even_below_200 (test_s8_independent.IndependentSmokeTests.test_nonfinite_and_overflow_even_below_200) (bad=nan) ... FAIL
+  test_nonfinite_and_overflow_even_below_200 (test_s8_independent.IndependentSmokeTests.test_nonfinite_and_overflow_even_below_200) (bad=inf) ... FAIL
+  test_nonfinite_and_overflow_even_below_200 (test_s8_independent.IndependentSmokeTests.test_nonfinite_and_overflow_even_below_200) (bad=710.0) ... FAIL
+  test_nonfinite_and_overflow_even_below_200 (test_s8_independent.IndependentSmokeTests.test_nonfinite_and_overflow_even_below_200) (bad=-1e+200) ... FAIL
+test_panel_sha_order_is_not_trusted (test_s8_independent.IndependentSmokeTests.test_panel_sha_order_is_not_trusted) ... FAIL
+test_pool_at_least_1224_is_not_mocked (test_s8_independent.IndependentSmokeTests.test_pool_at_least_1224_is_not_mocked) ... FAIL
+test_raw_sampling_order_differs_from_panel_sha_order (test_s8_independent.IndependentSmokeTests.test_raw_sampling_order_differs_from_panel_sha_order) ... FAIL
+test_required_artifacts_and_malformed_json_raise (test_s8_independent.IndependentSmokeTests.test_required_artifacts_and_malformed_json_raise) ... ok
+test_smoke_binding_and_split_mutations (test_s8_independent.IndependentSmokeTests.test_smoke_binding_and_split_mutations) ...
+  test_smoke_binding_and_split_mutations (test_s8_independent.IndependentSmokeTests.test_smoke_binding_and_split_mutations) (key='panel_identity_digest') ... FAIL
+test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) ...
+  test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='extra') ... FAIL
+  test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='duplicate_hash') ... FAIL
+  test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='duplicate_raw') ... FAIL
+  test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='shape') ... FAIL
+  test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='negative_true') ... FAIL
+  test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='nan_pg') ... FAIL
+  test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='tables') ... FAIL
+  test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='raw_type') ... FAIL
+test_valid_complete_smoke_and_limits (test_s8_independent.IndependentSmokeTests.test_valid_complete_smoke_and_limits) ... ERROR
+test_verifier_does_not_modify_artifacts (test_s8_independent.IndependentSmokeTests.test_verifier_does_not_modify_artifacts) ... ERROR
+
+======================================================================
+ERROR: test_valid_complete_smoke_and_limits (test_s8_independent.IndependentSmokeTests.test_valid_complete_smoke_and_limits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 134, in test_valid_complete_smoke_and_limits
+    result = self.verify()
+             ^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 127, in verify
+    return verify_smoke(self.root, self.bindings, self.panels, self.caches)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 312, in verify_smoke
+    nomination_sha, loads = _events(run_dir)
+                            ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 115, in _events
+    raise ValueError('nomination event SHA mismatch')
+ValueError: nomination event SHA mismatch
+
+======================================================================
+ERROR: test_verifier_does_not_modify_artifacts (test_s8_independent.IndependentSmokeTests.test_verifier_does_not_modify_artifacts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 327, in test_verifier_does_not_modify_artifacts
+    verify_smoke(self.root, self.bindings, self.panels, self.caches)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 312, in verify_smoke
+    nomination_sha, loads = _events(run_dir)
+                            ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 115, in _events
+    raise ValueError('nomination event SHA mismatch')
+ValueError: nomination event SHA mismatch
+
+======================================================================
+FAIL: test_empty_and_small_cells_have_no_metrics (test_s8_independent.IndependentSmokeTests.test_empty_and_small_cells_have_no_metrics)
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 266, in test_empty_and_small_cells_have_no_metrics
+    self.reject('metric')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "metric" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='missingP')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 253, in test_endpoint_denominator_and_values
+    self.reject('endpoint|prediction')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "endpoint|prediction" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='missingH')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 253, in test_endpoint_denominator_and_values
+    self.reject('endpoint|prediction')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "endpoint|prediction" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='duplicate')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 253, in test_endpoint_denominator_and_values
+    self.reject('endpoint|prediction')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "endpoint|prediction" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='extra')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 253, in test_endpoint_denominator_and_values
+    self.reject('endpoint|prediction')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "endpoint|prediction" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='cohort')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 253, in test_endpoint_denominator_and_values
+    self.reject('endpoint|prediction')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "endpoint|prediction" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='true')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 253, in test_endpoint_denominator_and_values
+    self.reject('endpoint|prediction')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "endpoint|prediction" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='pg')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 253, in test_endpoint_denominator_and_values
+    self.reject('endpoint|prediction')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "endpoint|prediction" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='n_tables')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 253, in test_endpoint_denominator_and_values
+    self.reject('endpoint|prediction')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "endpoint|prediction" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) (change='missing_arm')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 253, in test_endpoint_denominator_and_values
+    self.reject('endpoint|prediction')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "endpoint|prediction" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_episode_counters_are_global_one_based (test_s8_independent.IndependentSmokeTests.test_episode_counters_are_global_one_based)
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 232, in test_episode_counters_are_global_one_based
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='missing')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 209, in test_episode_exact_replay_and_no_leakage
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='duplicate')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 209, in test_episode_exact_replay_and_no_leakage
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='reorder')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 209, in test_episode_exact_replay_and_no_leakage
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='Q')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 209, in test_episode_exact_replay_and_no_leakage
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='H')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 209, in test_episode_exact_replay_and_no_leakage
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='V')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 209, in test_episode_exact_replay_and_no_leakage
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='target')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 209, in test_episode_exact_replay_and_no_leakage
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='hash')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 209, in test_episode_exact_replay_and_no_leakage
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='raw_instead_position')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 209, in test_episode_exact_replay_and_no_leakage
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) (change='step')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 209, in test_episode_exact_replay_and_no_leakage
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='missing')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 291, in test_metrics_complete_unique_and_independently_recomputed
+    self.reject('metric|finite')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "metric|finite" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='duplicate')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 291, in test_metrics_complete_unique_and_independently_recomputed
+    self.reject('metric|finite')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "metric|finite" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='extra')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 291, in test_metrics_complete_unique_and_independently_recomputed
+    self.reject('metric|finite')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "metric|finite" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='count')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 291, in test_metrics_complete_unique_and_independently_recomputed
+    self.reject('metric|finite')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "metric|finite" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='status')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 291, in test_metrics_complete_unique_and_independently_recomputed
+    self.reject('metric|finite')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "metric|finite" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='percentile')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 291, in test_metrics_complete_unique_and_independently_recomputed
+    self.reject('metric|finite')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "metric|finite" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='raw')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 291, in test_metrics_complete_unique_and_independently_recomputed
+    self.reject('metric|finite')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "metric|finite" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='nan')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 291, in test_metrics_complete_unique_and_independently_recomputed
+    self.reject('metric|finite')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "metric|finite" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) (change='small_detail')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 291, in test_metrics_complete_unique_and_independently_recomputed
+    self.reject('metric|finite')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "metric|finite" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_nonfinite_and_overflow_even_below_200 (test_s8_independent.IndependentSmokeTests.test_nonfinite_and_overflow_even_below_200) (bad=nan)
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 260, in test_nonfinite_and_overflow_even_below_200
+    self.reject('finite|overflow|numeric')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "finite|overflow|numeric" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_nonfinite_and_overflow_even_below_200 (test_s8_independent.IndependentSmokeTests.test_nonfinite_and_overflow_even_below_200) (bad=inf)
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 260, in test_nonfinite_and_overflow_even_below_200
+    self.reject('finite|overflow|numeric')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "finite|overflow|numeric" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_nonfinite_and_overflow_even_below_200 (test_s8_independent.IndependentSmokeTests.test_nonfinite_and_overflow_even_below_200) (bad=710.0)
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 260, in test_nonfinite_and_overflow_even_below_200
+    self.reject('finite|overflow|numeric')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "finite|overflow|numeric" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_nonfinite_and_overflow_even_below_200 (test_s8_independent.IndependentSmokeTests.test_nonfinite_and_overflow_even_below_200) (bad=-1e+200)
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 260, in test_nonfinite_and_overflow_even_below_200
+    self.reject('finite|overflow|numeric')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "finite|overflow|numeric" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_panel_sha_order_is_not_trusted (test_s8_independent.IndependentSmokeTests.test_panel_sha_order_is_not_trusted)
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 157, in test_panel_sha_order_is_not_trusted
+    self.reject('panel')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "panel" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_pool_at_least_1224_is_not_mocked (test_s8_independent.IndependentSmokeTests.test_pool_at_least_1224_is_not_mocked)
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 163, in test_pool_at_least_1224_is_not_mocked
+    self.reject('1224|pool')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "1224|pool" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_raw_sampling_order_differs_from_panel_sha_order (test_s8_independent.IndependentSmokeTests.test_raw_sampling_order_differs_from_panel_sha_order)
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 226, in test_raw_sampling_order_differs_from_panel_sha_order
+    self.reject('episode')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "episode" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_smoke_binding_and_split_mutations (test_s8_independent.IndependentSmokeTests.test_smoke_binding_and_split_mutations) (key='panel_identity_digest')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 153, in test_smoke_binding_and_split_mutations
+    self.reject('binding|split|digest')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "binding|split|digest" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='extra')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 186, in test_source_cache_invalid_or_extra
+    self.reject('cache|source|indices')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "cache|source|indices" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='duplicate_hash')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 186, in test_source_cache_invalid_or_extra
+    self.reject('cache|source|indices')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "cache|source|indices" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='duplicate_raw')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 186, in test_source_cache_invalid_or_extra
+    self.reject('cache|source|indices')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "cache|source|indices" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='shape')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 186, in test_source_cache_invalid_or_extra
+    self.reject('cache|source|indices')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "cache|source|indices" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='negative_true')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 186, in test_source_cache_invalid_or_extra
+    self.reject('cache|source|indices')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "cache|source|indices" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='nan_pg')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 186, in test_source_cache_invalid_or_extra
+    self.reject('cache|source|indices')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "cache|source|indices" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='tables')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 186, in test_source_cache_invalid_or_extra
+    self.reject('cache|source|indices')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "cache|source|indices" does not match "nomination event SHA mismatch"
+
+======================================================================
+FAIL: test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) (change='raw_type')
+----------------------------------------------------------------------
+ValueError: nomination event SHA mismatch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 186, in test_source_cache_invalid_or_extra
+    self.reject('cache|source|indices')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 130, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "cache|source|indices" does not match "nomination event SHA mismatch"
+
+----------------------------------------------------------------------
+Ran 15 tests in 12.515s
+
+FAILED (failures=46, errors=2)

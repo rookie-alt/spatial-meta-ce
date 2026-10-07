@@ -1,0 +1,19 @@
+{
+  "status": "planned",
+  "mode": "smoke",
+  "purpose": "s8-engineering-smoke-not-research",
+  "formal_ready": false,
+  "device": "cpu",
+  "F0_updates": 2,
+  "F0_episodes": 8,
+  "P_unique": 19456,
+  "probe_fit_unique": 1216,
+  "probe_adam_updates_each": 2,
+  "representation_batch": 128,
+  "threads": 4,
+  "resource_profile": "full P matrices, fixed-cutoff LS/certificate only; no selection",
+  "timeout_seconds": 1800,
+  "address_space_bytes": 12884901888,
+  "target_data_read": false,
+  "formal_training": false
+}

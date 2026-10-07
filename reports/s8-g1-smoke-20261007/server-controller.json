@@ -1,0 +1,18 @@
+{
+  "returncode": 1,
+  "seconds": 56.483109473017976,
+  "code_unchanged": true,
+  "server_package": "/gly/weilin/spatial-meta-ce/runs/s8-g1-execution-code-20261007",
+  "server_output": "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007",
+  "GPU_used": false,
+  "training_scope": "two-step-source-engineering-smoke-not-research",
+  "archive_sha256": {
+    "contract.json": "19a7bbe126e74c0074e1c127833826bab2a681ac82247c60d8bbef82008f8897",
+    "preflight.json": "2abc016bc03ebeb8e7824c3f2440bd8a26ed73b25704a71f136d247255b8d429",
+    "panels.json": "92dbd360840f0ebbfdc87af2524104627655ec5f89a6363a67c4b0357069aa8a",
+    "status.json": "45870e69134db4e2f6238c8c918eb0f230f0529ea793c7a096a123851d21274c",
+    "events.jsonl": "060e9aa6a4f926d90e5ba10592fd75616ca054e2c841f89409d62ac5c8f3dafe",
+    "episodes.jsonl": "c329d9f29e5d8c06f87875d01124731e7802e2973b8f191a5699c10598844dfe"
+  },
+  "large_matrices_or_checkpoints_downloaded": false
+}

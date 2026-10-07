@@ -1,0 +1,2 @@
+{"event": "source_authentication_complete"}
+{"event": "F0_checkpoint_reloaded", "checkpoint_sha256": "596c615e7cc5b48bf38b2494964cc3c21ac53950310aaf16cc70700d49bccd25", "maximum_raw_delta": 0.0}
