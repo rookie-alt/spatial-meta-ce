@@ -1,0 +1,12 @@
+test_cancellation_is_not_hidden_by_float_matmul (test_arithmetic.ArithmeticTests.test_cancellation_is_not_hidden_by_float_matmul) ... ok
+test_cutoff_equality_unknown_and_wrong_rank (test_arithmetic.ArithmeticTests.test_cutoff_equality_unknown_and_wrong_rank) ... ok
+test_exact_binary64_and_nonfinite (test_arithmetic.ArithmeticTests.test_exact_binary64_and_nonfinite) ... ok
+test_forged_factors_and_orthogonality_failure (test_arithmetic.ArithmeticTests.test_forged_factors_and_orthogonality_failure) ... ok
+test_rank_zero_redundant_and_fullrank (test_arithmetic.ArithmeticTests.test_rank_zero_redundant_and_fullrank) ... ok
+test_shapes_order_and_size_budget (test_arithmetic.ArithmeticTests.test_shapes_order_and_size_budget) ... ok
+test_sqrt_enclosure (test_arithmetic.ArithmeticTests.test_sqrt_enclosure) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.002s
+
+OK

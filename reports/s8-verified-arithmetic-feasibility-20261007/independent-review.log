@@ -1,0 +1,52 @@
+{
+  "purpose": "independent read-only mathematical/code review; scalar checks only",
+  "base_revision": "d1b46b1c4233d2eef7d3df63a6ffd7e7008ef726",
+  "file_sha256": {
+    "verified_arithmetic.py": "8b3c8515b70b46f85bd53b45a3bac36d31de3e8b8dd0f3730a1f4431faa6698b",
+    "test_arithmetic.py": "07c92e7e10c00a0dcd742a90a6216c058e37f4718f115e1678d6ae6ce95fb9d6",
+    "run_bounded.py": "3a976f8507e093c30e1d5093ef67ffb423d89f371453f72ae5ef369a9257bc8e",
+    "green.json": "78653c63884bb178d45c358fdc5fcf9920bd6b80294be7916208d371e1404904"
+  },
+  "new_scalar_checks": {
+    "sqrt_3_over_11_contains": true,
+    "polar_delta_3_over_4_is_one_half": true,
+    "smallest_binary64_subnormal_exact": true
+  },
+  "input_contract_observation": {
+    "non_dyadic_fraction_accepted": true,
+    "differs_from_stored_binary64_one_third": true
+  },
+  "fullx_symbolic_cost_no_matrix_execution": {
+    "m": 19456,
+    "n": 775,
+    "residual_dot_terms": 11685760000,
+    "U_gram_dot_terms": 11685760000,
+    "V_gram_dot_terms": 465484375,
+    "total_dot_terms_2mn2_plus_n3": 23837004375,
+    "current_uncached_U_times_S_extra_multiplications": 11685760000,
+    "current_total_fraction_multiplications_excluding_Fro_beta": 35522764375
+  },
+  "judgment": "Finite-binary64 inputs: no false-rank flaw found; small rank-only construction mathematically valid. Input helper accepts unbounded ints/Fractions and broader Real conversion: label/budget assurance must remain limited to frozen binary64 inputs. Three-LS spectra/subspace/G1 and full-P rational resource feasibility not closed; no production TDD replacement approval.",
+  "tests_rerun": false,
+  "benchmarks_run": false,
+  "matrix_execution": false,
+  "RSS_monitoring": "RUSAGE_SELF historical maximum observed at entry/end; not an OS RSS hard cap",
+  "entry_maxrss_bytes": 16924672,
+  "end_maxrss_bytes": 16924672,
+  "cpu_seconds_self_total": 0.08266499999999999,
+  "wall_seconds_scalar_review_only_excludes_interpreter_startup": 0.0021052089999999968,
+  "limits": {
+    "CPU_seconds": 20,
+    "wall_alarm_seconds": 30,
+    "RSS_observation_limit_bytes": 134217728
+  }
+}
+
+FINAL READ-ONLY REVIEW 2026-10-07
+Reviewed source SHA256: verified_arithmetic.py 8b3c8515b70b46f85bd53b45a3bac36d31de3e8b8dd0f3730a1f4431faa6698b; test_arithmetic.py 07c92e7e10c00a0dcd742a90a6216c058e37f4718f115e1678d6ae6ce95fb9d6; run_bounded.py 3a976f8507e093c30e1d5093ef67ffb423d89f371453f72ae5ef369a9257bc8e.
+Final version replaces broader Real conversion with built-in float/int/Fraction only, limits each exact() numerator/denominator to 4096 bits, and checks self maxRSS before sqrt/dot. Earlier broad-Real concern is superseded. Non-dyadic Fraction matrix inputs remain exact rational objects, not silently certified as rounded binary64 matrices; standalone dot exactness assumes Fraction operands as ensured by certify_rank.
+Mathematics: exact conversion, isqrt outward enclosure, unnormalized Fro upper bounds, polar delta/beta and strict true-spectrum cutoff rank logic are valid under the isolated input contract. No false-rank flaw found and no further corrective patch requested. Oversized sqrt intermediates can raise ValueError and stop fail-closed, not produce a false verified status. No pass key; LS/subspace/G1 flag remains false.
+Resource: maxRSS observations are not an OS RSS hard cap. Scalar checks only; no rerun of seven tests or benchmarks. Final revised seven-test acceptance is delegated to the main agent and not claimed as independently executed.
+Cost: fullx 2mn^2+n^3 = 23837004375 rational dot terms. Current residual implementation additionally recomputes U*S per matrix output, adding mn^2 = 11685760000 rational multiplications. Neither count bounds runtime or peak RSS.
+Decision: APPROVE isolated small rank-only feasibility mathematics/code scope, pending main-agent final bounded acceptance. DO NOT APPROVE full replacement or production TDD. Three algorithm-specific LS spectrum/cutoff contracts, retained-subspace gap/projection/prediction chains, full-P rational resource bounds and other G1 gates are not closed. Keep production unknown, G1 failed, formal_ready=false. Stop this round; no real-P/server/smoke/training authorization is implied.
+Self-evaluation: accuracy 4/5 (static proof plus bounded scalar checks, not a formal machine-checked proof); completeness 5/5 (requested math/contracts/cost/decision covered); clarity 5/5 (rank-only and production separated); actionability 5/5 (no additional patch, bounded final acceptance and stop decision); conciseness 4/5 (necessary scope caveats). Average 4.6/5. User-agreement check: scope and no-repeat restrictions respected; final tests remain explicitly unclaimed.
