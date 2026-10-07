@@ -13,6 +13,7 @@ from .manifests import digest, episode_indices, validate_splits
 from .meta import adapt, forward, loss_value, meta_loss
 from .metrics import summarize
 from .model import SetEstimator
+from .tail_risk import capture_loss, tail_terms
 
 
 def seed_all(seed):
@@ -87,7 +88,19 @@ def _legacy_sample_plan(config: dict, databases: list, pools: dict,
 
 
 def train(config, data_config, output_dir, device='cpu', resume=None):
+    s6 = 'tail_risk_mode' in config
     s5 = 'complex_query_weight' in config
+    if s6:
+        if config['tail_risk_mode'] not in ('mean', 'mean_tail10'):
+            raise ValueError('tail_risk_mode must be mean or mean_tail10')
+        if s5:
+            raise ValueError('tail_risk_mode forbids complex_query_weight')
+        if (config['method'] != 'erm' or config['loss'] != 'smooth_l1'
+                or config['accumulation'] != 1 or config['meta_batch'] != 4):
+            raise ValueError('tail_risk_mode requires ERM/SmoothL1/accumulation1/meta_batch4')
+        if resume:
+            raise ValueError('S6 does not authorize resume; train from scratch')
+        loss_evidence = {'audit_rows': 0, 'snapshot_rows': 0, 'mode': config['tail_risk_mode']}
     if s5:
         weight = config['complex_query_weight']
         if isinstance(weight, bool) or not isinstance(weight, (int, float)) or weight not in (1, 2):
@@ -146,7 +159,7 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
     sample_plan_episodes = 0
     counts = {'support_presentations':0,'query_presentations':0,'backward_calls':0,'optimizer_steps':0}
     total_seconds = 0.0
-    if s5:
+    if s5 or s6:
         gradient_stats = {'count':0,'total_norm':0.0,'max_norm':0.0,'clipped_count':0}
     if resume:
         model, state = load_checkpoint(resume, device)
@@ -201,7 +214,21 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
                     counts['backward_calls'] += config['inner_steps']+1
                 else:
                     batch = store.batch(np.concatenate([si,qi]),device)
-                    if s5 and config['complex_query_weight'] == 2:
+                    if s6:
+                        pred = model(batch)
+                        terms = tail_terms(pred, batch['label'], config['tail_risk_mode'])
+                        objective = (loss_value(pred, batch['label'], config['loss'])
+                                     if config['tail_risk_mode'] == 'mean' else terms['objective'])
+                        snapshot_rows = capture_loss(
+                            output_dir, step=window_start + 1,
+                            episode_index=sample_plan_episodes, database=db, k=k,
+                            mode=config['tail_risk_mode'], sample_plan_digest=sample_plan_digest,
+                            terms=terms, objective=objective, pred=pred, batch=batch,
+                            hashes=episode['support'] + episode['query'], steps=config['steps'])
+                        loss_evidence = {**loss_evidence,
+                                         'audit_rows': loss_evidence['audit_rows'] + 1,
+                                         'snapshot_rows': loss_evidence['snapshot_rows'] + snapshot_rows}
+                    elif s5 and config['complex_query_weight'] == 2:
                         weights = torch.where(batch['counts'][:,2] >= 4, 2.0, 1.0).to(torch.float32)
                         objective = loss_value(model(batch),batch['label'],config['loss'],weights=weights)
                     else:
@@ -213,7 +240,7 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
         if any(p.grad is not None and not torch.isfinite(p.grad).all() for p in model.parameters()):
             raise FloatingPointError('Nonfinite outer gradient')
         norm = torch.nn.utils.clip_grad_norm_(model.parameters(),1.0,error_if_nonfinite=True)
-        if s5:
+        if s5 or s6:
             norm_value = float(norm)
             gradient_stats = {
                 'count':gradient_stats['count']+1,
@@ -237,8 +264,10 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
                  'sample_plan_digest': sample_plan_digest,
                  'sample_plan_episodes': sample_plan_episodes,
                  'total_seconds':total_seconds+time.perf_counter()-started}
-        if s5:
+        if s5 or s6:
             extra = {**extra,'gradient_stats':dict(gradient_stats)}
+        if s6:
+            extra = {**extra, 'loss_evidence': dict(loss_evidence)}
         save_checkpoint(output_dir/'last.pt',model,optimizer,last_step,best,bad,metadata,extra)
         if improved:
             save_checkpoint(output_dir/'best.pt',model,optimizer,last_step,best,bad,metadata,extra)
@@ -248,4 +277,5 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
     return {'last_step':last_step,'best_validation_macro_log_q95':best,'counts':counts,
             'total_seconds':total_seconds+time.perf_counter()-started,'parameters':sum(p.numel() for p in model.parameters()),
             'purpose':metadata['purpose'],
-            **({'gradient_stats':dict(gradient_stats)} if s5 else {})}
+            **({'gradient_stats':dict(gradient_stats)} if s5 or s6 else {}),
+            **({'loss_evidence':dict(loss_evidence)} if s6 else {})}

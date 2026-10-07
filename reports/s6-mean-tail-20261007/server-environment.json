@@ -1,0 +1,10 @@
+{
+  "python": "3.11.4",
+  "torch": "2.1.0+cu121",
+  "numpy": "1.26.1",
+  "sqlglot": "18.17.0",
+  "train_sha256": "87c239649373abadc6d0dfa0202468515112a192b7d36ee039a45117bef4dd99",
+  "s6_run_exists": false,
+  "backup_exists": false,
+  "shared_s6_runner_exists": false
+}

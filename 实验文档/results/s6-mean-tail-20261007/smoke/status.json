@@ -1,0 +1,8 @@
+{
+  "status": "running",
+  "arms": {
+    "A_mean": "verified",
+    "B_mean_tail10": "verified"
+  },
+  "updated_at": "2026-10-07T04:16:27.546009+00:00"
+}
