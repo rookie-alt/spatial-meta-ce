@@ -139,7 +139,7 @@ class EngineeringV2SealTests(unittest.TestCase):
             data = v2_bindings()
             # Non-JSON sentinel: smoke must never inspect selection metrics.
             created = seal_nomination(path, object(), data)
-            verified = require_nomination(path, data, file_sha(path))
+            verified = require_nomination(path, file_sha(path), data)
             self.assertEqual(verified, created)
             self.assertEqual(verified['bindings'], data)
             self.assertEqual(verified['bindings_sha256'], signature(data))
@@ -157,7 +157,7 @@ class EngineeringV2SealTests(unittest.TestCase):
                 path = Path(directory).resolve() / 'seal.json'
                 seal_nomination(path, None, sealed)
                 with self.assertRaises(ValueError):
-                    require_nomination(path, supplied, file_sha(path))
+                    require_nomination(path, file_sha(path), supplied)
 
     def test_v2_seal_h_gate_rejects_changed_or_removed_revision_and_policy(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -169,12 +169,12 @@ class EngineeringV2SealTests(unittest.TestCase):
                                ('protocol_sha256', 'b' * 64),
                                (POLICY_KEY, 'unknown'), ('schema', 1)):
                 with self.subTest(key=key), self.assertRaises(ValueError):
-                    require_nomination(path, {**data, key: value}, expected_file_sha)
+                    require_nomination(path, expected_file_sha, {**data, key: value})
             for key in (POLICY_KEY, ACCEPTANCE_KEY):
                 changed = copy.deepcopy(data)
                 del changed[key]
                 with self.subTest(missing=key), self.assertRaises(ValueError):
-                    require_nomination(path, changed, expected_file_sha)
+                    require_nomination(path, expected_file_sha, changed)
 
     def test_rehashed_seal_revision_tampering_cannot_match_pinned_bindings(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -188,7 +188,7 @@ class EngineeringV2SealTests(unittest.TestCase):
             payload['body_digest'] = hashlib.sha256(canonical(body)).hexdigest()
             path.write_bytes(canonical(payload))
             with self.assertRaises(ValueError):
-                require_nomination(path, data, file_sha(path))
+                require_nomination(path, file_sha(path), data)
 
 
 if __name__ == '__main__':

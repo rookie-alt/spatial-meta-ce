@@ -105,7 +105,19 @@ def signature(bindings):
         raise ValueError('S8 unknown mode')
     if bindings['purpose'] != _PURPOSES[mode]:
         raise ValueError('S8 mode/purpose mismatch')
-    for key, value in (('schema', 1), ('seed', 42), ('meta_batch', 4),
+    schema = bindings['schema']
+    if type(schema) is not int or schema not in (1, 2):
+        raise ValueError('S8 frozen schema mismatch')
+    if schema == 1:
+        if {'numerical_acceptance_policy', 'acceptance_protocol_sha256'} & bindings.keys():
+            raise ValueError('S8 schema1 forbids v2 acceptance fields')
+    else:
+        if (mode != 'smoke'
+                or bindings.get('numerical_acceptance_policy')
+                != 's8-g1-resource-engineering-v2'):
+            raise ValueError('S8 schema2 requires smoke engineering v2 policy')
+        _check_sha(bindings.get('acceptance_protocol_sha256'), 'acceptance_protocol_sha256')
+    for key, value in (('seed', 42), ('meta_batch', 4),
                        ('query_size', 64), ('train_steps', 2 if mode == 'smoke' else 4000)):
         if type(bindings[key]) is not int or bindings[key] != value:
             raise ValueError(f'S8 frozen {key} mismatch')

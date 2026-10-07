@@ -315,6 +315,10 @@ def _spectrum_checks(design, u, singular, vh, reported, reference):
         "svd_u_normalized_orthogonality_residual": float(orth_u_normalized),
         "svd_v_normalized_orthogonality_residual": float(orth_v_normalized),
         "svd_normalized_orthogonality_bound": orth_gamma,
+        "observed_ranks": dict(
+            zip(("svd", "reported_ls", "reference_ls"), ranks, strict=True)
+        ),
+        "observed_rank_agreement": len(set(ranks)) == 1,
         "rank_stability": "stable" if stable else "unknown",
         "rank_cutoff_interval": cutoff_intervals[0],
         "rank_cutoff_intervals": dict(
@@ -329,7 +333,10 @@ def certify_pair(design, target, adam, ls):
     """Recompute P diagnostics; malformed/nonfinite inputs raise ValueError.
 
     Finite inconsistent diagnostics or failed numerical gates return pass=False.
-    pass/solver_verified certify only the fixed-cutoff numerical comparison.
+    pass/solver_verified retain the fixed-cutoff legacy conjunction including
+    rank stability. engineering_verified retains all numerical hard checks but
+    separates the conservative rank-interval gate for resource-only consumers.
+    Neither field certifies strict rank, subspace or linear optimality.
     A fixed-cutoff reference lstsq must also match objective and predictions:
     small normal residuals alone cannot authenticate weak singular directions.
     Complete spectra use the frozen FP64 dimension/scale envelope; ambiguous
@@ -411,20 +418,36 @@ def certify_pair(design, target, adam, ls):
         and spectrum["reference_spectrum_pass"]
         and reference_retained_ok
     )
-    solver_verified = bool(
+    engineering_verified = bool(
         metadata_ok
         and normal_ok
         and objective_ok
         and reference_ok
         and spectrum["svd_backend_pass"]
-        and spectrum["rank_stability"] == "stable"
         and retained_ok
+        and spectrum["observed_rank_agreement"]
+    )
+    # Preserve the legacy full conjunction: the resource-only v2 consumer
+    # may inspect engineering_verified, never redefine pass/solver_verified.
+    solver_verified = bool(
+        engineering_verified and spectrum["rank_stability"] == "stable"
     )
     rank_limited = actual_rank < design.shape[1]
     return {
         **spectrum,
         "retained_subspace_pass": retained_ok,
         "reference_retained_subspace_pass": reference_retained_ok,
+        "engineering_verified": engineering_verified,
+        "engineering_scope": "same_matrix_fixed_cutoff_numeric_consistency",
+        "strict_certificate": {
+            "status": "unknown",
+            "scopes": [
+                "true_rank",
+                "rigorous_retained_subspace",
+                "strict_linear_optimality",
+            ],
+            "reason": "no_verified_arithmetic_certificate",
+        },
         "pass": solver_verified,
         "solver_verified": solver_verified,
         "rank_limited": rank_limited,

@@ -1,0 +1,856 @@
+test_complete_consistent_records_preserve_strict_unknown (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_complete_consistent_records_preserve_strict_unknown) ... ok
+test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) ... 
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='objective_ls', value=nan) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='objective_ls', value=nan) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='objective_adam', value=inf) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='objective_adam', value=inf) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='reference_objective', value=-1.0) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='reference_objective', value=-1.0) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='spectrum_error_bound', value=-1.0) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='spectrum_error_bound', value=-1.0) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='rank_interval_margin', value=inf) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='rank_interval_margin', value=inf) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='svd_v_orthogonality_residual', value=True) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='svd_v_orthogonality_residual', value=True) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='rank_cutoff_interval', value=[2.0, 1.0]) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='rank_cutoff_interval', value=[2.0, 1.0]) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='rank_cutoff_intervals', value={'svd': [0.0, 1.0]}) ... FAIL
+  test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='rank_cutoff_intervals', value={'svd': [0.0, 1.0]}) ... FAIL
+test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) ... 
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_matrix_shape', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_matrix_shape', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_dtype', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_dtype', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_specification', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_specification', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_numpy_version', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_numpy_version', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='engineering_scope', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='engineering_scope', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_epsilon', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_epsilon', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_gamma', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_gamma', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_error_bound', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_error_bound', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_comparison_bound', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_comparison_bound', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_scaled_reconstruction_residual', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_scaled_reconstruction_residual', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_u_orthogonality_residual', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_u_orthogonality_residual', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_v_orthogonality_residual', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_v_orthogonality_residual', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_u_normalized_orthogonality_residual', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_u_normalized_orthogonality_residual', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_v_normalized_orthogonality_residual', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_v_normalized_orthogonality_residual', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_normalized_orthogonality_bound', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_normalized_orthogonality_bound', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='rank_cutoff_interval', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='rank_cutoff_interval', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='rank_cutoff_intervals', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='rank_cutoff_intervals', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='rank_interval_margin', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='rank_interval_margin', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='objective_adam', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='objective_adam', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='objective_ls', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='objective_ls', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='reference_objective', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='reference_objective', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='normalized_normal_residual', value=None) ... FAIL
+  test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='normalized_normal_residual', value=None) ... FAIL
+test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) ... 
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='normalized_normal_residual', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='normalized_normal_residual', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='objective_ls', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='objective_ls', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='reference_objective', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='reference_objective', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='svd_scaled_reconstruction_residual', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='svd_scaled_reconstruction_residual', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='svd_u_normalized_orthogonality_residual', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='svd_u_normalized_orthogonality_residual', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='svd_v_normalized_orthogonality_residual', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='svd_v_normalized_orthogonality_residual', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='svd_u_orthogonality_residual', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='svd_u_orthogonality_residual', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='spectrum_gamma', value=0.0) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='spectrum_gamma', value=0.0) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='spectrum_epsilon', value=0.0) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='spectrum_epsilon', value=0.0) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='spectrum_comparison_bound', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='spectrum_comparison_bound', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='svd_normalized_orthogonality_bound', value=1e+99) ... FAIL
+  test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='svd_normalized_orthogonality_bound', value=1e+99) ... FAIL
+test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) ... 
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='spectrum_matrix_shape', value=[19456, 2]) ... FAIL
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='spectrum_matrix_shape', value=[19456, 2]) ... FAIL
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='spectrum_matrix_shape', value=[1216.0, 65]) ... FAIL
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='spectrum_matrix_shape', value=[1216.0, 65]) ... FAIL
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='spectrum_dtype', value='float32') ... FAIL
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='spectrum_dtype', value='float32') ... FAIL
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='engineering_scope', value='strict_optimality') ... FAIL
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='engineering_scope', value='strict_optimality') ... FAIL
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='spectrum_specification', value='unknown') ... FAIL
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='spectrum_specification', value='unknown') ... FAIL
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='spectrum_numpy_version', value=None) ... FAIL
+  test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='spectrum_numpy_version', value=None) ... FAIL
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='objective_ls', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='objective_ls', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='objective_adam', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='objective_adam', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='reference_objective', value=-1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='reference_objective', value=-1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='spectrum_error_bound', value=-1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='spectrum_error_bound', value=-1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='rank_interval_margin', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='rank_interval_margin', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='svd_v_orthogonality_residual', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='svd_v_orthogonality_residual', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='rank_cutoff_interval', value=[2.0, 1.0])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='rank_cutoff_interval', value=[2.0, 1.0])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='profiles', key='rank_cutoff_intervals', value={'svd': [0.0, 1.0]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) (group='resource_profile', key='rank_cutoff_intervals', value={'svd': [0.0, 1.0]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_matrix_shape', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_matrix_shape', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_dtype', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_dtype', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_specification', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_specification', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_numpy_version', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_numpy_version', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='engineering_scope', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='engineering_scope', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_epsilon', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_epsilon', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_gamma', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_gamma', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_error_bound', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_error_bound', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='spectrum_comparison_bound', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='spectrum_comparison_bound', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_scaled_reconstruction_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_scaled_reconstruction_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_u_orthogonality_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_u_orthogonality_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_v_orthogonality_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_v_orthogonality_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_u_normalized_orthogonality_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_u_normalized_orthogonality_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_v_normalized_orthogonality_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_v_normalized_orthogonality_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='svd_normalized_orthogonality_bound', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='svd_normalized_orthogonality_bound', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='rank_cutoff_interval', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='rank_cutoff_interval', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='rank_cutoff_intervals', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='rank_cutoff_intervals', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='rank_interval_margin', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='rank_interval_margin', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='objective_adam', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='objective_adam', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='objective_ls', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='objective_ls', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='reference_objective', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='reference_objective', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='profiles', key='normalized_normal_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) (group='resource_profile', key='normalized_normal_residual', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='normalized_normal_residual', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='normalized_normal_residual', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='objective_ls', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='objective_ls', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='reference_objective', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='reference_objective', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='svd_scaled_reconstruction_residual', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='svd_scaled_reconstruction_residual', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='svd_u_normalized_orthogonality_residual', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='svd_u_normalized_orthogonality_residual', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='svd_v_normalized_orthogonality_residual', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='svd_v_normalized_orthogonality_residual', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='svd_u_orthogonality_residual', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='svd_u_orthogonality_residual', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='spectrum_gamma', value=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='spectrum_gamma', value=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='spectrum_epsilon', value=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='spectrum_epsilon', value=0.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='spectrum_comparison_bound', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='spectrum_comparison_bound', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='profiles', key='svd_normalized_orthogonality_bound', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) (group='resource_profile', key='svd_normalized_orthogonality_bound', value=1e+99)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='spectrum_matrix_shape', value=[19456, 2])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='spectrum_matrix_shape', value=[19456, 2])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='spectrum_matrix_shape', value=[1216.0, 65])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='spectrum_matrix_shape', value=[1216.0, 65])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='spectrum_dtype', value='float32')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='spectrum_dtype', value='float32')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='engineering_scope', value='strict_optimality')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='engineering_scope', value='strict_optimality')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='spectrum_specification', value='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='spectrum_specification', value='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='profiles', key='spectrum_numpy_version', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) (group='resource_profile', key='spectrum_numpy_version', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py", line 35, in reject_mutation
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.069s
+
+FAILED (failures=94)

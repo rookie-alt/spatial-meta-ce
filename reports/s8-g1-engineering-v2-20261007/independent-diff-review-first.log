@@ -1,0 +1,148 @@
+S8 G1 engineering v2 — 独立实际 diff 复核（不是科学第三方认证）
+审查日期：2026-10-07；最终结论：BLOCK / 暂不批准整包工程验收。
+仅一项 P2 阻断：新增 verifier 的完整 certificate 记录核验不完整。
+probe/runner/state 主线未发现旧 pass 放宽、full-P theta 预测泄漏或新增权限扩大。
+
+1. 对象与授权
+只读检出：/private/tmp/spatial-meta-ce-s7-diagnosis-20261007
+基准：603611e；分支：feat/s8-g1-engineering-v2-20261007
+HEAD/RED checkpoint：5f3b829bbf653256c55dbddc05f148d27f0c6fce
+审核对象为当前未提交实际生产/测试 diff，不把 RED commit 当成 GREEN 实现提交。
+按照用户批准的33§8和34协议限域复核；没有再次方法/数学方案审查。
+无仓库修改、提交、网络、服务器、真实P/目标/H数据、训练、GPU、smoke或递归代理操作。
+本审仅运行两个微量纯内存记录复现及源码/Git/SHA检查；唯一写入文件是本报告。
+检出缺少 memory/spatial-meta-ce-agent-delegation.md；未因此扩大授权。
+
+2. [P2] 完整记录缺失或与通过旗标冲突仍可得到 numerical_record_checks.passed=True
+主要位置：
+/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py:200-227
+调用/完成链：同文件259-264、290-299、verify_smoke 的597-601、618附近返回；
+/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/run_s8_smoke.py:587-605。
+测试掩盖位置：
+/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py:39-59、431-445附近。
+
+_certificate_record 仅核 True 旗标、三rank、legacy布尔关系、strict unknown 和分解次数。
+没有要求现有生产 certificate 的 spectrum_matrix_shape、spectrum_dtype、
+engineering_scope、谱/backend数值诊断及 objective/normal/reference 数值记录存在，
+也不核这些数值记录与已通过旗标是否冲突。两份文件的 canonical digest 相同只证明
+同一个错误/不完整记录被重复，不能补足记录自身的结构/一致性核验。
+34§2要求完整 certificate 的结构/记录一致性与 profile尺寸核验；记录式验收不需要
+重跑求解，也不等于可以接受自身缺证据或显然矛盾的 certificate。
+
+本审实际复现（/opt/anaconda3/bin/python -B，PYTHONDONTWRITEBYTECODE=1）：
+A. 使用新测试 numeric_records()/certificate() 手写 fixture（没有上述矩阵/数值诊断），
+直接 _certificate_record(c,65,'review-h-probe') 返回 (64,'stable')。
+B. 在同一 certificate 增加 spectrum_matrix_shape=[19456,2]、spectrum_dtype='float32'、
+engineering_scope='wrong_matrix'、normalized_normal_residual=1e99、objective_ls=1e99、
+objective_adam=0.0，函数仍返回 (64,'stable')。
+C. 对完整四项 numeric_records 的所有 certificate 作同类修改（shape=[1,2]），
+保持 stage/combined记录完全相同，patch _read 为纯内存字典，再调用 _numeric_records。
+缺字段版与冲突版都实际返回：
+{'engineering_verified': True, 'strict_certificate_status': 'unknown',
+ 'numerical_record_checks': {'passed': True,
+ 'scope': 'record_consistency_not_independent_mathematical_proof',
+ 'certificate_files': 4, 'probe_profiles': 2, 'resource_profiles': 2}}
+两次命令 exit0，分别约0.29s；没有求解、源数据读取或文件写入。
+
+影响：完整记录核验声称通过，但既不能绑定该 certificate 的矩阵尺寸/FP64范围，
+也不拒绝与冻结 normal/objective gate 明显冲突的记录。verify_smoke 将此结果并入
+passed=True；runner随后据此写 completed_engineering_smoke。
+这不是发现生产 certify_pair 算错，不是要求独立严格数学证明；是可复现的证据
+结构/一致性门缺口。669项全绿不覆盖它：新fixture本身就是被接受的不完整certificate，
+“required fields”负例只遍历该fixture键，漏掉实际生产证书输出的数值/shape键。
+
+最小纠错（交主代理；本审未修改）：
+- 只在独立 verifier 与对应测试补齐既有生产 certificate 的必需字段、类型/finite检查；
+  传入 stage rows，核 spectrum_matrix_shape 等于 [1216或19456,65或775]，
+  spectrum_dtype='float64'、工程scope/谱spec固定值；不要 import生产probe自证。
+- 对已记录 normal、objective、reference objective、backend残差/界等能够直接核对的
+  既有阈值关系作一致性拒绝；复用冻结契约值，不改门槛、不引入新数学证书或求解。
+  无需从仅有记录证明真实矩阵的 rank/子空间，也不添加生产证书原来没有的全谱数组。
+- 将手写GREEN fixture补为完整且自身一致记录；分别加入缺字段、错stage shape/dtype、
+  数值与True旗标冲突且stage/combined同改的RED负例，再给专项GREEN与真实最终回归/Ruff。
+- 若主代理认为这超出现有授权，应停在该局部请求用户明确决定，不能静默将“完整记录
+  一致性”收缩成只核旗标。解决之前不批准整包，不开启真实P/smoke/正式阶段。
+
+3. 主线具体核验（没有发现新增阻断）
+3.1 legacy接口：/spatial_meta_ce/s8_probe.py:279-299 原 rank_stability 计算未改；
+421-433 的 engineering 去掉的仅保守rank-interval gate，保留 metadata、normal、objective、
+reference目标/预测/谱/保留投影、SVD backend、自身观测rank一致。旧stable原已含rank一致，
+所以新增agreement项并未拓宽旧pass。451-457旧pass==solver_verified，fullrank仍依赖旧pass，
+full_linear_optimality两字段仍False；strict_certificate固定unknown及三个scope。
+固定rcond、全部既有容差、标准化scale和mask语义未改，不重新审数学方案。
+3.2 runner：run_s8_smoke.py:487-505 小1216 gate仍为certificate['pass']；
+507-535完整19456仅engineering_verified is True继续，失败仍raise，写证书先于gate。
+完整P系数仅 resource_ls局部且随后del；solvers与normalizers来自小面板；
+546-552端点只读小面板solvers。fake999合成全链测试覆盖20352端点与资源theta隔离，
+它mock训练/求解/verifier，不冒充真实solver或真实smoke集成。
+3.3 pipeline：schema/policy签名 -> freshF0/checkpoint/reload -> P表示 -> h/x小gate及
+resource gate -> 完整P/V端点 -> seal -> allow_holdout/每次H重新认证 -> H端点 ->
+独立核验 -> 输入SHA前后不变 -> summary/status。任何数值失败不能成为no_candidate/strict
+unknown豁免。587-590另显式查proof三个字段；失败status保留stage、completed_stages、
+engineering_verified=False。完成状态是工程smoke而非formal ready，strict仍unknown。
+3.4 state：s8_state.py:108-119 schema精确整数1/2，schema1禁v2键；schema2只能smoke固定
+policy+canonical SHA。canonical signature包含所有bindings；checkpoint、seal、H gate通过
+原路径比较同一bindings，不新增formal执行/selection捷径。schema1旧formal gate未改。
+3.5 资源/权限：THREADS4、batch128、1800s、12GiB RLIMIT_AS与显式空CUDA主入口未改；
+资源时间拆分/和、matrix_bytes与3次linalg记录原义清楚。AS不等于RSS；mask不是行过滤；
+没有新增fallback、resume、目标入口、科学gate或资源配置选项。
+H gate实际源码仍在语义读前调用require_nomination；独立verifier仍明确仅核记录顺序，
+不宣称 actual_H_access_order_verified/source_file_provenance_verified。
+
+4. 已读取的主代理真实证据与本审验证
+读取了全库unittest原始逐项输出、Ruff原始诊断以及最新专项/RED-GREEN材料，不依据口头
+总结批准，不自行完整重跑benchmark/full tests。实际结果：
+- full-tests-first.log：669 tests / 88.700s / OK（本审读原始输出；exec exit0来自用户运行回执）。
+- changed-ruff-first.log/main-ruff-green.log：All checks passed；初次checkpoint import
+  Ruff I001失败记录保留，当前实际diff已修。
+- repository-ruff.log：Found 110 errors，非全库Ruff通过。本审提取所有诊断涉及27文件，
+  全部逐文件字节比较与603611e一致，证明这些诊断没有来源于本轮修改；未扩范围修旧lint。
+- state-green.log：初次45项有1个测试调用参数顺序错误，日志未抹掉；修正后45 /0.117s OK。
+- probe-green.log：38 /1.186s OK；legacy-numeric-green.log：20 /0.035s OK。
+- checkpoint-green.log：1 /0.862s OK。
+- runner-stage-green.log：5 /0.779s OK；旧拒绝gate：2 /0.074s OK。
+  初次旧gate失败是safe_hash由1次变成确切34/27两次；当前断言仍逐次核call list，非删除gate。
+- independent-green.log：45 /41.757s OK。
+- independent-fix-red.log：3测试、32个subtest failures，exit1；
+  最新 independent-fix-green.log 与 /private/tmp/s8-v2-independent-fix-green.log 实际为
+  49 /40.156s OK、FIX_TARGETED_EXIT_CODE=0、Ruff0、scoped diff0，不是早期口述48。
+  lowercase SHA、spectrum/reference_pass和certification_linalg_calls修补均在最新diff。
+- 本审10源码/测试 scoped git diff --check exit0；不限域check仅报原始independent-red.log
+  的14处尾空白。原始RED日志保留，不以清洗日志冒充修改证据；这不是生产阻断。
+- baseline-sha.json 8项全部与git show603611e匹配；原24/26/27/30当前SHA仍等于基准。
+  Git实际diff未包含旧failed证据改写，未追认历史G1。
+
+5. 审查边界与交付
+本次是一项具体验收证据缺口的工程diff复核，不是强科学问题认证。
+不认证真实full-P、候选排序/线性最优、实际H I/O顺序、服务器资源峰值或正式G1/G2-G4。
+旧unknown/failed不得由本报告改写。整包BLOCK仅等待第2节局部最小修正及其新证据；
+无须开启数学路线，且本报告不授予修改/训练/真实P/smoke等新权限。
+以下SHA仅绑定本次已审快照，不代替第三方执行证明。
+
+SNAPSHOT_SHA256
+{
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/run_s8_smoke.py": "3daf473bf078c65c426ab4d849bcc02f2029261538571ab7aa5299ed789b7396",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py": "cea49d50eefe814c4ee3ad315d047787f897170d39ad855b18229f796b0cb12a",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_state.py": "6d793e59884c383a94f0c5b1fb32d83fe58abf1d4700313c6033420e8cd9fe35",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py": "86c97dbd976d9932c3b6ef4d7be637960b50c0a3c03e7fbc89ea4b6fa2e5dd34",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_checkpoint_v2.py": "9774db195469864f187b8a6749155567ff486fa12d1d43feb9371a8c84db34c7",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py": "b1be328c04090eed74799464f2b77eba7325b51e1780d7579360ac84d3afcc24",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe_v2.py": "5b35ea03ee6f17b46254f4b2041ef1c05c5736a5e936408d9af8cf34e22e591c",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_certificate_gate.py": "a4740bf5bee61e819843e1fe1078b2109a9836530fabb8c1d8bf5a1d46e73ee1",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_v2.py": "70ca37d36bab0db68c358ff8fdba32a1c1e95d2a3b45b4d5176cb87bf9971cdf",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_state_v2.py": "d0d404333321d8143e02e23fb1fe6221c2eec59c54657c9076d3ce10b707dfea",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/实验文档/34-S8G1工程验收v2批准协议.md": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/full-tests-first.log": "08179047641d52a01b04a21f77700616c6ba1fe27d5868605462d13048c73e4c",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/changed-ruff-first.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/repository-ruff.log": "6a9e972102c95d9fa25e306701856c6292bc2950f67db92c5bdb36933d54806d",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/state-green.log": "2ad1358abe0bc5c892fe249eb6dfa2d38315b304781e816b16f33e5e42ba4b32",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/probe-green.log": "829cbd7ff2870299917b72dced37005ed15907b4fbfc4ee71ecdf2d3a054fd26",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/legacy-numeric-green.log": "78ae485934c979013d676de74d546be0405ac5cc8d8add4404a33e3138ab6a25",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/checkpoint-green.log": "181186f9c076b33a60f7fc0c75a7f6077d056c1dbe4590dca1613162a4e5055b",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/runner-stage-green.log": "8772a8bf52784fffcd196d4d3914555d41fe5d682d5a7d8d773257bf421a0420",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/legacy-runner-gate-green.log": "b1242890c61f77bb81a3747799dd33ba7e075f91ea7eb8ed2a2f736eff7e5187",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/independent-green.log": "bfe693f79e39873d3e2a4fe007b3d0fd0986842dc112f8634ee1890049804526",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/independent-fix-red.log": "274ec1e488d6554d5854b27e83ba3ebba257bddb8a43e7d6dfbdf69297b84544",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/independent-fix-green.log": "ffe7316e9e052a85b0838046a1b3b59f6b87619477e05736098604ae968274de",
+  "/private/tmp/s8-v2-independent-fix-green.log": "ffe7316e9e052a85b0838046a1b3b59f6b87619477e05736098604ae968274de"
+}

@@ -1,0 +1,28 @@
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_s8_checkpoint_v2.py:3:1
+   |
+ 1 |   """Local synthetic checkpoint states; no optimizer steps or source training."""
+ 2 |
+ 3 | / import tempfile
+ 4 | | import unittest
+ 5 | | from pathlib import Path
+ 6 | |
+ 7 | | import torch
+ 8 | |
+ 9 | | from scripts import run_s8_smoke as runner
+10 | | from spatial_meta_ce.model import SetEstimator
+11 | | from test_s8_state_v2 import v2_bindings
+   | |________________________________________^
+help: Organize imports
+   |
+7  | import torch
+8  + from test_s8_state_v2 import v2_bindings
+9  |
+10 | from scripts import run_s8_smoke as runner
+11 | from spatial_meta_ce.model import SetEstimator
+   - from test_s8_state_v2 import v2_bindings
+12 |
+   |
+
+Found 1 error.
+[*] 1 fixable with the `--fix` option.

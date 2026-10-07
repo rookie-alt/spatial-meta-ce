@@ -1,0 +1,298 @@
+test_acceptance_sha_must_be_canonical_lowercase (test_s8_independent_v2.IndependentV2Tests.test_acceptance_sha_must_be_canonical_lowercase) ... 
+  test_acceptance_sha_must_be_canonical_lowercase (test_s8_independent_v2.IndependentV2Tests.test_acceptance_sha_must_be_canonical_lowercase) (sha='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA') ... FAIL
+  test_acceptance_sha_must_be_canonical_lowercase (test_s8_independent_v2.IndependentV2Tests.test_acceptance_sha_must_be_canonical_lowercase) (sha='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaF') ... FAIL
+test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) ... 
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='spectrum_pass', value=False) ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='spectrum_pass', value=1) ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='spectrum_pass', value='true') ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='spectrum_pass', value=None) ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='reference_pass', value=False) ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='reference_pass', value=1) ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='reference_pass', value='true') ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='reference_pass', value=None) ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='spectrum_pass', value=False) ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='spectrum_pass', value=1) ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='spectrum_pass', value='true') ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='spectrum_pass', value=None) ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='reference_pass', value=False) ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='reference_pass', value=1) ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='reference_pass', value='true') ... FAIL
+  test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='reference_pass', value=None) ... FAIL
+test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) ... 
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=0) ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=1) ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=3) ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=2.0) ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=True) ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value='2') ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=None) ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=0) ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=1) ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=3) ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=2.0) ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=True) ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value='2') ... FAIL
+  test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=None) ... FAIL
+
+======================================================================
+FAIL: test_acceptance_sha_must_be_canonical_lowercase (test_s8_independent_v2.IndependentV2Tests.test_acceptance_sha_must_be_canonical_lowercase) (sha='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 397, in test_acceptance_sha_must_be_canonical_lowercase
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_acceptance_sha_must_be_canonical_lowercase (test_s8_independent_v2.IndependentV2Tests.test_acceptance_sha_must_be_canonical_lowercase) (sha='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaF')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 397, in test_acceptance_sha_must_be_canonical_lowercase
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='spectrum_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='spectrum_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='spectrum_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='spectrum_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='reference_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='reference_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='reference_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='profiles', key='reference_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='spectrum_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='spectrum_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='spectrum_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='spectrum_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='reference_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='reference_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='reference_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_existing_spectrum_and_reference_conjunctions_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_existing_spectrum_and_reference_conjunctions_cannot_be_forged) (group='resource_profile', key='reference_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 412, in test_existing_spectrum_and_reference_conjunctions_cannot_be_forged
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=2.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value='2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='profiles', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=2.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value='2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_certificate_linalg_call_count_is_exact_integer_two (test_s8_independent_v2.IndependentV2Tests.test_certificate_linalg_call_count_is_exact_integer_two) (group='resource_profile', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 426, in test_certificate_linalg_call_count_is_exact_integer_two
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.135s
+
+FAILED (failures=32)
+
+FIX_RED_EXIT_CODE=1

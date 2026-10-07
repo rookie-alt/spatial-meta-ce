@@ -1,0 +1,100 @@
+S8 G1 engineering v2 — 独立实际diff最终批准
+日期：2026-10-07（Asia/Shanghai）
+结论：APPROVED_LOCAL_ENGINEERING_DIFF / 整包本地工程代码diff批准。
+剩余具体代码阻断：0。上一轮P2已关闭，本次最终证据待项已满足。
+不认证真实G1 smoke完成、不认证科学最优性、不解除真实P/服务器/smoke/训练等授权边界。
+
+一、对象与权限
+只读worktree：/private/tmp/spatial-meta-ce-s7-diagnosis-20261007
+分支：feat/s8-g1-engineering-v2-20261007
+基准：603611e；HEAD/RED checkpoint：5f3b829bbf653256c55dbddc05f148d27f0c6fce。
+批准对象为本报告SHA所绑定的当前未提交GREEN工程diff及配套测试/34协议，不把HEAD当作
+GREEN已提交证明，不声称已提交/已推送。遵循33§8+34批准范围。
+这是同一G1收尾，不引用S2P1跟进，不把其他任务材料纳入此工程批准。
+本轮仅源码/Git/SHA和指定原始日志读取；未编辑repo、提交、网络、server、真实P/H/目标
+数据、训练、GPU、smoke、递归代理或重算矩阵；唯一写入是本报告。
+前两份P2/after-fix报告保持原字节，不覆盖历史阻断及“待最终日志”的记录。
+
+二、最新源码/测试快照确认
+4个production文件与上轮after-fix已复核SHA全部一致：runner/probe/state未改，verifier
+保持P2修补版。手写fixture与其余既有测试SHA也匹配已复审快照。
+新增tests/test_s8_numeric_record_integrity_v2.py相对after-fix报告SHA有变化；本轮已完整
+读取当前文件，变化是Ruff import顺序/空行，5项断言及纯记录mock行为未放宽。当前文件
+修改时间2026-10-07 22:28:33+0800，最终全库日志完成22:30:45+0800；时间只是辅助记录，
+“回归后未改文件”依据为用户明确回执，当前SHA已另绑定，不冒称日志本身是执行签名。
+原24/26/27/30协议当前字节仍与603611e一致，34协议SHA保持批准版。
+tracked生产/测试scope git diff --check exit0。没有新源码问题需要提出最小纠错。
+
+三、最终真实回归及Ruff原始输出
+本轮最终依据仅为：
+/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/full-tests-final.log
+实际末尾：Ran 674 tests in 90.850s / OK。
+读取全文件并核674个唯一test header，无FAIL/ERROR/skipped/FAILED标记；与上一轮已逐项
+读过的full-tests-first.log作完整原始diff，新内容仅新增5项完整记录测试全部ok、两条旧
+dry-run临时路径变化和最终674/90.850s统计。所有原回归条目仍保留，不只信总结。
+主代理exec exit0、CPU1/空CUDA、沙箱外执行由用户真实回执确认；本审不重复运行全套。
+669/88.700s现在仅历史比较证据，不再作为最终结果。
+
+/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/changed-ruff-final.log
+原始内容：All checks passed! 改动Ruff通过。
+
+/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/repository-ruff-final.log
+原始末尾：Found 110 errors；39 fixable，49 hidden unsafe fixes。
+全库Ruff没有通过，不隐去此事实。完整输出与先前已读取的repository-ruff.log字节相同，
+cmp exit0；所有诊断涉及27文件，本轮再次逐文件比较，全部与603611e字节一致。
+因此110项是未触及baseline诊断，不是本轮新增lint；不扩大范围修复旧问题。
+三个最终原始日志SHA附在本报告。历史RED/GREEN与上轮5项/184缺字段复验继续保留，
+不通过清洗日志消除过去失败，不把那些专项结果替代本次674项最终回归。
+
+四、P2关闭与完整gate链
+scripts/s8_independent_verify.py:210-306现有全部diag字段必须存在且类型/finite符合，
+stage shape/dtype/scope/spec/NumPy版本、frozen eps/gamma/Gram bound、comparison=2eta、
+backend/normal/objective/reference目标原gate、paircutoff结构/alias/margin声明核验闭合。
+309-349保留原旗标/rank/legacy与strict unknown关系，并强制调用diag核验；383-385按
+small1216/resource19456传rows。stage+combined同步伪造不再以文件相同冒充完整一致记录。
+fixture包含46个生产现有字段；上轮已独立核184次逐字段删除全部拒绝，5个专项通过；
+这些5项本次实际进入674项全套且全部ok。仅record consistency，不重新求解、不开新数学路线。
+
+旧pass==solver_verified仍含rank_stability stable；小面板仍旧pass hard gate。
+完整P仅engineering resource gate，不进入predict/select，资源theta随后丢弃。
+保留fresh F0/signature/checkpoint/reload/P表示/h-x各small+resource/P-V完整端点/seal/
+每次H认证/H端点/独立记录核验/输入SHA前后未变/最终summary-status整个链。
+工程失败仍failed，stage记录不改unknown/no_candidate；completed_engineering_smoke须经
+全部阶段和独立核验，不能只因resource工程True提前完成。
+线程/空CUDA/batch/timeout/AS资源限制、scale和mask语义未改；资源payload不是RSS。
+formal_ready=False、strict_certificate unknown、full_linear_optimality两字段False、
+smoke_not_selection保持；schema2仅smoke固定policy和acceptance SHA，未放宽旧formal gate。
+
+五、非阻断收尾提醒（不是新增代码问题）
+读取时final-verification.json仍是历史669/88.700s与旧verifier SHA、review pending；
+该文件不是这次用户指定最终三日志，本审未以其作本次批准依据。主代理归档/提交本轮
+材料时应将汇总同步为真实674/90.850s、当前源码SHA和本批准，或明确标记旧汇总为历史。
+不得把旧汇总留成当前最终证据；本审不代写repo。此为材料同步事项，不推翻本次代码批准。
+
+六、批准的限制
+批准只说明此次限域本地工程实现和回归满足已批准33§8+34，不是第三方科学认证、真实
+full-P计算认证或新G1 smoke已执行；原G1 failed/strict unknown和formal_ready=False不改。
+不证明actual H I/O顺序、真实数据provenance或服务器峰值；记录核验仍明确披露这些限制。
+真实P读取、服务器部署、smoke和正式训练仍需分别授权。本报告不授予新执行权限。
+截至本快照，剩余代码阻断0，最终本地工程diff APPROVED。
+
+APPROVED_SNAPSHOT_SHA256
+{
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/run_s8_smoke.py": "3daf473bf078c65c426ab4d849bcc02f2029261538571ab7aa5299ed789b7396",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py": "baabf4dac9f17406de033fe2dc20cd8d58e32d2e72300744eb88167490eed6e8",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py": "cea49d50eefe814c4ee3ad315d047787f897170d39ad855b18229f796b0cb12a",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_state.py": "6d793e59884c383a94f0c5b1fb32d83fe58abf1d4700313c6033420e8cd9fe35",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_checkpoint_v2.py": "9774db195469864f187b8a6749155567ff486fa12d1d43feb9371a8c84db34c7",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py": "d357df74bfe4d95177b3a3dd00882d189322fab595fb2b76ef4a992ebd06e406",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numeric_record_integrity_v2.py": "763fe2fb6edb03e80a489f3ade199d541246eda15a45711f974e1dd525e9c6d0",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe_v2.py": "5b35ea03ee6f17b46254f4b2041ef1c05c5736a5e936408d9af8cf34e22e591c",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_certificate_gate.py": "a4740bf5bee61e819843e1fe1078b2109a9836530fabb8c1d8bf5a1d46e73ee1",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_v2.py": "70ca37d36bab0db68c358ff8fdba32a1c1e95d2a3b45b4d5176cb87bf9971cdf",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_state_v2.py": "d0d404333321d8143e02e23fb1fe6221c2eec59c54657c9076d3ce10b707dfea",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/实验文档/34-S8G1工程验收v2批准协议.md": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/full-tests-final.log": "18d0c8ad710d8f4b684c40fcf3a2c0ad260aba484cab4bc16e6622eef7cf9ad0",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/changed-ruff-final.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+  "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-engineering-v2-20261007/repository-ruff-final.log": "6a9e972102c95d9fa25e306701856c6292bc2950f67db92c5bdb36933d54806d",
+  "/private/tmp/s8-v2-independent-diff-review.log": "8c533cd97f8dd76b3320c1ca6b3fae0d6e8c0090b3e87c0c1e71caf1a588bc87",
+  "/private/tmp/s8-v2-independent-final-diff-review.log": "ba790c1c0b87872c1d3cf73193a5a58183c26e844f6bd5f364e2fe4b198523ea"
+}

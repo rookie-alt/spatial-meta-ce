@@ -48,6 +48,8 @@ MEMORY = 12 * 1024 ** 3
 BATCH_SIZE = 128
 THREADS = 4
 DATA_ROOT = Path('/gly/weilin/spatial-meta-ce')
+NUMERICAL_ACCEPTANCE_POLICY = 's8-g1-resource-engineering-v2'
+ACCEPTANCE_PROTOCOL = ROOT / '实验文档/34-S8G1工程验收v2批准协议.md'
 
 
 def timeout_failure(_signum, _frame):
@@ -93,7 +95,11 @@ def smoke_plan():
             'formal_ready': False, 'device': 'cpu', 'F0_updates': 2, 'F0_episodes': 8,
             'P_unique': 19456, 'probe_fit_unique': 1216, 'probe_adam_updates_each': 2,
             'representation_batch': BATCH_SIZE, 'threads': THREADS,
-            'resource_profile': 'full P matrices, fixed-cutoff LS/certificate only; no selection',
+            'resource_profile': 'full P engineering gate only; preserve rank/strict unknown; no selection',
+            'schema': 2, 'numerical_acceptance_policy': NUMERICAL_ACCEPTANCE_POLICY,
+            'acceptance_protocol': str(ACCEPTANCE_PROTOCOL),
+            'small_probe_gate': 'legacy_pass', 'full_P_resource_gate': 'engineering_verified',
+            'strict_certificate_status': 'unknown',
             'timeout_seconds': TIMEOUT, 'address_space_bytes': MEMORY,
             'target_data_read': False, 'formal_training': False}
 
@@ -393,6 +399,7 @@ def execute(data_root, run_dir):
         raise ValueError('Smoke output path alias forbidden')
     run_dir.mkdir(parents=True, exist_ok=False)
     started = time.monotonic()
+    stage, completed_stages = 'environment', []
     try:
         if (np.__version__ != '1.26.1' or torch.__version__ != '2.1.0+cu121'
                 or tuple(sys.version_info[:3]) != (3, 11, 4)):
@@ -403,6 +410,8 @@ def execute(data_root, run_dir):
         if (not any(row.get('user_api') == 'blas' for row in threadpools)
                 or any(not 1 <= row.get('num_threads', 0) <= THREADS for row in threadpools)):
             raise ValueError('Actual NumPy/Torch BLAS/OpenMP threads exceed the fixed budget')
+        completed_stages.append(stage)
+        stage = 'source_authentication'
         reference = data_root / 'runs/s6-mean-tail-20261007/preflight.json'
         preflight = source.preflight(data_root, reference)
         with source.safe_binary(reference) as stream:
@@ -414,7 +423,9 @@ def execute(data_root, run_dir):
             metadata[db] = cache
             panels[db], _ = panel_indices(db, cache['query_hash'])
         bindings = {
-            'schema': 1, 'mode': 'smoke', 'purpose': 's8-engineering-smoke-not-research',
+            'schema': 2, 'mode': 'smoke', 'purpose': 's8-engineering-smoke-not-research',
+            'numerical_acceptance_policy': NUMERICAL_ACCEPTANCE_POLICY,
+            'acceptance_protocol_sha256': source.safe_hash(ACCEPTANCE_PROTOCOL),
             'protocol_sha256': source.safe_hash(ROOT / '实验文档/27-S8G1运行器与真实smoke协议.md'),
             'source_binding_sha256': digest(preflight['input_sha256']),
             'panel_identity_digest': digest({db: [metadata[db]['query_hash'][i] for i in panels[db]] for db in TRAIN}),
@@ -433,6 +444,8 @@ def execute(data_root, run_dir):
         write_json(run_dir / 'preflight.json', preflight)
         write_json(run_dir / 'panels.json', panels)
         event(run_dir, 'source_authentication_complete')
+        completed_stages.append(stage)
+        stage = 'fresh_F0_and_reload'
         store = SourceStore(data_root, sources, run_dir, bindings)
         train_start = time.monotonic()
         model, optimizer, counts, sample_digest, initial_hash = train_f0(
@@ -452,6 +465,8 @@ def execute(data_root, run_dir):
         event(run_dir, 'F0_checkpoint_reloaded', checkpoint_sha256=checkpoint_sha,
               maximum_raw_delta=reload_delta)
         print('S8 smoke: fresh P-only F0/reload complete', flush=True)
+        completed_stages.append(stage)
+        stage = 'P_representation_extraction'
         extracted, fit_indices, cursor = {}, [], 0
         extraction_start = time.monotonic()
         for db in TRAIN:
@@ -465,14 +480,17 @@ def execute(data_root, run_dir):
         for name, value in p_features.items():
             with (run_dir / f'P-{name}.npy').open('xb') as stream:
                 np.save(stream, value, allow_pickle=False)
+        completed_stages.append(stage)
         fit_target = target_full[fit_indices]
         solvers, normalizers, probe_summary, resource_profile = {}, {}, {}, {}
         for feature, a, b in [('h', 'A_h_adam', 'B_h_ls'), ('x', 'C_x_adam', 'D_x_ls')]:
+            stage = f'{feature}_small_probe'
             design, normalizer = standardize_fit(p_features[feature][fit_indices])
             normalizers[feature] = normalizer
             t = time.monotonic()
             adam, ls = solve_adam(design, fit_target, steps=2), solve_ls(design, fit_target)
             certificate = certify_pair(design, fit_target, adam, ls)
+            write_json(run_dir / f'{feature}-probe-certificate.json', certificate)
             if not certificate['pass']:
                 raise ValueError('Small-matrix smoke probe numerical verification failed')
             solvers[a], solvers[b] = adam['theta'], ls['theta']
@@ -484,27 +502,45 @@ def execute(data_root, run_dir):
             probe_summary[feature] = {'fit_rows': 1216, 'parameters': design.shape[1],
                                       'adam_updates': 2, 'certificate': certificate,
                                       'seconds': time.monotonic() - t}
+            completed_stages.append(stage)
             # Resource-only full P target; discard fit coefficients, never select by score.
+            stage = f'{feature}_full_P_resource'
+            resource_start = time.monotonic()
             full_design, _ = standardize_fit(p_features[feature])
             t = time.monotonic()
+            normalization_seconds = t - resource_start
             resource_ls = solve_ls(full_design, target_full)
             zero_reference = {'theta': np.zeros(full_design.shape[1]),
                               'objective': float(np.mean(target_full * target_full)), 'updates': 0}
             resource_certificate = certify_pair(full_design, target_full, zero_reference, resource_ls)
-            if not resource_certificate['pass']:
+            solver_seconds = time.monotonic() - t
+            write_json(run_dir / f'{feature}-resource-certificate.json', resource_certificate)
+            if resource_certificate.get('engineering_verified') is not True:
                 raise ValueError('Resource-profile fixed-cutoff solver numerical failure')
             resource_profile[feature] = {
                 'resource_only': True, 'not_used_for_predictions_or_selection': True,
                 'rows': len(full_design), 'columns': full_design.shape[1],
-                'matrix_bytes': full_design.nbytes, 'seconds': time.monotonic() - t,
+                'matrix_bytes': full_design.nbytes,
+                'standardization_seconds': normalization_seconds,
+                'solver_certification_seconds': solver_seconds,
+                'seconds': normalization_seconds + solver_seconds,
+                'certificate': resource_certificate,
+                'stage_status': ('resource_profiled_with_rank_stability_unknown'
+                                 if resource_certificate['rank_stability'] == 'unknown'
+                                 else 'resource_profiled'),
                 'linalg_calls': 3, 'rank': resource_ls['rank'],
                 'full_linear_optimality_verified': False,
             }
+            completed_stages.append(stage)
             del full_design, resource_ls
         extraction_seconds = time.monotonic() - extraction_start
-        write_json(run_dir / 'probe-smoke.json', {'purpose': 'smoke-not-research',
+        write_json(run_dir / 'probe-smoke.json', {
+                   'schema': 2, 'numerical_acceptance_policy': NUMERICAL_ACCEPTANCE_POLICY,
+                   'acceptance_protocol_sha256': bindings['acceptance_protocol_sha256'],
+                   'purpose': 'smoke-not-research',
                    'probe_fit_rows': 1216, 'profiles': probe_summary, 'resource_profile': resource_profile})
         print('S8 smoke: P representations/probes/resource profile complete', flush=True)
+        stage = 'P_V_endpoints'
         endpoints = []
 
         def add_predictions(db, cohort, positions, features):
@@ -528,6 +564,8 @@ def execute(data_root, run_dir):
             metadata[db] = {k: cache[k] for k in ('indices', 'query_hash', 'true', 'pg', 'n_tables')}
             selected = rank_positions(db, 'V', cache['query_hash'], 256)
             add_predictions(db, 'V', selected, capture(model, store, db, selected))
+        completed_stages.append(stage)
+        stage = 'nomination_and_H_endpoints'
         nomination_file = run_dir / 'nomination.json'
         nomination_body = seal_nomination(nomination_file, None, bindings)
         nomination_sha = hashlib.sha256(json.dumps(
@@ -544,16 +582,29 @@ def execute(data_root, run_dir):
             for row in endpoints:
                 stream.write(json.dumps(row, allow_nan=False) + '\n')
         write_json(run_dir / 'metrics.json', {'purpose': 'smoke-not-research', 'rows': metrics_rows(endpoints)})
+        completed_stages.append(stage)
+        stage = 'independent_verification'
         proof = verify_smoke(run_dir, bindings, panels, metadata)
-        if not proof['passed']:
+        if (proof.get('passed') is not True or proof.get('engineering_verified') is not True
+                or proof.get('strict_certificate_status') != 'unknown'):
             raise ValueError('Independent smoke verification failed')
+        completed_stages.append(stage)
+        stage = 'final_input_binding_check'
         for path, expected in preflight['input_sha256'].items():
             if source.safe_hash(path) != expected:
                 raise ValueError('Historical source input changed during smoke')
+        completed_stages.append(stage)
+        stage = 'final_summary'
         write_json(run_dir / 'verification.json', proof)
         output_hashes = {p.name: source.safe_hash(p) for p in run_dir.iterdir() if p.is_file()}
         summary = {
-            'status': 'completed_smoke', 'purpose': 's8-engineering-smoke-not-research',
+            'status': 'completed_engineering_smoke', 'purpose': 's8-engineering-smoke-not-research',
+            'schema': 2, 'numerical_acceptance_policy': NUMERICAL_ACCEPTANCE_POLICY,
+            'acceptance_protocol_sha256': bindings['acceptance_protocol_sha256'],
+            'engineering_verified': True, 'strict_certificate_status': 'unknown',
+            'completed_stages': completed_stages,
+            'resource_rank_stability': {k: v['certificate']['rank_stability']
+                                        for k, v in resource_profile.items()},
             'mode': 'smoke', 'formal_ready': False, 'formal_training': False,
             'F0_smoke_training': True, 'source_smoke_inference': True,
             'target_data_read': False, 'adaptation': False, 'GPU_used': False,
@@ -573,7 +624,10 @@ def execute(data_root, run_dir):
                         'threadpools': threadpools},
         }
         write_json(run_dir / 'summary.json', summary)
-        write_json(run_dir / 'status.json', {'status': 'completed_smoke', 'purpose': summary['purpose'],
+        write_json(run_dir / 'status.json', {'status': 'completed_engineering_smoke', 'purpose': summary['purpose'],
+                                           'schema': 2, 'engineering_verified': True,
+                                           'strict_certificate_status': 'unknown',
+                                           'numerical_acceptance_policy': NUMERICAL_ACCEPTANCE_POLICY,
                                            'formal_ready': False, 'summary_sha256': source.safe_hash(run_dir / 'summary.json')})
         print(json.dumps(summary, ensure_ascii=False, indent=2))
         return summary
@@ -581,7 +635,9 @@ def execute(data_root, run_dir):
         path = run_dir / 'status.json'
         if not path.exists():
             write_json(path, {'status': 'failed', 'purpose': 's8-engineering-smoke-not-research',
-                              'formal_ready': False, 'error': str(error), 'seconds': time.monotonic() - started})
+                              'formal_ready': False, 'engineering_verified': False,
+                              'stage': stage, 'completed_stages': completed_stages,
+                              'error': str(error), 'seconds': time.monotonic() - started})
         raise
 
 

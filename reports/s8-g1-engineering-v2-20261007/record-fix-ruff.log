@@ -1,0 +1,26 @@
+I001 [*] Import block is un-sorted or un-formatted
+ --> tests/test_s8_numeric_record_integrity_v2.py:3:1
+  |
+1 |   """Pure record fixtures: do not solve, train, or open actual source matrices."""
+2 |
+3 | / import copy
+4 | | import unittest
+5 | | from pathlib import Path
+6 | | from unittest.mock import patch
+7 | |
+8 | | from scripts import s8_independent_verify as verifier
+9 | | from test_s8_independent_v2 import ACCEPTANCE_SHA, POLICY, numeric_records
+  | |__________________________________________________________________________^
+help: Organize imports
+   |
+7  |
+   - from scripts import s8_independent_verify as verifier
+8  | from test_s8_independent_v2 import ACCEPTANCE_SHA, POLICY, numeric_records
+9  |
+10 + from scripts import s8_independent_verify as verifier
+11 +
+12 |
+   |
+
+Found 1 error.
+[*] 1 fixable with the `--fix` option.

@@ -5,7 +5,10 @@ natural-log cardinalities*, not cardinalities or residuals. This API authenticat
 supplied unique-source arrays, not their on-disk provenance or token semantics.
 It does not issue research nominations or verify a linear solver's optimality.
 
-bindings: schema=1 plus the frozen smoke settings below; database lists are
+bindings: schema=1 preserves the original contract; schema=2 is smoke-only
+and checks numerical record consistency, not an independent mathematical proof.
+No summary.json is required (the runner writes it after this verification).
+The database lists are
 ``train_databases``, ``holdout_databases``, ``validation_databases``.
 ``resourcefixedfields`` binds batch_size=128, threads=4,
 probe_fit_per_database=64, probe_adam_steps=2. panel_identity_digest is SHA256
@@ -71,6 +74,25 @@ SETTINGS = {
     "support_sizes": [5, 10, 20, 50, 100],
 }
 METRIC_NAMES = ("q50", "q95", "raw_log_mae", "raw_log_mse")
+NUMERICAL_POLICY = "s8-g1-resource-engineering-v2"
+V2_BINDINGS = ("numerical_acceptance_policy", "acceptance_protocol_sha256")
+ENGINEERING_FLAGS = (
+    "metadata_pass",
+    "normal_residual_pass",
+    "objective_pass",
+    "reference_objective_pass",
+    "reference_prediction_pass",
+    "reference_spectrum_pass",
+    "svd_backend_pass",
+    "retained_subspace_pass",
+    "reference_retained_subspace_pass",
+    "observed_rank_agreement",
+)
+STRICT_CERTIFICATE = {
+    "status": "unknown",
+    "scopes": ["true_rank", "rigorous_retained_subspace", "strict_linear_optimality"],
+    "reason": "no_verified_arithmetic_certificate",
+}
 
 
 def _digest(value):
@@ -125,7 +147,26 @@ def _number(value, context):
 def _bindings(bindings):
     if not isinstance(bindings, dict):
         raise ValueError("smoke bindings must be a dict")
+    schema = bindings.get("schema")
+    if type(schema) is not int or schema not in (1, 2):
+        raise ValueError("smoke binding mismatch: schema")
+    if schema == 1:
+        if any(key in bindings for key in V2_BINDINGS):
+            raise ValueError("schema1 cannot contain v2 numerical bindings")
+    else:
+        policy = bindings.get("numerical_acceptance_policy")
+        if type(policy) is not str or policy != NUMERICAL_POLICY:
+            raise ValueError("smoke numerical policy binding mismatch")
+        sha = bindings.get("acceptance_protocol_sha256")
+        if (
+            type(sha) is not str
+            or len(sha) != 64
+            or any(c not in "0123456789abcdef" for c in sha)
+        ):
+            raise ValueError("smoke acceptance protocol SHA256 binding invalid")
     for key, expected in SETTINGS.items():
+        if key == "schema":
+            expected = schema
         actual = bindings.get(key)
         if type(actual) is not type(expected) or actual != expected:
             raise ValueError(f"smoke binding mismatch: {key}")
@@ -150,6 +191,252 @@ def _bindings(bindings):
     for key, expected in fixed.items():
         if type(resources.get(key)) is not int or resources[key] != expected:
             raise ValueError(f"smoke resource binding mismatch: {key}")
+
+
+def _record_field(record, key, expected, context):
+    actual = record.get(key)
+    if type(actual) is not type(expected) or actual != expected:
+        raise ValueError(f"{context}: invalid or missing {key}")
+
+
+def _record_seconds(record, key, context):
+    seconds = _number(record.get(key), f"{context}/{key}")
+    if seconds < 0:
+        raise ValueError(f"{context}/{key}: negative seconds")
+    return seconds
+
+
+def _certificate_diagnostics(cert, rows, columns, context):
+    """Authenticate existing diagnostics against their flags, not the matrix."""
+    for key, expected in (
+        ("engineering_scope", "same_matrix_fixed_cutoff_numeric_consistency"),
+        ("spectrum_specification", "s8-fp64-spectrum-v1.1"),
+        ("spectrum_dtype", "float64"),
+        ("spectrum_numpy_version", "1.26.1"),
+    ):
+        _record_field(cert, key, expected, context)
+    shape = cert.get("spectrum_matrix_shape")
+    if (
+        type(shape) is not list
+        or len(shape) != 2
+        or any(not _integer(n) for n in shape)
+        or shape != [rows, columns]
+    ):
+        raise ValueError(f"{context}: certificate matrix shape mismatch")
+    # These are frozen metadata definitions, not newly chosen solver tolerances.
+    eps = 2.0**-52
+    d, k = max(rows, columns), min(rows, columns)
+    gamma = d * eps / (1 - d * eps)
+    orth_gamma = (d + k) * eps / (1 - (d + k) * eps)
+    for key, expected in (
+        ("spectrum_epsilon", eps),
+        ("spectrum_gamma", gamma),
+        ("svd_normalized_orthogonality_bound", orth_gamma),
+    ):
+        _record_field(cert, key, expected, context)
+    values = {}
+    for key in (
+        "spectrum_error_bound",
+        "spectrum_comparison_bound",
+        "svd_scaled_reconstruction_residual",
+        "svd_u_orthogonality_residual",
+        "svd_v_orthogonality_residual",
+        "svd_u_normalized_orthogonality_residual",
+        "svd_v_normalized_orthogonality_residual",
+        "objective_ls",
+        "objective_adam",
+        "reference_objective",
+        "normalized_normal_residual",
+    ):
+        value = _number(cert.get(key), f"{context}/{key}")
+        if value < 0:
+            raise ValueError(f"{context}/{key}: negative diagnostic")
+        values[key] = value
+    eta = values["spectrum_error_bound"]
+    if not math.isfinite(2 * eta) or values["spectrum_comparison_bound"] != 2 * eta:
+        raise ValueError(f"{context}: inconsistent spectrum comparison bound")
+    if values["svd_scaled_reconstruction_residual"] > gamma:
+        raise ValueError(f"{context}: reconstruction flag contradicts residual")
+    for side in ("u", "v"):
+        raw = values[f"svd_{side}_orthogonality_residual"]
+        normalized = values[f"svd_{side}_normalized_orthogonality_residual"]
+        # Reuse the relative metadata precision; this is an identity check,
+        # never a new acceptance threshold for the underlying solver.
+        if (
+            not math.isclose(normalized, raw / math.sqrt(k), rel_tol=1e-12, abs_tol=0)
+            or normalized > orth_gamma
+        ):
+            raise ValueError(f"{context}: orthogonality diagnostic/flag mismatch")
+    jl, ja, reference = (
+        values[key] for key in ("objective_ls", "objective_adam", "reference_objective")
+    )
+    limit = ja + 1e-8 * max(1.0, ja)
+    if not math.isfinite(limit) or jl > limit:
+        raise ValueError(f"{context}: objective flag contradicts recorded objectives")
+    if abs(jl - reference) > 1e-12 + 1e-12 * abs(reference):
+        raise ValueError(f"{context}: reference objective flag contradicts record")
+    if values["normalized_normal_residual"] > 1e-8:
+        raise ValueError(f"{context}: normal flag contradicts recorded residual")
+    intervals = cert.get("rank_cutoff_intervals")
+    if type(intervals) is not dict or set(intervals) != {
+        "svd",
+        "reported_ls",
+        "reference_ls",
+    }:
+        raise ValueError(f"{context}: complete cutoff intervals required")
+    for bounds in [cert.get("rank_cutoff_interval"), *intervals.values()]:
+        if type(bounds) is not list or len(bounds) != 2:
+            raise ValueError(f"{context}: invalid cutoff interval shape")
+        lo, hi = [_number(x, f"{context}/cutoff") for x in bounds]
+        if not 0 <= lo <= hi:
+            raise ValueError(f"{context}: invalid cutoff interval order/sign")
+    if _digest(cert["rank_cutoff_interval"]) != _digest(intervals["svd"]):
+        raise ValueError(f"{context}: cutoff interval alias mismatch")
+    # Without spectra, only authenticate stored interval structure/margin.
+    # Do not infer strict rank or replay the spectrum from these records.
+    margin = _number(cert.get("rank_interval_margin"), f"{context}/margin")
+    rank, stability = cert["observed_ranks"]["svd"], cert["rank_stability"]
+    if (
+        stability == "unknown"
+        and margin > 0
+        or stability == "stable"
+        and margin <= 0
+        and not (rank == 0 and eta == 0 and margin == 0)
+    ):
+        raise ValueError(f"{context}: rank stability contradicts interval margin")
+
+
+def _certificate_record(cert, rows, columns, context):
+    """Check reported booleans/ranks only, never re-solve or prove optimality."""
+    if not isinstance(cert, dict):
+        raise ValueError(f"{context}: certificate must be a dict")
+    for key in (
+        *ENGINEERING_FLAGS,
+        "engineering_verified",
+        "spectrum_pass",
+        "reference_pass",
+    ):
+        _record_field(cert, key, True, context)
+    _record_field(cert, "certification_linalg_calls", 2, context)
+    ranks = cert.get("observed_ranks")
+    if (
+        not isinstance(ranks, dict)
+        or set(ranks) != {"reported_ls", "svd", "reference_ls"}
+        or any(not _integer(r) or not 0 <= r <= columns for r in ranks.values())
+        or len(set(ranks.values())) != 1
+    ):
+        raise ValueError(f"{context}: observed ranks must be equal bounded integers")
+    rank = ranks["reported_ls"]
+    stability = cert.get("rank_stability")
+    if not isinstance(stability, str) or stability not in ("stable", "unknown"):
+        raise ValueError(f"{context}: invalid rank stability")
+    passed = stability == "stable"  # All engineering conjuncts were required True.
+    for key, expected in (
+        ("pass", passed),
+        ("solver_verified", passed),
+        ("rank_limited", rank < columns),
+        ("numerical_rank_limited", rank < columns),
+        ("fullrank_numeric_solver", passed and rank == columns),
+        ("full_linear_optimality_verified", False),
+        ("full_linear_optimality", False),
+    ):
+        _record_field(cert, key, expected, context)
+    if cert.get("strict_certificate") != STRICT_CERTIFICATE:
+        raise ValueError(
+            f"{context}: strict certificate must retain exact unknown scope"
+        )
+    _certificate_diagnostics(cert, rows, columns, context)
+    return rank, stability
+
+
+def _numeric_records(run_dir, bindings):
+    path = run_dir / "probe-smoke.json"
+    if bindings["schema"] == 1:
+        if path.exists():
+            record = _read(path)
+            if isinstance(record, dict) and (
+                record.get("schema") == 2 or any(key in record for key in V2_BINDINGS)
+            ):
+                raise ValueError("schema1 cannot authenticate v2 numerical records")
+        return {}
+    record = _read(path)
+    if not isinstance(record, dict):
+        raise ValueError("probe-smoke record must be a dict")
+    for key, expected in (
+        ("schema", 2),
+        ("numerical_acceptance_policy", bindings["numerical_acceptance_policy"]),
+        ("acceptance_protocol_sha256", bindings["acceptance_protocol_sha256"]),
+        ("purpose", "smoke-not-research"),
+        ("probe_fit_rows", 1216),
+    ):
+        _record_field(record, key, expected, "probe-smoke")
+    for stage, group in (("probe", "profiles"), ("resource", "resource_profile")):
+        profiles = record.get(group)
+        if not isinstance(profiles, dict) or set(profiles) != {"h", "x"}:
+            raise ValueError(f"{group}: exactly h/x profiles required")
+        for feature, columns in (("h", 65), ("x", 775)):
+            context = f"{feature}-{stage}"
+            profile = profiles[feature]
+            if not isinstance(profile, dict):
+                raise ValueError(f"{context}: profile must be a dict")
+            cert = profile.get("certificate")
+            rank, stability = _certificate_record(
+                cert, 1216 if stage == "probe" else 19456, columns, context
+            )
+            stage_cert = _read(run_dir / f"{context}-certificate.json")
+            # Canonical JSON equality also distinguishes bool/int/float records.
+            if _digest(stage_cert) != _digest(cert):
+                raise ValueError(f"{context}: stage/combined certificate mismatch")
+            if stage == "probe":
+                for key, expected in (
+                    ("fit_rows", 1216),
+                    ("parameters", columns),
+                    ("adam_updates", 2),
+                ):
+                    _record_field(profile, key, expected, context)
+                _record_seconds(profile, "seconds", context)
+                if cert["pass"] is not True:
+                    raise ValueError(f"{context}: small probe requires legacy pass")
+            else:
+                for key, expected in (
+                    ("resource_only", True),
+                    ("not_used_for_predictions_or_selection", True),
+                    ("rows", 19456),
+                    ("columns", columns),
+                    ("matrix_bytes", 8 * 19456 * columns),
+                    ("linalg_calls", 3),
+                    ("rank", rank),
+                    ("full_linear_optimality_verified", False),
+                    (
+                        "stage_status",
+                        "resource_profiled_with_rank_stability_unknown"
+                        if stability == "unknown"
+                        else "resource_profiled",
+                    ),
+                ):
+                    _record_field(profile, key, expected, context)
+                normalization = _record_seconds(
+                    profile, "standardization_seconds", context
+                )
+                solver = _record_seconds(
+                    profile, "solver_certification_seconds", context
+                )
+                total = _record_seconds(profile, "seconds", context)
+                if not math.isclose(
+                    total, normalization + solver, rel_tol=1e-12, abs_tol=1e-12
+                ):
+                    raise ValueError(f"{context}: inconsistent seconds sum")
+    return {
+        "engineering_verified": True,
+        "strict_certificate_status": "unknown",
+        "numerical_record_checks": {
+            "passed": True,
+            "scope": "record_consistency_not_independent_mathematical_proof",
+            "certificate_files": 4,
+            "probe_profiles": 2,
+            "resource_profiles": 2,
+        },
+    }
 
 
 def _events(run_dir):
@@ -450,6 +737,7 @@ def verify_smoke(run_dir, bindings, panels, caches):
     """Authenticate the exact G1 smoke contract; raise on any missing/bad evidence."""
     run_dir = Path(run_dir)
     _bindings(bindings)
+    numeric_checks = _numeric_records(run_dir, bindings)
     nomination_sha, loads = _events(run_dir)
     _caches(caches)
     panel_sha = _panels(bindings, panels, caches)
@@ -467,6 +755,7 @@ def verify_smoke(run_dir, bindings, panels, caches):
         for role in ("P", "V", "H")
     }
     return {
+        **numeric_checks,
         "passed": True,
         "purpose": "smoke-not-research",
         "mode": "smoke",

@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from contextlib import ExitStack, redirect_stdout
 from pathlib import Path
-from unittest.mock import Mock, patch, sentinel
+from unittest.mock import Mock, call, patch, sentinel
 
 import numpy as np
 import torch
@@ -139,7 +139,10 @@ class SmokeCertificateGateTests(unittest.TestCase):
                                  list(runner.TRAIN))
                 preflight.assert_called_once()
                 safe_binary.assert_called_once_with(root / "runs/s6-mean-tail-20261007/preflight.json")
-                safe_hash.assert_called_once()
+                self.assertEqual(safe_hash.call_args_list, [
+                    call(runner.ACCEPTANCE_PROTOCOL),
+                    call(runner.ROOT / '实验文档/27-S8G1运行器与真实smoke协议.md'),
+                ])
                 store.batch.assert_called_once_with(runner.TRAIN[0], list(range(128)))
                 store.get.assert_not_called()
                 store.allow_holdout.assert_not_called()
