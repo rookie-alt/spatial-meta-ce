@@ -44,7 +44,7 @@
     "candidate implementation resource budget"
   ],
   "next_authorization_scope": "bounded local verified-arithmetic/contract feasibility only; no production implementation/install/network/server/real-P/benchmark/training/GPU/smoke",
-  "git_sync": "not_yet_performed_at_review",
+  "git_sync": "review_commit_pushed_before_document_followup",
   "analysis_probe_sha256": "db6ead2972500a12348c2025f3752e72e3f789e6848c604d79abd43ddcaa1bf8",
   "synthetic_output_sha256": "aac16b910211e1c8052c7367d53c9e2d93dd53115de6d804cd60e50fec774db1",
   "unchanged_production_sha256": {
@@ -53,5 +53,6 @@
     "实验文档/30-S8数值谱认证规格与本地修订.md": "34ebd88cf3d96c1efa215cfc46c78fd67c08e2ac4a0ec45e5523db06704841b3",
     "reports/s8-numerical-certificate-20261007/final-verification.json": "232254765f07a82dd5e8a90ba829a5111e8a759cc9126adeed52b658bcbb9170"
   },
-  "record_verification_file": "record-verification.json"
+  "record_verification_file": "record-verification.json",
+  "git_sync_record": "git-sync.json"
 }

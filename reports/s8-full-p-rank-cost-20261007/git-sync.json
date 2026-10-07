@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-07",
+  "timezone": "Asia/Shanghai",
+  "review_commit": "c8640c367281a4f72be545b0d9a700d4b1dcf06e",
+  "branch": "feat/s8-numerical-certificate-20261007",
+  "remote": "origin",
+  "review_commit_pushed": true,
+  "local_tracking_ahead_behind_at_review_push": [
+    0,
+    0
+  ],
+  "worktree_clean_at_review_push": true,
+  "main_merged": false,
+  "project_server_access": false,
+  "server_deployed": false,
+  "note": "Documentation follow-up is committed separately; final HEAD is verified after its push, not prefilled."
+}
