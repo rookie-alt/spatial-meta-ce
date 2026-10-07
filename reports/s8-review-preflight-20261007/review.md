@@ -55,3 +55,8 @@ G1模块/metadata已推进，**G1真实完整smoke及G2–G4 not_started/formal_
 准确性4/5：531实际测试、新source实测及两轮只读复审闭合已知缺陷；最优性标签保守False、真实SQL语义未知。完整性4/5：本轮审查与下一G1推进完成；freshF0/提名状态机/真实smoke及正式预算未完成，不能扩大为正式实验完成。清晰性4/5：26和35节区分initial与最终proof、数值/机制/GPU状态，旧文档仍较长。可操作性4/5：可执行preflight和模块/测试可复用，完整正式runner和资源proof仍需下一工程阶段。简洁性4/5：结果摘要与日志分开，安全输入和负例必要导致模块有一定篇幅。平均4.0/5。下一优先实现P-only runner/签名/提名与独立端点证明，而非继续扩seed或loss网格。
 
 用户可核对这些边界；本自检不是科学质量评分或收益预测。
+
+
+## 实际Git同步
+
+核心提交d9f670a已成功推送origin/feat/s8-review-and-preflight-20261007，push后本地/跟踪远端一致0/0且worktree干净。本段属于成功后的交接补记，后续文档提交号以实际Git为准。没有merge main、force push或其他窗口草稿混入。
