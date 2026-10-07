@@ -1,0 +1,78 @@
+I001 [*] Import block is un-sorted or un-formatted
+  --> spatial_meta_ce/s8_probe.py:8:1
+   |
+ 6 |   """
+ 7 |
+ 8 | / from functools import wraps
+ 9 | |
+10 | | import numpy as np
+11 | | import torch
+   | |____________^
+help: Organize imports
+   |
+12 |
+   -
+13 | RCOND = 1e-12
+   |
+
+TRY004 Prefer `TypeError` exception for invalid type
+   --> spatial_meta_ce/s8_probe.py:115:9
+    |
+113 |     limit = min(shape)
+114 |     if isinstance(rank, (bool, np.bool_)) or not isinstance(rank, (int, np.integer)):
+115 |         raise ValueError("rank must be an integer")
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+116 |     singular = _array64(singular, 1, "singular_values")
+117 |     if (
+    |
+
+TRY004 Prefer `TypeError` exception for invalid type
+   --> spatial_meta_ce/s8_probe.py:196:9
+    |
+194 |         value, (float, int, np.floating, np.integer)
+195 |     ):
+196 |         raise ValueError(f"{name} must be a real scalar")
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+197 |     value = float(value)
+198 |     if not np.isfinite(value) or value < 0:
+    |
+
+PLC0206 Extracting value from dictionary without calling `.items()`
+  --> tests/test_s8_probe.py:40:13
+   |
+38 |         applied = probe.standardize_apply(q, norm)
+39 |         np.testing.assert_array_equal(applied, [[98, -24, 1], [198, 26, 1]])
+40 |         for k in snapshot:
+   |             ^^^^^^^^^^^^^
+41 |             np.testing.assert_array_equal(norm[k], snapshot[k])
+   |                                                    -----------
+42 |         np.testing.assert_array_equal(p, [[1, 4], [3, 4]])
+   |
+help: Use `for k, value in snapshot.items()` instead
+
+SIM117 [*] Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_s8_probe.py:249:13
+    |
+247 |               (np.zeros(2), 3, np.ones(3)),
+248 |           ]:
+249 | /             with patch.object(
+250 | |                 np.linalg, "lstsq", return_value=(theta, np.array([]), rank, singular)
+251 | |             ):
+252 | |                 with self.subTest(rank=rank), self.assertRaises(ValueError):
+    | |____________________________________________________________________________^
+253 |                       probe.solve_ls(design, target)
+    |
+help: Combine `with` statements
+    |
+250 |                 np.linalg, "lstsq", return_value=(theta, np.array([]), rank, singular)
+    -             ):
+    -                 with self.subTest(rank=rank), self.assertRaises(ValueError):
+    -                     probe.solve_ls(design, target)
+251 +             ), self.subTest(rank=rank), self.assertRaises(ValueError):
+252 +                 probe.solve_ls(design, target)
+253 |
+    |
+
+Found 5 errors.
+[*] 2 fixable with the `--fix` option.
+exit_code=1

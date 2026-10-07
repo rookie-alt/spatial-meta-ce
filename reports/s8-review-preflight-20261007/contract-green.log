@@ -1,0 +1,10 @@
+test_hook_capture_is_exact_and_does_not_change_forward_or_weights (test_s8_contract.RepresentationTests.test_hook_capture_is_exact_and_does_not_change_forward_or_weights) ... ok
+test_hooks_are_removed_after_forward_exception (test_s8_contract.RepresentationTests.test_hooks_are_removed_after_forward_exception) ... ok
+test_nonfrozen_model_and_invalid_architecture_are_rejected (test_s8_contract.RepresentationTests.test_nonfrozen_model_and_invalid_architecture_are_rejected) ... ok
+test_identity_split_is_fixed_and_keeps_original_train_order (test_s8_contract.SourceContractTests.test_identity_split_is_fixed_and_keeps_original_train_order) ... ok
+test_panel_identities_are_order_independent_and_disjoint (test_s8_contract.SourceContractTests.test_panel_identities_are_order_independent_and_disjoint) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.085s
+
+OK

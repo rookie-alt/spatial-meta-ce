@@ -1,0 +1,22 @@
+test_s8_probe (unittest.loader._FailedTest.test_s8_probe) ... ERROR
+
+======================================================================
+ERROR: test_s8_probe (unittest.loader._FailedTest.test_s8_probe)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_s8_probe
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe.py", line 9, in <module>
+    from spatial_meta_ce import s8_probe as probe
+ImportError: cannot import name 's8_probe' from 'spatial_meta_ce' (/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/__init__.py)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
+exit_code=1

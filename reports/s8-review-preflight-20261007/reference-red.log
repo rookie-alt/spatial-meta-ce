@@ -1,0 +1,19 @@
+test_self_consistent_but_unfrozen_reference_is_rejected_before_cache_read (test_s8_preflight.PreflightTests.test_self_consistent_but_unfrozen_reference_is_rejected_before_cache_read) ... ERROR
+
+======================================================================
+ERROR: test_self_consistent_but_unfrozen_reference_is_rejected_before_cache_read (test_s8_preflight.PreflightTests.test_self_consistent_but_unfrozen_reference_is_rejected_before_cache_read)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_preflight.py", line 31, in test_self_consistent_but_unfrozen_reference_is_rejected_before_cache_read
+    preflight(root, reference)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/run_s8_preflight.py", line 119, in preflight
+    if replay.file_hash(path) != sha:
+       ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s2_source_replay.py", line 77, in file_hash
+    value.update(chunk)
+TypeError: object supporting the buffer API required
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (errors=1)

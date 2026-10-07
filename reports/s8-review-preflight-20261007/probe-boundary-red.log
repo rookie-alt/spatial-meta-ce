@@ -1,0 +1,50 @@
+test_adam_does_not_mutate_inputs_or_rng (test_s8_probe.S8ProbeTests.test_adam_does_not_mutate_inputs_or_rng) ... ok
+test_adam_matches_fixed_torch_reference_and_is_deterministic (test_s8_probe.S8ProbeTests.test_adam_matches_fixed_torch_reference_and_is_deterministic) ... ok
+test_adam_rejects_moment_overflow_with_finite_loss_and_gradient (test_s8_probe.S8ProbeTests.test_adam_rejects_moment_overflow_with_finite_loss_and_gradient) ... ok
+test_adam_zero_init_pg_and_exact_update_count (test_s8_probe.S8ProbeTests.test_adam_zero_init_pg_and_exact_update_count) ... ok
+test_apply_rejects_bad_normalizers (test_s8_probe.S8ProbeTests.test_apply_rejects_bad_normalizers) ... ok
+test_apply_uses_p_only_without_mutating_normalizer (test_s8_probe.S8ProbeTests.test_apply_uses_p_only_without_mutating_normalizer) ... ok
+test_certification_normal_threshold_inclusive (test_s8_probe.S8ProbeTests.test_certification_normal_threshold_inclusive) ... ok
+test_certification_objective_inequality_is_not_assumed (test_s8_probe.S8ProbeTests.test_certification_objective_inequality_is_not_assumed) ... ok
+test_certification_objective_threshold_inclusive (test_s8_probe.S8ProbeTests.test_certification_objective_threshold_inclusive) ... ok
+test_certification_recomputes_objective_and_normal_residual (test_s8_probe.S8ProbeTests.test_certification_recomputes_objective_and_normal_residual) ... ok
+test_certification_rejects_bad_rank_shape_and_nonfinite (test_s8_probe.S8ProbeTests.test_certification_rejects_bad_rank_shape_and_nonfinite) ... ok
+test_known_linear_oracle_and_independent_normal_equation (test_s8_probe.S8ProbeTests.test_known_linear_oracle_and_independent_normal_equation) ... ok
+test_ls_failure_and_invalid_solver_outputs_never_fallback (test_s8_probe.S8ProbeTests.test_ls_failure_and_invalid_solver_outputs_never_fallback) ... ok
+test_nonzero_underflow_variance_does_not_become_constant (test_s8_probe.S8ProbeTests.test_nonzero_underflow_variance_does_not_become_constant) ... FAIL
+test_rank_deficient_minimum_norm_and_cutoff (test_s8_probe.S8ProbeTests.test_rank_deficient_minimum_norm_and_cutoff) ... ok
+test_rank_zero_and_underdetermined_are_explicitly_limited (test_s8_probe.S8ProbeTests.test_rank_zero_and_underdetermined_are_explicitly_limited) ... ok
+test_residual_casts_before_subtracting (test_s8_probe.S8ProbeTests.test_residual_casts_before_subtracting) ... ok
+test_residual_rejects_wrong_dtype_shape_and_nonfinite (test_s8_probe.S8ProbeTests.test_residual_rejects_wrong_dtype_shape_and_nonfinite) ... ok
+test_row_permutation_keeps_normalizer_and_ls (test_s8_probe.S8ProbeTests.test_row_permutation_keeps_normalizer_and_ls) ... ok
+test_solvers_reject_shape_dtype_nonfinite_overflow (test_s8_probe.S8ProbeTests.test_solvers_reject_shape_dtype_nonfinite_overflow) ... ok
+test_standardize_population_bias_and_fp64 (test_s8_probe.S8ProbeTests.test_standardize_population_bias_and_fp64) ... ok
+test_standardize_rejects_shape_dtype_nonfinite_and_overflow (test_s8_probe.S8ProbeTests.test_standardize_rejects_shape_dtype_nonfinite_and_overflow) ... ok
+
+======================================================================
+FAIL: test_nonzero_underflow_variance_does_not_become_constant (test_s8_probe.S8ProbeTests.test_nonzero_underflow_variance_does_not_become_constant)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe.py", line 248, in test_nonzero_underflow_variance_does_not_become_constant
+    np.testing.assert_array_equal(norm['std'], [1e-12, 1.])
+  File "/opt/anaconda3/lib/python3.11/site-packages/numpy/testing/_private/utils.py", line 920, in assert_array_equal
+    assert_array_compare(operator.__eq__, x, y, err_msg=err_msg,
+  File "/opt/anaconda3/lib/python3.11/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/numpy/testing/_private/utils.py", line 797, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError:
+Arrays are not equal
+
+Mismatched elements: 1 / 2 (50%)
+Max absolute difference: 1.
+Max relative difference: 1.e+12
+ x: array([1., 1.])
+ y: array([1.e-12, 1.e+00])
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.768s
+
+FAILED (failures=1)
+exit_code=1

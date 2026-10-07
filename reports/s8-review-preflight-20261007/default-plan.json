@@ -1,0 +1,49 @@
+{
+  "purpose": "s8-g1-source-metadata-only-not-experiment",
+  "state": "planned",
+  "split": {
+    "train": [
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "financial",
+      "fnhk",
+      "hepatitis",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "holdout": [
+      "accidents",
+      "grants",
+      "employee",
+      "hockey"
+    ],
+    "validation": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ]
+  },
+  "panel_unique": 19456,
+  "training": false,
+  "inference": false,
+  "adaptation": false,
+  "target_data_read": false,
+  "formal_ready": false,
+  "not_yet_verified": [
+    "fresh F0 panel isolation",
+    "protected runner/checkpoint/nomination/independent endpoint",
+    "resource smoke and formal budget"
+  ]
+}

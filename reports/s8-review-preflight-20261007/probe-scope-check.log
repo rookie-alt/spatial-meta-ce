@@ -1,0 +1,16 @@
+Report local links: 10 exist
+Whitespace/newline: PASS /private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py
+Whitespace/newline: PASS /private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe.py
+Whitespace/newline: PASS /private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-review-preflight-20261007/probe-review.md
+Report SHA binding: PASS /private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py 6b98fc712f49d24cfd1a16976735c2070de78b1903927fe4a54db6f1dd85e361
+Report SHA binding: PASS /private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe.py 8995b95abaefced804724a372ce4c86162bb5c8496b9c42036a2a4f2c19069c0
+This task writes only s8_probe.py, test_s8_probe.py and probe-* evidence; other shared-workspace files are not owned by this task.
+
+Observed shared-workspace git status (not an ownership list):
+?? reports/s8-review-preflight-20261007/
+?? scripts/run_s8_preflight.py
+?? spatial_meta_ce/s8_contract.py
+?? spatial_meta_ce/s8_probe.py
+?? tests/test_s8_contract.py
+?? tests/test_s8_preflight.py
+?? tests/test_s8_probe.py

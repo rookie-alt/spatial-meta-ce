@@ -1,0 +1,51 @@
+test_duplicate_token_conflict_fails_without_dropping_row (test_s8_preflight.PreflightTests.test_duplicate_token_conflict_fails_without_dropping_row) ... ok
+test_holdout_duplicate_table_count_conflict_is_rejected (test_s8_preflight.PreflightTests.test_holdout_duplicate_table_count_conflict_is_rejected) ... FAIL
+test_holdout_identity_metadata_never_opens_labels_or_features (test_s8_preflight.PreflightTests.test_holdout_identity_metadata_never_opens_labels_or_features) ... ok
+test_holdout_inspection_is_never_decoded_or_rehashed_as_label_statistics (test_s8_preflight.PreflightTests.test_holdout_inspection_is_never_decoded_or_rehashed_as_label_statistics) ... FAIL
+test_metadata_reader_rejects_symlink_directory_before_loading (test_s8_preflight.PreflightTests.test_metadata_reader_rejects_symlink_directory_before_loading) ... FAIL
+test_no_target_path_is_read_from_extra_manifest_source (test_s8_preflight.PreflightTests.test_no_target_path_is_read_from_extra_manifest_source) ... ok
+test_nonfinite_and_negative_fanout_reject_before_nomination (test_s8_preflight.PreflightTests.test_nonfinite_and_negative_fanout_reject_before_nomination) ... ok
+test_plan_never_claims_formal_execution (test_s8_preflight.PreflightTests.test_plan_never_claims_formal_execution) ... ok
+test_preflight_rejects_incomplete_source_set_before_reading_cache (test_s8_preflight.PreflightTests.test_preflight_rejects_incomplete_source_set_before_reading_cache) ... ok
+test_self_consistent_but_unfrozen_reference_is_rejected_before_cache_read (test_s8_preflight.PreflightTests.test_self_consistent_but_unfrozen_reference_is_rejected_before_cache_read) ... ok
+
+======================================================================
+FAIL: test_holdout_duplicate_table_count_conflict_is_rejected (test_s8_preflight.PreflightTests.test_holdout_duplicate_table_count_conflict_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_preflight.py", line 152, in test_holdout_duplicate_table_count_conflict_is_rejected
+    with self.assertRaisesRegex(ValueError, 'Duplicate'):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_holdout_inspection_is_never_decoded_or_rehashed_as_label_statistics (test_s8_preflight.PreflightTests.test_holdout_inspection_is_never_decoded_or_rehashed_as_label_statistics)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_preflight.py", line 138, in test_holdout_inspection_is_never_decoded_or_rehashed_as_label_statistics
+    result = holdout_identity_metadata(folder, {'rows': 1, 'manifest_hash': document['content_hash']})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/run_s8_preflight.py", line 80, in holdout_identity_metadata
+    manifest = json.loads((folder / 'manifest.json').read_text())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+AssertionError: full parse
+
+======================================================================
+FAIL: test_metadata_reader_rejects_symlink_directory_before_loading (test_s8_preflight.PreflightTests.test_metadata_reader_rejects_symlink_directory_before_loading)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_preflight.py", line 170, in test_metadata_reader_rejects_symlink_directory_before_loading
+    with self.assertRaisesRegex(ValueError, 'link|path'):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.060s
+
+FAILED (failures=3)
