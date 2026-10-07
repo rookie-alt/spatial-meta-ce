@@ -1,0 +1,65 @@
+test_all_existing_numeric_hard_flags_remain_in_conjunction (test_s8_probe_v2.ProbeV2Tests.test_all_existing_numeric_hard_flags_remain_in_conjunction) ... ERROR
+test_large_null_direction_engineering_does_not_promote_old_pass (test_s8_probe_v2.ProbeV2Tests.test_large_null_direction_engineering_does_not_promote_old_pass) ... ERROR
+test_matching_forged_solvers_cannot_bypass_retained_projection (test_s8_probe_v2.ProbeV2Tests.test_matching_forged_solvers_cannot_bypass_retained_projection) ... ERROR
+test_rank_disagreement_is_hard_engineering_failure (test_s8_probe_v2.ProbeV2Tests.test_rank_disagreement_is_hard_engineering_failure) ... ERROR
+test_small_boundary_preserves_old_gate (test_s8_probe_v2.ProbeV2Tests.test_small_boundary_preserves_old_gate) ... ERROR
+test_stable_engineering_is_still_not_strict_science (test_s8_probe_v2.ProbeV2Tests.test_stable_engineering_is_still_not_strict_science) ... ERROR
+
+======================================================================
+ERROR: test_all_existing_numeric_hard_flags_remain_in_conjunction (test_s8_probe_v2.ProbeV2Tests.test_all_existing_numeric_hard_flags_remain_in_conjunction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe_v2.py", line 68, in test_all_existing_numeric_hard_flags_remain_in_conjunction
+    self.assertFalse(cert['engineering_verified'])
+                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'engineering_verified'
+
+======================================================================
+ERROR: test_large_null_direction_engineering_does_not_promote_old_pass (test_s8_probe_v2.ProbeV2Tests.test_large_null_direction_engineering_does_not_promote_old_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe_v2.py", line 22, in test_large_null_direction_engineering_does_not_promote_old_pass
+    self.assertTrue(cert['engineering_verified'])
+                    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'engineering_verified'
+
+======================================================================
+ERROR: test_matching_forged_solvers_cannot_bypass_retained_projection (test_s8_probe_v2.ProbeV2Tests.test_matching_forged_solvers_cannot_bypass_retained_projection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe_v2.py", line 88, in test_matching_forged_solvers_cannot_bypass_retained_projection
+    self.assertFalse(cert['engineering_verified'])
+                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'engineering_verified'
+
+======================================================================
+ERROR: test_rank_disagreement_is_hard_engineering_failure (test_s8_probe_v2.ProbeV2Tests.test_rank_disagreement_is_hard_engineering_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe_v2.py", line 50, in test_rank_disagreement_is_hard_engineering_failure
+    self.assertFalse(cert['observed_rank_agreement'])
+                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'observed_rank_agreement'
+
+======================================================================
+ERROR: test_small_boundary_preserves_old_gate (test_s8_probe_v2.ProbeV2Tests.test_small_boundary_preserves_old_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe_v2.py", line 39, in test_small_boundary_preserves_old_gate
+    self.assertTrue(cert['engineering_verified'])
+                    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'engineering_verified'
+
+======================================================================
+ERROR: test_stable_engineering_is_still_not_strict_science (test_s8_probe_v2.ProbeV2Tests.test_stable_engineering_is_still_not_strict_science)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe_v2.py", line 56, in test_stable_engineering_is_still_not_strict_science
+    self.assertTrue(cert['engineering_verified'])
+                    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'engineering_verified'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.017s
+
+FAILED (errors=6)
