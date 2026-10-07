@@ -40,7 +40,7 @@
   "strict_certificate": "unknown",
   "Fraction_prototype_modified": false,
   "network_used": false,
-  "git_status": "RED_committed_GREEN_tested_reviewed_ready_for_local_commit_no_push",
+  "git_status": "GREEN_locally_committed_not_pushed",
   "old_669_snapshot_match_at_resume": true,
   "old_669_result_is_historical_after_verifier_fix": true,
   "test_sha256": {
@@ -63,5 +63,7 @@
   "repository_Ruff_log": "repository-ruff-final.log",
   "independent_review_log": "independent-final-approval.log",
   "remaining_code_blockers": [],
-  "verification_json_old_669_stale_note_resolved": true
+  "verification_json_old_669_stale_note_resolved": true,
+  "GREEN_commit": "c8d1d4e90b9b06449097ae2cd5eeb40f2305e975",
+  "documentation_followup": "record_actual_GREEN_commit_then_commit_docs_only"
 }
