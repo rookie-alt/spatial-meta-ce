@@ -1,0 +1,20 @@
+{
+  "ruff.log": {
+    "raw_sha256": "6a9e972102c95d9fa25e306701856c6292bc2950f67db92c5bdb36933d54806d",
+    "display_sha256": "0967b3bc2a02c26028960e7855a605480b44e56f277df36ade072163c3407147",
+    "raw_gzip": "ruff.log.gz",
+    "normalization": "rstrip trailing whitespace only; exact original retained as gzip"
+  },
+  "final-all-ruff.log": {
+    "raw_sha256": "6a9e972102c95d9fa25e306701856c6292bc2950f67db92c5bdb36933d54806d",
+    "display_sha256": "0967b3bc2a02c26028960e7855a605480b44e56f277df36ade072163c3407147",
+    "raw_gzip": "final-all-ruff.log.gz",
+    "normalization": "rstrip trailing whitespace only; exact original retained as gzip"
+  },
+  "tdd-red.log": {
+    "raw_sha256": "37408791713c0650c468338243e80aa22eeb3b4da58a399affb0a649a9538a49",
+    "display_sha256": "9c01722bee58cdb3711c7c7e4b8f5a2a531da4562f23b6f273300da2f1fd18c9",
+    "raw_gzip": "tdd-red.log.gz",
+    "normalization": "rstrip trailing whitespace only; exact original retained as gzip"
+  }
+}

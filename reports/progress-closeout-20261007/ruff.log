@@ -308,11 +308,11 @@ help: Remove extraneous parentheses
     |
 487 |     counts = sum(
     -         (
-488 +         
+488 +
 489 |             np.bincount(data[d][axis], weights=weights[d], minlength=len(AXES[axis]))
 490 |             for d in members
     -         )
-491 +         
+491 +
 492 |     )
     |
 
