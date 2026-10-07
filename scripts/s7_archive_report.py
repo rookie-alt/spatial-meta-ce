@@ -34,6 +34,20 @@ def overview(rows, train):
         (r["database"], r["cohort"]): {s["bucket"]: s for s in r["statistics"]}
         for r in rows
     }
+    for row in rows:
+        cells = row["statistics"]
+        names = [c["bucket"] for c in cells]
+        if len(names) != len(set(names)) or "all" not in names:
+            raise ValueError("Missing or duplicate statistics bucket")
+        entry = lookup[(row["database"], row["cohort"])]
+        if "four_plus" not in entry:
+            if cells != [{"bucket": "all", "n": 0, "status": "below_min_cell_n"}]:
+                raise ValueError("Missing four_plus statistics for nonempty cohort")
+            entry["four_plus"] = {
+                "bucket": "four_plus",
+                "n": 0,
+                "status": "below_min_cell_n",
+            }
     result = []
     for bucket in ("all", "four_plus"):
         for arm in ("A", "B"):
@@ -53,7 +67,10 @@ def overview(rows, train):
                     "database_count": len(ratios),
                     "median_within_database_q95_unseen_div_seen": statistics.median(
                         ratios
-                    ),
+                    )
+                    if ratios
+                    else None,
+                    **({"status": "no_eligible_databases"} if not ratios else {}),
                 }
             )
     changes = []
@@ -71,7 +88,10 @@ def overview(rows, train):
                     "database_count": len(values),
                     "improved_databases": sum(x < 0 for x in values),
                     "worse_databases": sum(x > 0 for x in values),
-                    "median_relative_q95_change_b_vs_a": statistics.median(values),
+                    "median_relative_q95_change_b_vs_a": statistics.median(values)
+                    if values
+                    else None,
+                    **({"status": "no_eligible_databases"} if not values else {}),
                 }
             )
     return {
@@ -85,6 +105,16 @@ def overview(rows, train):
 def main(root):
     output = root / "实验文档/results/s7-fit-generalization-20261007"
     reports = root / "reports/s7-fit-generalization-20261007"
+    derived = [
+        output / "overview.json",
+        output / "database-matrix.csv",
+        reports / "archive-verification.json",
+    ]
+    for path in derived:
+        if path.is_symlink() or (
+            path.exists() and (not path.is_file() or path.stat().st_nlink != 1)
+        ):
+            raise ValueError(f"Derived output symlink/hardlink alias forbidden: {path}")
     hashes = load(reports / "server-archive-sha256.json")
     for name in FILES:
         if hashlib.sha256((output / name).read_bytes()).hexdigest() != hashes[name]:
@@ -167,6 +197,9 @@ def main(root):
                         ),
                     }
                 )
+    for name in FILES:
+        if hashlib.sha256((output / name).read_bytes()).hexdigest() != hashes[name]:
+            raise ValueError(f"Raw evidence changed during archive rebuild: {name}")
     (reports / "archive-verification.json").write_text(
         json.dumps(
             {

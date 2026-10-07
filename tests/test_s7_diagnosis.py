@@ -212,101 +212,153 @@ class IndependentS7Tests(unittest.TestCase):
 
 class S7VerificationIntegrationTests(unittest.TestCase):
     def make(self, root):
+        import hashlib
         import json
 
         from scripts.run_s7_diagnosis import cohort_report
         from scripts.s2_source_replay import digest
 
         data = S7Tests().fixture()
-        chosen = core.deterministic_sample(
-            "accidents", "seen", data["query_hash"], range(400), 2048
-        )
+        train = list(core.TRAIN)
+        validation = ("chembl", "legalacts", "telstra")
         caches = {
             db: {k: v for k, v in data.items() if k not in ("A", "B")}
-            for db in ("accidents", "chembl", "legalacts", "telstra")
+            for db in (*train, *validation)
         }
         for c in caches.values():
             c["indices"] = np.arange(400)
         states = {
-            "accidents": {
+            db: {
                 "support": np.ones(400, dtype=np.int64),
                 "query": np.zeros(400, dtype=np.int64),
             }
+            for db in train
         }
-        samples, predictions = [], []
-        for i in chosen:
-            r = {
-                "database": "accidents",
-                "cohort": "seen",
-                "unique_position": i,
-                "raw_index": i,
-                "query_hash": data["query_hash"][i],
-                "presentations": 1,
-                **{k: float(data[k][i]) for k in ("true", "pg", "n_tables")},
+        (root / "configs").mkdir()
+        core.write_json(root / "configs/data.json", {"splits": {"train": train}})
+        samples, predictions, entries, sources = [], [], [], {}
+        for db in train:
+            directory = root / "artifacts/cache/pretrain" / db
+            directory.mkdir(parents=True)
+            content_hash = digest({"database": db})
+            core.write_json(directory / "manifest.json", {"content_hash": content_hash})
+            sources[db] = {
+                "manifest_hash": content_hash,
+                "file_sha256": {
+                    "manifest.json": hashlib.sha256(
+                        (directory / "manifest.json").read_bytes()
+                    ).hexdigest()
+                },
             }
-            samples.append(r)
-            predictions.append(
-                {
-                    k: v
-                    for k, v in r.items()
-                    if k not in ("unique_position", "raw_index", "presentations")
-                }
-                | {a: float(data[a][i]) for a in ("A", "B")}
-            )
-        for name, rows in [
+            for cohort, candidates in (("seen", list(range(400))), ("unseen", [])):
+                chosen = core.deterministic_sample(
+                    db, cohort, data["query_hash"], candidates, 2048
+                )
+                masks = core.cardinality_masks(data["true"])
+                entries.append(
+                    {
+                        "database": db,
+                        "cohort": cohort,
+                        "pool_unique": len(candidates),
+                        "sample_unique": len(chosen),
+                        "manifest_hash": content_hash,
+                        "selected_identity_digest": digest(
+                            [data["query_hash"][i] for i in chosen]
+                        ),
+                        "sample_presentations": len(chosen),
+                        "pool_cardinality_counts": {
+                            k: int(m[candidates].sum()) for k, m in masks.items()
+                        },
+                        "sample_cardinality_counts": {
+                            k: int(m[chosen].sum()) for k, m in masks.items()
+                        },
+                        "pool_four_plus": len(candidates),
+                        "sample_four_plus": len(chosen),
+                    }
+                )
+                for i in chosen:
+                    r = {
+                        "database": db,
+                        "cohort": cohort,
+                        "unique_position": i,
+                        "raw_index": i,
+                        "query_hash": data["query_hash"][i],
+                        "presentations": 1,
+                        **{k: float(data[k][i]) for k in ("true", "pg", "n_tables")},
+                    }
+                    samples.append(r)
+                    predictions.append(
+                        {
+                            k: v
+                            for k, v in r.items()
+                            if k
+                            not in ("unique_position", "raw_index", "presentations")
+                        }
+                        | {arm: float(data[arm][i]) for arm in ("A", "B")}
+                    )
+        for name, rows in (
             ("sample-manifest.jsonl", samples),
             ("source-predictions.jsonl", predictions),
-        ]:
+        ):
             (root / name).write_text("".join(json.dumps(r) + "\n" for r in rows))
-        plan = {
-            "cohorts": [
-                {
-                    "database": "accidents",
-                    "cohort": "seen",
-                    "pool_unique": 400,
-                    "sample_unique": 400,
-                    "selected_identity_digest": digest(
-                        [data["query_hash"][i] for i in chosen]
-                    ),
-                },
-                {
-                    "database": "accidents",
-                    "cohort": "unseen",
-                    "pool_unique": 0,
-                    "sample_unique": 0,
-                },
-            ]
-        }
-        core.write_json(root / "sample-plan.json", plan)
+        replay_digest = digest("synthetic-replay")
+        core.write_json(
+            root / "sample-plan.json",
+            {
+                "cohorts": entries,
+                "sample_digest": replay_digest,
+                "episodes": 16000,
+                "presentations": len(samples),
+                "selected_rows_sha256": hashlib.sha256(
+                    (root / "sample-manifest.jsonl").read_bytes()
+                ).hexdigest(),
+            },
+        )
         hist = root / "history"
-        for arm, name in [("A", "A_mean"), ("B", "B_mean_tail10")]:
-            (hist / name).mkdir(parents=True)
+        hist.mkdir()
+        core.write_json(hist / "preflight.json", {"sources": sources})
+        core.write_json(
+            hist / "summary.json",
+            {
+                "runs": [
+                    {
+                        "sample_plan_digest": replay_digest,
+                        "sample_plan_episodes": 16000,
+                        "counts": {
+                            "support_presentations": 0,
+                            "query_presentations": len(samples),
+                        },
+                    }
+                ]
+            },
+        )
+        for arm, name in (("A", "A_mean"), ("B", "B_mean_tail10")):
+            (hist / name).mkdir()
             with (hist / name / "endpoint_rows.jsonl").open("w") as stream:
-                for db in ("chembl", "legalacts", "telstra"):
+                for db in validation:
                     for i in range(400):
+                        pg_log = float(np.log(data["pg"][i]))
                         r = {
                             "database": db,
                             "query_hash": data["query_hash"][i],
                             "true": float(data["true"][i]),
                             "n_tables": 4,
-                            "pg_reference_log": float(np.log(data["pg"][i])),
+                            "pg_reference_log": pg_log,
+                            "pg_input_log": float(np.float32(pg_log)),
                             "log_pred": float(data[arm][i]),
                         }
                         stream.write(json.dumps(r) + "\n")
         gen = {
             "rows": [
                 {
-                    "database": "accidents",
-                    "cohort": "seen",
-                    "statistics": cohort_report(data),
-                },
-                {
-                    "database": "accidents",
-                    "cohort": "unseen",
-                    "statistics": [
-                        {"bucket": "all", "n": 0, "status": "below_min_cell_n"}
-                    ],
-                },
+                    "database": db,
+                    "cohort": cohort,
+                    "statistics": cohort_report(data)
+                    if cohort == "seen"
+                    else [{"bucket": "all", "n": 0, "status": "below_min_cell_n"}],
+                }
+                for db in train
+                for cohort in ("seen", "unseen")
             ]
         }
         gen["rows"].extend(
@@ -315,7 +367,7 @@ class S7VerificationIntegrationTests(unittest.TestCase):
                 "cohort": "source_validation_full",
                 "statistics": cohort_report(data),
             }
-            for db in ("chembl", "legalacts", "telstra")
+            for db in validation
         )
         core.write_json(root / "generalization.json", gen)
         core.write_json(root / "legalacts.json", core.legalacts_report(data))
@@ -331,7 +383,7 @@ class S7VerificationIntegrationTests(unittest.TestCase):
             hist, caches, states = self.make(root)
             result = verify(root, root, hist, caches, states)
             self.assertTrue(result["passed"])
-            self.assertEqual(result["sample_queries"], 400)
+            self.assertEqual(result["sample_queries"], 400 * len(core.TRAIN))
             p = root / "source-predictions.jsonl"
             text = p.read_text()
             rows = [json.loads(x) for x in text.splitlines()]
@@ -346,6 +398,156 @@ class S7VerificationIntegrationTests(unittest.TestCase):
             core.write_json(p2, gen)
             with self.assertRaises(ValueError):
                 verify(root, root, hist, caches, states)
+
+    def test_cohort_sets_must_be_complete_unique_and_source_only(self):
+        import json
+
+        from scripts.s7_independent_verify import verify
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            hist, caches, states = self.make(root)
+            for filename, mutations in [
+                (
+                    "sample-plan.json",
+                    [
+                        lambda d: d.update(cohorts=[]),
+                        lambda d: d["cohorts"].append(d["cohorts"][0]),
+                        lambda d: d["cohorts"][0].update(database="imdb"),
+                    ],
+                ),
+                (
+                    "generalization.json",
+                    [
+                        lambda d: d.update(rows=[]),
+                        lambda d: d["rows"].append(d["rows"][0]),
+                        lambda d: d["rows"].append(
+                            {
+                                "database": "imdb",
+                                "cohort": "seen",
+                                "statistics": [
+                                    {
+                                        "bucket": "all",
+                                        "n": 0,
+                                        "status": "below_min_cell_n",
+                                    }
+                                ],
+                            }
+                        ),
+                        lambda d: d["rows"][0]["statistics"].append(
+                            d["rows"][0]["statistics"][0]
+                        ),
+                    ],
+                ),
+            ]:
+                path = root / filename
+                original = path.read_text()
+                for number, mutate in enumerate(mutations):
+                    with self.subTest(file=filename, mutation=number):
+                        value = json.loads(original)
+                        mutate(value)
+                        core.write_json(path, value)
+                        with self.assertRaises(ValueError):
+                            verify(root, root, hist, caches, states)
+                        path.write_text(original)
+
+    def test_validation_endpoint_cache_binding_and_complete_identities(self):
+        import json
+
+        from scripts.s7_independent_verify import verify
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            hist, caches, states = self.make(root)
+            for arm in ("A_mean", "B_mean_tail10"):
+                path = hist / arm / "endpoint_rows.jsonl"
+                original = path.read_text()
+                mutations = [
+                    lambda rows: rows[0].update(true=-123),
+                    lambda rows: rows[0].update(n_tables=0),
+                    lambda rows: rows[0].update(pg_reference_log=9),
+                    lambda rows: rows[0].update(pg_input_log=9),
+                    lambda rows: rows.append(rows[0]),
+                    lambda rows: rows.pop(),
+                    lambda rows: rows.append({**rows[0], "database": "imdb"}),
+                    lambda rows: rows[0].update(log_pred=float("nan")),
+                ]
+                for number, mutate in enumerate(mutations):
+                    with self.subTest(arm=arm, mutation=number):
+                        rows = [json.loads(line) for line in original.splitlines()]
+                        mutate(rows)
+                        path.write_text("".join(json.dumps(row) + "\n" for row in rows))
+                        with self.assertRaises(ValueError):
+                            verify(root, root, hist, caches, states)
+                        path.write_text(original)
+
+    def test_legalacts_report_sets_thresholds_and_composition_are_bound(self):
+        import json
+
+        from scripts.s7_independent_verify import verify
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            hist, caches, states = self.make(root)
+            path = root / "legalacts.json"
+            original = path.read_text()
+            mutations = [
+                lambda d: d.update(tail_groups=[]),
+                lambda d: d["tail_groups"].append(d["tail_groups"][0]),
+                lambda d: d.update(strata=[]),
+                lambda d: d["strata"].append(d["strata"][0]),
+                lambda d: d.update(thresholds={"A_q95": -1, "B_q95": -1}),
+                lambda d: d.update(table_counts={"999": 999}),
+            ]
+            for number, mutate in enumerate(mutations):
+                with self.subTest(mutation=number):
+                    value = json.loads(original)
+                    mutate(value)
+                    core.write_json(path, value)
+                    with self.assertRaises(ValueError):
+                        verify(root, root, hist, caches, states)
+                    path.write_text(original)
+
+    def test_sample_plan_composition_exposure_and_bindings_are_verified(self):
+        import json
+
+        from scripts.s7_independent_verify import verify
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            hist, caches, states = self.make(root)
+            path = root / "sample-plan.json"
+            original = path.read_text()
+            changes = {
+                "pool_cardinality_counts": {},
+                "sample_cardinality_counts": {},
+                "pool_four_plus": 0,
+                "sample_four_plus": 0,
+                "sample_presentations": -1,
+                "selected_identity_digest": "WRONG",
+                "manifest_hash": "WRONG",
+            }
+            for field, value in changes.items():
+                with self.subTest(field=field):
+                    d = json.loads(original)
+                    d["cohorts"][0][field] = value
+                    core.write_json(path, d)
+                    with self.assertRaises(ValueError):
+                        verify(root, root, hist, caches, states)
+                    path.write_text(original)
+            for field, value in {
+                "selected_rows_sha256": "WRONG",
+                "sample_digest": "WRONG",
+                "episodes": -1,
+                "presentations": -1,
+            }.items():
+                with self.subTest(field=field):
+                    d = json.loads(original)
+                    d[field] = value
+                    core.write_json(path, d)
+                    with self.assertRaises(ValueError):
+                        verify(root, root, hist, caches, states)
+                    path.write_text(original)
 
 
 class ArchiveOverviewTests(unittest.TestCase):
@@ -388,6 +590,154 @@ class ArchiveOverviewTests(unittest.TestCase):
         for malformed in [rows[:-1], rows + rows[:1]]:
             with self.assertRaisesRegex(ValueError, "cohort"):
                 overview(malformed, ["accidents"])
+
+    def test_empty_and_sparse_cohorts_have_no_invented_median(self):
+        from scripts.s7_archive_report import overview
+
+        rows = [
+            {
+                "database": db,
+                "cohort": cohort,
+                "statistics": [{"bucket": "all", "n": 0, "status": "below_min_cell_n"}],
+            }
+            for db, cohort in [
+                ("accidents", "seen"),
+                ("accidents", "unseen"),
+                ("chembl", "source_validation_full"),
+                ("legalacts", "source_validation_full"),
+                ("telstra", "source_validation_full"),
+            ]
+        ]
+        result = overview(rows, ["accidents"])
+        for item in result["within_database_ratios"]:
+            self.assertEqual(item["database_count"], 0)
+            self.assertIsNone(item["median_within_database_q95_unseen_div_seen"])
+            self.assertEqual(item["status"], "no_eligible_databases")
+        for item in result["b_vs_a_direction_counts"]:
+            self.assertEqual(item["database_count"], 0)
+            self.assertIsNone(item["median_relative_q95_change_b_vs_a"])
+        rows[0]["statistics"][0]["n"] = 1
+        with self.assertRaises(ValueError):
+            overview(rows, ["accidents"])
+
+    def test_archive_rejects_aliases_without_modifying_raw_evidence(self):
+        import hashlib
+        import json
+        import os
+
+        from scripts.s7_archive_report import FILES, main
+
+        for link_kind in ("symlink", "hardlink", "none", "during_write"):
+            with (
+                self.subTest(link_kind=link_kind),
+                tempfile.TemporaryDirectory() as tmp,
+            ):
+                root = Path(tmp)
+                fixture = root / "fixture"
+                fixture.mkdir()
+                S7VerificationIntegrationTests().make(fixture)
+                output = root / "实验文档/results/s7-fit-generalization-20261007"
+                reports = root / "reports/s7-fit-generalization-20261007"
+                output.mkdir(parents=True)
+                reports.mkdir(parents=True)
+                (root / "configs").mkdir(exist_ok=True)
+                core.write_json(
+                    root / "configs/data.json",
+                    {
+                        "splits": {
+                            "train": [
+                                r["database"]
+                                for r in json.loads(
+                                    (fixture / "sample-plan.json").read_text()
+                                )["cohorts"]
+                                if r["cohort"] == "seen"
+                            ]
+                        }
+                    },
+                )
+                for name in (
+                    "sample-plan.json",
+                    "generalization.json",
+                    "legalacts.json",
+                ):
+                    (output / name).write_bytes((fixture / name).read_bytes())
+                plan = json.loads((output / "sample-plan.json").read_text())
+                core.write_json(
+                    output / "summary.json",
+                    {
+                        "status": "completed",
+                        "training": False,
+                        "target_data_read": False,
+                        "adaptation": False,
+                        "independent_verification_passed": True,
+                        "s6_decision": "no_candidate",
+                        "inference_queries": sum(
+                            r["sample_unique"] for r in plan["cohorts"]
+                        ),
+                    },
+                )
+                core.write_json(output / "protocol.json", {})
+                core.write_json(output / "verification.json", {"passed": True})
+                hashes = {
+                    name: hashlib.sha256((output / name).read_bytes()).hexdigest()
+                    for name in FILES[1:]
+                }
+                core.write_json(
+                    output / "status.json",
+                    {"status": "completed", "output_sha256": hashes},
+                )
+                hashes["status.json"] = hashlib.sha256(
+                    (output / "status.json").read_bytes()
+                ).hexdigest()
+                core.write_json(reports / "server-archive-sha256.json", hashes)
+                source = output / "generalization.json"
+                alias = output / "overview.json"
+                if link_kind == "symlink":
+                    alias.symlink_to(source)
+                elif link_kind == "hardlink":
+                    os.link(source, alias)
+                before = source.read_bytes()
+                if link_kind in ("symlink", "hardlink"):
+                    with self.assertRaisesRegex(ValueError, "alias|link"):
+                        main(root)
+                elif link_kind == "none":
+                    import contextlib
+                    import io
+
+                    with contextlib.redirect_stdout(io.StringIO()):
+                        main(root)
+                    self.assertTrue(
+                        json.loads((reports / "archive-verification.json").read_text())[
+                            "passed"
+                        ]
+                    )
+                else:
+                    from unittest.mock import patch
+
+                    write = Path.write_text
+
+                    def mutate_after_write(
+                        path,
+                        text,
+                        *args,
+                        write=write,
+                        alias=alias,
+                        source=source,
+                        **kwargs,
+                    ):
+                        result = write(path, text, *args, **kwargs)
+                        if path == alias:
+                            write(source, "CORRUPTED")
+                        return result
+
+                    with (
+                        patch.object(Path, "write_text", mutate_after_write),
+                        self.assertRaisesRegex(ValueError, "Raw evidence changed"),
+                    ):
+                        main(root)
+                    self.assertFalse((reports / "archive-verification.json").exists())
+                    source.write_bytes(before)
+                self.assertEqual(source.read_bytes(), before)
 
 
 if __name__ == "__main__":
