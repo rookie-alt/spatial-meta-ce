@@ -54,3 +54,8 @@ G1通过也不能写S8研究完成或选型成功：训练仅2步、每探针2�
 独立诊断复核接受actualmetadata拒绝定位、六原文件与14源码绑定；不接受将partial verifier的optimizer_steps硬编码2外推为独立重验optimizerstate。已以partial-stage-annotation.json明确这一范围，原proof/stdout/failedstatus保持不改。原runner确实完成两更新及其checkpoint检查，但后置只读验证仅重放8个P-onlyepisode与现存checkpointbytes/记录，不第二次推理。H未semanticload不等全部H字节未读（metadata身份/count/SHA允许）。
 
 下一版本数值规则需独立冻结、考虑FP64epsilon/维度/尺度和cutoff间隔，nearbound仍unknown、不修改科学门槛；本轮不修证书容差、不重启真实run。整体实验工程失败与本地code/tests通过同时记录，不以595tests掩盖真实failed。
+
+
+## 已发生的Git同步
+
+核心ad341fe已成功推送origin/feat/s8-g1-smoke-runner-20261007，push后本地/跟踪远端0/0且worktree干净。失败与诊断是本轮实际结果，随代码/文档原样留存，不因提交推送而成为successful smoke。原共享检出其他窗口AGENTS/MEMORY修改保持不动，未merge main，接手读本分支第36节及28号。
