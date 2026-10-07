@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "purpose": "posthoc-source-only-diagnosis-not-selection",
+  "sample_limit_per_database_cohort": 2048,
+  "batch_size": 128,
+  "bridge_queries_per_validation_database": 256,
+  "bridge_raw_log_atol": 0.0001,
+  "minimum_cell_unique": 200,
+  "timeout_seconds": 5400,
+  "address_space_bytes": 8589934592,
+  "training": false,
+  "adaptation": false,
+  "target_data_read": false,
+  "s6_decision": "no_candidate"
+}

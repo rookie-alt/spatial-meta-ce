@@ -1,0 +1,15 @@
+{
+  "status": "completed",
+  "output_sha256": {
+    "generalization.json": "f0094380e4ba7cff2b6e7e2cf02f9545698981813682ad9c4fe8b2e0e9f9e38a",
+    "source-predictions.jsonl": "484e86b728858b4fbafbdf5923cfbc8f36e2e9c0de3c6c63dfd8e1a33f0d3c5e",
+    "sample-manifest.jsonl": "8b4d94989a8fbfa7cfc4cc21051fefe5cc1d76c3cff6f63492e48205d1b2169d",
+    "verification.json": "2c40e863edef7c25e399940f74bf6d4eaf9a112b1aba3a1960b3553c3a42386a",
+    "protocol.json": "1b2b4f540f5cbb527100ff6d734af4a0f6ce8a663aa80d2fb0ffb660b6c1ca94",
+    "legalacts.json": "0f4908908afe2c5df53c6a30d550d54bd2d7ef6620fe73e0ee3bf6bb0861b04d",
+    "sample-plan.json": "0dd4e21b77327f3a4377b2fac00191ba5148feec4684ebad42dc2bcf0b7aa35e",
+    "summary.json": "3fcdd07b49fb5cac304cf1b1ce06c06520395d19d7755ec172ef0c1ca5e8a0c0"
+  },
+  "training": false,
+  "target_data_read": false
+}

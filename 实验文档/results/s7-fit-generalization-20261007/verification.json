@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "purpose": "independent-math-quantile-and-identity-verification",
+  "sample_queries": 94208,
+  "cohorts": 46,
+  "verified_statistic_cells": 1504,
+  "tail_partition_unique": 9178,
+  "s6_decision": "no_candidate",
+  "causal_explanation_verified": false
+}
