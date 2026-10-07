@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-07",
+  "timezone": "Asia/Shanghai",
+  "baseline_commit": "8d39dea",
+  "branch": "feat/s8-numerical-certificate-20261007",
+  "task": "full-P rank stability specification and cost review only",
+  "decision": "A_keep_unknown",
+  "independent_spec_review": {
+    "A": "approved",
+    "dimensional_obstruction": "approved_within_current_rule",
+    "B_mathematical_bound": "conditionally_approved",
+    "B_or_C_production_specification": "not_approved",
+    "log": "independent-spec-review.log"
+  },
+  "independent_cost_review": "source_calls_and_payload_estimates_reviewed_not_server_resources",
+  "new_production_certifier_implemented": false,
+  "new_production_TDD_performed": false,
+  "local_synthetic_analysis": {
+    "cases": 6,
+    "exit_code": 0,
+    "seconds_excluding_imports": 0.12072879198240116,
+    "process_maxrss_bytes_including_imports_all_cases": 201052160,
+    "log": "synthetic-probe.json",
+    "not_server_ETA": true
+  },
+  "analysis_script_ruff_passed": true,
+  "historical_617_full_tests_rerun": false,
+  "server_access": false,
+  "real_P_read": false,
+  "real_full_P_certified": false,
+  "training_performed": false,
+  "optimizer_updates": 0,
+  "GPU_used": false,
+  "smoke_restarted": false,
+  "G1_passed": false,
+  "original_G1_status": "failed",
+  "formal_ready": false,
+  "new_scientific_parameters_or_protocol_changes": false,
+  "remaining_minimum_evidence": [
+    "verified arithmetic chain and assumptions",
+    "same-rho feasibility budget",
+    "three spectra own cutoff acceptance contract",
+    "gap/subspace/prediction proof scope",
+    "candidate implementation resource budget"
+  ],
+  "next_authorization_scope": "bounded local verified-arithmetic/contract feasibility only; no production implementation/install/network/server/real-P/benchmark/training/GPU/smoke",
+  "git_sync": "not_yet_performed_at_review",
+  "analysis_probe_sha256": "db6ead2972500a12348c2025f3752e72e3f789e6848c604d79abd43ddcaa1bf8",
+  "synthetic_output_sha256": "aac16b910211e1c8052c7367d53c9e2d93dd53115de6d804cd60e50fec774db1",
+  "unchanged_production_sha256": {
+    "spatial_meta_ce/s8_probe.py": "c3d85f98dc78d70fca4475ae671022ffd1a7a3b9e6d306304a53bac417b481c5",
+    "scripts/run_s8_smoke.py": "482c079454603488a650961ae23528b936ecb720472bd8faf2ea13fd5eaab900",
+    "实验文档/30-S8数值谱认证规格与本地修订.md": "34ebd88cf3d96c1efa215cfc46c78fd67c08e2ac4a0ec45e5523db06704841b3",
+    "reports/s8-numerical-certificate-20261007/final-verification.json": "232254765f07a82dd5e8a90ba829a5111e8a759cc9126adeed52b658bcbb9170"
+  },
+  "record_verification_file": "record-verification.json"
+}

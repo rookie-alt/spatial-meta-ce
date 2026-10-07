@@ -1,0 +1,18 @@
+{
+  "access_date": "2026-10-07",
+  "scope": "public primary documentation; no project-server access or private data",
+  "sources": [
+    {
+      "url": "https://www.netlib.org/lapack/lug/node96.html",
+      "title": "LAPACK Users' Guide: Error Bounds for the Singular Value Decomposition",
+      "used_for": "Dimension-polynomial epsilon spectral-scale error discussion; displayed p=1 code is approximate, not a universal certification bound; dense reduction and Jacobi qualifications."
+    },
+    {
+      "url": "https://numpy.org/doc/1.26/reference/generated/numpy.linalg.svd.html",
+      "title": "NumPy 1.26: numpy.linalg.svd",
+      "used_for": "Economy SVD dimensions and gesdd backend; orthogonality and reconstruction convention."
+    }
+  ],
+  "not_evidence_for": ["actual P spectra", "verified arithmetic bounds", "GPU or server runtime", "formal G1 pass"],
+  "note": "The polar-correction beta proposal is a conditional derivation in document 31, not a statement that existing NumPy residuals are certified bounds."
+}

@@ -1,0 +1,62 @@
+Independent read-only full-P cost audit; 2026-10-07; baseline HEAD 8d39deaa03e26e1c5fc523576d0671861a4353eb
+Arithmetic only: no NumPy/Torch imports, decompositions, data reads, benchmark, network or server access.
+SHA256 spatial_meta_ce/s8_probe.py: c3d85f98dc78d70fca4475ae671022ffd1a7a3b9e6d306304a53bac417b481c5
+SHA256 scripts/run_s8_smoke.py: 482c079454603488a650961ae23528b936ecb720472bd8faf2ea13fd5eaab900
+SHA256 spatial_meta_ce/s8_contract.py: 398f23977399ba9dbda15513aff508f6f326c40fd8cd53be51c9f49acacbf558
+SHA256 实验文档/30-S8数值谱认证规格与本地修订.md: 34ebd88cf3d96c1efa215cfc46c78fd67c08e2ac4a0ec45e5523db06704841b3
+SHA256 实验文档/27-S8G1运行器与真实smoke协议.md: 4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f
+SHA256 reports/s8-numerical-certificate-20261007/review.md: 3f5969848b68dc3c6e1acc58be5261ebb1db6418700739728219560ea512524b
+
+h: m=19456, n=65; U m*n, Vh n*n, s n, target m
+A_or_U: bytes=10117120; MiB=9.648437500; GiB=0.009422302
+Vh_or_Gram_or_identity: bytes=33800; MiB=0.032234192; GiB=0.000031479
+singular: bytes=520; MiB=0.000495911; GiB=0.000000484
+target: bytes=155648; MiB=0.148437500; GiB=0.000144958
+raw_FP32_feature: bytes=4980736; MiB=4.750000000; GiB=0.004638672
+fit_design_1216_rows: bytes=632320; MiB=0.603027344; GiB=0.000588894
+cert_visible_base_4D_plus_3S: bytes=40569880; MiB=38.690452576; GiB=0.037783645
+reconstruction_payload_6D_plus_3S: bytes=60804120; MiB=57.987327576; GiB=0.056628250
+reconstruction_payload_7D_plus_3S: bytes=70921240; MiB=67.635765076; GiB=0.066050552
+standardize_candidate_5E_plus_D: bytes=59924480; MiB=57.148437500; GiB=0.055809021
+reconstruction_2mn2: flop=164403200; GFLOP=0.164403200
+U_Gram_2mn2: flop=164403200; GFLOP=0.164403200
+V_Gram_2n3: flop=549250; GFLOP=0.000549250
+total_explicit_GEMM: flop=329355650; GFLOP=0.329355650
+full_A_GEMV_12_calls: flop=30351360; GFLOP=0.030351360
+projection_2_GEMV_rank_n_upper: flop=5058560; GFLOP=0.005058560
+mn2_scale_one_factorization: flop=82201600; GFLOP=0.082201600
+n3_scale: flop=274625; GFLOP=0.000274625
+
+x: m=19456, n=775; U m*n, Vh n*n, s n, target m
+A_or_U: bytes=120627200; MiB=115.039062500; GiB=0.112342834
+Vh_or_Gram_or_identity: bytes=4805000; MiB=4.582405090; GiB=0.004475005
+singular: bytes=6200; MiB=0.005912781; GiB=0.000005774
+target: bytes=155648; MiB=0.148437500; GiB=0.000144958
+raw_FP32_feature: bytes=60235776; MiB=57.445312500; GiB=0.056098938
+fit_design_1216_rows: bytes=7539200; MiB=7.189941406; GiB=0.007021427
+cert_visible_base_4D_plus_3S: bytes=496923800; MiB=473.903465271; GiB=0.462796353
+reconstruction_payload_6D_plus_3S: bytes=738178200; MiB=703.981590271; GiB=0.687482022
+reconstruction_payload_7D_plus_3S: bytes=858805400; MiB=819.020652771; GiB=0.799824856
+standardize_candidate_5E_plus_D: bytes=722984960; MiB=689.492187500; GiB=0.673332214
+reconstruction_2mn2: flop=23371520000; GFLOP=23.371520000
+U_Gram_2mn2: flop=23371520000; GFLOP=23.371520000
+V_Gram_2n3: flop=930968750; GFLOP=0.930968750
+total_explicit_GEMM: flop=47674008750; GFLOP=47.674008750
+full_A_GEMV_12_calls: flop=361881600; GFLOP=0.361881600
+projection_2_GEMV_rank_n_upper: flop=60313600; GFLOP=0.060313600
+mn2_scale_one_factorization: flop=11685760000; GFLOP=11.685760000
+n3_scale: flop=465484375; GFLOP=0.465484375
+
+Counts per successful full-P feature: initial lstsq (probe:154), economy SVD (362), reference lstsq (383): 3 factorization API calls; no exact LAPACK driver/internal flop guarantee from these source files.
+GEMM per certificate: U.T@U (254), Vh@Vh.T (255), (U*scaled_s)@Vh (261): 3; shapes n*m @ m*n, n*n @ n*n, m*n @ n*n. FLOPs conventional 2abc (multiply/add counted separately).
+Full-P per feature: 12 design GEMV + 2 retained-U GEMV. 4 diagnostic calls total (solve_ls once + certify_pair thrice), each two GEMV; four additional prediction GEMV at 398/403/406; two projection GEMV at 401. Rank r costs 4*m*r, with 0<=r<=n.
+Complete successful h/x small/full loop: 8 lstsq + 4 SVD = 12 factorization API calls; 12 certificate GEMM. Full-P alone: 4 lstsq + 2 SVD, 6 GEMM. Conditional counts, abort at runner 476/494 prevents later calls.
+Small pairs use m=1216, n=65/775; same 3 factorization + 3 GEMM each; two Adam iterations contribute 4 additional GEMV and final diagnostics 2 (18 design GEMV +2 retained-U GEMV per small pair). No full-P Adam optimizer runs: zero_reference is metadata at runner 491.
+Explicit arithmetic formula: J(theta)=mean((A theta-y)^2); normal=max(abs(A.T@(A theta-y)))/max(1,||A||F ||y||2); projection U_r@(U_r.T@y). Tall dense decomposition scale O(m*n^2+n^3) each, 3 per full feature; certification GEMM 4*m*n^2+2*n^3 plus GEMV 24*m*n+4*m*r and O(m*n+n^2) elementwise scans/copies/norms. Constants/drivers/backend-specific factorization flop counts unknown.
+Payload assumptions: caller A and certify _problem A copy; original U and _spectrum_checks U copy; original Vh and Vh copy; identity. _array64 always astype(float64,copy=True) at 40/107/234. Reconstruction 261 allocates scaled A, scaled U, product and difference transiently; about 6D..7D+3S is an array-payload lifetime illustration, NOT process peak bounds. Standardize fit retains z/centered/unit while standardize_apply copies and stacks; about 5E+D visible large payload at stacking, distinct from certificate stage.
+Additional retained arrays: per-db extracted FP32 x/h/raw_pred/pg/label plus concatenated P FP32 x/h/label/pg (runner 455..462); small design, optimizer/checkpoint/model states, metadata/source mappings, vector/mask/norm temporaries; layout conversions, LAPACK work/iwork, BLAS per-thread workspace and allocator retention unknown. Their total has no certified finite peak upper bound derivable here.
+Profiling omissions: per-feature timer starts after standardize_fit (488..489); matrix_bytes is only full_design.nbytes (499); peak RSS is run-wide and only successful summary (568), address-space cap RLIMIT_AS is not RSS budget (602). 12GiB/1800sec adequacy is unverified, no server-time claim.
+Frozen unresolved gate: 30-spec lines 35 and review state full-P discarded directions cannot certify stable rank under current engineering envelope. No re-derivation or scheme redesign in this cost audit. runner 494..495 fail closed before resource profile records success; h precedes x.
+Self-evaluation: accuracy 4/5 (source counts and pure arithmetic verified, backend cost unknown); completeness 4/5 (full-P and small paths covered, runtime peak deliberately unmeasured); clarity 4/5 (payload vs RSS/AS separated); actionability 4/5 (line-numbered omissions/blockers); conciseness 4/5 (details in this permitted log). Overall 4.0. Improvement: only separately authorized runtime profiling/backend identification could close workspace/time gaps. User-agreement self-check: scoped read-only facts rather than runtime guarantees.
+
+Line-reference correction: RLIMIT_AS setrlimit is run_s8_smoke.py:604, not :602 (:602 is signal.alarm). Closing status: HEAD unchanged at 8d39dea; other concurrent work introduced untracked reports/s8-full-p-rank-cost-20261007/ and 31-spec document; neither was read or modified by this audit. This audit wrote only this authorized log.
