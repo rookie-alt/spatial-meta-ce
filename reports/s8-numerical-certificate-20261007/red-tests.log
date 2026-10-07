@@ -1,0 +1,215 @@
+test_backend_reconstruction_and_orthogonality_failure (test_s8_numerical_certificate.NumericalCertificateTests.test_backend_reconstruction_and_orthogonality_failure) ... ERROR
+test_cross_algorithm_rank_disagreement_is_unknown_not_success (test_s8_numerical_certificate.NumericalCertificateTests.test_cross_algorithm_rank_disagreement_is_unknown_not_success) ... ERROR
+test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) ... 
+  test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=9.982236431605997e-13) ... ERROR
+  test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=1.0017763568394002e-12) ... ERROR
+  test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=9.99777955395075e-13) ... ERROR
+  test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=1.000222044604925e-12) ... ERROR
+  test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=1e-12) ... ERROR
+test_fake_main_spectrum_rank_prediction_and_objective_rejected (test_s8_numerical_certificate.NumericalCertificateTests.test_fake_main_spectrum_rank_prediction_and_objective_rejected) ... ok
+test_nullspace_coefficients_need_not_match (test_s8_numerical_certificate.NumericalCertificateTests.test_nullspace_coefficients_need_not_match) ... ERROR
+test_reference_tail_uses_same_bound (test_s8_numerical_certificate.NumericalCertificateTests.test_reference_tail_uses_same_bound) ... ERROR
+test_retained_projection_catches_two_matching_forged_solvers (test_s8_numerical_certificate.NumericalCertificateTests.test_retained_projection_catches_two_matching_forged_solvers) ... ERROR
+test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) ... 
+  test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) (multiple=0.5) ... ERROR
+  test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) (multiple=2.0) ... ERROR
+  test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) (multiple=3.0) ... ERROR
+test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) ... 
+  test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1e-150) ... FAIL
+  test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1e-20) ... FAIL
+  test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1.0) ... FAIL
+  test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1e+100) ... FAIL
+test_tiny_nonzero_standardization_is_not_zero_column (test_s8_numerical_certificate.NumericalCertificateTests.test_tiny_nonzero_standardization_is_not_zero_column) ... ok
+test_zero_matrix_has_exact_stable_rank_zero (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_matrix_has_exact_stable_rank_zero) ... ERROR
+test_zero_redundant_and_constant_columns (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_redundant_and_constant_columns) ... ERROR
+
+======================================================================
+ERROR: test_backend_reconstruction_and_orthogonality_failure (test_s8_numerical_certificate.NumericalCertificateTests.test_backend_reconstruction_and_orthogonality_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 147, in test_backend_reconstruction_and_orthogonality_failure
+    cert = probe.certify_pair(design, np.zeros(3), adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py", line 23, in checked
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py", line 264, in certify_pair
+    actual_rank, _ = _rank_and_singular(rank, actual_singular, design.shape)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py", line 137, in _rank_and_singular
+    singular = _array64(singular, 1, "singular_values")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py", line 37, in _array64
+    raise ValueError(f"{name} must be a real numeric ndarray")
+ValueError: singular_values must be a real numeric ndarray
+
+======================================================================
+ERROR: test_cross_algorithm_rank_disagreement_is_unknown_not_success (test_s8_numerical_certificate.NumericalCertificateTests.test_cross_algorithm_rank_disagreement_is_unknown_not_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 94, in test_cross_algorithm_rank_disagreement_is_unknown_not_success
+    cert = probe.certify_pair(design, np.zeros(2), adam, forged)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py", line 23, in checked
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py", line 264, in certify_pair
+    actual_rank, _ = _rank_and_singular(rank, actual_singular, design.shape)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py", line 146, in _rank_and_singular
+    raise ValueError("rank is inconsistent with the fixed singular cutoff")
+ValueError: rank is inconsistent with the fixed singular cutoff
+
+======================================================================
+ERROR: test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=9.982236431605997e-13)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 86, in test_cutoff_sides_and_ambiguous_boundary
+    self.assertEqual(cert["rank_stability"], expected)
+                     ~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'rank_stability'
+
+======================================================================
+ERROR: test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=1.0017763568394002e-12)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 86, in test_cutoff_sides_and_ambiguous_boundary
+    self.assertEqual(cert["rank_stability"], expected)
+                     ~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'rank_stability'
+
+======================================================================
+ERROR: test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=9.99777955395075e-13)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 86, in test_cutoff_sides_and_ambiguous_boundary
+    self.assertEqual(cert["rank_stability"], expected)
+                     ~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'rank_stability'
+
+======================================================================
+ERROR: test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=1.000222044604925e-12)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 86, in test_cutoff_sides_and_ambiguous_boundary
+    self.assertEqual(cert["rank_stability"], expected)
+                     ~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'rank_stability'
+
+======================================================================
+ERROR: test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=1e-12)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 86, in test_cutoff_sides_and_ambiguous_boundary
+    self.assertEqual(cert["rank_stability"], expected)
+                     ~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'rank_stability'
+
+======================================================================
+ERROR: test_nullspace_coefficients_need_not_match (test_s8_numerical_certificate.NumericalCertificateTests.test_nullspace_coefficients_need_not_match)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 126, in test_nullspace_coefficients_need_not_match
+    self.assertTrue(cert["retained_subspace_pass"])
+                    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'retained_subspace_pass'
+
+======================================================================
+ERROR: test_reference_tail_uses_same_bound (test_s8_numerical_certificate.NumericalCertificateTests.test_reference_tail_uses_same_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 70, in test_reference_tail_uses_same_bound
+    self.assertEqual(cert["reference_spectrum_pass"], expected)
+                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'reference_spectrum_pass'
+
+======================================================================
+ERROR: test_retained_projection_catches_two_matching_forged_solvers (test_s8_numerical_certificate.NumericalCertificateTests.test_retained_projection_catches_two_matching_forged_solvers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 161, in test_retained_projection_catches_two_matching_forged_solvers
+    self.assertFalse(cert["retained_subspace_pass"])
+                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'retained_subspace_pass'
+
+======================================================================
+ERROR: test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) (multiple=0.5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 57, in test_roundoff_tail_is_checked_not_ignored
+    self.assertEqual(cert["spectrum_pass"], expected)
+                     ~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'spectrum_pass'
+
+======================================================================
+ERROR: test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) (multiple=2.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 57, in test_roundoff_tail_is_checked_not_ignored
+    self.assertEqual(cert["spectrum_pass"], expected)
+                     ~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'spectrum_pass'
+
+======================================================================
+ERROR: test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) (multiple=3.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 57, in test_roundoff_tail_is_checked_not_ignored
+    self.assertEqual(cert["spectrum_pass"], expected)
+                     ~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'spectrum_pass'
+
+======================================================================
+ERROR: test_zero_matrix_has_exact_stable_rank_zero (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_matrix_has_exact_stable_rank_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 44, in test_zero_matrix_has_exact_stable_rank_zero
+    self.assertEqual(cert["rank_stability"], "stable")
+                     ~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'rank_stability'
+
+======================================================================
+ERROR: test_zero_redundant_and_constant_columns (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_redundant_and_constant_columns)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 33, in test_zero_redundant_and_constant_columns
+    self.assertEqual(cert["rank_stability"], "stable")
+                     ~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'rank_stability'
+
+======================================================================
+FAIL: test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1e-150)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 106, in test_scale_covariant_not_fixed_atol
+    self.assertTrue(cert["pass"])
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1e-20)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 106, in test_scale_covariant_not_fixed_atol
+    self.assertTrue(cert["pass"])
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 106, in test_scale_covariant_not_fixed_atol
+    self.assertTrue(cert["pass"])
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1e+100)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_numerical_certificate.py", line 106, in test_scale_covariant_not_fixed_atol
+    self.assertTrue(cert["pass"])
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.016s
+
+FAILED (failures=4, errors=15)

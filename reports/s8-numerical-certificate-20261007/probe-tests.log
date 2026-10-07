@@ -1,0 +1,45 @@
+test_adam_does_not_mutate_inputs_or_rng (test_s8_probe.S8ProbeTests.test_adam_does_not_mutate_inputs_or_rng) ... ok
+test_adam_matches_fixed_torch_reference_and_is_deterministic (test_s8_probe.S8ProbeTests.test_adam_matches_fixed_torch_reference_and_is_deterministic) ... ok
+test_adam_rejects_moment_overflow_with_finite_loss_and_gradient (test_s8_probe.S8ProbeTests.test_adam_rejects_moment_overflow_with_finite_loss_and_gradient) ... ok
+test_adam_zero_init_pg_and_exact_update_count (test_s8_probe.S8ProbeTests.test_adam_zero_init_pg_and_exact_update_count) ... ok
+test_apply_rejects_bad_normalizers (test_s8_probe.S8ProbeTests.test_apply_rejects_bad_normalizers) ... ok
+test_apply_uses_p_only_without_mutating_normalizer (test_s8_probe.S8ProbeTests.test_apply_uses_p_only_without_mutating_normalizer) ... ok
+test_apply_uses_scale_not_std_or_p_masks (test_s8_probe.S8ProbeTests.test_apply_uses_scale_not_std_or_p_masks) ... ok
+test_certification_normal_threshold_inclusive (test_s8_probe.S8ProbeTests.test_certification_normal_threshold_inclusive) ... ok
+test_certification_objective_inequality_is_not_assumed (test_s8_probe.S8ProbeTests.test_certification_objective_inequality_is_not_assumed) ... ok
+test_certification_objective_threshold_inclusive (test_s8_probe.S8ProbeTests.test_certification_objective_threshold_inclusive) ... ok
+test_certification_recomputes_objective_and_normal_residual (test_s8_probe.S8ProbeTests.test_certification_recomputes_objective_and_normal_residual) ... ok
+test_certification_rejects_bad_rank_shape_and_nonfinite (test_s8_probe.S8ProbeTests.test_certification_rejects_bad_rank_shape_and_nonfinite) ... ok
+test_certification_rejects_forged_singular_values_and_svd_failure (test_s8_probe.S8ProbeTests.test_certification_rejects_forged_singular_values_and_svd_failure) ... ok
+test_certification_scales_objective_slack_when_adam_mse_exceeds_one (test_s8_probe.S8ProbeTests.test_certification_scales_objective_slack_when_adam_mse_exceeds_one) ... ok
+test_exact_redundancy_is_conservatively_unknown_for_full_optimality (test_s8_probe.S8ProbeTests.test_exact_redundancy_is_conservatively_unknown_for_full_optimality) ... ok
+test_full_rank_numeric_verification_is_not_scientific_optimality (test_s8_probe.S8ProbeTests.test_full_rank_numeric_verification_is_not_scientific_optimality) ... ok
+test_fullrank_ill_conditioned_forgery_needs_reference_not_normal_gate (test_s8_probe.S8ProbeTests.test_fullrank_ill_conditioned_forgery_needs_reference_not_normal_gate) ... ok
+test_known_linear_oracle_and_independent_normal_equation (test_s8_probe.S8ProbeTests.test_known_linear_oracle_and_independent_normal_equation) ... ok
+test_ls_failure_and_invalid_solver_outputs_never_fallback (test_s8_probe.S8ProbeTests.test_ls_failure_and_invalid_solver_outputs_never_fallback) ... ok
+test_noisy_linear_oracle_has_known_nonzero_mse (test_s8_probe.S8ProbeTests.test_noisy_linear_oracle_has_known_nonzero_mse) ... ok
+test_nonzero_underflow_variance_does_not_become_constant (test_s8_probe.S8ProbeTests.test_nonzero_underflow_variance_does_not_become_constant) ... ok
+test_rank_deficient_minimum_norm_and_cutoff (test_s8_probe.S8ProbeTests.test_rank_deficient_minimum_norm_and_cutoff) ... ok
+test_rank_zero_and_underdetermined_are_explicitly_limited (test_s8_probe.S8ProbeTests.test_rank_zero_and_underdetermined_are_explicitly_limited) ... ok
+test_reference_lstsq_fixed_cutoff_failure_and_call_cost (test_s8_probe.S8ProbeTests.test_reference_lstsq_fixed_cutoff_failure_and_call_cost) ... ok
+test_reference_objective_alone_does_not_authenticate_predictions (test_s8_probe.S8ProbeTests.test_reference_objective_alone_does_not_authenticate_predictions) ... ok
+test_residual_casts_before_subtracting (test_s8_probe.S8ProbeTests.test_residual_casts_before_subtracting) ... ok
+test_residual_rejects_wrong_dtype_shape_and_nonfinite (test_s8_probe.S8ProbeTests.test_residual_rejects_wrong_dtype_shape_and_nonfinite) ... ok
+test_row_permutation_keeps_normalizer_and_ls (test_s8_probe.S8ProbeTests.test_row_permutation_keeps_normalizer_and_ls) ... ok
+test_solvers_reject_shape_dtype_nonfinite_overflow (test_s8_probe.S8ProbeTests.test_solvers_reject_shape_dtype_nonfinite_overflow) ... ok
+test_standardize_population_bias_and_fp64 (test_s8_probe.S8ProbeTests.test_standardize_population_bias_and_fp64) ... ok
+test_standardize_rejects_shape_dtype_nonfinite_and_overflow (test_s8_probe.S8ProbeTests.test_standardize_rejects_shape_dtype_nonfinite_and_overflow) ... ok
+test_truncated_solver_certification_is_not_full_linear_optimality (test_s8_probe.S8ProbeTests.test_truncated_solver_certification_is_not_full_linear_optimality) ... FAIL
+
+======================================================================
+FAIL: test_truncated_solver_certification_is_not_full_linear_optimality (test_s8_probe.S8ProbeTests.test_truncated_solver_certification_is_not_full_linear_optimality)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe.py", line 426, in test_truncated_solver_certification_is_not_full_linear_optimality
+    self.assertTrue(cert["pass"])
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 32 tests in 1.140s
+
+FAILED (failures=1)

@@ -228,6 +228,102 @@ def _matches(reported, computed):
     return bool(np.isclose(reported, computed, rtol=1e-12, atol=1e-12))
 
 
+def _spectrum_checks(design, u, singular, vh, reported, reference):
+    """Frozen FP64 engineering envelope, not a universal SVD error theorem."""
+    k = min(design.shape)
+    u, vh = _array64(u, 2, "SVD U"), _array64(vh, 2, "SVD Vh")
+    if u.shape != (design.shape[0], k) or vh.shape != (k, design.shape[1]):
+        raise ValueError("economy SVD vectors have invalid shape")
+    eps = np.finfo(np.float64).eps
+    accumulation = max(design.shape) * eps
+    if not 0 < accumulation < 1:
+        raise ValueError("FP64 dimension envelope is invalid")
+    gamma = float(accumulation / (1 - accumulation))
+    sigma_max = float(singular[0])
+    eta = gamma * sigma_max
+    if not np.isfinite(eta) or (sigma_max > 0 and eta == 0):
+        raise ValueError("spectrum error envelope overflow/underflow")
+    zero_matrix = not np.any(design)
+    if sigma_max == 0 and not zero_matrix:
+        raise ValueError("zero SVD spectrum for a nonzero design")
+    orth_accumulation = (max(design.shape) + k) * eps
+    if not 0 < orth_accumulation < 1:
+        raise ValueError("FP64 orthogonality envelope is invalid")
+    orth_gamma = float(orth_accumulation / (1 - orth_accumulation))
+    identity = np.eye(k)
+    orth_u = float(np.linalg.norm(u.T @ u - identity, "fro"))
+    orth_v = float(np.linalg.norm(vh @ vh.T - identity, "fro"))
+    reconstruction = (
+        0.0
+        if zero_matrix and sigma_max == 0
+        else float(
+            np.linalg.norm(
+                design / sigma_max - (u * (singular / sigma_max)) @ vh, "fro"
+            )
+        )
+    )
+    diagnostics = np.array([reconstruction, orth_u, orth_v])
+    if not np.isfinite(diagnostics).all():
+        raise ValueError("SVD backend checks must be finite")
+    # RMS-per-column Gram gate: an engineering scale, not a per-direction
+    # algorithm error theorem. Reconstruction retains its original bound.
+    orth_u_normalized, orth_v_normalized = orth_u / np.sqrt(k), orth_v / np.sqrt(k)
+    backend_ok = bool(
+        reconstruction <= gamma
+        and orth_u_normalized <= orth_gamma
+        and orth_v_normalized <= orth_gamma
+    )
+    spectra = (singular, reported, reference)
+    spectrum_ok = bool(np.all(np.abs(reported - singular) <= 2 * eta))
+    reference_ok = bool(np.all(np.abs(reference - singular) <= 2 * eta))
+    ranks, margins, cutoff_intervals, stable = [], [], [], True
+    for values in spectra:
+        # Each algorithm uses its OWN leading singular value for rcond.
+        # A shared cutoff can misclassify a shifted spectrum near its boundary.
+        cutoff_low = RCOND * max(0.0, float(values[0]) - eta)
+        cutoff_high = RCOND * (float(values[0]) + eta)
+        if not np.isfinite(cutoff_high) or (values[0] > 0 and cutoff_low == 0):
+            raise ValueError("singular cutoff interval overflow/underflow")
+        cutoff_intervals.append([cutoff_low, cutoff_high])
+        low, high = np.maximum(0.0, values - eta), values + eta
+        if not np.isfinite(high).all():
+            raise ValueError("singular uncertainty interval must be finite")
+        keep, discard = low > cutoff_high, high < cutoff_low
+        ranks.append(int(np.count_nonzero(values > RCOND * values[0])))
+        stable = stable and bool(np.all(keep | discard))
+        margins.append(
+            float(np.min(np.where(keep, low - cutoff_high, cutoff_low - high)))
+        )
+    if zero_matrix:
+        stable = all(not np.any(values) for values in spectra)
+    stable = stable and len(set(ranks)) == 1
+    return {
+        "spectrum_specification": "s8-fp64-spectrum-v1.1",
+        "spectrum_dtype": "float64",
+        "spectrum_numpy_version": np.__version__,
+        "spectrum_matrix_shape": list(design.shape),
+        "spectrum_epsilon": float(eps),
+        "spectrum_gamma": gamma,
+        "spectrum_error_bound": eta,
+        "spectrum_comparison_bound": 2 * eta,
+        "spectrum_pass": spectrum_ok,
+        "reference_spectrum_pass": reference_ok,
+        "svd_backend_pass": backend_ok,
+        "svd_scaled_reconstruction_residual": reconstruction,
+        "svd_u_orthogonality_residual": orth_u,
+        "svd_v_orthogonality_residual": orth_v,
+        "svd_u_normalized_orthogonality_residual": float(orth_u_normalized),
+        "svd_v_normalized_orthogonality_residual": float(orth_v_normalized),
+        "svd_normalized_orthogonality_bound": orth_gamma,
+        "rank_stability": "stable" if stable else "unknown",
+        "rank_cutoff_interval": cutoff_intervals[0],
+        "rank_cutoff_intervals": dict(
+            zip(("svd", "reported_ls", "reference_ls"), cutoff_intervals, strict=True)
+        ),
+        "rank_interval_margin": min(margins),
+    }
+
+
 @_reject_numeric_failure
 def certify_pair(design, target, adam, ls):
     """Recompute P diagnostics; malformed/nonfinite inputs raise ValueError.
@@ -236,6 +332,9 @@ def certify_pair(design, target, adam, ls):
     pass/solver_verified certify only the fixed-cutoff numerical comparison.
     A fixed-cutoff reference lstsq must also match objective and predictions:
     small normal residuals alone cannot authenticate weak singular directions.
+    Complete spectra use the frozen FP64 dimension/scale envelope; ambiguous
+    cutoff intervals fail closed. Economy-SVD reconstruction, orthogonality and
+    retained projections are checked without additional factorizations.
     fullrank_numeric_solver means verified and rank == parameter columns.
     Legacy full_linear_optimality fields always remain False: repeating the same
     numerical solver is not an independent scientific proof of optimality.
@@ -259,9 +358,13 @@ def certify_pair(design, target, adam, ls):
     if not isinstance(ls, dict) or not fields <= ls.keys():
         raise ValueError("LS result fields are missing")
     _updates(adam["updates"])
-    rank, singular = _rank_and_singular(ls["rank"], ls["singular_values"], design.shape)
-    actual_singular = np.linalg.svd(design, compute_uv=False)
-    actual_rank, _ = _rank_and_singular(rank, actual_singular, design.shape)
+    _, singular = _rank_and_singular(ls["rank"], ls["singular_values"], design.shape)
+    u, actual_singular, vh = np.linalg.svd(design, full_matrices=False)
+    actual_singular = _array64(actual_singular, 1, "SVD singular values")
+    actual_rank = int(np.count_nonzero(actual_singular > RCOND * actual_singular[0]))
+    actual_rank, actual_singular = _rank_and_singular(
+        actual_rank, actual_singular, design.shape
+    )
     ja, _ = _diagnostics(design, target, adam["theta"], scale)
     jl, normal = _diagnostics(design, target, ls["theta"], scale)
     reported_ja = _finite_scalar(adam["objective"], "Adam objective")
@@ -273,7 +376,6 @@ def certify_pair(design, target, adam, ls):
         _matches(reported_ja, ja)
         and _matches(reported_jl, jl)
         and _matches(reported_normal, normal)
-        and bool(np.allclose(singular, actual_singular, rtol=1e-12, atol=0))
     )
     normal_ok = normal <= NORMAL_TOL
     objective_ok = jl <= ja + OBJECTIVE_TOL * max(1.0, ja)
@@ -284,8 +386,10 @@ def certify_pair(design, target, adam, ls):
     reference_rank, reference_singular = _rank_and_singular(
         reference_rank, reference_singular, design.shape
     )
-    if reference_rank != actual_rank:
-        raise ValueError("reference rank disagrees with the design SVD")
+    spectrum = _spectrum_checks(
+        design, u, actual_singular, vh, singular, reference_singular
+    )
+    metadata_ok = bool(metadata_ok and spectrum["spectrum_pass"])
     reference_objective, _ = _diagnostics(design, target, reference_theta, scale)
     reference_objective_ok = _matches(jl, reference_objective)
     # Use the existing metadata tolerance, not a new projection/rank threshold.
@@ -294,14 +398,33 @@ def certify_pair(design, target, adam, ls):
             design @ ls["theta"], design @ reference_theta, rtol=1e-12, atol=1e-12
         )
     )
+    projection = u[:, :actual_rank] @ (u[:, :actual_rank].T @ target)
+    retained_ok = bool(
+        np.allclose(design @ ls["theta"], projection, rtol=1e-12, atol=1e-12)
+    )
+    reference_retained_ok = bool(
+        np.allclose(design @ reference_theta, projection, rtol=1e-12, atol=1e-12)
+    )
     reference_ok = bool(
         reference_objective_ok
         and reference_prediction_ok
-        and np.allclose(reference_singular, actual_singular, rtol=1e-12, atol=0)
+        and spectrum["reference_spectrum_pass"]
+        and reference_retained_ok
     )
-    solver_verified = bool(metadata_ok and normal_ok and objective_ok and reference_ok)
+    solver_verified = bool(
+        metadata_ok
+        and normal_ok
+        and objective_ok
+        and reference_ok
+        and spectrum["svd_backend_pass"]
+        and spectrum["rank_stability"] == "stable"
+        and retained_ok
+    )
     rank_limited = actual_rank < design.shape[1]
     return {
+        **spectrum,
+        "retained_subspace_pass": retained_ok,
+        "reference_retained_subspace_pass": reference_retained_ok,
         "pass": solver_verified,
         "solver_verified": solver_verified,
         "rank_limited": rank_limited,

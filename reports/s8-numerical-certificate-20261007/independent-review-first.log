@@ -1,0 +1,53 @@
+environment /opt/anaconda3/bin/python 1.26.4
+test_backend_reconstruction_and_orthogonality_failure (test_s8_numerical_certificate.NumericalCertificateTests.test_backend_reconstruction_and_orthogonality_failure) ... ok
+test_bad_vector_shapes_or_finite_values_are_rejected (test_s8_numerical_certificate.NumericalCertificateTests.test_bad_vector_shapes_or_finite_values_are_rejected) ... ok
+test_cross_algorithm_rank_disagreement_is_unknown_not_success (test_s8_numerical_certificate.NumericalCertificateTests.test_cross_algorithm_rank_disagreement_is_unknown_not_success) ... ok
+test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) ... ok
+test_empty_or_nonfinite_backend_spectrum_is_rejected (test_s8_numerical_certificate.NumericalCertificateTests.test_empty_or_nonfinite_backend_spectrum_is_rejected) ... ok
+test_envelope_underflow_is_not_an_absolute_tolerance_floor (test_s8_numerical_certificate.NumericalCertificateTests.test_envelope_underflow_is_not_an_absolute_tolerance_floor) ... ok
+test_fake_main_spectrum_rank_prediction_and_objective_rejected (test_s8_numerical_certificate.NumericalCertificateTests.test_fake_main_spectrum_rank_prediction_and_objective_rejected) ... ok
+test_full_p_dimension_with_null_direction_stays_unknown (test_s8_numerical_certificate.NumericalCertificateTests.test_full_p_dimension_with_null_direction_stays_unknown) ... ok
+test_nullspace_coefficients_need_not_match (test_s8_numerical_certificate.NumericalCertificateTests.test_nullspace_coefficients_need_not_match) ... ok
+test_orthogonality_rms_envelope_is_separate_from_reconstruction (test_s8_numerical_certificate.NumericalCertificateTests.test_orthogonality_rms_envelope_is_separate_from_reconstruction) ... ok
+test_reference_tail_uses_same_bound (test_s8_numerical_certificate.NumericalCertificateTests.test_reference_tail_uses_same_bound) ... ok
+test_retained_projection_catches_two_matching_forged_solvers (test_s8_numerical_certificate.NumericalCertificateTests.test_retained_projection_catches_two_matching_forged_solvers) ... ok
+test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) ... ok
+test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) ... ok
+test_tiny_nonzero_standardization_is_not_zero_column (test_s8_numerical_certificate.NumericalCertificateTests.test_tiny_nonzero_standardization_is_not_zero_column) ... ok
+test_zero_backend_spectrum_cannot_authenticate_nonzero_design (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_backend_spectrum_cannot_authenticate_nonzero_design) ... ok
+test_zero_matrix_has_exact_stable_rank_zero (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_matrix_has_exact_stable_rank_zero) ... ok
+test_zero_redundant_and_constant_columns (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_redundant_and_constant_columns) ... ok
+test_full_p_certificate_refusal_stops_before_nomination_or_holdout (test_s8_smoke_certificate_gate.SmokeCertificateGateTests.test_full_p_certificate_refusal_stops_before_nomination_or_holdout) ... ok
+test_small_panel_certificate_refusal_leaves_failed_without_probe_artifacts (test_s8_smoke_certificate_gate.SmokeCertificateGateTests.test_small_panel_certificate_refusal_leaves_failed_without_probe_artifacts) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.096s
+
+OK
+--- independent adversarial checks ---
+caller shifted smax example {'pass': True, 'rank_stability': 'stable', 'spectrum_pass': True, 'caller_sigma_lower': 1.0000000000000006e-12, 'shared_cutoff_upper': 1.0000000000000004e-12, 'caller_cutoff_upper': 1.0000000000000014e-12, 'caller_interval_overlaps_own_cutoff': True}
+reference shifted smax example {'pass': True, 'rank_stability': 'stable', 'reference_spectrum_pass': True}
+factorization count {'svd': 1, 'lstsq': 1, 'reported': 2}
+historical evidence sha check {'files': 65, 'mismatches': []}
+specialized_tests_successful True
+historical evidence vs git baseline {'files': 65, 'mismatches': []}
+rectangular synthetic (2, 5) {'pass': True, 'rank_limited': True, 'rank_stability': 'stable'}
+rectangular synthetic (5, 2) {'pass': True, 'rank_limited': False, 'rank_stability': 'stable'}
+rectangular synthetic (1, 1) {'pass': True, 'rank_limited': False, 'rank_stability': 'stable'}
+actual log summary / failing methods:
+baseline-tests.log ['Ran 32 tests in 1.086s', 'OK']
+changed-ruff.log []
+full-first-tests.log ['FAIL: test_cli_help (test_integrity.IntegrityTests.test_cli_help)', 'FAIL: test_real_sigterm_reaps_supervised_child (test_precision_screen.PrecisionScreenTests.test_real_sigterm_reaps_supervised_child)', 'FAIL: test_tiny_nonzero_standardization_is_not_zero_column (test_s8_numerical_certificate.NumericalCertificateTests.test_tiny_nonzero_standardization_is_not_zero_column)', 'FAIL: test_truncated_solver_certification_is_not_full_linear_optimality (test_s8_probe.S8ProbeTests.test_truncated_solver_certification_is_not_full_linear_optimality)', 'FAIL: test_actual_sigalrm_leaves_failed_status (test_s8_smoke_runner.SmokeRunnerTests.test_actual_sigalrm_leaves_failed_status)', 'Ran 611 tests in 82.991s', 'FAILED (failures=5)']
+full-v1.1-tests.log ['Ran 615 tests in 86.200s', 'OK']
+green-tests.log ['FAIL: test_tiny_nonzero_standardization_is_not_zero_column (test_s8_numerical_certificate.NumericalCertificateTests.test_tiny_nonzero_standardization_is_not_zero_column)', 'Ran 12 tests in 0.018s', 'FAILED (failures=1)']
+green-v1.1-tests.log ['Ran 18 tests in 0.035s', 'OK']
+probe-tests.log ['FAIL: test_truncated_solver_certification_is_not_full_linear_optimality (test_s8_probe.S8ProbeTests.test_truncated_solver_certification_is_not_full_linear_optimality)', 'Ran 32 tests in 1.140s', 'FAILED (failures=1)']
+probe-v1.1-tests.log ['Ran 32 tests in 1.048s', 'OK']
+red-tests.log ['ERROR: test_backend_reconstruction_and_orthogonality_failure (test_s8_numerical_certificate.NumericalCertificateTests.test_backend_reconstruction_and_orthogonality_failure)', 'ERROR: test_cross_algorithm_rank_disagreement_is_unknown_not_success (test_s8_numerical_certificate.NumericalCertificateTests.test_cross_algorithm_rank_disagreement_is_unknown_not_success)', 'ERROR: test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=9.982236431605997e-13)', 'ERROR: test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=1.0017763568394002e-12)', 'ERROR: test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=9.99777955395075e-13)', 'ERROR: test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=1.000222044604925e-12)', 'ERROR: test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) (value=1e-12)', 'ERROR: test_nullspace_coefficients_need_not_match (test_s8_numerical_certificate.NumericalCertificateTests.test_nullspace_coefficients_need_not_match)', 'ERROR: test_reference_tail_uses_same_bound (test_s8_numerical_certificate.NumericalCertificateTests.test_reference_tail_uses_same_bound)', 'ERROR: test_retained_projection_catches_two_matching_forged_solvers (test_s8_numerical_certificate.NumericalCertificateTests.test_retained_projection_catches_two_matching_forged_solvers)', 'ERROR: test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) (multiple=0.5)', 'ERROR: test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) (multiple=2.0)', 'ERROR: test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) (multiple=3.0)', 'ERROR: test_zero_matrix_has_exact_stable_rank_zero (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_matrix_has_exact_stable_rank_zero)', 'ERROR: test_zero_redundant_and_constant_columns (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_redundant_and_constant_columns)', 'FAIL: test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1e-150)', 'FAIL: test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1e-20)', 'FAIL: test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1.0)', 'FAIL: test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) (scale=1e+100)', 'Ran 12 tests in 0.016s', 'FAILED (failures=4, errors=15)']
+repository-ruff.log []
+runner-gate-tests.log ['Ran 2 tests in 0.056s', 'OK']
+reviewed input sha256
+spatial_meta_ce/s8_probe.py a1e92c0172100161cbc4a6483436289d8e76fea3eabe88acd3167a7452d37718
+tests/test_s8_numerical_certificate.py 3d1850eccf20f42161ce72572fcb7c0f7b6815aef14a25794f33ed702f9cd955
+tests/test_s8_smoke_certificate_gate.py bda87eb50f10a66aa77a83513d18689908a4f37f3fc7062baae5d5dcfb7862e3
+实验文档/30-S8数值谱认证规格与本地修订.md a433465bb0764a138a2b7909593957e342843bcb238d13a12681f5ec8702bc01
