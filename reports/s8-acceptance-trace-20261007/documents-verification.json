@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-07",
+  "baseline_commit": "a216a4b",
+  "proposal_status": "pending_user_approval_not_effective",
+  "recommendation": "G1_full_P_resource_only_engineering_separation; keep_small_panel_legacy_pass",
+  "protocols_24_26_27_30_unchanged": true,
+  "production_and_old_Fraction_prototype_unchanged": true,
+  "old_failed_evidence_files_SHA_checked": 65,
+  "markdown_relative_links_checked": 263,
+  "new_tests_executed": false,
+  "math_research_restarted": false,
+  "new_production_TDD_started": false,
+  "server_access": false,
+  "real_P_read": false,
+  "network_used": false,
+  "GPU_or_training_or_smoke": false,
+  "G1_original_status": "failed",
+  "formal_ready": false,
+  "strict_or_rank_unknown_promoted_to_verified": false,
+  "user_protocol_approval": false,
+  "next_action_requires_user_confirmation": "approve limited G1 v2 resource-only policy then next-turn local production TDD",
+  "git_sync": "local_only; networking requires separate confirmation"
+}
