@@ -1,0 +1,29 @@
+{
+  "status": "documentation_handoff_verified",
+  "date": "2026-10-07",
+  "worktree": "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007",
+  "branch": "feat/s8-g1-smoke-runner-20261007",
+  "head_before_handoff_commit": "f28f837a7d4cfe4a4b8fd7a2d33da6d8c3545484",
+  "old_historical_files_unchanged": 359,
+  "executed_code_bindings_unchanged": 9,
+  "server_original_archive_hashes_matching": 6,
+  "original_smoke_state_preserved": "failed",
+  "formal_ready": false,
+  "markdown_files_checked": 3,
+  "local_links_checked": 266,
+  "new_document_and_changed_lines_whitespace_passed": true,
+  "preexisting_markdown_two_space_breaks_preserved": true,
+  "code_or_results_changed": false,
+  "new_tests_executed": false,
+  "historical_full_tests": 595,
+  "historical_test_record_not_new_run": true,
+  "server_access_performed": false,
+  "training_restarted": false,
+  "document_sha256_before_commit": {
+    "实验文档/29-新窗口交接与S8数值认证修订入口.md": "c8246c76a2858f286141932e2e0a814c7076718d89b37760a340363065cdde43",
+    "实验文档/99-进度与下一步.md": "525d99d70ea47993e8b4c984712e9e29d33d3e2d616283ae6565e396044488f8",
+    "实验文档/00-实验总览.md": "818e38acc06d8b7ac311aa43a8aec7487992bc4de81ab53b34e907ad5694d3bd"
+  },
+  "remote_head_read_verified_before_commit": "f28f837a7d4cfe4a4b8fd7a2d33da6d8c3545484",
+  "remote_head_matches_pre_handoff_local": true
+}
