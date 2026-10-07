@@ -87,6 +87,13 @@ def _legacy_sample_plan(config: dict, databases: list, pools: dict,
 
 
 def train(config, data_config, output_dir, device='cpu', resume=None):
+    s5 = 'complex_query_weight' in config
+    if s5:
+        weight = config['complex_query_weight']
+        if isinstance(weight, bool) or not isinstance(weight, (int, float)) or weight not in (1, 2):
+            raise ValueError('complex_query_weight must be numeric 1 or 2')
+        if config['method'] != 'erm' or config['loss'] != 'smooth_l1':
+            raise ValueError('complex_query_weight requires method=erm and loss=smooth_l1')
     validate_splits(data_config['splits'])
     for key in ['steps','meta_batch','accumulation','query_size','validate_every','validation_runs','patience']:
         if int(config[key]) < 1:
@@ -139,6 +146,8 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
     sample_plan_episodes = 0
     counts = {'support_presentations':0,'query_presentations':0,'backward_calls':0,'optimizer_steps':0}
     total_seconds = 0.0
+    if s5:
+        gradient_stats = {'count':0,'total_norm':0.0,'max_norm':0.0,'clipped_count':0}
     if resume:
         model, state = load_checkpoint(resume, device)
         if state['metadata'] != metadata:
@@ -156,6 +165,10 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
         rng.bit_generator.state = state['extra']['generator']
         counts = state['extra']['counts']
         total_seconds = state['extra']['total_seconds']
+        if s5:
+            if 'gradient_stats' not in state['extra']:
+                raise ValueError('Resume checkpoint missing gradient_stats')
+            gradient_stats = dict(state['extra']['gradient_stats'])
     optimizer = torch.optim.Adam(model.parameters(), lr=config['outer_lr'])
     if resume:
         optimizer.load_state_dict(state['optimizer'])
@@ -188,14 +201,26 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
                     counts['backward_calls'] += config['inner_steps']+1
                 else:
                     batch = store.batch(np.concatenate([si,qi]),device)
-                    objective = loss_value(model(batch),batch['label'],config['loss'])
+                    if s5 and config['complex_query_weight'] == 2:
+                        weights = torch.where(batch['counts'][:,2] >= 4, 2.0, 1.0).to(torch.float32)
+                        objective = loss_value(model(batch),batch['label'],config['loss'],weights=weights)
+                    else:
+                        objective = loss_value(model(batch),batch['label'],config['loss'])
                     counts['query_presentations'] += len(si)+len(qi)
                     counts['backward_calls'] += 1
                 losses.append(float(objective.detach()))
                 (objective/(window*config['meta_batch'])).backward()
         if any(p.grad is not None and not torch.isfinite(p.grad).all() for p in model.parameters()):
             raise FloatingPointError('Nonfinite outer gradient')
-        torch.nn.utils.clip_grad_norm_(model.parameters(),1.0,error_if_nonfinite=True)
+        norm = torch.nn.utils.clip_grad_norm_(model.parameters(),1.0,error_if_nonfinite=True)
+        if s5:
+            norm_value = float(norm)
+            gradient_stats = {
+                'count':gradient_stats['count']+1,
+                'total_norm':gradient_stats['total_norm']+norm_value,
+                'max_norm':max(gradient_stats['max_norm'],norm_value),
+                'clipped_count':gradient_stats['clipped_count']+int(norm_value > 1.0),
+            }
         optimizer.step()
         counts['optimizer_steps'] += 1
         last_step = window_start+window
@@ -212,6 +237,8 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
                  'sample_plan_digest': sample_plan_digest,
                  'sample_plan_episodes': sample_plan_episodes,
                  'total_seconds':total_seconds+time.perf_counter()-started}
+        if s5:
+            extra = {**extra,'gradient_stats':dict(gradient_stats)}
         save_checkpoint(output_dir/'last.pt',model,optimizer,last_step,best,bad,metadata,extra)
         if improved:
             save_checkpoint(output_dir/'best.pt',model,optimizer,last_step,best,bad,metadata,extra)
@@ -220,4 +247,5 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
     (output_dir/'history.json').write_text(json.dumps(history,indent=2))
     return {'last_step':last_step,'best_validation_macro_log_q95':best,'counts':counts,
             'total_seconds':total_seconds+time.perf_counter()-started,'parameters':sum(p.numel() for p in model.parameters()),
-            'purpose':metadata['purpose']}
+            'purpose':metadata['purpose'],
+            **({'gradient_stats':dict(gradient_stats)} if s5 else {})}

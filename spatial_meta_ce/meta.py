@@ -5,12 +5,22 @@ from torch.func import functional_call
 from torch.nn import functional as F
 
 
-def loss_value(pred, label, loss='smooth_l1'):
+def loss_value(pred, label, loss='smooth_l1', weights=None):
     if pred.shape != label.shape:
         raise ValueError('Prediction/label shape mismatch')
     if loss not in ('smooth_l1', 'mse'):
         raise ValueError('Unknown loss')
-    value = F.smooth_l1_loss(pred, label) if loss == 'smooth_l1' else F.mse_loss(pred, label)
+    if weights is None:
+        value = F.smooth_l1_loss(pred, label) if loss == 'smooth_l1' else F.mse_loss(pred, label)
+    else:
+        if loss != 'smooth_l1':
+            raise ValueError('Weighted loss requires smooth_l1')
+        if not isinstance(weights, torch.Tensor) or weights.shape != pred.shape:
+            raise ValueError('Weights must be a tensor matching prediction shape')
+        if weights.numel() == 0 or not torch.isfinite(weights).all() or not (weights > 0).all():
+            raise ValueError('Weights must be finite and positive')
+        losses = F.smooth_l1_loss(pred, label, reduction='none', beta=1)
+        value = (weights * losses).sum() / weights.sum()
     if not torch.isfinite(value):
         raise FloatingPointError('Nonfinite loss; refusing to silently skip task')
     return value

@@ -1,0 +1,364 @@
+{
+  "schema": 1,
+  "passed": true,
+  "sample_plan_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+  "episodes": 16000,
+  "presentations": 1621915,
+  "nominal_mass_A": 4000.000000000006,
+  "nominal_mass_B": 4000.0000000000005,
+  "mixed_episodes": 13925,
+  "per_database": {
+    "accidents": {
+      "mixed_episodes": 0,
+      "low_presented": 70526,
+      "high_presented": 0,
+      "a_low_mass": 173.5,
+      "a_high_mass": 0.0,
+      "b_low_mass": 173.5,
+      "b_high_mass": 0.0
+    },
+    "airline": {
+      "mixed_episodes": 682,
+      "low_presented": 25022,
+      "high_presented": 43821,
+      "a_low_mass": 62.03058248750206,
+      "a_high_mass": 108.46941751249852,
+      "b_low_mass": 38.093477092384674,
+      "b_high_mass": 132.40652290761543
+    },
+    "baseball": {
+      "mixed_episodes": 711,
+      "low_presented": 28971,
+      "high_presented": 42348,
+      "a_low_mass": 72.06453198159065,
+      "a_high_mass": 105.68546801840948,
+      "b_low_mass": 45.4124336703817,
+      "b_high_mass": 132.33756632961843
+    },
+    "basketball": {
+      "mixed_episodes": 705,
+      "low_presented": 26467,
+      "high_presented": 44353,
+      "a_low_mass": 65.98263522923423,
+      "a_high_mass": 110.26736477076602,
+      "b_low_mass": 40.79229186145782,
+      "b_high_mass": 135.4577081385422
+    },
+    "carcinogenesis": {
+      "mixed_episodes": 665,
+      "low_presented": 45030,
+      "high_presented": 22290,
+      "a_low_mass": 111.13104975725008,
+      "a_high_mass": 55.118950242750415,
+      "b_low_mass": 83.81803322214581,
+      "b_high_mass": 82.43196677785419
+    },
+    "ccs": {
+      "mixed_episodes": 714,
+      "low_presented": 47757,
+      "high_presented": 23389,
+      "a_low_mass": 119.84259084719237,
+      "a_high_mass": 58.657409152808235,
+      "b_low_mass": 90.53921907788627,
+      "b_high_mass": 87.96078092211374
+    },
+    "consumer": {
+      "mixed_episodes": 0,
+      "low_presented": 72623,
+      "high_presented": 0,
+      "a_low_mass": 180.5,
+      "a_high_mass": 0.0,
+      "b_low_mass": 180.5,
+      "b_high_mass": 0.0
+    },
+    "credit": {
+      "mixed_episodes": 720,
+      "low_presented": 22086,
+      "high_presented": 51949,
+      "a_low_mass": 53.83597794606895,
+      "a_high_mass": 126.16402205393157,
+      "b_low_mass": 31.8171323785853,
+      "b_high_mass": 148.1828676214147
+    },
+    "employee": {
+      "mixed_episodes": 700,
+      "low_presented": 29527,
+      "high_presented": 41723,
+      "a_low_mass": 72.63005954939943,
+      "a_high_mass": 102.36994045060061,
+      "b_low_mass": 46.061916052655924,
+      "b_high_mass": 128.9380839473442
+    },
+    "financial": {
+      "mixed_episodes": 697,
+      "low_presented": 18997,
+      "high_presented": 49751,
+      "a_low_mass": 48.145683071246076,
+      "a_high_mass": 126.10431692875429,
+      "b_low_mass": 28.106540857543756,
+      "b_high_mass": 146.14345914245618
+    },
+    "fnhk": {
+      "mixed_episodes": 0,
+      "low_presented": 67461,
+      "high_presented": 0,
+      "a_low_mass": 164.75,
+      "a_high_mass": 0.0,
+      "b_low_mass": 164.75,
+      "b_high_mass": 0.0
+    },
+    "grants": {
+      "mixed_episodes": 684,
+      "low_presented": 28506,
+      "high_presented": 41320,
+      "a_low_mass": 69.79699528711306,
+      "a_high_mass": 101.20300471288715,
+      "b_low_mass": 44.05245889768162,
+      "b_high_mass": 126.94754110231858
+    },
+    "hepatitis": {
+      "mixed_episodes": 714,
+      "low_presented": 16584,
+      "high_presented": 55937,
+      "a_low_mass": 40.75185813190225,
+      "a_high_mass": 137.7481418680979,
+      "b_low_mass": 23.11626520326078,
+      "b_high_mass": 155.3837347967392
+    },
+    "hockey": {
+      "mixed_episodes": 661,
+      "low_presented": 35847,
+      "high_presented": 32337,
+      "a_low_mass": 86.90261575630907,
+      "a_high_mass": 78.34738424369091,
+      "b_low_mass": 59.22078678208541,
+      "b_high_mass": 106.02921321791467
+    },
+    "movielens": {
+      "mixed_episodes": 715,
+      "low_presented": 13728,
+      "high_presented": 60397,
+      "a_low_mass": 33.02948373807761,
+      "a_high_mass": 145.72051626192265,
+      "b_low_mass": 18.291247969328012,
+      "b_high_mass": 160.45875203067177
+    },
+    "sakila": {
+      "mixed_episodes": 727,
+      "low_presented": 22160,
+      "high_presented": 53008,
+      "a_low_mass": 53.504763698748484,
+      "a_high_mass": 128.24523630125182,
+      "b_low_mass": 31.515434923741505,
+      "b_high_mass": 150.2345650762584
+    },
+    "sap": {
+      "mixed_episodes": 691,
+      "low_presented": 52050,
+      "high_presented": 18519,
+      "a_low_mass": 127.4891181426528,
+      "a_high_mass": 45.26088185734753,
+      "b_low_mass": 101.38250153500323,
+      "b_high_mass": 71.36749846499669
+    },
+    "seznam": {
+      "mixed_episodes": 724,
+      "low_presented": 54730,
+      "high_presented": 17881,
+      "a_low_mass": 136.25164314084068,
+      "a_high_mass": 44.74835685915947,
+      "b_low_mass": 109.62917066997201,
+      "b_high_mass": 71.37082933002812
+    },
+    "ssb": {
+      "mixed_episodes": 677,
+      "low_presented": 42927,
+      "high_presented": 25256,
+      "a_low_mass": 106.60588963901118,
+      "a_high_mass": 62.64411036098904,
+      "b_low_mass": 78.16276920080806,
+      "b_high_mass": 91.08723079919191
+    },
+    "talkingdata": {
+      "mixed_episodes": 716,
+      "low_presented": 24769,
+      "high_presented": 47375,
+      "a_low_mass": 61.283328018715615,
+      "a_high_mass": 117.71667198128479,
+      "b_low_mass": 37.16155171201,
+      "b_high_mass": 141.83844828799
+    },
+    "tournament": {
+      "mixed_episodes": 661,
+      "low_presented": 24253,
+      "high_presented": 42736,
+      "a_low_mass": 59.796760367356875,
+      "a_high_mass": 105.4532396326434,
+      "b_low_mass": 36.69956114695899,
+      "b_high_mass": 128.55043885304102
+    },
+    "tpc_h": {
+      "mixed_episodes": 657,
+      "low_presented": 21923,
+      "high_presented": 45435,
+      "a_low_mass": 53.64295613984817,
+      "a_high_mass": 110.60704386015239,
+      "b_low_mass": 32.22554910242782,
+      "b_high_mass": 132.02445089757222
+    },
+    "tubepricing": {
+      "mixed_episodes": 704,
+      "low_presented": 34232,
+      "high_presented": 35914,
+      "a_low_mass": 85.99539489127945,
+      "a_high_mass": 90.00460510872058,
+      "b_low_mass": 57.16645445088306,
+      "b_high_mass": 118.83354554911718
+    }
+  },
+  "verification": {
+    "passed": true,
+    "algorithm": "integer_db_N_H_counter",
+    "atol": 1e-08,
+    "per_database": {
+      "accidents": {
+        "a_low_mass": 173.5,
+        "a_high_mass": 0.0,
+        "b_low_mass": 173.5,
+        "b_high_mass": 0.0
+      },
+      "airline": {
+        "a_low_mass": 62.030582487501896,
+        "a_high_mass": 108.46941751249811,
+        "b_low_mass": 38.09347709238471,
+        "b_high_mass": 132.40652290761528
+      },
+      "baseball": {
+        "a_low_mass": 72.0645319815905,
+        "a_high_mass": 105.6854680184095,
+        "b_low_mass": 45.41243367038171,
+        "b_high_mass": 132.33756632961828
+      },
+      "basketball": {
+        "a_low_mass": 65.98263522923413,
+        "a_high_mass": 110.26736477076587,
+        "b_low_mass": 40.79229186145785,
+        "b_high_mass": 135.45770813854216
+      },
+      "carcinogenesis": {
+        "a_low_mass": 111.13104975724974,
+        "a_high_mass": 55.118950242750266,
+        "b_low_mass": 83.81803322214586,
+        "b_high_mass": 82.43196677785414
+      },
+      "ccs": {
+        "a_low_mass": 119.84259084719193,
+        "a_high_mass": 58.65740915280808,
+        "b_low_mass": 90.5392190778862,
+        "b_high_mass": 87.9607809221138
+      },
+      "consumer": {
+        "a_low_mass": 180.5,
+        "a_high_mass": 0.0,
+        "b_low_mass": 180.5,
+        "b_high_mass": 0.0
+      },
+      "credit": {
+        "a_low_mass": 53.83597794606892,
+        "a_high_mass": 126.16402205393108,
+        "b_low_mass": 31.8171323785853,
+        "b_high_mass": 148.18286762141472
+      },
+      "employee": {
+        "a_low_mass": 72.63005954939942,
+        "a_high_mass": 102.36994045060058,
+        "b_low_mass": 46.06191605265595,
+        "b_high_mass": 128.93808394734404
+      },
+      "financial": {
+        "a_low_mass": 48.14568307124608,
+        "a_high_mass": 126.10431692875392,
+        "b_low_mass": 28.10654085754377,
+        "b_high_mass": 146.14345914245624
+      },
+      "fnhk": {
+        "a_low_mass": 164.75,
+        "a_high_mass": 0.0,
+        "b_low_mass": 164.75,
+        "b_high_mass": 0.0
+      },
+      "grants": {
+        "a_low_mass": 69.7969952871129,
+        "a_high_mass": 101.2030047128871,
+        "b_low_mass": 44.052458897681674,
+        "b_high_mass": 126.94754110231833
+      },
+      "hepatitis": {
+        "a_low_mass": 40.751858131902225,
+        "a_high_mass": 137.74814186809778,
+        "b_low_mass": 23.116265203260802,
+        "b_high_mass": 155.3837347967392
+      },
+      "hockey": {
+        "a_low_mass": 86.90261575630917,
+        "a_high_mass": 78.34738424369083,
+        "b_low_mass": 59.22078678208539,
+        "b_high_mass": 106.0292132179146
+      },
+      "movielens": {
+        "a_low_mass": 33.02948373807753,
+        "a_high_mass": 145.72051626192246,
+        "b_low_mass": 18.291247969328012,
+        "b_high_mass": 160.458752030672
+      },
+      "sakila": {
+        "a_low_mass": 53.50476369874846,
+        "a_high_mass": 128.24523630125154,
+        "b_low_mass": 31.515434923741523,
+        "b_high_mass": 150.2345650762585
+      },
+      "sap": {
+        "a_low_mass": 127.4891181426525,
+        "a_high_mass": 45.260881857347506,
+        "b_low_mass": 101.38250153500319,
+        "b_high_mass": 71.36749846499681
+      },
+      "seznam": {
+        "a_low_mass": 136.25164314084054,
+        "a_high_mass": 44.74835685915945,
+        "b_low_mass": 109.62917066997194,
+        "b_high_mass": 71.37082933002806
+      },
+      "ssb": {
+        "a_low_mass": 106.60588963901111,
+        "a_high_mass": 62.64411036098888,
+        "b_low_mass": 78.16276920080814,
+        "b_high_mass": 91.08723079919186
+      },
+      "talkingdata": {
+        "a_low_mass": 61.2833280187155,
+        "a_high_mass": 117.7166719812845,
+        "b_low_mass": 37.161551712010024,
+        "b_high_mass": 141.83844828799
+      },
+      "tournament": {
+        "a_low_mass": 59.796760367356725,
+        "a_high_mass": 105.45323963264327,
+        "b_low_mass": 36.699561146959056,
+        "b_high_mass": 128.55043885304096
+      },
+      "tpc_h": {
+        "a_low_mass": 53.64295613984806,
+        "a_high_mass": 110.60704386015195,
+        "b_low_mass": 32.22554910242784,
+        "b_high_mass": 132.02445089757217
+      },
+      "tubepricing": {
+        "a_low_mass": 85.99539489127939,
+        "a_high_mass": 90.00460510872061,
+        "b_low_mass": 57.166454450883,
+        "b_high_mass": 118.833545549117
+      }
+    }
+  }
+}

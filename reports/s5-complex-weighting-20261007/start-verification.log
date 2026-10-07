@@ -1,0 +1,23 @@
+observed_at 2026-10-06T17:44:49.017592+00:00
+status.json {
+  "status": "running",
+  "arms": {
+    "A_uniform": "running",
+    "B_complex2": "not_started"
+  },
+  "updated_at": "2026-10-06T17:43:55.884250+00:00"
+}
+
+smoke/status.json {
+  "status": "running",
+  "arms": {
+    "A_uniform": "verified",
+    "B_complex2": "verified"
+  },
+  "updated_at": "2026-10-06T17:43:55.875107+00:00"
+}
+
+weight audit: {"passed": true, "sample_plan_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8", "episodes": 16000, "presentations": 1621915, "mixed_episodes": 13925, "nominal_mass_A": 4000.000000000006, "nominal_mass_B": 4000.0000000000005}
+latest log: {"step": 2, "train_loss": 0.4294893841724843, "validation_macro_log_q95": 1.4359811098966675, "counts": {"support_presentations": 0, "query_presentations": 104, "backward_calls": 8, "optimizer_steps": 2}}
+latest log: {"step": 1, "train_loss": 0.6530620828270912, "validation_macro_log_q95": 1.4387821149422404, "counts": {"support_presentations": 0, "query_presentations": 52, "backward_calls": 4, "optimizer_steps": 1}}
+latest log: {"step": 2, "train_loss": 0.4294611328514293, "validation_macro_log_q95": 1.4359991422885336, "counts": {"support_presentations": 0, "query_presentations": 104, "backward_calls": 8, "optimizer_steps": 2}}

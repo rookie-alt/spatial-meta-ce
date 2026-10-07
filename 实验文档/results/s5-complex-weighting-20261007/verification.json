@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "passed": true,
+      "formal": true,
+      "arm": "A_uniform"
+    },
+    {
+      "passed": true,
+      "status": "reproduced",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "passed": true,
+      "formal": true,
+      "arm": "B_complex2"
+    },
+    {
+      "passed": true,
+      "formal": true,
+      "arms": [
+        "A_uniform",
+        "B_complex2"
+      ]
+    }
+  ]
+}
