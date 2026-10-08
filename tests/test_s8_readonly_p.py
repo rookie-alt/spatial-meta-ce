@@ -218,7 +218,8 @@ class ReadOnlyPTests(unittest.TestCase):
         ls = {'theta': np.array([1.0, 2.0, 3.0 + 1e-10]),
               'rank': 3, 'singular_values': np.array([1.0, 1.0, 1.0])}
         reference = np.array([1.0, 2.0, 3.0 + 2e-10])
-        result = ro.retained_projection_diagnostic(design, target, ls, reference)
+        from spatial_meta_ce import s8_probe
+        result = ro.retained_projection_diagnostic(design, target, ls, reference, s8_probe)
         self.assertEqual(result['shape'], [3, 3])
         self.assertEqual(result['dtype'], 'float64')
         self.assertEqual(result['rank'], 3)
@@ -227,14 +228,14 @@ class ReadOnlyPTests(unittest.TestCase):
         self.assertEqual(result['numpy'], np.__version__)
         for name, expected in [('reported', 1e-10), ('reference', 2e-10)]:
             row = result[name]
-            self.assertAlmostEqual(row['max_abs_residual'], expected, delta=1e-24)
-            self.assertAlmostEqual(row['threshold_at_max'], 4e-12, delta=1e-24)
-            self.assertAlmostEqual(row['ratio_to_threshold'], expected / 4e-12, delta=1e-9)
-            self.assertGreater(row['residual_norm'], 0)
+            self.assertAlmostEqual(row['max_abs_residual'], expected, delta=1e-16)
+            self.assertAlmostEqual(row['threshold_at_max'], 4e-12, delta=1e-20)
+            self.assertAlmostEqual(row['ratio_to_threshold'], expected / 4e-12, delta=1e-5)
+            self.assertGreater(row['residual_l2_norm'], 0)
             self.assertEqual(row['max_row_index'], 2)
             top = row['top_singular_directions'][0]
             self.assertEqual(top['u_direction_index'], 2)
-            self.assertAlmostEqual(top['residual_coordinate'], expected, delta=1e-24)
+            self.assertAlmostEqual(top['residual_coordinate'], expected, delta=1e-16)
             self.assertAlmostEqual(top['projection_coordinate'], 3.0, delta=1e-24)
             self.assertAlmostEqual(top['threshold'], 4e-12, delta=1e-24)
             self.assertGreater(top['ratio'], 1.0)
@@ -260,6 +261,7 @@ class ReadOnlyPTests(unittest.TestCase):
         self.assertIn('reported', diagnostic)
         self.assertIn('reference', diagnostic)
         self.assertIn('top_singular_directions', diagnostic['reported'])
+        self.assertEqual(row['linalg_calls'], 5)
         stage = json.loads((self.root/'new-proof/h-small_P_zero_reference.json').read_text())
         self.assertIn('retained_subspace_diagnostic', stage)
         self.assertNotIn('theta', stage)

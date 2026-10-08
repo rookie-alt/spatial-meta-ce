@@ -1,0 +1,7 @@
+test_failed_retained_stage_records_diagnostic_without_gate_change (test_s8_readonly_p.ReadOnlyPTests.test_failed_retained_stage_records_diagnostic_without_gate_change) ... ok
+test_retained_projection_diagnostic_metrics_and_directions (test_s8_readonly_p.ReadOnlyPTests.test_retained_projection_diagnostic_metrics_and_directions) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.189s
+
+OK

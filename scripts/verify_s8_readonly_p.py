@@ -28,9 +28,9 @@ ROOT = Path(__file__).resolve().parents[1]
 _ACTIVE_OPEN = contextvars.ContextVar('readonly_secure_open_path', default=None)
 ENTRYPOINT = 'scripts/verify_s8_readonly_p.py'
 REAL_INPUT_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007'
-REAL_OUTPUT_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-proof-handshake-v2-20261008'
-REAL_PACKAGE_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-code-handshake-v2-20261008'
-CONTRACT_RELATIVE = 'reports/s8-g1-readonly-p-handshake-v2-20261008/execution-contract.json'
+REAL_OUTPUT_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-diagnostic-proof-20261008'
+REAL_PACKAGE_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-diagnostic-code-20261008'
+CONTRACT_RELATIVE = 'reports/s8-g1-readonly-p-diagnostic-20261008/execution-contract.json'
 EXPECTED_RUNTIME = {'numpy': '1.26.1', 'torch': '2.1.0+cu121',
                     'blas_family': 'openblas64', 'openmp_family': 'libgomp',
                     'interpreter_prefix': '/gly/weilin/PRICE-master/venv'}
@@ -429,6 +429,56 @@ def stage_record_complete(row, contract, feature, panel_name):
         return False
 
 
+def retained_projection_diagnostic(design, target, ls, reference_theta, probe):
+    """Record why retained-projection allclose failed; never change the gate."""
+    design = probe._array64(design, 2, 'diagnostic design')
+    target = probe._array64(target, 1, 'diagnostic target')
+    if design.shape[0] != target.size:
+        raise ValueError('diagnostic design rows must match target length')
+    # Reuse the exact certification factorization semantics for diagnosis.
+    u, singular, _ = probe.np.linalg.svd(design, full_matrices=False)
+    singular = probe._array64(singular, 1, 'SVD singular values')
+    rank = int(probe.np.count_nonzero(singular > probe.RCOND * singular[0]))
+    rank, singular = probe._rank_and_singular(rank, singular, design.shape)
+    u = probe._array64(u, 2, 'SVD U')
+    projection = u[:, :rank] @ (u[:, :rank].T @ target)
+    rtol, atol = 1e-12, 1e-12
+    result = {'gate_effect': 'diagnostic_only_no_gate_change', 'shape': list(design.shape),
+              'dtype': str(design.dtype), 'rank': rank,
+              'cutoff': float(probe.RCOND * singular[0]), 'rtol': rtol, 'atol': atol,
+              'numpy': probe.np.__version__, 'projection_kind': 'left_retained_U_projection',
+              'formula': 'U_r @ (U_r.T @ target)'}
+    for name, theta in (('reported', ls['theta']), ('reference', reference_theta)):
+        theta = probe._array64(theta, 1, f'diagnostic {name} theta')
+        residual = design @ theta - projection
+        threshold = atol + rtol * probe.np.abs(projection)
+        abs_residual = probe.np.abs(residual)
+        max_index = int(probe.np.argmax(abs_residual))
+        coefficients = u[:, :rank].T @ residual
+        order = probe.np.argsort(-probe.np.abs(coefficients))[:8]
+        directions = []
+        for direction in order:
+            coordinate = float(coefficients[direction])
+            projection_coordinate = float(projection[direction])
+            item_threshold = float(atol + rtol * abs(projection_coordinate))
+            directions.append({'u_direction_index': int(direction),
+                               'singular_value': float(singular[direction]),
+                               'residual_coordinate': coordinate,
+                               'projection_coordinate': projection_coordinate,
+                               'threshold': item_threshold,
+                               'ratio': float(abs(coordinate) / item_threshold)})
+        result[name] = {
+            'residual_l2_norm': float(probe.np.linalg.norm(residual)),
+            'residual_linfinity_norm': float(abs_residual.max()),
+            'max_abs_residual': float(abs_residual[max_index]),
+            'threshold_at_max': float(threshold[max_index]),
+            'ratio_to_threshold': float(abs_residual[max_index] / threshold[max_index]),
+            'max_row_index': max_index,
+            'top_singular_directions': directions,
+        }
+    return result
+
+
 def proof_complete(proof, contract, output=None):
     try:
         schema = json.loads(read_regular(ROOT/'reports/s8-g1-readonly-p-20261007/proof.schema.json'))
@@ -504,29 +554,41 @@ def check_saved_p(contract, output, probe=None):
                 ls = probe.solve_ls(design, y)
                 zero = {'theta': np.zeros(design.shape[1]), 'objective': float(np.mean(y * y)), 'updates': 0}
                 certificate = probe.certify_pair(design, y, zero, ls)
+                retained_failed = bool(
+                    certificate.get('retained_subspace_pass') is False
+                    or certificate.get('reference_retained_subspace_pass') is False)
+                row = {}
+                linalg_calls = 3
+                if retained_failed:
+                    # Diagnostic adds one reference lstsq and one SVD factorization.
+                    reference_theta = np.linalg.lstsq(design, y, rcond=probe.RCOND)[0]
+                    row['retained_subspace_diagnostic'] = retained_projection_diagnostic(
+                        design, y, ls, reference_theta, probe)
+                    del reference_theta
+                    linalg_calls = 5
                 t2 = time.monotonic()
-                row = {'status': 'verified' if certificate.get('engineering_verified') is True else 'failed',
-                       'engineering_verified': certificate.get('engineering_verified'),
-                       'rank_stability': certificate.get('rank_stability'),
-                       'strict_certificate': certificate.get('strict_certificate'),
-                       'full_linear_optimality_verified': False,
-                       'resource_only': True, 'coefficients_discarded': True,
-                       'not_used_for_predictions_or_selection': True,
-                       'reference_kind': 'zero_reference_not_Adam',
-                       'claim': ('diagnostic_not_original_Adam_probe_gate' if panel_name == 'small_P_zero_reference'
-                                 else 'resource_only_engineering_not_G1'),
-                       'rows': len(design), 'columns': design.shape[1], 'matrix_bytes': design.nbytes,
-                       'standardization_seconds': t1 - t0, 'solver_certification_seconds': t2 - t1,
-                       'seconds': t2 - t0, 'linalg_calls': 3, 'rank': ls['rank'],
-                       'normalizer_source': {'scope': 'this_P_panel_only',
-                            'fit_indices_sha256': selection_sha(full, full if panel_name == 'full_P_resource' else small),
-                            'fit_rows': len(design), 'feature_columns': values.shape[1], 'dtype': 'float64', 'ddof': 0,
-                            'panel_identity_digest': contract['panel']['panel_identity_digest'],
-                            'input_sha256': contract['files'][f'P-{feature}.npy']['sha256'],
-                            'selection': 'all_P_rows' if panel_name == 'full_P_resource' else 'first_64_per_T_db' if small == 64 else 'synthetic_fixture_prefix',
-                            'normalizer_sha256': {k: hashlib.sha256(v.tobytes()).hexdigest()
-                                                  for k, v in normalizer.items()}},
-                       'certificate': certificate}
+                row.update({
+                    'status': 'verified' if certificate.get('engineering_verified') is True else 'failed',
+                    'engineering_verified': certificate.get('engineering_verified'),
+                    'rank_stability': certificate.get('rank_stability'),
+                    'strict_certificate': certificate.get('strict_certificate'),
+                    'full_linear_optimality_verified': False,
+                    'resource_only': True, 'coefficients_discarded': True,
+                    'not_used_for_predictions_or_selection': True,
+                    'reference_kind': 'zero_reference_not_Adam',
+                    'claim': ('diagnostic_not_original_Adam_probe_gate' if panel_name == 'small_P_zero_reference'
+                              else 'resource_only_engineering_not_G1'),
+                    'rows': len(design), 'columns': design.shape[1], 'matrix_bytes': design.nbytes,
+                    'standardization_seconds': t1 - t0, 'solver_certification_seconds': t2 - t1,
+                    'seconds': t2 - t0, 'linalg_calls': linalg_calls, 'rank': ls['rank'],
+                    'normalizer_source': {'scope': 'this_P_panel_only',
+                        'fit_indices_sha256': selection_sha(full, full if panel_name == 'full_P_resource' else small),
+                        'fit_rows': len(design), 'feature_columns': values.shape[1], 'dtype': 'float64', 'ddof': 0,
+                        'panel_identity_digest': contract['panel']['panel_identity_digest'],
+                        'input_sha256': contract['files'][f'P-{feature}.npy']['sha256'],
+                        'selection': 'all_P_rows' if panel_name == 'full_P_resource' else 'first_64_per_T_db' if small == 64 else 'synthetic_fixture_prefix',
+                        'normalizer_sha256': {k: hashlib.sha256(v.tobytes()).hexdigest() for k, v in normalizer.items()}},
+                    'certificate': certificate})
                 result['features'][feature][panel_name] = row
                 write_json(output / f'{feature}-{panel_name}.json', row)
                 del ls, zero, design, normalizer
