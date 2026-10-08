@@ -1,0 +1,156 @@
+test_bound_derived_from_frozen_cutoff (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_derived_from_frozen_cutoff) ... ERROR
+test_bound_does_not_use_observed_residual (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_does_not_use_observed_residual) ... ERROR
+test_bound_never_tighter_than_frozen_floor (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_never_tighter_than_frozen_floor) ... ERROR
+test_condition_number_anomaly_keeps_strict_unknown (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_condition_number_anomaly_keeps_strict_unknown) ... ERROR
+test_nonfinite_or_out_of_range_inputs_raise (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_nonfinite_or_out_of_range_inputs_raise) ... ERROR
+test_rank_zero_uses_engineering_floor (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_rank_zero_uses_engineering_floor) ... ERROR
+test_rcond_and_rank_definition_unchanged (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_rcond_and_rank_definition_unchanged) ... ok
+test_residual_at_bound_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_residual_at_bound_passes) ... ERROR
+test_residual_slightly_above_bound_still_fails (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_residual_slightly_above_bound_still_fails) ... ERROR
+test_strict_certificate_fields_preserved (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strict_certificate_fields_preserved) ... ERROR
+test_strongly_rank_deficient_pair_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strongly_rank_deficient_pair_passes) ... ERROR
+test_well_conditioned_panel_still_passes_as_before (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_well_conditioned_panel_still_passes_as_before) ... ERROR
+
+======================================================================
+ERROR: test_bound_derived_from_frozen_cutoff (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_derived_from_frozen_cutoff)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 25, in test_bound_derived_from_frozen_cutoff
+    info = probe.retained_projection_bound(singular, 4, projection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'spatial_meta_ce.s8_probe' has no attribute 'retained_projection_bound'
+
+======================================================================
+ERROR: test_bound_does_not_use_observed_residual (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_does_not_use_observed_residual)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 126, in test_bound_does_not_use_observed_residual
+    info = probe.retained_projection_bound(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'spatial_meta_ce.s8_probe' has no attribute 'retained_projection_bound'
+
+======================================================================
+ERROR: test_bound_never_tighter_than_frozen_floor (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_never_tighter_than_frozen_floor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 45, in test_bound_never_tighter_than_frozen_floor
+    info = probe.retained_projection_bound(singular, 3, projection, target_scale=1.0)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'spatial_meta_ce.s8_probe' has no attribute 'retained_projection_bound'
+
+======================================================================
+ERROR: test_condition_number_anomaly_keeps_strict_unknown (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_condition_number_anomaly_keeps_strict_unknown)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 96, in test_condition_number_anomaly_keeps_strict_unknown
+    cert = probe.certify_pair(design, target,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  [Previous line repeated 984 more times]
+RecursionError: maximum recursion depth exceeded
+
+======================================================================
+ERROR: test_nonfinite_or_out_of_range_inputs_raise (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_nonfinite_or_out_of_range_inputs_raise)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 135, in test_nonfinite_or_out_of_range_inputs_raise
+    probe.retained_projection_bound(np.array([1.0, np.nan]), 2, np.array([1.0]))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'spatial_meta_ce.s8_probe' has no attribute 'retained_projection_bound'
+
+======================================================================
+ERROR: test_rank_zero_uses_engineering_floor (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_rank_zero_uses_engineering_floor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 54, in test_rank_zero_uses_engineering_floor
+    info = probe.retained_projection_bound(singular, 0, projection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'spatial_meta_ce.s8_probe' has no attribute 'retained_projection_bound'
+
+======================================================================
+ERROR: test_residual_at_bound_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_residual_at_bound_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 82, in test_residual_at_bound_passes
+    _, _, info = probe.retained_projection_check(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'spatial_meta_ce.s8_probe' has no attribute 'retained_projection_check'
+
+======================================================================
+ERROR: test_residual_slightly_above_bound_still_fails (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_residual_slightly_above_bound_still_fails)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 69, in test_residual_slightly_above_bound_still_fails
+    _, _, info = probe.retained_projection_check(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'spatial_meta_ce.s8_probe' has no attribute 'retained_projection_check'
+
+======================================================================
+ERROR: test_strict_certificate_fields_preserved (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strict_certificate_fields_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 115, in test_strict_certificate_fields_preserved
+    cert = probe.certify_pair(design, target,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  [Previous line repeated 984 more times]
+RecursionError: maximum recursion depth exceeded
+
+======================================================================
+ERROR: test_strongly_rank_deficient_pair_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strongly_rank_deficient_pair_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 151, in test_strongly_rank_deficient_pair_passes
+    cert = probe.certify_pair(design, target,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  [Previous line repeated 984 more times]
+RecursionError: maximum recursion depth exceeded
+
+======================================================================
+ERROR: test_well_conditioned_panel_still_passes_as_before (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_well_conditioned_panel_still_passes_as_before)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 164, in test_well_conditioned_panel_still_passes_as_before
+    cert = probe.certify_pair(design, target,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-readonly-p-tolerance-20261008/make_final_red.py", line 24, in _old_certify
+    cert = probe.certify_pair(design, target, adam, ls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  [Previous line repeated 984 more times]
+RecursionError: maximum recursion depth exceeded
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.100s
+
+FAILED (errors=11)
