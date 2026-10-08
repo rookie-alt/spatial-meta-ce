@@ -1,0 +1,4 @@
+usage: verify_s8_readonly_p.py [-h] --contract CONTRACT
+                               [--contract-sha256 CONTRACT_SHA256]
+                               [--output OUTPUT] [--execute]
+verify_s8_readonly_p.py: error: Supervisor arguments do not bind this worker
