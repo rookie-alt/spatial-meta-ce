@@ -539,6 +539,111 @@ assert result['status']=='verified_readonly_P_engineering', result
         self.assertFalse(ro.proof_complete(altered, self.contract))
 
 
+class MockHandshakeTests(unittest.TestCase):
+    """Mock syscall regressions ONLY; Linux integration is a separate test module."""
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.package = Path(self.tmp.name).resolve()/'package'
+        self.package.mkdir()
+        self.parent_cwd = self.package
+        self.relative_contract = getattr(ro, 'CONTRACT_RELATIVE',
+                                        'reports/s8-g1-readonly-p-20261007/execution-contract.json')
+        self.contract_path = self.package/self.relative_contract
+        self.contract_path.parent.mkdir(parents=True)
+        self.contract_path.write_text('{}')
+        self.output = self.package/'new-proof'
+        self.output.mkdir()
+        self.entry = self.package/ro.ENTRYPOINT
+        self.entry.parent.mkdir()
+        self.entry.write_text('# synthetic fixture parent identity')
+        self.pin = 'a'*64
+        self.command = [sys.executable, '-B', str(self.entry), '--contract',
+                        str(self.contract_path), '--contract-sha256', self.pin,
+                        '--output', str(self.output), '--execute']
+        self.ticket = {'parent_pid': 7777, 'contract_sha256': self.pin,
+                       'output': str(self.output), 'package': str(self.package)}
+        self.read_pipe = 'pipe:[1234]'
+        self.owner_pipe = self.read_pipe
+
+    def call_handshake(self):
+        import stat
+        from types import SimpleNamespace
+        args = SimpleNamespace(contract=self.contract_path, output=self.output,
+                               _worker_fd=71, _parent_write_fd=72)
+        real_readlink = ro.os.readlink
+        def readlink(path):
+            paths = {'/proc/7777/cwd': str(self.parent_cwd), '/proc/self/fd/71': self.read_pipe,
+                     '/proc/7777/fd/72': self.owner_pipe}
+            return paths[str(path)] if str(path) in paths else real_readlink(path)
+        with patch.object(ro, 'ROOT', self.package), patch.object(ro.os, 'getppid', return_value=7777), patch.object(ro, 'read_regular', return_value=('\0'.join(self.command)+'\0').encode()), patch.object(ro.os, 'readlink', side_effect=readlink), patch.object(ro.os, 'fstat', return_value=SimpleNamespace(st_mode=stat.S_IFIFO)), patch.object(ro.os, 'read', return_value=json.dumps(self.ticket).encode()), patch.object(ro.os, 'close'), patch.object(ro.os, 'set_blocking'):
+            ro.verify_worker_handshake(args, {'expected_output_root': str(self.output)}, self.pin)
+
+    def test_relative_contract_same_frozen_file_passes(self):
+        self.command[4] = self.relative_contract
+        self.call_handshake()
+
+    def test_absolute_contract_call_still_passes(self):
+        self.call_handshake()
+
+    def test_relative_contract_uses_parent_cwd_not_child_cwd(self):
+        self.command[4] = self.relative_contract
+        with patch.object(ro.os, 'getcwd', return_value=str(self.package/'different-child-cwd')):
+            self.call_handshake()
+
+    def test_wrong_parent_cwd_contract_rejected(self):
+        self.parent_cwd = self.package/'wrong-parent-cwd'
+        self.parent_cwd.mkdir()
+        self.command[4] = self.relative_contract
+        with self.assertRaises(ValueError):
+            self.call_handshake()
+
+    def test_same_basename_wrong_contract_file_rejected(self):
+        other = self.package/'elsewhere'/self.contract_path.name
+        other.parent.mkdir()
+        other.write_text('{}')
+        self.command[4] = str(other)
+        with self.assertRaises(ValueError):
+            self.call_handshake()
+
+    def test_parent_contract_symlink_alias_rejected(self):
+        alias = self.package/'contract-alias.json'
+        alias.symlink_to(self.contract_path)
+        self.command[4] = str(alias)
+        with self.assertRaises(ValueError):
+            self.call_handshake()
+
+    def test_wrong_parent_contract_SHA_rejected(self):
+        self.command[6] = 'b'*64
+        with self.assertRaises(ValueError):
+            self.call_handshake()
+
+    def test_wrong_parent_output_rejected(self):
+        self.command[8] = str(self.package/'wrong-output')
+        with self.assertRaises(ValueError):
+            self.call_handshake()
+
+    def test_forged_parent_identity_rejected(self):
+        self.command[2] = str(self.package/'untrusted-parent.py')
+        with self.assertRaises(ValueError):
+            self.call_handshake()
+
+    def test_forged_pipe_owner_rejected(self):
+        self.owner_pipe = 'pipe:[9999]'
+        with self.assertRaises(ValueError):
+            self.call_handshake()
+
+    def test_wrong_ticket_contract_SHA_rejected(self):
+        self.ticket['contract_sha256'] = 'b'*64
+        with self.assertRaises(ValueError):
+            self.call_handshake()
+
+    def test_missing_parent_execute_still_rejected(self):
+        self.command.remove('--execute')
+        with self.assertRaises(ValueError):
+            self.call_handshake()
+
+
 class SupervisorTests(unittest.TestCase):
     def setUp(self):
         self.assertIsNotNone(ro, 'RED: read-only supervisor is missing')

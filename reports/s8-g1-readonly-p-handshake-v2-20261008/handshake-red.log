@@ -1,0 +1,41 @@
+test_absolute_contract_call_still_passes (test_s8_readonly_p.MockHandshakeTests.test_absolute_contract_call_still_passes) ... ok
+test_forged_parent_identity_rejected (test_s8_readonly_p.MockHandshakeTests.test_forged_parent_identity_rejected) ... ok
+test_forged_pipe_owner_rejected (test_s8_readonly_p.MockHandshakeTests.test_forged_pipe_owner_rejected) ... ok
+test_missing_parent_execute_still_rejected (test_s8_readonly_p.MockHandshakeTests.test_missing_parent_execute_still_rejected) ... ok
+test_parent_contract_symlink_alias_rejected (test_s8_readonly_p.MockHandshakeTests.test_parent_contract_symlink_alias_rejected) ... ok
+test_relative_contract_same_frozen_file_passes (test_s8_readonly_p.MockHandshakeTests.test_relative_contract_same_frozen_file_passes) ... ERROR
+test_relative_contract_uses_parent_cwd_not_child_cwd (test_s8_readonly_p.MockHandshakeTests.test_relative_contract_uses_parent_cwd_not_child_cwd) ... ERROR
+test_same_basename_wrong_contract_file_rejected (test_s8_readonly_p.MockHandshakeTests.test_same_basename_wrong_contract_file_rejected) ... ok
+test_wrong_parent_contract_SHA_rejected (test_s8_readonly_p.MockHandshakeTests.test_wrong_parent_contract_SHA_rejected) ... ok
+test_wrong_parent_cwd_contract_rejected (test_s8_readonly_p.MockHandshakeTests.test_wrong_parent_cwd_contract_rejected) ... ok
+test_wrong_parent_output_rejected (test_s8_readonly_p.MockHandshakeTests.test_wrong_parent_output_rejected) ... ok
+test_wrong_ticket_contract_SHA_rejected (test_s8_readonly_p.MockHandshakeTests.test_wrong_ticket_contract_SHA_rejected) ... ok
+
+======================================================================
+ERROR: test_relative_contract_same_frozen_file_passes (test_s8_readonly_p.MockHandshakeTests.test_relative_contract_same_frozen_file_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 584, in test_relative_contract_same_frozen_file_passes
+    self.call_handshake()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 580, in call_handshake
+    ro.verify_worker_handshake(args, {'expected_output_root': str(self.output)}, self.pin)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 756, in verify_worker_handshake
+    raise ValueError('Supervisor arguments do not bind this worker')
+ValueError: Supervisor arguments do not bind this worker
+
+======================================================================
+ERROR: test_relative_contract_uses_parent_cwd_not_child_cwd (test_s8_readonly_p.MockHandshakeTests.test_relative_contract_uses_parent_cwd_not_child_cwd)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 592, in test_relative_contract_uses_parent_cwd_not_child_cwd
+    self.call_handshake()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 580, in call_handshake
+    ro.verify_worker_handshake(args, {'expected_output_root': str(self.output)}, self.pin)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 756, in verify_worker_handshake
+    raise ValueError('Supervisor arguments do not bind this worker')
+ValueError: Supervisor arguments do not bind this worker
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.032s
+
+FAILED (errors=2)
