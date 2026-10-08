@@ -49,5 +49,6 @@
   "strict_certificate": "unknown",
   "real_P_read": false,
   "server_access_this_revision": false,
-  "B_or_training": false
+  "B_or_training": false,
+  "entry_sha256": "7dc783034d4ce5e48469605296adb253c737b6e866dbdeca34c04591e042bae7"
 }
