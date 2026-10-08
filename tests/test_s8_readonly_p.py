@@ -212,6 +212,59 @@ class ReadOnlyPTests(unittest.TestCase):
         self.assertIsNone(row['engineering_verified'])
         self.assertEqual(proof['features']['x']['full_P_resource']['status'], 'not_run')
 
+    def test_retained_projection_diagnostic_metrics_and_directions(self):
+        design = np.eye(3, dtype=np.float64)
+        target = np.array([1.0, 2.0, 3.0])
+        ls = {'theta': np.array([1.0, 2.0, 3.0 + 1e-10]),
+              'rank': 3, 'singular_values': np.array([1.0, 1.0, 1.0])}
+        reference = np.array([1.0, 2.0, 3.0 + 2e-10])
+        result = ro.retained_projection_diagnostic(design, target, ls, reference)
+        self.assertEqual(result['shape'], [3, 3])
+        self.assertEqual(result['dtype'], 'float64')
+        self.assertEqual(result['rank'], 3)
+        self.assertEqual(result['rtol'], 1e-12)
+        self.assertEqual(result['atol'], 1e-12)
+        self.assertEqual(result['numpy'], np.__version__)
+        for name, expected in [('reported', 1e-10), ('reference', 2e-10)]:
+            row = result[name]
+            self.assertAlmostEqual(row['max_abs_residual'], expected, delta=1e-24)
+            self.assertAlmostEqual(row['threshold_at_max'], 4e-12, delta=1e-24)
+            self.assertAlmostEqual(row['ratio_to_threshold'], expected / 4e-12, delta=1e-9)
+            self.assertGreater(row['residual_norm'], 0)
+            self.assertEqual(row['max_row_index'], 2)
+            top = row['top_singular_directions'][0]
+            self.assertEqual(top['u_direction_index'], 2)
+            self.assertAlmostEqual(top['residual_coordinate'], expected, delta=1e-24)
+            self.assertAlmostEqual(top['projection_coordinate'], 3.0, delta=1e-24)
+            self.assertAlmostEqual(top['threshold'], 4e-12, delta=1e-24)
+            self.assertGreater(top['ratio'], 1.0)
+        self.assertNotIn('theta', result)
+        self.assertNotIn('reference_theta', result)
+
+    def test_failed_retained_stage_records_diagnostic_without_gate_change(self):
+        from spatial_meta_ce import s8_probe
+        certificate = s8_probe.certify_pair(
+            np.eye(3), np.ones(3), {'theta': np.zeros(3), 'objective': 1.0, 'updates': 0},
+            {'theta': np.zeros(3), 'objective': 1.0, 'rank': 3,
+             'singular_values': np.ones(3), 'normalized_normal_residual': 0.0})
+        certificate.update(engineering_verified=False, retained_subspace_pass=False,
+                            reference_retained_subspace_pass=False, rank_stability='stable',
+                            strict_certificate={'status': 'unknown'}, **{'pass': False, 'solver_verified': False})
+        with patch.object(s8_probe, 'certify_pair', return_value=certificate):
+            result = self.execute(probe=s8_probe)
+        self.assertEqual(result['status'], 'failed')
+        row = result['features']['h']['small_P_zero_reference']
+        self.assertFalse(row['engineering_verified'])
+        diagnostic = row['retained_subspace_diagnostic']
+        self.assertEqual(diagnostic['gate_effect'], 'diagnostic_only_no_gate_change')
+        self.assertIn('reported', diagnostic)
+        self.assertIn('reference', diagnostic)
+        self.assertIn('top_singular_directions', diagnostic['reported'])
+        stage = json.loads((self.root/'new-proof/h-small_P_zero_reference.json').read_text())
+        self.assertIn('retained_subspace_diagnostic', stage)
+        self.assertNotIn('theta', stage)
+        self.assertNotIn('reference_theta', stage)
+
     def test_engineering_failure_preserved_stops_before_x(self):
         from spatial_meta_ce import s8_probe
         with patch.object(s8_probe, 'certify_pair', return_value={

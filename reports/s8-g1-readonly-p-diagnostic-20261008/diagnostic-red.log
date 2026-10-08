@@ -1,0 +1,25 @@
+test_failed_retained_stage_records_diagnostic_without_gate_change (test_s8_readonly_p.ReadOnlyPTests.test_failed_retained_stage_records_diagnostic_without_gate_change) ... ERROR
+test_retained_projection_diagnostic_metrics_and_directions (test_s8_readonly_p.ReadOnlyPTests.test_retained_projection_diagnostic_metrics_and_directions) ... ERROR
+
+======================================================================
+ERROR: test_failed_retained_stage_records_diagnostic_without_gate_change (test_s8_readonly_p.ReadOnlyPTests.test_failed_retained_stage_records_diagnostic_without_gate_change)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 258, in test_failed_retained_stage_records_diagnostic_without_gate_change
+    diagnostic = row['retained_subspace_diagnostic']
+                 ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'retained_subspace_diagnostic'
+
+======================================================================
+ERROR: test_retained_projection_diagnostic_metrics_and_directions (test_s8_readonly_p.ReadOnlyPTests.test_retained_projection_diagnostic_metrics_and_directions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 221, in test_retained_projection_diagnostic_metrics_and_directions
+    result = ro.retained_projection_diagnostic(design, target, ls, reference)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.verify_s8_readonly_p' has no attribute 'retained_projection_diagnostic'
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.984s
+
+FAILED (errors=2)
