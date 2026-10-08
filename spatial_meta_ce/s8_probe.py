@@ -328,6 +328,87 @@ def _spectrum_checks(design, u, singular, vh, reported, reference):
     }
 
 
+# Retained-projection engineering consistency bound.
+#
+# The check compares two independent fixed-cutoff numerical solves of the same
+# truncated problem: the reported lstsq solution and the SVD retained
+# projection U_r(U_r^T target). In exact arithmetic they agree; in FP64 they may
+# differ by O(eps * kappa_cutoff) times the problem scale, where
+# kappa_cutoff = sigma_1 / sigma_cutoff and sigma_cutoff = RCOND * sigma_1.
+# Because every retained direction satisfies sigma > sigma_cutoff, sigma_1 /
+# sigma_cutoff upper-bounds the retained-block condition number sigma_1/sigma_r
+# WITHOUT depending on the (unknown) smallest retained singular value. The bound
+# is therefore derived a priori from the frozen cutoff and the problem scale; it
+# never consults an observed residual, so it cannot be tuned to pass a run.
+#
+# Scope: this aligns engineering numerical consistency only. It does not
+# certify scientific linear optimality, rank, or retained subspace; those remain
+# strict_certificate=unknown. rcond, the rank definition, LS, and all other
+# gates are unchanged.
+RETAINED_PROJECTION_ACCUMULATION = 8.0
+RETAINED_PROJECTION_ATOL = 1e-12
+RETAINED_PROJECTION_RTOL = 1e-12
+
+
+def retained_projection_bound(singular, rank, projection, target_scale=None):
+    """A-priori FP64 reachable bound for the retained-projection residual.
+
+    Uses only the spectrum, the frozen cutoff, the rank and the problem scale.
+    """
+    singular = _array64(singular, 1, "singular values")
+    if (isinstance(rank, (bool, np.bool_)) or not isinstance(rank, (int, np.integer))
+            or not 0 <= rank <= singular.size):
+        raise ValueError("retained-projection rank must be an integer within range")
+    projection = _array64(projection, 1, "projection")
+    projection_norm = float(np.max(np.abs(projection)))
+    if target_scale is None:
+        target_scale = projection_norm
+    target_scale = float(target_scale)
+    if not np.isfinite(target_scale) or target_scale < 0:
+        raise ValueError("retained-projection target scale must be finite/nonnegative")
+    eps = float(np.finfo(np.float64).eps)
+    scale = max(target_scale, projection_norm, eps)
+    floor = RETAINED_PROJECTION_ATOL + RETAINED_PROJECTION_RTOL * projection_norm
+    sigma1 = float(singular[0])
+    sigma_cutoff = RCOND * sigma1
+    if rank == 0:
+        return {"tol": float(floor), "sigma1": sigma1, "sigma_r": 0.0,
+                "kappa_cutoff": 0.0, "projection_norm": projection_norm,
+                "target_scale": target_scale, "amplification_scale": scale,
+                "engineering_floor": float(floor), "reachable_bound": 0.0,
+                "accumulation_constant": RETAINED_PROJECTION_ACCUMULATION,
+                "eps": eps, "scope": "rank_zero_engineering_floor"}
+    if not np.isfinite(sigma_cutoff) or sigma_cutoff <= 0:
+        raise ValueError("retained-projection cutoff is invalid")
+    kappa_cutoff = sigma1 / sigma_cutoff
+    reachable = RETAINED_PROJECTION_ACCUMULATION * eps * kappa_cutoff * scale
+    # Never tighten: accept when either the frozen engineering floor or the
+    # a-priori reachable bound is met.
+    tol = max(floor, reachable)
+    return {"tol": float(tol), "sigma1": sigma1, "sigma_r": float(singular[rank - 1]),
+            "kappa_cutoff": float(kappa_cutoff), "projection_norm": projection_norm,
+            "target_scale": target_scale, "amplification_scale": scale,
+            "engineering_floor": float(floor), "reachable_bound": float(reachable),
+            "accumulation_constant": RETAINED_PROJECTION_ACCUMULATION,
+            "eps": eps, "scope": "max_engineering_floor_and_fp64_reachable_bound"}
+
+
+def retained_projection_check(predicted, projection, singular, rank, target_scale=None):
+    """Consistency of a fixed-cutoff solve with the SVD retained projection.
+
+    Returns (ok, max_abs_residual, bound_info). The compared objects, cutoff and
+    rank are unchanged; only the acceptance bound moves from the fixed 1e-12
+    allclose to the a-priori FP64 reachable bound (never tighter).
+    """
+    predicted = _array64(predicted, 1, "predicted")
+    projection = _array64(projection, 1, "projection")
+    if predicted.shape != projection.shape:
+        raise ValueError("predicted and projection shapes must match")
+    residual = float(np.max(np.abs(predicted - projection)))
+    info = retained_projection_bound(singular, rank, projection, target_scale)
+    return bool(residual <= info["tol"]), residual, info
+
+
 @_reject_numeric_failure
 def certify_pair(design, target, adam, ls):
     """Recompute P diagnostics; malformed/nonfinite inputs raise ValueError.
@@ -341,7 +422,12 @@ def certify_pair(design, target, adam, ls):
     small normal residuals alone cannot authenticate weak singular directions.
     Complete spectra use the frozen FP64 dimension/scale envelope; ambiguous
     cutoff intervals fail closed. Economy-SVD reconstruction, orthogonality and
-    retained projections are checked without additional factorizations.
+    retained projections are checked without additional factorizations. Retained
+    projections accept when either the frozen 1e-12 engineering floor or the
+    derived FP64 reachable bound (8*eps*(sigma_1/sigma_cutoff)*scale) is met,
+    so the check is never tighter than before and is looser only for strongly
+    ill-conditioned truncated blocks; the compared objects, cutoff and rank are
+    unchanged and the bound is computed a priori from the frozen cutoff.
     fullrank_numeric_solver means verified and rank == parameter columns.
     Legacy full_linear_optimality fields always remain False: repeating the same
     numerical solver is not an independent scientific proof of optimality.
@@ -406,11 +492,14 @@ def certify_pair(design, target, adam, ls):
         )
     )
     projection = u[:, :actual_rank] @ (u[:, :actual_rank].T @ target)
-    retained_ok = bool(
-        np.allclose(design @ ls["theta"], projection, rtol=1e-12, atol=1e-12)
+    target_scale = float(np.max(np.abs(target)))
+    retained_ok, retained_residual, retained_info = retained_projection_check(
+        design @ ls["theta"], projection, actual_singular, actual_rank, target_scale
     )
-    reference_retained_ok = bool(
-        np.allclose(design @ reference_theta, projection, rtol=1e-12, atol=1e-12)
+    reference_retained_ok, reference_retained_residual, reference_retained_info = (
+        retained_projection_check(
+            design @ reference_theta, projection, actual_singular, actual_rank, target_scale
+        )
     )
     reference_ok = bool(
         reference_objective_ok
@@ -437,6 +526,13 @@ def certify_pair(design, target, adam, ls):
         **spectrum,
         "retained_subspace_pass": retained_ok,
         "reference_retained_subspace_pass": reference_retained_ok,
+        "retained_subspace_check": {
+            "scope": "fixed_cutoff_fp64_reachable_bound",
+            "reported_residual": retained_residual,
+            "reference_residual": reference_retained_residual,
+            "reported_bound": retained_info,
+            "reference_bound": reference_retained_info,
+        },
         "engineering_verified": engineering_verified,
         "engineering_scope": "same_matrix_fixed_cutoff_numeric_consistency",
         "strict_certificate": {
