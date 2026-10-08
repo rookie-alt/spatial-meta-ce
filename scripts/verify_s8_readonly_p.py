@@ -28,9 +28,9 @@ ROOT = Path(__file__).resolve().parents[1]
 _ACTIVE_OPEN = contextvars.ContextVar('readonly_secure_open_path', default=None)
 ENTRYPOINT = 'scripts/verify_s8_readonly_p.py'
 REAL_INPUT_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007'
-REAL_OUTPUT_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-diagnostic-proof-20261008'
-REAL_PACKAGE_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-diagnostic-code-20261008'
-CONTRACT_RELATIVE = 'reports/s8-g1-readonly-p-diagnostic-20261008/execution-contract.json'
+REAL_OUTPUT_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-tolerance-proof-20261008'
+REAL_PACKAGE_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-tolerance-code-20261008'
+CONTRACT_RELATIVE = 'reports/s8-g1-readonly-p-tolerance-20261008/execution-contract.json'
 EXPECTED_RUNTIME = {'numpy': '1.26.1', 'torch': '2.1.0+cu121',
                     'blas_family': 'openblas64', 'openmp_family': 'libgomp',
                     'interpreter_prefix': '/gly/weilin/PRICE-master/venv'}
