@@ -1,0 +1,104 @@
+test_access_guard_rejects_h_target_checkpoint_and_writes (test_s8_readonly_p.ReadOnlyPTests.test_access_guard_rejects_h_target_checkpoint_and_writes) ... ok
+test_complete_direct_worker_invocation_rejected (test_s8_readonly_p.ReadOnlyPTests.test_complete_direct_worker_invocation_rejected) ... usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: Worker output must be the frozen new proof directory
+ok
+test_computation_guard_rejects_adam_and_checkpoint_loader (test_s8_readonly_p.ReadOnlyPTests.test_computation_guard_rejects_adam_and_checkpoint_loader) ... ok
+test_contract_budget_cannot_be_relaxed (test_s8_readonly_p.ReadOnlyPTests.test_contract_budget_cannot_be_relaxed) ... ok
+test_contract_data_path_rejected_before_bytes (test_s8_readonly_p.ReadOnlyPTests.test_contract_data_path_rejected_before_bytes) ... usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: Only the frozen package contract path may be read; no data/checkpoint as contract
+ok
+test_default_cli_is_plan_only_no_saved_p_reads (test_s8_readonly_p.ReadOnlyPTests.test_default_cli_is_plan_only_no_saved_p_reads) ... ok
+test_direct_worker_cli_denied (test_s8_readonly_p.ReadOnlyPTests.test_direct_worker_cli_denied) ... usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: the following arguments are required: --contract
+ok
+test_dtype_mismatch_not_silently_converted (test_s8_readonly_p.ReadOnlyPTests.test_dtype_mismatch_not_silently_converted) ... ok
+test_duplicate_panel_positions_rejected (test_s8_readonly_p.ReadOnlyPTests.test_duplicate_panel_positions_rejected) ... ok
+test_engineering_failure_preserved_stops_before_x (test_s8_readonly_p.ReadOnlyPTests.test_engineering_failure_preserved_stops_before_x) ... ok
+test_fifo_input_is_rejected_without_blocking (test_s8_readonly_p.ReadOnlyPTests.test_fifo_input_is_rejected_without_blocking) ... ok
+test_h_target_checkpoint_extra_files_rejected (test_s8_readonly_p.ReadOnlyPTests.test_h_target_checkpoint_extra_files_rejected) ... ok
+test_identity_mismatch_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_identity_mismatch_fails_closed) ... ok
+test_non_readonly_entrypoint_rejected_before_input_io (test_s8_readonly_p.ReadOnlyPTests.test_non_readonly_entrypoint_rejected_before_input_io) ... ok
+test_nonfinite_input_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_nonfinite_input_fails_closed) ... ok
+test_old_failed_output_and_existing_output_rejected (test_s8_readonly_p.ReadOnlyPTests.test_old_failed_output_and_existing_output_rejected) ... ok
+test_output_directory_swap_between_check_and_write_rejected (test_s8_readonly_p.ReadOnlyPTests.test_output_directory_swap_between_check_and_write_rejected) ... ok
+test_output_schema_not_run_not_false_success (test_s8_readonly_p.ReadOnlyPTests.test_output_schema_not_run_not_false_success) ... ok
+test_parent_and_worker_runtime_limits_are_bounded (test_s8_readonly_p.ReadOnlyPTests.test_parent_and_worker_runtime_limits_are_bounded) ... ok
+test_parent_directory_swap_between_check_and_read_rejected (test_s8_readonly_p.ReadOnlyPTests.test_parent_directory_swap_between_check_and_read_rejected) ... ok
+test_parent_directory_symlink_rejected (test_s8_readonly_p.ReadOnlyPTests.test_parent_directory_symlink_rejected) ... ok
+test_proof_validator_rejects_missing_and_conflicting_success (test_s8_readonly_p.ReadOnlyPTests.test_proof_validator_rejects_missing_and_conflicting_success) ... ok
+test_protected_price_and_old_code_output_rejected (test_s8_readonly_p.ReadOnlyPTests.test_protected_price_and_old_code_output_rejected) ... ok
+test_read_guard_actual_denials_in_isolated_process (test_s8_readonly_p.ReadOnlyPTests.test_read_guard_actual_denials_in_isolated_process) ... ok
+test_real_backend_version_family_and_origin_mismatch_stops (test_s8_readonly_p.ReadOnlyPTests.test_real_backend_version_family_and_origin_mismatch_stops) ... ok
+test_real_contract_cannot_use_synthetic_shapes (test_s8_readonly_p.ReadOnlyPTests.test_real_contract_cannot_use_synthetic_shapes) ... ok
+test_resource_unknown_rank_allowed_only_when_engineering_true (test_s8_readonly_p.ReadOnlyPTests.test_resource_unknown_rank_allowed_only_when_engineering_true) ... FAIL
+test_schema_accepts_not_run_and_synthetic_success (test_s8_readonly_p.ReadOnlyPTests.test_schema_accepts_not_run_and_synthetic_success) ... ok
+test_sha_mismatch_fails_and_keeps_new_failure (test_s8_readonly_p.ReadOnlyPTests.test_sha_mismatch_fails_and_keeps_new_failure) ... ok
+test_shape_mismatch_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_shape_mismatch_fails_closed) ... ok
+test_source_binding_mismatch_rejected (test_s8_readonly_p.ReadOnlyPTests.test_source_binding_mismatch_rejected) ... ok
+test_source_changed_during_solve_failure (test_s8_readonly_p.ReadOnlyPTests.test_source_changed_during_solve_failure) ... ok
+test_source_sha_mismatch_prevents_import (test_s8_readonly_p.ReadOnlyPTests.test_source_sha_mismatch_prevents_import) ... ok
+test_success_proof_rejects_use_shape_normalizer_and_numeric_conflicts (test_s8_readonly_p.ReadOnlyPTests.test_success_proof_rejects_use_shape_normalizer_and_numeric_conflicts) ... ok
+test_symlink_input_rejected (test_s8_readonly_p.ReadOnlyPTests.test_symlink_input_rejected) ... ok
+test_synthetic_success_is_not_real_p_or_g1 (test_s8_readonly_p.ReadOnlyPTests.test_synthetic_success_is_not_real_p_or_g1) ... ok
+test_target_database_identity_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_target_database_identity_fails_closed) ... ok
+test_training_calls_absent (test_s8_readonly_p.ReadOnlyPTests.test_training_calls_absent) ... ok
+test_untrusted_contract_sha_rejected_before_input_read (test_s8_readonly_p.ReadOnlyPTests.test_untrusted_contract_sha_rejected_before_input_read) ... usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: Only the frozen package contract path may be read; no data/checkpoint as contract
+ok
+test_worker_limit_failure_leaves_evidence (test_s8_readonly_p.ReadOnlyPTests.test_worker_limit_failure_leaves_evidence) ... ok
+test_abnormal_exit_records_failure (test_s8_readonly_p.SupervisorTests.test_abnormal_exit_records_failure) ... ok
+test_address_space_exceeded_stops (test_s8_readonly_p.SupervisorTests.test_address_space_exceeded_stops) ... ok
+test_missing_resource_observation_fails_closed (test_s8_readonly_p.SupervisorTests.test_missing_resource_observation_fails_closed) ... ok
+test_rss_exceeded_stops_and_labels_sample_not_hard_cap (test_s8_readonly_p.SupervisorTests.test_rss_exceeded_stops_and_labels_sample_not_hard_cap) ... ok
+test_signal_exit_records_signal (test_s8_readonly_p.SupervisorTests.test_signal_exit_records_signal) ... ok
+test_success_without_worker_proof_is_failure (test_s8_readonly_p.SupervisorTests.test_success_without_worker_proof_is_failure) ... ok
+test_supervisor_sigterm_cleans_owned_child_and_keeps_evidence (test_s8_readonly_p.SupervisorTests.test_supervisor_sigterm_cleans_owned_child_and_keeps_evidence) ... ok
+test_timeout_kills_and_records_no_retry (test_s8_readonly_p.SupervisorTests.test_timeout_kills_and_records_no_retry) ... ok
+
+======================================================================
+FAIL: test_resource_unknown_rank_allowed_only_when_engineering_true (test_s8_readonly_p.ReadOnlyPTests.test_resource_unknown_rank_allowed_only_when_engineering_true)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 201, in test_resource_unknown_rank_allowed_only_when_engineering_true
+    self.assertEqual(result['status'], 'verified_readonly_P_engineering')
+AssertionError: 'failed' != 'verified_readonly_P_engineering'
+- failed
++ verified_readonly_P_engineering
+
+
+----------------------------------------------------------------------
+Ran 48 tests in 2.246s
+
+FAILED (failures=1)
+{
+  "status": "prepared_not_executed",
+  "saved_P_read": false,
+  "input_paths_if_approved": [
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpso3vrjw6/old-failed/P-h.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpso3vrjw6/old-failed/P-x.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpso3vrjw6/old-failed/P-label.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpso3vrjw6/old-failed/P-pg_log.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpso3vrjw6/old-failed/status.json",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpso3vrjw6/old-failed/contract.json",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpso3vrjw6/old-failed/panels.json",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpso3vrjw6/old-failed/preflight.json"
+  ],
+  "contract_sha256": "2444e5a8a9dae3db4fee5603b9908a0a3d682b4549c7cd7bb1895171c1630970",
+  "budget": {
+    "threads": 4,
+    "wall_seconds": 900,
+    "address_space_bytes": 12884901888,
+    "rss_stop_bytes": 12884901888,
+    "cuda_visible_devices": "",
+    "attempts": 1
+  },
+  "formal_ready": false
+}

@@ -1,0 +1,649 @@
+test_access_guard_rejects_h_target_checkpoint_and_writes (test_s8_readonly_p.ReadOnlyPTests.test_access_guard_rejects_h_target_checkpoint_and_writes) ... ERROR
+test_contract_budget_cannot_be_relaxed (test_s8_readonly_p.ReadOnlyPTests.test_contract_budget_cannot_be_relaxed) ... ERROR
+test_default_cli_is_plan_only_no_saved_p_reads (test_s8_readonly_p.ReadOnlyPTests.test_default_cli_is_plan_only_no_saved_p_reads) ... ERROR
+test_direct_worker_cli_denied (test_s8_readonly_p.ReadOnlyPTests.test_direct_worker_cli_denied) ... ERROR
+test_dtype_mismatch_not_silently_converted (test_s8_readonly_p.ReadOnlyPTests.test_dtype_mismatch_not_silently_converted) ... ERROR
+test_duplicate_panel_positions_rejected (test_s8_readonly_p.ReadOnlyPTests.test_duplicate_panel_positions_rejected) ... ERROR
+test_engineering_failure_preserved_stops_before_x (test_s8_readonly_p.ReadOnlyPTests.test_engineering_failure_preserved_stops_before_x) ... ERROR
+test_h_target_checkpoint_extra_files_rejected (test_s8_readonly_p.ReadOnlyPTests.test_h_target_checkpoint_extra_files_rejected) ... ERROR
+test_identity_mismatch_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_identity_mismatch_fails_closed) ... ERROR
+test_non_readonly_entrypoint_rejected_before_input_io (test_s8_readonly_p.ReadOnlyPTests.test_non_readonly_entrypoint_rejected_before_input_io) ... ERROR
+test_nonfinite_input_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_nonfinite_input_fails_closed) ... ERROR
+test_old_failed_output_and_existing_output_rejected (test_s8_readonly_p.ReadOnlyPTests.test_old_failed_output_and_existing_output_rejected) ... ERROR
+test_output_schema_not_run_not_false_success (test_s8_readonly_p.ReadOnlyPTests.test_output_schema_not_run_not_false_success) ... ERROR
+test_real_contract_cannot_use_synthetic_shapes (test_s8_readonly_p.ReadOnlyPTests.test_real_contract_cannot_use_synthetic_shapes) ... ERROR
+test_resource_unknown_rank_allowed_only_when_engineering_true (test_s8_readonly_p.ReadOnlyPTests.test_resource_unknown_rank_allowed_only_when_engineering_true) ... ERROR
+test_sha_mismatch_fails_and_keeps_new_failure (test_s8_readonly_p.ReadOnlyPTests.test_sha_mismatch_fails_and_keeps_new_failure) ... ERROR
+test_shape_mismatch_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_shape_mismatch_fails_closed) ... ERROR
+test_source_binding_mismatch_rejected (test_s8_readonly_p.ReadOnlyPTests.test_source_binding_mismatch_rejected) ... ERROR
+test_source_changed_during_solve_failure (test_s8_readonly_p.ReadOnlyPTests.test_source_changed_during_solve_failure) ... ERROR
+test_source_sha_mismatch_prevents_import (test_s8_readonly_p.ReadOnlyPTests.test_source_sha_mismatch_prevents_import) ... ERROR
+test_symlink_input_rejected (test_s8_readonly_p.ReadOnlyPTests.test_symlink_input_rejected) ... ERROR
+test_synthetic_success_is_not_real_p_or_g1 (test_s8_readonly_p.ReadOnlyPTests.test_synthetic_success_is_not_real_p_or_g1) ... ERROR
+test_target_database_identity_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_target_database_identity_fails_closed) ... ERROR
+test_training_calls_absent (test_s8_readonly_p.ReadOnlyPTests.test_training_calls_absent) ... ERROR
+test_abnormal_exit_records_failure (test_s8_readonly_p.SupervisorTests.test_abnormal_exit_records_failure) ... ERROR
+test_address_space_exceeded_stops (test_s8_readonly_p.SupervisorTests.test_address_space_exceeded_stops) ... ERROR
+test_missing_resource_observation_fails_closed (test_s8_readonly_p.SupervisorTests.test_missing_resource_observation_fails_closed) ... ERROR
+test_rss_exceeded_stops_and_labels_sample_not_hard_cap (test_s8_readonly_p.SupervisorTests.test_rss_exceeded_stops_and_labels_sample_not_hard_cap) ... ERROR
+test_signal_exit_records_signal (test_s8_readonly_p.SupervisorTests.test_signal_exit_records_signal) ... ERROR
+test_success_without_worker_proof_is_failure (test_s8_readonly_p.SupervisorTests.test_success_without_worker_proof_is_failure) ... ERROR
+test_timeout_kills_and_records_no_retry (test_s8_readonly_p.SupervisorTests.test_timeout_kills_and_records_no_retry) ... ERROR
+
+======================================================================
+ERROR: test_access_guard_rejects_h_target_checkpoint_and_writes (test_s8_readonly_p.ReadOnlyPTests.test_access_guard_rejects_h_target_checkpoint_and_writes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_contract_budget_cannot_be_relaxed (test_s8_readonly_p.ReadOnlyPTests.test_contract_budget_cannot_be_relaxed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_default_cli_is_plan_only_no_saved_p_reads (test_s8_readonly_p.ReadOnlyPTests.test_default_cli_is_plan_only_no_saved_p_reads)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_direct_worker_cli_denied (test_s8_readonly_p.ReadOnlyPTests.test_direct_worker_cli_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_dtype_mismatch_not_silently_converted (test_s8_readonly_p.ReadOnlyPTests.test_dtype_mismatch_not_silently_converted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_duplicate_panel_positions_rejected (test_s8_readonly_p.ReadOnlyPTests.test_duplicate_panel_positions_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_engineering_failure_preserved_stops_before_x (test_s8_readonly_p.ReadOnlyPTests.test_engineering_failure_preserved_stops_before_x)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_h_target_checkpoint_extra_files_rejected (test_s8_readonly_p.ReadOnlyPTests.test_h_target_checkpoint_extra_files_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_identity_mismatch_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_identity_mismatch_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_non_readonly_entrypoint_rejected_before_input_io (test_s8_readonly_p.ReadOnlyPTests.test_non_readonly_entrypoint_rejected_before_input_io)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_nonfinite_input_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_nonfinite_input_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_old_failed_output_and_existing_output_rejected (test_s8_readonly_p.ReadOnlyPTests.test_old_failed_output_and_existing_output_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_output_schema_not_run_not_false_success (test_s8_readonly_p.ReadOnlyPTests.test_output_schema_not_run_not_false_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_real_contract_cannot_use_synthetic_shapes (test_s8_readonly_p.ReadOnlyPTests.test_real_contract_cannot_use_synthetic_shapes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_resource_unknown_rank_allowed_only_when_engineering_true (test_s8_readonly_p.ReadOnlyPTests.test_resource_unknown_rank_allowed_only_when_engineering_true)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_sha_mismatch_fails_and_keeps_new_failure (test_s8_readonly_p.ReadOnlyPTests.test_sha_mismatch_fails_and_keeps_new_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_shape_mismatch_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_shape_mismatch_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_source_binding_mismatch_rejected (test_s8_readonly_p.ReadOnlyPTests.test_source_binding_mismatch_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_source_changed_during_solve_failure (test_s8_readonly_p.ReadOnlyPTests.test_source_changed_during_solve_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_source_sha_mismatch_prevents_import (test_s8_readonly_p.ReadOnlyPTests.test_source_sha_mismatch_prevents_import)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_symlink_input_rejected (test_s8_readonly_p.ReadOnlyPTests.test_symlink_input_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_synthetic_success_is_not_real_p_or_g1 (test_s8_readonly_p.ReadOnlyPTests.test_synthetic_success_is_not_real_p_or_g1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_target_database_identity_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_target_database_identity_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_training_calls_absent (test_s8_readonly_p.ReadOnlyPTests.test_training_calls_absent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in setUp
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 56, in <dictcomp>
+    files = {name: {'sha256': ro.sha256(self.old / name)}
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 61, in sha256
+    return hashlib.sha256(read_regular(path)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 52, in read_regular
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_abnormal_exit_records_failure (test_s8_readonly_p.SupervisorTests.test_abnormal_exit_records_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 287, in test_abnormal_exit_records_failure
+    result = self.supervise('raise SystemExit(7)')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 277, in supervise
+    return ro.supervise(child, self.out, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 389, in supervise
+    write_json(output / 'supervisor.json', record)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 138, in write_json
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_address_space_exceeded_stops (test_s8_readonly_p.SupervisorTests.test_address_space_exceeded_stops)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 306, in test_address_space_exceeded_stops
+    result = self.supervise('import time; time.sleep(10)')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 277, in supervise
+    return ro.supervise(child, self.out, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 389, in supervise
+    write_json(output / 'supervisor.json', record)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 138, in write_json
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_missing_resource_observation_fails_closed (test_s8_readonly_p.SupervisorTests.test_missing_resource_observation_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 311, in test_missing_resource_observation_fails_closed
+    result = self.supervise('import time; time.sleep(10)')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 277, in supervise
+    return ro.supervise(child, self.out, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 389, in supervise
+    write_json(output / 'supervisor.json', record)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 138, in write_json
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_rss_exceeded_stops_and_labels_sample_not_hard_cap (test_s8_readonly_p.SupervisorTests.test_rss_exceeded_stops_and_labels_sample_not_hard_cap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 299, in test_rss_exceeded_stops_and_labels_sample_not_hard_cap
+    result = self.supervise('import time; time.sleep(10)')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 277, in supervise
+    return ro.supervise(child, self.out, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 389, in supervise
+    write_json(output / 'supervisor.json', record)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 138, in write_json
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_signal_exit_records_signal (test_s8_readonly_p.SupervisorTests.test_signal_exit_records_signal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 292, in test_signal_exit_records_signal
+    result = self.supervise('import os, signal; os.kill(os.getpid(), signal.SIGKILL)')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 277, in supervise
+    return ro.supervise(child, self.out, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 389, in supervise
+    write_json(output / 'supervisor.json', record)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 138, in write_json
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_success_without_worker_proof_is_failure (test_s8_readonly_p.SupervisorTests.test_success_without_worker_proof_is_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 315, in test_success_without_worker_proof_is_failure
+    result = self.supervise('pass')
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 277, in supervise
+    return ro.supervise(child, self.out, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 389, in supervise
+    write_json(output / 'supervisor.json', record)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 138, in write_json
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+======================================================================
+ERROR: test_timeout_kills_and_records_no_retry (test_s8_readonly_p.SupervisorTests.test_timeout_kills_and_records_no_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 280, in test_timeout_kills_and_records_no_retry
+    result = self.supervise('import time; time.sleep(10)', wall_seconds=0.1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 277, in supervise
+    return ro.supervise(child, self.out, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 389, in supervise
+    write_json(output / 'supervisor.json', record)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 138, in write_json
+    path = no_symlink(path)
+           ^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 47, in no_symlink
+    raise ValueError(f'Symlink path forbidden: {component}')
+ValueError: Symlink path forbidden: /var
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.140s
+
+FAILED (errors=31)

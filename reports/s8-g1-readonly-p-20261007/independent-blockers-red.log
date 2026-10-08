@@ -1,0 +1,77 @@
+test_complete_direct_worker_invocation_rejected (test_s8_readonly_p.ReadOnlyPTests.test_complete_direct_worker_invocation_rejected) ... FAIL
+test_contract_data_path_rejected_before_bytes (test_s8_readonly_p.ReadOnlyPTests.test_contract_data_path_rejected_before_bytes) ... FAIL
+test_duplicate_panel_positions_rejected (test_s8_readonly_p.ReadOnlyPTests.test_duplicate_panel_positions_rejected) ... ok
+test_fifo_input_is_rejected_without_blocking (test_s8_readonly_p.ReadOnlyPTests.test_fifo_input_is_rejected_without_blocking) ... ok
+test_h_target_checkpoint_extra_files_rejected (test_s8_readonly_p.ReadOnlyPTests.test_h_target_checkpoint_extra_files_rejected) ... ok
+test_non_readonly_entrypoint_rejected_before_input_io (test_s8_readonly_p.ReadOnlyPTests.test_non_readonly_entrypoint_rejected_before_input_io) ... ok
+test_old_failed_output_and_existing_output_rejected (test_s8_readonly_p.ReadOnlyPTests.test_old_failed_output_and_existing_output_rejected) ... ok
+test_output_directory_swap_between_check_and_write_rejected (test_s8_readonly_p.ReadOnlyPTests.test_output_directory_swap_between_check_and_write_rejected) ... FAIL
+test_parent_directory_swap_between_check_and_read_rejected (test_s8_readonly_p.ReadOnlyPTests.test_parent_directory_swap_between_check_and_read_rejected) ... FAIL
+test_parent_directory_symlink_rejected (test_s8_readonly_p.ReadOnlyPTests.test_parent_directory_symlink_rejected) ... ok
+test_protected_price_and_old_code_output_rejected (test_s8_readonly_p.ReadOnlyPTests.test_protected_price_and_old_code_output_rejected) ... ok
+test_source_binding_mismatch_rejected (test_s8_readonly_p.ReadOnlyPTests.test_source_binding_mismatch_rejected) ... ok
+test_symlink_input_rejected (test_s8_readonly_p.ReadOnlyPTests.test_symlink_input_rejected) ... ok
+test_untrusted_contract_sha_rejected_before_input_read (test_s8_readonly_p.ReadOnlyPTests.test_untrusted_contract_sha_rejected_before_input_read) ... usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: Execution requires Linux, real frozen P contract/SHA, new output and explicit empty CUDA
+ok
+
+======================================================================
+FAIL: test_complete_direct_worker_invocation_rejected (test_s8_readonly_p.ReadOnlyPTests.test_complete_direct_worker_invocation_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 270, in test_complete_direct_worker_invocation_rejected
+    ro.main(['--contract', str(manifest), '--contract-sha256', pin,
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 560, in main
+    return worker(contract, no_symlink(args.output), args.contract.absolute())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+AssertionError: must not enter worker
+
+======================================================================
+FAIL: test_contract_data_path_rejected_before_bytes (test_s8_readonly_p.ReadOnlyPTests.test_contract_data_path_rejected_before_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 260, in test_contract_data_path_rejected_before_bytes
+    ro.main(['--contract', str(self.old/'P-h.npy')])
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 542, in main
+    payload = read_regular(args.contract)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+AssertionError: must not open data
+
+======================================================================
+FAIL: test_output_directory_swap_between_check_and_write_rejected (test_s8_readonly_p.ReadOnlyPTests.test_output_directory_swap_between_check_and_write_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 299, in test_output_directory_swap_between_check_and_write_rejected
+    with patch.object(ro, 'no_symlink', side_effect=swap), self.assertRaises((ValueError, OSError)):
+AssertionError: (<class 'ValueError'>, <class 'OSError'>) not raised
+
+======================================================================
+FAIL: test_parent_directory_swap_between_check_and_read_rejected (test_s8_readonly_p.ReadOnlyPTests.test_parent_directory_swap_between_check_and_read_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 287, in test_parent_directory_swap_between_check_and_read_rejected
+    with patch.object(ro, 'no_symlink', side_effect=swap), self.assertRaises((ValueError, OSError)):
+AssertionError: (<class 'ValueError'>, <class 'OSError'>) not raised
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.059s
+
+FAILED (failures=4)

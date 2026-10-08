@@ -1,0 +1,27 @@
+test_truncated_worker_proof_recovers_stages_but_never_success (test_s8_readonly_p.ReadOnlyPTests.test_truncated_worker_proof_recovers_stages_but_never_success) ... ERROR
+
+======================================================================
+ERROR: test_truncated_worker_proof_recovers_stages_but_never_success (test_s8_readonly_p.ReadOnlyPTests.test_truncated_worker_proof_recovers_stages_but_never_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 335, in test_truncated_worker_proof_recovers_stages_but_never_success
+    recovered = ro.collect_worker_proof(self.contract, out)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 544, in collect_worker_proof
+    return json.loads(read_regular(output/'worker-proof.json'))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+
+----------------------------------------------------------------------
+Ran 1 test in 1.266s
+
+FAILED (errors=1)

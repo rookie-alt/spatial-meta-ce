@@ -1,0 +1,66 @@
+test_partial_recovery_rejects_parseable_unbound_stage_records (test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) ... 
+  test_partial_recovery_rejects_parseable_unbound_stage_records (test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) (case=0) ... FAIL
+  test_partial_recovery_rejects_parseable_unbound_stage_records (test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) (case=1) ... FAIL
+  test_partial_recovery_rejects_parseable_unbound_stage_records (test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) (case=2) ... FAIL
+  test_partial_recovery_rejects_parseable_unbound_stage_records (test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) (case=3) ... FAIL
+  test_partial_recovery_rejects_parseable_unbound_stage_records (test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) (case=4) ... FAIL
+
+======================================================================
+FAIL: test_partial_recovery_rejects_parseable_unbound_stage_records (test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) (case=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 363, in test_partial_recovery_rejects_parseable_unbound_stage_records
+    self.assertEqual(failed['status'], 'failed')
+AssertionError: 'verified' != 'failed'
+- verified
++ failed
+
+
+======================================================================
+FAIL: test_partial_recovery_rejects_parseable_unbound_stage_records (test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) (case=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 363, in test_partial_recovery_rejects_parseable_unbound_stage_records
+    self.assertEqual(failed['status'], 'failed')
+AssertionError: 'verified' != 'failed'
+- verified
++ failed
+
+
+======================================================================
+FAIL: test_partial_recovery_rejects_parseable_unbound_stage_records (test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) (case=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 363, in test_partial_recovery_rejects_parseable_unbound_stage_records
+    self.assertEqual(failed['status'], 'failed')
+AssertionError: 'verified' != 'failed'
+- verified
++ failed
+
+
+======================================================================
+FAIL: test_partial_recovery_rejects_parseable_unbound_stage_records (test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) (case=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 363, in test_partial_recovery_rejects_parseable_unbound_stage_records
+    self.assertEqual(failed['status'], 'failed')
+AssertionError: 'verified' != 'failed'
+- verified
++ failed
+
+
+======================================================================
+FAIL: test_partial_recovery_rejects_parseable_unbound_stage_records (test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) (case=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 363, in test_partial_recovery_rejects_parseable_unbound_stage_records
+    self.assertEqual(failed['status'], 'failed')
+AssertionError: 'verified' != 'failed'
+- verified
++ failed
+
+
+----------------------------------------------------------------------
+Ran 1 test in 1.247s
+
+FAILED (failures=5)

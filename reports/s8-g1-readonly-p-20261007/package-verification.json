@@ -1,0 +1,50 @@
+{
+  "archive_members": 8,
+  "all_member_SHA_match": true,
+  "safe_regular_relative_members": true,
+  "protected_files_unchanged": 66,
+  "local_markdown_links": [
+    {
+      "file": "实验文档/36-S8G1真实P只读核验本地准备与待批执行.md",
+      "link": "../reports/s8-g1-readonly-p-20261007/final-verification.json",
+      "target_exists": true
+    },
+    {
+      "file": "实验文档/36-S8G1真实P只读核验本地准备与待批执行.md",
+      "link": "../reports/s8-g1-readonly-p-20261007/review.md",
+      "target_exists": true
+    },
+    {
+      "file": "实验文档/36-S8G1真实P只读核验本地准备与待批执行.md",
+      "link": "../scripts/verify_s8_readonly_p.py",
+      "target_exists": true
+    },
+    {
+      "file": "实验文档/36-S8G1真实P只读核验本地准备与待批执行.md",
+      "link": "../tests/test_s8_readonly_p.py",
+      "target_exists": true
+    },
+    {
+      "file": "实验文档/36-S8G1真实P只读核验本地准备与待批执行.md",
+      "link": "../reports/s8-g1-readonly-p-20261007/freeze_package.py",
+      "target_exists": true
+    },
+    {
+      "file": "实验文档/36-S8G1真实P只读核验本地准备与待批执行.md",
+      "link": "../reports/s8-g1-readonly-p-20261007/execution-contract.json",
+      "target_exists": true
+    },
+    {
+      "file": "实验文档/36-S8G1真实P只读核验本地准备与待批执行.md",
+      "link": "../reports/s8-g1-readonly-p-20261007/proof.schema.json",
+      "target_exists": true
+    },
+    {
+      "file": "实验文档/36-S8G1真实P只读核验本地准备与待批执行.md",
+      "link": "../reports/s8-g1-readonly-p-20261007/package-manifest.json",
+      "target_exists": true
+    }
+  ],
+  "real_P_read": false,
+  "server_access": false
+}

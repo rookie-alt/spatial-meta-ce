@@ -1,0 +1,6 @@
+test_guarded_local_numeric_import_and_synthetic_ls (test_s8_readonly_p.ReadOnlyPTests.test_guarded_local_numeric_import_and_synthetic_ls) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.679s
+
+OK

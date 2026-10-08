@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-08",
+  "reviewer": "Dalton",
+  "reviewer_agent_id": "01a116eb-3ae6-7bd1-9a74-58f419e4979e",
+  "status": "approved_final_local_preparation",
+  "remaining_code_blockers": [],
+  "method": "independent_read_of_actual_logs_and_SHA_bindings_no_test_rerun_no_numeric_recompute",
+  "targeted_tests": {
+    "tests": 54,
+    "seconds": 3.662,
+    "log_sha256": "25c4b21e8e24b54ab453d2aca37ed7514e125d838df2b3ee9f9724e9d053aa89"
+  },
+  "full_tests": {
+    "tests": 728,
+    "seconds": 91.705,
+    "log_sha256": "9a69577ce2385ed042a075ebe281e9130c4176b5d1dcdaf457ed53471263c357"
+  },
+  "Ruff": {
+    "changed_files_passed": true,
+    "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "repository_historical_issues": 110
+  },
+  "source_sha256": {
+    "scripts/verify_s8_readonly_p.py": "0f781f3500ea438eebe5c1d4962da0c454be3826a81c85df75412d71f97fcf35",
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/s8_probe.py": "cea49d50eefe814c4ee3ad315d047787f897170d39ad855b18229f796b0cb12a",
+    "实验文档/27-S8G1运行器与真实smoke协议.md": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+    "实验文档/34-S8G1工程验收v2批准协议.md": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+    "reports/s8-g1-readonly-p-20261007/proof.schema.json": "8b375ff815463436736bb55fa32984fbd2f8d3ec7dabb55e455d65c7810665cb"
+  },
+  "test_sha256": {
+    "tests/test_s8_readonly_p.py": "7113545022afaca7aa76601f6866b208b0b8c88d3714595eba69f9b63292b93a"
+  },
+  "archive_sha256": "39ee9efcdaecd0cb5e71aa6d03009b5a78aa5b1cf8dfa8cf763ad2153282d23c",
+  "contract_sha256": "5d1ea6f4c9cd0f061f3db9ad5d9d7a88485485a88a169c213ddd7a25ed7e8650",
+  "all_current_54_test_names_present_in_both_test_logs": true,
+  "binding_matches_prior_code_approval": true,
+  "authority": "local_preparation_only_no_server_permission_inferred",
+  "not_repeated_by_reviewer": [
+    "package_members",
+    "66_protected_files"
+  ],
+  "no_network_or_real_data_access": true
+}

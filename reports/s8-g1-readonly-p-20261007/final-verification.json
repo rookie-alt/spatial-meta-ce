@@ -1,0 +1,100 @@
+{
+  "task_id": "s8-g1-readonly-p-20261007",
+  "baseline_commit": "41ccc17a6d6adcc0d70e58ffbadd29353825eec8",
+  "branch": "feat/s8-g1-engineering-v2-20261007",
+  "scope": "local_preparation_only_synthetic_not_real_P",
+  "source_sha256": {
+    "scripts/verify_s8_readonly_p.py": "0f781f3500ea438eebe5c1d4962da0c454be3826a81c85df75412d71f97fcf35",
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/s8_probe.py": "cea49d50eefe814c4ee3ad315d047787f897170d39ad855b18229f796b0cb12a",
+    "实验文档/27-S8G1运行器与真实smoke协议.md": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+    "实验文档/34-S8G1工程验收v2批准协议.md": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+    "reports/s8-g1-readonly-p-20261007/proof.schema.json": "8b375ff815463436736bb55fa32984fbd2f8d3ec7dabb55e455d65c7810665cb"
+  },
+  "test_sha256": {
+    "tests/test_s8_readonly_p.py": "7113545022afaca7aa76601f6866b208b0b8c88d3714595eba69f9b63292b93a"
+  },
+  "package_archive_sha256": "39ee9efcdaecd0cb5e71aa6d03009b5a78aa5b1cf8dfa8cf763ad2153282d23c",
+  "execution_contract_sha256": "5d1ea6f4c9cd0f061f3db9ad5d9d7a88485485a88a169c213ddd7a25ed7e8650",
+  "local_targeted_unittest": {
+    "tests": 54,
+    "seconds": 3.662,
+    "exit_code": 0,
+    "passed": true,
+    "log": "targeted-tests-certified.log"
+  },
+  "local_full_unittest": {
+    "tests": 728,
+    "seconds": 91.705,
+    "exit_code": 0,
+    "passed": true,
+    "log": "full-tests-54-final.log",
+    "CUDA_VISIBLE_DEVICES": "",
+    "CPU_threads": 1,
+    "sandbox_escalation": true
+  },
+  "changed_Ruff_passed": true,
+  "repository_Ruff_passed": false,
+  "repository_Ruff_existing_issues": 110,
+  "repository_Ruff_log_byte_matches_G1_v2_baseline": true,
+  "protected_historical_and_source_files_unchanged": 66,
+  "production_solver_changed": false,
+  "approved_34_protocol_changed": false,
+  "S2_P1_changed": false,
+  "independent_diff_review": "approved_final_local_preparation_with_independent_full_log_SHA_binding",
+  "remaining_code_blockers": [],
+  "original_G1_status": "failed",
+  "formal_ready": false,
+  "strict_certificate": "unknown",
+  "real_P_read": false,
+  "server_access": false,
+  "deployed": false,
+  "H_read": false,
+  "target_database_read": false,
+  "old_checkpoint_read": false,
+  "real_G1_smoke_executed": false,
+  "formal_training_started": false,
+  "GPU_used": false,
+  "network_used": false,
+  "git_status": "pre_commit_snapshot_ready_for_local_preparation_commit",
+  "pushed_this_task": false,
+  "remote_state_checked": false,
+  "identity_scope": "historical_SHA_bound_attestation_not_fresh_row_query_SQL_semantics",
+  "RSS_scope": "sampled_stop_threshold_not_hard_cap",
+  "RLIMIT_AS_scope": "per_parent_and_worker_virtual_address_space_not_RSS",
+  "Linux_actual_handshake_and_resource_enforcement_executed": false,
+  "log_sha256": {
+    "red-tests.log": "e49d8ee05b7a71a53ab54ede56a25550bc5e10316239b991897d17b62455c213",
+    "partial-stage-validation-red.log": "d25a473c631820c5df5e58757637386587ca9d8562ce4a9b590482534d98d933",
+    "started-stage-error-red.log": "aac0ec3396e89e3853a0cbeb30ad55e2e611d59713b815b9ea20f540d16c1c04",
+    "targeted-tests-certified.log": "25c4b21e8e24b54ab453d2aca37ed7514e125d838df2b3ee9f9724e9d053aa89",
+    "full-tests-54-final.log": "9a69577ce2385ed042a075ebe281e9130c4176b5d1dcdaf457ed53471263c357",
+    "changed-ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "repository-ruff.log": "6a9e972102c95d9fa25e306701856c6292bc2950f67db92c5bdb36933d54806d"
+  },
+  "RED_note": "proof completeness negatives were written before fix but first run aborted by OMP SHM exit134; not counted as valid assertion RED",
+  "execution_approval_required": "批准执行A阶段真实P只读核验",
+  "B_smoke_separate_approval_required": true,
+  "formal_training_separate_approval_required": true,
+  "preparation_source_sha256": {
+    "reports/s8-g1-readonly-p-20261007/freeze_package.py": "4d81832576087e272cabe5a4191c3e1087a948ce3cc44aaf03591b73d925548d"
+  },
+  "Linux_handshake_test_scope": "mock_or_structural_local_checks_no_real_Linux_execution",
+  "actual_local_read_paths": {
+    "project_root": "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007",
+    "local_provenance": [
+      "reports/s8-g1-smoke-20261007/solver-diagnosis.json",
+      "reports/s8-g1-smoke-20261007/server-controller.json",
+      "reports/s8-g1-smoke-20261007/partial-stage-verification.json",
+      "reports/s8-g1-smoke-20261007/deployment-manifest.json",
+      "reports/s8-g1-smoke-20261007/thread-backend-precheck.json",
+      "实验文档/results/s8-g1-smoke-20261007/{status,contract,panels,preflight}.json"
+    ],
+    "fixture_scope": "only freshly generated TemporaryDirectory synthetic arrays/checkpoints for local regression; no old real checkpoint",
+    "real_saved_P_array_paths_opened": []
+  },
+  "independent_final_log_binding": "independent-final-log-binding.json",
+  "independent_final_log_binding_date": "2026-10-08",
+  "closeout_date": "2026-10-08",
+  "server_execution_authorization_note": "separate_user_approval_2026-10-08_preserved_in_execution_report_not_in_frozen_contract"
+}

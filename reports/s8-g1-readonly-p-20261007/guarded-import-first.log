@@ -1,0 +1,44 @@
+test_guarded_local_numeric_import_and_synthetic_ls (test_s8_readonly_p.ReadOnlyPTests.test_guarded_local_numeric_import_and_synthetic_ls) ... FAIL
+
+======================================================================
+FAIL: test_guarded_local_numeric_import_and_synthetic_ls (test_s8_readonly_p.ReadOnlyPTests.test_guarded_local_numeric_import_and_synthetic_ls)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 439, in test_guarded_local_numeric_import_and_synthetic_ls
+    self.assertEqual(proc.returncode, 0, proc.stderr)
+AssertionError: 1 != 0 : Traceback (most recent call last):
+  File "<string>", line 6, in <module>
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py", line 11, in <module>
+    import torch
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/__init__.py", line 1598, in <module>
+    import torch.utils.data
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/utils/data/__init__.py", line 21, in <module>
+    from torch.utils.data.datapipes.datapipe import (
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/utils/data/datapipes/__init__.py", line 1, in <module>
+    from . import iter
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/utils/data/datapipes/iter/__init__.py", line 1, in <module>
+    from torch.utils.data.datapipes.iter.utils import (
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/utils/data/datapipes/iter/utils.py", line 3, in <module>
+    from torch.utils.data.datapipes.datapipe import IterDataPipe
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/utils/data/datapipes/datapipe.py", line 15, in <module>
+    dill = import_dill()
+           ^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/torch/utils/_import_utils.py", line 35, in import_dill
+    import dill
+  File "/opt/anaconda3/lib/python3.11/site-packages/dill/__init__.py", line 26, in <module>
+    from ._dill import (
+  File "/opt/anaconda3/lib/python3.11/site-packages/dill/_dill.py", line 163, in <module>
+    BufferedRandomType = get_file_type('r+b', buffering=-1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/site-packages/dill/_dill.py", line 156, in get_file_type
+    f = open(os.devnull, *args, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 587, in guard
+    raise PermissionError('Worker writes only new proof files')
+PermissionError: Worker writes only new proof files
+
+
+----------------------------------------------------------------------
+Ran 1 test in 1.174s
+
+FAILED (failures=1)
