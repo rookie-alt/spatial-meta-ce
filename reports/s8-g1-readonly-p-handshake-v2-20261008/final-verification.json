@@ -89,7 +89,7 @@
   "new_real_P_authorization_required": "新版A单次真实P只读核验",
   "pushed_this_task": false,
   "merged_main": false,
-  "git_status": "GREEN_ready_for_local_commit_not_pushed",
+  "git_status": "GREEN_locally_committed_not_pushed",
   "log_sha256": {
     "handshake-red.log": "cc0cfa4107903a996d15bb7cc09762aaa57837b7681b0437c2064568894faf7c",
     "handshake-green.log": "2b86eb5f37ad14cad6553996d3961d15f9ebb68490794bf1ef7c0549c4c9a91f",
@@ -103,5 +103,7 @@
     "linux-synthetic.stderr.log": "ab7dcc6ee7a7a1580d77768d353cd5e95d6697d84a7c63c2449d935a159be593",
     "linux-synthetic-transport.json": "61e28fea46c175c7bb20c738355f0c35c1c627a3a2badb01f62c4884ae6c3afe"
   },
-  "independent_review_record": "independent-final-review.md"
+  "independent_review_record": "independent-final-review.md",
+  "GREEN_commit": "9701571291d7de3d352ece708079b2ccdd215e12",
+  "git_local_state": "git-local-state.json"
 }

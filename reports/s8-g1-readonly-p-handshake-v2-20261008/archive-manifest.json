@@ -4,8 +4,9 @@
     "changed-ruff-pre-linux.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
     "documentation-links.json": "5c94e209c2dd74127e0ecf65a19a93fa9e7fab1067dad3e74447675a2e4f064f",
     "execution-contract.json": "35a7ad5fa21374b33a14f13745af8b297d7b857d7cc741eb548a05c900a67b96",
-    "final-verification.json": "3c6df4a64d49abe4507cab17d8c17b9801bde779391679f0f8b577b011b069ac",
+    "final-verification.json": "4a605b46ab5084bff0ac1205b21e8e51ebe415d463d9cf866cf79f589d110801",
     "freeze_package.py": "c1e9cf3b26155e1b7b8a64239625f880fa3a7968a4ab1c69ed7961819b050338",
+    "git-local-state.json": "680f70cb38939ad0795d5d0a8c0c69e87373884d1137e4a6656f5110f885355b",
     "handshake-green.log": "2b86eb5f37ad14cad6553996d3961d15f9ebb68490794bf1ef7c0549c4c9a91f",
     "handshake-red-fixture-error.log": "a50aabb5ffeb701075884a4d078c7aef1740efdc859a1b03ba7f212aa294a2fc",
     "handshake-red.log": "cc0cfa4107903a996d15bb7cc09762aaa57837b7681b0437c2064568894faf7c",
@@ -36,6 +37,7 @@
     "suite-interrupt-green.log": "63ccdf08707d3b48430f6d29fb982cdd4a20ca7133ab7b93d766b2eadbe9b320",
     "suite-interrupt-red.log": "0a9c3f09af6629cccf6f62f9245bca1fb4acd698d55e5a3801fefa1fb25385b2"
   },
-  "status": "GREEN_and_independently_approved_ready_for_local_commit",
-  "real_P_not_executed": true
+  "status": "GREEN_locally_committed_not_pushed",
+  "real_P_not_executed": true,
+  "GREEN_commit": "9701571291d7de3d352ece708079b2ccdd215e12"
 }
