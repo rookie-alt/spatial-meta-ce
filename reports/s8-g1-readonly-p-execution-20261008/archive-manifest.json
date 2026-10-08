@@ -3,6 +3,7 @@
   "files_sha256": {
     ".gitattributes": "ed156b0e23af0cd42ee06f5aeca3deb4bff045c9dee3c35a500c28ec68a5a43d",
     "authorization.json": "d609153e8eebbf533d5a825c9e95e9d4d0cfa0022c0ff8b5bfc9403b54aebbb5",
+    "closeout.md": "1a717f899ee7b1e34dd11011d0dbd6bb372be703d118b213d530c433c259ea9f",
     "directory-check.json": "9c7afc2955d6e2b2f46369c88d62b65ee5d2ac100afaaa869ed0445e9414c436",
     "directory-check.stderr.log": "048e2ba89ae430962e02f5341cf60c694fb7e131cb417790075a56b32ca09992",
     "directory-check.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -15,6 +16,7 @@
     "extract.json": "b977d7f97f34ae62f71d545a866150131028f1d986514f69eae99348250d8298",
     "extract.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "extract.stdout.log": "c366d2d0b66306a85915ec93f98f3d39576c85f530dcc74f0cbc9deaa5c12c22",
+    "git-local-final-state.json": "360df0316368bd94fb95e931cbe6b4dba4d3e2eaacded21c05f0e4c846e5786e",
     "git-local-state-before-server.json": "5b7584624a042e03ac4c2cf925b8929c6664b4993affdc5f955eb49b55afa3b3",
     "independent-record-review.md": "99dc5fee60ca2e0a576bc2ce675748b7b9718c968ccaaf928aba0c4092da47cf",
     "local-archive-verification.json": "9ad50abdec44338ebf36349308ae1cde016b07c56b96b93e14b673bf67b2f463",
@@ -41,5 +43,6 @@
   "status": "failed_A_single_attempt_archive_ready",
   "original_server_proofs_byte_preserved": true,
   "check_scope": "local_archive_binding_not_numeric_recompute",
-  "raw_log_git_eol_normalization_disabled": true
+  "raw_log_git_eol_normalization_disabled": true,
+  "execution_evidence_commit": "ad5eb7817c1cefe23c43b7eed1821b9af0fef4a5"
 }
