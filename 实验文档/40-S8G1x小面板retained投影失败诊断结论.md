@@ -32,11 +32,14 @@
 
 诊断入口 `gate_effect=diagnostic_only_no_gate_change`，`projection_kind=left_retained_U_projection`，`formula=U_r @ (U_r.T @ target)`，rtol=atol=1e-12，NumPy 1.26.1。
 
-## 3. 结论：属于数值边缘 + 检查对象不匹配，不是代码错误，也不是真实面板异常
+## 3. 结论：不是代码错误、不是面板异常、不是资源问题；失败根因是 retained 投影检查在强秩亏面板上的数值可达精度不足（机制标签未证成）
 
 1. **不是代码错误。** reported LS 与 reference LS 的残差逐位相同，说明两次独立lstsq解在FP64下完全一致；同一检查在h small/h full均通过。因此握手、来源、shape/dtype/finite、rank、谱、objective、reference prediction 都正常。
 2. **不是真实面板异常。** 八输入SHA一致、finite、rank三谱一致为586、rank_stability stable；数据本身没有出现NaN/Inf、错配或来源变化。
-3. **是数值边缘（条件数≈1e12）叠加检查对象不匹配。** 既有检查比较的是两个**不同算法**对该面板的retained投影结果：`design @ lstsq_theta` 与 SVD 的 `U_r(U_rᵀtarget)`。在精确算术下二者相等，但在FP64下良态方向差异被 ~1/σ_min 放大。保留到cutoff≈3.4e-10的相对分离意味着误差放大上限 ~ eps·(σ₁/cutoff) ≈ 2.2e-4；实际观测到的投影残差 7.5e-08 远低于该上限，与FP64在条件数~1e12下可达到的一致水平相符，而与检查要求的 1.8e-12 阈值相差约 4.2e4 倍。
+3. **失败发生在既有 retained 投影检查上，该检查在此强秩亏面板达到 FP64 数值可达精度的边界之外。** 事实：reported 与 reference 两个 ls​t​sq 解的投影残差**逐位相同**（L2=2.1955430818421994e-07，L∞=maxabs=7.49297310864705e-08，max row 750），说明两次独立求解结果一致、没有分支错误；同一检查在 h small / h full 却通过，说明逻辑本身可用。该面板 775 列、数值 rank 586、σ₁=340.686、固定 cutoff=3.40686e-10，条件数 σ₁/cutoff ≈ 1.0e12，`eps·(σ₁/cutoff)` ≈ 2.2e-04。检查要求
+   `|design@theta - U_r(U_rᵀtarget)| <= 1e-12 + 1e-12·|proj|`，而实际逐元素残差约 7.5e-08，比值约 **4.2e4**。
+   
+   **边界声明（必须随记录保留）：** 本证据证明的是「该检查在 FP64 下于本面板无法满足 1e-12 绝对式容差」，**不能**单独判定其机制究竟属于「(a) 门槛/检查对象不匹配（不同算法口径）」还是「(b) 同一检查固有的条件数放大」；区分二者需要更高精度（如扩展精度）独立重算或对检查语义的独立论证，本轮**没有**做（`independent_numeric_recompute=false`）。因此报告只把它写成**数值可达精度不足**，不指定 (a)/(b)。
 4. **失败字段定位：** 只有 `retained_subspace_pass`、`reference_retained_subspace_pass`（及其派生的`reference_pass`、`engineering_verified`、`pass`）为False；`metadata_pass`、`normal_residual_pass`、`objective_pass`、`reference_objective_pass`、`reference_prediction_pass`、`spectrum_pass`、`reference_spectrum_pass`、`svd_backend_pass`、`observed_rank_agreement` 均为True。
 5. h full 19456 resource-only工程通过（rank_stability unknown）；x full 19456 因 x small fail-fast 而 not_run，未评估。
 
@@ -57,6 +60,13 @@
 - **A 仍为 failed，B 依旧阻断；本轮不启动 B。** 诊断已把失败原因量化清楚：这是强秩亏面板（775列/rank586、条件数~1e12）在 FP64 下 `lstsq` 解与 SVD 保留投影无法在1e-12量级一致，而检查用的是1e-12绝对式阈值。
 - 是否值得再投入严格认证：若目标是“A工程通过→B”，只需按§4建议另审一个限域工程判据修订，成本低且可复现；若目标是“strict线性最优/表征信息缺失”的强机制结论，则**当前路线在合理预算内不可行**，A/B都无法提供该证明。
 - 建议：**不要继续无上限扩展Fraction或严格谱认证**。可（a）另审§4的限域工程判据修订以完成A的工程闭环，或（b）若强机制结论不可得，暂停S8，转入已证实实验（h/x工程一致性、空间漂移Q95实测对照）的论文收尾，并明确标注strict unknown与numerical-edge限制。
+
+## 6b. 本证据不能支持的结论（随记录保留）
+
+- **数值未独立重算**：只核对了字段算术自洽（阈值律、恒等式、排序、rank/shape）、逐位相同与 SHA 绑定，未独立复算 residual；保持 `independent_numeric_recompute=false`。
+- **机制未证成**：不能区分「门槛/检查对象不匹配」与「同一检查的条件数放大」，不得表述为已证成机制。
+- **退出码口径**：原始文件只有 `ssh_and_outer_returncode` 合并值与 `supervisor.returncode`；parent 单独 rc 未序列化，主代理 `execution-result.json` 中的分列是汇总，不作为独立依据。
+- 不得推出：A/G1 可改判通过、失败对新数据无害、residual 幅值说明数据有问题、面板新鲜性或真实 SQL/选择率正确（`identity_scope` 明示仅为历史 SHA 绑定取证）。
 
 ## 7. 原状态保留
 
