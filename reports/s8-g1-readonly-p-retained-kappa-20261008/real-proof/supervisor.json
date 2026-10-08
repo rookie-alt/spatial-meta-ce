@@ -1,0 +1,14 @@
+{
+  "attempts": 1,
+  "failure_reason": "resource_observation_failed",
+  "returncode": 0,
+  "signal": null,
+  "sampled_peak_rss_bytes": 1321377792,
+  "sampled_peak_address_space_bytes": 4289466368,
+  "rss_measurement": "sampled_not_hard_cap",
+  "poll_seconds": 0.05,
+  "RLIMIT_AS_bytes": 12884901888,
+  "wall_limit_seconds": 900,
+  "error": "'VmRSS'",
+  "seconds": 7.922383275814354
+}

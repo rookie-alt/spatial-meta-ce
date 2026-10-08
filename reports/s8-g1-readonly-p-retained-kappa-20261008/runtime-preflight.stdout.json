@@ -1,0 +1,48 @@
+{
+  "status": "kappa_runtime_preflight_passed",
+  "source_test_contract_SHA_match": true,
+  "deployed_files_sha256": {
+    "scripts/verify_s8_readonly_p.py": "bba63497b9da593827f1f20c60a7766aacc30d470561b9334280396d929f61bf",
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/s8_probe.py": "7c7847ce1122f0cf265541781812f4ed8cff2f671c9dc42c8e2abda71e48cfad",
+    "\u5b9e\u9a8c\u6587\u6863/27-S8G1\u8fd0\u884c\u5668\u4e0e\u771f\u5b9esmoke\u534f\u8bae.md": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+    "\u5b9e\u9a8c\u6587\u6863/34-S8G1\u5de5\u7a0b\u9a8c\u6536v2\u6279\u51c6\u534f\u8bae.md": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+    "reports/s8-g1-readonly-p-20261007/proof.schema.json": "8b375ff815463436736bb55fa32984fbd2f8d3ec7dabb55e455d65c7810665cb",
+    "tests/test_s8_readonly_p.py": "9730b3c009955441b1942bb52464d3cebc047a0753fbf259c068acca8aee9707",
+    "tests/test_s8_retained_tolerance.py": "eff6c5ff2f6741cb65ae7044e50192a11b78e8da4154b0b03f4ee0666b06ef84",
+    "reports/s8-g1-readonly-p-retained-kappa-20261008/execution-contract.json": "54f9c24c47062b1a73e5f2be4b651fb143760a1ce689ae75bd27e63567ddd99f"
+  },
+  "sys_platform": "linux",
+  "sys_prefix": "/gly/weilin/PRICE-master/venv",
+  "python_version": "3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]",
+  "numpy": "1.26.1",
+  "torch": "2.1.0+cu121",
+  "torch_threads": 4,
+  "torch_interop_threads": 1,
+  "threadpools": [
+    {
+      "filepath": "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so",
+      "num_threads": 4,
+      "counter_symbol": "openblas_get_num_threads64_"
+    },
+    {
+      "filepath": "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/lib/libgomp-a34b3233.so.1",
+      "num_threads": 4,
+      "counter_symbol": "omp_get_max_threads"
+    }
+  ],
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "RLIMIT_AS_bytes": [
+    12884901888,
+    12884901888
+  ],
+  "seconds": 1.8521249541081488,
+  "old_run_files_opened": [],
+  "real_P_read": false
+}

@@ -1,0 +1,8 @@
+{
+  "attempt": 1,
+  "frozen_command": "cd /gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-kappa-code-20261008 && timeout --signal=TERM --kill-after=1s 899s env PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 NUMEXPR_NUM_THREADS=4 VECLIB_MAXIMUM_THREADS=4 /gly/weilin/PRICE-master/venv/bin/python -B scripts/verify_s8_readonly_p.py --contract /gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-kappa-code-20261008/reports/s8-g1-readonly-p-retained-kappa-20261008/execution-contract.json --contract-sha256 54f9c24c47062b1a73e5f2be4b651fb143760a1ce689ae75bd27e63567ddd99f --output /gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-kappa-proof-20261008 --execute",
+  "contract_sha256": "54f9c24c47062b1a73e5f2be4b651fb143760a1ce689ae75bd27e63567ddd99f",
+  "archive_sha256": "40ca43c6d8e73e7e73e1466864fb92dc11b2b4778343af779b7c870cf48bb658",
+  "entry_sha256": "bba63497b9da593827f1f20c60a7766aacc30d470561b9334280396d929f61bf",
+  "retry_allowed": false
+}
