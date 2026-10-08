@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-08",
+  "timezone": "Asia/Shanghai",
+  "authorization_source": "human_user_current_chat",
+  "authorization_quote": "批准新版A单次真实P只读核验。",
+  "scope": "one_new_frozen_handshake_v2_saved_P_readonly_execution",
+  "allowed": [
+    "connect_myserver",
+    "deploy_frozen_package_to_new_isolated_code_directory",
+    "verify_runtime",
+    "read_only_the_eight_allowed_old_run_inputs_once",
+    "execute_one_frozen_readonly_checker",
+    "recover_proof_and_raw_logs",
+    "update_reports_and_progress",
+    "local_commit_task_evidence"
+  ],
+  "forbidden": [
+    "code_or_test_changes",
+    "full_test_rerun",
+    "LS_rcond_threshold_or_scientific_gate_changes",
+    "H_target_oldcheckpoint_trainingstate_reads",
+    "smoke_F0_Adam_training_or_GPU_tasks",
+    "overwrite_old_code_proof_or_failed_evidence",
+    "automatic_retry_resume_or_cleanup",
+    "Gitee_push_or_merge_main",
+    "B_smoke_or_formal_S8"
+  ],
+  "attempt_limit": 1,
+  "wall_seconds": 900,
+  "cpu_threads": 4,
+  "cuda_visible_devices": "",
+  "address_space_bytes": 12884901888,
+  "rss_scope": "sampled_stop_threshold_not_hard_cap",
+  "frozen_archive_sha256": "128d1b3c164812152e43bf13e712149db897a9e347903d7ff0cd5c462b456fb2",
+  "frozen_contract_sha256": "35a7ad5fa21374b33a14f13745af8b297d7b857d7cc741eb548a05c900a67b96",
+  "frozen_entry_sha256": "5320ffe926cf7b56ddf2970b7888f79391e18fb62cf50298127e4eb2af8e5471",
+  "status": "authorized_not_yet_connected"
+}

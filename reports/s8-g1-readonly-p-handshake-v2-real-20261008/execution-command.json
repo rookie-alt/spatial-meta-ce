@@ -1,0 +1,15 @@
+{
+  "attempt": 1,
+  "frozen_command": "cd /gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-code-handshake-v2-20261008 && timeout --signal=TERM --kill-after=1s 899s env PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 NUMEXPR_NUM_THREADS=4 VECLIB_MAXIMUM_THREADS=4 /gly/weilin/PRICE-master/venv/bin/python -B scripts/verify_s8_readonly_p.py --contract /gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-code-handshake-v2-20261008/reports/s8-g1-readonly-p-handshake-v2-20261008/execution-contract.json --contract-sha256 35a7ad5fa21374b33a14f13745af8b297d7b857d7cc741eb548a05c900a67b96 --output /gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-proof-handshake-v2-20261008 --execute",
+  "outer_wall_seconds": 899,
+  "outer_kill_after_seconds": 1,
+  "parent_wall_seconds": 900,
+  "cpu_threads": 4,
+  "cuda_visible_devices": "",
+  "address_space_bytes": 12884901888,
+  "retry_allowed": false,
+  "resume_allowed": false,
+  "source_entry_sha256": "5320ffe926cf7b56ddf2970b7848f79391e18fb62cf50298127e4eb2af8e5471",
+  "contract_sha256": "35a7ad5fa21374b33a14f13745af8b297d7b857d7cc741eb548a05c900a67b96",
+  "archive_sha256": "128d1b3c164812152e43bf13e712149db897a9e347903d7ff0cd5c462b456fb2"
+}

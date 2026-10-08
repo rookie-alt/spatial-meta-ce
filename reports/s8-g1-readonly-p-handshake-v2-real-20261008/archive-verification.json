@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-08",
+  "frozen_9_members_unchanged": true,
+  "protected_88_files_unchanged": 88,
+  "raw_failed_proof_matches_frozen_schema": true,
+  "new39_local_links_checked": [
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/authorization.json",
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/runtime-preflight.stdout.json",
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/execution-command.json",
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/execution.stdout.log",
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/execution.stderr.log",
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/real-proof/access-log.json",
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/real-proof/proof.json",
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/real-proof/worker-proof.json",
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/real-proof/supervisor.json",
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/real-proof/runtime.json",
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/real-proof/worker-resource.json",
+    "../reports/s8-g1-readonly-p-handshake-v2-real-20261008/independent-record-review.md"
+  ],
+  "all_exist": true,
+  "raw_proof_and_logs_byte_preserved": true,
+  "independent_numeric_recompute": false,
+  "record_integrity_review": "passed"
+}
