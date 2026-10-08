@@ -1,5 +1,5 @@
 {
-  "checked_local_links": 352,
+  "checked_local_links": 357,
   "missing": [],
   "new_trailing_whitespace": [],
   "preserved_baseline_markdown_hardbreaks": [
@@ -17,7 +17,9 @@
     "实验文档/46-评估监督与retained记录修复及辅助证据更正.md",
     "实验文档/47-S8同h两臂窄实验协议待确认草案.md",
     "实验文档/99-进度与下一步.md",
-    "reports/s8-review-fixes-20261008/a1-report.md"
+    "reports/s8-review-fixes-20261008/a1-report.md",
+    "reports/s8-review-fixes-20261008/independent-review-james.md",
+    "reports/s8-review-fixes-20261008/independent-review-plato.md"
   ],
   "parser_note": "ignore code fences/inline code; anchor fragments not independently rendered"
 }

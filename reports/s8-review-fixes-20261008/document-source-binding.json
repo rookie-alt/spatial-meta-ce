@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-08",
+  "scope": "direct_document_sha_binding_not_generated_semantic_graph",
+  "source_sha256": {
+    "实验文档/46-评估监督与retained记录修复及辅助证据更正.md": "b81f0101992a268089207e172ca40b34e76d3a2cbff0470284766311d8cb89d8",
+    "实验文档/47-S8同h两臂窄实验协议待确认草案.md": "6f8413085a237fa2002cc179fd89c0661417abfba1c89566ba076d23c66ecdf1",
+    "实验文档/99-进度与下一步.md": "d539ccd507daef0b1a6f69a932e85e082103a3d74afcbb7dc622644f1df0642b",
+    "reports/s8-review-fixes-20261008/a1-report.md": "903445c6d5561c8058faa8b759aa85a79e7bfbabc5d1b1370cae4fbc7eade625",
+    "reports/s8-review-fixes-20261008/independent-review-james.md": "f3624425562b10c9fd6f51fc6110fc5c69390740dcbf85e137938c4a1e9d1f6b",
+    "reports/s8-review-fixes-20261008/independent-review-plato.md": "7cf4debaeaf398a3ab938ed76cf12af3c84c0ecd8b21727b0f0024556e53c4d3"
+  },
+  "generated_semantic_index": "not_refreshed_input_absent"
+}

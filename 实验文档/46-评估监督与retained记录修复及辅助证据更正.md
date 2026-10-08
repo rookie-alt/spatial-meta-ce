@@ -112,3 +112,7 @@ paired_delta_q95 = percentile95(exp(log_q_model)) - percentile95(exp(log_q_refer
 独立审查已闭合本轮代码发现：Plato的A1批准与数值/报告定义/证据复审见[审查归档](../reports/s8-review-fixes-20261008/independent-review-plato.md)；James的A2原P1关闭、A3记录式验收和source输入盘点见[审查归档](../reports/s8-review-fixes-20261008/independent-review-james.md)。这是限定本地代码审查，不是阶段A整体/真实Linux/正式实验批准。
 
 本轮最终源码/日志/文档绑定、实际commit/push状态记录在 `reports/s8-review-fixes-20261008/` 的交付状态；提交与推送是独立状态，不能把本地生成或测试通过当作已提交/已推送。不合并main，且不因交付草案自动开始实验。
+
+代码/测试/证据及草案已提交并推送：`d220f7a2c33bbcb66d13aa5eb4a0f513d783623d`，远端任务分支SHA已用`git ls-remote`确认相同，见[同步回执](../reports/s8-review-fixes-20261008/git-sync-code.json)。本行及回执属于后续纯状态收尾提交，最终分支tip以Git和会话末核对为准；不合并main，不执行实验。
+
+生成证据索引未刷新：本任务worktree没有`graphify-out/semantic.json`，未用过期图谱验收，未回主目录重建/覆盖其他窗口索引。本轮文档与报告采用直接文件SHA绑定，见[文档绑定](../reports/s8-review-fixes-20261008/document-source-binding.json)；后续完整语义索引需另有适用输入与维护授权。
