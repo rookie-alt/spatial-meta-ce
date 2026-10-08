@@ -333,13 +333,17 @@ def _spectrum_checks(design, u, singular, vh, reported, reference):
 # The check compares two independent fixed-cutoff numerical solves of the same
 # truncated problem: the reported lstsq solution and the SVD retained
 # projection U_r(U_r^T target). In exact arithmetic they agree; in FP64 they may
-# differ by O(eps * kappa_cutoff) times the problem scale, where
-# kappa_cutoff = sigma_1 / sigma_cutoff and sigma_cutoff = RCOND * sigma_1.
-# Because every retained direction satisfies sigma > sigma_cutoff, sigma_1 /
-# sigma_cutoff upper-bounds the retained-block condition number sigma_1/sigma_r
-# WITHOUT depending on the (unknown) smallest retained singular value. The bound
-# is therefore derived a priori from the frozen cutoff and the problem scale; it
-# never consults an observed residual, so it cannot be tuned to pass a run.
+# differ by O(eps * kappa) times the problem scale, where kappa is the condition
+# number of the retained block. Because the spectrum is already available, the
+# true retained condition number kappa_retained = sigma_1 / sigma_r (sigma_r is
+# the last retained singular value) is computed directly, so the bound tracks
+# the real reachable accuracy instead of the constant cutoff ratio 1/RCOND.
+# By the frozen rank definition every retained direction satisfies sigma_r >
+# sigma_cutoff = RCOND * sigma_1, so kappa_retained <= 1/RCOND and the bound is
+# never wider than the earlier cutoff-anchored bound. The bound is derived a
+# priori from the retained spectrum and the problem scale; it never consults an
+# observed residual, so it cannot be tuned to pass a run. A retained block whose
+# sigma_r at or below the frozen cutoff is fail-closed.
 #
 # Scope: this aligns engineering numerical consistency only. It does not
 # certify scientific linear optimality, rank, or retained subspace; those remain
@@ -373,20 +377,25 @@ def retained_projection_bound(singular, rank, projection, target_scale=None):
     sigma_cutoff = RCOND * sigma1
     if rank == 0:
         return {"tol": float(floor), "sigma1": sigma1, "sigma_r": 0.0,
-                "kappa_cutoff": 0.0, "projection_norm": projection_norm,
-                "target_scale": target_scale, "amplification_scale": scale,
-                "engineering_floor": float(floor), "reachable_bound": 0.0,
+                "sigma_cutoff": float(sigma_cutoff), "kappa_retained": 0.0,
+                "projection_norm": projection_norm, "target_scale": target_scale,
+                "amplification_scale": scale, "engineering_floor": float(floor),
+                "reachable_bound": 0.0,
                 "accumulation_constant": RETAINED_PROJECTION_ACCUMULATION,
                 "eps": eps, "scope": "rank_zero_engineering_floor"}
     if not np.isfinite(sigma_cutoff) or sigma_cutoff <= 0:
         raise ValueError("retained-projection cutoff is invalid")
-    kappa_cutoff = sigma1 / sigma_cutoff
-    reachable = RETAINED_PROJECTION_ACCUMULATION * eps * kappa_cutoff * scale
-    # Never tighten: accept when either the frozen engineering floor or the
-    # a-priori reachable bound is met.
+    sigma_r = float(singular[rank - 1])
+    if not np.isfinite(sigma_r) or sigma_r <= sigma_cutoff:
+        raise ValueError("retained projection condition number is invalid")
+    kappa_retained = sigma1 / sigma_r
+    reachable = RETAINED_PROJECTION_ACCUMULATION * eps * kappa_retained * scale
+    # The frozen 1e-12 allclose floor is a hard lower bound: the check is never
+    # tighter than the original criterion even when kappa_retained is small.
     tol = max(floor, reachable)
-    return {"tol": float(tol), "sigma1": sigma1, "sigma_r": float(singular[rank - 1]),
-            "kappa_cutoff": float(kappa_cutoff), "projection_norm": projection_norm,
+    return {"tol": float(tol), "sigma1": sigma1, "sigma_r": sigma_r,
+            "sigma_cutoff": float(sigma_cutoff),
+            "kappa_retained": float(kappa_retained), "projection_norm": projection_norm,
             "target_scale": target_scale, "amplification_scale": scale,
             "engineering_floor": float(floor), "reachable_bound": float(reachable),
             "accumulation_constant": RETAINED_PROJECTION_ACCUMULATION,
@@ -398,7 +407,8 @@ def retained_projection_check(predicted, projection, singular, rank, target_scal
 
     Returns (ok, max_abs_residual, bound_info). The compared objects, cutoff and
     rank are unchanged; only the acceptance bound moves from the fixed 1e-12
-    allclose to the a-priori FP64 reachable bound (never tighter).
+    allclose to the a-priori FP64 reachable bound derived from the real retained
+    condition number sigma_1/sigma_r (never tighter than the frozen floor).
     """
     predicted = _array64(predicted, 1, "predicted")
     projection = _array64(projection, 1, "projection")
@@ -424,10 +434,10 @@ def certify_pair(design, target, adam, ls):
     cutoff intervals fail closed. Economy-SVD reconstruction, orthogonality and
     retained projections are checked without additional factorizations. Retained
     projections accept when either the frozen 1e-12 engineering floor or the
-    derived FP64 reachable bound (8*eps*(sigma_1/sigma_cutoff)*scale) is met,
-    so the check is never tighter than before and is looser only for strongly
-    ill-conditioned truncated blocks; the compared objects, cutoff and rank are
-    unchanged and the bound is computed a priori from the frozen cutoff.
+    derived FP64 reachable bound (8*eps*(sigma_1/sigma_r)*scale) is met, where
+    sigma_r is the smallest retained singular value; the check is never tighter
+    than the frozen floor, the compared objects, cutoff and rank are unchanged
+    and the bound is computed a priori from the retained spectrum.
     fullrank_numeric_solver means verified and rank == parameter columns.
     Legacy full_linear_optimality fields always remain False: repeating the same
     numerical solver is not an independent scientific proof of optimality.
@@ -527,7 +537,7 @@ def certify_pair(design, target, adam, ls):
         "retained_subspace_pass": retained_ok,
         "reference_retained_subspace_pass": reference_retained_ok,
         "retained_subspace_check": {
-            "scope": "fixed_cutoff_fp64_reachable_bound",
+            "scope": "real_retained_condition_number_fp64_reachable_bound",
             "reported_residual": retained_residual,
             "reference_residual": reference_retained_residual,
             "reported_bound": retained_info,

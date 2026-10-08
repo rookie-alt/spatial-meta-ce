@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-08",
+  "revision": "retained-kappa-real-condition-number-20261008",
+  "base_head": "ac93f26f90768625aeb32b71638a09448bc41ada",
+  "branch": "feat/s8-g1-engineering-v2-20261007",
+  "changed_files": {
+    "spatial_meta_ce/s8_probe.py": "7c7847ce1122f0cf265541781812f4ed8cff2f671c9dc42c8e2abda71e48cfad",
+    "tests/test_s8_retained_tolerance.py": "eff6c5ff2f6741cb65ae7044e50192a11b78e8da4154b0b03f4ee0666b06ef84",
+    "scripts/verify_s8_readonly_p.py": "bba63497b9da593827f1f20c60a7766aacc30d470561b9334280396d929f61bf"
+  },
+  "runner_change_scope": "three path constants only (REAL_OUTPUT_ROOT/REAL_PACKAGE_ROOT/CONTRACT_RELATIVE) re-rooted to the new isolated kappa directories; no numerical logic changed",
+  "formula": {
+    "old": "tol = max(1e-12 + 1e-12*|proj|inf, 8*eps*(sigma_1/(RCOND*sigma_1))*scale) = max(floor, 8*eps*1e12*scale)",
+    "new": "tol = max(1e-12 + 1e-12*|proj|inf, 8*eps*(sigma_1/sigma_r)*scale), kappa_retained=sigma_1/sigma_r",
+    "eps": 2.220446049250313e-16,
+    "accumulation_constant": 8.0,
+    "scale": "max(|target|_inf, |proj|_inf, eps)",
+    "floor": "1e-12 + 1e-12*|proj|_inf (hard lower bound, never tightened)"
+  },
+  "panel_comparison": "panel-bound-comparison.json",
+  "unchanged": [
+    "LS solver and lstsq(rcond=RCOND)",
+    "RCOND=1e-12",
+    "rank definition sigma > RCOND*sigma_1",
+    "other small-panel pass gates",
+    "h-panel determination",
+    "data isolation and H boundary",
+    "strict_certificate=unknown",
+    "full_linear_optimality_verified=false",
+    "formal_ready=false",
+    "original_G1 failed"
+  ],
+  "a_priori": true,
+  "reads_observed_residual": false,
+  "never_tighter_than_floor": true,
+  "fail_closed": "sigma_r non-finite or <= sigma_cutoff raises ValueError",
+  "test_evidence": {
+    "red": "18 cases: 3 failures + 7 errors against HEAD implementation",
+    "green": "18/18 pass",
+    "targeted": "158/158 pass (13 Linux skips)",
+    "full": "774/774 pass, 13 Linux skips, exit 0 (97.445s)",
+    "changed_ruff": "All checks passed (ruff 0.16.10)",
+    "repository_ruff": "110 pre-existing warnings, none in changed files"
+  },
+  "independent_review": {
+    "agent": "01a11b40-fa7c-7fb0-9e45-02791801d1f4",
+    "verdict": "APPROVED-WITH-NITS",
+    "record": "independent-review.md",
+    "nits_addressed": [
+      "strengthened no-residual assertions (signature + unretained-spectrum insensitivity)",
+      "added directory .gitattributes for raw log bytes",
+      "completed new isolated package freeze"
+    ]
+  },
+  "frozen_package": {
+    "archive": "/private/tmp/s8-g1-readonly-p-kappa-package-20261008.tar.gz",
+    "archive_sha256": "40ca43c6d8e73e7e73e1466864fb92dc11b2b4778343af779b7c870cf48bb658",
+    "contract_sha256": "54f9c24c47062b1a73e5f2be4b651fb143760a1ce689ae75bd27e63567ddd99f",
+    "members": 9,
+    "prior_packages": {
+      "handshake_v2": "128d1b3c164812152e43bf13e712149db897a9e347903d7ff0cd5c462b456fb2",
+      "diagnostic": "ea075b85475481ae16ecac9290503620e00685b741c1422ff0339dcc34f84949",
+      "tolerance": "e9fe330f0f90eae9d98d8f9d0cf6164b1c7bd3eb54d4cb34a6450570f237e1cd"
+    },
+    "old_eight_inputs_sha_preserved": true
+  }
+}

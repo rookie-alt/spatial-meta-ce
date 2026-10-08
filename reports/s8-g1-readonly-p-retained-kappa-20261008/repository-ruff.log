@@ -1,0 +1,112 @@
+scripts/run_s2_diagnosis.py:17:1: I001 [*] Import block is un-sorted or un-formatted
+scripts/run_s2_diagnosis.py:108:5: I001 [*] Import block is un-sorted or un-formatted
+scripts/run_s3_diagnosis.py:18:1: I001 [*] Import block is un-sorted or un-formatted
+scripts/run_s3_diagnosis.py:85:5: I001 [*] Import block is un-sorted or un-formatted
+scripts/run_s3_diagnosis.py:107:5: I001 [*] Import block is un-sorted or un-formatted
+scripts/run_s3_diagnosis.py:191:5: I001 [*] Import block is un-sorted or un-formatted
+scripts/run_s3_diagnosis.py:386:20: BLE001 Do not catch blind exception: `BaseException`
+scripts/run_s4_anchor.py:16:1: I001 [*] Import block is un-sorted or un-formatted
+scripts/run_s4_anchor.py:23:5: PLC0414 Import alias does not rename original package
+scripts/run_s4_anchor.py:733:20: BLE001 Do not catch blind exception: `BaseException`
+scripts/run_s5_weight.py:481:20: BLE001 Do not catch blind exception: `BaseException`
+scripts/run_s6_tail.py:14:1: I001 [*] Import block is un-sorted or un-formatted
+scripts/run_s6_tail.py:504:20: BLE001 Do not catch blind exception: `BaseException`
+scripts/s2_verify.py:488:9: UP034 [*] Avoid extraneous parentheses
+scripts/s3_verify.py:305:35: RUF007 Prefer `itertools.pairwise()` over `zip()` when iterating over successive pairs
+scripts/s3_verify.py:455:16: C408 Unnecessary `dict()` call (rewrite as a literal)
+scripts/s3_verify.py:537:17: TRY004 Prefer `TypeError` exception for invalid type
+scripts/s5_weight_evidence.py:5:1: I001 [*] Import block is un-sorted or un-formatted
+scripts/s5_weight_evidence.py:21:5: PLC0414 Import alias does not rename original package
+scripts/s5_weight_evidence.py:28:5: PLC0414 Import alias does not rename original package
+scripts/s5_weight_evidence.py:29:5: PLC0414 Import alias does not rename original package
+scripts/s6_loss_verify.py:12:5: SIM905 [*] Consider using a list literal instead of `str.split`
+scripts/s6_loss_verify.py:15:5: SIM905 [*] Consider using a list literal instead of `str.split`
+scripts/s6_loss_verify.py:292:12: C408 Unnecessary `dict()` call (rewrite as a literal)
+scripts/s6_loss_verify.py:345:20: C408 Unnecessary `dict()` call (rewrite as a literal)
+scripts/s6_loss_verify.py:374:12: C408 Unnecessary `dict()` call (rewrite as a literal)
+scripts/s6_tail_evidence.py:6:1: I001 [*] Import block is un-sorted or un-formatted
+scripts/s6_tail_evidence.py:18:5: PLC0414 Import alias does not rename original package
+scripts/s6_tail_evidence.py:25:5: PLC0414 Import alias does not rename original package
+scripts/s6_tail_evidence.py:26:5: PLC0414 Import alias does not rename original package
+tests/test_graph_build.py:163:9: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s2_runner.py:86:9: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s2_runner.py:94:9: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s2_runner.py:98:18: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_runner.py:107:17: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_runner.py:121:20: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_runner.py:164:9: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s2_runner.py:172:9: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s2_runner.py:270:13: PLW1510 `subprocess.run` without explicit `check` argument
+tests/test_s2_source_replay.py:224:9: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s2_verify.py:3:1: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s2_verify.py:45:14: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_verify.py:56:13: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_verify.py:71:19: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_verify.py:76:17: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_verify.py:88:40: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_verify.py:95:14: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_verify.py:109:19: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_verify.py:153:17: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_verify.py:186:23: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_verify.py:226:46: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_verify.py:249:25: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s2_verify.py:263:38: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s3_runner.py:228:18: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s3_runner.py:238:17: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s3_runner.py:256:20: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s3_runner.py:298:9: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s3_runner.py:310:17: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s3_runner.py:317:28: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s3_runner.py:387:13: PLW1510 `subprocess.run` without explicit `check` argument
+tests/test_s3_verify.py:3:1: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s3_verify.py:95:19: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s3_verify.py:187:12: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s3_verify.py:375:20: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s3_verify.py:467:30: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s3_verify.py:489:34: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s4_anchor.py:60:13: SIM117 [*] Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s4_anchor.py:88:9: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s4_anchor.py:118:13: SIM117 [*] Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s4_anchor.py:379:13: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s4_anchor.py:640:17: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s4_anchor_evidence.py:1:1: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s4_model.py:1:1: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s5_loss.py:16:16: RUF012 Mutable default value for class attribute
+tests/test_s5_loss.py:17:12: RUF012 Mutable default value for class attribute
+tests/test_s5_runner.py:34:9: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s5_runner.py:313:9: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s5_supervisor.py:22:1: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s5_supervisor.py:22:47: RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+tests/test_s5_supervisor.py:23:43: RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+tests/test_s5_supervisor.py:24:56: RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+tests/test_s5_supervisor.py:214:13: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s5_supervisor.py:239:9: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s6_loss.py:20:16: RUF012 Mutable default value for class attribute
+tests/test_s6_loss.py:21:12: RUF012 Mutable default value for class attribute
+tests/test_s6_loss.py:397:25: SIM905 [*] Consider using a list literal instead of `str.split`
+tests/test_s6_loss_verify.py:3:1: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s6_loss_verify.py:23:14: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s6_loss_verify.py:42:13: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s6_loss_verify.py:61:13: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s6_loss_verify.py:63:25: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s6_loss_verify.py:96:15: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s6_loss_verify.py:122:13: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s6_loss_verify.py:135:30: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s6_loss_verify.py:253:19: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s6_loss_verify.py:280:29: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s6_loss_verify.py:325:29: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s6_pipeline.py:20:1: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s6_pipeline.py:20:39: RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+tests/test_s6_pipeline.py:21:47: RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+tests/test_s6_pipeline.py:22:45: RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+tests/test_s6_pipeline.py:23:49: RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+tests/test_s6_pipeline.py:24:42: RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+tests/test_s6_pipeline.py:25:43: RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+tests/test_s6_pipeline.py:26:54: RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+tests/test_s6_pipeline.py:391:19: RUF024 Do not pass mutable objects as values to `dict.fromkeys`
+tests/test_s6_pipeline.py:542:28: C408 Unnecessary `dict()` call (rewrite as a literal)
+tests/test_s6_runner.py:32:9: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests/test_s6_runner.py:85:9: I001 [*] Import block is un-sorted or un-formatted
+tests/test_s6_tail_evidence.py:500:21: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+Found 110 errors.
+[*] 39 fixable with the `--fix` option (49 hidden fixes can be enabled with the `--unsafe-fixes` option).
