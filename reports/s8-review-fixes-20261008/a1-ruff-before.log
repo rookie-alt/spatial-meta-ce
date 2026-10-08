@@ -1,0 +1,194 @@
+B023 Function definition does not bind loop variable `drift_length`
+   --> tests/test_paired.py:151:74
+    |
+149 |                 def changed_order(*args):
+150 |                     pred, truth, records = self.synthetic_predictions(*args)
+151 |                     return pred, truth, records[::-1] if len(records) == drift_length else records
+    |                                                                          ^^^^^^^^^^^^
+152 |                 self.predict.side_effect = changed_order
+153 |                 with self.assertRaises(ValueError):
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_paired_metrics.py:1:1
+   |
+ 1 | / import csv
+ 2 | | import math
+ 3 | | import tempfile
+ 4 | | import unittest
+ 5 | | from pathlib import Path
+ 6 | | from types import SimpleNamespace
+ 7 | | from unittest.mock import patch
+ 8 | |
+ 9 | | import numpy as np
+10 | | import torch
+11 | |
+12 | | from spatial_meta_ce.data import FeatureStore
+13 | | from spatial_meta_ce.evaluate import _pairwise_metrics, _predict_rows, _reference_predictions
+14 | | from spatial_meta_ce.features import write_cache
+15 | | from spatial_meta_ce.metrics import summarize
+   | |_____________________________________________^
+help: Organize imports
+   |
+12 | from spatial_meta_ce.data import FeatureStore
+   - from spatial_meta_ce.evaluate import _pairwise_metrics, _predict_rows, _reference_predictions
+13 + from spatial_meta_ce.evaluate import (
+14 +     _pairwise_metrics,
+15 +     _predict_rows,
+16 +     _reference_predictions,
+17 + )
+18 | from spatial_meta_ce.features import write_cache
+   |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+  --> tests/test_paired_metrics.py:87:13
+   |
+85 |                    ([0], [0], [-1]), ([[0]], [[0]], [1])]
+86 |           for pred, ref, true in cases:
+87 | /             with self.subTest(pred=pred, reference=ref, true=true):
+88 | |                 with self.assertRaises(ValueError):
+   | |___________________________________________________^
+89 |                       self.paired(pred, ref, true)
+   |
+help: Combine `with` statements
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+  --> tests/test_paired_metrics.py:96:13
+   |
+94 |                           {'reference_query_keys': [('other-row', 'query-0')]},
+95 |                           {'reference_query_keys': [('row-0', 'other-query')]}]:
+96 | /             with self.subTest(changes=changes):
+97 | |                 with self.assertRaises(ValueError):
+   | |___________________________________________________^
+98 |                       self.paired([0], [0], [1], **changes)
+   |
+help: Combine `with` statements
+
+SIM117 [*] Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_paired_metrics.py:103:13
+    |
+101 |           for keys in [[('', 'query-0')], [('row-0', '')], [('row-0', '   ')],
+102 |                        [(math.nan, 'query-0')], [('row-0', math.inf)], ['row-0']]:
+103 | /             with self.subTest(keys=keys):
+104 | |                 with self.assertRaises(ValueError):
+    | |___________________________________________________^
+105 |                       self.paired([0], [0], [1], query_keys=keys, reference_query_keys=keys)
+    |
+help: Combine `with` statements
+    |
+102 |                      [(math.nan, 'query-0')], [('row-0', math.inf)], ['row-0']]:
+    -             with self.subTest(keys=keys):
+    -                 with self.assertRaises(ValueError):
+    -                     self.paired([0], [0], [1], query_keys=keys, reference_query_keys=keys)
+103 +             with self.subTest(keys=keys), self.assertRaises(ValueError):
+104 +                 self.paired([0], [0], [1], query_keys=keys, reference_query_keys=keys)
+105 |
+    |
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_paired_metrics.py:160:22
+    |
+158 |                     {'id': 'duplicate-id', 'query_hash': 'hash-b'}],
+159 |               cards=np.asarray([[100., 10.], [20., 5.]]))
+160 |           self.rows = [dict(database='synthetic', run=0, k=0, query_id='duplicate-id',
+    |  ______________________^
+161 | |                           query_hash='hash-a', true_cardinality=100., log_prediction=math.log(10)),
+    | |__________________________________________________________________________________________________^
+162 |                        dict(database='synthetic', run=0, k=0, query_id='duplicate-id',
+163 |                             query_hash='hash-b', true_cardinality=20., log_prediction=math.log(5))]
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_paired_metrics.py:162:22
+    |
+160 |           self.rows = [dict(database='synthetic', run=0, k=0, query_id='duplicate-id',
+161 |                             query_hash='hash-a', true_cardinality=100., log_prediction=math.log(10)),
+162 | /                      dict(database='synthetic', run=0, k=0, query_id='duplicate-id',
+163 | |                           query_hash='hash-b', true_cardinality=20., log_prediction=math.log(5))]
+    | |________________________________________________________________________________________________^
+164 |           self.metadata = {'pg_prediction_path': str(self.path), 'metadata': {'method': 'pg'}}
+    |
+help: Rewrite as a literal
+
+SIM117 [*] Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_paired_metrics.py:186:13
+    |
+184 |           np.testing.assert_allclose(prediction, [math.log(10), math.log(5)])
+185 |           for field, value in [('log_prediction', math.log(11)), ('true_cardinality', 101.)]:
+186 | /             with self.subTest(field=field):
+187 | |                 with self.assertRaises(ValueError):
+    | |___________________________________________________^
+188 |                       self.load(self.rows + [dict(self.rows[0], run=1, **{field: value})])
+    |
+help: Combine `with` statements
+    |
+185 |         for field, value in [('log_prediction', math.log(11)), ('true_cardinality', 101.)]:
+    -             with self.subTest(field=field):
+    -                 with self.assertRaises(ValueError):
+    -                     self.load(self.rows + [dict(self.rows[0], run=1, **{field: value})])
+186 +             with self.subTest(field=field), self.assertRaises(ValueError):
+187 +                 self.load(self.rows + [dict(self.rows[0], run=1, **{field: value})])
+188 |
+    |
+
+SIM117 [*] Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_paired_metrics.py:193:13
+    |
+191 |           for field, value in [('query_id', 'other-id'), ('query_hash', 'other-hash'),
+192 |                                ('query_hash', ''), ('true_cardinality', 101.)]:
+193 | /             with self.subTest(field=field):
+194 | |                 with self.assertRaises(ValueError):
+    | |___________________________________________________^
+195 |                       self.load([dict(self.rows[0], **{field: value}), self.rows[1]])
+196 |           with self.assertRaises(ValueError):
+    |
+help: Combine `with` statements
+    |
+192 |                              ('query_hash', ''), ('true_cardinality', 101.)]:
+    -             with self.subTest(field=field):
+    -                 with self.assertRaises(ValueError):
+    -                     self.load([dict(self.rows[0], **{field: value}), self.rows[1]])
+193 +             with self.subTest(field=field), self.assertRaises(ValueError):
+194 +                 self.load([dict(self.rows[0], **{field: value}), self.rows[1]])
+195 |         with self.assertRaises(ValueError):
+    |
+
+SIM117 [*] Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_paired_metrics.py:203:13
+    |
+201 |                                ('true_cardinality', -1), ('log_prediction', math.nan),
+202 |                                ('log_prediction', math.inf)]:
+203 | /             with self.subTest(field=field):
+204 | |                 with self.assertRaises(ValueError):
+    | |___________________________________________________^
+205 |                       self.load([dict(self.rows[0], **{field: value}), self.rows[1]])
+206 |           for field in ('query_hash', 'true_cardinality'):
+    |
+help: Combine `with` statements
+    |
+202 |                              ('log_prediction', math.inf)]:
+    -             with self.subTest(field=field):
+    -                 with self.assertRaises(ValueError):
+    -                     self.load([dict(self.rows[0], **{field: value}), self.rows[1]])
+203 +             with self.subTest(field=field), self.assertRaises(ValueError):
+204 +                 self.load([dict(self.rows[0], **{field: value}), self.rows[1]])
+205 |         for field in ('query_hash', 'true_cardinality'):
+    |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_paired_metrics.py:207:13
+    |
+205 |                       self.load([dict(self.rows[0], **{field: value}), self.rows[1]])
+206 |           for field in ('query_hash', 'true_cardinality'):
+207 | /             with self.subTest(missing_field=field):
+208 | |                 with self.assertRaises(ValueError):
+    | |___________________________________________________^
+209 |                       self.load(fields=[name for name in self.rows[0] if name != field])
+    |
+help: Combine `with` statements
+
+Found 11 errors.
+[*] 5 fixable with the `--fix` option (2 hidden fixes can be enabled with the `--unsafe-fixes` option).
+
+EXIT_STATUS=1

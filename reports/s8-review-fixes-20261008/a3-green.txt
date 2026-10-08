@@ -1,0 +1,13 @@
+test_aggregate_and_single_file_simultaneous_damage_rejected (test_s8_retained_record_acceptance.RetainedRecordTests.test_aggregate_and_single_file_simultaneous_damage_rejected) ... ok
+test_every_numeric_field_must_be_finite_nonnegative_number (test_s8_retained_record_acceptance.RetainedRecordTests.test_every_numeric_field_must_be_finite_nonnegative_number) ... ok
+test_formula_damage_cannot_be_hidden_by_two_matching_records (test_s8_retained_record_acceptance.RetainedRecordTests.test_formula_damage_cannot_be_hidden_by_two_matching_records) ... ok
+test_missing_records_scopes_fields_rejected (test_s8_retained_record_acceptance.RetainedRecordTests.test_missing_records_scopes_fields_rejected) ... ok
+test_rank_zero_requires_zero_spectrum_and_projection (test_s8_retained_record_acceptance.RetainedRecordTests.test_rank_zero_requires_zero_spectrum_and_projection) ... ok
+test_readonly_aggregate_and_stage_sync_damage_rejected (test_s8_retained_record_acceptance.RetainedRecordTests.test_readonly_aggregate_and_stage_sync_damage_rejected) ... ok
+test_sigma1_must_match_existing_cutoff_interval_not_just_its_tolerance (test_s8_retained_record_acceptance.RetainedRecordTests.test_sigma1_must_match_existing_cutoff_interval_not_just_its_tolerance) ... ok
+test_valid_handwritten_formula_accepts_both_verifiers (test_s8_retained_record_acceptance.RetainedRecordTests.test_valid_handwritten_formula_accepts_both_verifiers) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.354s
+
+OK

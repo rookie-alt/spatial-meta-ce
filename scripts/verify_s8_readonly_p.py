@@ -305,6 +305,82 @@ def schema_accepts(value, schema):
                 and not schema_accepts(value, schema.get('then', {})))
 
 
+def _retained_record_check(cert):
+    """Check recorded scalars/formula only; no matrix/spectrum proof is issued.
+
+    The frozen constants are literal, not imported from the producer. Residual
+    acceptance uses the independently calculated bound, never a stored tol.
+    Actual extrema, scales and residuals cannot be authenticated without the
+    original matrix/vectors; those quantities remain explicitly uncertified.
+    """
+    def number(value):
+        if type(value) not in (int, float):
+            raise ValueError('retained record requires real JSON numbers')
+        try:
+            value = float(value)
+        except OverflowError as error:
+            raise ValueError('retained record numeric overflow') from error
+        if not math.isfinite(value) or value < 0:
+            raise ValueError('retained record requires finite nonnegative numbers')
+        return value
+
+    def equal(actual, expected):
+        # Relative-only metadata identity check, NOT a solver tolerance.
+        if not math.isfinite(expected) or not math.isclose(actual, expected, rel_tol=1e-12, abs_tol=0):
+            raise ValueError('retained record contradicts frozen formula')
+
+    check = cert.get('retained_subspace_check')
+    if not isinstance(check, dict) or check.get('scope') != 'real_retained_condition_number_fp64_reachable_bound':
+        raise ValueError('missing or wrong retained check scope')
+    rank = cert['observed_ranks']['svd']
+    fields = ('tol', 'sigma1', 'sigma_r', 'sigma_cutoff', 'kappa_retained',
+              'projection_norm', 'target_scale', 'amplification_scale',
+              'engineering_floor', 'reachable_bound', 'accumulation_constant', 'eps')
+    for side in ('reported', 'reference'):
+        bound = check.get(f'{side}_bound')
+        scope = ('max_engineering_floor_and_fp64_reachable_bound' if rank
+                 else 'rank_zero_engineering_floor')
+        if not isinstance(bound, dict) or bound.get('scope') != scope:
+            raise ValueError('missing or wrong retained bound scope')
+        values = {key: number(bound.get(key)) for key in fields}
+        eps = 2.0**-52
+        if values['eps'] != eps or values['accumulation_constant'] != 8.0:
+            raise ValueError('retained FP64 constants changed')
+        sigma1, sigma_r = values['sigma1'], values['sigma_r']
+        equal(values['sigma_cutoff'], 1e-12 * sigma1)
+        eta = cert['spectrum_error_bound']
+        for actual, expected in zip(cert['rank_cutoff_interval'],
+                                    (1e-12 * max(0.0, sigma1 - eta), 1e-12 * (sigma1 + eta))):
+            equal(number(actual), expected)
+        if rank:
+            if not 0 < values['sigma_cutoff'] < sigma_r <= sigma1:
+                raise ValueError('retained singular values violate fixed cutoff/rank')
+            if rank == 1 and sigma_r != sigma1:
+                raise ValueError('rank one must retain leading singular value')
+            kappa = sigma1 / sigma_r
+            if not 1 <= kappa < 1e12:
+                raise ValueError('invalid retained condition number')
+        else:
+            if any(values[key] != 0 for key in ('sigma1', 'sigma_r', 'sigma_cutoff',
+                                                'kappa_retained', 'projection_norm')):
+                raise ValueError('rank zero requires zero spectrum/projection')
+            kappa = 0.0
+        equal(values['kappa_retained'], kappa)
+        scale = max(values['target_scale'], values['projection_norm'], eps)
+        floor = 1e-12 + 1e-12 * values['projection_norm']
+        reachable = 8.0 * eps * kappa * scale
+        tolerance = max(floor, reachable)
+        for key, expected in (('amplification_scale', scale), ('engineering_floor', floor),
+                              ('reachable_bound', reachable), ('tol', tolerance)):
+            equal(values[key], expected)
+        residual = number(check.get(f'{side}_residual'))
+        if residual > tolerance or cert.get(f'{"reference_" if side == "reference" else ""}retained_subspace_pass') is not True:
+            raise ValueError('retained residual exceeds independently computed tolerance')
+    # Both checks use the same SVD projection and target; only solve residuals differ.
+    if check['reported_bound'] != check['reference_bound']:
+        raise ValueError('retained sides disagree on shared spectrum/projection/target')
+
+
 def certificate_complete(certificate, rows=None, columns=None):
     gates = ('metadata_pass', 'normal_residual_pass', 'objective_pass',
              'reference_objective_pass', 'reference_prediction_pass', 'reference_spectrum_pass',
@@ -377,10 +453,11 @@ def certificate_complete(certificate, rows=None, columns=None):
                     or any(type(v) not in (int, float) or not math.isfinite(v) for v in bounds)
                     or not 0 <= bounds[0] <= bounds[1]):
                 return False
+        _retained_record_check(certificate)
         margin = numbers['rank_interval_margin']
         return not ((stability == 'unknown' and margin > 0)
                     or (passed and margin <= 0 and not (rank == 0 and numbers['spectrum_error_bound'] == margin == 0)))
-    except (KeyError, TypeError, AttributeError, ZeroDivisionError):
+    except (KeyError, TypeError, AttributeError, ZeroDivisionError, ValueError, OverflowError):
         return False
 
 
@@ -743,7 +820,11 @@ def supervise(child, output, wall_seconds=900):
     record = {'attempts': 1, 'failure_reason': None, 'returncode': None, 'signal': None,
               'sampled_peak_rss_bytes': 0, 'sampled_peak_address_space_bytes': 0,
               'rss_measurement': 'sampled_not_hard_cap', 'poll_seconds': 0.05,
-              'RLIMIT_AS_bytes': MEMORY, 'wall_limit_seconds': wall_seconds}
+              'RLIMIT_AS_bytes': MEMORY, 'wall_limit_seconds': wall_seconds,
+              'exit_confirmation_seconds': 0.15,
+              'exit_confirmed_after_observation_failure': False,
+              'cleanup_timeout_seconds': 1.0, 'cleanup_failure_reason': None,
+              'child_reaped': False}
     try:
         while child.poll() is None:
             if time.monotonic() - start >= wall_seconds:
@@ -752,9 +833,20 @@ def supervise(child, output, wall_seconds=900):
             try:
                 observed = sample_process(child.pid)
             except (OSError, ValueError, KeyError, IndexError, subprocess.SubprocessError) as error:
-                if child.poll() is not None:
-                    break
-                record.update(failure_reason='resource_observation_failed', error=str(error))
+                # /proc omits counters for zombies before waitpid reports exit.
+                # Confirm/reap the owned child within a fixed grace period AND
+                # the remaining wall budget; never forgive a live blind worker.
+                remaining = max(0.0, wall_seconds - (time.monotonic() - start))
+                allowance = min(record['exit_confirmation_seconds'], remaining)
+                record['observation_error'] = f'{type(error).__name__}: {error}'
+                try:
+                    child.wait(timeout=allowance)
+                except subprocess.TimeoutExpired:
+                    reason = ('wall_timeout' if remaining <= record['exit_confirmation_seconds']
+                              else 'resource_observation_failed')
+                    record.update(failure_reason=reason, error=str(error))
+                else:
+                    record['exit_confirmed_after_observation_failure'] = True
                 break
             record['sampled_peak_rss_bytes'] = max(record['sampled_peak_rss_bytes'], observed['rss_bytes'])
             record['sampled_peak_address_space_bytes'] = max(record['sampled_peak_address_space_bytes'], observed['address_space_bytes'])
@@ -768,18 +860,41 @@ def supervise(child, output, wall_seconds=900):
     except BaseException as error:  # noqa: BLE001 -- kill owned child even on interruption
         record.update(failure_reason='supervisor_interrupted', error=f'{type(error).__name__}: {error}')
     finally:
-        if child.poll() is None:
+        # Clean the owned session even if its leader already exited; otherwise
+        # a surviving descendant could outlive the supervision budget.
+        try:
             os.killpg(child.pid, signal.SIGKILL)
-        child.wait()
+            record['owned_group_cleanup'] = 'signal_sent'
+        except ProcessLookupError:
+            record['owned_group_cleanup'] = 'already_absent'
+        except BaseException as error:  # noqa: BLE001 -- durable cleanup failure, not success
+            record.update(owned_group_cleanup='failed',
+                          cleanup_failure_reason='process_group_cleanup_failed',
+                          cleanup_error=f'{type(error).__name__}: {error}')
+        try:
+            # This shutdown allowance never extends the worker wall budget.
+            # Even an uninterruptible/zombie wait must not stall proof/handlers.
+            child.wait(timeout=record['cleanup_timeout_seconds'])
+        except subprocess.TimeoutExpired:
+            record['cleanup_failure_reason'] = 'child_reap_timeout'
+        except BaseException as error:  # noqa: BLE001 -- restore handlers on interrupted cleanup
+            record.update(cleanup_failure_reason='child_reap_failed',
+                          cleanup_wait_error=f'{type(error).__name__}: {error}')
+        record['child_reaped'] = child.returncode is not None
         record['seconds'] = time.monotonic() - start
+        if record['failure_reason'] is None:
+            record['failure_reason'] = record['cleanup_failure_reason']
+        if record['failure_reason'] is None and record['seconds'] >= wall_seconds:
+            record['failure_reason'] = 'wall_timeout'
         record['returncode'] = child.returncode
-        record['signal'] = -child.returncode if child.returncode < 0 else None
+        record['signal'] = (-child.returncode
+                            if child.returncode is not None and child.returncode < 0 else None)
         if record['failure_reason'] is None:
             if child.returncode != 0:
                 record['failure_reason'] = 'child_signal' if child.returncode < 0 else 'child_exit'
             elif not (output / 'worker-proof.json').is_file():
                 record['failure_reason'] = 'missing_worker_proof'
-        # Restore only after the child is reaped and failure evidence is durable.
+        # Restore even if reaping failed; that failure must remain in evidence.
         try:
             write_json(output / 'supervisor.json', record)
         finally:

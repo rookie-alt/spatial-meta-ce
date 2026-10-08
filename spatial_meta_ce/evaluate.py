@@ -12,7 +12,7 @@ from .checkpoints import load_checkpoint
 from .data import StorePool
 from .manifests import digest, validate_splits
 from .meta import adapt, forward
-from .metrics import summarize
+from .metrics import q_values, summarize
 from .model import SetEstimator
 from .train import seed_all
 
@@ -75,37 +75,93 @@ def _predict_rows(model, params, store, indices, device, batch_size, baseline):
 
 
 def _reference_predictions(metadata, db, store, indices):
-    """Load immutable zero-shot predictions from a separate run directory."""
+    """Bind immutable PG K=0 CSV predictions to row identity and raw labels.
+
+    Repeated K=0 runs may repeat an identical (id, hash, label, prediction).
+    Distinct hashes sharing an id remain distinct; conflicting repeats fail.
+    Requires explicit metadata.method=pg; this is not same-model K=0.
+    """
     if not metadata:
         return None
     path = metadata.get('pg_prediction_path')
     if not path:
         return None
+    method_metadata = metadata.get('metadata')
+    if not isinstance(method_metadata, dict) or method_metadata.get('method') != 'pg':
+        raise ValueError('pg_prediction_path requires explicit metadata.method=pg, not same-model K=0')
     with Path(path).open(newline='') as stream:
         reader = csv.DictReader(stream)
+        required = {'database', 'k', 'query_id', 'query_hash',
+                    'true_cardinality', 'log_prediction'}
+        if not required <= set(reader.fieldnames or ()):
+            raise ValueError('PG reference CSV lacks identity, labels or predictions')
         rows = [row for row in reader if row['database'] == db and int(row['k']) == 0]
-    by_id = {}
-    for row in rows:
-        by_id.setdefault(row['query_id'], float(row['log_prediction']))
-    query_ids = [store.rows[int(i)]['id'] for i in indices]
-    if any(qid not in by_id for qid in query_ids):
-        raise ValueError(f'PG reference does not cover target test rows for {db}')
-    return np.asarray([by_id[qid] for qid in query_ids], dtype=np.float64)
+    if not rows:
+        raise ValueError(f'PG reference does not cover test rows for {db}')
+    predictions = np.asarray([float(row['log_prediction']) for row in rows])
+    truths = np.asarray([float(row['true_cardinality']) for row in rows])
+    q_values(predictions, truths)  # Reject invalid values before resolving repeats.
+    by_key = {}
+    for row, prediction, truth in zip(rows, predictions, truths):
+        key = (row['query_id'], row['query_hash'])
+        if not all(isinstance(part, str) and part.strip() for part in key):
+            raise ValueError('PG reference has an empty or invalid query identity')
+        value = (prediction, truth)
+        if key in by_key and by_key[key] != value:
+            raise ValueError(f'Conflicting PG reference repeats for {db}: {key}')
+        by_key[key] = value
+    keys = [(store.rows[int(i)]['id'], store.rows[int(i)]['query_hash']) for i in indices]
+    if any(key not in by_key for key in keys):
+        raise ValueError(f'PG reference does not cover test identities for {db}')
+    prediction = np.asarray([by_key[key][0] for key in keys], dtype=np.float64)
+    truth = np.asarray([by_key[key][1] for key in keys], dtype=np.float64)
+    if not np.array_equal(truth, store.cards[np.asarray(indices, dtype=np.int64), 0]):
+        raise ValueError(f'PG reference labels differ from test labels for {db}')
+    return prediction, truth, keys
 
 
-def _pairwise_metrics(pred, reference):
+def _pairwise_metrics(pred, reference, true, *, reference_true, query_keys, reference_query_keys):
+    """Compare matched Q-errors; positive log reduction means improvement.
+
+    paired_delta_q95 = Q95(model) - Q95(reference), in ordinary Q units,
+    not a log-percentile difference or the percentile of per-query deltas.
+    Fraction ties allow 4*float64.eps times the log-operation operand scale.
+    This is roundoff handling only; raw log reductions and Q95 are not rounded.
+    """
     if reference is None:
         return None
-    pred, reference = np.asarray(pred), np.asarray(reference)
-    if pred.shape != reference.shape:
-        raise ValueError('Paired prediction/reference lengths differ')
-    reduction = np.abs(reference) - np.abs(pred)
+    pred, reference, true, reference_true = (
+        np.asarray(values, dtype=np.float64) for values in (pred, reference, true, reference_true))
+    if (pred.ndim != 1 or reference.shape != pred.shape or true.shape != pred.shape
+            or reference_true.shape != pred.shape):
+        raise ValueError('Paired predictions/reference/labels must be matching 1-D arrays')
+    for keys in (query_keys, reference_query_keys):
+        if any(not isinstance(key, (tuple, list)) or len(key) != 2
+               or not all(isinstance(part, str) and part.strip() for part in key) for key in keys):
+            raise ValueError('Paired query identities must contain nonempty id and hash strings')
+    if (len(query_keys) != len(pred) or len(reference_query_keys) != len(pred)
+            or list(query_keys) != list(reference_query_keys)):
+        raise ValueError('Paired query identities differ')
+    if not np.array_equal(true, reference_true):
+        raise ValueError('Paired labels differ')
+    q, _, log_q = q_values(pred, true)
+    reference_q, _, reference_log_q = q_values(reference, reference_true)
+    if not np.isfinite(q).all() or not np.isfinite(reference_q).all():
+        raise ValueError('Non-finite paired Q-errors')
+    reduction = reference_log_q - log_q
+    # Opposite-side estimates with equal ratios can differ by log roundoff.
+    # Near truth, abs(log-Q) is much smaller than the operands subtracted.
+    # Bound only machine-level cancellation; do not use a data-tuned tolerance.
+    log_true = np.log(np.maximum(true, 1))
+    operand_scale = np.maximum.reduce((np.abs(np.maximum(pred, 0)),
+                                       np.abs(np.maximum(reference, 0)), np.abs(log_true)))
+    tied = np.abs(reduction) <= 4 * np.finfo(np.float64).eps * operand_scale
     return {
         'mean_log_q_reduction': float(np.mean(reduction)),
         'median_log_q_reduction': float(np.median(reduction)),
-        'fraction_queries_improved': float(np.mean(reduction > 0)),
-        'fraction_queries_worsened': float(np.mean(reduction < 0)),
-        'paired_delta_q95': float(np.percentile(np.abs(pred), 95) - np.percentile(np.abs(reference), 95)),
+        'fraction_queries_improved': float(np.mean((log_q < reference_log_q) & ~tied)),
+        'fraction_queries_worsened': float(np.mean((log_q > reference_log_q) & ~tied)),
+        'paired_delta_q95': float(np.percentile(q, 95) - np.percentile(reference_q, 95)),
     }
 
 
@@ -167,8 +223,12 @@ def evaluate(config, data_config, output_dir, device='cpu', checkpoint=None, bas
                     unique_positions.append(position)
                     seen.add(query_hash)
             unique_indices = indices[np.asarray(unique_positions, dtype=np.int64)]
-            reference_pred = _reference_predictions(reference, db, test_store, indices)
-            unique_reference = _reference_predictions(reference, db, test_store, unique_indices)
+            reference_data = _reference_predictions(reference, db, test_store, indices)
+            if reference_data is not None:
+                reference_pred, reference_truth, reference_query_keys = reference_data
+                unique_reference = reference_pred[unique_positions]
+                unique_reference_truth = reference_truth[unique_positions]
+                unique_reference_keys = [reference_query_keys[p] for p in unique_positions]
             for run in range(config['support_runs']):
                 support_indices, overlap = support_plan(
                     support_store, test_store, max(config['shots']), config['support_seed'], run)
@@ -190,10 +250,21 @@ def evaluate(config, data_config, output_dir, device='cpu', checkpoint=None, bas
                     for idx, y, p in records:
                         row = test_store.rows[idx]
                         writer.writerow([db, run, k, row['id'], row['query_hash'], y, p])
-                    unique_pred, unique_truth, _ = _predict_rows(model, params, test_store, unique_indices,
-                                                                  device, config['batch_size'], baseline)
-                    paired = _pairwise_metrics(pred, reference_pred) if k > 0 and reference_pred is not None else None
-                    paired_unique = _pairwise_metrics(unique_pred, unique_reference) if k > 0 and unique_reference is not None else None
+                    unique_pred, unique_truth, unique_records = _predict_rows(
+                        model, params, test_store, unique_indices, device, config['batch_size'], baseline)
+                    paired = paired_unique = None
+                    if k > 0 and reference_data is not None:
+                        query_keys = [(test_store.rows[i]['id'], test_store.rows[i]['query_hash'])
+                                      for i, _, _ in records]
+                        unique_query_keys = [(test_store.rows[i]['id'], test_store.rows[i]['query_hash'])
+                                             for i, _, _ in unique_records]
+                        paired = _pairwise_metrics(
+                            pred, reference_pred, truth, reference_true=reference_truth,
+                            query_keys=query_keys, reference_query_keys=reference_query_keys)
+                        paired_unique = _pairwise_metrics(
+                            unique_pred, unique_reference, unique_truth,
+                            reference_true=unique_reference_truth, query_keys=unique_query_keys,
+                            reference_query_keys=unique_reference_keys)
                     timing = latency(model, params, test_store.batch([int(indices[0])], device), device,
                                      config['latency_repetitions']) if model else None
                     record = {
@@ -202,7 +273,8 @@ def evaluate(config, data_config, output_dir, device='cpu', checkpoint=None, bas
                         'unique_query_metrics': summarize(unique_pred, unique_truth),
                         'paired_vs_reference': paired,
                         'paired_unique_vs_reference': paired_unique,
-                        'reference_method': reference.get('metadata', {}).get('method') if reference else None,
+                        'reference_method': 'pg' if reference_data is not None else None,
+                        'reference_comparison': 'pg_baseline_not_same_model_k0' if reference_data is not None else None,
                         'adapt_seconds': adapt_seconds if model else 0.0,
                         'inference': timing, 'support_ids': ids, **overlap,
                     }
@@ -234,6 +306,19 @@ def evaluate(config, data_config, output_dir, device='cpu', checkpoint=None, bas
         'purpose': 'smoke-not-research' if test_limit else metadata.get('purpose', 'research'),
         'metadata': metadata, 'reference_manifest': str(reference_manifest) if reference_manifest else None,
         'primary_metric': 'unique_query_q95', 'results': results, 'aggregate': aggregate,
+        'paired_metric_definitions': {
+            'mean_log_q_reduction': 'mean(log(Q_reference) - log(Q_model))',
+            'median_log_q_reduction': 'median(log(Q_reference) - log(Q_model))',
+            'fraction_queries_improved': 'fraction(log(Q_model) < log(Q_reference), excluding machine-roundoff ties)',
+            'fraction_queries_worsened': 'fraction(log(Q_model) > log(Q_reference), excluding machine-roundoff ties)',
+            'paired_delta_q95': 'percentile(Q_model, 95) - percentile(Q_reference, 95)',
+            'q_error': 'exp(abs(max(log_prediction, 0) - log(max(true_cardinality, 1))))',
+            'binding': 'same ordered (query_id, query_hash) and raw true_cardinality',
+            'fraction_ties': ('abs(log(Q_reference)-log(Q_model)) <= 4*float64.eps*'
+                              'max(abs(clamped_log_model), abs(clamped_log_reference), abs(log_true)); '
+                              'ties counted in neither fraction'),
+            'reference': 'PG K=0; not same-model K=0 or adaptation gain',
+        },
         'parameters': sum(p.numel() for p in model.parameters()) if model else 0,
         'parameter_bytes': sum(p.numel() * p.element_size() for p in model.parameters()) if model else 0,
         'manifest_hash': digest(manifest), 'feature_extraction_and_label_acquisition_timed': False,

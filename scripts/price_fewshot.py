@@ -44,7 +44,7 @@ def main():
         fi = a.get('paired_unique', {}).get('fraction_queries_improved', float('nan'))
         print(f"{row['database']:<10s} k={row['k']:3d} "
               f"q50={a['all_rows_q50']['mean']:7.3f} q95_all={a['all_rows_q95']['mean']:8.3f} "
-              f"q95_uniq={a['unique_query_q95']['mean']:9.3f} improved={fi:.3f}")
+              f"q95_uniq={a['unique_query_q95']['mean']:9.3f} improved_vs_pg={fi:.3f}")
 
 
 if __name__ == '__main__':

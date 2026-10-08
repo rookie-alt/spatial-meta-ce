@@ -1,0 +1,93 @@
+{
+  "scope": "local_source_only_frozen_input_inventory_and_correction_blocker",
+  "reviewer": "James",
+  "checked_roots": [
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008",
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007",
+    "/Users/williamlin/Downloads/13/spatial-meta-ce"
+  ],
+  "status": "blocked_missing_local_frozen_prediction_inputs",
+  "corrected_auxiliary_statistics": null,
+  "per_query_main_q95_recomputed": false,
+  "missing_task_prediction_paths": [
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/runs/s4-pg-output-anchor-20261006-pidfix/A_anchor1/endpoint_rows.jsonl",
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/runs/s4-pg-output-anchor-20261006-pidfix/B_anchor0/endpoint_rows.jsonl",
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/runs/s5-complex-weighting-20261007/A_uniform/endpoint_rows.jsonl",
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/runs/s5-complex-weighting-20261007/B_complex2/endpoint_rows.jsonl",
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/runs/s6-mean-tail-20261007/A_mean/endpoint_rows.jsonl",
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/runs/s6-mean-tail-20261007/B_mean_tail10/endpoint_rows.jsonl"
+  ],
+  "missing_old_run_directories": [
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/runs/s4-pg-output-anchor-20261006-pidfix",
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/runs/s5-complex-weighting-20261007",
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/runs/s6-mean-tail-20261007"
+  ],
+  "missing_source_cache_roots": [
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/artifacts/cache/pretrain",
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/artifacts/cache/pretrain",
+    "/Users/williamlin/Downloads/13/spatial-meta-ce/artifacts/cache/pretrain"
+  ],
+  "source_binding_sha256_archived_manifests": "3d708226437e105c88562970fdd0b2ccf711a833105b4ec8c66d899aa61f79a6",
+  "source_manifest_scope": "26 source-only P1 manifests; metadata binding, not source cache entities",
+  "source_summary_files": [
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/实验文档/results/s4-pg-output-anchor-20261006-pidfix/summary.json",
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/实验文档/results/s5-complex-weighting-20261007/summary.json",
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/实验文档/results/s6-mean-tail-20261007/summary.json"
+  ],
+  "archived_identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+  "archived_pg_identity_digest": "fc641140b80b96dd6dc7aef4bdb4bcabdee3fdbcb49a4139df657b0c0a17e255",
+  "archived_denominators": {
+    "chembl": {
+      "all_unique": 50000,
+      "four_plus_unique": 33947
+    },
+    "legalacts": {
+      "all_unique": 49504,
+      "four_plus_unique": 9178
+    },
+    "telstra": {
+      "all_unique": 50000,
+      "four_plus_unique": 20311
+    }
+  },
+  "macro_database_denominator": 3,
+  "pool_all_unique": 149504,
+  "pool_four_plus_unique": 63436,
+  "denominator_record_source_sha256": "c2c734ed8ce96aeb78c3123ab5cc0207a922546d42478d8c6d7578b225740d25",
+  "remote_input_existence": "not_checked_unknown",
+  "new_inference": false,
+  "new_training": false,
+  "target_data_read": false,
+  "formal_ready": false,
+  "required_input_before_correction": [
+    "immutable original endpoint_rows.jsonl with query identities, prediction, real true and PG",
+    "original source/endpoint SHA and frozen denominator/aggregation contracts",
+    "PG reference with explicit method and same labels/identity; do not fabricate missing metadata"
+  ],
+  "no_automatic_recovery": "Do not connect server, regenerate predictions or rerun experiments to fill missing inputs.",
+  "archived_prediction_sha256_not_recomputed": {
+    "S4/A_anchor1": "93acc77dc6ac316d8903a674517de5e0795f02b5b0d106cb9a95d98f7c242376",
+    "S4/B_anchor0": "53b5be587113a5957fee05e5a708132beabf9ec456c2892f6333cb65258cb628",
+    "S5/A_uniform": "93acc77dc6ac316d8903a674517de5e0795f02b5b0d106cb9a95d98f7c242376",
+    "S5/B_complex2": "5c854ef84c4c6b2af6f1cc8d263ea939311f3906c47843965ebd46c32dfa3638",
+    "S6/A_mean": "93acc77dc6ac316d8903a674517de5e0795f02b5b0d106cb9a95d98f7c242376",
+    "S6/B_mean_tail10": "84fb90733951869e6ac5befa8766c783f4efb9830e907b4a64fa900b0ab7c80c",
+    "S7/source-predictions": "484e86b728858b4fbafbdf5923cfbc8f36e2e9c0de3c6c63dfd8e1a33f0d3c5e"
+  },
+  "missing_s7_prediction_paths": [
+    "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/runs/s7-fit-generalization-20261007/source-predictions.jsonl",
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/runs/s7-fit-generalization-20261007/source-predictions.jsonl"
+  ],
+  "grouped_s3_csv_gz_not_raw_queries": [
+    "实验文档/results/s3-conditional-residual-20261006/conditions.csv.gz",
+    "实验文档/results/s3-conditional-residual-20261006/residuals.csv.gz"
+  ],
+  "archive_download_metadata": {
+    "reports/s5-complex-weighting-20261007/archive-verification.json": {
+      "full_predictions_downloaded": false
+    },
+    "reports/s6-mean-tail-20261007/archive-verification.json": {
+      "full_predictions_downloaded": false
+    }
+  }
+}

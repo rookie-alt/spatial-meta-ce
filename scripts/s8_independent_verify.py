@@ -306,6 +306,82 @@ def _certificate_diagnostics(cert, rows, columns, context):
         raise ValueError(f"{context}: rank stability contradicts interval margin")
 
 
+def _retained_record_check(cert):
+    """Check recorded scalars/formula only; no matrix/spectrum proof is issued.
+
+    The frozen constants are literal, not imported from the producer. Residual
+    acceptance uses the independently calculated bound, never a stored tol.
+    Actual extrema, scales and residuals cannot be authenticated without the
+    original matrix/vectors; those quantities remain explicitly uncertified.
+    """
+    def number(value):
+        if type(value) not in (int, float):
+            raise ValueError('retained record requires real JSON numbers')
+        try:
+            value = float(value)
+        except OverflowError as error:
+            raise ValueError('retained record numeric overflow') from error
+        if not math.isfinite(value) or value < 0:
+            raise ValueError('retained record requires finite nonnegative numbers')
+        return value
+
+    def equal(actual, expected):
+        # Relative-only metadata identity check, NOT a solver tolerance.
+        if not math.isfinite(expected) or not math.isclose(actual, expected, rel_tol=1e-12, abs_tol=0):
+            raise ValueError('retained record contradicts frozen formula')
+
+    check = cert.get('retained_subspace_check')
+    if not isinstance(check, dict) or check.get('scope') != 'real_retained_condition_number_fp64_reachable_bound':
+        raise ValueError('missing or wrong retained check scope')
+    rank = cert['observed_ranks']['svd']
+    fields = ('tol', 'sigma1', 'sigma_r', 'sigma_cutoff', 'kappa_retained',
+              'projection_norm', 'target_scale', 'amplification_scale',
+              'engineering_floor', 'reachable_bound', 'accumulation_constant', 'eps')
+    for side in ('reported', 'reference'):
+        bound = check.get(f'{side}_bound')
+        scope = ('max_engineering_floor_and_fp64_reachable_bound' if rank
+                 else 'rank_zero_engineering_floor')
+        if not isinstance(bound, dict) or bound.get('scope') != scope:
+            raise ValueError('missing or wrong retained bound scope')
+        values = {key: number(bound.get(key)) for key in fields}
+        eps = 2.0**-52
+        if values['eps'] != eps or values['accumulation_constant'] != 8.0:
+            raise ValueError('retained FP64 constants changed')
+        sigma1, sigma_r = values['sigma1'], values['sigma_r']
+        equal(values['sigma_cutoff'], 1e-12 * sigma1)
+        eta = cert['spectrum_error_bound']
+        for actual, expected in zip(cert['rank_cutoff_interval'],
+                                    (1e-12 * max(0.0, sigma1 - eta), 1e-12 * (sigma1 + eta))):
+            equal(number(actual), expected)
+        if rank:
+            if not 0 < values['sigma_cutoff'] < sigma_r <= sigma1:
+                raise ValueError('retained singular values violate fixed cutoff/rank')
+            if rank == 1 and sigma_r != sigma1:
+                raise ValueError('rank one must retain leading singular value')
+            kappa = sigma1 / sigma_r
+            if not 1 <= kappa < 1e12:
+                raise ValueError('invalid retained condition number')
+        else:
+            if any(values[key] != 0 for key in ('sigma1', 'sigma_r', 'sigma_cutoff',
+                                                'kappa_retained', 'projection_norm')):
+                raise ValueError('rank zero requires zero spectrum/projection')
+            kappa = 0.0
+        equal(values['kappa_retained'], kappa)
+        scale = max(values['target_scale'], values['projection_norm'], eps)
+        floor = 1e-12 + 1e-12 * values['projection_norm']
+        reachable = 8.0 * eps * kappa * scale
+        tolerance = max(floor, reachable)
+        for key, expected in (('amplification_scale', scale), ('engineering_floor', floor),
+                              ('reachable_bound', reachable), ('tol', tolerance)):
+            equal(values[key], expected)
+        residual = number(check.get(f'{side}_residual'))
+        if residual > tolerance or cert.get(f'{"reference_" if side == "reference" else ""}retained_subspace_pass') is not True:
+            raise ValueError('retained residual exceeds independently computed tolerance')
+    # Both checks use the same SVD projection and target; only solve residuals differ.
+    if check['reported_bound'] != check['reference_bound']:
+        raise ValueError('retained sides disagree on shared spectrum/projection/target')
+
+
 def _certificate_record(cert, rows, columns, context):
     """Check reported booleans/ranks only, never re-solve or prove optimality."""
     if not isinstance(cert, dict):
@@ -346,6 +422,10 @@ def _certificate_record(cert, rows, columns, context):
             f"{context}: strict certificate must retain exact unknown scope"
         )
     _certificate_diagnostics(cert, rows, columns, context)
+    try:
+        _retained_record_check(cert)
+    except (KeyError, TypeError, OverflowError, ZeroDivisionError) as error:
+        raise ValueError(f'{context}: malformed retained record') from error
     return rank, stability
 
 
@@ -433,6 +513,9 @@ def _numeric_records(run_dir, bindings):
             "passed": True,
             "scope": "record_consistency_not_independent_mathematical_proof",
             "certificate_files": 4,
+            "retained_formula_checked": True,
+            "uncertified_quantities": ["actual_spectrum_extrema", "actual_projection_and_target_scales",
+                                      "actual_retained_residuals", "strict_linear_optimality"],
             "probe_profiles": 2,
             "resource_profiles": 2,
         },

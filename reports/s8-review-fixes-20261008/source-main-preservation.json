@@ -1,0 +1,314 @@
+{
+  "scope": "archived_source_summary_preservation_and_macro_arithmetic_only",
+  "baseline_commit": "b3390b7463d0dd0fc002903f98214b68c696a11b",
+  "source_database_whitelist": [
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "passed": true,
+  "studies": [
+    {
+      "study": "s4-pg-output-anchor-20261006-pidfix",
+      "summary_sha256_current": "aafa2bd935deb5fc008982d00aedcbfecbc0a379fde2f96e95c2081e88dda6ee",
+      "summary_sha256_baseline": "aafa2bd935deb5fc008982d00aedcbfecbc0a379fde2f96e95c2081e88dda6ee",
+      "byte_unchanged": true,
+      "historical_decision_preserved_not_reselected": "no_candidate",
+      "runs": [
+        {
+          "arm": "A_anchor1",
+          "archived_endpoint_rows_sha256": "93acc77dc6ac316d8903a674517de5e0795f02b5b0d106cb9a95d98f7c242376",
+          "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+          "pg_identity_digest": "fc641140b80b96dd6dc7aef4bdb4bcabdee3fdbcb49a4139df657b0c0a17e255",
+          "unique_queries": 149504,
+          "counts": {
+            "chembl": {
+              "all_tables": 50000,
+              "four_plus_tables": 33947
+            },
+            "legalacts": {
+              "all_tables": 49504,
+              "four_plus_tables": 9178
+            },
+            "telstra": {
+              "all_tables": 50000,
+              "four_plus_tables": 20311
+            }
+          },
+          "per_database_q95": {
+            "chembl": {
+              "all_tables": 68.23347862000948,
+              "four_plus_tables": 104.81765453770367
+            },
+            "legalacts": {
+              "all_tables": 9.712128769340556,
+              "four_plus_tables": 15.67468149584954
+            },
+            "telstra": {
+              "all_tables": 7.993539317886522,
+              "four_plus_tables": 11.940625323846943
+            }
+          },
+          "aggregate": {
+            "macro_all_table_q95": {
+              "archived": 28.646382235745516,
+              "reaggregated": 28.64638223574552
+            },
+            "macro_four_plus_q95": {
+              "archived": 44.14432045246672,
+              "reaggregated": 44.14432045246672
+            }
+          }
+        },
+        {
+          "arm": "B_anchor0",
+          "archived_endpoint_rows_sha256": "53b5be587113a5957fee05e5a708132beabf9ec456c2892f6333cb65258cb628",
+          "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+          "pg_identity_digest": "fc641140b80b96dd6dc7aef4bdb4bcabdee3fdbcb49a4139df657b0c0a17e255",
+          "unique_queries": 149504,
+          "counts": {
+            "chembl": {
+              "all_tables": 50000,
+              "four_plus_tables": 33947
+            },
+            "legalacts": {
+              "all_tables": 49504,
+              "four_plus_tables": 9178
+            },
+            "telstra": {
+              "all_tables": 50000,
+              "four_plus_tables": 20311
+            }
+          },
+          "per_database_q95": {
+            "chembl": {
+              "all_tables": 90.7884824470386,
+              "four_plus_tables": 169.83113165607728
+            },
+            "legalacts": {
+              "all_tables": 11.690346645749376,
+              "four_plus_tables": 20.51645376343039
+            },
+            "telstra": {
+              "all_tables": 5.785550538446565,
+              "four_plus_tables": 7.5180665451378
+            }
+          },
+          "aggregate": {
+            "macro_all_table_q95": {
+              "archived": 36.08812654374485,
+              "reaggregated": 36.08812654374485
+            },
+            "macro_four_plus_q95": {
+              "archived": 65.95521732154849,
+              "reaggregated": 65.95521732154849
+            }
+          }
+        }
+      ]
+    },
+    {
+      "study": "s5-complex-weighting-20261007",
+      "summary_sha256_current": "f944da91da44faf1216508f3b224c3c31d340615910ef975024bc55beeb09106",
+      "summary_sha256_baseline": "f944da91da44faf1216508f3b224c3c31d340615910ef975024bc55beeb09106",
+      "byte_unchanged": true,
+      "historical_decision_preserved_not_reselected": "no_candidate",
+      "runs": [
+        {
+          "arm": "A_uniform",
+          "archived_endpoint_rows_sha256": "93acc77dc6ac316d8903a674517de5e0795f02b5b0d106cb9a95d98f7c242376",
+          "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+          "pg_identity_digest": "fc641140b80b96dd6dc7aef4bdb4bcabdee3fdbcb49a4139df657b0c0a17e255",
+          "unique_queries": 149504,
+          "counts": {
+            "chembl": {
+              "all_tables": 50000,
+              "four_plus_tables": 33947
+            },
+            "legalacts": {
+              "all_tables": 49504,
+              "four_plus_tables": 9178
+            },
+            "telstra": {
+              "all_tables": 50000,
+              "four_plus_tables": 20311
+            }
+          },
+          "per_database_q95": {
+            "chembl": {
+              "all_tables": 68.23347862000948,
+              "four_plus_tables": 104.81765453770367
+            },
+            "legalacts": {
+              "all_tables": 9.712128769340556,
+              "four_plus_tables": 15.67468149584954
+            },
+            "telstra": {
+              "all_tables": 7.993539317886522,
+              "four_plus_tables": 11.940625323846943
+            }
+          },
+          "aggregate": {
+            "macro_all_table_q95": {
+              "archived": 28.646382235745516,
+              "reaggregated": 28.64638223574552
+            },
+            "macro_four_plus_q95": {
+              "archived": 44.14432045246672,
+              "reaggregated": 44.14432045246672
+            }
+          }
+        },
+        {
+          "arm": "B_complex2",
+          "archived_endpoint_rows_sha256": "5c854ef84c4c6b2af6f1cc8d263ea939311f3906c47843965ebd46c32dfa3638",
+          "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+          "pg_identity_digest": "fc641140b80b96dd6dc7aef4bdb4bcabdee3fdbcb49a4139df657b0c0a17e255",
+          "unique_queries": 149504,
+          "counts": {
+            "chembl": {
+              "all_tables": 50000,
+              "four_plus_tables": 33947
+            },
+            "legalacts": {
+              "all_tables": 49504,
+              "four_plus_tables": 9178
+            },
+            "telstra": {
+              "all_tables": 50000,
+              "four_plus_tables": 20311
+            }
+          },
+          "per_database_q95": {
+            "chembl": {
+              "all_tables": 95.90694252956878,
+              "four_plus_tables": 163.28586737079476
+            },
+            "legalacts": {
+              "all_tables": 10.77909538015293,
+              "four_plus_tables": 19.755941331522987
+            },
+            "telstra": {
+              "all_tables": 7.3128396185664055,
+              "four_plus_tables": 9.119927281294526
+            }
+          },
+          "aggregate": {
+            "macro_all_table_q95": {
+              "archived": 37.999625842762704,
+              "reaggregated": 37.999625842762704
+            },
+            "macro_four_plus_q95": {
+              "archived": 64.05391199453743,
+              "reaggregated": 64.05391199453743
+            }
+          }
+        }
+      ]
+    },
+    {
+      "study": "s6-mean-tail-20261007",
+      "summary_sha256_current": "84587864eb0ab55a29f6465080436ab392dca2507d4b425ca3a1c23d182fe51f",
+      "summary_sha256_baseline": "84587864eb0ab55a29f6465080436ab392dca2507d4b425ca3a1c23d182fe51f",
+      "byte_unchanged": true,
+      "historical_decision_preserved_not_reselected": "no_candidate",
+      "runs": [
+        {
+          "arm": "A_mean",
+          "archived_endpoint_rows_sha256": "93acc77dc6ac316d8903a674517de5e0795f02b5b0d106cb9a95d98f7c242376",
+          "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+          "pg_identity_digest": "fc641140b80b96dd6dc7aef4bdb4bcabdee3fdbcb49a4139df657b0c0a17e255",
+          "unique_queries": 149504,
+          "counts": {
+            "chembl": {
+              "all_tables": 50000,
+              "four_plus_tables": 33947
+            },
+            "legalacts": {
+              "all_tables": 49504,
+              "four_plus_tables": 9178
+            },
+            "telstra": {
+              "all_tables": 50000,
+              "four_plus_tables": 20311
+            }
+          },
+          "per_database_q95": {
+            "chembl": {
+              "all_tables": 68.23347862000948,
+              "four_plus_tables": 104.81765453770367
+            },
+            "legalacts": {
+              "all_tables": 9.712128769340556,
+              "four_plus_tables": 15.67468149584954
+            },
+            "telstra": {
+              "all_tables": 7.993539317886522,
+              "four_plus_tables": 11.940625323846943
+            }
+          },
+          "aggregate": {
+            "macro_all_table_q95": {
+              "archived": 28.646382235745516,
+              "reaggregated": 28.64638223574552
+            },
+            "macro_four_plus_q95": {
+              "archived": 44.14432045246672,
+              "reaggregated": 44.14432045246672
+            }
+          }
+        },
+        {
+          "arm": "B_mean_tail10",
+          "archived_endpoint_rows_sha256": "84fb90733951869e6ac5befa8766c783f4efb9830e907b4a64fa900b0ab7c80c",
+          "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+          "pg_identity_digest": "fc641140b80b96dd6dc7aef4bdb4bcabdee3fdbcb49a4139df657b0c0a17e255",
+          "unique_queries": 149504,
+          "counts": {
+            "chembl": {
+              "all_tables": 50000,
+              "four_plus_tables": 33947
+            },
+            "legalacts": {
+              "all_tables": 49504,
+              "four_plus_tables": 9178
+            },
+            "telstra": {
+              "all_tables": 50000,
+              "four_plus_tables": 20311
+            }
+          },
+          "per_database_q95": {
+            "chembl": {
+              "all_tables": 59.939351945891076,
+              "four_plus_tables": 93.95684501292695
+            },
+            "legalacts": {
+              "all_tables": 10.638888713653934,
+              "four_plus_tables": 18.13603152035917
+            },
+            "telstra": {
+              "all_tables": 7.519947474283784,
+              "four_plus_tables": 7.8670041041082595
+            }
+          },
+          "aggregate": {
+            "macro_all_table_q95": {
+              "archived": 26.03272937794293,
+              "reaggregated": 26.032729377942932
+            },
+            "macro_four_plus_q95": {
+              "archived": 39.98662687913146,
+              "reaggregated": 39.98662687913146
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "actual_per_query_predictions_recomputed": false,
+  "per_query_recomputation_status": "blocked_missing_local_frozen_prediction_label_pg_identity_inputs",
+  "candidate_reselected": false,
+  "target_read": false,
+  "note": "Archive equality and arithmetic do not independently authenticate raw Q95 values."
+}

@@ -1,0 +1,519 @@
+test_all_rows_and_unique_pairings_bind_labels_and_pg_reference (test_paired.PairedProtocolTests.test_all_rows_and_unique_pairings_bind_labels_and_pg_reference) ... {"database": "synthetic", "run": 0, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 0, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+FAIL
+test_evaluation_reports_unique_and_paired_metrics (test_paired.PairedProtocolTests.test_evaluation_reports_unique_and_paired_metrics) ... {"database": "synthetic", "run": 0, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+ok
+test_paired_manifest_is_shared_across_methods (test_paired.PairedProtocolTests.test_paired_manifest_is_shared_across_methods) ... {"database": "synthetic", "run": 0, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 0, "k": 5, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 1, "k": 5, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 0, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 0, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+ok
+test_prediction_labels_cannot_drift_after_reference_binding (test_paired.PairedProtocolTests.test_prediction_labels_cannot_drift_after_reference_binding) ... {"database": "synthetic", "run": 0, "k": 5, "q50": 1.0099999999999998, "q95": 7.878772727272727, "unique_q95": 8.282818181818183}
+{"database": "synthetic", "run": 1, "k": 5, "q50": 1.0099999999999998, "q95": 7.878772727272727, "unique_q95": 8.282818181818183}
+FAIL
+test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) ... 
+  test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[], reference=[], true=[]) ... ERROR
+  test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[0, 0], true=[1]) ... ERROR
+  test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[0], true=[1, 1]) ... ERROR
+  test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[nan], reference=[0], true=[1]) ... ERROR
+  test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[inf], true=[1]) ... ERROR
+  test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[0], true=[nan]) ... ERROR
+  test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[0], true=[inf]) ... ERROR
+  test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[0], true=[-1]) ... ERROR
+  test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[[0]], reference=[[0]], true=[1]) ... ERROR
+test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) ... 
+  test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'reference_true': [0]}) ... ERROR
+  test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'reference_true': [nan]}) ... ERROR
+  test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'reference_true': []}) ... ERROR
+  test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'query_keys': []}) ... ERROR
+  test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'reference_query_keys': [('other-row', 'query-0')]}) ... ERROR
+  test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'reference_query_keys': [('row-0', 'other-query')]}) ... ERROR
+test_mean_median_and_q95_use_different_scales (test_paired_metrics.PairedMetricsTests.test_mean_median_and_q95_use_different_scales) ... ERROR
+test_no_reference_remains_none (test_paired_metrics.PairedMetricsTests.test_no_reference_remains_none) ... ERROR
+test_q95_is_percentile_of_q_not_exp_percentile_log_q (test_paired_metrics.PairedMetricsTests.test_q95_is_percentile_of_q_not_exp_percentile_log_q) ... ERROR
+test_summarize_unique_q95_is_unchanged (test_paired_metrics.PairedMetricsTests.test_summarize_unique_q95_is_unchanged) ... ok
+test_true_100_pg_10_model_100_is_improved (test_paired_metrics.PairedMetricsTests.test_true_100_pg_10_model_100_is_improved) ... ERROR
+test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) ... 
+  test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=10, reference=1, true=100) ... ERROR
+  test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=1000, reference=10000, true=100) ... ERROR
+  test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=200, reference=10, true=100) ... ERROR
+  test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=1000, reference=10, true=100) ... ERROR
+  test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=100, reference=100, true=100) ... ERROR
+  test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=1, reference=10, true=100) ... ERROR
+test_zero_labels_and_negative_log_predictions_follow_standard_clamps (test_paired_metrics.PairedMetricsTests.test_zero_labels_and_negative_log_predictions_follow_standard_clamps) ... ERROR
+test_duplicate_ids_keep_distinct_hashes_and_requested_order (test_paired_metrics.ReferenceBindingTests.test_duplicate_ids_keep_distinct_hashes_and_requested_order) ... ERROR
+test_identical_k0_repeats_are_allowed_but_conflicts_are_not (test_paired_metrics.ReferenceBindingTests.test_identical_k0_repeats_are_allowed_but_conflicts_are_not) ... ERROR
+test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed) ... 
+  test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed) (field='query_id') ... FAIL
+  test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed) (field='query_hash') ... FAIL
+  test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed) (field='query_hash') ... FAIL
+  test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed) (field='true_cardinality') ... FAIL
+test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed) ... FAIL
+test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) ... 
+  test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (field='true_cardinality') ... FAIL
+  test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (field='true_cardinality') ... FAIL
+  test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (field='true_cardinality') ... FAIL
+  test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (field='log_prediction') ... FAIL
+  test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (field='log_prediction') ... FAIL
+  test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (missing_field='query_hash') ... FAIL
+  test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (missing_field='true_cardinality') ... FAIL
+test_only_requested_database_k0_rows_are_used (test_paired_metrics.ReferenceBindingTests.test_only_requested_database_k0_rows_are_used) ... ERROR
+test_pg_path_cannot_be_mislabeled_as_same_model_k0 (test_paired_metrics.ReferenceBindingTests.test_pg_path_cannot_be_mislabeled_as_same_model_k0) ... FAIL
+
+======================================================================
+ERROR: test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[], reference=[], true=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 76, in test_invalid_arrays_fail_closed
+    self.paired(pred, ref, true)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[0, 0], true=[1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 76, in test_invalid_arrays_fail_closed
+    self.paired(pred, ref, true)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[0], true=[1, 1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 76, in test_invalid_arrays_fail_closed
+    self.paired(pred, ref, true)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[nan], reference=[0], true=[1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 76, in test_invalid_arrays_fail_closed
+    self.paired(pred, ref, true)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[inf], true=[1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 76, in test_invalid_arrays_fail_closed
+    self.paired(pred, ref, true)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[0], true=[nan])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 76, in test_invalid_arrays_fail_closed
+    self.paired(pred, ref, true)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[0], true=[inf])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 76, in test_invalid_arrays_fail_closed
+    self.paired(pred, ref, true)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[0], reference=[0], true=[-1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 76, in test_invalid_arrays_fail_closed
+    self.paired(pred, ref, true)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) (pred=[[0]], reference=[[0]], true=[1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 76, in test_invalid_arrays_fail_closed
+    self.paired(pred, ref, true)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'reference_true': [0]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 85, in test_label_and_query_bindings_must_match_before_clamping
+    self.paired([0], [0], [1], **changes)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'reference_true': [nan]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 85, in test_label_and_query_bindings_must_match_before_clamping
+    self.paired([0], [0], [1], **changes)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'reference_true': []})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 85, in test_label_and_query_bindings_must_match_before_clamping
+    self.paired([0], [0], [1], **changes)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'query_keys': []})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 85, in test_label_and_query_bindings_must_match_before_clamping
+    self.paired([0], [0], [1], **changes)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'reference_query_keys': [('other-row', 'query-0')]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 85, in test_label_and_query_bindings_must_match_before_clamping
+    self.paired([0], [0], [1], **changes)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) (changes={'reference_query_keys': [('row-0', 'other-query')]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 85, in test_label_and_query_bindings_must_match_before_clamping
+    self.paired([0], [0], [1], **changes)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_mean_median_and_q95_use_different_scales (test_paired_metrics.PairedMetricsTests.test_mean_median_and_q95_use_different_scales)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 47, in test_mean_median_and_q95_use_different_scales
+    actual = self.paired(np.log([100, 50, 400, 800]),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_no_reference_remains_none (test_paired_metrics.PairedMetricsTests.test_no_reference_remains_none)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 88, in test_no_reference_remains_none
+    self.assertIsNone(self.paired([0], None, [1]))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_q95_is_percentile_of_q_not_exp_percentile_log_q (test_paired_metrics.PairedMetricsTests.test_q95_is_percentile_of_q_not_exp_percentile_log_q)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 57, in test_q95_is_percentile_of_q_not_exp_percentile_log_q
+    actual = self.paired([0, math.log(100)], [0, 0], [1, 1])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_true_100_pg_10_model_100_is_improved (test_paired_metrics.PairedMetricsTests.test_true_100_pg_10_model_100_is_improved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 22, in test_true_100_pg_10_model_100_is_improved
+    actual = self.paired([math.log(100)], [math.log(10)], [100])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=10, reference=1, true=100)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 37, in test_under_over_cross_truth_and_equal_errors
+    actual = self.paired([math.log(pred)], [math.log(ref)], [true])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=1000, reference=10000, true=100)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 37, in test_under_over_cross_truth_and_equal_errors
+    actual = self.paired([math.log(pred)], [math.log(ref)], [true])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=200, reference=10, true=100)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 37, in test_under_over_cross_truth_and_equal_errors
+    actual = self.paired([math.log(pred)], [math.log(ref)], [true])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=1000, reference=10, true=100)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 37, in test_under_over_cross_truth_and_equal_errors
+    actual = self.paired([math.log(pred)], [math.log(ref)], [true])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=100, reference=100, true=100)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 37, in test_under_over_cross_truth_and_equal_errors
+    actual = self.paired([math.log(pred)], [math.log(ref)], [true])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=1, reference=10, true=100)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 37, in test_under_over_cross_truth_and_equal_errors
+    actual = self.paired([math.log(pred)], [math.log(ref)], [true])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_zero_labels_and_negative_log_predictions_follow_standard_clamps (test_paired_metrics.PairedMetricsTests.test_zero_labels_and_negative_log_predictions_follow_standard_clamps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 61, in test_zero_labels_and_negative_log_predictions_follow_standard_clamps
+    actual = self.paired([-5, 0, math.log(10)], [0, math.log(10), -9], [0, 0, 0])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 19, in paired
+    return _pairwise_metrics(pred, reference, true, **binding)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _pairwise_metrics() got an unexpected keyword argument 'reference_true'
+
+======================================================================
+ERROR: test_duplicate_ids_keep_distinct_hashes_and_requested_order (test_paired_metrics.ReferenceBindingTests.test_duplicate_ids_keep_distinct_hashes_and_requested_order)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 126, in test_duplicate_ids_keep_distinct_hashes_and_requested_order
+    prediction, truth, keys = self.load(indices=(1, 0))
+    ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 2)
+
+======================================================================
+ERROR: test_identical_k0_repeats_are_allowed_but_conflicts_are_not (test_paired_metrics.ReferenceBindingTests.test_identical_k0_repeats_are_allowed_but_conflicts_are_not)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 133, in test_identical_k0_repeats_are_allowed_but_conflicts_are_not
+    prediction, _, _ = self.load(self.rows + repeats)
+    ^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 2)
+
+======================================================================
+ERROR: test_only_requested_database_k0_rows_are_used (test_paired_metrics.ReferenceBindingTests.test_only_requested_database_k0_rows_are_used)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 164, in test_only_requested_database_k0_rows_are_used
+    prediction, _, _ = self.load(self.rows + extras)
+    ^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 2)
+
+======================================================================
+FAIL: test_all_rows_and_unique_pairings_bind_labels_and_pg_reference (test_paired.PairedProtocolTests.test_all_rows_and_unique_pairings_bind_labels_and_pg_reference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired.py", line 128, in test_all_rows_and_unique_pairings_bind_labels_and_pg_reference
+    self.assertAlmostEqual(paired['mean_log_q_reduction'], math.log(10) / 2)
+AssertionError: -4.440892098500626e-16 != 1.151292546497023 within 7 places (1.1512925464970234 difference)
+
+======================================================================
+FAIL: test_prediction_labels_cannot_drift_after_reference_binding (test_paired.PairedProtocolTests.test_prediction_labels_cannot_drift_after_reference_binding)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired.py", line 152, in test_prediction_labels_cannot_drift_after_reference_binding
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed) (field='query_id')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 144, in test_identity_label_and_coverage_mismatch_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed) (field='query_hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 144, in test_identity_label_and_coverage_mismatch_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed) (field='query_hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 144, in test_identity_label_and_coverage_mismatch_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed) (field='true_cardinality')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 144, in test_identity_label_and_coverage_mismatch_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 146, in test_identity_label_and_coverage_mismatch_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (field='true_cardinality')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 154, in test_invalid_and_incomplete_csv_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (field='true_cardinality')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 154, in test_invalid_and_incomplete_csv_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (field='true_cardinality')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 154, in test_invalid_and_incomplete_csv_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (field='log_prediction')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 154, in test_invalid_and_incomplete_csv_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (field='log_prediction')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 154, in test_invalid_and_incomplete_csv_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (missing_field='query_hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 158, in test_invalid_and_incomplete_csv_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) (missing_field='true_cardinality')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 158, in test_invalid_and_incomplete_csv_fail_closed
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_pg_path_cannot_be_mislabeled_as_same_model_k0 (test_paired_metrics.ReferenceBindingTests.test_pg_path_cannot_be_mislabeled_as_same_model_k0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 169, in test_pg_path_cannot_be_mislabeled_as_same_model_k0
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.050s
+
+FAILED (failures=15, errors=29)
+
+EXIT_STATUS=1

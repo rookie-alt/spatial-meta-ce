@@ -1,0 +1,57 @@
+test_all_rows_and_unique_pairings_bind_labels_and_pg_reference (test_paired.PairedProtocolTests.test_all_rows_and_unique_pairings_bind_labels_and_pg_reference) ... {"database": "synthetic", "run": 0, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 0, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+FAIL
+test_evaluation_reports_unique_and_paired_metrics (test_paired.PairedProtocolTests.test_evaluation_reports_unique_and_paired_metrics) ... {"database": "synthetic", "run": 0, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+ok
+test_paired_manifest_is_shared_across_methods (test_paired.PairedProtocolTests.test_paired_manifest_is_shared_across_methods) ... {"database": "synthetic", "run": 0, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 0, "k": 5, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 1, "k": 5, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 0, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 0, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+ok
+test_prediction_labels_cannot_drift_after_reference_binding (test_paired.PairedProtocolTests.test_prediction_labels_cannot_drift_after_reference_binding) ... ok
+test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) ... ok
+test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) ... ok
+test_mean_median_and_q95_use_different_scales (test_paired_metrics.PairedMetricsTests.test_mean_median_and_q95_use_different_scales) ... ok
+test_no_reference_remains_none (test_paired_metrics.PairedMetricsTests.test_no_reference_remains_none) ... ok
+test_q95_is_percentile_of_q_not_exp_percentile_log_q (test_paired_metrics.PairedMetricsTests.test_q95_is_percentile_of_q_not_exp_percentile_log_q) ... ok
+test_summarize_unique_q95_is_unchanged (test_paired_metrics.PairedMetricsTests.test_summarize_unique_q95_is_unchanged) ... ok
+test_true_100_pg_10_model_100_is_improved (test_paired_metrics.PairedMetricsTests.test_true_100_pg_10_model_100_is_improved) ... ok
+test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) ... 
+  test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=1000, reference=10, true=100) ... FAIL
+test_zero_labels_and_negative_log_predictions_follow_standard_clamps (test_paired_metrics.PairedMetricsTests.test_zero_labels_and_negative_log_predictions_follow_standard_clamps) ... ok
+test_duplicate_ids_keep_distinct_hashes_and_requested_order (test_paired_metrics.ReferenceBindingTests.test_duplicate_ids_keep_distinct_hashes_and_requested_order) ... ok
+test_identical_k0_repeats_are_allowed_but_conflicts_are_not (test_paired_metrics.ReferenceBindingTests.test_identical_k0_repeats_are_allowed_but_conflicts_are_not) ... ok
+test_identity_label_and_coverage_mismatch_fail_closed (test_paired_metrics.ReferenceBindingTests.test_identity_label_and_coverage_mismatch_fail_closed) ... ok
+test_invalid_and_incomplete_csv_fail_closed (test_paired_metrics.ReferenceBindingTests.test_invalid_and_incomplete_csv_fail_closed) ... ok
+test_only_requested_database_k0_rows_are_used (test_paired_metrics.ReferenceBindingTests.test_only_requested_database_k0_rows_are_used) ... ok
+test_pg_path_cannot_be_mislabeled_as_same_model_k0 (test_paired_metrics.ReferenceBindingTests.test_pg_path_cannot_be_mislabeled_as_same_model_k0) ... ok
+
+======================================================================
+FAIL: test_all_rows_and_unique_pairings_bind_labels_and_pg_reference (test_paired.PairedProtocolTests.test_all_rows_and_unique_pairings_bind_labels_and_pg_reference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired.py", line 138, in test_all_rows_and_unique_pairings_bind_labels_and_pg_reference
+    self.assertAlmostEqual(unique['paired_delta_q95'], 0)
+AssertionError: -0.8999999999999986 != 0 within 7 places (0.8999999999999986 difference)
+
+======================================================================
+FAIL: test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) (pred=1000, reference=10, true=100)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 40, in test_under_over_cross_truth_and_equal_errors
+    self.assertEqual(actual['fraction_queries_improved'], float(model_q < ref_q))
+AssertionError: 1.0 != 0.0
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.074s
+
+FAILED (failures=2)
+
+EXIT_STATUS=1

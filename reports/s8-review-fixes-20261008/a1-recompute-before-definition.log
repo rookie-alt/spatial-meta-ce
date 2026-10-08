@@ -1,0 +1,181 @@
+{
+  "purpose": "synthetic-unit-evidence-not-research",
+  "oracle": "Decimal cardinality ratios; Python math/statistics; manually interpolated ordinary Q95",
+  "oracle_does_not_call": [
+    "q_values",
+    "summarize",
+    "_pairwise_metrics"
+  ],
+  "tested_implementation": "_pairwise_metrics",
+  "source_sha256": {
+    "spatial_meta_ce/evaluate.py": "4b92ced78ab92df643080515cdcd3565d1ca2781c24a9f54f2e838af4b84fc8c",
+    "spatial_meta_ce/metrics.py": "ec940c3b29bb5b165f560a369c9874cd9ec630d2bbc21e7f78893a64fe1c56a5",
+    "tests/test_paired.py": "22855b754aa432720bfc7d1d067c70c3be18fd4c8a7bff30380476b1bde2672c",
+    "tests/test_paired_metrics.py": "4bdcedc60a36ae795d7e5c2caa87dadd157927666a56f05adf3b46c70aa8e117",
+    "reports/s8-review-fixes-20261008/a1-recompute.py": "78c7fd7132d03d60037cb07eff7184b6c6b1532766625185924f50fe985f5253"
+  },
+  "cases": [
+    {
+      "case": "true100_pg10_model100",
+      "oracle": {
+        "mean_log_q_reduction": 2.302585092994046,
+        "median_log_q_reduction": 2.302585092994046,
+        "fraction_queries_improved": 1.0,
+        "fraction_queries_worsened": 0.0,
+        "paired_delta_q95": -9.0
+      },
+      "actual": {
+        "mean_log_q_reduction": 2.302585092994046,
+        "median_log_q_reduction": 2.302585092994046,
+        "fraction_queries_improved": 1.0,
+        "fraction_queries_worsened": 0.0,
+        "paired_delta_q95": -9.000000000000002
+      },
+      "passed": true
+    },
+    {
+      "case": "symmetric_under_over_equal",
+      "oracle": {
+        "mean_log_q_reduction": 0.0,
+        "median_log_q_reduction": 0.0,
+        "fraction_queries_improved": 0.0,
+        "fraction_queries_worsened": 0.0,
+        "paired_delta_q95": 0.0
+      },
+      "actual": {
+        "mean_log_q_reduction": 8.881784197001252e-16,
+        "median_log_q_reduction": 8.881784197001252e-16,
+        "fraction_queries_improved": 0.0,
+        "fraction_queries_worsened": 0.0,
+        "paired_delta_q95": -8.881784197001252e-15
+      },
+      "passed": true
+    },
+    {
+      "case": "near_truth_equal_over_under",
+      "oracle": {
+        "mean_log_q_reduction": 0.0,
+        "median_log_q_reduction": 0.0,
+        "fraction_queries_improved": 0.0,
+        "fraction_queries_worsened": 0.0,
+        "paired_delta_q95": 0.0
+      },
+      "actual": {
+        "mean_log_q_reduction": 8.881784197001252e-16,
+        "median_log_q_reduction": 8.881784197001252e-16,
+        "fraction_queries_improved": 0.0,
+        "fraction_queries_worsened": 0.0,
+        "paired_delta_q95": -1.1102230246251565e-15
+      },
+      "passed": true
+    },
+    {
+      "case": "near_truth_equal_under_over",
+      "oracle": {
+        "mean_log_q_reduction": 0.0,
+        "median_log_q_reduction": 0.0,
+        "fraction_queries_improved": 0.0,
+        "fraction_queries_worsened": 0.0,
+        "paired_delta_q95": 0.0
+      },
+      "actual": {
+        "mean_log_q_reduction": -8.881784197001252e-16,
+        "median_log_q_reduction": -8.881784197001252e-16,
+        "fraction_queries_improved": 0.0,
+        "fraction_queries_worsened": 0.0,
+        "paired_delta_q95": 1.1102230246251565e-15
+      },
+      "passed": true
+    },
+    {
+      "case": "cross_truth_improved",
+      "oracle": {
+        "mean_log_q_reduction": 1.6094379124341005,
+        "median_log_q_reduction": 1.6094379124341005,
+        "fraction_queries_improved": 1.0,
+        "fraction_queries_worsened": 0.0,
+        "paired_delta_q95": -8.0
+      },
+      "actual": {
+        "mean_log_q_reduction": 1.6094379124341014,
+        "median_log_q_reduction": 1.6094379124341014,
+        "fraction_queries_improved": 1.0,
+        "fraction_queries_worsened": 0.0,
+        "paired_delta_q95": -8.000000000000004
+      },
+      "passed": true
+    },
+    {
+      "case": "ordinary_q95_interpolation",
+      "oracle": {
+        "mean_log_q_reduction": -2.302585092994046,
+        "median_log_q_reduction": -2.302585092994046,
+        "fraction_queries_improved": 0.0,
+        "fraction_queries_worsened": 0.5,
+        "paired_delta_q95": 94.05
+      },
+      "actual": {
+        "mean_log_q_reduction": -2.302585092994046,
+        "median_log_q_reduction": -2.302585092994046,
+        "fraction_queries_improved": 0.0,
+        "fraction_queries_worsened": 0.5,
+        "paired_delta_q95": 94.05000000000004
+      },
+      "passed": true
+    },
+    {
+      "case": "zero_truth_and_prediction_clamps",
+      "oracle": {
+        "mean_log_q_reduction": 0.0,
+        "median_log_q_reduction": 0.0,
+        "fraction_queries_improved": 0.3333333333333333,
+        "fraction_queries_worsened": 0.3333333333333333,
+        "paired_delta_q95": 0.0
+      },
+      "actual": {
+        "mean_log_q_reduction": 0.0,
+        "median_log_q_reduction": 0.0,
+        "fraction_queries_improved": 0.3333333333333333,
+        "fraction_queries_worsened": 0.3333333333333333,
+        "paired_delta_q95": 0.0
+      },
+      "passed": true
+    },
+    {
+      "case": "all_rows",
+      "oracle": {
+        "mean_log_q_reduction": 1.151292546497023,
+        "median_log_q_reduction": 2.302585092994046,
+        "fraction_queries_improved": 0.75,
+        "fraction_queries_worsened": 0.25,
+        "paired_delta_q95": -1.3500000000000032
+      },
+      "actual": {
+        "mean_log_q_reduction": 1.1512925464970227,
+        "median_log_q_reduction": 2.3025850929940455,
+        "fraction_queries_improved": 0.75,
+        "fraction_queries_worsened": 0.25,
+        "paired_delta_q95": -1.3500000000000032
+      },
+      "passed": true
+    },
+    {
+      "case": "unique_queries",
+      "oracle": {
+        "mean_log_q_reduction": 0.7675283643313486,
+        "median_log_q_reduction": 2.302585092994046,
+        "fraction_queries_improved": 0.6666666666666666,
+        "fraction_queries_worsened": 0.3333333333333333,
+        "paired_delta_q95": -0.9000000000000004
+      },
+      "actual": {
+        "mean_log_q_reduction": 0.7675283643313483,
+        "median_log_q_reduction": 2.302585092994045,
+        "fraction_queries_improved": 0.6666666666666666,
+        "fraction_queries_worsened": 0.3333333333333333,
+        "paired_delta_q95": -0.8999999999999986
+      },
+      "passed": true
+    }
+  ]
+}

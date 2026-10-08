@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-08",
+  "baseline_commit": "b3390b7463d0dd0fc002903f98214b68c696a11b",
+  "worktree": "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008",
+  "branch": "audit/s8-review-fixes-20261008",
+  "local_code_repairs": "verified",
+  "phase_A_overall": "blocked_missing_raw_frozen_predictions_and_not_real_Linux_verified",
+  "final_unittest": {
+    "log": "unittest-final-definition.txt",
+    "binding": "unittest-final-definition-binding.json",
+    "tests": 822,
+    "seconds": 88.019,
+    "skipped": 15,
+    "exit_status": 0,
+    "source_sha_unchanged_during_run": true,
+    "source_sha_matches_current": true,
+    "log_sha256": "7311bcd8e6622167381d5c3aa89addb443a6d2c1f8decce21af81ffdbd03073a"
+  },
+  "independent_reviews": {
+    "A1": "Plato APPROVED, limited code/evidence consistency",
+    "A2": "James P1 closed, synthetic bounded-cleanup checks",
+    "A3": "James no new record-scope blocker; actual quantities uncertified"
+  },
+  "independent_synthetic_pairwise_recompute": {
+    "case_count": 9,
+    "passed": true,
+    "source_bindings_current": true,
+    "log_json_byte_identical": true,
+    "json_sha256": "f091150ffebae8cf8a0772cd8fa9dd57407d8506ca633c57b9626987ddd855aa",
+    "log_sha256": "f091150ffebae8cf8a0772cd8fa9dd57407d8506ca633c57b9626987ddd855aa",
+    "purpose": "synthetic_independent_recompute_not_source_experiment"
+  },
+  "archived_source_summary_bytes_and_macro_preserved": true,
+  "actual_source_auxiliary_recompute": "blocked",
+  "corrected_real_auxiliary_statistics": null,
+  "unchanged_core_files": {
+    "spatial_meta_ce/metrics.py": true,
+    "spatial_meta_ce/s8_probe.py": true,
+    "spatial_meta_ce/model.py": true,
+    "spatial_meta_ce/train.py": true,
+    "spatial_meta_ce/meta.py": true
+  },
+  "ruff": {
+    "baseline_findings": 110,
+    "final_findings": 110,
+    "new_findings": 0,
+    "changed_scope_exit": 0
+  },
+  "preserved_historical_status": {
+    "A": "failed",
+    "G1": "failed",
+    "formal_ready": false,
+    "strict_certificate": "unknown",
+    "full_linear_optimality_verified": false,
+    "can_retroactively_pass_original_G1": false
+  },
+  "next_step_recommendation": "pause_S8_and_prioritize_paper_wrapup",
+  "next_protocol_status": "draft_not_approved_not_executed",
+  "server_connected": false,
+  "real_P_rerun": false,
+  "real_smoke": false,
+  "research_training": false,
+  "new_inference": false,
+  "new_target_evaluation": false,
+  "target_used_for_method_selection": false,
+  "full_unittest_scope_note": "synthetic computation and previously archived summary integrity fixtures, not target workload/cache evaluation",
+  "submission_state": "not_yet_committed_or_pushed_at_validation_record_creation"
+}
