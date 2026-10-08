@@ -613,5 +613,8 @@
   },
   "independent_record_review": "independent-record-review.md",
   "independent_review_sha256": "b139c7082f430161a2f5d3bda52f263166946b665190931655706a21698e9ecc",
-  "input_after_timepoint_scope": "after_last_successful_engineering_stage_before_fail_fast_stop"
+  "input_after_timepoint_scope": "after_last_successful_engineering_stage_before_fail_fast_stop",
+  "real_P_evidence_commit": "ec784f0a31d23e1aee2d86c3d9763e1f9667cf29",
+  "git_status": "GREEN_locally_committed_not_pushed",
+  "git_local_state": "git-local-final-state.json"
 }
