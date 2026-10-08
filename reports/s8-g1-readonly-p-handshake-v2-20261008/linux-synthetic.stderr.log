@@ -1,0 +1,21 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+test_absolute_contract_with_different_child_cwd (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_absolute_contract_with_different_child_cwd) ... ok
+test_different_contract_path_rejected_even_with_same_sha (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_different_contract_path_rejected_even_with_same_sha) ... ok
+test_each_ticket_binding_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_each_ticket_binding_rejected) ... ok
+test_existing_worker_proof_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_existing_worker_proof_rejected) ... ok
+test_fake_parent_entrypoint_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_fake_parent_entrypoint_rejected) ... ok
+test_pipe_owned_by_different_parent_fd_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_pipe_owned_by_different_parent_fd_rejected) ... ok
+test_regular_file_cannot_replace_pipe (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_regular_file_cannot_replace_pipe) ... ok
+test_relative_contract_uses_parent_not_child_cwd (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_relative_contract_uses_parent_not_child_cwd) ... ok
+test_wrong_child_contract_path_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_wrong_child_contract_path_rejected) ... ok
+test_wrong_child_output_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_wrong_child_output_rejected) ... ok
+test_wrong_parent_cwd_rejected_with_same_bytes_shadow_contract (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_wrong_parent_cwd_rejected_with_same_bytes_shadow_contract) ... ok
+test_wrong_parent_manifest_sha_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_wrong_parent_manifest_sha_rejected) ... ok
+test_wrong_parent_output_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_wrong_parent_output_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 2.234s
+
+OK

@@ -28,8 +28,9 @@ ROOT = Path(__file__).resolve().parents[1]
 _ACTIVE_OPEN = contextvars.ContextVar('readonly_secure_open_path', default=None)
 ENTRYPOINT = 'scripts/verify_s8_readonly_p.py'
 REAL_INPUT_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007'
-REAL_OUTPUT_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-proof-20261007'
-REAL_PACKAGE_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-code-20261007'
+REAL_OUTPUT_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-proof-handshake-v2-20261008'
+REAL_PACKAGE_ROOT = '/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-code-handshake-v2-20261008'
+CONTRACT_RELATIVE = 'reports/s8-g1-readonly-p-handshake-v2-20261008/execution-contract.json'
 EXPECTED_RUNTIME = {'numpy': '1.26.1', 'torch': '2.1.0+cu121',
                     'blas_family': 'openblas64', 'openmp_family': 'libgomp',
                     'interpreter_prefix': '/gly/weilin/PRICE-master/venv'}
@@ -742,17 +743,28 @@ def verify_worker_handshake(args, contract, manifest_sha):
         raise ValueError('Worker output must be the frozen new proof directory')
     if not args.output.is_dir() or (args.output/'worker-proof.json').exists():
         raise ValueError('Worker requires fresh supervisor-created output')
+    if no_symlink(args.contract) != ROOT / CONTRACT_RELATIVE:
+        raise ValueError('Worker contract must be the frozen package contract')
     if args._worker_fd is None or args._parent_write_fd is None:
         raise ValueError('Worker requires inherited supervisor pipe capability')
     pid = os.getppid()
     command = read_regular(Path(f'/proc/{pid}/cmdline')).decode().split('\0')
+    parent_cwd = no_symlink(Path(os.readlink(f'/proc/{pid}/cwd')))
     if ('--execute' not in command or '--_worker' in command or len(command) < 3
             or Path(command[0]).resolve() != Path(sys.executable).resolve()
-            or (Path(os.readlink(f'/proc/{pid}/cwd'))/command[2]).resolve() != ROOT/ENTRYPOINT):
+            or (parent_cwd/command[2]).resolve() != ROOT/ENTRYPOINT):
         raise ValueError('Worker parent is not the frozen execution supervisor')
     for option, expected in (('--contract', str(args.contract.absolute())),
                              ('--contract-sha256', manifest_sha), ('--output', str(args.output))):
-        if option not in command or command[command.index(option)+1] != expected:
+        if option not in command:
+            raise ValueError('Supervisor arguments do not bind this worker')
+        value = command[command.index(option)+1]
+        if option in ('--contract', '--output'):
+            # Interpret argv relative to the authenticated parent's cwd, never
+            # to the child's cwd; lexical normalization must not hide symlinks.
+            path = Path(value)
+            value = str(no_symlink(path if path.is_absolute() else parent_cwd/path))
+        if value != expected:
             raise ValueError('Supervisor arguments do not bind this worker')
     fd = args._worker_fd
     if not stat.S_ISFIFO(os.fstat(fd).st_mode):
@@ -818,7 +830,7 @@ def main(argv=None):
     parser.add_argument('--_worker-fd', type=int, help=argparse.SUPPRESS)
     parser.add_argument('--_parent-write-fd', type=int, help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
-    expected_contract = ROOT / 'reports/s8-g1-readonly-p-20261007/execution-contract.json'
+    expected_contract = ROOT / CONTRACT_RELATIVE
     if Path(os.path.abspath(args.contract)) != expected_contract:
         parser.error('Only the frozen package contract path may be read; no data/checkpoint as contract')
     payload = read_regular(args.contract)

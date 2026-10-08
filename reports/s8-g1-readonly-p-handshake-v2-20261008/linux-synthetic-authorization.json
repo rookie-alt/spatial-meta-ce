@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-08",
+  "authorization_source": "human_user_current_chat",
+  "scope": "one_bounded_Linux_synthetic_handshake_test_only",
+  "server_alias": "myserver",
+  "new_isolated_temporary_directory_required": true,
+  "CPU_threads": 1,
+  "CUDA_VISIBLE_DEVICES": "",
+  "outer_wall_seconds": 60,
+  "install_dependencies": false,
+  "real_P_execution_authorized": false,
+  "real_P_or_old_run_read_authorized": false,
+  "H_target_checkpoint_training_read_authorized": false,
+  "smoke_F0_Adam_training_GPU_authorized": false,
+  "automatic_server_retry_authorized": false,
+  "production_handshake_bypass_added": false,
+  "test_semantics": "real_Linux_helper_integration_proc_cwd_cmdline_pipe_synthetic_contract_not_full_data_CLI",
+  "before_server_requirements": [
+    "local_targeted_GREEN",
+    "necessary_local_full_regression_GREEN",
+    "changed_Ruff_pass",
+    "independent_pre_server_no_blocker"
+  ]
+}

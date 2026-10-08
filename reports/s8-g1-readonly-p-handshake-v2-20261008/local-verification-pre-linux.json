@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-08",
+  "RED_commit": "7c89b0b",
+  "source_sha256": {
+    "scripts/verify_s8_readonly_p.py": "5320ffe926cf7b56ddf2970b7888f79391e18fb62cf50298127e4eb2af8e5471"
+  },
+  "test_sha256": {
+    "tests/test_s8_readonly_p.py": "ac74dec2b82fb74b033c450d524c389ce5af7d7bd9d66c396f56c874de52b3d5",
+    "tests/test_s8_readonly_handshake_linux.py": "e91375e111638c245dea0729ee0784426693416eff552ffff38cdf76cfaac100"
+  },
+  "local_mock_handshake": {
+    "tests": 12,
+    "RED_errors": 2,
+    "GREEN_passed": true,
+    "GREEN_seconds": 0.033,
+    "exit_code": 0
+  },
+  "local_targeted": {
+    "tests": 66,
+    "seconds": 4.361,
+    "exit_code": 0,
+    "passed": true
+  },
+  "local_full": {
+    "tests_total_including_skips": 753,
+    "tests_executed": 740,
+    "seconds": 96.688,
+    "exit_code": 0,
+    "passed": true,
+    "Linux_tests_skipped_on_macOS": 13
+  },
+  "Ruff_changed_passed": true,
+  "Linux_real_integration": "not_yet_executed",
+  "log_sha256": {
+    "handshake-red.log": "cc0cfa4107903a996d15bb7cc09762aaa57837b7681b0437c2064568894faf7c",
+    "handshake-green.log": "2b86eb5f37ad14cad6553996d3961d15f9ebb68490794bf1ef7c0549c4c9a91f",
+    "local-targeted.log": "e9a80697a824740eab0db0202c080f17c8f6c7d5f177a2a1dea1618f290f9355",
+    "local-full-pre-linux.log": "47475180cc7e4a794e5b387dd766a9cb3b561583931ae9951262f6753571cd84",
+    "linux-fixture-local-skip.log": "84bf8edde0cd3d23916c9aa8589a6406c331f648a3aad21cba98cd16a70e2671",
+    "changed-ruff-pre-linux.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "real_P_read": false,
+  "server_access_this_revision": false,
+  "smoke_or_training": false,
+  "formal_ready": false,
+  "strict_certificate": "unknown"
+}

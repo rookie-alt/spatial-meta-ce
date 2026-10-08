@@ -1,0 +1,2 @@
+# Preserve raw local and Linux process log bytes for SHA binding.
+*.log -text

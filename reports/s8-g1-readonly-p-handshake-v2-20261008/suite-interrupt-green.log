@@ -1,0 +1,6 @@
+test_linux_suite_TERM_handler_unwinds_owned_process_cleanup (test_s8_readonly_p.MockHandshakeTests.test_linux_suite_TERM_handler_unwinds_owned_process_cleanup) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.136s
+
+OK

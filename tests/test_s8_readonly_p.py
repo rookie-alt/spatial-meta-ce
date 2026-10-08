@@ -272,11 +272,12 @@ class ReadOnlyPTests(unittest.TestCase):
 
     def test_complete_direct_worker_invocation_rejected(self):
         c = json.loads((ro.ROOT/'reports/s8-g1-readonly-p-20261007/execution-contract.json').read_text())
+        c.update(expected_output_root=ro.REAL_OUTPUT_ROOT, expected_package_root=ro.REAL_PACKAGE_ROOT)
         payload = json.dumps(c).encode()
         import hashlib
         pin = hashlib.sha256(payload).hexdigest()
         package = Path(ro.REAL_PACKAGE_ROOT)
-        manifest = package/'reports/s8-g1-readonly-p-20261007/execution-contract.json'
+        manifest = package/ro.CONTRACT_RELATIVE
         with patch.object(ro, 'ROOT', package), patch.object(ro.sys, 'platform', 'linux'), patch.object(ro, 'read_regular', return_value=payload), patch.object(ro, 'check_sources'), patch.dict(os.environ, CUDA_VISIBLE_DEVICES='', S8_READONLY_PARENT_PID=str(os.getppid())), patch.object(ro, 'worker', side_effect=AssertionError('must not enter worker')), self.assertRaises(SystemExit):
             ro.main(['--contract', str(manifest), '--contract-sha256', pin,
                      '--output', ro.REAL_INPUT_ROOT, '--_worker'])
@@ -380,10 +381,11 @@ class ReadOnlyPTests(unittest.TestCase):
     def test_parent_source_sha_failure_keeps_failed_schema_proof(self):
         import hashlib
         c = json.loads((ro.ROOT/'reports/s8-g1-readonly-p-20261007/execution-contract.json').read_text())
+        c.update(expected_output_root=ro.REAL_OUTPUT_ROOT, expected_package_root=ro.REAL_PACKAGE_ROOT)
         payload = json.dumps(c).encode()
         pin = hashlib.sha256(payload).hexdigest()
         package = Path(ro.REAL_PACKAGE_ROOT)
-        manifest = package/'reports/s8-g1-readonly-p-20261007/execution-contract.json'
+        manifest = package/ro.CONTRACT_RELATIVE
         out = self.root/'parent-source-failure'
         out.mkdir()
         with patch.object(ro, 'ROOT', package), patch.object(ro.sys, 'platform', 'linux'), patch.object(ro, 'read_regular', return_value=payload), patch.object(ro, 'check_sources', side_effect=ValueError('source SHA mismatch')), patch.object(ro, 'create_output', return_value=out), patch.object(ro, 'install_resource_limits'), patch.dict(os.environ, CUDA_VISIBLE_DEVICES=''), patch.object(ro.subprocess, 'Popen', side_effect=AssertionError('must not launch worker')):
@@ -400,7 +402,7 @@ class ReadOnlyPTests(unittest.TestCase):
         self.assertEqual(self.execute()['status'], 'failed')
 
     def test_default_cli_is_plan_only_no_saved_p_reads(self):
-        manifest = self.root / 'reports/s8-g1-readonly-p-20261007/execution-contract.json'
+        manifest = self.root / ro.CONTRACT_RELATIVE
         manifest.parent.mkdir(parents=True)
         manifest.write_text(json.dumps(self.contract))
         with patch.object(ro, 'ROOT', self.root), patch.object(ro, 'read_bound', side_effect=AssertionError('saved P read')):
@@ -637,6 +639,50 @@ class MockHandshakeTests(unittest.TestCase):
         self.ticket['contract_sha256'] = 'b'*64
         with self.assertRaises(ValueError):
             self.call_handshake()
+
+    def test_linux_suite_TERM_handler_unwinds_owned_process_cleanup(self):
+        import ast
+        import signal
+        import time
+        envelope = ro.ROOT/'reports/s8-g1-readonly-p-handshake-v2-20261008/linux-synthetic-once.py'
+        tree = ast.parse(envelope.read_text())
+        handlers = [node for node in tree.body if isinstance(node, ast.FunctionDef)
+                    and node.name == 'interrupt_suite']
+        self.assertEqual(len(handlers), 1, 'RED: suite has no TERM cleanup bridge')
+        handler = ast.unparse(handlers[0])
+        driver = handler + """
+import json, os, signal, subprocess, sys
+signal.signal(signal.SIGTERM, interrupt_suite)
+child=subprocess.Popen([sys.executable,'-B','-c','import time; time.sleep(10)'],start_new_session=True)
+print('ready',flush=True)
+error=None
+try:
+    child.communicate(timeout=5)
+except InterruptedError as exc:
+    error=str(exc)
+finally:
+    try: os.killpg(child.pid,signal.SIGKILL)
+    except ProcessLookupError: pass
+    child.wait(timeout=1)
+print(json.dumps({'interrupted': error is not None,'child_reaped':child.poll() is not None,'returncode':child.returncode}),flush=True)
+"""
+        proc = subprocess.Popen([sys.executable, '-B', '-c', driver],
+                                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                                start_new_session=True)
+        try:
+            self.assertEqual(proc.stdout.readline().strip(), 'ready')
+            time.sleep(0.05)
+            proc.send_signal(signal.SIGTERM)
+            output, errors = proc.communicate(timeout=3)
+            self.assertEqual(proc.returncode, 0, errors)
+            record = json.loads(output)
+            self.assertTrue(record['interrupted'])
+            self.assertTrue(record['child_reaped'])
+            self.assertEqual(record['returncode'], -signal.SIGKILL)
+        finally:
+            if proc.poll() is None:
+                os.killpg(proc.pid, signal.SIGKILL)
+                proc.communicate(timeout=1)
 
     def test_missing_parent_execute_still_rejected(self):
         self.command.remove('--execute')
