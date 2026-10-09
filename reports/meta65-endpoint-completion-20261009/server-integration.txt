@@ -1,0 +1,41 @@
+test_cache_change_during_verifier_blocks_normal_decision (test_meta65_completion.CompletionTests.test_cache_change_during_verifier_blocks_normal_decision) ... ok
+test_changed_data_path_rejected_before_creation (test_meta65_completion.CompletionTests.test_changed_data_path_rejected_before_creation) ... ok
+test_combined_matrix_has_explicit_origin_and_exact_counts (test_meta65_completion.CompletionTests.test_combined_matrix_has_explicit_origin_and_exact_counts) ... ok
+test_exact_checkpoint_plan_and_budget_contract (test_meta65_completion.CompletionTests.test_exact_checkpoint_plan_and_budget_contract) ... ok
+test_failure_removes_normal_candidate_path_without_deleting_evidence (test_meta65_completion.CompletionTests.test_failure_removes_normal_candidate_path_without_deleting_evidence) ... ok
+test_main_dry_run_never_evaluates_or_supervises (test_meta65_completion.CompletionTests.test_main_dry_run_never_evaluates_or_supervises) ... ok
+test_old_deployment_rejected_before_supervisor (test_meta65_completion.CompletionTests.test_old_deployment_rejected_before_supervisor) ... ok
+test_retained_hash_mismatch_rejected (test_meta65_completion.CompletionTests.test_retained_hash_mismatch_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 6.613s
+
+OK
+{
+  "purpose": "dry-run-not-execution",
+  "mode": "endpoint_completion_only",
+  "C_cells": 75,
+  "combined_cells": 225,
+  "timeout_seconds": 3000,
+  "new_training_updates": 0
+}
+test_combined_csv_and_225_raw_npz_recomputed (__main__.self_test.<locals>.SyntheticTests.test_combined_csv_and_225_raw_npz_recomputed) ... ok
+test_exact_225_and_gate_recomputation (__main__.self_test.<locals>.SyntheticTests.test_exact_225_and_gate_recomputation) ... ok
+test_provisional_decision_tampering_rejected (__main__.self_test.<locals>.SyntheticTests.test_provisional_decision_tampering_rejected) ... ok
+test_source_selection_and_path_rejection (__main__.self_test.<locals>.SyntheticTests.test_source_selection_and_path_rejection) ... ok
+test_stage_running_allowed_failure_missing_and_published_rejected (__main__.self_test.<locals>.SyntheticTests.test_stage_running_allowed_failure_missing_and_published_rejected) ... ok
+test_stage_tampering_rejected (__main__.self_test.<locals>.SyntheticTests.test_stage_tampering_rejected) ... ok
+test_wrong_labels_rejected (__main__.self_test.<locals>.SyntheticTests.test_wrong_labels_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.623s
+
+OK
+{
+  "purpose": "dry-run-not-execution",
+  "mode": "endpoint_completion_only",
+  "C_cells": 75,
+  "combined_cells": 225,
+  "timeout_seconds": 3000,
+  "new_training_updates": 0
+}

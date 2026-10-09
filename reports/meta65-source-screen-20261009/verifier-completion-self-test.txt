@@ -1,0 +1,52 @@
+Meta65 endpoint completion independent validator: local verification
+Date: 2026-10-09 Asia/Shanghai
+Scope: synthetic CPU tests only; no server, training, real completion validation, or publication.
+Worktree: /Users/williamlin/.codex/worktrees/meta65-source-screen-20261009/spatial-meta-ce
+Runtime: /opt/anaconda3/bin/python; NumPy 1.26.4
+
+Command:
+/opt/anaconda3/bin/python -B reports/meta65-source-screen-20261009/verify_completion.py --self-test
+Exit code: 0
+Final output:
+test_combined_csv_and_225_raw_npz_recomputed (__main__.self_test.<locals>.SyntheticTests.test_combined_csv_and_225_raw_npz_recomputed) ... ok
+test_exact_225_and_gate_recomputation (__main__.self_test.<locals>.SyntheticTests.test_exact_225_and_gate_recomputation) ... ok
+test_provisional_decision_tampering_rejected (__main__.self_test.<locals>.SyntheticTests.test_provisional_decision_tampering_rejected) ... ok
+test_source_selection_and_path_rejection (__main__.self_test.<locals>.SyntheticTests.test_source_selection_and_path_rejection) ... ok
+test_stage_running_allowed_failure_missing_and_published_rejected (__main__.self_test.<locals>.SyntheticTests.test_stage_running_allowed_failure_missing_and_published_rejected) ... ok
+test_stage_tampering_rejected (__main__.self_test.<locals>.SyntheticTests.test_stage_tampering_rejected) ... ok
+test_wrong_labels_rejected (__main__.self_test.<locals>.SyntheticTests.test_wrong_labels_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.480s
+
+OK
+
+Command:
+/private/tmp/meta65-uv-cache/archive-v0/hrd_bhT2U1hW7gsGDl70n/ruff-0.16.10.data/scripts/ruff check reports/meta65-source-screen-20261009/verify_completion.py
+Exit code: 0
+Final output:
+All checks passed!
+
+Earlier attempts, corrected before the final checks:
+- Initial self-test: 6 tests, 3 errors because macOS /var temporary paths contained a symlink. Synthetic fixtures now resolve their paths; formal symlink rejection remains intact.
+- Offline uvx resolution failed for both unversioned Ruff and Ruff 0.16.10. The existing cached executable was used without download.
+- Initial Ruff check: EXE001 and I001. Removed unused shebang and corrected import grouping with apply_patch.
+
+Limits:
+- The 225 NPZ files in the self-test contain tiny synthetic arrays and are removed with the temporary directory. Their denominator override is scoped to the test only.
+- Formal source caches, retained checkpoint bytes, new completion metadata, runtime SHA bindings, and decision.provisional.json have not been validated against real outputs locally.
+- C initialization_digest is checked against the authenticated shared A training record and its source marker; this stage does not directly recompute C's initial parameter hash.
+- The production parent supervisor must be checked for completed/exit0 by the primary agent after independent verification and publication.
+- No repository-wide regression was run by this validator task; that remains the primary agent's verification lane.
+
+AGENT SELF-EVALUATION REPORT
+Summary: Overall score 4.0/5 across five quality axes; deliver within the authorized local implementation scope.
+Accuracy 4/5: Seven synthetic tests and Ruff pass; real checkpoint/runtime/NPZ bindings still need the authorized production invocation.
+Completeness 4/5: CLI, stage, retained inputs, C metadata, 225-cell recomputation, and limits are implemented; full formal verification is deliberately outside this local task.
+Clarity 4/5: Verification functions and output limits separate old timeout from new completion; detailed rejection messages remain technical.
+Actionability 4/5: The production subprocess CLI matches this file and returns passed/checked225; integration against real run artifacts remains the primary agent's step.
+Conciseness 4/5: Reuses the original source/cache/plan/label/decision helpers; explicit metadata checks and synthetic fixture construction still take most new lines.
+Critical issues: None identified by the local checks.
+Top improvement: Run the production pre-publication invocation against retained A/B and new C, then separately confirm parent completed/exit0.
+Self-check: The evidence supports local readiness, without claiming formal experiment success.
+Verdict: Deliver as-is for primary-agent integration and formal verification.

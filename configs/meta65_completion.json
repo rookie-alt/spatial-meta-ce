@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "experiment": "meta65-endpoint-completion-20261009",
+  "mode": "endpoint_completion_only",
+  "timeout_seconds": 3000,
+  "retained_root": "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen",
+  "retained_run": "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen/runs/meta65-source-screen-20261009",
+  "checkpoint_sha256": "58f2f4db6f54cd4578fd6127d5a4aa350dbdc2268a36a057b56f7161cb6097a4",
+  "endpoint_plan_sha256": "ebeb178de15b134722bd9fbc24ff4b4752f795a311580c1a17cb23c550bfd0f0",
+  "protocol_file": "实验文档/50-Meta65仅补齐C端点评估协议.md",
+  "protocol_sha256": "08eaa606701fa56ae427e07202b17d10d6debd6dc1d8a878b2a29d73661321e3",
+  "retained_sha256": {
+    "runs/meta65-source-screen-20261009/status.json": "086485752d84301213de18123004bad729ac2b300a4c14ad2c71d6e0a6360a76",
+    "runs/meta65-source-screen-20261009/environment.json": "43dcac1056de7242c142e6fce98871ac679386c8343c3ce71592b919ef569322",
+    "runs/meta65-source-screen-20261009/endpoint_plan.json": "ebeb178de15b134722bd9fbc24ff4b4752f795a311580c1a17cb23c550bfd0f0",
+    "runs/meta65-source-screen-20261009/source_before.json": "383e8a6c2336aea881a0fbb485900db460385c202bb353745e07b96d2f8bb650",
+    "runs/meta65-source-screen-20261009/A_all5_head3/metadata.json": "c0b443fb91235d6db1bb6eb0222b78f916ee7f6c2b057b705eb5ef3ea0dbdd30",
+    "runs/meta65-source-screen-20261009/B_head3_head3/metadata.json": "73570adc80b163c0944a6db5d775c4e4c6d34317a164642144c62f6e80364756",
+    "runs/meta65-source-screen-20261009/A_all5_head3/endpoint.csv": "1910b50755b6d5a8831868c8df486d3154df47fafd107531edc24087800533c6",
+    "runs/meta65-source-screen-20261009/B_head3_head3/endpoint.csv": "c80a79c6803fb6ff96c8483400c45bf52f5f281f5d6328fa17cc5360fe71ba71",
+    "runs/meta65-source-screen-20261009/C_last3_last3/last.pt": "58f2f4db6f54cd4578fd6127d5a4aa350dbdc2268a36a057b56f7161cb6097a4",
+    "runs/meta65-source-screen-20261009/C_last3_last3/validation_manifest.json": "0a110551da2db90ff619d8461cd06a1a4b62eb82341f6c4219eb7f6436e3ddb2",
+    "runs/meta65-source-screen-20261009/C_last3_last3/history.json": "4f0906b84c2895bfc37b527e1b8f72816fc6732136ee9294c7b865108bb139d8",
+    "runs/meta65-source-screen-20261009.supervisor.json": "b5e2028abaffabb97b3a8796d1a9445cba913174296267bd6b8d378f1d74ac71",
+    "configs/meta65_screen.json": "ebd5564cb66a8df03f2c78f293c4cacb493b8af1836932ce7a9cceca6f3d3c36",
+    "configs/meta65_server_data.json": "a6907d602ed92fdfe42abe2828bbbac9369be07de04241c17cf6a3bd61544283",
+    "reports/meta65-source-screen-20261009/launch-binding.json": "c5ee7debe39837fdf3b1b84a00b1f8a1141560691b22ff2653ac33be1bed374d"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "purpose": "dry-run-not-execution",
+  "mode": "endpoint_completion_only",
+  "C_cells": 75,
+  "combined_cells": 225,
+  "timeout_seconds": 3000,
+  "new_training_updates": 0
+}
