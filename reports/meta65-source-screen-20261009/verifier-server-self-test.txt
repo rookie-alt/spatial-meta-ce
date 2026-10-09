@@ -1,0 +1,16 @@
+test_arithmetic_macro_not_logmean (__main__.self_test.<locals>.SyntheticTests.test_arithmetic_macro_not_logmean) ... ok
+test_each_db_k_all_and_four_gate (__main__.self_test.<locals>.SyntheticTests.test_each_db_k_all_and_four_gate) ... ok
+test_inclusive_improvement_and_65_parameter_tie (__main__.self_test.<locals>.SyntheticTests.test_inclusive_improvement_and_65_parameter_tie) ... ok
+test_incomplete_failed_timeout_supervisor_stops_before_cache (__main__.self_test.<locals>.SyntheticTests.test_incomplete_failed_timeout_supervisor_stops_before_cache) ... ok
+test_lower_metric_precedes_parameter_count (__main__.self_test.<locals>.SyntheticTests.test_lower_metric_precedes_parameter_count) ... ok
+test_no_candidate_and_missing_cell_fail (__main__.self_test.<locals>.SyntheticTests.test_no_candidate_and_missing_cell_fail) ... ok
+test_nonfinite_and_overflow_rejected (__main__.self_test.<locals>.SyntheticTests.test_nonfinite_and_overflow_rejected) ... ok
+test_standard_q_and_log_percentile (__main__.self_test.<locals>.SyntheticTests.test_standard_q_and_log_percentile) ... ok
+test_strict_json_and_sha_binding (__main__.self_test.<locals>.SyntheticTests.test_strict_json_and_sha_binding) ... ok
+test_temporary_npz_and_wrong_raw_label_fail (__main__.self_test.<locals>.SyntheticTests.test_temporary_npz_and_wrong_raw_label_fail) ... ok
+test_wrong_identity_dtype_table_length_fail (__main__.self_test.<locals>.SyntheticTests.test_wrong_identity_dtype_table_length_fail) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.080s
+
+OK
