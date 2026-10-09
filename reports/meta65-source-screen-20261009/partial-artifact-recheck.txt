@@ -1,0 +1,1 @@
+{"status": "partial_artifacts_verified_not_formal_completion", "formal_failure_reason": "timeout", "raw_prediction_file_counts": {"A_all5_head3": 75, "B_head3_head3": 75, "C_last3_last3": 30}}

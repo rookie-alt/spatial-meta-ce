@@ -1,0 +1,31 @@
+{
+  "python": "3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]",
+  "executable": "/gly/weilin/PRICE-master/venv/bin/python",
+  "torch": "2.1.0+cu121",
+  "numpy": "1.26.1",
+  "device": "cuda",
+  "gpu_uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+  "CUDA_VISIBLE_DEVICES": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+  "OMP_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1",
+  "deterministic_algorithms": true,
+  "external_timeout_required_seconds": 7200,
+  "protocol_sha256": "fef38e8d18f46c4c167030628ee1dfa73dfbd9575f7b7eb76acf6e6c7844d8e4",
+  "source_binding_sha256": "3d708226437e105c88562970fdd0b2ccf711a833105b4ec8c66d899aa61f79a6",
+  "config_sha256": "ebd5564cb66a8df03f2c78f293c4cacb493b8af1836932ce7a9cceca6f3d3c36",
+  "data_config_sha256": "a6907d602ed92fdfe42abe2828bbbac9369be07de04241c17cf6a3bd61544283",
+  "code_sha256": {
+    "scripts/run_meta65_screen.py": "505d6b9865250429fcb5e54a94630df1eadd5f35c84b4e767baeb2388777d863",
+    "scripts/run_meta65_supervised.py": "0ebd919395c053631c3dbe154ece81c608e5cfaaf8d43b69a7310c453cbb4094",
+    "scripts/precision_screen_evidence.py": "b5af3c14866e8ff81838792a7f38db5f50bab62035e605910f530f660030da95",
+    "scripts/run_s8_preflight.py": "fa10dddf083f4eb4d157b294df53afdfdd0c22cdd44bd0d0c3348d6896d5adcd",
+    "scripts/mapping_smoke.py": "6f897a37f94150ccfed4d074a4be45c888d27a60d0ef376d7333d9724ecc4b96",
+    "spatial_meta_ce/train.py": "98524256783da007e730b7f5b6f18c597fa0877f99a5587407c67fffd46c245a",
+    "spatial_meta_ce/meta.py": "1e4daddf6825d2b5907566a02642f38a8e0bf3c4cfc326e443a0d1895ff27736",
+    "spatial_meta_ce/data.py": "1f490f1891e4222edcd25b598df32c287c3914ff185477f6ae76c566cfeacd17",
+    "spatial_meta_ce/model.py": "0d6d7c4c3a04368bb7ae03a99018cfd343f37f8dc1182443ac169d19928022a4",
+    "spatial_meta_ce/checkpoints.py": "efb21c956fb836938aaf7675f0d1eb047ef767e537576f47d6b591a5a3bdf504",
+    "spatial_meta_ce/manifests.py": "fc96df193c36ade103b2116f777325afb6bb8fb0c368ff0516998fa33fac6d30",
+    "spatial_meta_ce/metrics.py": "ec940c3b29bb5b165f560a369c9874cd9ec630d2bbc21e7f78893a64fe1c56a5"
+  }
+}

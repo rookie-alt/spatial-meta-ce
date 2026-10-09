@@ -1,8 +1,8 @@
 {
-  "phase": "verified_ready_to_freeze",
+  "phase": "failed_timeout_partial_artifacts_verified",
   "base_commit": "2959a46",
   "branch": "experiment/meta65-source-screen-20261009",
-  "formal_status": "launched_not_completed",
+  "formal_status": "failed_timeout_incomplete_matrix",
   "scope": "source_only_no_target_evaluation",
   "last_layer_cpu_red": {
     "tests": 7,
@@ -61,5 +61,12 @@
   "independent_review": "approved_after_blocking_fixes",
   "formal_remote_root": "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen",
   "frozen_commit": "0b5958046c5252e454b80a2c3435e61620c361a0",
-  "freeze_pushed_and_remote_sha_verified": true
+  "freeze_pushed_and_remote_sha_verified": true,
+  "formal_exit_code": 124,
+  "supervisor_seconds": 7200.221068050945,
+  "complete_training_arms": 3,
+  "complete_endpoint_arms": 2,
+  "C_raw_prediction_files": 30,
+  "formal_candidate_selection": "not_permitted",
+  "post_failure_artifact_verification": "passed150cells_source_hashes_unchanged_not_formal_completion"
 }

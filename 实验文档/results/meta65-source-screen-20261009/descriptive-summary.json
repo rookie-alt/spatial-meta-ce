@@ -1,0 +1,56 @@
+{
+  "status": "descriptive_partial_summary_not_candidate_nomination",
+  "formal_status": "failed_timeout_incomplete_matrix",
+  "A_macro_four_plus_q95": 44.49797889568323,
+  "B_macro_four_plus_q95": 39.000403352286426,
+  "B_relative_improvement": 0.12354663469738236,
+  "B_exceeds_frozen_regression_limit": [
+    {
+      "database": "telstra",
+      "k": 5,
+      "metric": "all_q95",
+      "A": 7.4120872857627536,
+      "B": 8.163587217600574,
+      "relative_regression": 0.10138843524971874
+    },
+    {
+      "database": "telstra",
+      "k": 5,
+      "metric": "four_plus_q95",
+      "A": 6.94748067610964,
+      "B": 7.909820790767486,
+      "relative_regression": 0.13851641472959453
+    },
+    {
+      "database": "telstra",
+      "k": 50,
+      "metric": "four_plus_q95",
+      "A": 6.421660570809516,
+      "B": 7.076085462242366,
+      "relative_regression": 0.10190898198631393
+    },
+    {
+      "database": "telstra",
+      "k": 100,
+      "metric": "four_plus_q95",
+      "A": 6.373200362604383,
+      "B": 7.316513402864729,
+      "relative_regression": 0.14801245631556847
+    }
+  ],
+  "C_complete_endpoint": "not_available",
+  "pairing_checks": {
+    "initialization_digest": true,
+    "sample_plan_digest": true,
+    "validation_plan_digest": true,
+    "endpoint_plan_digest": true,
+    "support_sample_count": true,
+    "C_sample_plan_matches": true,
+    "C_support_normalized_matches": true
+  },
+  "candidate_selection": "not_permitted_incomplete_matrix",
+  "limitations": [
+    "Single training seed; engineering descriptive result, no significance or target conclusion.",
+    "Post-failure CPU source rehash and150-cell verification do not retroactively complete formal run."
+  ]
+}
