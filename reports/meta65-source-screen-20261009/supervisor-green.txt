@@ -1,0 +1,22 @@
+test_cli_does_not_bypass_runner_config_gate (test_meta65_supervised.CliTests.test_cli_does_not_bypass_runner_config_gate) ... ok
+test_cli_rejects_short_budget_even_if_loader_is_mocked (test_meta65_supervised.CliTests.test_cli_rejects_short_budget_even_if_loader_is_mocked) ... ok
+test_cli_uses_only_fixed_runner_and_frozen_deadline (test_meta65_supervised.CliTests.test_cli_uses_only_fixed_runner_and_frozen_deadline) ... ok
+test_no_short_budget_or_arbitrary_child_cli_flags (test_meta65_supervised.CliTests.test_no_short_budget_or_arbitrary_child_cli_flags) ... ok
+test_completed_decision_is_also_invalidated_on_nonzero_exit (test_meta65_supervised.SupervisedTests.test_completed_decision_is_also_invalidated_on_nonzero_exit) ... ok
+test_existing_output_and_companions_are_rejected_before_spawn (test_meta65_supervised.SupervisedTests.test_existing_output_and_companions_are_rejected_before_spawn) ... ok
+test_exit_zero_records_completed_without_precreating_runner_output (test_meta65_supervised.SupervisedTests.test_exit_zero_records_completed_without_precreating_runner_output) ... ok
+test_failed_child_invalidates_decision_and_updates_existing_status (test_meta65_supervised.SupervisedTests.test_failed_child_invalidates_decision_and_updates_existing_status) ... ok
+test_ignoring_term_forces_kill_without_killing_unrelated_process (test_meta65_supervised.SupervisedTests.test_ignoring_term_forces_kill_without_killing_unrelated_process) ... ok
+test_invalid_helper_limits_are_rejected (test_meta65_supervised.SupervisedTests.test_invalid_helper_limits_are_rejected) ... ok
+test_nonzero_is_failed_and_preserves_exit_code (test_meta65_supervised.SupervisedTests.test_nonzero_is_failed_and_preserves_exit_code) ... ok
+test_spawn_failure_leaves_failed_record_not_running (test_meta65_supervised.SupervisedTests.test_spawn_failure_leaves_failed_record_not_running) ... ok
+test_spawned_descendant_is_terminated_with_child_group (test_meta65_supervised.SupervisedTests.test_spawned_descendant_is_terminated_with_child_group) ... ok
+test_start_new_session_and_direct_argument_vector (test_meta65_supervised.SupervisedTests.test_start_new_session_and_direct_argument_vector) ... ok
+test_symlink_ancestor_and_price_cache_outputs_are_rejected (test_meta65_supervised.SupervisedTests.test_symlink_ancestor_and_price_cache_outputs_are_rejected) ... ok
+test_symlink_companion_is_rejected (test_meta65_supervised.SupervisedTests.test_symlink_companion_is_rejected) ... ok
+test_timeout_terms_owned_group_and_returns_124 (test_meta65_supervised.SupervisedTests.test_timeout_terms_owned_group_and_returns_124) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 1.127s
+
+OK

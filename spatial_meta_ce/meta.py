@@ -30,15 +30,27 @@ def forward(model, params, batch):
     return functional_call(model, params, (batch,), strict=True)
 
 
+def _adaptation_names(model, params, scope):
+    if scope == 'last':
+        head = getattr(model, 'head', None)
+        if not isinstance(head, torch.nn.Sequential) or not len(head) or not isinstance(head[-1], torch.nn.Linear):
+            raise ValueError('Last-layer adaptation requires a Sequential head ending in Linear')
+        prefix = f'head.{len(head) - 1}.'
+        names = [n for n in params if n.startswith(prefix)]
+    else:
+        names = [n for n in params if scope == 'all' or n.startswith('head.')]
+    if not names:
+        raise ValueError('No adaptation parameters selected')
+    return names
+
+
 def adapt(model, support, lr=0.001, steps=5, scope='all', loss='smooth_l1', training=True):
-    if steps < 0 or lr <= 0 or scope not in ('all', 'head'):
+    if steps < 0 or lr <= 0 or scope not in ('all', 'head', 'last'):
         raise ValueError('Invalid adaptation configuration')
     params = OrderedDict(model.named_parameters())
     if steps == 0 or support is None:
         return params
-    names = [n for n in params if scope == 'all' or n.startswith('head.')]
-    if not names:
-        raise ValueError('No adaptation parameters selected')
+    names = _adaptation_names(model, params, scope)
     with torch.enable_grad():
         for _ in range(steps):
             objective = loss_value(forward(model, params, support), support['label'], loss)
@@ -57,15 +69,13 @@ def adapt_trajectory(model, support, lr, record_steps, scope='all', loss='smooth
     record_steps. Identical update rule to adapt(training=False), so one pass covers
     every step count of a search grid."""
     record_steps = sorted({int(s) for s in record_steps})
-    if not record_steps or record_steps[0] < 0 or lr <= 0 or scope not in ('all', 'head'):
+    if not record_steps or record_steps[0] < 0 or lr <= 0 or scope not in ('all', 'head', 'last'):
         raise ValueError('Invalid adaptation configuration')
     params = OrderedDict(model.named_parameters())
     out = {}
     if 0 in record_steps:
         out[0] = params
-    names = [n for n in params if scope == 'all' or n.startswith('head.')]
-    if not names:
-        raise ValueError('No adaptation parameters selected')
+    names = _adaptation_names(model, params, scope)
     with torch.enable_grad():
         for step in range(1, record_steps[-1] + 1):
             objective = loss_value(forward(model, params, support), support['label'], loss)

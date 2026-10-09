@@ -1,0 +1,24 @@
+test_postcheck_and_final_deadline_failure_never_publish_decision (test_meta65_screen.InstanceSmokeTests.test_postcheck_and_final_deadline_failure_never_publish_decision) ... 
+  test_postcheck_and_final_deadline_failure_never_publish_decision (test_meta65_screen.InstanceSmokeTests.test_postcheck_and_final_deadline_failure_never_publish_decision) (mode='source') ... FAIL
+  test_postcheck_and_final_deadline_failure_never_publish_decision (test_meta65_screen.InstanceSmokeTests.test_postcheck_and_final_deadline_failure_never_publish_decision) (mode='deadline') ... FAIL
+
+======================================================================
+FAIL: test_postcheck_and_final_deadline_failure_never_publish_decision (test_meta65_screen.InstanceSmokeTests.test_postcheck_and_final_deadline_failure_never_publish_decision) (mode='source')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.codex/worktrees/meta65-source-screen-20261009/spatial-meta-ce/tests/test_meta65_screen.py", line 297, in test_postcheck_and_final_deadline_failure_never_publish_decision
+    self.assertFalse((out / "decision.json").exists())
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_postcheck_and_final_deadline_failure_never_publish_decision (test_meta65_screen.InstanceSmokeTests.test_postcheck_and_final_deadline_failure_never_publish_decision) (mode='deadline')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.codex/worktrees/meta65-source-screen-20261009/spatial-meta-ce/tests/test_meta65_screen.py", line 297, in test_postcheck_and_final_deadline_failure_never_publish_decision
+    self.assertFalse((out / "decision.json").exists())
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 1.844s
+
+FAILED (failures=2)

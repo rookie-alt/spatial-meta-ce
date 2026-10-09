@@ -1,0 +1,27 @@
+test_actual_config_and_protocol_hash (test_meta65_screen.FrozenConfigTests.test_actual_config_and_protocol_hash) ... ok
+test_data_allows_only_roots_to_change (test_meta65_screen.FrozenConfigTests.test_data_allows_only_roots_to_change) ... ok
+test_dry_run_needs_no_dependencies_cache_or_output (test_meta65_screen.FrozenConfigTests.test_dry_run_needs_no_dependencies_cache_or_output) ... ok
+test_duplicate_json_keys_rejected (test_meta65_screen.FrozenConfigTests.test_duplicate_json_keys_rejected) ... ok
+test_every_frozen_field_and_unknown_fields_are_rejected (test_meta65_screen.FrozenConfigTests.test_every_frozen_field_and_unknown_fields_are_rejected) ... ok
+test_protocol_bytes_not_only_config_are_authenticated (test_meta65_screen.FrozenConfigTests.test_protocol_bytes_not_only_config_are_authenticated) ... ok
+test_arithmetic_macro_not_geometric_pooled_or_log_quantile (test_meta65_screen.GateTests.test_arithmetic_macro_not_geometric_pooled_or_log_quantile) ... ok
+test_exact_improvement_boundary_and_no_candidate (test_meta65_screen.GateTests.test_exact_improvement_boundary_and_no_candidate) ... ok
+test_incomplete_nonfinite_duplicate_and_unpaired_rows_fail (test_meta65_screen.GateTests.test_incomplete_nonfinite_duplicate_and_unpaired_rows_fail) ... ok
+test_regression_gate_is_per_database_k_and_both_metrics (test_meta65_screen.GateTests.test_regression_gate_is_per_database_k_and_both_metrics) ... ok
+test_tie_break_prefers_last_layer (test_meta65_screen.GateTests.test_tie_break_prefers_last_layer) ... ok
+test_endpoint_uses_fresh_weights_and_standard_metrics (test_meta65_screen.InstanceSmokeTests.test_endpoint_uses_fresh_weights_and_standard_metrics) ... ok
+test_postcheck_and_final_deadline_failure_never_publish_decision (test_meta65_screen.InstanceSmokeTests.test_postcheck_and_final_deadline_failure_never_publish_decision) ... ok
+test_real_feature_store_duplicate_conflicts_rejected (test_meta65_screen.InstanceSmokeTests.test_real_feature_store_duplicate_conflicts_rejected) ... ok
+test_source_rehashed_after_training_failure_without_retry (test_meta65_screen.InstanceSmokeTests.test_source_rehashed_after_training_failure_without_retry) ... ok
+test_input_pairing_not_backward_cost_equality (test_meta65_screen.PairingTests.test_input_pairing_not_backward_cost_equality) ... ok
+test_existing_output_even_empty_rejected (test_meta65_screen.SafetyAndFailureTests.test_existing_output_even_empty_rejected) ... ok
+test_failure_is_recorded_once_and_retained (test_meta65_screen.SafetyAndFailureTests.test_failure_is_recorded_once_and_retained) ... ok
+test_symlink_and_protected_paths_rejected (test_meta65_screen.SafetyAndFailureTests.test_symlink_and_protected_paths_rejected) ... ok
+test_total_deadline_not_per_arm (test_meta65_screen.SafetyAndFailureTests.test_total_deadline_not_per_arm) ... ok
+test_target_and_duplicate_hash_and_small_pool_rejected (test_meta65_screen.SupportPlanTests.test_target_and_duplicate_hash_and_small_pool_rejected) ... ok
+test_unique_nested_shared_query_and_reproducible (test_meta65_screen.SupportPlanTests.test_unique_nested_shared_query_and_reproducible) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 1.597s
+
+OK
