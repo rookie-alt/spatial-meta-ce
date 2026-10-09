@@ -1,0 +1,13 @@
+Frozen completion commit: aca09dba2ac96ee8451cb5f2ddec1826444143ea
+Remote code root: /gly/weilin/spatial-meta-ce-meta65-completion-20261009-code
+Retained failed run: /gly/weilin/spatial-meta-ce-meta65-20261009-frozen/runs/meta65-source-screen-20261009
+Source cache: /gly/weilin/spatial-meta-ce/artifacts/cache (read only)
+GPU UUID: GPU-0050e82c-8c24-d85d-00d3-b73f12638df0
+Hard wall budget: 3000 seconds, owned process-group cleanup at most5 seconds
+
+cd /gly/weilin/spatial-meta-ce-meta65-completion-20261009-code
+PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES=GPU-0050e82c-8c24-d85d-00d3-b73f12638df0 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /gly/weilin/PRICE-master/venv/bin/python -B scripts/complete_meta65_endpoint.py --config configs/meta65_completion.json --out runs/meta65-endpoint-completion-20261009 --device cuda --execute
+
+Evaluation only: C75 source cells, retained A/B150 cells, combined225-cell independent verification.
+No resume, optimizer training, new checkpoint, threshold change, target evaluation or automatic retry.
+This file records launch, not stage completion or accuracy.
