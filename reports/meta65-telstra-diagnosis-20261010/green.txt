@@ -1,0 +1,23 @@
+test_below_min_bucket_reports_only_count_and_status (test_diagnose_meta65_telstra.BucketTests.test_below_min_bucket_reports_only_count_and_status) ... ok
+test_d1_assigns_one_table_queries_to_two_bucket (test_diagnose_meta65_telstra.BucketTests.test_d1_assigns_one_table_queries_to_two_bucket) ... ok
+test_d1_bucket_boundaries_and_shares (test_diagnose_meta65_telstra.BucketTests.test_d1_bucket_boundaries_and_shares) ... ok
+test_d2_fixed_true_bucket_boundaries (test_diagnose_meta65_telstra.BucketTests.test_d2_fixed_true_bucket_boundaries) ... ok
+test_d4_aligns_each_run_by_hash_not_position (test_diagnose_meta65_telstra.BucketTests.test_d4_aligns_each_run_by_hash_not_position) ... ok
+test_d4_requires_identical_run_query_sets (test_diagnose_meta65_telstra.BucketTests.test_d4_requires_identical_run_query_sets) ... ok
+test_d5_leave_one_out_reports_sign_and_order_flips (test_diagnose_meta65_telstra.BucketTests.test_d5_leave_one_out_reports_sign_and_order_flips) ... ok
+test_d6_top_five_percent_log_contribution (test_diagnose_meta65_telstra.BucketTests.test_d6_top_five_percent_log_contribution) ... ok
+test_direction_labels_use_a_and_optional_pg (test_diagnose_meta65_telstra.BucketTests.test_direction_labels_use_a_and_optional_pg) ... ok
+test_output_guards_reject_gpu_target_and_overwrite (test_diagnose_meta65_telstra.BucketTests.test_output_guards_reject_gpu_target_and_overwrite) ... ok
+test_paired_delta_uses_intersection_and_reports_hashes (test_diagnose_meta65_telstra.BucketTests.test_paired_delta_uses_intersection_and_reports_hashes) ... ok
+test_pg_anchor_failure_is_explicit_and_never_used (test_diagnose_meta65_telstra.BucketTests.test_pg_anchor_failure_is_explicit_and_never_used) ... ok
+test_pg_anchor_verifies_manifest_row_mapping_and_values (test_diagnose_meta65_telstra.BucketTests.test_pg_anchor_verifies_manifest_row_mapping_and_values) ... ok
+test_quadruplet_never_reports_only_percent (test_diagnose_meta65_telstra.BucketTests.test_quadruplet_never_reports_only_percent) ... ok
+test_execute_reads_only_source_databases_and_writes_evidence (test_diagnose_meta65_telstra.EndToEndSyntheticTests.test_execute_reads_only_source_databases_and_writes_evidence) ... ok
+test_diagnosis_module_does_not_import_torch (test_diagnose_meta65_telstra.NoHeavyDependencyTests.test_diagnosis_module_does_not_import_torch) ... ok
+test_log_q95_is_exp_of_log_space_percentile (test_diagnose_meta65_telstra.QErrorTests.test_log_q95_is_exp_of_log_space_percentile) ... ok
+test_q_error_clips_prediction_and_truth_to_one (test_diagnose_meta65_telstra.QErrorTests.test_q_error_clips_prediction_and_truth_to_one) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.352s
+
+OK
