@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "experiment": "meta65-endpoint-completion-20261009",
+  "elapsed_seconds": 1159.7182663239073,
+  "decision_valid": true,
+  "endpoint_cells": 225,
+  "new_training_updates": 0,
+  "old_formal_status": "failed_timeout",
+  "independent_verification": "passed",
+  "source_before_after_equal": true
+}

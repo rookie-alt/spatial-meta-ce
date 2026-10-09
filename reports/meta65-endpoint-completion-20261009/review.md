@@ -23,3 +23,12 @@
 - 独立completion validator7项合成自测通过，包含225份NPZ复算、来源选择、失败/stage篡改/错标签和决策篡改拒绝；新增文件Ruff通过。
 - 新服务器代码目录 `/gly/weilin/spatial-meta-ce-meta65-completion-20261009-code` CPU集成：入口8项、独立validator7项均通过；dry-run仅打印、new_training_updates=0、C75/组合225、3000秒。
 - 正式补齐尚未启动；下一步提交冻结，核对部署SHA及GPU6空闲，单次实际执行后保存结果/父exit0与225-cell独立认证。旧failed/timeout状态保留。
+
+## 真实执行验收
+
+- 冻结aca09db；首次推送审批超时未执行，后使用Git显式代理成功同步冻结与启动记录2221b33。旧训练与本阶段代码输入未改。
+- 新child/进程组19370，parent completed/returncode0/exit0/1162.786657秒，无超时/cleanuperror；C75cell完整，new_training_updates0，model_state_unchanged=true。
+- 独立CPU复算全部225份预测通过，source前后及最终完整26源认证一致，旧15输入hash未变；旧formal failed_timeout保持不变，GPU6释放。
+- 主macro A44.497979/B39.000403/C39.010383，B/C降12.3547%/12.3322%；B触发telstra4项、C触发telstra各K四表5项>10%退化，冻结decision=no_candidate，未放宽或按库选择。
+- 已本地复算完整CSV225主指标及逐库/K退化，source-before/after相等；此处不把新阶段成功追认为旧两小时run成功，不声称单seed显著或目标泛化。
+- Hubble独立只读收尾approved：复算225唯一cells、12项macro、180项分组均值、90项标准差与两个gate均一致；Ctelstra五K退化22.6481%–35.7019%，no_candidate正确，未发现阻断收尾问题。仅核对本地CSV/JSON及冻结SHA，服务器NPZ认证由已保存独立验证证据支持；未重复远程读取或反序列化，不扩大为目标泛化或参数数目因果结论。
