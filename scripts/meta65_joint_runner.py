@@ -6,6 +6,7 @@ import json
 import os
 import platform
 import resource
+import subprocess
 import sys
 import time
 from collections import OrderedDict
@@ -25,9 +26,12 @@ CHECKPOINT_SHA = {
     "C": "58f2f4db6f54cd4578fd6127d5a4aa350dbdc2268a36a057b56f7161cb6097a4",
 }
 RETAINED = Path("/gly/weilin/spatial-meta-ce-meta65-20261009-frozen/runs/meta65-source-screen-20261009")
+FROZEN_ROOT = RETAINED.parents[1]
 CACHE = Path("/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain")
 PLAN_SHA = "ebeb178de15b134722bd9fbc24ff4b4752f795a311580c1a17cb23c550bfd0f0"
 PROTOCOL = "实验文档/56-Meta65同初始化适应算子最小受控协议.md"
+LAUNCH_BINDING = "reports/meta65-joint-runner-20261010/launch-binding.json"
+PREFLIGHT_EVIDENCE_DIR = "reports/meta65-formal-safety-20261010/cpu-preflight"
 PROTOCOL_SHA = "cc87ef93451e2664aba4aa51257a1cdba47c6638c004cb8e4b943773171ca4d2"
 FROZEN = {
     "schema": 1, "experiment": "meta65-joint-control-20261010", "k": 20,
@@ -107,9 +111,208 @@ def safe_output(path, inputs):
     if path.exists() or any(path.is_relative_to(checked_path(item))
                             or checked_path(item).is_relative_to(path) for item in inputs):
         raise ValueError("Output exists or overlaps frozen inputs")
+    if path.is_relative_to(checked_path(FROZEN_ROOT)):
+        raise ValueError("frozen root is read-only")
     if "PRICE-master" in path.parts or path.is_relative_to(ROOT / "spatial_meta_ce"):
         raise ValueError("Read-only/source output path")
     return path
+
+
+def verify_launch_binding(binding_path, *, root=ROOT, config_path=None):
+    """Recheck the committed launch evidence before *each* formal invocation.
+
+    The file records a launch configuration, not permission to execute; that
+    permission still requires a separate direct user confirmation and receipt.
+    """
+    root = checked_path(root)
+    binding_path = checked_path(binding_path)
+    if not binding_path.is_relative_to(root):
+        raise ValueError("Launch binding must reside in the isolated code root")
+
+    def bound_file(relative):
+        relative_path = Path(relative)
+        if relative_path.is_absolute() or ".." in relative_path.parts:
+            raise ValueError("Launch binding path escapes isolated code root")
+        path = checked_path(root / relative_path)
+        if not path.is_relative_to(root):
+            raise ValueError("Launch binding path escapes isolated code root")
+        return path
+
+    binding = read_json(binding_path)
+    if (binding.get("launch_ready") is not True
+            or binding.get("execution_authorized") is not False
+            or binding.get("gpu_formal_executed") is not False
+            or binding.get("resource_budget") != FROZEN["limits"]):
+        raise ValueError("Launch binding status or resource budget changed")
+    code = binding.get("code_sha256")
+    if not isinstance(code, dict) or set(code) != set(CODE_FILES):
+        raise ValueError("Launch binding code SHA set changed")
+    for relative, expected in code.items():
+        if sha256(bound_file(relative)) != expected:
+            raise ValueError(f"Launch binding code SHA changed: {relative}")
+    sources = binding.get("input_sha256")
+    config_path = checked_path(config_path or root / "configs/meta65_joint_control.json")
+    if not config_path.is_relative_to(root):
+        raise ValueError("Launch binding config must reside in isolated code root")
+    config_rel = str(config_path.relative_to(root))
+    if (not isinstance(sources, dict)
+            or not {config_rel, PROTOCOL, *PROVENANCE} <= set(sources)
+            or sources[PROTOCOL] != PROTOCOL_SHA):
+        raise ValueError("Launch binding config/protocol SHA missing")
+    for relative, expected in sources.items():
+        if sha256(bound_file(relative)) != expected:
+            raise ValueError(f"Launch binding input SHA changed: {relative}")
+    evidence = binding.get("cpu_preflight_evidence_sha256")
+    evidence_paths = {str(Path(PREFLIGHT_EVIDENCE_DIR) / filename) for filename in (
+        "status.json", "verification.json", "input-binding.json", "microcells.json",
+        "environment.json", "supervisor.json")}
+    if not isinstance(evidence, dict) or set(evidence) != evidence_paths:
+        raise ValueError("Launch binding lacks the fixed CPU preflight evidence set")
+    for relative, expected in evidence.items():
+        if sha256(bound_file(relative)) != expected:
+            raise ValueError(f"Launch binding preflight SHA changed: {relative}")
+    evidence_root = root / PREFLIGHT_EVIDENCE_DIR
+    status = read_json(evidence_root / "status.json")
+    verification = read_json(evidence_root / "verification.json")
+    preflight_binding = read_json(evidence_root / "input-binding.json")
+    microcells = read_json(evidence_root / "microcells.json")
+    environment = read_json(evidence_root / "environment.json")
+    supervisor = read_json(evidence_root / "supervisor.json")
+    if (status.get("status") != "preflight_completed" or status.get("mode") != "cpu_preflight"
+            or status.get("cells") != 0 or status.get("micro_cells") != 9
+            or status.get("formal_result") is not False
+            or verification.get("status") != "preflight_verified"
+            or verification.get("mode") != "cpu_preflight"
+            or verification.get("cells_verified") != 9
+            or verification.get("all_metrics_verified") is not True
+            or verification.get("formal_result") is not False
+            or verification.get("summary") is not None
+            or microcells.get("mode") != "cpu_preflight"
+            or len(microcells.get("cells", [])) != 9
+            or len(microcells.get("none_checks", [])) != 9
+            or environment.get("mode") != "cpu_preflight"
+            or environment.get("CUDA_VISIBLE_DEVICES") != ""
+            or environment.get("threads") != 1
+            or supervisor.get("status") != "preflight_completed"
+            or supervisor.get("mode") != "cpu_preflight"
+            or supervisor.get("returncode") != 0
+            or supervisor.get("failure") is not None
+            or supervisor.get("phase") != "certification"
+            or supervisor.get("peak_vram_bytes") != 0
+            or not 0 <= supervisor.get("peak_rss_bytes", -1) <= FROZEN["limits"]["rss_bytes"]
+            or not 0 <= supervisor.get("outputbytes", -1) <= FROZEN["limits"]["output_bytes"]
+            or not 0 < supervisor.get("elapsed", 0) <= FROZEN["cpu_preflight"]["total_seconds"]):
+        raise ValueError("CPU preflight success/status/resource evidence is not certified")
+    if (preflight_binding.get("mode") != "cpu_preflight"
+            or preflight_binding.get("code_sha256") != code):
+        raise ValueError("CPU preflight code SHA is not bound to this launch")
+    preflight_inputs = preflight_binding.get("input_sha256")
+    if not isinstance(preflight_inputs, dict):
+        raise TypeError("CPU preflight input SHA evidence is missing")
+    for relative, expected in {**code, config_rel: sources[config_rel], PROTOCOL: sources[PROTOCOL]}.items():
+        matches = [value for name, value in preflight_inputs.items()
+                   if name.endswith("/" + relative)]
+        if matches != [expected]:
+            raise ValueError(f"CPU preflight input SHA differs from launch binding: {relative}")
+    return binding
+
+
+def _formal_receipt_path(approval_path):
+    approval_path = checked_path(approval_path)
+    return approval_path.with_name(approval_path.name + ".consumed.json")
+
+
+def validate_formal_approval(approval_path, output, launch_binding_path, config_path,
+                             code_sha256, *, gpu_uuid, allow_consumed=False):
+    """Match an operator-created receipt to the frozen launch and unique output."""
+    approval_path = checked_path(approval_path)
+    output = checked_path(output)
+    if approval_path.parent != output.parent or not approval_path.is_file():
+        raise ValueError("Formal approval must be an existing file beside the isolated output")
+    receipt = _formal_receipt_path(approval_path)
+    if receipt.is_symlink() or (receipt.exists() and not allow_consumed):
+        raise ValueError("Formal approval already consumed or used")
+    try:
+        binding_sha = sha256(checked_path(launch_binding_path))
+    except OSError as exc:
+        raise ValueError("Launch binding SHA cannot be checked") from exc
+    approval = read_json(approval_path)
+    expected = {
+        "schema": 2,
+        "permission": "one_shot_formal_gpu_matrix",
+        "launch_binding_sha256": binding_sha,
+        "config_sha256": sha256(checked_path(config_path)),
+        "code_sha256": code_sha256,
+        "protocol_sha256": PROTOCOL_SHA,
+        "output": str(output),
+        "gpu_uuid": gpu_uuid,
+    }
+    if (not gpu_uuid or not gpu_uuid.startswith("GPU-")
+            or set(approval) != set(expected) or approval != expected):
+        raise ValueError("Formal approval does not bind this launch, SHA or GPU UUID")
+    return approval
+
+
+def claim_formal_approval(approval_path, output, approval):
+    """Atomically consume approval *before* supervising; never auto-retry it."""
+    approval_path = checked_path(approval_path)
+    output = checked_path(output)
+    receipt = _formal_receipt_path(approval_path)
+    if receipt.is_symlink() or receipt.exists():
+        raise ValueError("Formal approval already consumed or used")
+    if read_json(approval_path) != approval or approval_path.parent != output.parent:
+        raise ValueError("Formal approval changed before consumption")
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        fd = os.open(receipt, flags, 0o600)
+    except FileExistsError as exc:
+        raise ValueError("Formal approval already consumed or used") from exc
+    with os.fdopen(fd, "w", encoding="utf-8") as stream:
+        json.dump({"schema": 1, "status": "consumed", "approval_sha256": sha256(approval_path),
+                   "output": str(output), "supervisor_pid": os.getpid()}, stream,
+                  sort_keys=True, allow_nan=False)
+        stream.write("\n")
+        stream.flush()
+        os.fsync(stream.fileno())
+    return receipt
+
+
+def verify_formal_claim(approval_path, output, *, parent_pid):
+    receipt = read_json(_formal_receipt_path(approval_path))
+    if (receipt.get("schema") != 1 or receipt.get("status") != "consumed"
+            or receipt.get("approval_sha256") != sha256(checked_path(approval_path))
+            or receipt.get("output") != str(checked_path(output))
+            or receipt.get("supervisor_pid") != parent_pid):
+        raise ValueError("Formal approval consumption receipt changed or used by another supervisor")
+    return receipt
+
+
+def verify_gpu_idle(gpu_uuid):
+    """Check the specifically approved device immediately before claiming it."""
+    if not isinstance(gpu_uuid, str) or not gpu_uuid.startswith("GPU-"):
+        raise ValueError("Explicit GPU UUID required for formal execution")
+    details = subprocess.run(
+        ["nvidia-smi", "-i", gpu_uuid,
+         "--query-gpu=uuid,memory.used,utilization.gpu", "--format=csv,noheader,nounits"],
+        check=True, capture_output=True, text=True, timeout=5)
+    lines = details.stdout.strip().splitlines()
+    if len(lines) != 1:
+        raise ValueError("Selected GPU idle state could not be verified")
+    fields = [field.strip() for field in lines[0].split(",")]
+    try:
+        uuid, memory_mib, utilization = fields
+        memory_mib, utilization = int(memory_mib), int(utilization)
+    except (ValueError, TypeError) as exc:
+        raise ValueError("Selected GPU idle state is malformed") from exc
+    if uuid != gpu_uuid or not 0 <= memory_mib <= 100 or utilization != 0:
+        raise ValueError("Selected GPU is not idle (<=100 MiB and utilization=0 required)")
+    apps = subprocess.run(
+        ["nvidia-smi", "-i", gpu_uuid, "--query-compute-apps=pid",
+         "--format=csv,noheader,nounits"],
+        check=True, capture_output=True, text=True, timeout=5)
+    if apps.stdout.strip():
+        raise ValueError("Selected GPU is not idle: compute process present")
+    return {"uuid": uuid, "memory_used_mib": memory_mib, "utilization_percent": utilization}
 
 
 def validate_config(value):
@@ -263,6 +466,18 @@ def state_digest(model):
         value.update(str(tuple(tensor.shape)).encode())
         value.update(tensor.detach().cpu().numpy().tobytes())
     return value.hexdigest()
+
+
+def check_cell_peaks(record):
+    """Catch a transient memory peak that the one-second sampler might miss."""
+    for field, budget in (("peak_rss_bytes", FROZEN["limits"]["rss_bytes"]),
+                          ("peak_vram_bytes", FROZEN["limits"]["vram_bytes"])):
+        value = record.get(field)
+        if type(value) is not int or value < 0:
+            raise ValueError(f"Invalid {field} high-water mark")
+        if value > budget:
+            raise ValueError(f"{field} exceeded frozen limit")
+    return record
 
 
 def operator_params(model, support, operator):
@@ -505,6 +720,7 @@ def worker(output, mode, config_path, root=ROOT):
             none_pred, none_true, none_record = evaluate_cell(
                 checkpoint_path, stores[db], query,
                 certified[(db, run)]["support"], "none", "cpu")
+            check_cell_peaks(none_record)
             if none_record["selected_parameter_count"] or none_record["steps"]:
                 raise ValueError("None microcheck called adaptation")
             if none_record["state_before"] != none_record["state_after"]:
@@ -520,6 +736,7 @@ def worker(output, mode, config_path, root=ROOT):
         pred, true, record = evaluate_cell(checkpoint_path, stores[db], query,
                                            certified[(db, run)]["support"], operator,
                                            "cuda" if mode == "formal" else "cpu")
+        check_cell_peaks(record)
         if not np.array_equal(true, selected_identity["true"]):
             raise ValueError("Output FP64 truth changed")
         diagonal = operator == ("last3" if checkpoint == "C" else "head3")
@@ -558,47 +775,52 @@ def main(argv=None):
     parser.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--approval", type=Path, help="Separate user-approved formal launch contract")
     args = parser.parse_args(argv)
-    validate_config(read_json(args.config))
+    config_path = checked_path(args.config)
+    validate_config(read_json(config_path))
+    output = checked_path(args.out)
+    binding_path = ROOT / LAUNCH_BINDING
+    approval = None
+    gpu_uuid = None
     if args.mode == "formal":
-        # No approval artifact is generated by CPU preflight or launch binding.
-        # A future authorized task must bind the exact formal command and code.
         if args.approval is None:
             raise ValueError("Formal GPU matrix is not authorized by implementation/preflight")
-        approval = read_json(args.approval)
-        if (approval.get("permission") != "one_shot_formal_gpu_matrix"
-                or approval.get("config_sha256") != sha256(args.config)
-                or approval.get("code_sha256") != {p: sha256(ROOT / p) for p in CODE_FILES}
-                or approval.get("protocol_sha256") != PROTOCOL_SHA
-                or approval.get("output") != str(checked_path(args.out))
-                or not str(approval.get("gpu_uuid", "")).startswith("GPU-")
-                or approval.get("gpu_uuid") != os.environ.get("CUDA_VISIBLE_DEVICES")):
-            raise ValueError("Formal approval does not bind this frozen launch")
+        verify_launch_binding(binding_path, root=ROOT, config_path=config_path)
+        gpu_uuid = os.environ.get("CUDA_VISIBLE_DEVICES")
+        approval = validate_formal_approval(
+            args.approval, output, binding_path, config_path,
+            {p: sha256(ROOT / p) for p in CODE_FILES},
+            gpu_uuid=gpu_uuid, allow_consumed=args.worker)
     if not args.execute:
         print(json.dumps({"status": "prepared_not_executed", "mode": args.mode,
                           "cells": 135 if args.mode == "formal" else 0,
                           "microcells": 9 if args.mode == "cpu_preflight" else 0,
                           "formal_result": False}, indent=2))
         return
-    safe_output(args.out, [RETAINED, CACHE, "/gly/weilin/PRICE-master"])
+    safe_output(output, [RETAINED, CACHE, "/gly/weilin/PRICE-master"])
     if args.worker:
         if (os.environ.get("META65_SUPERVISED_MODE") != args.mode
                 or os.environ.get("META65_SUPERVISOR_PID") != str(os.getppid())):
             raise ValueError("Worker requires its owning external supervisor")
+        if args.mode == "formal":
+            verify_formal_claim(args.approval, output, parent_pid=os.getppid())
         try:
-            worker(args.out, args.mode, args.config)
+            worker(output, args.mode, config_path)
         except BaseException as exc:
-            if args.out.exists():
-                write_json(args.out / "status.json", {"status": "failed", "mode": args.mode,
-                                                     "failure": f"{type(exc).__name__}: {exc}",
-                                                     "formal_result": False})
+            if output.exists():
+                write_json(output / "status.json", {"status": "failed", "mode": args.mode,
+                                                    "failure": f"{type(exc).__name__}: {exc}",
+                                                    "formal_result": False})
             raise
     else:
         from scripts.meta65_joint_supervisor import supervise
+        if args.mode == "formal":
+            verify_gpu_idle(gpu_uuid)
+            claim_formal_approval(args.approval, output, approval)
         command = [sys.executable, "-B", str(Path(__file__).resolve()), "--worker", "--execute",
-                   "--config", str(args.config), "--out", str(args.out), "--mode", args.mode]
+                   "--config", str(config_path), "--out", str(output), "--mode", args.mode]
         if args.approval:
-            command += ["--approval", str(args.approval)]
-        record = supervise(command, args.out, mode=args.mode)
+            command += ["--approval", str(checked_path(args.approval))]
+        record = supervise(command, output, mode=args.mode, root=ROOT)
         print(json.dumps(record, indent=2))
         if record["status"] not in ("completed", "preflight_completed"):
             raise SystemExit(1)

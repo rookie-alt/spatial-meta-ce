@@ -50,6 +50,10 @@ class UnsafeOutputError(ValueError):
     """Raised when a worker output path contains a symlink."""
 
 
+class GPUQueryError(RuntimeError):
+    """Raised when GPU usage cannot be measured safely."""
+
+
 def artifact_paths(output: str | os.PathLike[str]) -> tuple[Path, Path]:
     """Return the two sidecar paths without creating the worker output."""
     output = Path(output)
@@ -123,12 +127,11 @@ def _reject_symlinks(path: Path) -> None:
 
 
 def output_bytes(output: str | os.PathLike[str], log_path: str | os.PathLike[str]) -> int:
-    """Count worker files and the bypass log, rejecting symlink traversal."""
+    """Count worker files and supervisor sidecars, rejecting symlink traversal."""
     output = Path(output)
     log_path = Path(log_path)
+    record_path, _ = artifact_paths(output)
     _reject_symlinks(output)
-    if log_path.is_symlink():
-        raise UnsafeOutputError(f"symlink is not allowed: {log_path}")
     total = 0
     if output.exists():
         for path in output.rglob("*"):
@@ -136,8 +139,11 @@ def output_bytes(output: str | os.PathLike[str], log_path: str | os.PathLike[str
                 raise UnsafeOutputError(f"symlink is not allowed: {path}")
             if path.is_file():
                 total += path.stat().st_size
-    if log_path.exists():
-        total += log_path.stat().st_size
+    for path in (log_path, record_path):
+        if path.is_symlink():
+            raise UnsafeOutputError(f"symlink is not allowed: {path}")
+        if path.exists():
+            total += path.stat().st_size
     return total
 
 
@@ -147,8 +153,8 @@ def _linux_rows(proc_root: Path = Path("/proc")) -> dict[int, tuple[int, int, in
     page_size = os.sysconf("SC_PAGE_SIZE")
     try:
         entries = list(proc_root.iterdir())
-    except OSError:
-        return rows
+    except OSError as exc:
+        raise GPUQueryError("Linux process table cannot be enumerated") from exc
     for entry in entries:
         if not entry.name.isdigit():
             continue
@@ -178,8 +184,8 @@ def _ps_rows() -> dict[int, tuple[int, int, int, int, str]]:
             capture_output=True,
             text=True,
         )
-    except (OSError, subprocess.SubprocessError):
-        return {}
+    except (OSError, subprocess.SubprocessError) as exc:
+        raise GPUQueryError("process table cannot be enumerated") from exc
     rows: dict[int, tuple[int, int, int, int, str]] = {}
     for line in result.stdout.splitlines():
         fields = line.split()
@@ -197,12 +203,30 @@ def _process_rows() -> dict[int, tuple[int, int, int, int, str]]:
     return _linux_rows() if sys.platform.startswith("linux") else _ps_rows()
 
 
+def _peek_exit(child: subprocess.Popen[Any]) -> int | None:
+    """Observe a Linux leader without reaping its PID until group cleanup."""
+    known = getattr(child, "returncode", None)
+    if known is not None:
+        return known
+    if sys.platform.startswith("linux"):
+        try:
+            info = os.waitid(os.P_PID, child.pid, os.WEXITED | os.WNOHANG | os.WNOWAIT)
+        except ChildProcessError:
+            return child.poll()  # A test callback may already have waited.
+        if info is None:
+            return None
+        return int(info.si_status) if info.si_code == os.CLD_EXITED else -int(info.si_status)
+    return child.poll()
+
+
 def _owned_pids(rows: dict[int, tuple[int, int, int, int, str]], pid: int) -> set[int]:
-    if pid not in rows:
-        return set()
-    group = rows[pid][1]
-    owned = {candidate for candidate, row in rows.items() if row[1] == group}
-    owned.add(pid)
+    leader = rows.get(pid)
+    if leader is not None and (leader[1] != pid or leader[2] not in (0, pid)):
+        raise GPUQueryError("worker no longer belongs to its new process group")
+    same_group = {candidate for candidate, row in rows.items() if row[1] == pid}
+    if any(rows[candidate][2] not in (0, pid) for candidate in same_group):
+        raise GPUQueryError("observed an unrelated process group with the worker PGID")
+    owned = same_group
     changed = True
     while changed:
         changed = False
@@ -213,29 +237,43 @@ def _owned_pids(rows: dict[int, tuple[int, int, int, int, str]], pid: int) -> se
     return owned
 
 
+def _live_owned_descendants(pgid: int, leader_pid: int) -> list[int]:
+    rows = _process_rows()
+    group = {pid: row for pid, row in rows.items() if row[1] == pgid}
+    if any(row[2] not in (0, pgid) for row in group.values()):
+        raise GPUQueryError("cannot certify owned process group identity")
+    return [pid for pid, row in group.items() if pid != leader_pid and row[4] != "Z"]
+
+
 def _gpu_bytes(pids: Iterable[int]) -> int:
     owned = {int(pid) for pid in pids}
     if not owned:
         return 0
-    query = subprocess.run(
-        [
-            "nvidia-smi",
-            "--query-compute-apps=pid,used_memory",
-            "--format=csv,noheader,nounits",
-        ],
-        check=True,
-        capture_output=True,
-        text=True,
-    )
+    try:
+        query = subprocess.run(
+            [
+                "nvidia-smi",
+                "--query-compute-apps=pid,used_memory",
+                "--format=csv,noheader,nounits",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+    except (OSError, subprocess.SubprocessError) as exc:
+        raise GPUQueryError("nvidia-smi compute-apps query failed") from exc
     total = 0
     for line in query.stdout.splitlines():
         fields = [field.strip() for field in line.split(",")]
-        if len(fields) < 2:
-            continue
         try:
+            if len(fields) != 2:
+                raise ValueError("invalid compute-apps row")
             pid, mib = int(fields[0]), int(fields[1])
-        except ValueError:
-            continue
+            if pid <= 0 or mib < 0:
+                raise ValueError("invalid compute-apps values")
+        except ValueError as exc:
+            raise GPUQueryError("invalid nvidia-smi compute-apps output") from exc
         if pid in owned:
             total += mib * MiB
     return total
@@ -259,6 +297,14 @@ def sample_process(child: Any, *, mode: str, output: Path | None = None) -> dict
     """Sample only the child group/tree; CPU preflight never calls nvidia-smi."""
     rows = _process_rows()
     pids = _owned_pids(rows, int(child.pid))
+    for _ in range(2):
+        if pids or _peek_exit(child) is not None:
+            break
+        time.sleep(0.01)
+        rows = _process_rows()
+        pids = _owned_pids(rows, int(child.pid))
+    if not pids and _peek_exit(child) is None:
+        raise GPUQueryError("live worker process tree cannot be observed")
     rss = sum(rows[pid][3] for pid in pids if rows[pid][4] != "Z")
     if rss == 0:
         try:
@@ -338,19 +384,46 @@ def _status_failed(output: Path, record: dict[str, Any]) -> None:
     _write_json(status_path, status)
 
 
-def _kill_group(child: subprocess.Popen[Any], grace: float, signals: list[int]) -> None:
+def _kill_group(
+    child: subprocess.Popen[Any], grace: float, signals: list[int], *, owned_pgid: int,
+) -> None:
+    if owned_pgid != child.pid or owned_pgid <= 0 or owned_pgid == os.getpgrp():
+        raise ValueError("refusing to signal an unowned process group")
+
     def send(sig: signal.Signals) -> None:
+        # After poll() reaps the leader, PGID reuse would make a blind killpg
+        # unsafe.  A surviving group must still belong to the original SID.
+        if _peek_exit(child) is not None:
+            if sys.platform.startswith("linux") and child.returncode is not None:
+                raise GPUQueryError("refusing to signal after the leader PID was reaped")
+            try:
+                rows = _process_rows()
+            except GPUQueryError:
+                # Linux's unreaped WNOWAIT leader still reserves this PGID;
+                # fail closed for the sampler while cleaning only that group.
+                if not sys.platform.startswith("linux") or child.returncode is not None:
+                    raise
+            else:
+                remaining = [row for row in rows.values() if row[1] == owned_pgid and row[4] != "Z"]
+                if not remaining:
+                    return
+                if any(row[2] not in (0, owned_pgid) for row in remaining):
+                    raise GPUQueryError("refusing to signal a reused process group")
         try:
-            os.killpg(child.pid, sig)
+            os.killpg(owned_pgid, sig)
             signals.append(int(sig))
         except ProcessLookupError:
             pass
 
     send(signal.SIGTERM)
     deadline = time.monotonic() + grace
-    while child.poll() is None and time.monotonic() < deadline:
+    while time.monotonic() < deadline:
+        try:
+            os.killpg(owned_pgid, 0)
+        except ProcessLookupError:
+            break
         time.sleep(min(0.02, max(0.0, deadline - time.monotonic())))
-    if child.poll() is None:
+    else:
         send(signal.SIGKILL)
     child.wait()
 
@@ -435,6 +508,16 @@ def supervise(
     def persist() -> None:
         _write_json(record_path, record)
 
+    def persist_measured() -> int:
+        # The record contains its own byte count; settle the digit count after
+        # every write so the reported value includes the final evidence file.
+        while True:
+            persist()
+            measured = output_bytes(output, log_path)
+            if measured == record["outputbytes"]:
+                return measured
+            record["outputbytes"] = measured
+
     try:
         with log_path.open("x", encoding="utf-8") as log:
             persist()
@@ -459,21 +542,25 @@ def supervise(
             phase_started = started
             total_deadline = started + budget["total_seconds"]
             while True:
-                now = time.monotonic()
                 if pending_signal is not None:
                     record["failure"] = "parent_signal"
-                    _kill_group(child, grace, record["signals"])
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                     break
 
                 try:
                     current_phase = _read_phase(output, current_phase)
                 except (OSError, ValueError, UnsafeOutputError) as exc:
                     record["failure"] = "invalid_phase" if isinstance(exc, ValueError) else "unsafe_output"
-                    _kill_group(child, grace, record["signals"])
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                     break
                 if current_phase != record["phase"]:
+                    transition_now = time.monotonic()
+                    if transition_now - phase_started > budget["phase_seconds"][record["phase"]]:
+                        record["failure"] = "phase_timeout"
+                        _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
+                        break
                     record["phase"] = current_phase
-                    phase_started = now
+                    phase_started = transition_now
 
                 try:
                     if sample_fn is None:
@@ -487,14 +574,17 @@ def supervise(
                     _reject_symlinks(output)
                 except UnsafeOutputError:
                     record["failure"] = "unsafe_output"
-                    _kill_group(child, grace, record["signals"])
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
+                    break
+                except GPUQueryError:
+                    record["failure"] = "sample_error"
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                     break
                 except Exception:  # noqa: BLE001 - sampler boundary must fail closed
-                    if child.poll() is None:
+                    if _peek_exit(child) is None:
                         record["failure"] = "sample_error"
-                        _kill_group(child, grace, record["signals"])
+                        _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                         break
-                    child.wait()
                     # Re-read the final phase before deciding whether a late
                     # exit crossed the external deadline.
                     try:
@@ -505,48 +595,79 @@ def supervise(
                     final_now = time.monotonic()
                     if final_now > total_deadline:
                         record["failure"] = "total_timeout"
-                    elif child.returncode not in (0, None):
+                    elif _peek_exit(child) != 0:
                         record["failure"] = "sample_error"
                     break
 
-                child_code = child.poll()
-                if now > total_deadline:
+                child_code = _peek_exit(child)
+                observed_now = time.monotonic()
+                if observed_now > total_deadline:
                     record["failure"] = "total_timeout"
-                    _kill_group(child, grace, record["signals"])
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                     break
-                if now - phase_started > budget["phase_seconds"][current_phase]:
+                if observed_now - phase_started > budget["phase_seconds"][current_phase]:
                     record["failure"] = "phase_timeout"
-                    _kill_group(child, grace, record["signals"])
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                     break
                 if record["outputbytes"] > budget["output_bytes"]:
                     record["failure"] = "output_limit"
-                    _kill_group(child, grace, record["signals"])
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                     break
                 if record["peak_rss_bytes"] > budget["rss_bytes"]:
                     record["failure"] = "rss_limit"
-                    _kill_group(child, grace, record["signals"])
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                     break
                 if record["peak_vram_bytes"] > budget["vram_bytes"]:
                     record["failure"] = "vram_limit"
-                    _kill_group(child, grace, record["signals"])
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                     break
                 if child_code is not None:
-                    child.wait()
                     break
                 time.sleep(budget["poll_seconds"])
 
-            if child.poll() is None:
+            if _peek_exit(child) is None:
                 child.wait()
-            record["returncode"] = child.returncode
+            record["returncode"] = _peek_exit(child)
             record["elapsed"] = time.monotonic() - started
             try:
-                record["phase"] = _read_phase(output, record["phase"])
+                final_phase = _read_phase(output, record["phase"])
+                if final_phase != record["phase"]:
+                    transition_now = time.monotonic()
+                    if (record["failure"] is None
+                            and transition_now - phase_started > budget["phase_seconds"][record["phase"]]):
+                        record["failure"] = "phase_timeout"
+                    phase_started = transition_now
+                record["phase"] = final_phase
             except (OSError, ValueError, UnsafeOutputError):
                 pass
             try:
                 record["outputbytes"] = output_bytes(output, log_path)
             except UnsafeOutputError:
                 record["failure"] = record["failure"] or "unsafe_output"
+
+            if record["failure"] is None:
+                if time.monotonic() > total_deadline:
+                    record["failure"] = "total_timeout"
+                elif time.monotonic() - phase_started > budget["phase_seconds"][record["phase"]]:
+                    record["failure"] = "phase_timeout"
+            # Check owned descendants on *all* exit paths while Linux's
+            # unreaped leader still reserves its process-group identity.
+            try:
+                descendants = _live_owned_descendants(record["pgid"], child.pid)
+                if descendants:
+                    if record["failure"] is None:
+                        record["failure"] = ("orphan_descendant" if record["returncode"] == 0
+                                             else "child_exit")
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
+            except GPUQueryError:
+                record["failure"] = record["failure"] or "sample_error"
+                if child.returncode is None and sys.platform.startswith("linux"):
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
+
+            # Only now, after group identity and descendants have been checked,
+            # release the leader PID so it cannot be reused during cleanup.
+            if child.returncode is None:
+                child.wait()
 
             if record["failure"] is None and record["returncode"] == 0:
                 try:
@@ -583,11 +704,36 @@ def supervise(
                         "supervisor_record": record.get("supervisor_json"), "formal_result": False,
                     })
                 _status_failed(output, record)
-            persist()
+            final_size = persist_measured()
+            if record["status"] in {"completed", "preflight_completed"}:
+                if final_size > budget["output_bytes"]:
+                    record["failure"] = "output_limit"
+                elif time.monotonic() > total_deadline:
+                    record["failure"] = "total_timeout"
+                elif time.monotonic() - phase_started > budget["phase_seconds"][record["phase"]]:
+                    record["failure"] = "phase_timeout"
+            if record["failure"] is not None and record["status"] in {"completed", "preflight_completed"}:
+                record["status"] = "failed"
+                _write_json(output / "status.json", {
+                    "status": "failed", "mode": mode, "failure": record["failure"],
+                    "supervisor_record": record["supervisor_json"], "formal_result": False,
+                })
+                record["elapsed"] = time.monotonic() - started
+                persist_measured()
     except BaseException as exc:
-        if child is not None and child.poll() is None:
+        if child is not None:
             record["failure"] = record["failure"] or "supervisor_error"
-            _kill_group(child, grace, record["signals"])
+            try:
+                if (_peek_exit(child) is None
+                        or _live_owned_descendants(record["pgid"], child.pid)):
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
+            except GPUQueryError:
+                if child.returncode is None and sys.platform.startswith("linux"):
+                    _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
+                else:
+                    record["cleanup_unverified"] = True
+            if child.returncode is None:
+                child.wait()
             record["returncode"] = child.returncode
         if isinstance(exc, KeyboardInterrupt):
             record["failure"] = "parent_signal"

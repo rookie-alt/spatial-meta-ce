@@ -1,0 +1,14 @@
+{
+  "python": "3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]",
+  "executable": "/gly/weilin/PRICE-master/venv/bin/python",
+  "platform": "Linux-3.10.0-1160.el7.x86_64-x86_64-with-glibc2.31",
+  "numpy": "1.26.1",
+  "torch": "2.1.0+cu121",
+  "cuda": "12.1",
+  "CUDA_VISIBLE_DEVICES": "",
+  "threads": 1,
+  "precision": "FP32 model/FP64 true",
+  "deterministic_algorithms": true,
+  "tf32": false,
+  "mode": "cpu_preflight"
+}

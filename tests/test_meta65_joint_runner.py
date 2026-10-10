@@ -1,6 +1,8 @@
 import copy
 import hashlib
 import json
+import os
+import subprocess
 import tempfile
 import unittest
 from collections import OrderedDict
@@ -151,3 +153,198 @@ class JointRunnerTests(unittest.TestCase):
         rows = [{"all": {"q95": 1}}, {"all": {"q95": None}}]
         self.assertIsNone(runner.mean_metric(rows, "all", "q95"))
         self.assertEqual(json.loads(json.dumps(runner.FROZEN)), runner.FROZEN)
+
+    def test_frozen_root_sibling_is_forbidden_output(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            frozen = root / "frozen"
+            frozen.mkdir()
+            with patch.object(runner, "FROZEN_ROOT", frozen):
+                with self.assertRaisesRegex(ValueError, "frozen|read-only"):
+                    runner.safe_output(frozen / "another-run", [])
+                self.assertEqual(runner.safe_output(root / "isolated" / "formal", []),
+                                 root / "isolated" / "formal")
+
+    def test_launch_binding_rechecks_code_config_protocol_and_preflight(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            protocol = root / runner.PROTOCOL
+            protocol.parent.mkdir(parents=True)
+            protocol.write_text("frozen 56 protocol")
+            config = root / "configs" / "meta65_joint_control.json"
+            config.parent.mkdir()
+            config.write_text(json.dumps(runner.FROZEN))
+            code = {}
+            for name in runner.CODE_FILES:
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(name)
+                code[name] = runner.sha256(path)
+            evidence_dir = root / runner.PREFLIGHT_EVIDENCE_DIR
+            evidence_dir.mkdir(parents=True)
+            source_hashes = {}
+            for name in runner.PROVENANCE:
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(name)
+                source_hashes[name] = runner.sha256(path)
+            source_binding = {runner.PROTOCOL: runner.sha256(protocol),
+                              "configs/meta65_joint_control.json": runner.sha256(config),
+                              **source_hashes}
+            remote_source = {str(root / name): value for name, value in {**code, **source_binding}.items()}
+            preflight = {
+                "status.json": {"status": "preflight_completed", "mode": "cpu_preflight",
+                                "cells": 0, "micro_cells": 9, "formal_result": False},
+                "verification.json": {"status": "preflight_verified", "mode": "cpu_preflight",
+                                      "cells_verified": 9, "all_metrics_verified": True,
+                                      "formal_result": False, "summary": None},
+                "input-binding.json": {"schema": 1, "mode": "cpu_preflight",
+                                       "input_sha256": remote_source, "code_sha256": code,
+                                       "estimated_formal_output_bytes": 200_000_000},
+                "microcells.json": {"schema": 1, "mode": "cpu_preflight",
+                                    "cells": [{} for _ in range(9)],
+                                    "none_checks": [{} for _ in range(9)]},
+                "environment.json": {"mode": "cpu_preflight", "threads": 1,
+                                     "CUDA_VISIBLE_DEVICES": ""},
+                "supervisor.json": {"status": "preflight_completed", "mode": "cpu_preflight",
+                                    "returncode": 0, "failure": None, "phase": "certification",
+                                    "peak_rss_bytes": 100_000_000, "peak_vram_bytes": 0,
+                                    "outputbytes": 200_000_000, "elapsed": 30},
+            }
+            for filename, value in preflight.items():
+                (evidence_dir / filename).write_text(json.dumps(value))
+            binding = {
+                "launch_ready": True, "execution_authorized": False,
+                "gpu_formal_executed": False, "code_sha256": code,
+                "input_sha256": source_binding,
+                "cpu_preflight_evidence_sha256": {
+                    str((evidence_dir / filename).relative_to(root)): runner.sha256(evidence_dir / filename)
+                    for filename in preflight},
+                "resource_budget": runner.FROZEN["limits"],
+            }
+            binding_path = root / "binding.json"
+            binding_path.write_text(json.dumps(binding))
+            with patch.object(runner, "PROTOCOL_SHA", runner.sha256(protocol)):
+                runner.verify_launch_binding(binding_path, root=root, config_path=config)
+                (root / runner.CODE_FILES[0]).write_text("changed")
+                with self.assertRaisesRegex(ValueError, "binding|SHA"):
+                    runner.verify_launch_binding(binding_path, root=root, config_path=config)
+                (root / runner.CODE_FILES[0]).write_text(runner.CODE_FILES[0])
+                evidence = evidence_dir / "verification.json"
+                evidence.write_text("changed")
+                with self.assertRaisesRegex(ValueError, "binding|SHA"):
+                    runner.verify_launch_binding(binding_path, root=root, config_path=config)
+                evidence.write_text(json.dumps(preflight["verification.json"]))
+                preflight_binding = evidence_dir / "input-binding.json"
+                old = json.loads(preflight_binding.read_text())
+                old["code_sha256"][runner.CODE_FILES[0]] = "0" * 64
+                preflight_binding.write_text(json.dumps(old))
+                binding["cpu_preflight_evidence_sha256"][str(preflight_binding.relative_to(root))] = runner.sha256(
+                    preflight_binding)
+                binding_path.write_text(json.dumps(binding))
+                with self.assertRaisesRegex(ValueError, "preflight|code|SHA"):
+                    runner.verify_launch_binding(binding_path, root=root, config_path=config)
+                old["code_sha256"][runner.CODE_FILES[0]] = code[runner.CODE_FILES[0]]
+                preflight_binding.write_text(json.dumps(old))
+                binding["cpu_preflight_evidence_sha256"][str(preflight_binding.relative_to(root))] = runner.sha256(
+                    preflight_binding)
+                binding["input_sha256"].pop(runner.PROVENANCE[0])
+                binding_path.write_text(json.dumps(binding))
+                with self.assertRaisesRegex(ValueError, "binding|SHA"):
+                    runner.verify_launch_binding(binding_path, root=root, config_path=config)
+
+    def test_formal_approval_binds_launch_and_is_consumed_only_once(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            output = root / "formal-once"
+            config = root / "config.json"
+            config.write_text("frozen config")
+            binding_path = root / "binding.json"
+            binding_path.write_text("frozen binding")
+            code = {name: "f" * 64 for name in runner.CODE_FILES}
+            approval = {
+                "schema": 2, "permission": "one_shot_formal_gpu_matrix",
+                "launch_binding_sha256": runner.sha256(binding_path),
+                "config_sha256": runner.sha256(config),
+                "code_sha256": code, "protocol_sha256": runner.PROTOCOL_SHA,
+                "output": str(output), "gpu_uuid": "GPU-test-uuid",
+            }
+            path = root / "approval.json"
+            path.write_text(json.dumps(approval))
+            runner.validate_formal_approval(path, output, binding_path, config,
+                                            code, gpu_uuid="GPU-test-uuid")
+            with self.assertRaisesRegex(ValueError, "binding|SHA"):
+                runner.validate_formal_approval(path, output, root / "other-binding", config,
+                                                code, gpu_uuid="GPU-test-uuid")
+            with self.assertRaisesRegex(ValueError, "GPU"):
+                runner.validate_formal_approval(path, output, binding_path, config,
+                                                code, gpu_uuid="GPU-other")
+            receipt = runner.claim_formal_approval(path, output, approval)
+            self.assertTrue(receipt.is_file())
+            runner.verify_formal_claim(path, output, parent_pid=os.getpid())
+            with self.assertRaisesRegex(ValueError, "consumed|used"):
+                runner.claim_formal_approval(path, output, approval)
+            with self.assertRaisesRegex(ValueError, "consumed|used"):
+                runner.validate_formal_approval(path, output, binding_path, config,
+                                                code, gpu_uuid="GPU-test-uuid")
+
+    def test_selected_gpu_must_be_idle_and_inventory_call_is_bounded(self):
+        good = subprocess.CompletedProcess([], 0, "GPU-test-uuid, 1, 0\n", "")
+        empty = subprocess.CompletedProcess([], 0, "", "")
+        with patch("subprocess.run", side_effect=(good, empty)) as query:
+            runner.verify_gpu_idle("GPU-test-uuid")
+        self.assertEqual(query.call_count, 2)
+        self.assertTrue(all(call.kwargs.get("timeout") for call in query.call_args_list))
+        for used, utilization in ((101, 0), (1, 1)):
+            busy = subprocess.CompletedProcess([], 0, f"GPU-test-uuid, {used}, {utilization}\n", "")
+            with patch("subprocess.run", return_value=busy), self.assertRaisesRegex(ValueError, "idle"):
+                runner.verify_gpu_idle("GPU-test-uuid")
+        with (patch("subprocess.run", side_effect=subprocess.TimeoutExpired("nvidia-smi", 5)),
+              self.assertRaises((subprocess.TimeoutExpired, ValueError))):
+            runner.verify_gpu_idle("GPU-test-uuid")
+
+    def test_parent_consumes_approval_before_spawn_and_cannot_retry(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            config = root / "config.json"
+            config.write_text(json.dumps(runner.FROZEN))
+            output = root / "formal-once"
+            binding_path = root / "binding.json"
+            binding_path.write_text("synthetic frozen binding")
+            code = {name: runner.sha256(runner.ROOT / name) for name in runner.CODE_FILES}
+            approval = {
+                "schema": 2, "permission": "one_shot_formal_gpu_matrix",
+                "launch_binding_sha256": runner.sha256(binding_path),
+                "config_sha256": runner.sha256(config), "code_sha256": code,
+                "protocol_sha256": runner.PROTOCOL_SHA,
+                "output": str(output), "gpu_uuid": "GPU-test-uuid",
+            }
+            receipt = root / "approval.json"
+            receipt.write_text(json.dumps(approval))
+            with (patch.dict(os.environ, {"CUDA_VISIBLE_DEVICES": "GPU-test-uuid"}),
+                  patch.object(runner, "verify_launch_binding", return_value={"launch_ready": True}),
+                  patch.object(runner, "LAUNCH_BINDING", str(binding_path)),
+                  patch.object(runner, "verify_gpu_idle") as idle,
+                  patch("scripts.meta65_joint_supervisor.supervise", return_value={"status": "failed"}) as spawn):
+                args = ["--config", str(config), "--out", str(output), "--mode", "formal",
+                        "--execute", "--approval", str(receipt)]
+                with self.assertRaises(SystemExit):
+                    runner.main(args)
+                idle.assert_called_once_with("GPU-test-uuid")
+                spawn.assert_called_once()
+                self.assertTrue((root / "approval.json.consumed.json").exists())
+                with self.assertRaisesRegex(ValueError, "consumed|used"):
+                    runner.main(args)
+                spawn.assert_called_once()
+
+    def test_worker_peak_high_water_marks_fail_closed(self):
+        limits = runner.FROZEN["limits"]
+        valid = {"peak_rss_bytes": limits["rss_bytes"],
+                 "peak_vram_bytes": limits["vram_bytes"]}
+        runner.check_cell_peaks(valid)
+        for key in ("peak_rss_bytes", "peak_vram_bytes"):
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, "limit"):
+                runner.check_cell_peaks({**valid, key: limits["rss_bytes" if key == "peak_rss_bytes"
+                                                    else "vram_bytes"] + 1})
+        with self.assertRaises(ValueError):
+            runner.check_cell_peaks({**valid, "peak_vram_bytes": True})

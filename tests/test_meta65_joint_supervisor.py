@@ -1,6 +1,7 @@
 """CPU-only synthetic contract tests; no model, cache, SSH, or GPU access."""
 import json
 import os
+import select
 import signal
 import subprocess
 import sys
@@ -134,6 +135,60 @@ class SupervisorTests(unittest.TestCase):
         with self.assertRaises(ProcessLookupError):
             os.kill(record['pid'], 0)
 
+    def test_kill_group_after_leader_exit_reaps_and_kills_term_ignoring_descendant(self):
+        ready = self.root / 'descendant-ready'
+        descendant_code = (
+            'import signal,sys,time; from pathlib import Path; '
+            'signal.signal(signal.SIGTERM,signal.SIG_IGN); '
+            'Path(sys.argv[1]).write_text("ready"); time.sleep(30)'
+        )
+        leader_code = (
+            'import subprocess,sys; from pathlib import Path; '
+            f'child=subprocess.Popen([sys.executable,"-B","-c",{descendant_code!r},'
+            f'{str(ready)!r}],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL); '
+            'Path(sys.argv[1]).write_text(str(child.pid))'
+        )
+        unrelated = subprocess.Popen([sys.executable, '-B', '-c', 'import time;time.sleep(30)'],
+                                     start_new_session=True)
+        leader = subprocess.Popen([sys.executable, '-B', '-c', leader_code,
+                                   str(self.root / 'descendant-pid')], start_new_session=True,
+                                  stdout=subprocess.PIPE)
+        try:
+            deadline = time.monotonic() + 2
+            while not ready.exists() and time.monotonic() < deadline:
+                time.sleep(0.01)
+            self.assertTrue(ready.exists())
+            descendant = int((self.root / 'descendant-pid').read_text())
+            self.assertEqual(os.getpgid(descendant), leader.pid)
+            readable, _, _ = select.select([leader.stdout], [], [], 2)
+            self.assertTrue(readable)
+            self.assertEqual(leader.stdout.read(), b'')  # Exited, not yet reaped.
+            sent = []
+            with self.assertRaises(ValueError):
+                s._kill_group(leader, 0.08, sent, owned_pgid=unrelated.pid)
+            self.assertIsNone(unrelated.poll())
+            s._kill_group(leader, 0.08, sent, owned_pgid=leader.pid)
+            self.assertIn(int(signal.SIGTERM), sent)
+            self.assertIn(int(signal.SIGKILL), sent)
+            self.assertEqual(leader.returncode, 0)  # _kill_group reaped the exited leader.
+            with self.assertRaises(ProcessLookupError):
+                os.kill(leader.pid, 0)
+            deadline = time.monotonic() + 2
+            while s.process_is_live(descendant) and time.monotonic() < deadline:
+                time.sleep(0.01)
+            self.assertFalse(s.process_is_live(descendant))
+            self.assertIsNone(unrelated.poll())
+        finally:
+            try:
+                os.killpg(leader.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            if leader.poll() is None:
+                leader.wait(timeout=2)
+            leader.stdout.close()
+            unrelated.terminate()
+            unrelated.wait(timeout=2)
+
     def test_each_external_phase_timeout_without_worker_deadline(self):
         for phase in ('preparation', 'evaluation', 'certification'):
             with self.subTest(phase=phase):
@@ -160,15 +215,28 @@ class SupervisorTests(unittest.TestCase):
 
     def test_output_budget_includes_sidecar_log(self):
         record = self.run_worker('print("x"*10000, flush=True)\ntime.sleep(20)',
-                                 limits={'output_bytes': 500})
+                                 limits={'output_bytes': 4096})
         self.assert_failed(record, 'output_limit')
-        self.assertGreater(record['outputbytes'], 500)
+        self.assertGreater(record['outputbytes'], 4096)
 
     def test_output_budget_includes_worker_files(self):
         record = self.run_worker('(out/"large").write_bytes(b"x"*10000)\ntime.sleep(20)',
-                                 limits={'output_bytes': 500})
+                                 limits={'output_bytes': 4096})
         self.assert_failed(record, 'output_limit')
         self.assertTrue((self.out / 'large').exists())
+
+    def test_status_write_cannot_cross_output_budget_and_leave_completed(self):
+        original = s._write_json
+
+        def write_large_final_status(path, value, **kwargs):
+            if path == self.out / 'status.json' and value.get('status') == 'preflight_completed':
+                value = {**value, 'final_evidence': 'x' * 6000}
+            original(path, value, **kwargs)
+
+        with patch.object(s, '_write_json', side_effect=write_large_final_status):
+            record = self.run_worker(limits={'output_bytes': 4096})
+        self.assert_failed(record, 'output_limit')
+        self.assertLess(record['outputbytes'], 4096)  # Failed status may discard padding.
 
     def test_sample_exception_or_zero_after_exit_is_poll_wait_confirmed(self):
         for raises in (False, True):
@@ -195,6 +263,143 @@ class SupervisorTests(unittest.TestCase):
         self.assert_failed(record, 'total_timeout')
         self.assertEqual(record['returncode'], 0)
 
+    def test_successful_sample_after_total_deadline_is_not_success(self):
+        def late_success(child):
+            child.wait(timeout=1)
+            time.sleep(0.18)
+            return {'rss_bytes': 0, 'vram_bytes': 0}
+
+        record = self.run_worker(sample_fn=late_success, limits={'total_seconds': 0.12})
+        self.assert_failed(record, 'total_timeout')
+        self.assertEqual(record['returncode'], 0)
+
+    def test_new_phase_cannot_erase_expired_previous_phase(self):
+        original = s._read_phase
+        first_read = True
+
+        def delayed_phase(output, current):
+            nonlocal first_read
+            if first_read:
+                first_read = False
+                time.sleep(0.18)
+                return 'certification'
+            return original(output, current)
+
+        with patch.object(s, '_read_phase', side_effect=delayed_phase):
+            record = self.run_worker(limits={'phase_seconds': {'preparation': 0.12}})
+        self.assert_failed(record, 'phase_timeout')
+
+    def test_exited_leader_with_live_descendant_cannot_publish_completed(self):
+        descendant_code = (
+            'import signal,sys,time; from pathlib import Path; '
+            'signal.signal(signal.SIGTERM,signal.SIG_IGN); '
+            'Path(sys.argv[1]).write_text("ready"); time.sleep(30)'
+        )
+        body = (
+            f'ready=out/"desc-ready"\n'
+            f'desc=subprocess.Popen([sys.executable,"-B","-c",{descendant_code!r},'
+            'str(ready)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n'
+            '(out/"desc-pid").write_text(str(desc.pid))\n'
+            'until=time.monotonic()+2\n'
+            'while not ready.exists() and time.monotonic()<until: time.sleep(.01)\n'
+            'assert ready.exists()\n'
+        )
+        record = None
+        try:
+            record = self.run_worker(body)
+            self.assert_failed(record, 'orphan_descendant')
+            descendant = int((self.out / 'desc-pid').read_text())
+            deadline = time.monotonic() + 2
+            while s.process_is_live(descendant) and time.monotonic() < deadline:
+                time.sleep(0.01)
+            self.assertFalse(s.process_is_live(descendant))
+        finally:
+            if record is not None:
+                try:
+                    os.killpg(record['pgid'], signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+
+    def test_nonzero_leader_exit_cleans_owned_descendant_before_reap(self):
+        descendant_code = (
+            'import signal,sys,time; from pathlib import Path; '
+            'signal.signal(signal.SIGTERM,signal.SIG_IGN); '
+            'Path(sys.argv[1]).write_text("ready"); time.sleep(30)'
+        )
+        body = (
+            'ready=out/"desc-ready"\n'
+            f'desc=subprocess.Popen([sys.executable,"-B","-c",{descendant_code!r},'
+            'str(ready)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n'
+            '(out/"desc-pid").write_text(str(desc.pid))\n'
+            'until=time.monotonic()+2\n'
+            'while not ready.exists() and time.monotonic()<until: time.sleep(.01)\n'
+            'assert ready.exists()\n'
+            'raise SystemExit(7)'
+        )
+        record = None
+        unrelated = subprocess.Popen([sys.executable, '-B', '-c', 'import time;time.sleep(30)'],
+                                     start_new_session=True)
+        try:
+            record = self.run_worker(body)
+            self.assert_failed(record, 'child_exit')
+            self.assertEqual(record['returncode'], 7)
+            descendant = int((self.out / 'desc-pid').read_text())
+            deadline = time.monotonic() + 2
+            while s.process_is_live(descendant) and time.monotonic() < deadline:
+                time.sleep(0.01)
+            self.assertFalse(s.process_is_live(descendant))
+            self.assertIsNone(unrelated.poll())
+        finally:
+            if record is not None:
+                try:
+                    os.killpg(record['pgid'], signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+            unrelated.terminate()
+            unrelated.wait(timeout=2)
+
+    def test_supervisor_exception_cleans_group_after_leader_exit(self):
+        descendant_code = (
+            'import signal,sys,time; from pathlib import Path; '
+            'signal.signal(signal.SIGTERM,signal.SIG_IGN); '
+            'Path(sys.argv[1]).write_text("ready"); time.sleep(30)'
+        )
+        body = (
+            'ready=out/"desc-ready"\n'
+            f'desc=subprocess.Popen([sys.executable,"-B","-c",{descendant_code!r},'
+            'str(ready)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)\n'
+            '(out/"desc-pid").write_text(str(desc.pid))\n'
+            'until=time.monotonic()+2\n'
+            'while not ready.exists() and time.monotonic()<until: time.sleep(.01)\n'
+            'assert ready.exists()\n'
+            'raise SystemExit(7)'
+        )
+
+        def interrupt_after_child_exits(output, current):
+            deadline = time.monotonic() + 2
+            while not (output / 'desc-ready').exists() and time.monotonic() < deadline:
+                time.sleep(0.005)
+            self.assertTrue((output / 'desc-ready').exists())
+            time.sleep(0.03)
+            raise KeyboardInterrupt('synthetic supervisor exception')
+
+        record = None
+        try:
+            with patch.object(s, '_read_phase', side_effect=interrupt_after_child_exits):
+                record = self.run_worker(body)
+            self.assert_failed(record, 'parent_signal')
+            descendant = int((self.out / 'desc-pid').read_text())
+            deadline = time.monotonic() + 2
+            while s.process_is_live(descendant) and time.monotonic() < deadline:
+                time.sleep(0.01)
+            self.assertFalse(s.process_is_live(descendant))
+        finally:
+            if record is not None:
+                try:
+                    os.killpg(record['pgid'], signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+
     def test_sampling_exception_with_live_worker_is_failure(self):
         def broken(child):
             deadline = time.monotonic() + 1
@@ -204,6 +409,64 @@ class SupervisorTests(unittest.TestCase):
 
         record = self.run_worker('time.sleep(20)', sample_fn=broken)
         self.assert_failed(record, 'sample_error')
+
+    def test_live_worker_unobservable_to_process_table_fails_closed(self):
+        def missing_rows():
+            deadline = time.monotonic() + 1
+            while not (self.out / 'phase.json').exists() and time.monotonic() < deadline:
+                time.sleep(0.005)
+            return {}
+
+        with patch.object(s, '_process_rows', side_effect=missing_rows):
+            record = self.run_worker('time.sleep(20)')
+        self.assert_failed(record, 'sample_error')
+        self.assertIn(int(signal.SIGTERM), record['signals'])
+
+    def test_gpu_query_failure_after_worker_exit_is_sample_error(self):
+        errors = (subprocess.TimeoutExpired('nvidia-smi', 5),
+                  subprocess.CalledProcessError(1, 'nvidia-smi'),
+                  FileNotFoundError('nvidia-smi'))
+        for index, error in enumerate(errors):
+            with self.subTest(error=type(error).__name__):
+                self.out = self.root / f'gpu-query-{index}'
+                calls = []
+
+                def failed_query(*args, _error=error, _calls=calls, **kwargs):
+                    _calls.append(kwargs)
+                    deadline = time.monotonic() + 1
+                    while not (self.out / 'status.json').exists() and time.monotonic() < deadline:
+                        time.sleep(0.005)
+                    time.sleep(0.04)  # Ensure the leader has exited before handling the error.
+                    raise _error
+
+                with patch.object(s, '_process_rows', return_value={100: (1, 100, 100, 1, 'S')}), \
+                        patch.object(s, '_owned_pids', return_value={100}), \
+                        patch.object(s.subprocess, 'run', side_effect=failed_query):
+                    start = time.monotonic()
+                    record = self.run_worker(mode='formal', cells=135)
+                self.assertLess(time.monotonic() - start, 2)
+                self.assertTrue(calls)
+                self.assertEqual(calls[0].get('timeout'), 5)
+                self.assert_failed(record, 'sample_error')
+
+    def test_gpu_query_timeout_terminates_live_worker_without_waiting_for_deadline(self):
+        def timed_out(*args, **kwargs):
+            deadline = time.monotonic() + 1
+            while not (self.out / 'phase.json').exists() and time.monotonic() < deadline:
+                time.sleep(0.005)
+            raise subprocess.TimeoutExpired('nvidia-smi', 5)
+
+        with patch.object(s, '_process_rows', return_value={100: (1, 100, 100, 1, 'S')}), \
+                patch.object(s, '_owned_pids', return_value={100}), \
+                patch.object(s.subprocess, 'run', side_effect=timed_out):
+            start = time.monotonic()
+            record = self.run_worker('signal.signal(signal.SIGTERM, signal.SIG_IGN)\ntime.sleep(20)',
+                                     mode='formal', cells=135)
+        self.assertLess(time.monotonic() - start, 2)
+        self.assert_failed(record, 'sample_error')
+        self.assertIn(int(signal.SIGTERM), record['signals'])
+        self.assertIn(int(signal.SIGKILL), record['signals'])
+        self.assertEqual(record['returncode'], -signal.SIGKILL)
 
     def test_symlink_artifacts_or_output_are_rejected_before_spawn(self):
         target = self.root / 'untouched'
@@ -297,6 +560,46 @@ class SupervisorTests(unittest.TestCase):
 
 
 class SamplerTests(unittest.TestCase):
+    @unittest.skipUnless(sys.platform.startswith('linux') and hasattr(os, 'WNOWAIT'),
+                         'non-reaping waitid is required for formal Linux PID identity')
+    def test_peek_exit_preserves_leader_pid_identity_until_wait(self):
+        child = subprocess.Popen([sys.executable, '-B', '-c', 'pass'], start_new_session=True)
+        try:
+            deadline = time.monotonic() + 2
+            while s._peek_exit(child) is None and time.monotonic() < deadline:
+                time.sleep(0.01)
+            self.assertEqual(s._peek_exit(child), 0)
+            self.assertIsNone(child.returncode)
+            self.assertEqual(child.wait(timeout=1), 0)
+        finally:
+            if child.returncode is None:
+                child.kill()
+                child.wait(timeout=1)
+
+    def test_reused_session_identity_cannot_be_signaled(self):
+        fake = SimpleNamespace(pid=100, returncode=0, poll=lambda: 0, wait=lambda: 0)
+        rows = {101: (1, 100, 999, 1, 'S')}
+        with patch.object(s, '_process_rows', return_value=rows), \
+                patch.object(s.os, 'killpg') as signal_group, \
+                self.assertRaises((ValueError, s.GPUQueryError)):
+            s._kill_group(fake, 0.01, [], owned_pgid=100)
+        signal_group.assert_not_called()
+
+    def test_missing_proc_root_and_live_worker_without_rows_fail_closed(self):
+        with tempfile.TemporaryDirectory() as directory, self.assertRaises(s.GPUQueryError):
+            s._linux_rows(Path(directory) / 'missing')
+        worker = SimpleNamespace(pid=100, poll=lambda: None)
+        with patch.object(s, '_process_rows', return_value={}), \
+                self.assertRaises(s.GPUQueryError):
+            s.sample_process(worker, mode='formal')
+
+    def test_exited_leader_still_finds_owned_group_descendants(self):
+        rows = {101: (1, 100, 100, 42, 'S')}
+        worker = SimpleNamespace(pid=100, poll=lambda: 0)
+        with patch.object(s, '_process_rows', return_value=rows):
+            self.assertEqual(s.sample_process(worker, mode='cpu_preflight'),
+                             {'rss_bytes': 42, 'vram_bytes': 0})
+
     def test_rss_sum_includes_group_and_descendant_tree_not_other_processes(self):
         # ppid, pgid, sid, rss_bytes, state
         rows = {100: (1, 100, 100, 10, 'S'), 101: (100, 100, 100, 20, 'S'),
@@ -313,6 +616,12 @@ class SamplerTests(unittest.TestCase):
         with patch.object(s.subprocess, 'run', return_value=result) as run:
             self.assertEqual(s._gpu_bytes({100, 101}), 5 * 1024 * 1024)
         self.assertIn('nvidia-smi', run.call_args.args[0])
+        self.assertEqual(run.call_args.kwargs['timeout'], 5)
+
+    def test_malformed_gpu_query_cannot_be_counted_as_zero_vram(self):
+        with patch.object(s.subprocess, 'run', return_value=SimpleNamespace(stdout='not a pid\n')), \
+                self.assertRaises(s.GPUQueryError):
+            s._gpu_bytes({100})
 
     def test_linux_proc_disappearance_does_not_poison_remaining_processes(self):
         with tempfile.TemporaryDirectory() as directory:
