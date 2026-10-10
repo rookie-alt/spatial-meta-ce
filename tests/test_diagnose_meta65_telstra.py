@@ -123,6 +123,20 @@ class BucketTests(unittest.TestCase):
         self.assertEqual(len(result["leave_one_out"]), 4)
         self.assertFalse(result["k_order_changed"])
 
+    def test_d5_real_arm_keys_do_not_silently_skip_leave_one_out(self):
+        cells = {(arm, "telstra", k, run): {
+            "n_tables": np.asarray([4, 5]), "true": np.ones(2),
+            "log_pred": np.full(2, float(index + 1)),
+        } for index, arm in enumerate(diagnosis.ARMS)
+                 for k in diagnosis.SHOTS for run in range(diagnosis.RUNS)}
+        result = diagnosis._d5(cells, "telstra")["leave_one_out"]
+        self.assertEqual(len(result["leave_one_out"]), 25)
+        self.assertTrue(all(row["continued_positive"] for row in result["leave_one_out"]))
+
+    def test_d5_missing_keys_fail_instead_of_claiming_stability(self):
+        with self.assertRaises(ValueError):
+            diagnosis.leave_one_out_stability({5: {"wrong": [1, 2]}})
+
     def test_d6_top_five_percent_log_contribution(self):
         log_q = np.asarray([0.0] * 19 + [10.0])
         result = diagnosis.top_log_contribution(log_q, fraction=0.05)

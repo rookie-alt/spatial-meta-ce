@@ -281,19 +281,32 @@ def delta_summary(left, right, hashes, ids, top_n=20):
 
 def leave_one_out_stability(per_k):
     """Report sign/order stability after removing each run in turn."""
-    values = {key: arms for key, arms in per_k.items() if "A" in arms and "C" in arms}
+    aliases = {
+        "A": "A_all5_head3",
+        "C": "C_last3_last3",
+    }
+    values = {}
+    for key, arms in per_k.items():
+        normalized = {aliases.get(name, name): value for name, value in arms.items()}
+        if "A_all5_head3" not in normalized or "C_last3_last3" not in normalized:
+            raise ValueError("D5 leave-one-out input is missing A/C arrays")
+        values[key] = normalized
     if not values:
         return {"sign_flips": [], "k_order_changed": False, "leave_one_out": []}
     records = []
     sign_flips = []
     for k, arms in values.items():
-        a = np.asarray(arms["A"], dtype=np.float64)
-        c = np.asarray(arms["C"], dtype=np.float64)
-        full_sign = math.copysign(1.0, float(np.mean(c - a)))
+        a = np.asarray(arms["A_all5_head3"], dtype=np.float64)
+        c = np.asarray(arms["C_last3_last3"], dtype=np.float64)
+        if (a.ndim != 1 or a.shape != c.shape or len(a) < 2
+                or not np.isfinite(a).all() or not np.isfinite(c).all()):
+            raise ValueError("Invalid D5 leave-one-out arrays")
+        full_delta = float(np.mean(c - a))
+        full_sign = np.sign(full_delta)
         for index in range(len(a)):
             keep = np.arange(len(a)) != index
             delta = float(np.mean(c[keep] - a[keep]))
-            sign = math.copysign(1.0, delta)
+            sign = np.sign(delta)
             if sign != full_sign:
                 sign_flips.append({"k": k, "removed_run": index})
             records.append({"k": k, "removed_run": index, "delta": delta,
@@ -301,11 +314,11 @@ def leave_one_out_stability(per_k):
     order_changed = False
     if len(values) > 1:
         full_order = sorted(values, key=lambda key: float(np.mean(
-            np.asarray(values[key]["C"]) - np.asarray(values[key]["A"]))))
-        run_count = len(np.asarray(next(iter(values.values()))["A"]))
+            np.asarray(values[key]["C_last3_last3"]) - np.asarray(values[key]["A_all5_head3"]))))
+        run_count = len(np.asarray(next(iter(values.values()))["A_all5_head3"]))
         for index in range(run_count):
             order = sorted(values, key=lambda key: float(np.mean(
-                (np.asarray(values[key]["C"]) - np.asarray(values[key]["A"]))[
+                (np.asarray(values[key]["C_last3_last3"]) - np.asarray(values[key]["A_all5_head3"]))[
                     np.arange(run_count) != index])))
             if order != full_order:
                 order_changed = True
