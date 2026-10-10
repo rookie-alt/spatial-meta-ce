@@ -1,0 +1,30 @@
+Recorded after snapshot: 2026-10-10T18:32:34+08:00 (Asia/Shanghai).
+The timestamp is from local date after the SSH command, not from nvidia-smi.
+SSH alias: myserver
+Commands (both bounded at 10s):
+timeout 10s nvidia-smi --query-gpu=index,uuid,memory.used,utilization.gpu --format=csv,noheader,nounits
+timeout 10s nvidia-smi --query-compute-apps=gpu_uuid,pid,used_memory --format=csv,noheader,nounits
+SSH command exit: 0. Both queries returned data; no GPU selected.
+
+GPU query stdout (index, UUID, memory.used MiB, utilization.gpu percent):
+0, GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d, 6678, 7
+1, GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed, 6678, 8
+2, GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7, 8804, 13
+3, GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d, 10436, 99
+4, GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f, 10566, 58
+5, GPU-9c97317f-e01f-4906-7d6d-a2875e6ed792, 10376, 51
+6, GPU-0050e82c-8c24-d85d-00d3-b73f12638df0, 10506, 65
+7, GPU-42e7d4ca-13de-5dfe-e7f3-6c6b232c5b1f, 10460, 81
+
+Compute query stdout (GPU UUID, PID, used_memory MiB):
+GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d, 45705, 6672
+GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed, 45706, 6672
+GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7, 45707, 8798
+GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d, 79277, 10430
+GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f, 66773, 10560
+GPU-9c97317f-e01f-4906-7d6d-a2875e6ed792, 73533, 10370
+GPU-0050e82c-8c24-d85d-00d3-b73f12638df0, 67570, 10500
+GPU-42e7d4ca-13de-5dfe-e7f3-6c6b232c5b1f, 75891, 10454
+
+Decision: blocked_no_idle_gpu; zero approval files, zero formal invocations.
+This is a single historical snapshot, not a promise about later GPU availability.

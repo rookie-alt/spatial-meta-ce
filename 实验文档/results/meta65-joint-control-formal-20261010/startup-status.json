@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "experiment": "meta65-joint-control-20261010",
+  "status": "blocked_no_idle_gpu",
+  "phase": "before_approval_and_supervisor",
+  "recorded_at": "2026-10-10T18:32:34+08:00",
+  "timestamp_note": "Timestamp obtained after the GPU snapshot command, not a timestamp emitted by nvidia-smi.",
+  "worktree": "/private/tmp/spatial-meta-ce-meta65-formal-safety-20261010",
+  "branch": "audit/meta65-formal-safety-20261010",
+  "frozen_commit": "ac893b65bcf078dff940fa30ebcff72c60bdc4c6",
+  "launch_binding": "reports/meta65-joint-runner-20261010/launch-binding.json",
+  "launch_binding_sha256": "f7a2332d4e61518a340f3faf3c1ad08924660d92ec7739cb9914450cc42a3952",
+  "remote_code_root": "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-code",
+  "authorization": {
+    "source": "Direct user message in this chat authorizing one fixed 135-cell GPU matrix at the frozen commit and binding SHA.",
+    "approval_created": false,
+    "approval_consumed": false,
+    "approval_receipt_created": false,
+    "formal_invocations": 0,
+    "automatic_retry": false
+  },
+  "checks": {
+    "local_frozen_head": "verified",
+    "local_clean_worktree_before_changes": "verified",
+    "local_launch_binding": "verified",
+    "remote_launch_binding": "verified",
+    "code_files_verified_per_binding": 9,
+    "source_config_protocol_files_verified_per_binding": 7,
+    "cpu_preflight_evidence_files_verified_per_binding": 6,
+    "remote_git_revision": "not_checked; file-level binding verified only",
+    "live_complete_plan_checkpoint_source_cache": "not_recertified_this_attempt",
+    "gpu_idle": "failed_all_eight_devices_have_compute_processes"
+  },
+  "gpu_idle_requirements": {
+    "maximum_memory_used_mib": 100,
+    "utilization_percent": 0,
+    "compute_processes": 0
+  },
+  "gpu_snapshot": [
+    {"index": 0, "uuid": "GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d", "memory_used_mib": 6678, "utilization_percent": 7, "compute_pid": 45705, "compute_memory_mib": 6672},
+    {"index": 1, "uuid": "GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed", "memory_used_mib": 6678, "utilization_percent": 8, "compute_pid": 45706, "compute_memory_mib": 6672},
+    {"index": 2, "uuid": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7", "memory_used_mib": 8804, "utilization_percent": 13, "compute_pid": 45707, "compute_memory_mib": 8798},
+    {"index": 3, "uuid": "GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d", "memory_used_mib": 10436, "utilization_percent": 99, "compute_pid": 79277, "compute_memory_mib": 10430},
+    {"index": 4, "uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f", "memory_used_mib": 10566, "utilization_percent": 58, "compute_pid": 66773, "compute_memory_mib": 10560},
+    {"index": 5, "uuid": "GPU-9c97317f-e01f-4906-7d6d-a2875e6ed792", "memory_used_mib": 10376, "utilization_percent": 51, "compute_pid": 73533, "compute_memory_mib": 10370},
+    {"index": 6, "uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0", "memory_used_mib": 10506, "utilization_percent": 65, "compute_pid": 67570, "compute_memory_mib": 10500},
+    {"index": 7, "uuid": "GPU-42e7d4ca-13de-5dfe-e7f3-6c6b232c5b1f", "memory_used_mib": 10460, "utilization_percent": 81, "compute_pid": 75891, "compute_memory_mib": 10454}
+  ],
+  "formal_acceptance": {
+    "cells_completed": 0,
+    "cells_required": 135,
+    "diagonal_anchors_completed": 0,
+    "diagonal_anchors_required": 45,
+    "independent_cpu_result_verification": "not_run_no_formal_outputs",
+    "engineering_acceptance": "not_met_not_started",
+    "formal_result": false,
+    "controlled_statistical_conclusion": null
+  },
+  "frozen_budget": {
+    "preparation_seconds": 300,
+    "evaluation_seconds": 3600,
+    "certification_seconds": 900,
+    "total_seconds": 4800,
+    "cpu_threads": 1,
+    "rss_bytes": 4294967296,
+    "vram_bytes": 8589934592,
+    "output_bytes": 1073741824
+  },
+  "actual_formal_resources": {
+    "supervisor_started": false,
+    "worker_started": false,
+    "gpu_device_selected": null,
+    "gpu_adaptation_steps": 0,
+    "meta_training_steps": 0,
+    "query_presentations": 0,
+    "run_output_directory_created": false,
+    "elapsed_seconds": null,
+    "peak_tree_rss_bytes": null,
+    "peak_vram_bytes": null,
+    "run_output_bytes": null,
+    "measurement_note": "No formal process existed; no formal telemetry was collected. Other users' GPU usage is not this task's consumption."
+  },
+  "unchanged": ["experiment_code", "config", "protocol_56", "launch_binding", "PRICE", "frozen_inputs", "historical_weights", "decision_no_candidate", "original_baseline"],
+  "next_step": "After the user explicitly resumes, freshly inspect GPU availability and all live frozen inputs before any new one-shot approval. Do not poll, retry, tune, retrain, read target databases or advance S8 automatically."
+}
