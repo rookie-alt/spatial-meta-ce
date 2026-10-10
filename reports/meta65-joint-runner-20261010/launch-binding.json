@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "experiment": "meta65-joint-control-20261010",
+  "baseline_commit": "55c777e382fda863a5d42078ff49d9edf476fc3b",
+  "code_sha256": {
+    "scripts/meta65_joint_runner.py": "ca84e77fde265c71703590fd05becbd938d4bed836916fb11a1b9c637e2a9c49",
+    "scripts/meta65_joint_supervisor.py": "73fead97a03668555d9695c579aa8dfdf30a0d0fc09ae8d1147b9c3746e9eadc",
+    "scripts/meta65_joint_verify.py": "696a269f7b6f1a3c2d6ee56e277d7acebe4b79ea72af2ae23adeb29494274e05",
+    "spatial_meta_ce/data.py": "1f490f1891e4222edcd25b598df32c287c3914ff185477f6ae76c566cfeacd17",
+    "spatial_meta_ce/manifests.py": "fc96df193c36ade103b2116f777325afb6bb8fb0c368ff0516998fa33fac6d30",
+    "spatial_meta_ce/mappings.py": "fa52a3cc64b23cb14f704573bdb079569dab22ef18c137eab2800765d1ff07fe",
+    "spatial_meta_ce/model.py": "0d6d7c4c3a04368bb7ae03a99018cfd343f37f8dc1182443ac169d19928022a4",
+    "spatial_meta_ce/meta.py": "1e4daddf6825d2b5907566a02642f38a8e0bf3c4cfc326e443a0d1895ff27736",
+    "spatial_meta_ce/checkpoints.py": "efb21c956fb836938aaf7675f0d1eb047ef767e537576f47d6b591a5a3bdf504"
+  },
+  "input_sha256": {
+    "实验文档/56-Meta65同初始化适应算子最小受控协议.md": "cc87ef93451e2664aba4aa51257a1cdba47c6638c004cb8e4b943773171ca4d2",
+    "实验文档/57-Meta65适应算子runner实施与CPU预检.md": "2e2ca8ae4ce448b8663ca5cce04b9f86e735bffc4250e991a008de1c1094ea80",
+    "实验文档/results/meta65-source-screen-20261009/source-before.json": "383e8a6c2336aea881a0fbb485900db460385c202bb353745e07b96d2f8bb650",
+    "实验文档/results/meta65-telstra-diagnosis-20261010/telstra_diagnosis.json": "246f18f1457e9b13f738899fdda7153ffc91e5a619233ec6d90030a9c2e7e7b6",
+    "实验文档/results/meta65-endpoint-completion-20261009/inputs.json": "dab251f10cb37dc3001159fe5672a878badbb2ec1c04e03e49cbd5c60d258bd8",
+    "configs/meta65_joint_control.json": "a7cf1679edd2bc3382033bc4c679624eb1e3aad701bea27ceeba85269b4544f8"
+  },
+  "checkpoint_sha256": {
+    "A_all5_head3": "ae0c386d35ac368964b4160d634ca063d7801c65e5296ac679c459dd01951b12",
+    "B_head3_head3": "a2d777a4dcaad6d23c3f1212929d062768f5157a3fc37bce9909903a22f18db9",
+    "C_last3_last3": "58f2f4db6f54cd4578fd6127d5a4aa350dbdc2268a36a057b56f7161cb6097a4"
+  },
+  "checkpoint_bytes": 2574664,
+  "plan_sha256": "ebeb178de15b134722bd9fbc24ff4b4752f795a311580c1a17cb23c550bfd0f0",
+  "cpu_preflight_command": "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 /gly/weilin/PRICE-master/venv/bin/python -B scripts/meta65_joint_runner.py --execute --mode cpu_preflight --config <root>/configs/meta65_joint_control.json --out <isolated-output>",
+  "formal_command_template": "CUDA_VISIBLE_DEVICES=<GPU-UUID> /gly/weilin/PRICE-master/venv/bin/python -B scripts/meta65_joint_runner.py --execute --mode formal --config <root>/configs/meta65_joint_control.json --out <isolated-output> --approval <approved.json>",
+  "expected_outputs": [
+    "cells.json (135 cells, formal)",
+    "identities/<db>-run<run>.npz (15)",
+    "predictions/<checkpoint>-<operator>-<db>-run<run>.npz (135)",
+    "input-binding.json",
+    "environment.json",
+    "verification.json",
+    "status.json"
+  ],
+  "cpu_preflight_expected": "microcells.json (9 micro cells), status preflight_completed, formal_result false",
+  "resource_budget": {
+    "total_seconds": 4800,
+    "preparation_seconds": 300,
+    "evaluation_seconds": 3600,
+    "certification_seconds": 900,
+    "rss_bytes": 4294967296,
+    "vram_bytes": 8589934592,
+    "output_bytes": 1073741824
+  },
+  "cpu_preflight_actual": {
+    "elapsed_seconds": 24.138100075069815,
+    "peak_rss_bytes": 1055191040,
+    "peak_vram_bytes": 0,
+    "output_bytes": 150802037,
+    "status": "preflight_completed",
+    "micro_cells": 9,
+    "cells_completed": 0,
+    "rss_semantics": "CPU micro owned-tree 1s sample; not a formal 4GiB safety proof"
+  },
+  "success_criteria": [
+    "135-cell complete matrix (formal only)",
+    "identity/truth/table/plan/hash bindings verified",
+    "none performs no update; head3=107521 params/3 steps; last3=65 params/3 steps",
+    "state_before==state_after for every cell",
+    "45 diagonal anchor identity/FP64/table exact and log_pred rtol=1e-5 atol=1e-6 / Q95 rtol=1e-4",
+    "external watchdog within budget and no partial completion"
+  ],
+  "failure_criteria": [
+    "any input/checkpoint/plan/code SHA drift",
+    "missing/duplicate/nonfinite/misaligned cell",
+    "state mutation or unintended parameter scope",
+    "anchor tolerance exceeded",
+    "watchdog timeout/RSS/VRAM/output limit",
+    "formal run without one-shot approval"
+  ],
+  "launch_ready": true,
+  "execution_authorized": false,
+  "gpu_formal_executed": false,
+  "cpu_preflight_evidence_sha256": {
+    "reports/meta65-joint-runner-20261010/cpu-preflight/status.json": "4c4f642bd06cc0f761b3953f7eeefb29e6c7cc34407d0f85c6168c82baa7153e",
+    "reports/meta65-joint-runner-20261010/cpu-preflight/verification.json": "f4d5ab17f209d0778c0592cdc5a86358163d2c654f9d5bfd956d253c8d933051",
+    "reports/meta65-joint-runner-20261010/cpu-preflight/environment.json": "59d3d28956bad1cd324c20bf8adf163c363e00e8bfd0b92954ce3af3a625244e",
+    "reports/meta65-joint-runner-20261010/cpu-preflight/microcells.json": "4a7cd943f5905df1e30a8b46be6fee2dd21d4caa12a92c9f48ffb8c04d25360a",
+    "reports/meta65-joint-runner-20261010/cpu-preflight/cpu-preflight-20261010f.supervisor.json": "3909bfe52e884e4b1d79112be50f9e0229800c206965ca3fe7a8b29235d476fe"
+  },
+  "formal_remaining_preconditions": [
+    "user one-shot authorization artifact bound to this code/config/protocol SHA",
+    "idle GPU UUID selected and bound via CUDA_VISIBLE_DEVICES",
+    "external 4800s watchdog and 4GiB RSS / 8GiB VRAM / 1GiB output limits re-asserted"
+  ],
+  "launch_ready_reason": "Code/config/protocol/inputs/checkpoints/plan bound; CPU supervised preflight passed with 9 microcells and none_checks; formal GPU authorization still intentionally false."
+}
