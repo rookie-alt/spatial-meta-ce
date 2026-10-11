@@ -92,7 +92,7 @@ class ScopeLaunchTests(unittest.TestCase):
                 checkpoint.parent.mkdir()
                 checkpoint.write_bytes(b"synthetic checkpoint")
                 records.append({"arm": arm, "last_step": 2, "optimizer_steps": 2,
-                                "config": {"steps": 2}, "checkpoint": str(checkpoint),
+                                "config": {"steps": 2}, "checkpoint": "last.pt",
                                 "checkpoint_sha256": contract.sha256(checkpoint)})
             save(out / "training-records.json", {"schema": 1, "records": records})
             save(out / "reproduction.json", {"status": "not_applicable"})
@@ -101,10 +101,11 @@ class ScopeLaunchTests(unittest.TestCase):
                  "test_only": False, "formal_result": False, "returncode": 0, "failure": None,
                  "cleanup_verified": True, "output": str(out), "supervisor_json": str(sidecar),
                  "gpu_uuid": None if mode == "cpu_preflight" else UUID,
-                 "budget": {**contract.FROZEN["limits"], "poll_seconds": 1.0},
+                 "budget": launch.preflight_budget(mode),
                  "elapsed": 1.0, "peak_rss_bytes": 100, "peak_vram_bytes": 0,
                  "outputbytes": 100})
-            out.with_name(out.name + ".log").write_text("synthetic worker log", encoding="utf-8")
+            out.with_name(out.name + ".supervisor.log").write_text("synthetic worker log",
+                                                                  encoding="utf-8")
             self.binding["preflights"][mode] = {"output": str(out),
                 "supervisor_file": str(sidecar), "raw_sha256": self.inventory(out)}
         self.path = self.root / "reports/launch-binding.json"
@@ -126,7 +127,7 @@ class ScopeLaunchTests(unittest.TestCase):
     def inventory(self, output: Path) -> dict[str, str]:
         files = [*(path for path in output.rglob("*") if path.is_file()),
                  output.with_name(output.name + ".supervisor.json"),
-                 output.with_name(output.name + ".log")]
+                 output.with_name(output.name + ".supervisor.log")]
         return {str(path): contract.sha256(path) for path in files}
 
     def persist(self) -> None:
@@ -261,6 +262,41 @@ class ScopeLaunchTests(unittest.TestCase):
         self.refresh(mode)
         with self.assertRaises(ValueError):
             self.validate()
+
+    def test_supervisor_budget_matches_frozen_mode_limits(self) -> None:
+        from scripts import meta65_scope_supervisor as supervisor
+
+        for mode in launch.MODES:
+            self.assertEqual(supervisor.limits_for(mode), launch.preflight_budget(mode))
+        self.assertEqual(supervisor.limits_for("formal")["total_seconds"],
+                         contract.FROZEN["limits"]["total_seconds"])
+        with self.assertRaises(ValueError):
+            launch.preflight_budget("formal")
+
+    def test_training_checkpoint_must_be_arm_last_pt_inside_output(self) -> None:
+        out = Path(self.binding["preflights"]["cpu_preflight"]["output"])
+        record = contract.read_json(out / "training-records.json")
+        for name in ("../last.pt", str(self.base / "outside.pt"), "other.pt"):
+            save(out / "training-records.json", {**record, "records": [
+                {**item, "checkpoint": name} for item in record["records"]]})
+            self.refresh("cpu_preflight")
+            with self.assertRaises(ValueError):
+                self.validate()
+        save(out / "training-records.json", record)
+        self.refresh("cpu_preflight")
+        self.assertEqual(self.validate(), self.binding)
+
+    def test_build_binding_round_trips_through_the_gate(self) -> None:
+        from scripts import meta65_scope_build_binding as builder
+
+        built = builder.build_binding(
+            root=self.root, config_path=self.config,
+            cpu_output=Path(self.binding["preflights"]["cpu_preflight"]["output"]),
+            gpu_output=Path(self.binding["preflights"]["gpu_preflight"]["output"]),
+            gpu_uuid=UUID)
+        self.assertEqual(built, self.binding)
+        builder.write_binding(self.path, built)
+        self.assertEqual(self.validate(), built)
 
     def test_approval_atomic_one_shot_and_worker_parent_binding(self) -> None:
         self.permit()

@@ -16,6 +16,7 @@ from typing import Any
 from scripts import meta65_scope_contract as contract
 from scripts import meta65_scope_verify as scope_verify
 from scripts.meta65_joint_runner import verify_gpu_idle
+from scripts.meta65_joint_supervisor import artifact_paths
 
 EXPERIMENT = "meta65-training-scope-20261011"
 PERMISSION = "one_shot_meta65_scope_formal"
@@ -91,8 +92,7 @@ def _inventory(output: Path, supervisor: Path, raw: Any) -> None:
     entries = list(output.rglob("*"))
     if any(path.is_symlink() or (not path.is_file() and not path.is_dir()) for path in entries):
         raise ValueError("Raw output contains symlink or special file")
-    log = output.with_name(output.name + ".log")
-    expected_sidecar = output.with_name(output.name + ".supervisor.json")
+    expected_sidecar, log = artifact_paths(output)
     if supervisor != expected_sidecar:
         raise ValueError("Preflight supervisor path not bound to raw output")
     files = [*(p for p in entries if p.is_file()), supervisor, log]
@@ -126,13 +126,21 @@ def _environment(output: Path, mode: str, uuid: str) -> None:
         raise ValueError("Preflight environment differs from frozen/current runtime")
 
 
+def preflight_budget(mode: str) -> Json:
+    """Frozen supervisor budget for one preflight: mode wall clock, formal resource caps."""
+    if mode not in MODES:
+        raise ValueError("Unknown preflight mode")
+    return {**dict(contract.FROZEN["limits"]),
+            "total_seconds": contract.FROZEN[mode]["total_seconds"], "poll_seconds": 1.0}
+
+
 def _supervisor(output: Path, sidecar: Path, mode: str, uuid: str) -> None:
     record = _json(sidecar)
     expected: Json = {"schema": 1, "status": "preflight_completed", "mode": mode,
                 "test_only": False, "formal_result": False, "returncode": 0, "failure": None,
                 "cleanup_verified": True, "output": str(output), "supervisor_json": str(sidecar),
                 "gpu_uuid": None if mode == MODES[0] else uuid,
-                "budget": {**dict(contract.FROZEN["limits"]), "poll_seconds": 1.0}}
+                "budget": preflight_budget(mode)}
     # Supervisor serializes numeric budgets as floats; reject bool, allow equal finite numbers.
     for key, value in expected.items():
         if key != "budget" and not _exact(record.get(key), value):
@@ -172,7 +180,7 @@ def _training(output: Path) -> None:
         if not isinstance(checkpoint_name, str) or not checkpoint_name:
             raise ValueError("Preflight checkpoint missing")
         path = Path(checkpoint_name)
-        checkpoint = _path(path if path.is_absolute() else output / path)
+        checkpoint = _path(path if path.is_absolute() else output / record["arm"] / path)
         if not checkpoint.is_relative_to(output) or checkpoint.name != "last.pt":
             raise ValueError("Checkpoint must be raw last.pt inside preflight output")
         _sha(checkpoint, record.get("checkpoint_sha256"))
