@@ -1,0 +1,8 @@
+{
+  "status": "preflight_verified",
+  "mode": "gpu_preflight",
+  "formal_result": false,
+  "cells_verified": 9,
+  "all_metrics_verified": true,
+  "summary": null
+}
