@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "experiment": "meta65-training-scope-20261011",
+  "date": "2026-10-11",
+  "branch": "feat/meta65-training-scope-20261011",
+  "status": "binding_verified_waiting_execution_confirmation",
+  "phase": "before_formal_one_shot",
+  "execution_code_commit": "7cb54c77baf2bb96de7ac0d6797fa39344ea9551",
+  "gate_fix": {
+    "reason": "verify_launch_binding could never certify real preflight artifacts: the gate read conventions the runner/supervisor never write",
+    "defects": [
+      {"check": "_inventory log path", "gate_expected": "<output>.log", "producer_actual": "<output>.supervisor.log (artifact_paths)"},
+      {"check": "_supervisor sidecar budget", "gate_expected": "formal limits total_seconds=14400", "producer_actual": "mode limits total_seconds=900 (limits_for)"},
+      {"check": "_training checkpoint path", "gate_expected": "<output>/last.pt", "producer_actual": "<output>/<arm>/last.pt (train_arm records \"last.pt\")"}
+    ],
+    "touched": ["scripts/meta65_scope_launch.py", "tests/test_meta65_scope_launch.py", "scripts/meta65_scope_build_binding.py"],
+    "untouched": ["runner", "supervisor", "contract", "protocol", "v1 preflight outputs", "PRICE", "cache", "retained"],
+    "local_regression": {
+      "tests": 1096,
+      "skipped": 16,
+      "status": "passed",
+      "notes": [
+        "single-thread BLAS env (OMP/MKL/OPENBLAS/VECLIB=1) required by test_s8_smoke_runner",
+        "sandboxed runs flake on os.killpg inside test_meta65_joint_supervisor; authoritative run is outside the sandbox"
+      ]
+    },
+    "deployed_files": {
+      "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-code/scripts/meta65_scope_launch.py": "1a8be6bfa55ca07ec44b3e87b3cf90a0ca4d8006be119b419fb6f575a8ac23cb",
+      "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-code/scripts/meta65_scope_build_binding.py": "480ef16fffda7d99a614f621f833553dd7013d3d79ef4f480f978a48d9472301"
+    }
+  },
+  "preflight_v1_preserved": true,
+  "cpu_preflight": {
+    "status": "preflight_completed",
+    "output": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/cpu-preflight-20261011-v2",
+    "supervisor_returncode": 0,
+    "micro_cells": 12,
+    "formal_result": false,
+    "independent_verification": "preflight_verified",
+    "reproduction_status": "not_applicable",
+    "decision_provisional": "preflight_not_candidate",
+    "elapsed_seconds": 324.5622748839669,
+    "peak_rss_bytes": 1960542208,
+    "external_vram_sample_bytes": 0,
+    "worker_peak_vram_max_bytes": 0,
+    "output_bytes": 159606922
+  },
+  "gpu_preflight": {
+    "status": "preflight_completed",
+    "output": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/gpu-preflight-20261011-v2",
+    "supervisor_returncode": 0,
+    "micro_cells": 12,
+    "formal_result": false,
+    "independent_verification": "preflight_verified",
+    "reproduction_status": "not_applicable",
+    "decision_provisional": "preflight_not_candidate",
+    "elapsed_seconds": 174.67825635429472,
+    "peak_rss_bytes": 2544926720,
+    "external_vram_sample_bytes": 0,
+    "worker_peak_vram_max_bytes": 83886080,
+    "output_bytes": 159612468
+  },
+  "gpu6_snapshot_before_gpu_preflight": {
+    "uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+    "memory_used_mib": 1,
+    "utilization_percent": 0,
+    "note": "One-shot nvidia-smi query before the single gpu_preflight launch; not continuous monitoring."
+  },
+  "launch_binding": {
+    "created": true,
+    "path": "reports/meta65-training-scope-20261011/launch-binding.json",
+    "sha256": "cc6eab94451bfed0345d316b9e0157cd01cec86fa578f342afeead660a80fbc6",
+    "launch_ready": true,
+    "execution_authorized": false,
+    "formal_executed": false,
+    "code_files": 32,
+    "input_files": 264,
+    "preflight_raw_files_per_mode": 53,
+    "verify_launch_binding": {
+      "server_isolated_root": "passed",
+      "local": "cross-check only: code/config/protocol/data-config SHA match the checkout; full verify is bound to server paths and the server runtime"
+    }
+  },
+  "formal": {
+    "approval_created": false,
+    "supervisor_started": false,
+    "cells_completed": 0,
+    "cells_required": 60,
+    "r_head3_reproduction_anchors_completed": 0,
+    "r_head3_reproduction_anchors_required": 15,
+    "formal_result": false,
+    "controlled_statistical_conclusion": null
+  },
+  "next_step": "Show execution commit 7cb54c77baf2bb96de7ac0d6797fa39344ea9551 and binding SHA cc6eab94451bfed0345d316b9e0157cd01cec86fa578f342afeead660a80fbc6 to the user and request one-shot execution confirmation. Only after explicit confirmation: re-check GPU6 idle and all frozen inputs, create a one-shot approval beside a fresh output directory, run R first and reproduce the 15 K20 diagonals of old B (stop as reproduction_blocked and do not start T on failure)."
+}
