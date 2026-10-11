@@ -27,3 +27,11 @@
 用户明确要求重新查看 GPU 并继续实验。指定 worktree 的接手 HEAD 为 `d9a1798884cda02c2895263b6f31af9fe301f0a8`（在冻结执行提交 `ac893b65bcf078dff940fa30ebcff72c60bdc4c6` 上仅追加上一次阻塞归档），接手时工作树干净；本地 launch-binding SHA 仍为 `f7a2332d4e61518a340f3faf3c1ad08924660d92ec7739cb9914450cc42a3952`。本次未重新认证远端代码、完整 plan、checkpoint 或源缓存；不能将上一次核验写成本次完成。
 
 新的 [GPU 快照](../reports/meta65-joint-control-formal-20261010/gpu-snapshot-20261011.txt)显示8卡均有计算进程，显存6324–21533 MiB、利用率52–96%，再次不满足显存≤100 MiB、利用率0且无计算进程的门槛。按冻结停止条件即刻停止：`blocked_no_idle_gpu`，未创建或消费approval、未选择UUID、未启动监督器/worker或正式输出；本次0/135 cells、0/45 diagonal，正式资源峰值未测，无受控统计结论。保留先前快照，不把两次查询视为持续监测；不自动轮询、重试或占用他人资源。旧 `no_candidate`、预算及PRICE/冻结输入不变。下一次仅在用户明确恢复后重新现场核验GPU及全部输入。
+
+## 2026-10-11 17:13 用户再次继续后的单次现场复查
+
+用户要求“查看 gpu 是否有空闲，继续实验”。在同一隔离 worktree 接手时 HEAD 为 `c2afc9cc00f0733e8d486f6cf94c837fb816eea6`、工作树干净；冻结执行提交仍为 `ac893b65bcf078dff940fa30ebcff72c60bdc4c6`，本地 launch-binding SHA 为 `f7a2332d4e61518a340f3faf3c1ad08924660d92ec7739cb9914450cc42a3952`。本次远端代码、完整 plan、checkpoint 与源缓存未重新认证，不借用历史认证当成本次结果。
+
+单次只读 `ssh myserver` [现场快照](../reports/meta65-joint-control-formal-20261010/gpu-snapshot-20261011-1713.txt)中，8卡均有计算进程，显存6448–21463 MiB、利用率45%–89%；记录时间 `2026-10-11T17:13:35+08:00` 是查询后本地时间，不是 GPU 自带时间戳。没有符合显存≤100 MiB、利用率0且无计算进程的卡。按冻结停止条件 `blocked_no_idle_gpu`，没有选择 UUID、创建/消费 approval、启动监督器/worker或正式输出；不自动轮询、重试或影响其他进程。
+
+本次0/135 cells、0/45 diagonal；独立 CPU 正式结果认证未执行，完整分母、query 身份、FP64 真值、表数、更新范围与初始化隔离尚未验收，因而没有受控统计结论。正式适应/元训练/query呈现均0；没有本次正式任务的 wall/RSS/VRAM/输出遥测，资源峰值未测。原预算、PRICE 只读、冻结协议/输入及旧 `no_candidate` 均不变。建议仅在用户再次明确恢复时重新现场核验 GPU 和全部冻结输入，合格后才为原矩阵创建新的一次性 approval。
