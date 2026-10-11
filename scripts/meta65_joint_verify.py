@@ -195,7 +195,7 @@ def verify(output):
     if set(binding) != {"schema", "mode", "input_sha256", "code_sha256", "estimated_formal_output_bytes"}:
         raise ValueError("Input binding schema changed")
     mode = binding["mode"]
-    if mode not in ("formal", "cpu_preflight"):
+    if mode not in ("formal", "cpu_preflight", "gpu_preflight"):
         raise ValueError("Unknown mode")
     code = binding["code_sha256"]
     required_code = {
@@ -240,7 +240,7 @@ def verify(output):
         else:
             if sha256(_inside(root, cell["identity_file"])) != cell["identity_sha256"]:
                 raise ValueError("Identity SHA inconsistent across cells")
-        if mode == "cpu_preflight":
+        if mode != "formal":
             positions = cell.get("query_positions")
             if positions != list(range(32)) or cell["count"] != 32:
                 raise ValueError("CPU micro query positions changed")
@@ -269,7 +269,7 @@ def verify(output):
             raise ValueError("Changed parameters outside selected scope")
     if seen != expected_keys:
         raise ValueError("Incomplete matrix")
-    result = {"status": "preflight_verified" if mode == "cpu_preflight" else "formal_verified",
+    result = {"status": "formal_verified" if mode == "formal" else "preflight_verified",
               "mode": mode, "formal_result": mode == "formal", "cells_verified": len(cells),
               "all_metrics_verified": True, "summary": None}
     return result

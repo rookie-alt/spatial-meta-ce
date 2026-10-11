@@ -559,6 +559,26 @@ class SupervisorTests(unittest.TestCase):
             unrelated.wait(timeout=3)
 
 
+    def test_gpu_preflight_is_bounded_and_requires_nine_microcells(self):
+        budget = s.limits_for('gpu_preflight')
+        self.assertEqual(budget['total_seconds'], 900)
+        self.assertEqual(budget['phase_seconds'],
+                         {'preparation': 300, 'evaluation': 300, 'certification': 300})
+        self.assertEqual(budget['rss_bytes'], 4 * 1024**3)
+        self.assertEqual(budget['vram_bytes'], 8 * 1024**3)
+        self.assertEqual(budget['output_bytes'], 1024**3)
+        with self.assertRaises(ValueError):
+            s.limits_for('gpu_preflight', {'vram_bytes': 8 * 1024**3 + 1})
+        record = self.run_worker(mode='gpu_preflight', cells=0,
+                                 sample_fn=lambda child: {'rss_bytes': 1, 'vram_bytes': 1})
+        self.assertEqual(record['status'], 'preflight_completed')
+        self.assertEqual(record['mode'], 'gpu_preflight')
+        self.out = self.root / 'invalid-gpu-micro'
+        rejected = self.run_worker(mode='gpu_preflight', cells=9,
+                                   sample_fn=lambda child: {'rss_bytes': 1, 'vram_bytes': 1})
+        self.assert_failed(rejected, 'invalid_worker_status')
+
+
 class SamplerTests(unittest.TestCase):
     @unittest.skipUnless(sys.platform.startswith('linux') and hasattr(os, 'WNOWAIT'),
                          'non-reaping waitid is required for formal Linux PID identity')
@@ -610,6 +630,19 @@ class SamplerTests(unittest.TestCase):
             sample = s.sample_process(SimpleNamespace(pid=100), mode='cpu_preflight')
         self.assertEqual(sample, {'rss_bytes': 100, 'vram_bytes': 0})
         gpu.assert_not_called()
+
+    def test_gpu_preflight_samples_owned_vram_and_fails_on_query_error(self):
+        rows = {100: (1, 100, 100, 42, 'S')}
+        worker = SimpleNamespace(pid=100)
+        with (patch.object(s, '_process_rows', return_value=rows),
+              patch.object(s, '_gpu_bytes', return_value=123) as gpu):
+            sample = s.sample_process(worker, mode='gpu_preflight')
+        self.assertEqual(sample, {'rss_bytes': 42, 'vram_bytes': 123})
+        gpu.assert_called_once_with({100})
+        with (patch.object(s, '_process_rows', return_value=rows),
+              patch.object(s, '_gpu_bytes', side_effect=s.GPUQueryError('unavailable')),
+              self.assertRaises(s.GPUQueryError)):
+            s.sample_process(worker, mode='gpu_preflight')
 
     def test_formal_gpu_sums_only_owned_pid_rows(self):
         result = SimpleNamespace(stdout='100, 2\n101, 3\n200, 999\n')

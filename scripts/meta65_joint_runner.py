@@ -30,14 +30,18 @@ FROZEN_ROOT = RETAINED.parents[1]
 CACHE = Path("/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain")
 PLAN_SHA = "ebeb178de15b134722bd9fbc24ff4b4752f795a311580c1a17cb23c550bfd0f0"
 PROTOCOL = "实验文档/56-Meta65同初始化适应算子最小受控协议.md"
-LAUNCH_BINDING = "reports/meta65-joint-runner-20261010/launch-binding.json"
-PREFLIGHT_EVIDENCE_DIR = "reports/meta65-formal-safety-20261010/cpu-preflight"
+LAUNCH_BINDING = "reports/meta65-cublas-preflight-20261011/launch-binding.json"
+PREFLIGHT_EVIDENCE_DIR = "reports/meta65-cublas-preflight-20261011/cpu-preflight"
+GPU_PREFLIGHT_EVIDENCE_DIR = "reports/meta65-cublas-preflight-20261011/gpu-preflight"
+GPU_PREFLIGHT_RUNS = Path("/gly/weilin/spatial-meta-ce-meta65-cublas-20261011-runs")
+CUDA_WORKSPACE_CONFIG = ":4096:8"
 PROTOCOL_SHA = "cc87ef93451e2664aba4aa51257a1cdba47c6638c004cb8e4b943773171ca4d2"
 FROZEN = {
     "schema": 1, "experiment": "meta65-joint-control-20261010", "k": 20,
     "databases": list(DATABASES), "checkpoints": list(CHECKPOINTS), "operators": list(OPERATORS),
     "runs": list(range(5)), "batch_size": 512, "inner_lr": 0.001, "inner_steps": 3,
-    "loss": "smooth_l1", "model": {"arch": "sum", "use_pg": True, "width": 64, "layers": 2, "heads": 4},
+    "loss": "smooth_l1", "cuda_workspace_config": CUDA_WORKSPACE_CONFIG,
+    "model": {"arch": "sum", "use_pg": True, "width": 64, "layers": 2, "heads": 4},
     "protocol_file": PROTOCOL, "protocol_sha256": PROTOCOL_SHA,
     "limits": {"total_seconds": 4800, "preparation_seconds": 300,
                "evaluation_seconds": 3600, "certification_seconds": 900,
@@ -46,11 +50,16 @@ FROZEN = {
     "cpu_preflight": {"micro_queries": 32, "total_seconds": 900,
                       "preparation_seconds": 300, "evaluation_seconds": 120,
                       "certification_seconds": 300},
+    "gpu_preflight": {"micro_queries": 32, "total_seconds": 900,
+                      "preparation_seconds": 300, "evaluation_seconds": 300,
+                      "certification_seconds": 300},
 }
 CODE_FILES = (
     "scripts/meta65_joint_runner.py", "scripts/meta65_joint_supervisor.py", "scripts/meta65_joint_verify.py",
     "spatial_meta_ce/data.py", "spatial_meta_ce/manifests.py", "spatial_meta_ce/mappings.py",
     "spatial_meta_ce/model.py", "spatial_meta_ce/meta.py", "spatial_meta_ce/checkpoints.py",
+    "tests/test_meta65_joint_runner.py", "tests/test_meta65_joint_supervisor.py",
+    "tests/test_meta65_joint_verify.py",
 )
 PROVENANCE = (
     "实验文档/results/meta65-source-screen-20261009/source-before.json",
@@ -214,7 +223,122 @@ def verify_launch_binding(binding_path, *, root=ROOT, config_path=None):
                    if name.endswith("/" + relative)]
         if matches != [expected]:
             raise ValueError(f"CPU preflight input SHA differs from launch binding: {relative}")
+    _verify_gpu_preflight_evidence(binding, root, code, sources, config_rel)
     return binding
+
+
+def _verify_gpu_preflight_evidence(binding, root, code, sources, config_rel):
+    uuid = binding.get("gpu_preflight_uuid")
+    evidence = binding.get("gpu_preflight_evidence_sha256")
+    names = ("status.json", "verification.json", "input-binding.json", "microcells.json",
+             "environment.json", "supervisor.json")
+    paths = {str(Path(GPU_PREFLIGHT_EVIDENCE_DIR) / name) for name in names}
+    if not isinstance(uuid, str) or not uuid.startswith("GPU-") or not isinstance(evidence, dict) or set(evidence) != paths:
+        raise ValueError("GPU preflight identity or evidence set missing")
+    for relative, expected in evidence.items():
+        path = checked_path(root / relative)
+        if not path.is_relative_to(root) or sha256(path) != expected:
+            raise ValueError(f"GPU preflight evidence SHA changed: {relative}")
+    folder = root / GPU_PREFLIGHT_EVIDENCE_DIR
+    status, verified, inputs, micro, env, supervisor = [read_json(folder / name) for name in names]
+    if (status.get("status") != "preflight_completed" or status.get("mode") != "gpu_preflight"
+            or status.get("cells") != 0 or status.get("micro_cells") != 9
+            or status.get("formal_result") is not False
+            or verified.get("status") != "preflight_verified" or verified.get("mode") != "gpu_preflight"
+            or verified.get("cells_verified") != 9 or verified.get("all_metrics_verified") is not True
+            or verified.get("formal_result") is not False or verified.get("summary") is not None
+            or micro.get("mode") != "gpu_preflight" or len(micro.get("cells", [])) != 9
+            or len(micro.get("none_checks", [])) != 9
+            or env.get("mode") != "gpu_preflight" or env.get("CUDA_VISIBLE_DEVICES") != uuid
+            or env.get("CUBLAS_WORKSPACE_CONFIG") != CUDA_WORKSPACE_CONFIG or env.get("threads") != 1
+            or env.get("deterministic_algorithms") is not True or env.get("tf32") is not False
+            or supervisor.get("status") != "preflight_completed" or supervisor.get("mode") != "gpu_preflight"
+            or supervisor.get("returncode") != 0 or supervisor.get("failure") is not None
+            or supervisor.get("phase") != "certification"
+            or not 0 <= supervisor.get("peak_rss_bytes", -1) <= FROZEN["limits"]["rss_bytes"]
+            or not 0 <= supervisor.get("peak_vram_bytes", -1) <= FROZEN["limits"]["vram_bytes"]
+            or not 0 <= supervisor.get("outputbytes", -1) <= FROZEN["limits"]["output_bytes"]
+            or not 0 < supervisor.get("elapsed", 0) <= FROZEN["gpu_preflight"]["total_seconds"]):
+        raise ValueError("GPU preflight status, environment or resource evidence invalid")
+    if inputs.get("mode") != "gpu_preflight" or inputs.get("code_sha256") != code:
+        raise ValueError("GPU preflight code SHA binding invalid")
+    recorded = inputs.get("input_sha256")
+    if not isinstance(recorded, dict):
+        raise ValueError("GPU preflight input SHA binding missing")
+    required = {**code, **{name: sources[name] for name in (config_rel, PROTOCOL, *PROVENANCE)}}
+    for relative, expected in required.items():
+        if [value for name, value in recorded.items() if name.endswith("/" + relative)] != [expected]:
+            raise ValueError(f"GPU preflight input SHA differs: {relative}")
+
+
+def verify_gpu_preflight_output(binding, *, allowed_root=GPU_PREFLIGHT_RUNS,
+                                archive_root=ROOT / GPU_PREFLIGHT_EVIDENCE_DIR):
+    """Recompute the bound GPU microcheck from its retained raw outputs."""
+    name = binding.get("gpu_preflight_output")
+    manifest = binding.get("gpu_preflight_artifact_sha256")
+    if not isinstance(name, str) or not isinstance(manifest, dict):
+        raise ValueError("GPU preflight raw output binding missing")
+    output = checked_path(name)
+    base = checked_path(allowed_root)
+    if not output.is_dir() or output == base or not output.is_relative_to(base):
+        raise ValueError("GPU preflight raw output path is invalid")
+    _verify_gpu_output_inventory(output, manifest)
+    _verify_gpu_output_evidence(output, binding, archive_root)
+    from scripts.meta65_joint_verify import verify
+    if verify(output) != read_json(output / "verification.json"):
+        raise ValueError("GPU preflight raw metrics differ from archived verification")
+
+
+def _verify_gpu_output_inventory(output, manifest):
+    entries = list(output.rglob("*"))
+    if any(path.is_symlink() for path in entries):
+        raise ValueError("GPU preflight raw output contains symlinks")
+    actual = {str(path.relative_to(output)) for path in entries if path.is_file()}
+    metadata = {"status.json", "verification.json", "environment.json", "input-binding.json",
+                "microcells.json", "phase.json"}
+    identities = {name for name in actual if name.startswith("identities/") and name.endswith(".npz")}
+    predictions = {name for name in actual if name.startswith("predictions/") and name.endswith(".npz")}
+    if (set(manifest) != actual or not metadata <= actual
+            or len(identities) != 15 or len(predictions) != 9
+            or actual != metadata | identities | predictions):
+        raise ValueError("GPU preflight raw output inventory changed")
+    for relative, expected in manifest.items():
+        path = checked_path(output / relative)
+        if not path.is_relative_to(output) or sha256(path) != expected:
+            raise ValueError(f"GPU preflight raw output SHA changed: {relative}")
+
+
+def _verify_gpu_output_evidence(output, binding, archive_root):
+    archived = checked_path(archive_root)
+    evidence = binding.get("gpu_preflight_evidence_sha256", {})
+    for name in ("status.json", "verification.json", "input-binding.json",
+                 "microcells.json", "environment.json"):
+        expected = evidence.get(str(Path(GPU_PREFLIGHT_EVIDENCE_DIR) / name))
+        if not expected or sha256(archived / name) != expected or sha256(output / name) != expected:
+            raise ValueError(f"GPU preflight raw and archived evidence differ: {name}")
+    sidecar = output.with_name(output.name + ".supervisor.json")
+    expected_sidecar = evidence.get(str(Path(GPU_PREFLIGHT_EVIDENCE_DIR) / "supervisor.json"))
+    if (sidecar.is_symlink() or not expected_sidecar
+            or sha256(archived / "supervisor.json") != expected_sidecar
+            or sha256(sidecar) != expected_sidecar):
+        raise ValueError("GPU preflight supervisor sidecar changed")
+    status, environment_record, supervisor = [read_json(path) for path in
+        (output / "status.json", output / "environment.json", sidecar)]
+    import numpy as np
+    import torch
+    if (environment_record.get("python") != sys.version
+            or environment_record.get("numpy") != np.__version__
+            or environment_record.get("torch") != torch.__version__
+            or environment_record.get("cuda") != torch.version.cuda):
+        raise ValueError("GPU preflight runtime versions differ from formal environment")
+    if (status.get("status") != "preflight_completed" or status.get("mode") != "gpu_preflight"
+            or status.get("formal_result") is not False or status.get("cells") != 0
+            or status.get("micro_cells") != 9
+            or environment_record.get("CUDA_VISIBLE_DEVICES") != binding.get("gpu_preflight_uuid")
+            or environment_record.get("CUBLAS_WORKSPACE_CONFIG") != CUDA_WORKSPACE_CONFIG
+            or supervisor.get("status") != "preflight_completed" or supervisor.get("returncode") != 0
+            or supervisor.get("failure") is not None or supervisor.get("output") != str(output)):
+        raise ValueError("GPU preflight raw status or environment invalid")
 
 
 def _formal_receipt_path(approval_path):
@@ -505,7 +629,18 @@ def operator_params(model, support, operator):
     return params, record
 
 
+def require_cuda_workspace(mode):
+    if mode not in ("formal", "gpu_preflight"):
+        return
+    if os.environ.get("CUBLAS_WORKSPACE_CONFIG") != CUDA_WORKSPACE_CONFIG:
+        raise ValueError(f"CUBLAS_WORKSPACE_CONFIG must be {CUDA_WORKSPACE_CONFIG} before CUDA use")
+    for name in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS"):
+        if os.environ.get(name) != "1":
+            raise ValueError(f"{name} must be 1 before GPU execution")
+
+
 def environment(mode):
+    require_cuda_workspace(mode)
     import numpy as np
     import torch
 
@@ -518,12 +653,13 @@ def environment(mode):
     torch.use_deterministic_algorithms(True)
     torch.backends.cuda.matmul.allow_tf32 = False
     torch.backends.cudnn.allow_tf32 = False
-    if mode == "formal" and (not os.environ.get("CUDA_VISIBLE_DEVICES")
-                             or not torch.cuda.is_available() or torch.cuda.device_count() != 1):
-        raise ValueError("Formal execution requires one explicitly selected CUDA GPU")
+    if mode in ("formal", "gpu_preflight") and (not os.environ.get("CUDA_VISIBLE_DEVICES")
+                                                 or not torch.cuda.is_available() or torch.cuda.device_count() != 1):
+        raise ValueError("GPU execution requires one explicitly selected CUDA GPU")
     return {"python": sys.version, "executable": sys.executable, "platform": platform.platform(),
             "numpy": np.__version__, "torch": torch.__version__, "cuda": torch.version.cuda,
             "CUDA_VISIBLE_DEVICES": os.environ.get("CUDA_VISIBLE_DEVICES"),
+            "CUBLAS_WORKSPACE_CONFIG": os.environ.get("CUBLAS_WORKSPACE_CONFIG"),
             "threads": 1, "precision": "FP32 model/FP64 true", "deterministic_algorithms": True,
             "tf32": False, "mode": mode}
 
@@ -659,6 +795,7 @@ def evaluate_cell(checkpoint_path, store, query_indices, support_indices, operat
 
 
 def worker(output, mode, config_path, root=ROOT):
+    require_cuda_workspace(mode)
     import numpy as np
 
     from spatial_meta_ce.data import FeatureStore
@@ -709,6 +846,7 @@ def worker(output, mode, config_path, root=ROOT):
     none_checks = []
     selected_matrix = matrix() if mode == "formal" else [
         (c, "last3" if c == "C" else "head3", db, 0) for c in CHECKPOINTS for db in DATABASES]
+    device = "cpu" if mode == "cpu_preflight" else "cuda"
     for checkpoint, operator, db, run in selected_matrix:
         identity, identity_path = identities[(db, run)]
         query = certified[(db, run)]["query_sorted"]
@@ -716,10 +854,10 @@ def worker(output, mode, config_path, root=ROOT):
         query = query if positions is None else query[:32]
         selected_identity = identity if positions is None else {key: value[positions] for key, value in identity.items()}
         checkpoint_path = RETAINED / CHECKPOINTS[checkpoint] / "last.pt"
-        if mode == "cpu_preflight":
+        if mode != "formal":
             none_pred, none_true, none_record = evaluate_cell(
                 checkpoint_path, stores[db], query,
-                certified[(db, run)]["support"], "none", "cpu")
+                certified[(db, run)]["support"], "none", device)
             check_cell_peaks(none_record)
             if none_record["selected_parameter_count"] or none_record["steps"]:
                 raise ValueError("None microcheck called adaptation")
@@ -734,8 +872,7 @@ def worker(output, mode, config_path, root=ROOT):
             if not np.array_equal(none_true, selected_identity["true"]):
                 raise ValueError("None microcheck FP64 truth differs")
         pred, true, record = evaluate_cell(checkpoint_path, stores[db], query,
-                                           certified[(db, run)]["support"], operator,
-                                           "cuda" if mode == "formal" else "cpu")
+                                           certified[(db, run)]["support"], operator, device)
         check_cell_peaks(record)
         if not np.array_equal(true, selected_identity["true"]):
             raise ValueError("Output FP64 truth changed")
@@ -753,7 +890,7 @@ def worker(output, mode, config_path, root=ROOT):
                       **({"query_positions": positions} if positions is not None else {})})
         write_json(out / ("cells.json" if mode == "formal" else "microcells.json"),
                    {"schema": 1, "mode": mode, "cells": cells,
-                    **({"none_checks": none_checks} if mode == "cpu_preflight" else {})})
+                    **({"none_checks": none_checks} if mode != "formal" else {})})
     write_json(out / "phase.json", {"phase": "certification"})
     from scripts.meta65_joint_verify import verify
     verified = verify(out)
@@ -761,7 +898,7 @@ def worker(output, mode, config_path, root=ROOT):
     write_json(out / "verification.json", verified)
     write_json(out / "status.json", {"status": "worker_complete", "mode": mode,
                                      "cells": len(cells) if mode == "formal" else 0,
-                                     "micro_cells": len(cells) if mode == "cpu_preflight" else 0,
+                                     "micro_cells": len(cells) if mode != "formal" else 0,
                                      "formal_result": mode == "formal"})
     return verified
 
@@ -770,22 +907,28 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=ROOT / "configs/meta65_joint_control.json")
     parser.add_argument("--out", type=Path, required=True)
-    parser.add_argument("--mode", choices=("cpu_preflight", "formal"), default="cpu_preflight")
+    parser.add_argument("--mode", choices=("cpu_preflight", "gpu_preflight", "formal"), default="cpu_preflight")
     parser.add_argument("--execute", action="store_true")
     parser.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--approval", type=Path, help="Separate user-approved formal launch contract")
     args = parser.parse_args(argv)
     config_path = checked_path(args.config)
     validate_config(read_json(config_path))
+    if args.mode == "formal" and args.approval is None:
+        raise ValueError("Formal GPU matrix is not authorized by implementation/preflight")
+    require_cuda_workspace(args.mode)
     output = checked_path(args.out)
     binding_path = ROOT / LAUNCH_BINDING
     approval = None
-    gpu_uuid = None
+    gpu_uuid = os.environ.get("CUDA_VISIBLE_DEVICES") if args.mode != "cpu_preflight" else None
+    if args.mode != "formal" and args.approval is not None:
+        raise ValueError("Preflight cannot use a formal approval")
     if args.mode == "formal":
-        if args.approval is None:
-            raise ValueError("Formal GPU matrix is not authorized by implementation/preflight")
-        verify_launch_binding(binding_path, root=ROOT, config_path=config_path)
-        gpu_uuid = os.environ.get("CUDA_VISIBLE_DEVICES")
+        launch = verify_launch_binding(binding_path, root=ROOT, config_path=config_path)
+        if launch["gpu_preflight_uuid"] != gpu_uuid:
+            raise ValueError("Formal GPU UUID differs from certified GPU preflight")
+        if args.execute and not args.worker:
+            verify_gpu_preflight_output(launch)
         approval = validate_formal_approval(
             args.approval, output, binding_path, config_path,
             {p: sha256(ROOT / p) for p in CODE_FILES},
@@ -793,7 +936,7 @@ def main(argv=None):
     if not args.execute:
         print(json.dumps({"status": "prepared_not_executed", "mode": args.mode,
                           "cells": 135 if args.mode == "formal" else 0,
-                          "microcells": 9 if args.mode == "cpu_preflight" else 0,
+                          "microcells": 9 if args.mode != "formal" else 0,
                           "formal_result": False}, indent=2))
         return
     safe_output(output, [RETAINED, CACHE, "/gly/weilin/PRICE-master"])
@@ -813,8 +956,9 @@ def main(argv=None):
             raise
     else:
         from scripts.meta65_joint_supervisor import supervise
-        if args.mode == "formal":
+        if args.mode in ("formal", "gpu_preflight"):
             verify_gpu_idle(gpu_uuid)
+        if args.mode == "formal":
             claim_formal_approval(args.approval, output, approval)
         command = [sys.executable, "-B", str(Path(__file__).resolve()), "--worker", "--execute",
                    "--config", str(config_path), "--out", str(output), "--mode", args.mode]

@@ -77,6 +77,21 @@ class Meta65VerifierTests(unittest.TestCase):
             self.assertIsNone(result["summary"])
             self.assertFalse((root / "summary.json").exists())
 
+    def test_gpu_preflight_verifies_nine_microcells_without_formal_result(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = self._write_cpu_output(Path(directory))
+            for filename in ("input-binding.json", "microcells.json"):
+                path = root / filename
+                value = json.loads(path.read_text(encoding="utf-8"))
+                path.write_text(json.dumps({**value, "mode": "gpu_preflight"}), encoding="utf-8")
+            result = verifier.verify(root)
+            self.assertEqual(result["status"], "preflight_verified")
+            self.assertEqual(result["mode"], "gpu_preflight")
+            self.assertEqual(result["cells_verified"], 9)
+            self.assertFalse(result["formal_result"])
+            self.assertIsNone(result["summary"])
+            self.assertFalse((root / "cells.json").exists())
+
     def test_cpu_rejects_input_hash_change_and_prediction_float32(self):
         with tempfile.TemporaryDirectory() as directory:
             root = self._write_cpu_output(Path(directory))

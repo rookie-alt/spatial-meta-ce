@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "experiment": "meta65-cublas-preflight-20261011",
+  "date": "2026-10-11",
+  "branch": "experiment/meta65-cublas-preflight-20261011",
+  "status": "blocked_no_idle_gpu6",
+  "phase": "before_gpu_preflight",
+  "old_approval_reused": false,
+  "new_approval_created": false,
+  "local_regression": {
+    "tests": 972,
+    "skipped": 16,
+    "status": "passed"
+  },
+  "server_focused_regression": {
+    "tests": 69,
+    "status": "passed"
+  },
+  "server_full_regression": {
+    "status": "failed",
+    "observed_blockers": [
+      "isolated deploy excludes existing CSV test fixtures",
+      "server venv lacks jsonschema for unrelated S8 tests",
+      "Linux host lacks /private/tmp required by unrelated S8 tests"
+    ]
+  },
+  "cpu_preflight": {
+    "status": "preflight_completed",
+    "output": "/gly/weilin/spatial-meta-ce-meta65-cublas-20261011-runs/cpu-preflight-20261011",
+    "supervisor_returncode": 0,
+    "micro_cells": 9,
+    "none_checks": 9,
+    "formal_result": false,
+    "independent_verification": "preflight_verified",
+    "elapsed_seconds": 71.39693674631417,
+    "peak_rss_bytes": 1060610048,
+    "peak_vram_bytes": 0,
+    "output_bytes": 150803895
+  },
+  "gpu6_snapshot": {
+    "uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+    "memory_used_mib": 1522,
+    "utilization_percent": 35,
+    "compute_pid": 79773,
+    "compute_memory_mib": 1532,
+    "note": "Two sequential nvidia-smi queries, not continuous monitoring."
+  },
+  "gpu_preflight": {
+    "executed": false,
+    "micro_cells": 0,
+    "result": null
+  },
+  "formal": {
+    "approval_created": false,
+    "supervisor_started": false,
+    "cells_completed": 0,
+    "cells_required": 135,
+    "diagonal_anchors_completed": 0,
+    "diagonal_anchors_required": 45,
+    "formal_result": false,
+    "controlled_statistical_conclusion": null
+  },
+  "launch_binding": {
+    "created": false,
+    "launch_ready": false
+  },
+  "next_step": "Wait for a new explicit user instruction; inspect GPU6 and all frozen inputs afresh, run one bounded nine-cell GPU preflight if idle, then freeze a new binding and obtain explicit confirmation of its commit and SHA before a one-shot formal launch."
+}

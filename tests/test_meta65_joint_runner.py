@@ -3,6 +3,7 @@ import hashlib
 import json
 import os
 import subprocess
+import sys
 import tempfile
 import unittest
 from collections import OrderedDict
@@ -192,6 +193,10 @@ class JointRunnerTests(unittest.TestCase):
                               "configs/meta65_joint_control.json": runner.sha256(config),
                               **source_hashes}
             remote_source = {str(root / name): value for name, value in {**code, **source_binding}.items()}
+            historical = root / "docs/historical-provenance.md"
+            historical.parent.mkdir()
+            historical.write_text("historical evidence")
+            source_binding = {**source_binding, "docs/historical-provenance.md": runner.sha256(historical)}
             preflight = {
                 "status.json": {"status": "preflight_completed", "mode": "cpu_preflight",
                                 "cells": 0, "micro_cells": 9, "formal_result": False},
@@ -213,6 +218,21 @@ class JointRunnerTests(unittest.TestCase):
             }
             for filename, value in preflight.items():
                 (evidence_dir / filename).write_text(json.dumps(value))
+            gpu_dir = root / runner.GPU_PREFLIGHT_EVIDENCE_DIR
+            gpu_dir.mkdir(parents=True)
+            gpu_preflight = {filename: {**value, "mode": "gpu_preflight"}
+                             for filename, value in preflight.items()}
+            gpu_preflight["environment.json"] = {
+                **gpu_preflight["environment.json"],
+                "CUDA_VISIBLE_DEVICES": "GPU-test-uuid",
+                "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+                "deterministic_algorithms": True, "tf32": False,
+            }
+            gpu_preflight["supervisor.json"] = {
+                **gpu_preflight["supervisor.json"], "peak_vram_bytes": 100_000_000,
+            }
+            for filename, value in gpu_preflight.items():
+                (gpu_dir / filename).write_text(json.dumps(value))
             binding = {
                 "launch_ready": True, "execution_authorized": False,
                 "gpu_formal_executed": False, "code_sha256": code,
@@ -220,12 +240,32 @@ class JointRunnerTests(unittest.TestCase):
                 "cpu_preflight_evidence_sha256": {
                     str((evidence_dir / filename).relative_to(root)): runner.sha256(evidence_dir / filename)
                     for filename in preflight},
+                "gpu_preflight_uuid": "GPU-test-uuid",
+                "gpu_preflight_evidence_sha256": {
+                    str((gpu_dir / filename).relative_to(root)): runner.sha256(gpu_dir / filename)
+                    for filename in gpu_preflight},
                 "resource_budget": runner.FROZEN["limits"],
             }
             binding_path = root / "binding.json"
             binding_path.write_text(json.dumps(binding))
             with patch.object(runner, "PROTOCOL_SHA", runner.sha256(protocol)):
                 runner.verify_launch_binding(binding_path, root=root, config_path=config)
+                binding_path.write_text(json.dumps({key: value for key, value in binding.items()
+                                                    if key != "gpu_preflight_evidence_sha256"}))
+                with self.assertRaisesRegex(ValueError, "GPU preflight"):
+                    runner.verify_launch_binding(binding_path, root=root, config_path=config)
+                binding_path.write_text(json.dumps(binding))
+                gpu_environment = gpu_dir / "environment.json"
+                gpu_environment.write_text(json.dumps({**gpu_preflight["environment.json"],
+                                                       "CUBLAS_WORKSPACE_CONFIG": ":16:8"}))
+                gpu_key = str(gpu_environment.relative_to(root))
+                wrong = {**binding, "gpu_preflight_evidence_sha256": {
+                    **binding["gpu_preflight_evidence_sha256"], gpu_key: runner.sha256(gpu_environment)}}
+                binding_path.write_text(json.dumps(wrong))
+                with self.assertRaisesRegex(ValueError, "GPU preflight"):
+                    runner.verify_launch_binding(binding_path, root=root, config_path=config)
+                gpu_environment.write_text(json.dumps(gpu_preflight["environment.json"]))
+                binding_path.write_text(json.dumps(binding))
                 (root / runner.CODE_FILES[0]).write_text("changed")
                 with self.assertRaisesRegex(ValueError, "binding|SHA"):
                     runner.verify_launch_binding(binding_path, root=root, config_path=config)
@@ -321,8 +361,13 @@ class JointRunnerTests(unittest.TestCase):
             }
             receipt = root / "approval.json"
             receipt.write_text(json.dumps(approval))
-            with (patch.dict(os.environ, {"CUDA_VISIBLE_DEVICES": "GPU-test-uuid"}),
-                  patch.object(runner, "verify_launch_binding", return_value={"launch_ready": True}),
+            with (patch.dict(os.environ, {"CUDA_VISIBLE_DEVICES": "GPU-test-uuid",
+                                        "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+                                        "OMP_NUM_THREADS": "1", "MKL_NUM_THREADS": "1",
+                                        "OPENBLAS_NUM_THREADS": "1"}),
+                  patch.object(runner, "verify_launch_binding",
+                               return_value={"gpu_preflight_uuid": "GPU-test-uuid"}),
+                  patch.object(runner, "verify_gpu_preflight_output") as raw,
                   patch.object(runner, "LAUNCH_BINDING", str(binding_path)),
                   patch.object(runner, "verify_gpu_idle") as idle,
                   patch("scripts.meta65_joint_supervisor.supervise", return_value={"status": "failed"}) as spawn):
@@ -331,11 +376,162 @@ class JointRunnerTests(unittest.TestCase):
                 with self.assertRaises(SystemExit):
                     runner.main(args)
                 idle.assert_called_once_with("GPU-test-uuid")
+                raw.assert_called_once()
                 spawn.assert_called_once()
                 self.assertTrue((root / "approval.json.consumed.json").exists())
                 with self.assertRaisesRegex(ValueError, "consumed|used"):
                     runner.main(args)
                 spawn.assert_called_once()
+
+    def test_formal_requires_exact_cublas_before_consuming_approval(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            config = root / "config.json"
+            config.write_text(json.dumps(runner.FROZEN))
+            binding = root / "binding.json"
+            binding.write_text("synthetic frozen binding")
+            output = root / "formal-once"
+            approval_path = root / "approval.json"
+            approval_path.write_text(json.dumps({
+                "schema": 2, "permission": "one_shot_formal_gpu_matrix",
+                "launch_binding_sha256": runner.sha256(binding),
+                "config_sha256": runner.sha256(config),
+                "code_sha256": {name: runner.sha256(runner.ROOT / name) for name in runner.CODE_FILES},
+                "protocol_sha256": runner.PROTOCOL_SHA,
+                "output": str(output), "gpu_uuid": "GPU-test-uuid",
+            }))
+            args = ["--config", str(config), "--out", str(output), "--mode", "formal",
+                    "--execute", "--approval", str(approval_path)]
+            for value in (None, "", ":16:8", " :4096:8"):
+                env = {"CUDA_VISIBLE_DEVICES": "GPU-test-uuid"}
+                if value is not None:
+                    env = {**env, "CUBLAS_WORKSPACE_CONFIG": value}
+                with (self.subTest(value=value), patch.dict(os.environ, env, clear=True),
+                      patch.object(runner, "verify_launch_binding",
+                               return_value={"gpu_preflight_uuid": "GPU-test-uuid"}),
+                      patch.object(runner, "LAUNCH_BINDING", str(binding)),
+                      patch.object(runner, "verify_gpu_idle") as idle,
+                      patch("scripts.meta65_joint_supervisor.supervise",
+                            return_value={"status": "failed"}) as spawn,
+                      patch.object(runner, "claim_formal_approval") as claim):
+                    with self.assertRaisesRegex(ValueError, "CUBLAS_WORKSPACE_CONFIG"):
+                        runner.main(args)
+                    idle.assert_not_called()
+                    spawn.assert_not_called()
+                    claim.assert_not_called()
+                    self.assertFalse(output.exists())
+                    self.assertFalse((root / "approval.json.consumed.json").exists())
+
+    def test_gpu_modes_require_single_thread_environment_before_cuda(self):
+        frozen = {"CUBLAS_WORKSPACE_CONFIG": ":4096:8", "OMP_NUM_THREADS": "1",
+                  "MKL_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1"}
+        for key in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS"):
+            with (self.subTest(key=key),
+                  patch.dict(os.environ, {name: value for name, value in frozen.items()
+                                           if name != key}, clear=True),
+                  self.assertRaisesRegex(ValueError, key)):
+                runner.require_cuda_workspace("formal")
+        with patch.dict(os.environ, frozen, clear=True):
+            runner.require_cuda_workspace("formal")
+            runner.require_cuda_workspace("gpu_preflight")
+
+    def test_worker_rechecks_cublas_before_creating_output(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            config = root / "config.json"
+            config.write_text(json.dumps(runner.FROZEN))
+            output = root / "worker-output"
+            env = {"CUDA_VISIBLE_DEVICES": "GPU-test-uuid", "OMP_NUM_THREADS": "1",
+                   "MKL_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1"}
+            with (patch.dict(os.environ, env, clear=True),
+                  self.assertRaisesRegex(ValueError, "CUBLAS_WORKSPACE_CONFIG")):
+                runner.worker(output, "formal", config)
+            self.assertFalse(output.exists())
+
+    def test_gpu_preflight_checks_idle_and_never_claims_formal_approval(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            config = root / "config.json"
+            config.write_text(json.dumps(runner.FROZEN))
+            output = root / "gpu-micro"
+            args = ["--config", str(config), "--out", str(output),
+                    "--mode", "gpu_preflight", "--execute"]
+            env = {"CUDA_VISIBLE_DEVICES": "GPU-test-uuid",
+                   "CUBLAS_WORKSPACE_CONFIG": ":4096:8", "OMP_NUM_THREADS": "1",
+                   "MKL_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1"}
+            with (patch.dict(os.environ, env),
+                  patch.object(runner, "verify_gpu_idle") as idle,
+                  patch.object(runner, "claim_formal_approval") as claim,
+                  patch("scripts.meta65_joint_supervisor.supervise",
+                        return_value={"status": "preflight_completed"}) as spawn,
+                  patch("builtins.print")):
+                runner.main(args)
+            idle.assert_called_once_with("GPU-test-uuid")
+            spawn.assert_called_once()
+            self.assertEqual(spawn.call_args.kwargs["mode"], "gpu_preflight")
+            claim.assert_not_called()
+            self.assertFalse((root / "approval.json.consumed.json").exists())
+
+    def test_formal_rechecks_bound_gpu_raw_outputs_before_claim(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            output = root / "preflight"
+            for folder, count in (("identities", 15), ("predictions", 9)):
+                (output / folder).mkdir(parents=True)
+                for index in range(count):
+                    (output / folder / f"{index}.npz").write_bytes(b"synthetic")
+            verified = {"status": "preflight_verified", "mode": "gpu_preflight",
+                        "formal_result": False, "cells_verified": 9,
+                        "all_metrics_verified": True, "summary": None}
+            files = {
+                "status.json": {"status": "preflight_completed", "mode": "gpu_preflight",
+                                "cells": 0, "micro_cells": 9, "formal_result": False},
+                "verification.json": verified,
+                "environment.json": {"mode": "gpu_preflight", "CUDA_VISIBLE_DEVICES": "GPU-test-uuid",
+                                     "CUBLAS_WORKSPACE_CONFIG": ":4096:8", "python": sys.version,
+                                     "numpy": np.__version__, "torch": torch.__version__,
+                                     "cuda": torch.version.cuda},
+                "input-binding.json": {"schema": 1, "mode": "gpu_preflight"},
+                "microcells.json": {"schema": 1, "mode": "gpu_preflight",
+                                    "cells": [{} for _ in range(9)],
+                                    "none_checks": [{} for _ in range(9)]},
+                "phase.json": {"phase": "certification"},
+            }
+            for name, value in files.items():
+                (output / name).write_text(json.dumps(value))
+            sidecar = output.with_name("preflight.supervisor.json")
+            sidecar.write_text(json.dumps({"status": "preflight_completed", "failure": None,
+                                           "returncode": 0, "mode": "gpu_preflight",
+                                           "output": str(output)}))
+            archive = root / "archive"
+            archive.mkdir()
+            evidence_files = ("status.json", "verification.json", "input-binding.json",
+                              "microcells.json", "environment.json")
+            for name in evidence_files:
+                (archive / name).write_bytes((output / name).read_bytes())
+            (archive / "supervisor.json").write_bytes(sidecar.read_bytes())
+            artifact_sha = {str(path.relative_to(output)): runner.sha256(path)
+                            for path in output.rglob("*") if path.is_file()}
+            binding = {"gpu_preflight_output": str(output), "gpu_preflight_uuid": "GPU-test-uuid",
+                       "gpu_preflight_artifact_sha256": artifact_sha,
+                       "gpu_preflight_evidence_sha256": {
+                           str(Path(runner.GPU_PREFLIGHT_EVIDENCE_DIR) / name): runner.sha256(archive / name)
+                           for name in (*evidence_files, "supervisor.json")}}
+            with patch("scripts.meta65_joint_verify.verify", return_value=verified) as validate:
+                runner.verify_gpu_preflight_output(binding, allowed_root=root, archive_root=archive)
+                validate.assert_called_once_with(output)
+                (archive / "microcells.json").write_text(json.dumps({**files["microcells.json"],
+                                                                      "cells": [{"other": 1} for _ in range(9)]}))
+                mismatched = {**binding, "gpu_preflight_evidence_sha256": {
+                    **binding["gpu_preflight_evidence_sha256"],
+                    str(Path(runner.GPU_PREFLIGHT_EVIDENCE_DIR) / "microcells.json"):
+                        runner.sha256(archive / "microcells.json")}}
+                with self.assertRaisesRegex(ValueError, "GPU preflight"):
+                    runner.verify_gpu_preflight_output(mismatched, allowed_root=root, archive_root=archive)
+                (archive / "microcells.json").write_bytes((output / "microcells.json").read_bytes())
+                (output / "predictions/0.npz").write_bytes(b"changed")
+                with self.assertRaisesRegex(ValueError, "GPU preflight"):
+                    runner.verify_gpu_preflight_output(binding, allowed_root=root, archive_root=archive)
 
     def test_worker_peak_high_water_marks_fail_closed(self):
         limits = runner.FROZEN["limits"]

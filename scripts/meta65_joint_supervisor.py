@@ -24,7 +24,7 @@ from typing import Any
 GiB = 1024**3
 MiB = 1024**2
 PHASES = ("preparation", "evaluation", "certification")
-MODES = ("formal", "cpu_preflight")
+MODES = ("formal", "cpu_preflight", "gpu_preflight")
 
 _DEFAULTS = {
     "formal": {
@@ -40,6 +40,14 @@ _DEFAULTS = {
         "phase_seconds": {"preparation": 300.0, "evaluation": 120.0, "certification": 300.0},
         "rss_bytes": 4 * GiB,
         "vram_bytes": 0,
+        "output_bytes": 1 * GiB,
+        "poll_seconds": 1.0,
+    },
+    "gpu_preflight": {
+        "total_seconds": 900.0,
+        "phase_seconds": {"preparation": 300.0, "evaluation": 300.0, "certification": 300.0},
+        "rss_bytes": 4 * GiB,
+        "vram_bytes": 8 * GiB,
         "output_bytes": 1 * GiB,
         "poll_seconds": 1.0,
     },
@@ -313,7 +321,7 @@ def sample_process(child: Any, *, mode: str, output: Path | None = None) -> dict
         except (AttributeError, ValueError):
             pass
     vram = 0
-    if mode == "formal":
+    if mode in ("formal", "gpu_preflight"):
         vram = _gpu_bytes(pids)
         if output is not None:
             vram = max(vram, _worker_reported_vram(output))
@@ -679,7 +687,7 @@ def supervise(
                         and status.get("status") == "worker_complete"
                         and status.get("mode") == mode
                         and status.get("cells") == expected_cells and not isinstance(status.get("cells"), bool)
-                        and (mode != "cpu_preflight" or status.get("micro_cells") == 9 and not isinstance(status.get("micro_cells"), bool))
+                        and (mode == "formal" or status.get("micro_cells") == 9 and not isinstance(status.get("micro_cells"), bool))
                     )
                 except (OSError, ValueError, UnsafeOutputError):
                     valid = False
