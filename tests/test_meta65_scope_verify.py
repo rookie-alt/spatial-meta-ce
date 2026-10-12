@@ -12,7 +12,10 @@ from unittest.mock import patch
 
 import numpy as np
 
+from scripts import meta65_scope_runner as runner
+from scripts import meta65_scope_supervisor as supervisor
 from scripts import meta65_scope_verify as verify_module
+from scripts.meta65_scope_decision import decide
 
 ROOT = Path(__file__).resolve().parents[1]
 ARMS = ("R_head3", "T_all3")
@@ -78,7 +81,7 @@ class ScopeVerifierTests(unittest.TestCase):
     def save(self, name: str, payload: dict) -> None:
         write_json(self.root / name, payload)
 
-    def make_fixture(self, *, formal: bool = True) -> None:
+    def make_fixture(self, *, formal: bool = True, treatment_factor: float = 1.5) -> None:
         mode = "formal" if formal else "cpu_preflight"
         old = json.loads(
             (
@@ -172,8 +175,11 @@ class ScopeVerifierTests(unittest.TestCase):
                         factor = {
                             ("R_head3", "head3"): 2.0,
                             ("R_head3", "none"): 3.0,
-                            ("T_all3", "head3"): 1.5,
-                            ("T_all3", "none"): 1.6,
+                            ("T_all3", "head3"): treatment_factor,
+                            # Deployment baseline tracks the treatment so the
+                            # low4 negative-transfer guard never masks the
+                            # primary gate under test.
+                            ("T_all3", "none"): max(1.6, treatment_factor),
                         }[arm, operator]
                         pred = np.log(view["true"]) + np.log(factor)
                         pred_path = (
@@ -185,7 +191,7 @@ class ScopeVerifierTests(unittest.TestCase):
                             "operator": operator,
                             "database": db,
                             "run": run,
-                            "k": 20,
+                            "k20": 20,
                             "count": len(pred),
                             "identity_file": identity_path.name,
                             "identity_sha256": digest(identity_path),
@@ -213,7 +219,8 @@ class ScopeVerifierTests(unittest.TestCase):
         self.save(
             "reproduction.json",
             {
-                "status": "verified",
+                "status": "verified" if formal else "not_applicable",
+                "reproduction_verified": formal,
                 "anchors": anchors,
                 "old_b_metadata_file": str(old_path),
                 "old_b_metadata_sha256": digest(old_path),
@@ -272,7 +279,117 @@ class ScopeVerifierTests(unittest.TestCase):
         self.assertEqual(result["summary"]["decision"], "promising_single_seed_K20")
         self.assertAlmostEqual(result["summary"]["primary_improvement"], 0.25)
 
-    def test_preflight_is_not_formal_or_reproduction_or_candidate(self) -> None:
+    def test_decision_and_verifier_agree_at_the_ten_percent_boundary(self) -> None:
+        """Both classifiers must accept an improvement of exactly 10 percent."""
+        for factor, expected in ((1.8, "promising_single_seed_K20"), (1.8001, "no_candidate")):
+            with self.subTest(factor=factor):
+                self.make_fixture(treatment_factor=factor)
+                summary = verify_module.verify(self.root)["summary"]
+                cells = self.read("cells.json")["cells"]
+                provisional = decide(
+                    [runner.normalize_cell(cell) for cell in cells],
+                    engineering_verified=True,
+                    reproduction_verified=True,
+                )
+                self.assertEqual(summary["status"], provisional["status"])
+                self.assertEqual(summary["decision"], expected)
+                self.assertEqual(provisional["status"], expected)
+                self.assertEqual(summary["selected_arm"], provisional["selected_arm"])
+
+    def test_formal_summary_publishes_the_selected_arm_for_the_supervisor(self) -> None:
+        """The real verifier summary must expose the field the supervisor compares."""
+        result = verify_module.verify(self.root)
+        summary = result["summary"]
+        self.assertEqual(summary["status"], "promising_single_seed_K20")
+        self.assertEqual(summary["selected_arm"], "T_all3")
+        (self.root / "status.json").write_text(
+            json.dumps(
+                {
+                    "schema": 1,
+                    "status": "worker_complete",
+                    "mode": "formal",
+                    "cells": 60,
+                    "formal_result": True,
+                }
+            ),
+            encoding="utf-8",
+        )
+        write_json(self.root / "verification.json", result)
+        provisional = {
+            "status": summary["status"],
+            "selected_arm": summary["selected_arm"],
+        }
+        write_json(self.root / "decision.provisional.json", provisional)
+        self.assertIsNone(supervisor._completion(self.root, "formal"))
+        write_json(
+            self.root / "decision.provisional.json",
+            {**provisional, "selected_arm": None},
+        )
+        self.assertEqual(supervisor._completion(self.root, "formal"), "invalid_decision")
+
+    def _run_real_certification(self) -> None:
+        """Mirror the worker's write of the returned certification."""
+        before = {"same": "evidence"}
+        cells = self.read("cells.json")["cells"]
+        with (
+            patch(
+                "scripts.precision_screen_evidence.source_evidence",
+                return_value=before,
+            ),
+            patch(
+                "scripts.precision_screen_evidence.historical_sources",
+                return_value=before,
+            ),
+            patch.object(runner.contract, "recheck"),
+        ):
+            verified = runner.certify(
+                self.root, "formal", cells, {}, {}, before, before
+            )
+        write_json(self.root / "verification.json", verified)
+
+    def _mark_worker_complete(self) -> None:
+        write_json(
+            self.root / "status.json",
+            {
+                "schema": 1,
+                "status": "worker_complete",
+                "mode": "formal",
+                "cells": 60,
+                "formal_result": True,
+            },
+        )
+
+    def test_real_certification_publishes_candidate_only_with_consistent_chain(self) -> None:
+        """True certify() -> true summary -> true supervisor publication chain."""
+        # Exactly 10 percent improvement: the weakest matrix that may publish.
+        self.make_fixture(treatment_factor=1.8)
+        self._run_real_certification()
+        verified = self.read("verification.json")
+        provisional = self.read("decision.provisional.json")
+        self.assertEqual(provisional["status"], "promising_single_seed_K20")
+        self.assertEqual(provisional["selected_arm"], "T_all3")
+        self.assertEqual(verified["summary"]["status"], provisional["status"])
+        self.assertEqual(
+            verified["summary"]["selected_arm"], provisional["selected_arm"]
+        )
+        self.assertGreaterEqual(provisional["relative_improvement"], 0.10)
+        self.assertFalse((self.root / "decision.json").exists())
+        self._mark_worker_complete()
+        self.assertIsNone(supervisor._completion(self.root, "formal"))
+
+    def test_real_certification_leaves_unqualified_matrix_unpublished(self) -> None:
+        self.make_fixture(treatment_factor=1.9)
+        self._run_real_certification()
+        provisional = self.read("decision.provisional.json")
+        self.assertEqual(provisional["status"], "no_candidate")
+        self.assertIsNone(provisional["selected_arm"])
+        self.assertIsNone(self.read("verification.json")["summary"]["selected_arm"])
+        self._mark_worker_complete()
+        self.assertIsNone(supervisor._completion(self.root, "formal"))
+        self.assertFalse((self.root / "decision.json").exists())
+
+
+
         self.make_fixture(formal=False)
         result = verify_module.verify(self.root, formal=False)
         self.assertFalse(result["formal_result"])

@@ -573,7 +573,9 @@ def _decision(cells: list[dict]) -> dict:
     }
     r, t = macros[ARMS[0]], macros[ARMS[1]]
     improvement = 1.0 - t / r if r is not None and t is not None and r > 0 else None
-    gates = {"primary_10_percent": improvement is not None and improvement >= 0.1}
+    # Multiplicative and inclusive, matching the primary classifier: the ratio
+    # form (1 - t/r >= 0.1) rejects an exact 10 percent improvement.
+    gates = {"primary_10_percent": improvement is not None and t <= (1.0 - 0.1) * r}
     for db in DATABASES:
         gates[f"{db}_all_four_q50_q95"] = all(
             bounded(
@@ -596,6 +598,9 @@ def _decision(cells: list[dict]) -> dict:
     return {
         "status": decision,
         "decision": decision,
+        # The supervisor cross-checks this field against the provisional
+        # decision; only a promising matrix selects the global treatment arm.
+        "selected_arm": ARMS[1] if decision == "promising_single_seed_K20" else None,
         "primary_macro": macros,
         "primary_improvement": improvement,
         "gates": gates,

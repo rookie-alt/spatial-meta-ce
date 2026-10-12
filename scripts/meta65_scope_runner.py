@@ -24,6 +24,10 @@ encode_identity = joint.encode_identity
 state_digest = joint.state_digest
 
 
+class ReproductionBlocked(ValueError):
+    """The read-only old-B reproduction gate stopped the run before T started."""
+
+
 def environment(mode: str) -> dict:
     if mode not in ("formal", "cpu_preflight", "gpu_preflight"):
         raise ValueError("Unknown execution mode")
@@ -234,7 +238,14 @@ def train_and_evaluate(output: Path, config: dict, data: dict, mode: str, plans:
             cells = evaluate_operator(output, model, stores, identities, selected, arm=arm,
                                       operator=operator, mode=mode, device=device, deadline=deadline, cells=cells)
             if arm == contract.ARMS[0] and operator == "head3":
-                reproduced = verify_reproduction(output, cells, formal=formal)
+                try:
+                    reproduced = verify_reproduction(output, cells, formal=formal)
+                except ValueError as error:
+                    # Only the gate's own contract failure is a block; unrelated
+                    # errors (I/O, budget) must keep propagating as-is.
+                    raise ReproductionBlocked(
+                        f"{type(error).__name__}: {error}"
+                    ) from error
                 contract.write_json(output / "reproduction.json", reproduced)
         del model
     return cells
@@ -283,17 +294,24 @@ def worker(output: Path, mode: str, config_path: Path, *, root: Path = ROOT,
             "micro_cells": len(cells) if mode != "formal" else 0, "formal_result": mode == "formal"})
         return verified
     except BaseException as exc:
-        contract.write_json(output / "status.json", {"schema": 1, "status": "failed", "mode": mode,
-                           "failure": f"{type(exc).__name__}: {exc}", "formal_result": False})
+        # A blocked reference reproduction is not a generic crash: name it so the
+        # supervisor and later readers see that T never started by design.
+        blocked = isinstance(exc, ReproductionBlocked)
+        contract.write_json(output / "status.json", {
+            "schema": 1, "status": "reproduction_blocked" if blocked else "failed",
+            "mode": mode, "failure": f"{type(exc).__name__}: {exc}",
+            "stage": "reproduction" if blocked else None, "formal_result": False})
         if binding is not None:
             from scripts.precision_screen_evidence import source_evidence
             try:
                 contract.write_json(output / "source_after.json", source_evidence(data, historical))
                 contract.recheck(binding)
             except Exception as audit_error:
-                contract.write_json(output / "status.json", {"schema": 1, "status": "failed", "mode": mode,
-                    "failure": f"{type(exc).__name__}: {exc}", "audit_failure": str(audit_error),
-                    "formal_result": False})
+                contract.write_json(output / "status.json", {
+                    "schema": 1, "status": "reproduction_blocked" if blocked else "failed",
+                    "mode": mode, "failure": f"{type(exc).__name__}: {exc}",
+                    "stage": "reproduction" if blocked else None,
+                    "audit_failure": str(audit_error), "formal_result": False})
         raise
 
 

@@ -506,6 +506,91 @@ class ScopeIntegrationTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "supervisor"):
                 runner.require_supervisor("cpu_preflight")
 
+    def test_reproduction_failure_is_named_and_diagnosed(self) -> None:
+        """A blocked R reproduction must not be reported as a generic failure."""
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            data = {"data_root": str(root / "price"), "cache_root": str(root / "cache"),
+                    "splits": {"train": list(contract.TRAIN), "validation": list(contract.DATABASES),
+                               "test": list(contract.TARGETS)}}
+            config = root / "config.json"
+            contract.write_json(config, contract.FROZEN)
+            datap = root / "data.json"
+            contract.write_json(datap, data)
+            env = {"META65_SCOPE_SUPERVISED_MODE": "cpu_preflight",
+                   "META65_SCOPE_SUPERVISOR_PID": str(os.getppid())}
+            with ExitStack() as stack:
+                stack.enter_context(patch.dict(os.environ, env))
+                stack.enter_context(patch.object(contract, "load_config", return_value=contract.FROZEN))
+                stack.enter_context(patch.object(runner, "environment", return_value={"mode": "cpu_preflight"}))
+                stack.enter_context(patch.object(contract, "input_binding", return_value=({}, {}, {}, {}, {}, data)))
+                stack.enter_context(patch.object(runner, "save_binding"))
+                train = stack.enter_context(
+                    patch.object(runner, "train_and_evaluate")
+                )
+                train.side_effect = runner.ReproductionBlocked(
+                    "ValueError: Reproduction Q95 tolerance failed"
+                )
+                out = root / "blocked"
+                with self.assertRaises(runner.ReproductionBlocked):
+                    runner.worker(out, "cpu_preflight", config, data_config_path=datap)
+                status = contract.read_json(out / "status.json")
+                self.assertEqual(status["status"], "reproduction_blocked")
+                self.assertFalse(status["formal_result"])
+                self.assertIn("tolerance", status["failure"])
+                # An unrelated error stays a generic failure.
+                train.side_effect = RuntimeError("unrelated crash")
+                other = root / "unrelated"
+                with self.assertRaisesRegex(RuntimeError, "unrelated"):
+                    runner.worker(other, "cpu_preflight", config, data_config_path=datap)
+                self.assertEqual(
+                    contract.read_json(other / "status.json")["status"], "failed"
+                )
+
+    def test_reproduction_block_is_raised_by_the_real_gate(self) -> None:
+        """The real evaluation gate names its own failure type."""
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory).resolve()
+            out.mkdir(exist_ok=True)
+            before = {db: {"manifest_hash": "a" * 64} for db in (*contract.TRAIN, *contract.DATABASES)}
+            old = contract.read_json(ROOT / contract.PROVENANCE[3])
+
+            def train(config: dict, data: dict, armout: Path, device: str, deadline: object) -> tuple:
+                armout.mkdir(parents=True, exist_ok=True)
+                return object(), {**old, "config": config, "metadata": {**old["metadata"],
+                    "manifest_hashes": {db: v["manifest_hash"] for db, v in before.items()}}}
+
+            def evaluate(*args: object, **kwargs: object) -> list:
+                return [*kwargs["cells"], {"arm": kwargs["arm"], "operator": kwargs["operator"]}]
+
+            with ExitStack() as stack:
+                stack.enter_context(patch.object(runner, "prepare_identities", return_value=({}, {}, {})))
+                stack.enter_context(patch.object(contract, "read_json", return_value=old))
+                stack.enter_context(patch.object(contract, "verify_reference_training"))
+                stack.enter_context(patch.object(contract, "verify_pairing"))
+                stack.enter_context(patch.object(contract, "sha256", return_value="0" * 64))
+                stack.enter_context(patch.object(screen, "train_arm", side_effect=train))
+                stack.enter_context(patch.object(runner, "evaluate_operator", side_effect=evaluate))
+                stack.enter_context(patch.object(runner, "phase"))
+                reproduction = stack.enter_context(
+                    patch(
+                        "scripts.meta65_scope_verify.verify_reproduction",
+                        side_effect=ValueError("Reproduction identity differs: true"),
+                    )
+                )
+                with self.assertRaises(runner.ReproductionBlocked) as caught:
+                    runner.train_and_evaluate(
+                        out, contract.FROZEN, {}, "cpu_preflight", {}, {}, before, lambda: None
+                    )
+                self.assertIn("identity", str(caught.exception))
+                self.assertIsInstance(caught.exception, ValueError)
+                # An unrelated error must keep its own type and stay unflagged.
+                reproduction.side_effect = OSError("cache read failed")
+                with self.assertRaises(OSError):
+                    runner.train_and_evaluate(
+                        out, contract.FROZEN, {}, "cpu_preflight", {}, {}, before, lambda: None
+                    )
+
 
 if __name__ == "__main__":
     unittest.main()
