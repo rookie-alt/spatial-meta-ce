@@ -3,8 +3,8 @@
   "experiment": "meta65-training-scope-20261011",
   "date": "2026-10-11",
   "branch": "feat/meta65-training-scope-20261011",
-  "status": "binding_verified_waiting_execution_confirmation",
-  "phase": "before_formal_one_shot_v2",
+  "status": "blocked_no_idle_gpu6",
+  "phase": "formal_v2_preflight_blocked",
   "execution_code_commit": "42bd9c89ff82a1f00d87bc690eea80724dcfd12d",
   "gate_fix": {
     "reason": "verify_launch_binding could never certify real preflight artifacts: the gate read conventions the runner/supervisor never write",
@@ -124,5 +124,11 @@
     "formal_result": false,
     "controlled_statistical_conclusion": null
   },
-  "next_step": "Present execution commit 42bd9c89ff82a1f00d87bc690eea80724dcfd12d and binding SHA c4c299e6ce1e2f782976aa2e87a9343a33bcc9b37ee8f5c37cc9bedc99e8dfcc and request one-shot execution confirmation. Only after explicit confirmation: re-check GPU6 idle and frozen inputs, create a fresh one-shot approval beside a new output directory, run R first with the 15 K20 old-B reproduction gate (stop as reproduction_blocked on failure, do not start T), then T and the 60-cell matrix."
+  "gpu6_blocked_snapshot": {
+    "uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+    "memory_used_mib": 11454,
+    "utilization_percent": 79,
+    "note": "One-shot nvidia-smi query at the execution gate; foreign workload, not this project. No approval created, no supervisor started. The user chose to wait for their own re-check instruction; no polling or queueing."
+  },
+  "next_step": "Execution is confirmed for execution commit 42bd9c89ff82a1f00d87bc690eea80724dcfd12d and binding SHA c4c299e6ce1e2f782976aa2e87a9343a33bcc9b37ee8f5c37cc9bedc99e8dfcc, but GPU6 was busy at the gate. Wait for the user's explicit re-check instruction; then re-check GPU6 idle, revalidate frozen inputs, create a fresh one-shot approval beside a new output directory, and run the two-arm formal once (R first with the 15 K20 old-B reproduction gate, stop as reproduction_blocked on failure before T)."
 }
