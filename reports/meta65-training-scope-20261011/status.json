@@ -3,9 +3,9 @@
   "experiment": "meta65-training-scope-20261011",
   "date": "2026-10-11",
   "branch": "feat/meta65-training-scope-20261011",
-  "status": "formal_failed_rss_limit",
-  "phase": "formal_attempt_consumed",
-  "execution_code_commit": "7cb54c77baf2bb96de7ac0d6797fa39344ea9551",
+  "status": "binding_verified_waiting_execution_confirmation",
+  "phase": "before_formal_one_shot_v2",
+  "execution_code_commit": "42bd9c89ff82a1f00d87bc690eea80724dcfd12d",
   "gate_fix": {
     "reason": "verify_launch_binding could never certify real preflight artifacts: the gate read conventions the runner/supervisor never write",
     "defects": [
@@ -66,10 +66,25 @@
     "utilization_percent": 0,
     "note": "One-shot nvidia-smi query before the single gpu_preflight launch; not continuous monitoring."
   },
+  "re_freeze_20261012": {
+    "reason": "measured R training RSS is asymptotic (~3.97 GiB training-side at 4000 steps) plus 0.6-0.7 GiB preparation payload; the frozen 4 GiB cap was a planning miss (probe report: memory-probe-20261012R.json, progress section 72)",
+    "approved_by_user": "12GiB re-freeze",
+    "changes": ["scripts/meta65_scope_contract.py FROZEN.limits.rss_bytes 12GiB + check_cell_peaks",
+                "configs/meta65_scope.json limits.rss_bytes 12884901888",
+                "scripts/meta65_scope_supervisor.py limits_for derived from contract (was hardcoded 4GiB)",
+                "scripts/meta65_scope_runner.py cell peaks checked against scope contract (joint check was bound to old 4GiB)"],
+    "training_math_unchanged": true,
+    "local_regression": {"tests": 1097, "skipped": 16, "status": "passed"},
+    "new_preflights": {
+      "cpu": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/cpu-preflight-20261012",
+      "gpu": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/gpu-preflight-20261012",
+      "both": "preflight_completed / preflight_verified / 12 micro cells"
+    }
+  },
   "launch_binding": {
     "created": true,
     "path": "reports/meta65-training-scope-20261011/launch-binding.json",
-    "sha256": "cc6eab94451bfed0345d316b9e0157cd01cec86fa578f342afeead660a80fbc6",
+    "sha256": "c4c299e6ce1e2f782976aa2e87a9343a33bcc9b37ee8f5c37cc9bedc99e8dfcc",
     "launch_ready": true,
     "execution_authorized": false,
     "formal_executed": false,
@@ -109,5 +124,5 @@
     "formal_result": false,
     "controlled_statistical_conclusion": null
   },
-  "next_step": "Await the user's choice among: (A) measure the RSS trajectory, then re-freeze a higher rss budget and repeat the full re-certification cycle; (B) if growth is unbounded, fix the training kernel without changing numerics (R must still reproduce old B) and re-certify; (C) archive this failure and stop. No retry, budget expansion, or kernel change is executed without explicit approval."
+  "next_step": "Present execution commit 42bd9c89ff82a1f00d87bc690eea80724dcfd12d and binding SHA c4c299e6ce1e2f782976aa2e87a9343a33bcc9b37ee8f5c37cc9bedc99e8dfcc and request one-shot execution confirmation. Only after explicit confirmation: re-check GPU6 idle and frozen inputs, create a fresh one-shot approval beside a new output directory, run R first with the 15 K20 old-B reproduction gate (stop as reproduction_blocked on failure, do not start T), then T and the 60-cell matrix."
 }
