@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "probe": "meta65-scope-r-memory",
+  "steps_requested": 1500,
+  "device": "cuda",
+  "cuda_visible_devices": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+  "returncode": 0,
+  "failure": null,
+  "elapsed": 550.6494896081276,
+  "samples": [
+    {
+      "t": 142.51,
+      "rss_bytes": 2409250816,
+      "step": 0
+    },
+    {
+      "t": 170.41,
+      "rss_bytes": 2797584384,
+      "step": 0
+    },
+    {
+      "t": 197.81,
+      "rss_bytes": 3100131328,
+      "step": 0
+    },
+    {
+      "t": 226.1,
+      "rss_bytes": 3328249856,
+      "step": 0
+    },
+    {
+      "t": 255.58,
+      "rss_bytes": 3520253952,
+      "step": 0
+    },
+    {
+      "t": 284.81,
+      "rss_bytes": 3663896576,
+      "step": 0
+    },
+    {
+      "t": 312.97,
+      "rss_bytes": 3778088960,
+      "step": 0
+    },
+    {
+      "t": 341.11,
+      "rss_bytes": 3864793088,
+      "step": 0
+    },
+    {
+      "t": 369.42,
+      "rss_bytes": 3937439744,
+      "step": 0
+    },
+    {
+      "t": 399.37,
+      "rss_bytes": 3999068160,
+      "step": 0
+    },
+    {
+      "t": 427.43,
+      "rss_bytes": 4047708160,
+      "step": 0
+    },
+    {
+      "t": 456.2,
+      "rss_bytes": 4086628352,
+      "step": 0
+    },
+    {
+      "t": 484.36,
+      "rss_bytes": 4117430272,
+      "step": 0
+    },
+    {
+      "t": 513.35,
+      "rss_bytes": 4143374336,
+      "step": 0
+    },
+    {
+      "t": 543.29,
+      "rss_bytes": 4166422528,
+      "step": 0
+    },
+    {
+      "t": 544.3,
+      "rss_bytes": 992407552,
+      "step": 0
+    },
+    {
+      "t": 549.64,
+      "rss_bytes": 0,
+      "step": 0
+    },
+    {
+      "t": 550.64,
+      "rss_bytes": 0,
+      "step": 0
+    }
+  ],
+  "cleanup_verified": true,
+  "signals": [],
+  "final_step_seen": 0,
+  "output_bytes": 5522616
+}
