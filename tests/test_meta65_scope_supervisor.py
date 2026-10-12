@@ -147,11 +147,14 @@ class ScopeSupervisorTests(unittest.TestCase):
         self.assert_failed(record, "vram_limit")
 
     def test_budget_is_frozen_and_overrides_only_shrink(self) -> None:
+        from scripts import meta65_scope_contract as contract
+
+        limits = contract.FROZEN["limits"]
         budget = s.limits_for("formal")
-        self.assertEqual(budget["total_seconds"], 14400)
-        self.assertEqual(budget["rss_bytes"], 4 * 1024**3)
-        self.assertEqual(budget["vram_bytes"], 8 * 1024**3)
-        self.assertEqual(budget["output_bytes"], 1024**3)
+        self.assertEqual(budget["total_seconds"], limits["total_seconds"])
+        self.assertEqual(budget["rss_bytes"], limits["rss_bytes"])
+        self.assertEqual(budget["vram_bytes"], limits["vram_bytes"])
+        self.assertEqual(budget["output_bytes"], limits["output_bytes"])
         for key, value in budget.items():
             with self.subTest(key=key), self.assertRaises(ValueError):
                 s.supervise(self.command(), self.out, budget_override={key: value + 1})

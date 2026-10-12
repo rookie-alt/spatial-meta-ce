@@ -104,7 +104,7 @@ def evaluate_cell(model: Any, store: Any, query: list[int], support: list[int],
               if device == "cuda" else 0,
               "peak_rss_bytes": int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
               * (1 if sys.platform == "darwin" else 1024)}
-    joint.check_cell_peaks(record)
+    contract.check_cell_peaks(record)
     return np.concatenate(predictions), np.concatenate(labels), record
 
 
@@ -215,7 +215,7 @@ def train_and_evaluate(output: Path, config: dict, data: dict, mode: str, plans:
                  * (1 if sys.platform == "darwin" else 1024),
                  "peak_vram_bytes": int(max(torch.cuda.max_memory_allocated(), torch.cuda.max_memory_reserved()))
                  if device == "cuda" else 0}
-        joint.check_cell_peaks(peaks)
+        contract.check_cell_peaks(peaks)
         record = {**record, **peaks, "arm": arm, "endpoint_plan_digest": contract.digest(plans)}
         if record["metadata"]["manifest_hashes"] != {db: info["manifest_hash"] for db, info in before.items()}:
             raise ValueError("Training sources differ from authenticated cache")

@@ -19,6 +19,7 @@ from typing import Any
 if __package__ in (None, ""):  # Direct invocation uses the same module identity.
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts import meta65_joint_supervisor as low
+from scripts import meta65_scope_contract as contract
 
 artifact_paths = low.artifact_paths
 output_bytes = low.output_bytes
@@ -34,9 +35,11 @@ Table = dict[int, tuple[Row, str]]
 def limits_for(mode: str, override: dict[str, Any] | None = None) -> dict[str, float]:
     if mode not in MODES:
         raise ValueError(f"unsupported mode: {mode}")
-    frozen = {"total_seconds": 14400.0 if mode == "formal" else 900.0, "rss_bytes": float(4 * low.GiB),
-              "vram_bytes": float(8 * low.GiB), "output_bytes": float(low.GiB),
-              "poll_seconds": 1.0}
+    limits = contract.FROZEN["limits"]
+    total = limits["total_seconds"] if mode == "formal" else contract.FROZEN[mode]["total_seconds"]
+    frozen = {"total_seconds": float(total), "rss_bytes": float(limits["rss_bytes"]),
+              "vram_bytes": float(limits["vram_bytes"]),
+              "output_bytes": float(limits["output_bytes"]), "poll_seconds": 1.0}
     if override is not None and not isinstance(override, dict):
         raise ValueError("budget_override must be a mapping")  # noqa: TRY004
     values = override or {}

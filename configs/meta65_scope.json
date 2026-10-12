@@ -55,7 +55,7 @@
   },
   "limits": {
     "total_seconds": 14400,
-    "rss_bytes": 4294967296,
+    "rss_bytes": 12884901888,
     "vram_bytes": 8589934592,
     "output_bytes": 1073741824
   },

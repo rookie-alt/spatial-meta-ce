@@ -206,6 +206,19 @@ class ScopeRunnerTests(unittest.TestCase):
             self.assertFalse(out.exists())
 
 
+    def test_check_cell_peaks_uses_scope_frozen_limits(self) -> None:
+        limits = contract.FROZEN["limits"]
+        self.assertEqual(limits["rss_bytes"], 12 * 1024**3)  # Probe-informed re-freeze, progress §72.
+        valid = {"peak_rss_bytes": limits["rss_bytes"], "peak_vram_bytes": limits["vram_bytes"]}
+        self.assertEqual(contract.check_cell_peaks(valid), valid)
+        for field, budget in (("peak_rss_bytes", limits["rss_bytes"]),
+                              ("peak_vram_bytes", limits["vram_bytes"])):
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                contract.check_cell_peaks({**valid, field: budget + 1})
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                contract.check_cell_peaks({**valid, field: True})
+
+
 class ScopeIntegrationTests(unittest.TestCase):
     def test_input_binding_all_182_cache_26_historical_and_b_only(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

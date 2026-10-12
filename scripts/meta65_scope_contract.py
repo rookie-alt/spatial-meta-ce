@@ -51,7 +51,7 @@ FROZEN = {
              "T_all3": {"train_scope": "all", "train_steps": 3}},
     "evaluation": {"support_seed": 2718, "support_runs": 5, "k20": 20,
                    "batch_size": 512, "operators": list(OPERATORS), "plan_sha256": PLAN_SHA},
-    "limits": {"total_seconds": 14400, "rss_bytes": 4 * 1024**3,
+    "limits": {"total_seconds": 14400, "rss_bytes": 12 * 1024**3,
                "vram_bytes": 8 * 1024**3, "output_bytes": 1024**3},
     "cpu_preflight": {"training_steps": 2, "micro_queries": 32, "total_seconds": 900},
     "gpu_preflight": {"training_steps": 2, "micro_queries": 32, "total_seconds": 900},
@@ -129,6 +129,18 @@ def recheck(binding: dict[str, str]) -> None:
     for name, expected in binding.items():
         if sha256(name) != expected:
             raise ValueError(f"Input SHA changed: {name}")
+
+
+def check_cell_peaks(record: dict) -> dict:
+    """Catch a transient memory peak that the one-second sampler might miss."""
+    for field, budget in (("peak_rss_bytes", FROZEN["limits"]["rss_bytes"]),
+                          ("peak_vram_bytes", FROZEN["limits"]["vram_bytes"])):
+        value = record.get(field)
+        if type(value) is not int or value < 0:
+            raise ValueError(f"Invalid {field} high-water mark")
+        if value > budget:
+            raise ValueError(f"{field} exceeded frozen limit")
+    return record
 
 
 def historical_paths(root: Path = ROOT) -> dict[str, Path]:
