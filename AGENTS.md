@@ -9,7 +9,8 @@
 
 1. [项目记忆索引](memory/MEMORY.md) 与 [项目背景及范围](memory/spatial-meta-ce-project.md)。
 2. [进度与下一步](实验文档/99-进度与下一步.md)，再核对当前 `git status`、最新提交和对应结果 JSON。
-3. 根据任务阅读 [实验总览](实验文档/00-实验总览.md)、[实验协议](docs/protocol.md) 和相关实验正式协议。
+3. 执行、分析或审查任务前，必读 [自动子代理委派、方案审查与验证](memory/spatial-meta-ce-agent-delegation.md)；按该记忆中的用户授权与边界判断是否自动委派。
+4. 根据任务阅读 [实验总览](实验文档/00-实验总览.md)、[实验协议](docs/protocol.md) 和相关实验正式协议。
 
 按需补读：
 

@@ -17,6 +17,7 @@
 | [证据图谱更新与历史查询经验](spatial-meta-ce-graphify.md) | `spatial-meta-ce-graphify.md` |
 | [重试和轮询限制](stop-after-three-repeats.md) | `stop-after-three-repeats.md` |
 | [精度首轮计划与用户暂缓训练](precision-screen-20261005.md) | 本项目新增，非 Claude 原记忆副本 |
+| [自动子代理委派、方案审查与验证](spatial-meta-ce-agent-delegation.md) | 2026-10-07 用户确认的项目执行约定，非 Claude 原记忆副本 |
 
 [证据与状态入口](current-state.md) 为本次新增，不是 Claude 原记忆的逐字副本；它仅记录恢复证据的方法与明确日期的已提交历史基线。
 
