@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "kind": "documentation_correction",
+  "date": "2026-10-13",
+  "corrects": {
+    "path": "reports/meta65-training-scope-20261011/status.json",
+    "sha256": "a0309e360b53532cd9dae5be5c1379a47cf6d3f572cb1517295b62cf79bf6b6a",
+    "mutated": false,
+    "note": "原始状态文件按证据保全原则保持原样，未做任何改写。本文件只记录其顶层字段与后续记录之间的偏差。"
+  },
+  "reason": "接手核对发现该文件的顶层 status 字段容易被误读为最新状态：它记录的是正式尝试之前的门禁快照，而正式尝试此后已实际执行并失败；且第75、76节的两项事实未反映在该文件中。",
+  "deviations": [
+    {
+      "id": "top-level-status-understates-execution",
+      "file_says": {
+        "status": "blocked_no_idle_gpu6",
+        "phase": "formal_v2_preflight_blocked"
+      },
+      "same_file_also_says": {
+        "formal_attempt_20261012.executed": true,
+        "formal_attempt_20261012.result": "failed",
+        "formal_attempt_20261012.failure": "rss_limit",
+        "formal_attempt_20261012.cells_completed": 0,
+        "formal_attempt_20261012.cells_required": 60
+      },
+      "impact": "只读顶层 status 会得出“从未启动正式尝试”的结论，与同文件内嵌的失败记录矛盾。实际状态是：正式尝试已执行并在 rss_limit 处终止，0/60 格、复现锚 0/15，T 未启动。",
+      "authoritative": "同文件 formal_attempt_20261012 段 + 实验文档/99-进度与下一步.md 第71节"
+    },
+    {
+      "id": "missing-p0-fixes-that-void-the-binding",
+      "file_says": {
+        "launch_binding.sha256": "c4c299e6ce1e2f782976aa2e87a9343a33bcc9b37ee8f5c37cc9bedc99e8dfcc",
+        "launch_binding.launch_ready": true,
+        "formal_attempt_20261012.approval_consumed": true,
+        "execution_code_commit": "42bd9c89ff82a1f00d87bc690eea80724dcfd12d"
+      },
+      "later_fact": "提交 5f0fd2c（分支 feat/meta65-release-certification-20261012）修复两项 P0：verifier summary 缺少 selected_arm 导致任何真实成功候选都会被父监督判为 invalid_decision；10% 边界两分类器不一致（1-T/R 浮点得 0.09999999999999998）导致恰好10%改善被误拒。修复改动 meta65_scope_verify.py 与 meta65_scope_runner.py，二者均在 contract.CODE_FILES 冻结清单内，因此执行闭包已改变。",
+      "impact": "该 binding 与已消耗的一次性 approval 均不可沿用；须重新部署、重跑双预检、重建 binding 并冻结新 SHA，且需用户重新确认新提交与新 binding SHA。execution_code_commit 42bd9c8 是修复前代码，不能当作当前可执行代码。",
+      "authoritative": "实验文档/99-进度与下一步.md 第75节"
+    },
+    {
+      "id": "missing-eight-gpu-busy-snapshot",
+      "file_says": {
+        "gpu6_blocked_snapshot.memory_used_mib": 11454,
+        "gpu6_blocked_snapshot.utilization_percent": 79
+      },
+      "later_fact": "2026-10-12 现场重查：8 张卡全部被非本项目进程占用（/gly/ml/cvpr27/FLPR 联邦多模态训练，8 个 fed_multimodal.py，已运行 3h13m+）；GPU6 为 13411 MiB / 100% 利用率。",
+      "impact": "文件中的 GPU 占用快照已被更晚的现场记录取代。该记录本身也只是 2026-10-12 的时点观测，不代表当前状态；本轮未连接服务器核实。",
+      "authoritative": "实验文档/99-进度与下一步.md 第76节"
+    },
+    {
+      "id": "next-step-field-superseded",
+      "file_says": "next_step 段要求：等用户复查指令后重查 GPU6 空闲、重新验证冻结输入、在新输出目录旁创建新的一次性 approval、运行一次双臂正式矩阵（R 先带 15 个 K20 旧B复现门，失败则以 reproduction_blocked 停止且不启动 T）。",
+      "later_fact": "该顺序已被第76节的三步取代：① 单次运行 4000 步只读探针（--steps 4000，硬上限 3600 秒/16GiB/2GiB，不进认证链），把“渐近平台”从外推升级为实测；② 据实测峰值决定 12GiB 上限是否成立；③ 再推进部署→双预检→重建 binding→冻结新 SHA。",
+      "impact": "直接照 status.json 的 next_step 执行会跳过探针步骤，先改预算还是先认证的顺序会反过来，可能再次作废 binding。",
+      "authoritative": "实验文档/99-进度与下一步.md 第76节"
+    }
+  ],
+  "preserved_facts_not_changed": [
+    "正式矩阵 0/60 格、复现锚 0/15，T 未启动。",
+    "formal_attempt_20261012 为 failed/rss_limit，峰值 4298600448 B 对上限 4294967296 B，耗时 313.81 秒。",
+    "12GiB RSS 重冻结已获用户批准，双预检均为 preflight_completed / preflight_verified / 12 micro cells。",
+    "第72节的“4000步渐近平台”仍为外推而非实测；memory-probe-20261012R.json 全部18个样本 step 字段为 0，已在第75节改正口径。"
+  ],
+  "scope": "仅文档口径更正。未连接服务器，未重跑训练、推理、预检或数据库计数，未读取目标库，未占用 GPU，未修改任何代码、配置、冻结协议或既有结果文件。",
+  "verification": [
+    "shasum -a 256 reports/meta65-training-scope-20261011/status.json = a0309e360b53532cd9dae5be5c1379a47cf6d3f572cb1517295b62cf79bf6b6a（更正前后一致）",
+    "第71、75、76节原文已逐条核对本文件四项偏差"
+  ]
+}
