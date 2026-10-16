@@ -20,7 +20,7 @@ from scripts.audit_input_mapping import (
     source_databases,
 )
 from spatial_meta_ce.features import write_cache
-from spatial_meta_ce.manifests import file_hash, read_workload
+from spatial_meta_ce.manifests import digest, file_hash, read_workload
 
 
 class InputAuditTests(unittest.TestCase):
@@ -206,11 +206,17 @@ class InputAuditIntegrationTests(unittest.TestCase):
             self.assertEqual(report['totals']['recreate_source_features'], 2)
             self.assertEqual(report['by_predicate']['EQ']['errors']['recreate_cache_features'], 2)
 
-    def test_cache_and_source_corruption_are_reported(self):
+    def test_legacy_cache_and_source_corruption_are_reported(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             data, _, _ = audit_fixture(root)
             cache = root / 'cache/pretrain/a'
+            manifest_path = cache / 'manifest.json'
+            manifest = json.loads(manifest_path.read_text())
+            manifest['schema'] = 1
+            manifest.pop('array_sha256')
+            manifest['content_hash'] = digest({k: v for k, v in manifest.items() if k != 'content_hash'})
+            manifest_path.write_text(json.dumps(manifest))
             cards = np.load(cache / 'cards.npy')
             np.save(cache / 'cards.npy', cards + 1)
             groups = np.load(cache / 'group0.npy')
@@ -220,11 +226,23 @@ class InputAuditIntegrationTests(unittest.TestCase):
             np.save(cache / 'offsets.npy', offsets)
             output = root / 'audit'
             output.mkdir()
-            report = audit_database(data, 'a', output, recreate=False)
+            with self.assertWarnsRegex(RuntimeWarning, 'Legacy.*array'):
+                report = audit_database(data, 'a', output, recreate=False)
             self.assertFalse(report['alignment_passed'])
             for key in ('cache_cards', 'source_cache_features',
                         'source_cache_counts', 'sql_cache_counts'):
                 self.assertEqual(report['totals'][key], 2)
+
+    def test_v2_cache_corruption_is_rejected_before_audit(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            data, _, _ = audit_fixture(root)
+            cards = root / 'cache/pretrain/a/cards.npy'
+            np.save(cards, np.load(cards) + 1)
+            output = root / 'audit'
+            output.mkdir()
+            with self.assertRaisesRegex(ValueError, 'array.*hash'):
+                audit_database(data, 'a', output, recreate=False)
 
     def test_recreation_failure_does_not_drop_rows(self):
         with tempfile.TemporaryDirectory() as temporary:

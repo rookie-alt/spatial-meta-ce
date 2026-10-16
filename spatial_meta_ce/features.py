@@ -10,7 +10,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from .data import GROUP_DIMS, TRANSFORM_VERSION
+from .data import CACHE_ARRAY_FILES, GROUP_DIMS, TRANSFORM_VERSION, FeatureStore
 from .manifests import digest, file_hash, read_workload
 
 COUNT_KEYS = ('n_join_cols', 'n_fanouts', 'n_tables', 'n_filter_cols')
@@ -82,8 +82,9 @@ def write_cache(path, rows, data, provenance):
     np.save(staging/'offsets.npy', offsets)
     np.save(staging/'cards.npy', np.asarray([[r['true'],r['pg']] for r in rows], dtype=np.float64))
     ids = [{k: v for k, v in r.items() if k not in ('sql', 'true', 'pg')} for r in rows]
-    manifest = {'schema': 1, 'transform': TRANSFORM_VERSION, 'provenance': provenance,
+    manifest = {'schema': 2, 'transform': TRANSFORM_VERSION, 'provenance': provenance,
                 'inspection': inspection, 'rows': ids,
+                'array_sha256': {name: file_hash(staging / name) for name in CACHE_ARRAY_FILES},
                 'unique_queries': len({r['query_hash'] for r in rows})}
     manifest['content_hash'] = digest(manifest)
     (staging/'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False))
@@ -149,10 +150,15 @@ def prepare_database(data_root, cache_root, database, split, allow_exclusions=Fa
     source['statistics'] = {f.name:file_hash(f) for f in sorted(stats.glob('*.pkl'))}
     source['extractor_sha256'] = file_hash(Path(__file__).resolve().parent.parent/'vendor/price_features/features_tool.py')
     if (out/'manifest.json').exists():
-        manifest = json.loads((out/'manifest.json').read_text())
+        store = FeatureStore(out)
+        manifest = store.manifest
         if manifest['provenance']['source'] != source:
             raise ValueError(f'Source changed for cache {out}; use a new cache root')
+        excluded = len(manifest['provenance'].get('excluded', []))
+        if excluded and not allow_exclusions:
+            raise ValueError(f'Cache {out} excludes {excluded} queries; strict preparation refuses reuse')
         return {'database':database,'split':split,'cached':True,**manifest['inspection'],
+                'excluded':excluded, 'array_hashes_verified':store.array_hashes_verified,
                 'unique_queries':manifest['unique_queries'],'content_hash':manifest['content_hash']}
     start = time.perf_counter()
     rows = read_workload(workload, database, split)
@@ -196,5 +202,6 @@ def prepare_database(data_root, cache_root, database, split, allow_exclusions=Fa
     manifest = write_cache(out, rows, data, provenance)
     return {'database':database,'split':split,'cached':False,**manifest['inspection'],
             'unique_queries':manifest['unique_queries'],'excluded':len(failures),
+            'array_hashes_verified':True,
             'regenerated':regenerated,'elapsed_seconds':time.perf_counter()-start,
             'content_hash':manifest['content_hash']}

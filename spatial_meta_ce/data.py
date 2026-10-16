@@ -1,3 +1,4 @@
+import warnings
 from collections import OrderedDict
 from pathlib import Path
 
@@ -13,6 +14,7 @@ from .mappings import (
 )
 
 GROUP_DIMS = (40, 40, 4, 43)
+CACHE_ARRAY_FILES = (*(f'group{i}.npy' for i in range(4)), 'offsets.npy', 'cards.npy')
 TRANSFORM_VERSION = 'price40-group-logfanout-v1'
 
 
@@ -80,12 +82,32 @@ class FeatureStore:
         self.path = Path(path)
         with (self.path / 'manifest.json').open() as f:
             self.manifest = json.load(f)
-        if self.manifest['schema'] != 1 or self.manifest['transform'] != TRANSFORM_VERSION:
+        if self.manifest['schema'] not in (1, 2) or self.manifest['transform'] != TRANSFORM_VERSION:
             raise ValueError('Unsupported data cache schema/transform')
         from .manifests import digest
         payload = {k:v for k,v in self.manifest.items() if k != 'content_hash'}
         if digest(payload) != self.manifest.get('content_hash'):
             raise ValueError('Cache manifest content hash mismatch')
+        self.array_hashes_verified = False
+        if self.manifest['schema'] == 2:
+            from .manifests import file_hash
+            hashes = self.manifest.get('array_sha256')
+            if (not isinstance(hashes, dict) or set(hashes) != set(CACHE_ARRAY_FILES)
+                    or any(not isinstance(value, str) or len(value) != 64
+                           or any(c not in '0123456789abcdef' for c in value)
+                           for value in hashes.values())):
+                raise ValueError('Invalid cache array hash inventory')
+            for name in CACHE_ARRAY_FILES:
+                try:
+                    actual = file_hash(self.path / name)
+                except OSError as exc:
+                    raise ValueError(f'Cannot verify cache array hash: {name}') from exc
+                if actual != hashes[name]:
+                    raise ValueError(f'Cache array content hash mismatch: {name}')
+            self.array_hashes_verified = True
+        else:
+            warnings.warn(f'Legacy cache {self.path}: array bytes are not bound to the manifest; '
+                          'use a new cache root for schema 2 verification', RuntimeWarning, stacklevel=2)
         self.rows = self.manifest['rows']
         self.groups = [np.load(self.path / f'group{i}.npy', mmap_mode='r') for i in range(4)]
         self.offsets = np.load(self.path / 'offsets.npy', mmap_mode='r')
