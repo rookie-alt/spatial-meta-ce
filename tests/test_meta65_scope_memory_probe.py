@@ -12,8 +12,11 @@ import io
 import json
 import os
 import sys
+import tempfile
 import unittest
+from contextlib import redirect_stderr
 from pathlib import Path
+from unittest import mock
 
 from scripts import meta65_scope_memory_probe as probe
 
@@ -145,6 +148,116 @@ class RecordShapeTests(unittest.TestCase):
     def test_kill_limits_are_probe_budgets_not_research_gates(self) -> None:
         self.assertEqual(probe.RSS_KILL_BYTES, 16 * 1024**3)
         self.assertEqual(probe.OUTPUT_KILL_BYTES, 2 * 1024**3)
+
+    def test_enospc_during_log_drain_still_cleans_and_closes_child(self) -> None:
+        class FakeChild:
+            def __init__(self) -> None:
+                self.pid = 12345
+                self.returncode = None
+                self.stdout = mock.Mock()
+
+            def poll(self) -> int | None:
+                return None
+
+        child = FakeChild()
+        cleanup = mock.Mock(return_value=(True, []))
+        real_popen = probe.subprocess.Popen
+        real_drain = probe.drain
+        real_cleanup = probe.cleanup
+        probe.subprocess.Popen = mock.Mock(return_value=child)
+        probe.drain = mock.Mock(side_effect=OSError(28, "No space left on device"))
+        probe.cleanup = cleanup
+        try:
+            with tempfile.TemporaryDirectory() as directory:
+                out = Path(directory) / "probe-out"
+                record = probe.supervise(out, 500)
+                persisted = json.loads(out.with_name(out.name + ".probe.json").read_text())
+        finally:
+            probe.subprocess.Popen = real_popen
+            probe.drain = real_drain
+            probe.cleanup = real_cleanup
+        self.assertEqual(record["failure"], "supervisor_error")
+        self.assertIsNone(record["returncode"])
+        self.assertTrue(record["cleanup_verified"])
+        self.assertEqual(persisted, record)
+        cleanup.assert_called_once_with(child)
+        child.stdout.close.assert_called_once_with()
+
+    def test_cleanup_failure_is_fail_closed(self) -> None:
+        class FakeChild:
+            def __init__(self) -> None:
+                self.pid = 12345
+                self.returncode = None
+                self.stdout = mock.Mock()
+
+            def poll(self) -> int | None:
+                return self.returncode
+
+        child = FakeChild()
+
+        def finish(_stream: object, _log: object, _state: object) -> int:
+            child.returncode = 0
+            return 0
+
+        real_popen = probe.subprocess.Popen
+        real_drain = probe.drain
+        real_cleanup = probe.cleanup
+        real_rss = probe.group_rss
+        real_alive = probe.group_alive
+        probe.subprocess.Popen = mock.Mock(return_value=child)
+        probe.drain = finish
+        probe.cleanup = mock.Mock(side_effect=RuntimeError("cleanup unavailable"))
+        probe.group_rss = lambda _pgid: 0
+        probe.group_alive = lambda _pgid: []
+        try:
+            with tempfile.TemporaryDirectory() as directory:
+                record = probe.supervise(Path(directory) / "probe-out", 500)
+        finally:
+            probe.subprocess.Popen = real_popen
+            probe.drain = real_drain
+            probe.cleanup = real_cleanup
+            probe.group_rss = real_rss
+            probe.group_alive = real_alive
+        self.assertEqual(record["failure"], "cleanup_failed")
+        self.assertFalse(record["cleanup_verified"])
+
+    def test_record_write_failure_falls_back_to_strict_json_and_fails(self) -> None:
+        class FakeChild:
+            def __init__(self) -> None:
+                self.pid = 12345
+                self.returncode = 0
+                self.stdout = mock.Mock()
+
+            def poll(self) -> int:
+                return 0
+
+        child = FakeChild()
+        real_popen = probe.subprocess.Popen
+        real_drain = probe.drain
+        real_cleanup = probe.cleanup
+        real_rss = probe.group_rss
+        real_alive = probe.group_alive
+        probe.subprocess.Popen = mock.Mock(return_value=child)
+        probe.drain = lambda _stream, _log, _state: 0
+        probe.cleanup = mock.Mock(return_value=(True, []))
+        probe.group_rss = lambda _pgid: 0
+        probe.group_alive = lambda _pgid: []
+        stderr = io.StringIO()
+        try:
+            with tempfile.TemporaryDirectory() as directory, \
+                    mock.patch.object(Path, "write_text", side_effect=OSError(28, "No space left on device")), \
+                    redirect_stderr(stderr):
+                result = probe.main(["--out", str(Path(directory) / "probe-out"), "--steps", "500"])
+        finally:
+            probe.subprocess.Popen = real_popen
+            probe.drain = real_drain
+            probe.cleanup = real_cleanup
+            probe.group_rss = real_rss
+            probe.group_alive = real_alive
+        record = json.loads(stderr.getvalue())
+        self.assertEqual(result, 1)
+        self.assertEqual(record["failure"], "record_write_error")
+        self.assertTrue(record["cleanup_verified"])
 
     def test_default_root_is_the_deployed_scope_code(self) -> None:
         self.assertEqual(

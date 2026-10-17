@@ -169,62 +169,90 @@ def drain(stream: Any, log_stream: Any, state: dict[str, Any]) -> int:
     return state["step"]
 
 
+def _persist_probe_record(record_path: Path, record: dict) -> None:
+    try:
+        record_path.write_text(
+            json.dumps(record, ensure_ascii=False, allow_nan=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+    except OSError:
+        fallback = dict(record)
+        fallback["failure"] = record.get("failure") or "record_write_error"
+        print(json.dumps(fallback, ensure_ascii=False, allow_nan=False), file=sys.stderr, flush=True)
+        raise
+
+
 def supervise(out: Path, steps: int) -> dict:
     log_path = out.with_name(out.name + ".probe.log")
     record_path = out.with_name(out.name + ".probe.json")
-    child = subprocess.Popen(
-        [sys.executable, "-B", __file__, "--train", "--out", str(out), "--steps", str(steps)],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        start_new_session=True,
-        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
-    )
+    child: subprocess.Popen[Any] | None = None
     started = time.monotonic()
     samples: list[dict] = []
     state: dict[str, Any] = {"step": 0, "pending": ""}
     failure = None
-    with log_path.open("w", encoding="utf-8") as stream:
-        while True:
-            state["step"] = drain(child.stdout, stream, state)
-            elapsed = time.monotonic() - started
-            rss = group_rss(child.pid)
-            samples.append({"t": round(elapsed, 2), "rss_bytes": rss, "step": state["step"]})
-            size = output_bytes(out, log_path)
-            if elapsed > HARD_SECONDS:
-                failure = "probe_timeout"
-            elif rss > RSS_KILL_BYTES:
-                failure = "probe_rss_kill"
-            elif size > OUTPUT_KILL_BYTES:
-                failure = "probe_output_kill"
-            if failure is not None:
+    clean, sent = True, []
+    try:
+        child = subprocess.Popen(
+            [sys.executable, "-B", __file__, "--train", "--out", str(out), "--steps", str(steps)],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            start_new_session=True,
+            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+        )
+        with log_path.open("w", encoding="utf-8") as stream:
+            while True:
+                state["step"] = drain(child.stdout, stream, state)
+                elapsed = time.monotonic() - started
+                rss = group_rss(child.pid)
+                samples.append({"t": round(elapsed, 2), "rss_bytes": rss, "step": state["step"]})
+                size = output_bytes(out, log_path)
+                if elapsed > HARD_SECONDS:
+                    failure = "probe_timeout"
+                elif rss > RSS_KILL_BYTES:
+                    failure = "probe_rss_kill"
+                elif size > OUTPUT_KILL_BYTES:
+                    failure = "probe_output_kill"
+                if failure is not None:
+                    break
+                if child.poll() is not None and not group_alive(child.pid):
+                    break
+                time.sleep(POLL_SECONDS)
+            # Drain to completion: a finished child may still have buffered monitor
+            # lines (including its final "done" record) that no sample has consumed.
+            for _ in range(100):  # Bounded: a dead child stops producing output.
+                state["step"] = drain(child.stdout, stream, state)
+                if not state.get("pending"):
+                    break
+                if child.poll() is None:
+                    time.sleep(0.05)
+                    continue
+                stream.write(state["pending"] + "\n")
+                state["step"] = parse_step(state["pending"], state["step"])
+                state["pending"] = ""
+                stream.flush()
                 break
-            if child.poll() is not None and not group_alive(child.pid):
-                break
-            time.sleep(POLL_SECONDS)
-        # Drain to completion: a finished child may still have buffered monitor
-        # lines (including its final "done" record) that no sample has consumed.
-        for _ in range(100):  # Bounded: a dead child stops producing output.
-            state["step"] = drain(child.stdout, stream, state)
-            if not state.get("pending"):
-                break
-            if child.poll() is None:
-                time.sleep(0.05)
-                continue
-            stream.write(state["pending"] + "\n")
-            state["step"] = parse_step(state["pending"], state["step"])
-            state["pending"] = ""
-            stream.flush()
-            break
-    clean, sent = cleanup(child)
-    if child.stdout is not None:
-        child.stdout.close()
+    except BaseException:
+        failure = failure or "supervisor_error"
+    finally:
+        if child is not None:
+            try:
+                clean, sent = cleanup(child)
+            except BaseException:
+                clean = False
+            if child.stdout is not None:
+                try:
+                    child.stdout.close()
+                except OSError:
+                    pass
+        if not clean and failure is None:
+            failure = "cleanup_failed"
     record = {
         "schema": 1,
         "probe": "meta65-scope-r-memory",
         "steps_requested": steps,
         "device": "cuda",
         "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
-        "returncode": child.returncode,
+        "returncode": child.returncode if child is not None else None,
         "failure": failure,
         "elapsed": time.monotonic() - started,
         "samples": samples,
@@ -233,10 +261,7 @@ def supervise(out: Path, steps: int) -> dict:
         "final_step_seen": state["step"],
         "output_bytes": output_bytes(out, log_path),
     }
-    record_path.write_text(
-        json.dumps(record, ensure_ascii=False, allow_nan=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
+    _persist_probe_record(record_path, record)
     return record
 
 
@@ -252,7 +277,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.train:
         train_worker(args.root, args.out, args.steps)
         return 0
-    record = supervise(args.out, args.steps)
+    try:
+        record = supervise(args.out, args.steps)
+    except OSError as exc:
+        log(json.dumps({"failure": "record_write_error", "errno": exc.errno}))
+        return 1
     log(
         json.dumps(
             {
@@ -266,7 +295,11 @@ def main(argv: list[str] | None = None) -> int:
             }
         )
     )
-    return 0 if record["failure"] is None and record["returncode"] == 0 else 1
+    return 0 if (
+        record["failure"] is None
+        and record["returncode"] == 0
+        and record["cleanup_verified"] is True
+    ) else 1
 
 
 if __name__ == "__main__":
