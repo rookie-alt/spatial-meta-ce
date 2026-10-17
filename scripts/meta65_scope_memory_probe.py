@@ -63,7 +63,7 @@ def train_worker(root: Path, out: Path, steps: int) -> None:
     from spatial_meta_ce.train import train
 
     config = contract.arm_config(
-        contract.load_config(root / "configs/meta65_scope.json"), "R_head3", "formal"
+        contract.load_config(root / "configs/meta65_scope.json", root=root), "R_head3", "formal"
     )
     config = {**config, "steps": steps}  # Probe cap; every other field is the R recipe.
     data = screen.validate_data(
@@ -182,7 +182,7 @@ def _persist_probe_record(record_path: Path, record: dict) -> None:
         raise
 
 
-def supervise(out: Path, steps: int) -> dict:
+def supervise(out: Path, steps: int, *, root: Path = DEFAULT_ROOT) -> dict:
     log_path = out.with_name(out.name + ".probe.log")
     record_path = out.with_name(out.name + ".probe.json")
     child: subprocess.Popen[Any] | None = None
@@ -193,11 +193,16 @@ def supervise(out: Path, steps: int) -> dict:
     clean, sent = True, []
     try:
         child = subprocess.Popen(
-            [sys.executable, "-B", __file__, "--train", "--out", str(out), "--steps", str(steps)],
+            [sys.executable, "-B", __file__, "--train", "--root", str(root),
+             "--out", str(out), "--steps", str(steps)],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             start_new_session=True,
-            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+            cwd=root,
+            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1",
+                 "PYTHONPATH": os.pathsep.join(
+                     [str(root), *([os.environ["PYTHONPATH"]] if os.environ.get("PYTHONPATH") else [])]
+                 )},
         )
         with log_path.open("w", encoding="utf-8") as stream:
             while True:
@@ -278,7 +283,7 @@ def main(argv: list[str] | None = None) -> int:
         train_worker(args.root, args.out, args.steps)
         return 0
     try:
-        record = supervise(args.out, args.steps)
+        record = supervise(args.out, args.steps, root=args.root)
     except OSError as exc:
         log(json.dumps({"failure": "record_write_error", "errno": exc.errno}))
         return 1

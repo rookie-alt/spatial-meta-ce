@@ -137,6 +137,45 @@ class DrainTests(unittest.TestCase):
 
 
 class RecordShapeTests(unittest.TestCase):
+    def test_main_forwards_selected_root_to_supervisor(self) -> None:
+        record = {
+            "returncode": 0, "failure": None, "elapsed": 0.0,
+            "final_step_seen": 4000, "samples": [], "cleanup_verified": True,
+        }
+        with mock.patch.object(probe, "supervise", return_value=record) as supervise, \
+                mock.patch.object(probe, "log"):
+            result = probe.main([
+                "--root", "/tmp/isolated-meta65-code", "--out", "/tmp/root-probe",
+                "--steps", "4000",
+            ])
+        self.assertEqual(result, 0)
+        supervise.assert_called_once_with(
+            Path("/tmp/root-probe"), 4000, root=Path("/tmp/isolated-meta65-code")
+        )
+
+    def test_supervisor_binds_child_root_cwd_and_import_path(self) -> None:
+        child = mock.Mock(pid=12345, returncode=0)
+        child.poll.return_value = 0
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "isolated code"
+            root.mkdir()
+            out = Path(directory) / "probe-out"
+            with mock.patch.object(probe.subprocess, "Popen", return_value=child) as popen, \
+                    mock.patch.object(probe, "drain", return_value=0), \
+                    mock.patch.object(probe, "group_rss", return_value=0), \
+                    mock.patch.object(probe, "group_alive", return_value=[]), \
+                    mock.patch.object(probe, "cleanup", return_value=(True, [])), \
+                    mock.patch.dict(os.environ, {"PYTHONPATH": "/tmp/existing-imports"}):
+                record = probe.supervise(out, 4000, root=root)
+        command = popen.call_args.args[0]
+        options = popen.call_args.kwargs
+        self.assertEqual(command[command.index("--root") + 1], str(root))
+        self.assertEqual(command[command.index("--steps") + 1], "4000")
+        self.assertEqual(Path(options["cwd"]), root)
+        self.assertEqual(options["env"]["PYTHONPATH"].split(os.pathsep),
+                         [str(root), "/tmp/existing-imports"])
+        self.assertTrue(record["cleanup_verified"])
+
     def test_poll_interval_and_horizon_cover_a_full_run(self) -> None:
         self.assertEqual(probe.POLL_SECONDS, 1.0)
         self.assertEqual(probe.DEFAULT_STEPS, 4000)
