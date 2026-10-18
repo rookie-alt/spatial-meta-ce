@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "experiment": "meta65-lowdim-gate1-20261018",
+  "status": "completed",
+  "k": 20,
+  "operators": [
+    "none",
+    "last3_gradient_smooth_l1",
+    "last3_gradient_mse",
+    "last3_ridge_mse"
+  ],
+  "lambda_registry_sha256": "651f70197fd33a387b5a5c363ee203de57aff6d07cb8390487ee099ee0870dd3",
+  "selected_lambda": 1.0,
+  "training": false,
+  "target_read": false,
+  "active_database": "telstra",
+  "active_run": 4,
+  "completed_cells": 60,
+  "elapsed_seconds": 299.3298913659528,
+  "gate": "screen_completed_not_selected"
+}
