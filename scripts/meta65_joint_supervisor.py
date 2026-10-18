@@ -114,6 +114,28 @@ def limits_for(mode: str, overrides: dict[str, Any] | None = None) -> dict[str, 
     return result
 
 
+def _explicit_budget(value: Any) -> dict[str, Any]:
+    """Validate a caller-frozen budget for an independent runner."""
+    if not isinstance(value, dict) or set(value) != set(_DEFAULTS["formal"]):
+        raise ValueError("budget must match the complete frozen budget schema")
+    if not isinstance(value.get("phase_seconds"), dict) or set(value["phase_seconds"]) != set(PHASES):
+        raise ValueError("budget phase_seconds must contain all phases")
+    result = {
+        "total_seconds": _number(value["total_seconds"], name="budget.total_seconds"),
+        "phase_seconds": {
+            phase: _number(value["phase_seconds"][phase], name=f"budget.phase_seconds.{phase}")
+            for phase in PHASES
+        },
+        "rss_bytes": _number(value["rss_bytes"], name="budget.rss_bytes", positive=False),
+        "vram_bytes": _number(value["vram_bytes"], name="budget.vram_bytes", positive=False),
+        "output_bytes": _number(value["output_bytes"], name="budget.output_bytes", positive=False),
+        "poll_seconds": _number(value["poll_seconds"], name="budget.poll_seconds"),
+    }
+    if sum(result["phase_seconds"].values()) > result["total_seconds"]:
+        raise ValueError("budget phase limits exceed total_seconds")
+    return result
+
+
 def _json_path(path: Path) -> dict[str, Any] | None:
     try:
         if path.is_symlink() or not path.is_file():
@@ -461,15 +483,24 @@ def supervise(
     *,
     mode: str = "cpu_preflight",
     limits: dict[str, Any] | None = None,
+    budget: dict[str, Any] | None = None,
     sample_fn: Callable[[subprocess.Popen[Any]], dict[str, int]] | None = None,
     grace: float = 10,
     root: str | os.PathLike[str] | None = None,
+    formal_cells: int = 135,
+    preflight_micro_cells: int = 9,
 ) -> dict[str, Any]:
     """Run and supervise one worker, returning and persisting a record dict."""
     argv = _validate_command(command)
     if mode not in MODES:
         raise ValueError(f"unsupported mode: {mode}")
-    budget = limits_for(mode, limits)
+    if type(formal_cells) is not int or formal_cells <= 0:
+        raise ValueError("formal_cells must be a positive integer")
+    if type(preflight_micro_cells) is not int or preflight_micro_cells <= 0:
+        raise ValueError("preflight_micro_cells must be a positive integer")
+    if budget is not None and limits is not None:
+        raise ValueError("Pass either limits or budget, not both")
+    selected_budget = _explicit_budget(budget) if budget is not None else limits_for(mode, limits)
     grace = _number(grace, name="grace")
     output = Path(output)
     root_path = Path(root) if root is not None else None
@@ -483,7 +514,8 @@ def supervise(
     if output.parent.is_symlink():
         raise UnsafeOutputError(f"symlink is not allowed: {output.parent}")
 
-    expected_cells = 135 if mode == "formal" else 0
+    budget = selected_budget
+    expected_cells = formal_cells if mode == "formal" else 0
     started = time.monotonic()
     record: dict[str, Any] = {
         "schema": 1,
@@ -687,7 +719,8 @@ def supervise(
                         and status.get("status") == "worker_complete"
                         and status.get("mode") == mode
                         and status.get("cells") == expected_cells and not isinstance(status.get("cells"), bool)
-                        and (mode == "formal" or status.get("micro_cells") == 9 and not isinstance(status.get("micro_cells"), bool))
+                        and (mode == "formal" or status.get("micro_cells") == preflight_micro_cells
+                             and not isinstance(status.get("micro_cells"), bool))
                     )
                 except (OSError, ValueError, UnsafeOutputError):
                     valid = False

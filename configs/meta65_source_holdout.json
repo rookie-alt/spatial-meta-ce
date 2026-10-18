@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "experiment": "meta65-source-holdout-20261018",
+  "protocol_file": "实验文档/81-源库留出协议.md",
+  "protocol_sha256": "da5a73d693ed886de25e5f1d904e6b5ff3eccc233c39e04f793514140852315b",
+  "training": {
+    "method": "fomaml",
+    "seed": 42,
+    "steps": 4000,
+    "meta_batch": 4,
+    "accumulation": 1,
+    "query_size": 64,
+    "support_sizes": [
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "outer_lr": 0.0003,
+    "inner_lr": 0.001,
+    "validate_every": 100,
+    "validation_runs": 5,
+    "validation_seed": 1729,
+    "patience": 41,
+    "min_delta": 0.0001
+  },
+  "model": {
+    "arch": "sum",
+    "use_pg": true,
+    "layers": 2,
+    "heads": 4
+  },
+  "arm": {
+    "name": "R_head3",
+    "train_scope": "head",
+    "train_steps": 3
+  },
+  "evaluation": {
+    "support_seed": 2718,
+    "support_runs": 5,
+    "k": 20,
+    "batch_size": 512,
+    "operators": [
+      "none",
+      "head3"
+    ]
+  },
+  "expected": {
+    "unique": {
+      "chembl": 50000,
+      "legalacts": 49504,
+      "telstra": 50000,
+      "hepatitis": 50000,
+      "sakila": 50000
+    },
+    "four_plus": {
+      "chembl": 33947,
+      "legalacts": 9178,
+      "telstra": 20311,
+      "hepatitis": 38538,
+      "sakila": 35295
+    }
+  },
+  "limits": {
+    "total_seconds": 14400,
+    "phase_seconds": {
+      "preparation": 300,
+      "evaluation": 13200,
+      "certification": 900
+    },
+    "rss_bytes": 12884901888,
+    "vram_bytes": 8589934592,
+    "output_bytes": 1073741824,
+    "poll_seconds": 1.0
+  },
+  "preflight": {
+    "training_steps": 2,
+    "micro_queries": 32,
+    "total_seconds": 900,
+    "phase_seconds": {
+      "preparation": 300,
+      "evaluation": 300,
+      "certification": 300
+    },
+    "poll_seconds": 1.0
+  },
+  "report": {
+    "min_bucket_count": 30,
+    "selection_performed": false
+  }
+}
