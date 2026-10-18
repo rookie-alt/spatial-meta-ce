@@ -1,0 +1,487 @@
+{
+  "schema": 1,
+  "experiment": "meta65-source-holdout-20261018",
+  "mode": "gpu_preflight",
+  "cells": [
+    {
+      "schema": 1,
+      "mode": "gpu_preflight",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "chembl",
+      "run": 0,
+      "k20": 20,
+      "query_count": 32,
+      "query_digest": "2be5a85b529407cede248763208c88ae1f3a17f67c85f9cc7c96ad3a93348fed",
+      "support_digest": "4e1017c7b1d497b2edf439c31aea27af75610b197250a22bdd284c6053a3baf3",
+      "prediction_file": "predictions/R_head3-none-chembl-run0.npz",
+      "prediction_sha256": "82731f933808f6db3fb3309ef0f941df4e79649898471083fc0650bbbcbaef0a",
+      "state_before": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "state_after": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "metrics": {
+        "all": {
+          "count": 32,
+          "status": "ok",
+          "q50": 2.069316504439269,
+          "q95": 155.07652510833688
+        },
+        "4+": {
+          "count": 24,
+          "status": "below_min_n",
+          "q50": 2.374697361920322,
+          "q95": 155.66198589616042
+        },
+        "low4": {
+          "count": 0,
+          "status": "empty",
+          "q50": null,
+          "q95": null
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "gpu_preflight",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "chembl",
+      "run": 0,
+      "k20": 20,
+      "query_count": 32,
+      "query_digest": "2be5a85b529407cede248763208c88ae1f3a17f67c85f9cc7c96ad3a93348fed",
+      "support_digest": "4e1017c7b1d497b2edf439c31aea27af75610b197250a22bdd284c6053a3baf3",
+      "prediction_file": "predictions/R_head3-head3-chembl-run0.npz",
+      "prediction_sha256": "2f51d3549f7ef06a47336973eafe4f3810f3edc4e605824ca94c6675d9c735db",
+      "state_before": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "state_after": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "metrics": {
+        "all": {
+          "count": 32,
+          "status": "ok",
+          "q50": 2.0587017836064003,
+          "q95": 151.09966268469185
+        },
+        "4+": {
+          "count": 24,
+          "status": "below_min_n",
+          "q50": 2.316720064093353,
+          "q95": 152.1247619294981
+        },
+        "low4": {
+          "count": 0,
+          "status": "empty",
+          "q50": null,
+          "q95": null
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "gpu_preflight",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "legalacts",
+      "run": 0,
+      "k20": 20,
+      "query_count": 32,
+      "query_digest": "b7daf89d5c2d66051f4312d0590c1c6a92354f5c451f283d49de5b333f64922c",
+      "support_digest": "4a179006be9201c71ef2292368d4ffe0fb12f08b5712e920a3e8accaab27902b",
+      "prediction_file": "predictions/R_head3-none-legalacts-run0.npz",
+      "prediction_sha256": "6ebee3bb93a1cd4edda3fe8a0e0989b285ad437566711ad22d82c5af8cd31305",
+      "state_before": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "state_after": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "metrics": {
+        "all": {
+          "count": 32,
+          "status": "ok",
+          "q50": 1.5529194217276294,
+          "q95": 60.947211161706406
+        },
+        "4+": {
+          "count": 7,
+          "status": "below_min_n",
+          "q50": 12.284271512946603,
+          "q95": 121.97427489959574
+        },
+        "low4": {
+          "count": 0,
+          "status": "empty",
+          "q50": null,
+          "q95": null
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "gpu_preflight",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "legalacts",
+      "run": 0,
+      "k20": 20,
+      "query_count": 32,
+      "query_digest": "b7daf89d5c2d66051f4312d0590c1c6a92354f5c451f283d49de5b333f64922c",
+      "support_digest": "4a179006be9201c71ef2292368d4ffe0fb12f08b5712e920a3e8accaab27902b",
+      "prediction_file": "predictions/R_head3-head3-legalacts-run0.npz",
+      "prediction_sha256": "b428bb61f887746d6a673c0da69e060d5ec448051c698b39bc889cb236ed01a1",
+      "state_before": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "state_after": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "metrics": {
+        "all": {
+          "count": 32,
+          "status": "ok",
+          "q50": 1.5530053838926996,
+          "q95": 60.9486185745983
+        },
+        "4+": {
+          "count": 7,
+          "status": "below_min_n",
+          "q50": 12.284880718152404,
+          "q95": 121.97662119458724
+        },
+        "low4": {
+          "count": 0,
+          "status": "empty",
+          "q50": null,
+          "q95": null
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "gpu_preflight",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "telstra",
+      "run": 0,
+      "k20": 20,
+      "query_count": 32,
+      "query_digest": "cfae746194795e52c534c34a47542b6a942c4e8adb6befa6628f68e6e51a4e1d",
+      "support_digest": "9de714aa8ff57ecaa42dcb295c82c7fb280c033d40c9e10fa876c862a9da24ad",
+      "prediction_file": "predictions/R_head3-none-telstra-run0.npz",
+      "prediction_sha256": "f8344cb0c7e1d1aa3ca3b2e986ff4742e7ea446bc16c7ff72de3d63ab6999c4b",
+      "state_before": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "state_after": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "metrics": {
+        "all": {
+          "count": 32,
+          "status": "ok",
+          "q50": 1.485086260893628,
+          "q95": 7.164754666387506
+        },
+        "4+": {
+          "count": 9,
+          "status": "below_min_n",
+          "q50": 1.7244634297444559,
+          "q95": 3.3943379847388324
+        },
+        "low4": {
+          "count": 4,
+          "status": "below_min_n",
+          "q50": 1.6466741390260262,
+          "q95": 3.374668985846184
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "gpu_preflight",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "telstra",
+      "run": 0,
+      "k20": 20,
+      "query_count": 32,
+      "query_digest": "cfae746194795e52c534c34a47542b6a942c4e8adb6befa6628f68e6e51a4e1d",
+      "support_digest": "9de714aa8ff57ecaa42dcb295c82c7fb280c033d40c9e10fa876c862a9da24ad",
+      "prediction_file": "predictions/R_head3-head3-telstra-run0.npz",
+      "prediction_sha256": "5804e7cad46bfad3a9ab34bf5beae8fce92fcb1a9d39ef55f04c3d79dc205591",
+      "state_before": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "state_after": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "metrics": {
+        "all": {
+          "count": 32,
+          "status": "ok",
+          "q50": 1.4797136471446701,
+          "q95": 7.165899093313947
+        },
+        "4+": {
+          "count": 9,
+          "status": "below_min_n",
+          "q50": 1.7178255706559151,
+          "q95": 3.388296367199054
+        },
+        "low4": {
+          "count": 4,
+          "status": "below_min_n",
+          "q50": 1.651963788384049,
+          "q95": 3.365794969932412
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "gpu_preflight",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "hepatitis",
+      "run": 0,
+      "k20": 20,
+      "query_count": 32,
+      "query_digest": "3f58a040215542dabf144c4017ee8cf325c34975e3192ca5eaa3c1e0a744100b",
+      "support_digest": "a69974ac5d81b6ac6aba6cec146570069fef2373b029f679304f5afe5b932651",
+      "prediction_file": "predictions/R_head3-none-hepatitis-run0.npz",
+      "prediction_sha256": "acbcbd96130cd2942038cd850b20bc2ec7ea02108d0c8d1be4a16a64fe20a86b",
+      "state_before": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "state_after": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "metrics": {
+        "all": {
+          "count": 32,
+          "status": "ok",
+          "q50": 1.6024013989607822,
+          "q95": 5.800348965362891
+        },
+        "4+": {
+          "count": 24,
+          "status": "below_min_n",
+          "q50": 1.9458329945805837,
+          "q95": 6.346956965372368
+        },
+        "low4": {
+          "count": 9,
+          "status": "below_min_n",
+          "q50": 2.1832215828148196,
+          "q95": 5.801925907506161
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "gpu_preflight",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "hepatitis",
+      "run": 0,
+      "k20": 20,
+      "query_count": 32,
+      "query_digest": "3f58a040215542dabf144c4017ee8cf325c34975e3192ca5eaa3c1e0a744100b",
+      "support_digest": "a69974ac5d81b6ac6aba6cec146570069fef2373b029f679304f5afe5b932651",
+      "prediction_file": "predictions/R_head3-head3-hepatitis-run0.npz",
+      "prediction_sha256": "f859cd119f1f26572ca2dbfe024c435e73cba6ef99899a9ca3e5a40bccbb8edc",
+      "state_before": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "state_after": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "metrics": {
+        "all": {
+          "count": 32,
+          "status": "ok",
+          "q50": 1.6040035263629138,
+          "q95": 5.738002536158385
+        },
+        "4+": {
+          "count": 24,
+          "status": "below_min_n",
+          "q50": 1.9239384078285822,
+          "q95": 6.283601240748131
+        },
+        "low4": {
+          "count": 9,
+          "status": "below_min_n",
+          "q50": 2.2054114723347045,
+          "q95": 5.782066586371996
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "gpu_preflight",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "sakila",
+      "run": 0,
+      "k20": 20,
+      "query_count": 32,
+      "query_digest": "940dcd0f197b1c501e7acd28b3b4a5a6e6e08391710914ca6eec9787e6dd7136",
+      "support_digest": "8256d63ddb49b6b8a892f21f8cdd6ac25247943a61cd6683297c739b870c8bc2",
+      "prediction_file": "predictions/R_head3-none-sakila-run0.npz",
+      "prediction_sha256": "4b16ecdac2cb2843047ade16b4bfb0f932ed3d596e95238e38d67a2e9f7fbaca",
+      "state_before": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "state_after": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "metrics": {
+        "all": {
+          "count": 32,
+          "status": "ok",
+          "q50": 1.1109790191809314,
+          "q95": 2.3109993733552305
+        },
+        "4+": {
+          "count": 24,
+          "status": "below_min_n",
+          "q50": 1.1267497316719344,
+          "q95": 2.5621513679846872
+        },
+        "low4": {
+          "count": 3,
+          "status": "below_min_n",
+          "q50": 1.464373776487159,
+          "q95": 2.5371374070223776
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "gpu_preflight",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "sakila",
+      "run": 0,
+      "k20": 20,
+      "query_count": 32,
+      "query_digest": "940dcd0f197b1c501e7acd28b3b4a5a6e6e08391710914ca6eec9787e6dd7136",
+      "support_digest": "8256d63ddb49b6b8a892f21f8cdd6ac25247943a61cd6683297c739b870c8bc2",
+      "prediction_file": "predictions/R_head3-head3-sakila-run0.npz",
+      "prediction_sha256": "710424a30247cce4a35e75316334cc2b72054718e8807ca7198feafae2df25ca",
+      "state_before": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "state_after": "715b4152bcd7f59ed49efd3d6ba5f415f43bc195f238518bdedf0e6fb75d003a",
+      "metrics": {
+        "all": {
+          "count": 32,
+          "status": "ok",
+          "q50": 1.1092091971271725,
+          "q95": 2.3120760629143207
+        },
+        "4+": {
+          "count": 24,
+          "status": "below_min_n",
+          "q50": 1.1247889932586759,
+          "q95": 2.5659828582494777
+        },
+        "low4": {
+          "count": 3,
+          "status": "below_min_n",
+          "q50": 1.4661910978499089,
+          "q95": 2.5416972256351373
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    }
+  ]
+}
