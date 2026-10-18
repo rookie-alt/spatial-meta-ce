@@ -19,12 +19,24 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def sample(i, y=100.0):
+    base = i + 1
+
+    def values(rows, columns, scale, offset):
+        row = np.arange(rows, dtype=np.float32)[:, None]
+        column = np.arange(columns, dtype=np.float32)[None, :]
+        return scale * (
+            base
+            + offset
+            + 0.125 * row
+            + 0.0625 * (column % 7 + 1)
+        )
+
     return {
         'groups': [
-            np.full((2, 40), 0.1 * (i + 1), dtype=np.float32),
-            np.full((1, 40), 0.2 * (i + 1), dtype=np.float32),
-            np.full((3, 4), 0.3 * (i + 1), dtype=np.float32),
-            np.full((1, 43), 0.4 * (i + 1), dtype=np.float32),
+            values(2, 40, 0.1, 0.0),
+            values(1, 40, 0.2, 0.5),
+            values(3, 4, 0.3, 1.0),
+            values(1, 43, 0.4, 1.5),
         ],
         'true': y,
         'pg': 2.0,

@@ -28,7 +28,7 @@
 | λ registry（本地源） | `/private/tmp/spatial-meta-ce-meta65-lowdim-adaptation-20261018/configs/meta65_lowdim_gate1_lambda.json` | `651f70197fd33a387b5a5c363ee203de57aff6d07cb8390487ee099ee0870dd3` |
 | 实现计划 | `/private/tmp/spatial-meta-ce-meta65-lowdim-adaptation-20261018/实验文档/82-Meta65低维闭式适应实现计划.md` | `dd6de12ab5678f0795758a4f17bf46d60e0aa61120628338cf84727109c5e649` |
 | screen runner | `/private/tmp/spatial-meta-ce-meta65-lowdim-adaptation-20261018/scripts/run_meta65_lowdim_screen.py` | `4b4d20af4901a6d3dc44a0fbd770b9d492c9dc320847e1f7c9caa607923f1729` |
-| screen 测试 | `/private/tmp/spatial-meta-ce-meta65-lowdim-adaptation-20261018/tests/test_meta65_lowdim_screen.py` | `7618f7f0fb11f669e84c7674d3af751d28240f6db548b2569ea35dee5581afaa` |
+| screen 测试 | `/private/tmp/spatial-meta-ce-meta65-lowdim-adaptation-20261018/tests/test_meta65_lowdim_screen.py` | `5175352ce4946e0b1cb51d8a16206f10ef97029e3d7dcd83c6f7cedd50f413bb` |
 | 低维适应实现 | `/private/tmp/spatial-meta-ce-meta65-lowdim-adaptation-20261018/spatial_meta_ce/lowdim_adaptation.py` | `8ae34f91425f08ee824f96df7b18d659a66387844c15e53b913f068444ae365a` |
 
 λ registry 内容固定为：
