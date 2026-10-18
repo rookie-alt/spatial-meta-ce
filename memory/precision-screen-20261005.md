@@ -10,7 +10,7 @@
 - 12小时累计上限，顺序单空闲卡，检查CUDA_VISIBLE_DEVICES与UUID。2026-10-05规划时8卡均忙；必须新鲜查卡，不能凭旧记录抢占。若无空卡仍可完成代码和CPU测试，但正式GPU smoke/训练写blocked。
 - 只授权本轮4臂seed42；seed43/44、少样本策略搜索、目标评估和数据库部署不自动执行。非有限数、OOM、来源/配对不符立即停，不改lr/batch/阈值重试。
 - 先落盘协议/本记忆，再创建feat/precision-screen-20261005；本轮仅提交本记忆新增文件，不提交另一窗口未跟踪的AGENTS.md或其他memory文件。
-- 模型支持mse和width配置，无需改损失/模型本体；新入口复用train/checkpoint/endpoint。先RED后GREEN，服务器只读PRICE环境，隔离现有graphify依赖；验证状态和启动状态分开。
+- 模型支持mse和width配置，无需改损失/模型本体；新入口复用train/checkpoint/endpoint。先RED后GREEN，服务器只读PRICE环境，隔离现有可选工具依赖；验证状态和启动状态分开。
 
 ## 用户暂缓训练（2026-10-05，本轮最终状态）
 

@@ -17,8 +17,8 @@ runs/
 # OS
 .DS_Store
 
-# Generated knowledge-graph output
-graphify-out/
+# GitNexus local code index
+.gitnexus/
 
 # Local Claude Code config: ship the project-level hook, ignore the rest
 # (.claude/* not .claude/ — git cannot re-include files under an excluded dir)

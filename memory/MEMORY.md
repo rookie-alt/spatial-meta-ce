@@ -14,7 +14,6 @@
 | [项目背景、范围和数据边界](spatial-meta-ce-project.md) | `spatial-meta-ce-project.md` |
 | [分支、协作、结果保存和同步](spatial-meta-ce-workflow.md) | `spatial-meta-ce-workflow.md` |
 | [收尾记录与新会话接手](spatial-meta-ce-progress-sync.md) | `spatial-meta-ce-progress-sync.md` |
-| [证据图谱更新与历史查询经验](spatial-meta-ce-graphify.md) | `spatial-meta-ce-graphify.md` |
 | [重试和轮询限制](stop-after-three-repeats.md) | `stop-after-three-repeats.md` |
 | [精度首轮计划与用户暂缓训练](precision-screen-20261005.md) | 本项目新增，非 Claude 原记忆副本 |
 | [自动子代理委派、方案审查与验证](spatial-meta-ce-agent-delegation.md) | 2026-10-07 用户确认的项目执行约定，非 Claude 原记忆副本 |
@@ -36,7 +35,6 @@
 - `spatial-meta-ce-project.md`：`bce610c50ec7df8c918db0d81311404d1e8d9d8ef73e858bc391a893ad595fb3`
 - `spatial-meta-ce-workflow.md`：`5c98c6baada2f2e085a045c0e0117b66139e78fec7016836bac4d66d5fd8963e`
 - `spatial-meta-ce-progress-sync.md`：`18d3e1f54575057c0c400471abcb623b6578b39e91d1654878908650e44ad3ba`
-- `spatial-meta-ce-graphify.md`：`250254c87a72b13fa63de62a2aa2acfbcabc0385fd99e1fb0cabb10ed7b0bad5`
 - `stop-after-three-repeats.md`：`60b8eab4982f736345f30aad3babfaab403d624dc7265d9ea8cb0ccb60fac086`
 
 ## 维护规则

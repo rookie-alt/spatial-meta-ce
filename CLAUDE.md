@@ -20,7 +20,7 @@
 | `spatial_meta_ce/` | 库本体：`data.py`（特征/缓存）、`model.py`（集合模型）、`train.py`、`cli.py` |
 | `configs/` | `data.json` 预处理、`meta.json`/`erm*.json` 训练、`evaluation.json` 评估 |
 | `tests/` | 单元与协议测试；`test_protocol.py` 覆盖训练/评估协议约束 |
-| `scripts/` | `run_experiments.py` 正式运行器、`deploy.py` 部署、`experiment_evidence.py` + `build_experiment_graph.py` 证据图谱 |
+| `scripts/` | `run_experiments.py` 正式运行器、`deploy.py` 部署及审计、分析脚本 |
 | `实验文档/` | 实验记录、结论与 `results/` 精简结果 |
 | `docs/` | `protocol.md` 实验协议、`audit.md` 旧代码审查 |
 | `reports/` | 服务器测试输出、状态与审计产物 |
@@ -31,7 +31,7 @@
 - **每个任务开一个分支**，命名 `feat/`、`docs/`、`experiment/`、`audit/` 前缀 + 简短主题；完成后及时 push 到 Gitee（`origin` = `gitee.com/william-forest/spatial-meta-ce`），不要长期留在本地。
 - Claude Code 建的 worktree 在 `.claude/worktrees/<name>`，是独立检出；在 worktree 内**只用该目录的绝对路径**操作，不要 `cd` 回主仓库。
 - 提交信息用 `feat:` / `fix:` / `docs:` / `test:` / `chore:` 前缀，正文写清验证方式。
-- 提交前自查：`git status` 确认只含本次改动；`graphify-out/`、`.claude/`、`__pycache__` 不入库。
+- 提交前自查：`git status` 确认只含本次改动；`.gitnexus/`、`.claude/`、`__pycache__` 不入库。
 - 会话结束前更新实验进度记录，供下次接手。
 
 ## 验证命令
@@ -54,21 +54,11 @@ ssh myserver "cd /gly/weilin/spatial-meta-ce && PYTHONDONTWRITEBYTECODE=1 CUDA_V
 
 `myserver` 是 `~/.ssh/config` 里的别名（`root@172.16.33.129:30678`，密钥免密）。GPU 任务必须显式指定 `CUDA_VISIBLE_DEVICES`，并先确认卡空闲——本机不会自动起长任务。
 
-## 证据图谱（experiment knowledge index）
+## 代码索引
 
-从 `实验文档/results/` 的记录式 JSON 构建 hash 绑定的证据索引，**不执行任何实验、不产生执行声明**：
-
-```bash
-python3 scripts/experiment_evidence.py --root .            # 打印证据 JSON 到 stdout
-python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic <semantic.json>
-```
-
-- token 计数是 UTF-8/4 估算，**不是模型 tokenizer 实测**，报告里不能写成实测值。
-- 输出落在 `graphify-out/`（约 14 MB，生成物，不提交）。预览用 `.claude/launch.json` 里的 `experiment-graph` 配置（`http.server 8777` 服务该目录）。
-- 对应测试：`tests/test_experiment_graph.py`、`tests/test_graph_build.py`。
-- **默认不运行 graphify**，不把图谱查询、语义提取或重建作为问答、修改、实验收尾或提交的前置步骤；日常直接核对协议、代码、结果 JSON/CSV 和 Git。
-- 用户明确要求图谱时才使用；确需跨文档关系梳理或论文集中整理时，先说明价值、范围与耗时并获用户确认，再重建。保留工具与已有产物，不卸载、不自动更新。
-- 使用已有索引前检查来源覆盖和 SHA256；过期或缺失就回到原始来源，不为回答问题擅自重建。重建时先刷新变化文档的语义，再整体重建，不用 `graphify --update`。详见 [按需图谱规则](memory/spatial-meta-ce-graphify.md)。
+- 代码结构与调用关系统一使用 GitNexus；索引输入是代码库，不是实验证据数据库。
+- 使用前核对索引对应提交和是否陈旧；陈旧索引只用于导航，不能替代协议、结果 JSON/CSV、日志或 Git 的直接核验。
+- GitNexus 不能认证实验是否执行、数据来源是否正确、统计口径是否一致或结论是否有因果意义。
 
 ## 常见坑
 
@@ -78,20 +68,46 @@ python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic
 - `run_experiments.py` 默认只打印不执行，加 `--execute --device cuda` 才真跑。
 - 同一命令重试到第 3 次仍失败就停下汇报，不要循环重试。
 
-## graphify
+<!-- gitnexus:start -->
+# GitNexus — Code Intelligence
 
-This project has a graphify knowledge graph at `graphify-out/`. **Two producers write the same filenames** (`graph.json`, `graph.html`, `GRAPH_REPORT.md`, `analysis.json`) — the later run wins:
+This project is indexed by GitNexus as **spatial-meta-ce** (12159 symbols, 19872 relationships, 276 execution flows). Use the GitNexus MCP tools to understand code, assess impact, and navigate safely.
 
-- **Evidence index** (sha256-bound, what you want for experiment/results questions): `experiment_graph.json`, `manifest.json`, `semantic.json` — built by `scripts/build_experiment_graph.py`
-- **graphify entity graph** (EXTRACTED/INFERRED edges, community structure): `graph.json` + `analysis.json` — built by `/graphify`
+> If any GitNexus tool warns the index is stale, run `npx gitnexus analyze` in terminal first.
 
-Rules:
+## Always Do
 
-- Graphify is optional and off by default: no mandatory graph reads, queries, semantic extraction or rebuilds for routine work. Read primary files directly.
-- Use it only at the user's request or after they confirm a justified need, scope and cost. Existing graph files are not authorization to run it.
-- When a rebuild is authorized, re-extract changed Markdown semantics and rebuild the evidence index with
-  `python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic graphify-out/semantic.json`
-  Stale source hashes must fail closed; never relabel stale semantics by updating hashes alone.
-- **Do NOT use `graphify --update` for the evidence index**: incremental only adds and leaves obsolete evidence behind. The script itself says "rebuild rather than graphify --update to remove obsolete evidence."
-- `graphify update .` is AST-only and rebuilds the *entity* graph; running it overwrites `graph.json` from the evidence index. Run it only when you actually want the entity graph back.
-- Detail, measured costs and known pitfalls: local memory `spatial-meta-ce-graphify` (not in git).
+- **MUST run impact analysis before editing any symbol.** Before modifying a function, class, or method, run `gitnexus_impact({target: "symbolName", direction: "upstream"})` and report the blast radius (direct callers, affected processes, risk level) to the user.
+- **MUST run `gitnexus_detect_changes()` before committing** to verify your changes only affect expected symbols and execution flows.
+- **MUST warn the user** if impact analysis returns HIGH or CRITICAL risk before proceeding with edits.
+- When exploring unfamiliar code, use `gitnexus_query({query: "concept"})` to find execution flows instead of grepping. It returns process-grouped results ranked by relevance.
+- When you need full context on a specific symbol — callers, callees, which execution flows it participates in — use `gitnexus_context({name: "symbolName"})`.
+
+## Never Do
+
+- NEVER edit a function, class, or method without first running `gitnexus_impact` on it.
+- NEVER ignore HIGH or CRITICAL risk warnings from impact analysis.
+- NEVER rename symbols with find-and-replace — use `gitnexus_rename` which understands the call graph.
+- NEVER commit changes without running `gitnexus_detect_changes()` to check affected scope.
+
+## Resources
+
+| Resource | Use for |
+|----------|---------|
+| `gitnexus://repo/spatial-meta-ce/context` | Codebase overview, check index freshness |
+| `gitnexus://repo/spatial-meta-ce/clusters` | All functional areas |
+| `gitnexus://repo/spatial-meta-ce/processes` | All execution flows |
+| `gitnexus://repo/spatial-meta-ce/process/{name}` | Step-by-step execution trace |
+
+## CLI
+
+| Task | Read this skill file |
+|------|---------------------|
+| Understand architecture / "How does X work?" | `.claude/skills/gitnexus/gitnexus-exploring/SKILL.md` |
+| Blast radius / "What breaks if I change X?" | `.claude/skills/gitnexus/gitnexus-impact-analysis/SKILL.md` |
+| Trace bugs / "Why is X failing?" | `.claude/skills/gitnexus/gitnexus-debugging/SKILL.md` |
+| Rename / extract / split / refactor | `.claude/skills/gitnexus/gitnexus-refactoring/SKILL.md` |
+| Tools, resources, schema reference | `.claude/skills/gitnexus/gitnexus-guide/SKILL.md` |
+| Index, status, clean, wiki CLI commands | `.claude/skills/gitnexus/gitnexus-cli/SKILL.md` |
+
+<!-- gitnexus:end -->
