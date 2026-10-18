@@ -234,13 +234,15 @@ def require_supervisor(mode: str) -> None:
 
 
 def _formal_worker_gate(approval: Path | None, output: Path, binding: Path | None,
-                        config_path: Path) -> None:
+                        config_path: Path, data_config_path: Path,
+                        plan_path: Path) -> None:
     if approval is None or binding is None:
         raise ValueError("Formal holdout execution requires approval and launch binding")
     from scripts import meta65_holdout_launch as launch
     uuid = os.environ.get("CUDA_VISIBLE_DEVICES")
     launch.verify_worker_approval(approval, output, binding, config_path,
-                                  root=ROOT, gpu_uuid=uuid, parent_pid=os.getppid())
+                                  root=ROOT, gpu_uuid=uuid, parent_pid=os.getppid(),
+                                  data_config_path=data_config_path, plan_path=plan_path)
 
 
 def worker(output: Path, mode: str, config_path: Path, data_config_path: Path,
@@ -255,7 +257,8 @@ def worker(output: Path, mode: str, config_path: Path, data_config_path: Path,
     data = contract.validate_data(contract.read_json(data_config_path))
     output = contract.safe_output(output, [data["cache_root"], data["data_root"], plan_path])
     if mode == "formal":
-        _formal_worker_gate(approval, output, launch_binding, config_path)
+        _formal_worker_gate(approval, output, launch_binding, config_path,
+                            data_config_path, plan_path)
     runtime = environment(mode)
     output.mkdir(parents=True, exist_ok=False)
     _status(output, {"schema": 1, "experiment": contract.EXPERIMENT,
@@ -294,13 +297,13 @@ def worker(output: Path, mode: str, config_path: Path, data_config_path: Path,
         contract.verify_bound_inputs(binding)
         _phase(output, "certification")
         if mode == "formal":
-            from scripts.meta65_holdout_report import build_report
-            report = build_report(output)
-            contract.write_json(output / "report.json", report)
             _status(output, {"schema": 1, "experiment": contract.EXPERIMENT,
                              "status": "worker_complete", "mode": mode, "cells": 50,
                              "micro_cells": 0, "training": True, "target_read": False,
                              "selection_performed": False, "formal_result": True})
+            from scripts.meta65_holdout_report import build_report
+            report = build_report(output)
+            contract.write_json(output / "report.json", report)
         else:
             _status(output, {"schema": 1, "experiment": contract.EXPERIMENT,
                              "status": "worker_complete", "mode": mode, "cells": 0,

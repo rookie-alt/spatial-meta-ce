@@ -3,6 +3,7 @@ import shutil
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts import build_meta65_holdout_binding as builder
 from scripts import meta65_holdout_contract as contract
@@ -14,6 +15,84 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class HoldoutLaunchTests(unittest.TestCase):
+    def test_worker_approval_verifies_actual_inputs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            data_config = root / "configs/meta65_source_holdout_data.json"
+            plan_path = root / "plan.json"
+            approval = root / "approval.json"
+            binding_path = root / "binding.json"
+            config_path = root / "config.json"
+            output = root / "output"
+            for path in (data_config, plan_path, approval, binding_path, config_path):
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("{}", encoding="utf-8")
+            gpu_uuid = "GPU-12345678-1234-1234-1234-123456789abc"
+            binding = {"gpu_uuid": gpu_uuid}
+            receipt = {
+                "schema": 1,
+                "status": "consumed",
+                "approval_sha256": launch.sha256(approval),
+                "binding_sha256": "b" * 64,
+                "output": str(output),
+                "gpu_uuid": gpu_uuid,
+                "supervisor_pid": 123,
+            }
+            with (
+                patch.object(launch.os, "getppid", return_value=123),
+                patch.dict(launch.os.environ, {
+                    "META65_SUPERVISOR_PID": "123",
+                    "META65_SUPERVISED_MODE": "formal",
+                    "CUDA_VISIBLE_DEVICES": gpu_uuid,
+                }, clear=False),
+                patch.object(launch, "verify_launch_binding", return_value=binding),
+                patch.object(launch, "verify_worker_inputs") as verify_inputs,
+                patch.object(launch, "_expected_approval", return_value={
+                    "binding_sha256": "b" * 64,
+                    "output": str(output),
+                    "gpu_uuid": gpu_uuid,
+                }),
+                patch.object(launch, "read_json", return_value=receipt),
+            ):
+                launch.verify_worker_approval(
+                    approval, output, binding_path, config_path,
+                    root=root, gpu_uuid=gpu_uuid, parent_pid=123,
+                    data_config_path=data_config, plan_path=plan_path,
+                )
+            verify_inputs.assert_called_once_with(
+                binding, root=root, data_config_path=data_config, plan_path=plan_path,
+            )
+
+    def test_worker_inputs_must_match_launch_binding(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            data_dir = root / "configs"
+            data_dir.mkdir()
+            data_config = data_dir / "meta65_source_holdout_data.json"
+            plan_path = root / "plan.json"
+            data_config.write_text("{}", encoding="utf-8")
+            plan_path.write_text("{}", encoding="utf-8")
+            binding = {
+                "data_config_sha256": contract.sha256(data_config),
+                "plan_file": str(plan_path),
+                "plan_sha256": contract.sha256(plan_path),
+            }
+            launch.verify_worker_inputs(
+                binding, root=root, data_config_path=data_config, plan_path=plan_path,
+            )
+            other_data = root / "other-data.json"
+            other_data.write_text("{}", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "data config"):
+                launch.verify_worker_inputs(
+                    binding, root=root, data_config_path=other_data, plan_path=plan_path,
+                )
+            other_plan = root / "other-plan.json"
+            other_plan.write_text("{}", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "plan"):
+                launch.verify_worker_inputs(
+                    binding, root=root, data_config_path=data_config, plan_path=other_plan,
+                )
+
     def test_round_trip_build_and_verify_binding(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()

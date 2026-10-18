@@ -174,6 +174,23 @@ def verify_launch_binding(binding_path: Path | str, *, root: Path, config_path: 
     return binding
 
 
+def verify_worker_inputs(binding: dict, *, root: Path | str,
+                         data_config_path: Path | str, plan_path: Path | str) -> None:
+    root = checked_path(root)
+    data_config_path = checked_path(data_config_path)
+    plan_path = checked_path(plan_path)
+    expected_data_config = checked_path(root / "configs/meta65_source_holdout_data.json")
+    if data_config_path != expected_data_config:
+        raise ValueError("Worker data config differs from launch binding")
+    if sha256(data_config_path) != _sha(binding.get("data_config_sha256"), "data config"):
+        raise ValueError("Worker data config SHA changed")
+    expected_plan = checked_path(binding["plan_file"])
+    if plan_path != expected_plan:
+        raise ValueError("Worker plan differs from launch binding")
+    if sha256(plan_path) != _sha(binding.get("plan_sha256"), "plan"):
+        raise ValueError("Worker plan SHA changed")
+
+
 def verify_gpu_idle(uuid: str) -> None:
     query = subprocess.run(
         ["nvidia-smi", "-i", uuid, "--query-gpu=uuid,memory.used,utilization.gpu",
@@ -255,7 +272,8 @@ def authorize_formal(approval: Path, output: Path, binding_path: Path, config_pa
 
 
 def verify_worker_approval(approval: Path, output: Path, binding_path: Path, config_path: Path,
-                           *, root: Path, gpu_uuid: str | None, parent_pid: int) -> dict:
+                           *, root: Path, gpu_uuid: str | None, parent_pid: int,
+                           data_config_path: Path | str, plan_path: Path | str) -> dict:
     if (not isinstance(parent_pid, int) or parent_pid <= 0
             or parent_pid != os.getppid()
             or os.environ.get("META65_SUPERVISOR_PID") != str(parent_pid)
@@ -266,6 +284,8 @@ def verify_worker_approval(approval: Path, output: Path, binding_path: Path, con
     bound_uuid = _uuid(binding["gpu_uuid"])
     if gpu_uuid != bound_uuid:
         raise ValueError("Worker UUID differs from launch binding")
+    verify_worker_inputs(binding, root=root, data_config_path=data_config_path,
+                         plan_path=plan_path)
     approval_path = checked_path(approval)
     expected = _expected_approval(checked_path(output), checked_path(binding_path),
                                   checked_path(config_path), binding, bound_uuid)
