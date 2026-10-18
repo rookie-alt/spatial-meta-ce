@@ -4,9 +4,8 @@
 > `feat/meta65-lowdim-adaptation-20261018`。基准提交：
 > `21272ab60b54e573d275ffad0261234552d04abc`。
 >
-> 状态：`input_freeze_incomplete_checkpoint_sha_pending`。本文不授权服务器写入、
-> CPU 执行、GPU、训练、目标库读取或正式候选声明。checkpoint 路径和 SHA256 必须
-> 经服务器只读认证后填入本文；在 SHA256 仍为 pending 时禁止执行。
+> 状态：`inputs_frozen_execution_not_started`。服务器输入已通过只读认证；本文仍不
+> 授权 GPU、训练或目标库读取，也不把屏幕结果预先声明为正式候选。
 
 ## 1. 目的与边界
 
@@ -54,8 +53,11 @@ registry 必须与上述 SHA256 完全相同。
 | 项目 | 值 |
 |---|---|
 | 候选根目录 | `/gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-runs/formal-20261017T1740/` |
-| 候选文件 | `/gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-runs/formal-20261017T1740/R_head3/last.pt` |
-| SHA256 | `PENDING_SERVER_READONLY_CERTIFICATION` |
+| 文件 | `/gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-runs/formal-20261017T1740/R_head3/last.pt` |
+| 字节数 | `2574664` |
+| SHA256 | `586bc0d0a8883c1e4cf0645c26a389d95cb5f80751df2b0f0f85c02c64add63f` |
+| metadata | `/gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-runs/formal-20261017T1740/R_head3/metadata.json` |
+| metadata SHA256 | `186d69d63d34c9f63f2d1d622c78816ebd9fc5e188c844b1e541dc74a3656dcc` |
 
 执行前必须只读核对以下全部条件；任一项不满足即停止：
 
@@ -69,11 +71,18 @@ registry 必须与上述 SHA256 完全相同。
 - `train_databases` 与 `validation_databases` 均不包含目标库；
 - 计算并回填服务器原件的 SHA256；执行前后必须保持不变。
 
+2026-10-18 只读认证结果：checkpoint state 的 `model_config` 为
+`{"arch":"sum","heads":4,"layers":2,"use_pg":true,"width":64}`，
+`next_step=4000`，metadata `seed=42`，
+`validation_databases=["chembl","legalacts","telstra"]`，
+`adapted_database=null`；train/validation 与目标库交集为空。
+
 ### 3.2 冻结 endpoint plan
 
 | 项目 | 值 |
 |---|---|
 | 路径 | `/gly/weilin/spatial-meta-ce-meta65-20261009-frozen/runs/meta65-source-screen-20261009/endpoint_plan.json` |
+| 字节数 | `11104915` |
 | 预期 SHA256 | `ebeb178de15b134722bd9fbc24ff4b4752f795a311580c1a17cb23c550bfd0f0` |
 
 必须使用同一份完整 plan 的原始 K20 前缀，不重建 query pool，不修改 100-query
@@ -118,8 +127,7 @@ support 排除集合、support digests 或 query digests。
 
 ## 6. 执行门
 
-所有条件满足后才允许执行以下形态的 CPU-only 命令；实际 checkpoint SHA 必须先
-替换 pending 值：
+所有条件满足后才允许执行以下 CPU-only 命令：
 
 ```bash
 env -u CUDA_VISIBLE_DEVICES \
@@ -128,7 +136,7 @@ env -u CUDA_VISIBLE_DEVICES \
   /gly/weilin/PRICE-master/venv/bin/python -B \
   /gly/weilin/spatial-meta-ce-meta65-lowdim-adaptation-20261018-code/scripts/run_meta65_lowdim_screen.py \
   --checkpoint /gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-runs/formal-20261017T1740/R_head3/last.pt \
-  --checkpoint-sha256 <AUTHENTICATED_SHA256> \
+  --checkpoint-sha256 586bc0d0a8883c1e4cf0645c26a389d95cb5f80751df2b0f0f85c02c64add63f \
   --plan /gly/weilin/spatial-meta-ce-meta65-20261009-frozen/runs/meta65-source-screen-20261009/endpoint_plan.json \
   --plan-sha256 ebeb178de15b134722bd9fbc24ff4b4752f795a311580c1a17cb23c550bfd0f0 \
   --cache-root /gly/weilin/spatial-meta-ce/artifacts/cache \
