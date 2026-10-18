@@ -18,25 +18,23 @@ from spatial_meta_ce.model import SetEstimator
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def feature_values(i, rows, columns, scale, offset=0.0):
+    generator = np.random.default_rng(1000 + i * 10 + int(offset * 10))
+    return scale * (
+        np.abs(generator.standard_normal(
+            (rows, columns), dtype=np.float32
+        ))
+        + 0.1
+    )
+
+
 def sample(i, y=100.0):
-    base = i + 1
-
-    def values(rows, columns, scale, offset):
-        row = np.arange(rows, dtype=np.float32)[:, None]
-        column = np.arange(columns, dtype=np.float32)[None, :]
-        return scale * (
-            base
-            + offset
-            + 0.125 * row
-            + 0.0625 * (column % 7 + 1)
-        )
-
     return {
         'groups': [
-            values(2, 40, 0.1, 0.0),
-            values(1, 40, 0.2, 0.5),
-            values(3, 4, 0.3, 1.0),
-            values(1, 43, 0.4, 1.5),
+            feature_values(i, 2, 40, 0.1, 0.0),
+            feature_values(i, 1, 40, 0.2, 0.5),
+            feature_values(i, 3, 4, 0.3, 1.0),
+            feature_values(i, 1, 43, 0.4, 1.5),
         ],
         'true': y,
         'pg': 2.0,
@@ -461,11 +459,16 @@ class SafetyTests(unittest.TestCase):
                         'true': value,
                         'pg': 2.0,
                     })
-                    features.append((
-                        torch.full((1, 40), 0.1, dtype=torch.float32),
-                        torch.full((1, 40), 0.1, dtype=torch.float32),
-                        torch.full((4, 4), 0.1, dtype=torch.float32),
-                        torch.full((1, 43), 0.1, dtype=torch.float32),
+                    features.append(tuple(
+                        torch.from_numpy(feature_values(
+                            index, rows, columns, scale, offset
+                        ))
+                        for rows, columns, scale, offset in (
+                            (1, 40, 0.1, 0.0),
+                            (1, 40, 0.2, 0.5),
+                            (4, 4, 0.3, 1.0),
+                            (1, 43, 0.4, 1.5),
+                        )
                     ))
                 cache_rows[database] = source_rows
                 write_cache(
