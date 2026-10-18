@@ -245,3 +245,48 @@ MSE last3 的 4+ Q95 operator-macro 为 `39.323504`，相对 none 的
 
 完整 `cells.json`、15 份 NPZ 和独立验证的 10,354 项断言明细保留在服务器运行目录
 及本地 `/private/tmp/meta65-lowdim-gate1-raw-20261018`，不提交 Git。
+
+## 9. 独立验证器重建与复跑（2026-10-18）
+
+结果归档提交 `fa77310` 时，生成历史 `verification_summary.json` 的临时验证器没有
+入库。本次新增 [独立验证器](../scripts/meta65_lowdim_verify.py) 与
+[回归测试](../tests/test_meta65_lowdim_verify.py)，不改运行器、冻结协议或研究决策。
+这是依据原始产物格式重建的实现，不是找回历史脚本；历史 10,354 项断言及其报告
+保留，不将新的检查计数冒充历史断言或独立实验重复数。
+
+验证器只依赖 Python 标准库与 NumPy，不导入 runner、Torch 或模型代码。读取本地
+原始副本的 `run/` 与 `inputs/`，重新验证完整 100-query support pool 的 K20 前缀、
+first-unique query 分母、三源身份与标签、表数及 bucket 掩码；重算所有 Q-error、
+六组逐 query 配对量、60-cell 指标、五 run 均值和三库等权 macro；检查 support
+残差、MSE/SmoothL1、状态摘要与 CSV。support 的 residual-head target 从 cards 的
+true/PG 经 float32 log 后转 float64 作差复算，与实际输入精度一致。
+
+默认比对仓库已提交的 Gate 1 精简证据，可用 `--evidence-root` 显式指定可信镜像。
+JSON 镜像按字节 SHA256 比较；CSV 允许 Git 的 CRLF/LF 换行转换，字段仍逐项核验。
+输入的远端绝对路径仅作为历史元数据，不会访问；输出必须位于输入与镜像目录外，
+已存在输出、符号链接、缺失或不一致的证据均拒绝，不覆盖原始产物或历史验证报告。
+
+在包含原始副本的机器上，从仓库根目录复跑（输出文件名必须尚不存在）：
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 /opt/anaconda3/bin/python -B \
+  scripts/meta65_lowdim_verify.py \
+  --raw-root /private/tmp/meta65-lowdim-gate1-raw-20261018 \
+  --evidence-root reports/meta65-lowdim-gate1-20261018 \
+  --output /private/tmp/meta65-gate1-verification-new.json
+```
+
+`/opt/anaconda3/bin/python` 是本机解释器示例，其他机器使用具有 NumPy 的 Python。
+完整原始副本未入 Git；仅 clone 仓库不能凭精简证据重新生成 NPZ，也不会伪造缺失
+输入。原始目录仍需另外持久备份，本次未迁移、删除或修改它。
+
+认证边界：本地副本不含 checkpoint 与 `group0-3.npy`，它们只有历史 hash 记录，
+本轮没有重新校验相应字节；没有重跑模型前向、梯度或 ridge 求解，因此 update norm
+和 condition number 只检查记录的有限性与约束，不是独立复算。共享 state digest
+相等是产物层证据，不替代内存跟踪；目标隔离也不等于系统调用级 I/O tracing。
+
+本轮 [重建验证报告](../reports/meta65-gate1-verifier-rebuild-20261018.json) 已从真实
+60 cells/15 NPZ 生成，4+ Q95 macro与原归档一致；专项51项、全套1194项（16项跳过）
+通过。新文件Ruff专项通过；全项目176项既有问题与同版本基线逐项一致，并非全项目
+lint通过。独立只读审查发现并修复metadata冻结SHA遗漏后复审通过。完整验证记录
+与实验边界见 [进度第83节](99-进度与下一步.md#83-gate-1-独立验证器重建与可复跑证据2026-10-18)。
