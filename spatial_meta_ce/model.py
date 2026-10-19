@@ -13,12 +13,14 @@ MAX_JOINS = 16
 
 class SetEstimator(nn.Module):
     def __init__(self, width=64, use_pg=True, arch='set', layers=2, heads=4,
-                 pg_output_scale=1.0):
+                 pg_output_scale=1.0, gate=None):
         super().__init__()
         if (isinstance(pg_output_scale, bool)
                 or not isinstance(pg_output_scale, (int, float))
                 or pg_output_scale not in (0.0, 1.0)):
             raise ValueError('pg_output_scale must be 0 or 1')
+        if gate is not None and gate != 'sigmoid':
+            raise ValueError("gate must be None or 'sigmoid'")
         if width < 1:
             raise ValueError('width must be positive')
         if arch not in ARCHES:
@@ -30,6 +32,9 @@ class SetEstimator(nn.Module):
         self.pg_output_scale = float(pg_output_scale)
         if self.pg_output_scale != 1.0:
             self.config = {**self.config, 'pg_output_scale': self.pg_output_scale}
+        self.gate_mode = gate
+        if gate is not None:
+            self.config = {**self.config, 'gate': gate}
         self.use_pg = use_pg
         self.arch = arch
         self.encoders = nn.ModuleList([
@@ -53,6 +58,14 @@ class SetEstimator(nn.Module):
                                   nn.Linear(128, 64), nn.ReLU(), nn.Linear(64, 1))
         nn.init.zeros_(self.head[-1].weight)
         nn.init.zeros_(self.head[-1].bias)
+        if gate is not None:
+            # Gate reads the 64-d trunk output that also feeds the final linear, so
+            # the zero-initialised residual head still predicts exactly the PG anchor.
+            self.gate = nn.Sequential(nn.Linear(64, 1))
+            with torch.no_grad():
+                # Start near g≈0.5 (residual fully live) rather than exp(-b)≈0.
+                self.gate[-1].bias.fill_(0.0)
+                self.gate[-1].weight.normal_(std=0.01)
 
     def _mix(self, tokens, masks):
         # Concatenate all groups into one sequence, run self-attention, split back.
@@ -151,7 +164,19 @@ class SetEstimator(nn.Module):
         """Return the read-only feature vector entering the final output linear."""
         return self.head[:-1](self._head_input(batch))
 
-    def forward(self, batch):
+    def gate_values(self, batch):
+        """Return the P1-2 residual gate g(q) in [0, 1]; requires gate='sigmoid'."""
+        if self.gate_mode is None:
+            raise ValueError('gate_values requires a gated model')
+        return torch.sigmoid(self.gate(self.head_features(batch)).squeeze(-1))
+
+    def residual_values(self, batch):
         x = self._head_input(batch)
+        return self.head(x).squeeze(-1)
+
+    def forward(self, batch):
         anchor = self.output_anchor(batch)
-        return anchor + self.head(x).squeeze(-1)
+        residual = self.residual_values(batch)
+        if self.gate_mode is None:
+            return anchor + residual
+        return anchor + self.gate_values(batch) * residual

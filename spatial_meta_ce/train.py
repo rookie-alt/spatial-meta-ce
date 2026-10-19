@@ -10,7 +10,7 @@ import torch
 from .checkpoints import load_checkpoint, restore_rng, save_checkpoint
 from .data import StorePool
 from .manifests import digest, episode_indices, validate_splits
-from .meta import adapt, forward, loss_value, meta_loss
+from .meta import _check_tau, adapt, forward, loss_value, meta_loss
 from .metrics import summarize
 from .model import SetEstimator
 from .tail_risk import capture_loss, tail_terms
@@ -59,7 +59,9 @@ def validate(model, pool, episodes, config, device):
         if is_price:
             support = price_support(support)
         params = adapt(model, support, config['inner_lr'], config['inner_steps'],
-                       config['adapt_scope'], config['loss'], training=False)
+                       config['adapt_scope'], config['loss'], training=False,
+                       **({} if config.get('pinball_tau') is None
+                          else {'tau': config['pinball_tau']}))
         with torch.no_grad():
             prediction = forward(model, params, query).cpu().numpy()
         if is_price:
@@ -107,6 +109,16 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
             raise ValueError('complex_query_weight must be numeric 1 or 2')
         if config['method'] != 'erm' or config['loss'] != 'smooth_l1':
             raise ValueError('complex_query_weight requires method=erm and loss=smooth_l1')
+    # P1-1/P1-2 (doc 93 §3). Both are opt-in; the legacy paths above are untouched.
+    tau = config.get('pinball_tau')
+    if config['loss'] == 'pinball_tau':
+        if tau is None:
+            raise ValueError('loss=pinball_tau requires a pre-registered pinball_tau')
+        tau = _check_tau(tau)
+    elif tau is not None:
+        raise ValueError('pinball_tau config requires loss=pinball_tau')
+    if (s5 or s6) and config['loss'] != 'smooth_l1':
+        raise ValueError('complex_query_weight/tail_risk_mode requires loss=smooth_l1')
     validate_splits(data_config['splits'])
     for key in ['steps','meta_batch','accumulation','query_size','validate_every','validation_runs','patience']:
         if int(config[key]) < 1:
@@ -208,7 +220,7 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
                 sample_plan_episodes += 1
                 if config['method'] == 'fomaml':
                     support, query = store.batch(si,device), store.batch(qi,device)
-                    objective = meta_loss(model,support,query,config['inner_lr'],config['inner_steps'],config['adapt_scope'],config['loss'])
+                    objective = meta_loss(model,support,query,config['inner_lr'],config['inner_steps'],config['adapt_scope'],config['loss'],tau=tau)
                     counts['support_presentations'] += k*config['inner_steps']
                     counts['query_presentations'] += len(qi)
                     counts['backward_calls'] += config['inner_steps']+1
@@ -232,7 +244,8 @@ def train(config, data_config, output_dir, device='cpu', resume=None):
                         weights = torch.where(batch['counts'][:,2] >= 4, 2.0, 1.0).to(torch.float32)
                         objective = loss_value(model(batch),batch['label'],config['loss'],weights=weights)
                     else:
-                        objective = loss_value(model(batch),batch['label'],config['loss'])
+                        objective = loss_value(model(batch),batch['label'],config['loss'],
+                                               **({} if tau is None else {'tau': tau}))
                     counts['query_presentations'] += len(si)+len(qi)
                     counts['backward_calls'] += 1
                 losses.append(float(objective.detach()))

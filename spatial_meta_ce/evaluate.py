@@ -241,8 +241,10 @@ def evaluate(config, data_config, output_dir, device='cpu', checkpoint=None, bas
                         support = price_support(support)
                     sync(device)
                     started = time.perf_counter()
+                    tau = config.get('pinball_tau')
                     params = adapt(model, support, config['inner_lr'], config['inner_steps'] if k else 0,
-                                   config['adapt_scope'], config['loss'], training=False) if model else None
+                                   config['adapt_scope'], config['loss'], training=False,
+                                   **({} if tau is None else {'tau': tau})) if model else None
                     sync(device)
                     adapt_seconds = time.perf_counter() - started
                     pred, truth, records = _predict_rows(model, params, test_store, indices, device,
