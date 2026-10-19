@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "checkpoint": {
+    "path": "/gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-runs/formal-20261017T1740/R_head3/last.pt",
+    "sha256": "586bc0d0a8883c1e4cf0645c26a389d95cb5f80751df2b0f0f85c02c64add63f"
+  },
+  "plan": {
+    "path": "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen/runs/meta65-source-screen-20261009/endpoint_plan.json",
+    "sha256": "ebeb178de15b134722bd9fbc24ff4b4752f795a311580c1a17cb23c550bfd0f0"
+  },
+  "lambda_registry": {
+    "path": "/gly/weilin/spatial-meta-ce-meta65-lowdim-adaptation-20261018-code-rerun1/configs/meta65_lowdim_gate1_lambda.json",
+    "sha256": "651f70197fd33a387b5a5c363ee203de57aff6d07cb8390487ee099ee0870dd3",
+    "value": {
+      "schema": 1,
+      "experiment": "meta65-lowdim-gate1-20261018",
+      "candidate_lambdas": [
+        1.0
+      ],
+      "selected_lambda": 1.0,
+      "selection_timing": "before_query_evaluation"
+    }
+  },
+  "cache_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+  "source_before": {
+    "chembl": {
+      "manifest_content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "file_sha256": {
+        "manifest.json": "7a936bbe92c1f919bb4a9d8e0276f1cba418f93e1bb0a5595b51cf0c8d837952",
+        "cards.npy": "11d638adede17523c34893ca37f8fc13c728c01af2146991f58034a670adbd44",
+        "offsets.npy": "a401fdb739eedc1902faed45b5e068d33b4c262bc5aa7b7a3425be6071f19765",
+        "group0.npy": "d522589b6cb3ccdb9684ecad2e83db94a3b213c732de1fe737561696c0ae5ba4",
+        "group1.npy": "0ac6dfb2401ef5bec24b80ec5593ef64fda6ba3ef97af380a6e3d4e175b009e5",
+        "group2.npy": "0e52ceeb3418de73d188c897a8c77ae1b33b222e589446e560d067bfb9c0c7c6",
+        "group3.npy": "d808ff804adbc4442689b2552d3c33596fc20c78becc99575eb5fddd8c0b150b"
+      }
+    },
+    "legalacts": {
+      "manifest_content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "file_sha256": {
+        "manifest.json": "a87b4ceb61d687f0f0525ea763422b4b8f29cad4bb56b664ee6d305f40e7d225",
+        "cards.npy": "13a9afe2b62e5c6697367993e4ded72d1a025ee26b425b8c04446e10aba76dd3",
+        "offsets.npy": "67aa46828a9dcfb2a9f1335c11f8658882333025ea394a17d863f249f50c9144",
+        "group0.npy": "49c6e9f212ef767a8a4664dfb78347f8b1b336f37a1b4fe99d28da736c87188a",
+        "group1.npy": "3cd65ae187956ba8d59f1dcd03f0c6e39c81d89abfdc8b39da0a8f06293822aa",
+        "group2.npy": "1e7ebd2a9f1d2b1e7fc386e6ce3c38836cd728c55c2d38c9da536d55a2c3b58c",
+        "group3.npy": "9487079283c0c482745d951413e6668ba6787af988f8d00546aa1d32b7620696"
+      }
+    },
+    "telstra": {
+      "manifest_content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+      "file_sha256": {
+        "manifest.json": "3df79cbd9b0913d1cb8d6f7b0b58eca8bf9ef7094f2048657ade2fc49c8ec144",
+        "cards.npy": "c15f05bdb013320516f0ead9fbef0b776870e061d930847e3833014c47ef291a",
+        "offsets.npy": "9f1d6fd6d8cda47162da4592acf3486a3bcf6448813a610758db33c9643f77e6",
+        "group0.npy": "2304c6e474308b0f17f956c6ad3864e129c716d629f16801f740779cb777567a",
+        "group1.npy": "86735ac3dc5b9d843e6f06c6b4f7acf8f1153bfb24afe0dd673c4748a91d826d",
+        "group2.npy": "ad6becd65f27c805a41c5ac4aec82de1999a1ca79cbb50227d72f2d06f4ae135",
+        "group3.npy": "6f372b92258a9fa7fde03228c68cc430e0c0ecb2757bac407b9040ee924fc033"
+      }
+    }
+  },
+  "source_after": {
+    "chembl": {
+      "manifest_content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "file_sha256": {
+        "manifest.json": "7a936bbe92c1f919bb4a9d8e0276f1cba418f93e1bb0a5595b51cf0c8d837952",
+        "cards.npy": "11d638adede17523c34893ca37f8fc13c728c01af2146991f58034a670adbd44",
+        "offsets.npy": "a401fdb739eedc1902faed45b5e068d33b4c262bc5aa7b7a3425be6071f19765",
+        "group0.npy": "d522589b6cb3ccdb9684ecad2e83db94a3b213c732de1fe737561696c0ae5ba4",
+        "group1.npy": "0ac6dfb2401ef5bec24b80ec5593ef64fda6ba3ef97af380a6e3d4e175b009e5",
+        "group2.npy": "0e52ceeb3418de73d188c897a8c77ae1b33b222e589446e560d067bfb9c0c7c6",
+        "group3.npy": "d808ff804adbc4442689b2552d3c33596fc20c78becc99575eb5fddd8c0b150b"
+      }
+    },
+    "legalacts": {
+      "manifest_content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "file_sha256": {
+        "manifest.json": "a87b4ceb61d687f0f0525ea763422b4b8f29cad4bb56b664ee6d305f40e7d225",
+        "cards.npy": "13a9afe2b62e5c6697367993e4ded72d1a025ee26b425b8c04446e10aba76dd3",
+        "offsets.npy": "67aa46828a9dcfb2a9f1335c11f8658882333025ea394a17d863f249f50c9144",
+        "group0.npy": "49c6e9f212ef767a8a4664dfb78347f8b1b336f37a1b4fe99d28da736c87188a",
+        "group1.npy": "3cd65ae187956ba8d59f1dcd03f0c6e39c81d89abfdc8b39da0a8f06293822aa",
+        "group2.npy": "1e7ebd2a9f1d2b1e7fc386e6ce3c38836cd728c55c2d38c9da536d55a2c3b58c",
+        "group3.npy": "9487079283c0c482745d951413e6668ba6787af988f8d00546aa1d32b7620696"
+      }
+    },
+    "telstra": {
+      "manifest_content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+      "file_sha256": {
+        "manifest.json": "3df79cbd9b0913d1cb8d6f7b0b58eca8bf9ef7094f2048657ade2fc49c8ec144",
+        "cards.npy": "c15f05bdb013320516f0ead9fbef0b776870e061d930847e3833014c47ef291a",
+        "offsets.npy": "9f1d6fd6d8cda47162da4592acf3486a3bcf6448813a610758db33c9643f77e6",
+        "group0.npy": "2304c6e474308b0f17f956c6ad3864e129c716d629f16801f740779cb777567a",
+        "group1.npy": "86735ac3dc5b9d843e6f06c6b4f7acf8f1153bfb24afe0dd673c4748a91d826d",
+        "group2.npy": "ad6becd65f27c805a41c5ac4aec82de1999a1ca79cbb50227d72f2d06f4ae135",
+        "group3.npy": "6f372b92258a9fa7fde03228c68cc430e0c0ecb2757bac407b9040ee924fc033"
+      }
+    }
+  }
+}

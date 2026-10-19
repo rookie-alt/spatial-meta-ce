@@ -114,7 +114,7 @@ class SetEstimator(nn.Module):
                 fanout.masked_fill(~masks[1].unsqueeze(-1), 0), table_tokens,
                 filtered.masked_fill(~masks[3].unsqueeze(-1), 0)]
 
-    def forward(self, batch):
+    def _head_input(self, batch):
         masks = batch['masks']
         if self.arch == 'sum_map' and 'mapping' not in batch:
             raise ValueError('sum_map requires mapping indices')
@@ -137,6 +137,21 @@ class SetEstimator(nn.Module):
             pooled.extend([mean, largest] if self.arch == 'set' else [mean, largest, total])
         pg = batch['pg_log'] if self.use_pg else torch.zeros_like(batch['pg_log'])
         log_cartesian = (batch['groups'][2][:, :, 0] * masks[2]).sum(1)
-        x = torch.cat([*pooled, torch.log1p(batch['counts']), pg[:, None], log_cartesian[:, None]], dim=1)
-        anchor = pg if self.pg_output_scale == 1.0 else torch.zeros_like(pg)
+        return torch.cat(
+            [*pooled, torch.log1p(batch['counts']), pg[:, None], log_cartesian[:, None]],
+            dim=1)
+
+    def output_anchor(self, batch):
+        """Return the zero-shot anchor used by the residual output head."""
+        if self.use_pg and self.pg_output_scale == 1.0:
+            return batch['pg_log']
+        return torch.zeros_like(batch['pg_log'])
+
+    def head_features(self, batch):
+        """Return the read-only feature vector entering the final output linear."""
+        return self.head[:-1](self._head_input(batch))
+
+    def forward(self, batch):
+        x = self._head_input(batch)
+        anchor = self.output_anchor(batch)
         return anchor + self.head(x).squeeze(-1)
