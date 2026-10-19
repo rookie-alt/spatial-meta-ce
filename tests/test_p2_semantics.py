@@ -16,7 +16,8 @@ class P2SemanticsTests(unittest.TestCase):
         self.assertEqual(numeric_bounds(['x < 1', 'x >= 3'], 'x', 0, 10), (3., 1.))
 
     def test_histogram_boundaries_and_empty_range(self):
-        bins = np.array([20., 30.]); edges = np.array([0., 10., 20.])
+        bins = np.array([20., 30.])
+        edges = np.array([0., 10., 20.])
         self.assertAlmostEqual(numeric_histogram_selectivity(bins, edges, 5., 15., 100), .25)
         self.assertEqual(numeric_histogram_selectivity(bins, edges, 12., 12., 100), 0.)
         self.assertEqual(numeric_histogram_selectivity(bins, edges, -3., 40., 100), .5)

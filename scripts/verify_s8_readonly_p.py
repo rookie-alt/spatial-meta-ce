@@ -431,7 +431,9 @@ def certificate_complete(certificate, rows=None, columns=None):
                or (v < 0 and k != 'rank_interval_margin') for k, v in numbers.items()):
             return False
         eps, d, k = 2.0 ** -52, max(rows, columns), min(rows, columns)
-        close = lambda a, b: math.isclose(a, b, rel_tol=1e-12, abs_tol=1e-12)
+        def close(a, b):
+            return math.isclose(a, b, rel_tol=1e-12, abs_tol=1e-12)
+
         gamma, orth = d * eps / (1 - d * eps), (d + k) * eps / (1 - (d + k) * eps)
         if (numbers['spectrum_epsilon'] != eps or not close(numbers['spectrum_gamma'], gamma)
                 or not close(numbers['svd_normalized_orthogonality_bound'], orth)

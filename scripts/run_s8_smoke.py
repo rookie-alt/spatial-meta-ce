@@ -20,18 +20,18 @@ import torch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts import run_s8_preflight as source
-from scripts.s2_source_replay import digest
-from spatial_meta_ce.data import batch_samples
-from spatial_meta_ce.model import SetEstimator
-from spatial_meta_ce.s8_contract import (
+from scripts import run_s8_preflight as source  # noqa: E402
+from scripts.s2_source_replay import digest  # noqa: E402
+from spatial_meta_ce.data import batch_samples  # noqa: E402
+from spatial_meta_ce.model import SetEstimator  # noqa: E402
+from spatial_meta_ce.s8_contract import (  # noqa: E402
     HELD_OUT,
     TRAIN,
     VALIDATION,
     extract_representations,
     panel_indices,
 )
-from spatial_meta_ce.s8_probe import (
+from spatial_meta_ce.s8_probe import (  # noqa: E402
     certify_pair,
     residual_targets,
     solve_adam,

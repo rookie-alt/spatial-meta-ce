@@ -23,11 +23,13 @@ def data_settings(config, config_path):
         data=config
     else:
         location=Path(config.get('data_config','configs/data.json'))
-        if not location.is_absolute(): location=PROJECT/location
+        if not location.is_absolute():
+            location=PROJECT/location
         data=read_json(location)
     data=copy.deepcopy(data)
     cache=Path(data['cache_root'])
-    if not cache.is_absolute(): cache=PROJECT/cache
+    if not cache.is_absolute():
+        cache=PROJECT/cache
     data['cache_root']=str(cache.resolve())
     data['data_root']=str(Path(data['data_root']).resolve())
     validate_splits(data['splits'])
@@ -52,18 +54,22 @@ def audit(data, output):
     for split,db in pairs:
         workload=root/'datas/workloads'/split/db/'workloads.sql'
         feature=root/'setup/features'/split/db/'features40.pkl'
-        hashes=set(); count=0
+        hashes=set()
+        count=0
         import hashlib
         with workload.open() as stream:
             for line in stream:
-                if not line.strip(): continue
+                if not line.strip():
+                    continue
                 count+=1
                 hashes.add(hashlib.sha256(line.split('||')[0].strip().encode()).hexdigest())
         row={'split':split,'db':db,'workload_rows':count,'distinct_exact_sql':len(hashes),
              'workload_sha256':file_hash(workload),'features_present':feature.exists()}
-        if db in data['splits']['test']: target_hashes[(split,db)]=hashes
+        if db in data['splits']['test']:
+            target_hashes[(split,db)]=hashes
         if feature.exists():
-            with feature.open('rb') as stream: features=pickle.load(stream)
+            with feature.open('rb') as stream:
+                features=pickle.load(stream)
             row['features']=inspect_features(features)
             row['feature_sha256']=file_hash(feature)
             del features
@@ -74,7 +80,8 @@ def audit(data, output):
     for db in data['splits']['test']:
         report['exact_target_overlap'][db]=len(target_hashes[('finetune',db)]&target_hashes[('test',db)])
     output.parent.mkdir(parents=True,exist_ok=True)
-    if output.exists(): raise FileExistsError(output)
+    if output.exists():
+        raise FileExistsError(output)
     output.write_text(json.dumps(report,indent=2))
     return report
 
@@ -83,7 +90,8 @@ def prepare(data, databases=None, allow_exclusions=False):
     selected=set(databases) if databases else None
     pairs=[('pretrain',db) for db in data['splits']['train']+data['splits']['validation']]
     pairs += [(split,db) for db in data['splits']['test'] for split in ('test','finetune')]
-    if selected and selected-{db for _,db in pairs}: raise ValueError('Unknown database')
+    if selected and selected-{db for _,db in pairs}:
+        raise ValueError('Unknown database')
     for split,db in pairs:
         if selected is None or db in selected:
             print(json.dumps(prepare_database(data['data_root'],data['cache_root'],db,split,allow_exclusions)),flush=True)
@@ -127,7 +135,8 @@ def adapt_one(config,data,output,args):
     if args.database in state['metadata']['train_databases']+state['metadata']['validation_databases']:
         raise ValueError('Target appeared in training or model selection')
     pool=StorePool(data['cache_root'])
-    ss=pool.get('finetune',args.database); ts=pool.get('test',args.database)
+    ss=pool.get('finetune',args.database)
+    ts=pool.get('test',args.database)
     indices,overlap=support_plan(ss,ts,args.k,config['support_seed'],0)
     params=adapt(model,ss.batch(indices,args.device),config['inner_lr'],config['inner_steps'],config['adapt_scope'],config['loss'],training=False)
     model.load_state_dict(params,strict=True)
@@ -158,15 +167,18 @@ def main():
     parser.add_argument('--no-pg',action='store_true')
     parser.add_argument('--allow-exclusions',action='store_true')
     args=parser.parse_args()
-    if args.threads<1: parser.error('--threads must be positive')
+    if args.threads<1:
+        parser.error('--threads must be positive')
     torch.set_num_threads(args.threads)
     config=read_json(args.config)
     data=data_settings(config,args.config)
     safe_output(data['cache_root'],data)
     for arg,key in [('seed','seed'),('steps','steps'),('inner_lr','inner_lr'),('inner_steps','inner_steps'),('scope','adapt_scope')]:
         value=getattr(args,arg)
-        if value is not None: config[key]=value
-    if args.no_pg: config['model']['use_pg']=False
+        if value is not None:
+            config[key]=value
+    if args.no_pg:
+        config['model']['use_pg']=False
     stamp=datetime.datetime.now(datetime.timezone.utc).astimezone().strftime('%Y%m%d-%H%M%S-%f')
     output=safe_output(args.output or str(PROJECT/'runs'/f'{args.command}-{stamp}'),data)
     if args.command=='audit':
@@ -182,7 +194,8 @@ def main():
     elif args.command=='adapt':
         adapt_one(config,data,output,args)
     else:
-        if args.device!='cpu': parser.error('smoke is CPU-only; formal training is a separate action')
+        if args.device!='cpu':
+            parser.error('smoke is CPU-only; formal training is a separate action')
         smoke(config,data,output)
 
 

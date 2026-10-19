@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts import meta65_holdout_contract as contract
+from scripts import meta65_holdout_contract as contract  # noqa: E402
 
 
 def validate_store(store: object, database: str, expected_unique: int,

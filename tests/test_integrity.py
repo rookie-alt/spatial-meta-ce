@@ -47,7 +47,8 @@ class IntegrityTests(unittest.TestCase):
 
     def test_resume_rejects_changed_hyperparameters(self):
         with tempfile.TemporaryDirectory() as d:
-            root=Path(d); cfg,dc=fixtures(root)
+            root=Path(d)
+            cfg,dc=fixtures(root)
             train(cfg,dc,root/'run')
             cfg['inner_lr']=0.5
             with self.assertRaises(ValueError):
@@ -63,7 +64,8 @@ class IntegrityTests(unittest.TestCase):
         from spatial_meta_ce.checkpoints import save_checkpoint
         from spatial_meta_ce.evaluate import evaluate
         with tempfile.TemporaryDirectory() as d:
-            root=Path(d); cfg,dc=fixtures(root)
+            root=Path(d)
+            cfg,dc=fixtures(root)
             train(cfg,dc,root/'train')
             model,state=load_checkpoint(root/'train/best.pt')
             meta=dict(state['metadata'], adapted_database='t')
@@ -113,7 +115,8 @@ class IntegrityTests(unittest.TestCase):
             parts=[]
             for j,(g,dim) in enumerate(zip(groups,(40,40,4,43))):
                 padding=torch.full((1,dim),-1000.)
-                if j==2: padding[:,0]=0
+                if j==2:
+                    padding[:,0]=0
                 parts.append(torch.cat([g,padding]).flatten())
             x=torch.cat(parts)[None,:]
             mask=torch.tensor([[1,1,0,1,0,1,0,1,0]])

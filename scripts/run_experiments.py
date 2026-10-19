@@ -92,7 +92,8 @@ def main():
     for baseline in ('pg','price','random'):
         for seed in (specification['seeds'] if baseline=='random' else [42]):
             settings=copy.deepcopy(ec)
-            if baseline!='pg': settings['inner_lr']=baseline_choices[f'{baseline}-{seed}']['inner_lr']
+            if baseline!='pg':
+                settings['inner_lr']=baseline_choices[f'{baseline}-{seed}']['inner_lr']
             evaluate(settings,dc,output/'evaluation'/baseline/f'seed{seed}',args.device,baseline=baseline,training_seed=seed)
     # Keep per-seed distributions separate; don't treat repeats as independent training runs.
     import numpy as np

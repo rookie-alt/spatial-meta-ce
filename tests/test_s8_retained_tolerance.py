@@ -15,7 +15,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from spatial_meta_ce import s8_probe as probe
+from spatial_meta_ce import s8_probe as probe  # noqa: E402
 
 
 class RetainedToleranceTests(unittest.TestCase):

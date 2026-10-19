@@ -12,8 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts import run_meta65_screen as original
-from scripts.run_meta65_supervised import supervise
+from scripts import run_meta65_screen as original  # noqa: E402
+from scripts.run_meta65_supervised import supervise  # noqa: E402
 
 OLD_RUN = 'runs/meta65-source-screen-20261009'
 PROTOCOL = '实验文档/50-Meta65仅补齐C端点评估协议.md'

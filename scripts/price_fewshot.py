@@ -13,8 +13,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from spatial_meta_ce.cli import data_settings, read_json
-from spatial_meta_ce.evaluate import evaluate
+from spatial_meta_ce.cli import data_settings, read_json  # noqa: E402
+from spatial_meta_ce.evaluate import evaluate  # noqa: E402
 
 TARGETS = ['stats', 'genome', 'ergastf1']
 

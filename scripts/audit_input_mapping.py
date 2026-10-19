@@ -16,10 +16,10 @@ from sqlglot import exp
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from spatial_meta_ce.cli import data_settings, read_json, safe_output
-from spatial_meta_ce.data import GROUP_DIMS, FeatureStore
-from spatial_meta_ce.features import COUNT_KEYS, extractor, lower_except_quotes
-from spatial_meta_ce.manifests import file_hash, read_workload
+from spatial_meta_ce.cli import data_settings, read_json, safe_output  # noqa: E402
+from spatial_meta_ce.data import GROUP_DIMS, FeatureStore  # noqa: E402
+from spatial_meta_ce.features import COUNT_KEYS, extractor, lower_except_quotes  # noqa: E402
+from spatial_meta_ce.manifests import file_hash, read_workload  # noqa: E402
 
 TARGETS = {'imdb', 'stats', 'genome', 'ergastf1'}
 COMPARISONS = (exp.EQ, exp.NEQ, exp.LT, exp.LTE, exp.GT, exp.GTE)

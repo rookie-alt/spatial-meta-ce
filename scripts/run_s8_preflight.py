@@ -16,8 +16,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts import s2_source_replay as replay
-from spatial_meta_ce.s8_contract import (
+from scripts import s2_source_replay as replay  # noqa: E402
+from spatial_meta_ce.s8_contract import (  # noqa: E402
     HELD_OUT,
     TRAIN,
     panel_indices,

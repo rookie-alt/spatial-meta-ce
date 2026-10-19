@@ -10,9 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts import meta65_holdout_contract as contract
-from scripts import meta65_holdout_launch as launch
-from scripts.meta65_joint_supervisor import artifact_paths
+from scripts import meta65_holdout_contract as contract  # noqa: E402
+from scripts import meta65_holdout_launch as launch  # noqa: E402
+from scripts.meta65_joint_supervisor import artifact_paths  # noqa: E402
 
 
 def raw_manifest(output: Path) -> dict[str, str]:

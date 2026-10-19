@@ -46,10 +46,13 @@ def main():
     root=Path(__file__).resolve().parents[1]
     files={}
     for f in root.rglob('*'):
-        if not f.is_file() or f.is_symlink(): continue
+        if not f.is_file() or f.is_symlink():
+            continue
         rel=f.relative_to(root)
-        if set(rel.parts)&{'__pycache__','runs','artifacts','.git'} or f.name.startswith('.'): continue
-        if rel.suffix not in ('.py','.json','.md','.sh','.txt','.toml'): continue
+        if set(rel.parts)&{'__pycache__','runs','artifacts','.git'} or f.name.startswith('.'):
+            continue
+        if rel.suffix not in ('.py','.json','.md','.sh','.txt','.toml'):
+            continue
         files[str(rel)]=base64.b64encode(f.read_bytes()).decode()
     payload={'root':args.remote_root,'files':files}
     subprocess.run(shlex.split(args.ssh)+['python3 -c '+shlex.quote(REMOTE)],input=json.dumps(payload),text=True,check=True)

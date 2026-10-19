@@ -17,16 +17,16 @@ import sqlglot
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts.audit_input_mapping import (
+from scripts.audit_input_mapping import (  # noqa: E402
     feature_groups_match,
     provenance_checks,
     query_layout,
     source_databases,
     write_report,
 )
-from spatial_meta_ce.cli import data_settings, read_json, safe_output
-from spatial_meta_ce.data import FeatureStore
-from spatial_meta_ce.manifests import digest, file_hash, read_workload
+from spatial_meta_ce.cli import data_settings, read_json, safe_output  # noqa: E402
+from spatial_meta_ce.data import FeatureStore  # noqa: E402
+from spatial_meta_ce.manifests import digest, file_hash, read_workload  # noqa: E402
 
 RELATIONS = ('join_column_tables', 'filter_column_tables', 'fanout_join_columns')
 IDENTITY = ('id', 'query_hash', 'exact_hash', 'source_line')

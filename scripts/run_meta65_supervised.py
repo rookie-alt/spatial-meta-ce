@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts import run_meta65_screen as runner
+from scripts import run_meta65_screen as runner  # noqa: E402
 
 
 def artifact_paths(output):

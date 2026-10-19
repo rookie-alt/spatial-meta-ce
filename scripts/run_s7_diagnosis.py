@@ -13,8 +13,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts import s2_source_replay as replay
-from scripts import s7_source_diagnosis as stats
+from scripts import s2_source_replay as replay  # noqa: E402
+from scripts import s7_source_diagnosis as stats  # noqa: E402
 
 HIST = "实验文档/results/s6-mean-tail-20261007"
 CORE = (

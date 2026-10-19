@@ -463,9 +463,12 @@ def target_svg(data, db):
                   else r['q95_support_sd'] or 0) for r in rows]
     low = max(1, min(m - s for m, s in intervals) * 0.85)
     high = max(m + s for m, s in intervals) * 1.2
-    y = lambda v: 420 - (math.log10(v) - math.log10(low)) / (math.log10(high) - math.log10(low)) * 340
+    def y(v):
+        return 420 - (math.log10(v) - math.log10(low)) / (math.log10(high) - math.log10(low)) * 340
+
     # Categorical K spacing retains all K without implying a linear support-size distance.
-    x = lambda k: 90 + SHOTS.index(k) * 88
+    def x(k):
+        return 90 + SHOTS.index(k) * 88
     parts = svg_start(f'{db}: unique-query Q95 (lower is better)',
                       'All K=0,5,10,20,50,100. Categorical K axis; logarithmic Q95 axis. '
                       'Solid caps: sample SD of three training-seed means. Dashed caps: PRICE '
@@ -510,7 +513,9 @@ def source_svg(data):
     rows = data['source_tradeoffs']
     low = min(-20, *(r['relative_change'] * 100 for r in rows)) - 10
     high = max(20, *(r['relative_change'] * 100 for r in rows)) + 15
-    x = lambda v: 210 + (v - low) / (high - low) * 480
+    def x(v):
+        return 210 + (v - low) / (high - low) * 480
+
     for v in (-10, 0, 10):
         parts += [line(x(v), 65, x(v), 505, '#666666', v != 0), text(x(v), 532, f'{v:+d}%', text_anchor='middle')]
     colors = ('#0072b2', '#d55e00', '#009e73')
