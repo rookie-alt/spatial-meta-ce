@@ -86,8 +86,12 @@ class PlanBuilderTests(unittest.TestCase):
     def test_draw_does_not_reuse_the_protocol_81_seed_scheme(self):
         import random
 
+        from scripts import meta65_holdout_contract as contract
+
+        seed_81 = contract.FROZEN["evaluation"]["support_seed"]
+        self.assertEqual(seed_81, 2718)
         plan = planner.draw(self.indices, self.hashes, "legalacts", 5)
-        legacy = random.Random("1729:legalacts:5").sample(self.indices, 100)
+        legacy = random.Random("%d:legalacts:5" % seed_81).sample(self.indices, 100)
         self.assertNotEqual(plan["support_max"], legacy)
 
     def test_certify_rejects_query_that_reuses_a_support_index(self):
@@ -228,14 +232,31 @@ class MetricGateTests(unittest.TestCase):
 
 
 class FeatureTests(unittest.TestCase):
-    def test_table_shares_sum_to_one(self):
+    def test_table_shares_cover_the_whole_population(self):
         store = simple_store()
         population = stage_a.population_context(store)
         features = stage_a.support_features(store, list(range(20)), population)
         self.assertAlmostEqual(
-            features["tables_4_share"] + features["tables_5_share"]
-            + features["tables_6p_share"], 1.0, places=12)
+            features["tables_1_3_share"] + features["tables_4_share"]
+            + features["tables_5_share"] + features["tables_6p_share"], 1.0, places=12)
         self.assertEqual(features["tables_4_share"], 1.0)
+        self.assertEqual(features["tables_1_3_share"], 0.0)
+
+    def test_one_to_three_table_share_is_reported(self):
+        # Real supports contain 1-3 table queries; the four shares must still sum
+        # to one, which the earlier three-share version silently violated.
+        tables = np.array([2, 3, 4, 5, 6, 7, 4, 5, 6, 7,
+                           4, 5, 6, 7, 4, 5, 6, 7, 4, 5])
+        lengths = np.ones((20, 4), dtype=np.int64)
+        lengths[:, 2] = tables
+        store = FakeStore(tables, np.linspace(1, 90, 20),
+                          np.linspace(1, 90, 20) * 1.1, lengths, np.zeros(20))
+        population = stage_a.population_context(store)
+        features = stage_a.support_features(store, list(range(20)), population)
+        self.assertAlmostEqual(features["tables_1_3_share"], 2 / 20, places=12)
+        self.assertAlmostEqual(
+            features["tables_1_3_share"] + features["tables_4_share"]
+            + features["tables_5_share"] + features["tables_6p_share"], 1.0, places=12)
 
     def test_tercile_shares_are_distributions(self):
         store = simple_store()
@@ -446,6 +467,50 @@ class VerdictTests(unittest.TestCase):
         self.assertEqual(stage_a.correlation_block(features, outcomes, runs)["n"], 8)
 
 
+class ConsumerCertificationTests(unittest.TestCase):
+    """The consumer must re-prove plan-90 invariants, not trust the builder."""
+
+    def setUp(self):
+        self.indices = list(range(400))
+        self.hashes = ["h%04d" % index for index in self.indices]
+        self.entry = planner.draw(self.indices, self.hashes, "chembl", 5)
+
+    def test_a_clean_entry_certifies(self):
+        support, query = stage_a.certify_draw_entry(
+            self.entry, self.indices, self.hashes, "chembl", 5)
+        self.assertEqual(support, self.entry["supports"]["20"])
+        self.assertEqual(query, self.entry["query"])
+
+    def test_a_late_support_row_smuggled_into_query_is_rejected(self):
+        # Only supports["20"] is used for adaptation, so a query that contains
+        # one of support_max[20:100] would otherwise pass unnoticed.
+        smuggled = self.entry["support_max"][50]
+        broken = copy.deepcopy(self.entry)
+        broken["query"] = [smuggled] + broken["query"][:-1]
+        broken["query_digest"] = planner.contract.digest(
+            [(i, dict(zip(self.indices, self.hashes))[i]) for i in broken["query"]])
+        with self.assertRaises(ValueError):
+            stage_a.certify_draw_entry(broken, self.indices, self.hashes, "chembl", 5)
+
+    def test_a_tampered_query_digest_is_rejected(self):
+        broken = copy.deepcopy(self.entry)
+        broken["query_digest"] = "0" * 64
+        with self.assertRaises(ValueError):
+            stage_a.certify_draw_entry(broken, self.indices, self.hashes, "chembl", 5)
+
+    def test_a_tampered_support_prefix_is_rejected(self):
+        broken = copy.deepcopy(self.entry)
+        broken["supports"]["20"] = list(reversed(broken["supports"]["20"]))
+        with self.assertRaises(ValueError):
+            stage_a.certify_draw_entry(broken, self.indices, self.hashes, "chembl", 5)
+
+    def test_short_support_max_is_rejected(self):
+        broken = copy.deepcopy(self.entry)
+        broken["support_max"] = broken["support_max"][:50]
+        with self.assertRaises(ValueError):
+            stage_a.certify_draw_entry(broken, self.indices, self.hashes, "chembl", 5)
+
+
 class PlanLoadingTests(unittest.TestCase):
     def write(self, value):
         path = Path(tempfile.mkdtemp()) / "plan.json"
@@ -470,6 +535,22 @@ class PlanLoadingTests(unittest.TestCase):
             stage_a.load_draw_plan(path, "chembl", 6)
         with self.assertRaises(ValueError):
             stage_a.load_draw_plan(path, "telstra", 5)
+
+    def test_too_few_runs_is_refused_by_the_guarded_cli(self):
+        # Spearman needs three paired points; --runs 2 used to evaluate every
+        # cell and only then crash in the summary. Set the CPU environment so
+        # the failure comes from the run-count guard, not the earlier checks.
+        import os
+        from unittest import mock
+
+        env = {"CUDA_VISIBLE_DEVICES": "", "OMP_NUM_THREADS": "1",
+               "MKL_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1"}
+        with mock.patch.dict(os.environ, env, clear=False):
+            with self.assertRaises(ValueError) as caught:
+                stage_a.main([
+                    "--run-dir", "/tmp/x", "--d1", "/tmp/y", "--plan-90", "/tmp/z",
+                    "--cache-root", "/tmp/c", "--out", "/tmp/o", "--runs", "2"])
+        self.assertIn("--runs must be at least 3", str(caught.exception))
 
     def test_protocol_81_plan_entry_rejects_out_of_range_runs(self):
         plan = {"chembl": [{"run": run} for run in range(5)]}

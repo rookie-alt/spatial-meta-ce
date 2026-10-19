@@ -38,6 +38,10 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from scripts import meta65_holdout_contract as CONTRACT  # noqa: E402
+
+SHOTS = CONTRACT.SHOTS
+
 DATABASES = ("chembl", "legalacts", "telstra")
 FORBIDDEN = ("imdb", "stats", "genome", "ergastf1")
 EXCLUDED = ("hepatitis", "sakila")
@@ -47,6 +51,7 @@ OFFICIAL_RUNS = tuple(range(5))
 NEW_RUNS = tuple(range(5, 50))
 ALL_RUNS = tuple(range(50))
 SUPPORT_K = 20
+MIN_RUNS_FOR_SUMMARY = 3
 BATCH_SIZE = 512
 LOW4_MIN_TABLES = 4
 LOW4_MAX_TRUE = 100
@@ -61,6 +66,7 @@ PERCENTILES = (5, 25, 50, 75, 95)
 SPEARMAN_PREDICTABLE = 0.8
 SPEARMAN_NOT_PREDICTABLE = 0.5
 FEATURES = (
+    "tables_1_3_share",
     "tables_4_share",
     "tables_5_share",
     "tables_6p_share",
@@ -261,6 +267,7 @@ def support_features(store, support_indices, population):
     low4 = low4_mask(support_true, support_tables)
 
     features = {
+        "tables_1_3_share": float((support_tables <= 3).mean()),
         "tables_4_share": float((support_tables == 4).mean()),
         "tables_5_share": float((support_tables == 5).mean()),
         "tables_6p_share": float((support_tables >= 6).mean()),
@@ -297,6 +304,14 @@ def population_context(store):
     deviation = np.abs(pg - true) / np.maximum(true, 1.0)
     return {"true_terciles": tercile_thresholds(true[mask]),
             "pg_terciles": tercile_thresholds(deviation[mask])}
+
+
+def population_identity(store, database):
+    """First-unique population, via the same function the plan builder used."""
+    from scripts import build_meta65_holdout_plan as plan_builder
+
+    return plan_builder.validate_store(
+        store, database, CONTRACT.UNIQUE[database], CONTRACT.FOUR_PLUS[database])
 
 
 def rank(values):
@@ -536,6 +551,42 @@ def load_draw_plan(path, database, run):
     raise ValueError("Support-coverage plan lacks %s run %d" % (database, run))
 
 
+def certify_draw_entry(entry, indices, hashes, database, run):
+    """Re-check the plan-90 invariants on the consumer side.
+
+    The builder already certified each draw, but a corrupted or swapped plan
+    file would otherwise pass undetected: only ``supports["20"]`` is used for
+    adaptation, so the other 80 support rows must still be proven absent from
+    the query set, and both digests must be recomputed from the cache itself.
+    """
+    population = set(indices)
+    support_max = [int(value) for value in entry["support_max"]]
+    query = [int(value) for value in entry["query"]]
+    if len(support_max) != 100 or len(set(support_max)) != 100:
+        raise ValueError("Support max must hold 100 unique indices: %s run %d"
+                         % (database, run))
+    if any(value not in population for value in (*support_max, *query)):
+        raise ValueError("Plan index outside the first-unique population: %s run %d"
+                         % (database, run))
+    if len(set(query)) != len(query) or set(support_max) & set(query):
+        raise ValueError("Support/query overlap or duplicate query: %s run %d"
+                         % (database, run))
+    if query != [index for index in indices if index not in set(support_max)]:
+        raise ValueError("Query is not the population minus the whole support: %s run %d"
+                         % (database, run))
+    identity = dict(zip(indices, hashes, strict=True))
+    if entry["query_digest"] != CONTRACT.digest([(i, identity[i]) for i in query]):
+        raise ValueError("Query digest changed: %s run %d" % (database, run))
+    for k in SHOTS:
+        prefix = support_max[:k]
+        if (entry["supports"][str(k)] != prefix
+                or entry["support_digests"][str(k)]
+                != CONTRACT.digest([(i, identity[i]) for i in prefix])):
+            raise ValueError("Support prefix/digest changed: %s run %d k=%d"
+                             % (database, run, k))
+    return support_max[:SUPPORT_K], query
+
+
 def plan_entry(plan, database, run):
     if database not in plan or run >= len(plan[database]):
         raise ValueError("Protocol-81 plan lacks %s run %d" % (database, run))
@@ -561,6 +612,11 @@ def main(argv=None):
                         help="run the blocking consistency gate for runs 0..4 and stop")
     args = parser.parse_args(argv)
 
+    if args.runs < MIN_RUNS_FOR_SUMMARY:
+        # Spearman needs at least three paired points; a shorter run would
+        # evaluate every cell and only then crash in the summary.
+        raise ValueError("--runs must be at least %d to compute A2"
+                         % MIN_RUNS_FOR_SUMMARY)
     for path in (args.run_dir, args.d1, args.plan_81, args.plan_90,
                  args.checkpoint, args.cache_root, args.out):
         guard_path(path)
@@ -657,12 +713,13 @@ def main(argv=None):
     else:
         args.out.parent.mkdir(parents=True, exist_ok=True)
 
-    stores, populations = {}, {}
+    stores, populations, identities = {}, {}, {}
     for database in DATABASES:
         guard_database(database)
         store = FeatureStore(Path(args.cache_root) / "pretrain" / database)
         stores[database] = store
         populations[database] = population_context(store)
+        identities[database] = population_identity(store, database)
 
     for database in DATABASES:
         store = stores[database]
@@ -673,16 +730,21 @@ def main(argv=None):
                 continue
             if run in OFFICIAL_RUNS:
                 entry = plan_entry(plan_81, database, run)
+                if int(entry["run"]) != run:
+                    raise ValueError("Plan run mismatch at %s run %d" % (database, run))
+                support = [int(value) for value in entry["supports"]["20"]]
+                query = [int(value) for value in entry["query"]]
+                if (len(support) != SUPPORT_K or len(set(support)) != SUPPORT_K
+                        or len(query) != len(set(query)) or set(support) & set(query)):
+                    raise ValueError("Plan support/query invariant broken: %s run %d"
+                                     % (database, run))
             else:
                 entry = load_draw_plan(args.plan_90, database, run)
-            if int(entry["run"]) != run:
-                raise ValueError("Plan run mismatch at %s run %d" % (database, run))
-            support = [int(value) for value in entry["supports"]["20"]]
-            query = [int(value) for value in entry["query"]]
-            if (len(support) != SUPPORT_K or len(set(support)) != SUPPORT_K
-                    or len(query) != len(set(query)) or set(support) & set(query)):
-                raise ValueError("Plan support/query invariant broken: %s run %d"
-                                 % (database, run))
+                if int(entry["run"]) != run:
+                    raise ValueError("Plan run mismatch at %s run %d" % (database, run))
+                indices, hashes = identities[database]
+                support, query = certify_draw_entry(
+                    entry, indices, hashes, database, run)
 
             predictions, records, true, tables = evaluate_draw(
                 runner, model, store, support, query)
@@ -720,16 +782,19 @@ def main(argv=None):
             report["progress"]["completed"] = sorted(done)
             write_report(args.out, report)
 
-            if args.consistency_only:
-                done_official = all(
-                    (name, official) in done
-                    for name in DATABASES for official in OFFICIAL_RUNS)
-                if done_official:
-                    report["phase"] = "consistency_only"
-                    write_report(args.out, report)
-                    print(json.dumps(report["consistency"], ensure_ascii=False),
-                          flush=True)
-                    return 0
+    if args.consistency_only:
+        # Checked after the loop, not inside it: on a resumed run every official
+        # cell is already in ``done``, so an in-loop check would never fire and
+        # the report would fall through to the summary and be relabelled
+        # "complete" with a verdict computed from five draws.
+        missing = [(name, official) for name in DATABASES for official in OFFICIAL_RUNS
+                   if (name, official) not in done]
+        if missing:
+            raise ValueError("Consistency gate incomplete: %s" % missing)
+        report["phase"] = "consistency_only"
+        write_report(args.out, report)
+        print(json.dumps(report["consistency"], ensure_ascii=False), flush=True)
+        return 0
 
     for database in DATABASES:
         block = report["per_database"][database]
@@ -742,7 +807,9 @@ def main(argv=None):
         n5 = tuple(run for run in OFFICIAL_RUNS if run in features_by_run)
         n50 = tuple(run for run in ALL_RUNS if run in features_by_run)
         block["a1"] = {"features": list(FEATURES), "support_k": SUPPORT_K,
-                       "population_terciles": populations[database]}
+                       "population_terciles": {
+                           key: populations[database][key]
+                           for key in ("true_terciles", "pg_terciles")}}
         block["a2"] = {
             "n5": correlation_block(features_by_run, outcomes_by_run, n5),
             "n50": correlation_block(features_by_run, outcomes_by_run, n50),
