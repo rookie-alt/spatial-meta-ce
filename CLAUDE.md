@@ -60,8 +60,10 @@ ssh myserver "cd /gly/weilin/spatial-meta-ce && PYTHONDONTWRITEBYTECODE=1 CUDA_V
 
 ```bash
 python3 scripts/experiment_evidence.py --root .            # 打印证据 JSON 到 stdout
-python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic <semantic.json>
+python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic graphify-out/semantic.json
 ```
+
+运行构建命令前，须先通过语义提取生成 `graphify-out/semantic.json`，并确保其绑定的来源文件 hash 与当前内容一致。
 
 - token 计数是 UTF-8/4 估算，**不是模型 tokenizer 实测**，报告里不能写成实测值。
 - 输出落在 `graphify-out/`（约 14 MB，生成物，不提交）。预览用 `.claude/launch.json` 里的 `experiment-graph` 配置（`http.server 8777` 服务该目录）。
