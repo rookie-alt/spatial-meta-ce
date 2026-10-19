@@ -110,9 +110,7 @@ class TailAlignedTrainingTests(unittest.TestCase):
         result = train(config(loss="log_l1"), self.data, self.root / "log")
         self.assertEqual(result["last_step"], 2)
         _, state = load_checkpoint(self.root / "log/last.pt")
-        self.assertEqual(
-            state["metadata"]["training_signature"]["loss"], "log_l1"
-        )
+        self.assertEqual(state["metadata"]["training_signature"]["loss"], "log_l1")
         self.assertNotIn("pinball_tau", state["metadata"]["training_signature"])
 
     def test_pinball_trains_and_records_tau(self):
@@ -129,9 +127,7 @@ class TailAlignedTrainingTests(unittest.TestCase):
     def test_legacy_path_still_passes_three_positional_arguments(self):
         from spatial_meta_ce.meta import loss_value
 
-        with patch(
-            "spatial_meta_ce.train.loss_value", wraps=loss_value
-        ) as spy:
+        with patch("spatial_meta_ce.train.loss_value", wraps=loss_value) as spy:
             train(config(), self.data, self.root / "legacy")
         self.assertTrue(spy.call_count > 0)
         self.assertTrue(
@@ -141,9 +137,7 @@ class TailAlignedTrainingTests(unittest.TestCase):
     def test_pinball_reaches_the_training_step(self):
         from spatial_meta_ce.meta import loss_value
 
-        with patch(
-            "spatial_meta_ce.train.loss_value", wraps=loss_value
-        ) as spy:
+        with patch("spatial_meta_ce.train.loss_value", wraps=loss_value) as spy:
             train(
                 config(loss="pinball_tau", pinball_tau=0.8),
                 self.data,

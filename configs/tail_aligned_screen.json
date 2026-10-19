@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "purpose": "P1-1/P1-2 source-only screen (doc 93 §3, §5 M2/M3)",
+  "data_config": "configs/data.json",
+  "baseline": "baseline",
+  "guard": {"macro_improvement": 0.10, "per_database": 1.10},
+  "training": {
+    "method": "erm",
+    "seed": 42,
+    "steps": 4000,
+    "meta_batch": 4,
+    "accumulation": 1,
+    "query_size": 64,
+    "support_sizes": [5, 10, 20, 50, 100],
+    "outer_lr": 0.0003,
+    "inner_lr": 0.001,
+    "inner_steps": 0,
+    "adapt_scope": "all",
+    "validate_every": 100,
+    "validation_runs": 5,
+    "validation_seed": 1729,
+    "patience": 41,
+    "min_delta": 0.0001
+  },
+  "model": {"arch": "sum", "use_pg": true, "layers": 2, "heads": 4, "width": 64},
+  "arms": {
+    "baseline": {"loss": "smooth_l1"},
+    "log_l1": {"loss": "log_l1"},
+    "pinball_08": {"loss": "pinball_tau", "pinball_tau": 0.8},
+    "pinball_09": {"loss": "pinball_tau", "pinball_tau": 0.9},
+    "gate_log_l1": {"loss": "log_l1", "model": {"gate": "sigmoid"}}
+  }
+}
