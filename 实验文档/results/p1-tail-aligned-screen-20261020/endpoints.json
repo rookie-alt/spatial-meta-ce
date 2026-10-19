@@ -1,0 +1,763 @@
+{
+  "seed42/baseline": {
+    "config_loss": "smooth_l1",
+    "config_pinball_tau": null,
+    "config_gate": null,
+    "optimizer_steps": 4000,
+    "checkpoint_sha256": "563ec1596b1a34dd3853e05d098634a473a74947aa176367d0d293857499d8a3",
+    "manifest_hashes": {
+      "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+    },
+    "endpoint": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.588865595105742,
+            "q95": 68.23347862000948
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.491483791748339,
+            "q95": 104.81765453770367
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.935083665807848,
+            "q95": 9.712128769340556
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.6627645396507873,
+            "q95": 15.67468149584954
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5798467735976232,
+            "q95": 7.993539317886522
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.0055033128447373,
+            "q95": 11.940625323846943
+          }
+        }
+      },
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "unique_queries": 149504,
+      "macro_four_plus_q95": 44.14432045246672,
+      "macro_all_table_q95": 28.646382235745516
+    },
+    "gate_usage": null
+  },
+  "seed42/log_l1": {
+    "config_loss": "log_l1",
+    "config_pinball_tau": null,
+    "config_gate": null,
+    "optimizer_steps": 4000,
+    "checkpoint_sha256": "0ebef016e449e675dd4cd0c7cf2ab85396f2882632778f53234817403876d914",
+    "manifest_hashes": {
+      "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+    },
+    "endpoint": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.4126422377636496,
+            "q95": 69.33113092728233
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.291083726376575,
+            "q95": 103.78956283907011
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.5904908915533418,
+            "q95": 9.87838424340509
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.5914839642422827,
+            "q95": 15.28286518578098
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.518790470226142,
+            "q95": 7.320832533492457
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.8787249952317953,
+            "q95": 10.360278107731538
+          }
+        }
+      },
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "unique_queries": 149504,
+      "macro_four_plus_q95": 43.144235377527544,
+      "macro_all_table_q95": 28.84344923472663
+    },
+    "gate_usage": null
+  },
+  "seed42/pinball_08": {
+    "config_loss": "pinball_tau",
+    "config_pinball_tau": 0.8,
+    "config_gate": null,
+    "optimizer_steps": 4000,
+    "checkpoint_sha256": "85650501b29d4372740173a5ec4e7941680c0f9b503ca0531c3346caab3e7910",
+    "manifest_hashes": {
+      "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+    },
+    "endpoint": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.286615505260807,
+            "q95": 69.07291938593825
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 2.982643377916891,
+            "q95": 109.8989350826602
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.53249416157526,
+            "q95": 13.04598918701227
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.9387910613044395,
+            "q95": 24.23565286093836
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5253086187257434,
+            "q95": 11.710711200152035
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.823065503180255,
+            "q95": 23.27471935745599
+          }
+        }
+      },
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "unique_queries": 149504,
+      "macro_four_plus_q95": 52.469769100351506,
+      "macro_all_table_q95": 31.276539924367516
+    },
+    "gate_usage": null
+  },
+  "seed42/pinball_09": {
+    "config_loss": "pinball_tau",
+    "config_pinball_tau": 0.9,
+    "config_gate": null,
+    "optimizer_steps": 4000,
+    "checkpoint_sha256": "13f7bc6e77a9d04bec2bb6bfe4119cb1aca10298432acabccc81319da52a18bb",
+    "manifest_hashes": {
+      "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+    },
+    "endpoint": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.268512554832916,
+            "q95": 74.54066329039682
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.0021137009432444,
+            "q95": 111.82280005842037
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.640782493869451,
+            "q95": 22.218288614367818
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 3.3528053585210307,
+            "q95": 40.957302287965625
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.7878631754818026,
+            "q95": 15.071732877102264
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 3.3600259147886513,
+            "q95": 26.438201073114115
+          }
+        }
+      },
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "unique_queries": 149504,
+      "macro_four_plus_q95": 59.7394344731667,
+      "macro_all_table_q95": 37.27689492728897
+    },
+    "gate_usage": null
+  },
+  "seed42/gate_log_l1": {
+    "config_loss": "log_l1",
+    "config_pinball_tau": null,
+    "config_gate": "sigmoid",
+    "optimizer_steps": 4000,
+    "checkpoint_sha256": "36408a46ba4fed635ab46fdeb9ab3694138150ff9a4305e9034c29ddde43066d",
+    "manifest_hashes": {
+      "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+    },
+    "endpoint": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.352129537207966,
+            "q95": 84.5649816076165
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.1857515200018898,
+            "q95": 139.48188715992154
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.5980201406390098,
+            "q95": 9.766522591489672
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.589259740623942,
+            "q95": 15.661448884047934
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5099966998219254,
+            "q95": 7.047658355149106
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.7700636904221574,
+            "q95": 7.684648322308029
+          }
+        }
+      },
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "unique_queries": 149504,
+      "macro_four_plus_q95": 54.275994788759164,
+      "macro_all_table_q95": 33.79305418475176
+    },
+    "gate_usage": {
+      "queries": 149504,
+      "mean": 0.7428611516952515,
+      "p05": 0.4572236970067024,
+      "p50": 0.7433785796165466,
+      "p95": 0.9986972212791443,
+      "min": 0.4003787636756897,
+      "max": 0.9999996423721313,
+      "fraction_below_0_1": 0.0,
+      "per_database": {
+        "chembl": {
+          "queries": 50000,
+          "mean": 0.7461221218109131,
+          "p05": 0.4466021150350571,
+          "p50": 0.7703052163124084,
+          "p95": 0.9986024677753449,
+          "min": 0.4003787636756897,
+          "max": 0.9999996423721313,
+          "fraction_below_0_1": 0.0
+        },
+        "legalacts": {
+          "queries": 49504,
+          "mean": 0.7229377031326294,
+          "p05": 0.5030975878238678,
+          "p50": 0.6546368896961212,
+          "p95": 0.9970018744468689,
+          "min": 0.4279971122741699,
+          "max": 0.9999668598175049,
+          "fraction_below_0_1": 0.0
+        },
+        "telstra": {
+          "queries": 50000,
+          "mean": 0.7593261003494263,
+          "p05": 0.45575565844774246,
+          "p50": 0.7889770865440369,
+          "p95": 0.9993008673191071,
+          "min": 0.4453115463256836,
+          "max": 0.9999955892562866,
+          "fraction_below_0_1": 0.0
+        }
+      }
+    }
+  },
+  "seed43/baseline": {
+    "config_loss": "smooth_l1",
+    "config_pinball_tau": null,
+    "config_gate": null,
+    "optimizer_steps": 4000,
+    "checkpoint_sha256": "5617f7ddf875a024b9330bc82bc6126c0ab19806972a6e42d710d92617b7ad15",
+    "manifest_hashes": {
+      "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+    },
+    "endpoint": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.501760029134757,
+            "q95": 72.84529846441608
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.449300406215654,
+            "q95": 111.06934477965865
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.7115644500905487,
+            "q95": 10.011676317353535
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.5614254378293966,
+            "q95": 16.489633473097882
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5196055604422605,
+            "q95": 7.421053569770544
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.943992442049276,
+            "q95": 9.82076396960996
+          }
+        }
+      },
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "unique_queries": 149504,
+      "macro_four_plus_q95": 45.7932474074555,
+      "macro_all_table_q95": 30.09267611718005
+    },
+    "gate_usage": null
+  },
+  "seed43/log_l1": {
+    "config_loss": "log_l1",
+    "config_pinball_tau": null,
+    "config_gate": null,
+    "optimizer_steps": 4000,
+    "checkpoint_sha256": "2e79bfe53cad83198911ff6fea12fa642b25148f20588d10e97f7ae1f11fe2eb",
+    "manifest_hashes": {
+      "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+    },
+    "endpoint": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.585471724375608,
+            "q95": 71.57442213899326
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.7237560212957344,
+            "q95": 112.54893403083047
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.5836209630596634,
+            "q95": 9.92794857266392
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.6646361795820095,
+            "q95": 16.77605882972667
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.566423097387597,
+            "q95": 7.433095008068122
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.0360316798274694,
+            "q95": 12.281749714012173
+          }
+        }
+      },
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "unique_queries": 149504,
+      "macro_four_plus_q95": 47.20224752485643,
+      "macro_all_table_q95": 29.645155239908433
+    },
+    "gate_usage": null
+  },
+  "seed44/baseline": {
+    "config_loss": "smooth_l1",
+    "config_pinball_tau": null,
+    "config_gate": null,
+    "optimizer_steps": 4000,
+    "checkpoint_sha256": "2546821e395ddfcfe6294757347fbb21acdc01da7fa4ec2498639571bbbec093",
+    "manifest_hashes": {
+      "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+    },
+    "endpoint": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.351579360613216,
+            "q95": 58.329058981262406
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.080037658253943,
+            "q95": 85.9917624891532
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.6343864162473647,
+            "q95": 9.748679735628286
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.6186353755305194,
+            "q95": 16.778525341508427
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.7237703438857175,
+            "q95": 10.429453610065362
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.6753994251001165,
+            "q95": 17.80597032416913
+          }
+        }
+      },
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "unique_queries": 149504,
+      "macro_four_plus_q95": 40.192086051610254,
+      "macro_all_table_q95": 26.169064108985353
+    },
+    "gate_usage": null
+  },
+  "seed44/log_l1": {
+    "config_loss": "log_l1",
+    "config_pinball_tau": null,
+    "config_gate": null,
+    "optimizer_steps": 4000,
+    "checkpoint_sha256": "b3ce5b553ec8e018468d184f562fb97651876ab01e86d5b44ff9dd72a6125103",
+    "manifest_hashes": {
+      "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+    },
+    "endpoint": {
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.5360186603118144,
+            "q95": 71.16853244964642
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.488351897485303,
+            "q95": 103.80365138740515
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.5534678409202003,
+            "q95": 10.309415592178784
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.745540705722174,
+            "q95": 18.566956786691012
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.45080675843027,
+            "q95": 6.612806646722385
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.8181518798358918,
+            "q95": 10.570362099844184
+          }
+        }
+      },
+      "identity_digest": "c801ab0fa90e07414da90c315423003101754afc40fa90553579e5b7d15fbd86",
+      "unique_queries": 149504,
+      "macro_four_plus_q95": 44.31365675798011,
+      "macro_all_table_q95": 29.36358489618253
+    },
+    "gate_usage": null
+  }
+}
