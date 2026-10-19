@@ -27,9 +27,12 @@ class HoldoutSupervisorTests(unittest.TestCase):
             output = Path(directory) / "formal"
             with patch.object(supervisor, "_live_owned_descendants", return_value=[]):
                 record = supervisor.supervise(
-                    self.command(output, formal=True), output, mode="formal",
+                    self.command(output, formal=True),
+                    output,
+                    mode="formal",
                     sample_fn=lambda child: {"rss_bytes": 1, "vram_bytes": 0},
-                    formal_cells=50, preflight_micro_cells=10,
+                    formal_cells=50,
+                    preflight_micro_cells=10,
                 )
             self.assertEqual(record["status"], "completed")
 
@@ -38,9 +41,12 @@ class HoldoutSupervisorTests(unittest.TestCase):
             output = Path(directory) / "preflight"
             with patch.object(supervisor, "_live_owned_descendants", return_value=[]):
                 record = supervisor.supervise(
-                    self.command(output, formal=False), output, mode="cpu_preflight",
+                    self.command(output, formal=False),
+                    output,
+                    mode="cpu_preflight",
                     sample_fn=lambda child: {"rss_bytes": 1, "vram_bytes": 0},
-                    formal_cells=50, preflight_micro_cells=10,
+                    formal_cells=50,
+                    preflight_micro_cells=10,
                 )
             self.assertEqual(record["status"], "preflight_completed")
 

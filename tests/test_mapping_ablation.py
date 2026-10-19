@@ -223,7 +223,8 @@ class ProtocolTests(unittest.TestCase):
                 patch(
                     "scripts.run_mapping_ablation.read_json",
                     side_effect=lambda path, change=change: change(original(path)),
-                ),self.assertRaises(ValueError)
+                ),
+                self.assertRaises(ValueError),
             ):
                 load_run_config("true", 42)
 
@@ -305,6 +306,7 @@ class ProtocolTests(unittest.TestCase):
         self.assertEqual(guard.call_count, 1)
         self.assertEqual(len(seen), 9)
         self.assertEqual(report["pairing"]["seeds"], list(SEEDS))
+
     def test_determinism_sets_cublas_workspace_before_first_use(self):
         with patch.dict(os.environ):
             os.environ.pop("CUBLAS_WORKSPACE_CONFIG", None)

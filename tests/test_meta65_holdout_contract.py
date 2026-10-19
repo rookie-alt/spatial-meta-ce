@@ -44,7 +44,9 @@ class HoldoutContractTests(unittest.TestCase):
         self.assertEqual(len(contract.matrix("formal")), 50)
         self.assertEqual(len(contract.matrix("cpu_preflight")), 10)
         self.assertEqual({cell[0] for cell in contract.matrix("formal")}, {"R_head3"})
-        self.assertEqual({cell[1] for cell in contract.matrix("formal")}, {"none", "head3"})
+        self.assertEqual(
+            {cell[1] for cell in contract.matrix("formal")}, {"none", "head3"}
+        )
 
     def test_deterministic_plan_rejects_tampering(self):
         indices = list(range(130))

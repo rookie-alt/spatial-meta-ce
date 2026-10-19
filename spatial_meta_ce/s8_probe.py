@@ -360,8 +360,11 @@ def retained_projection_bound(singular, rank, projection, target_scale=None):
     Uses only the spectrum, the frozen cutoff, the rank and the problem scale.
     """
     singular = _array64(singular, 1, "singular values")
-    if (isinstance(rank, (bool, np.bool_)) or not isinstance(rank, (int, np.integer))
-            or not 0 <= rank <= singular.size):
+    if (
+        isinstance(rank, (bool, np.bool_))
+        or not isinstance(rank, (int, np.integer))
+        or not 0 <= rank <= singular.size
+    ):
         raise ValueError("retained-projection rank must be an integer within range")
     projection = _array64(projection, 1, "projection")
     projection_norm = float(np.max(np.abs(projection)))
@@ -376,13 +379,21 @@ def retained_projection_bound(singular, rank, projection, target_scale=None):
     sigma1 = float(singular[0])
     sigma_cutoff = RCOND * sigma1
     if rank == 0:
-        return {"tol": float(floor), "sigma1": sigma1, "sigma_r": 0.0,
-                "sigma_cutoff": float(sigma_cutoff), "kappa_retained": 0.0,
-                "projection_norm": projection_norm, "target_scale": target_scale,
-                "amplification_scale": scale, "engineering_floor": float(floor),
-                "reachable_bound": 0.0,
-                "accumulation_constant": RETAINED_PROJECTION_ACCUMULATION,
-                "eps": eps, "scope": "rank_zero_engineering_floor"}
+        return {
+            "tol": float(floor),
+            "sigma1": sigma1,
+            "sigma_r": 0.0,
+            "sigma_cutoff": float(sigma_cutoff),
+            "kappa_retained": 0.0,
+            "projection_norm": projection_norm,
+            "target_scale": target_scale,
+            "amplification_scale": scale,
+            "engineering_floor": float(floor),
+            "reachable_bound": 0.0,
+            "accumulation_constant": RETAINED_PROJECTION_ACCUMULATION,
+            "eps": eps,
+            "scope": "rank_zero_engineering_floor",
+        }
     if not np.isfinite(sigma_cutoff) or sigma_cutoff <= 0:
         raise ValueError("retained-projection cutoff is invalid")
     sigma_r = float(singular[rank - 1])
@@ -393,13 +404,21 @@ def retained_projection_bound(singular, rank, projection, target_scale=None):
     # The frozen 1e-12 allclose floor is a hard lower bound: the check is never
     # tighter than the original criterion even when kappa_retained is small.
     tol = max(floor, reachable)
-    return {"tol": float(tol), "sigma1": sigma1, "sigma_r": sigma_r,
-            "sigma_cutoff": float(sigma_cutoff),
-            "kappa_retained": float(kappa_retained), "projection_norm": projection_norm,
-            "target_scale": target_scale, "amplification_scale": scale,
-            "engineering_floor": float(floor), "reachable_bound": float(reachable),
-            "accumulation_constant": RETAINED_PROJECTION_ACCUMULATION,
-            "eps": eps, "scope": "max_engineering_floor_and_fp64_reachable_bound"}
+    return {
+        "tol": float(tol),
+        "sigma1": sigma1,
+        "sigma_r": sigma_r,
+        "sigma_cutoff": float(sigma_cutoff),
+        "kappa_retained": float(kappa_retained),
+        "projection_norm": projection_norm,
+        "target_scale": target_scale,
+        "amplification_scale": scale,
+        "engineering_floor": float(floor),
+        "reachable_bound": float(reachable),
+        "accumulation_constant": RETAINED_PROJECTION_ACCUMULATION,
+        "eps": eps,
+        "scope": "max_engineering_floor_and_fp64_reachable_bound",
+    }
 
 
 def retained_projection_check(predicted, projection, singular, rank, target_scale=None):
@@ -508,7 +527,11 @@ def certify_pair(design, target, adam, ls):
     )
     reference_retained_ok, reference_retained_residual, reference_retained_info = (
         retained_projection_check(
-            design @ reference_theta, projection, actual_singular, actual_rank, target_scale
+            design @ reference_theta,
+            projection,
+            actual_singular,
+            actual_rank,
+            target_scale,
         )
     )
     reference_ok = bool(

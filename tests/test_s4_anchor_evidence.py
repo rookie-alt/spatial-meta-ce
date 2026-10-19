@@ -9,12 +9,32 @@ from scripts import s4_anchor_evidence as ev
 
 HASH = "a" * 64
 FROZEN_PREFLIGHT = {
-    "python": "3.11.4 fixture", "torch": "2.1.0+cu121", "numpy": "1.26.1",
-    "sqlglot": "18.17.0", "gpu_uuid": "GPU-fixture", "config_sha256": HASH,
+    "python": "3.11.4 fixture",
+    "torch": "2.1.0+cu121",
+    "numpy": "1.26.1",
+    "sqlglot": "18.17.0",
+    "gpu_uuid": "GPU-fixture",
+    "config_sha256": HASH,
     "code_sha256": {"scripts/s4_anchor_evidence.py": HASH},
-    "sources": {db: {"manifest_hash": HASH, "rows": 3,
-        "file_sha256": {name: HASH for name in ("manifest.json", "cards.npy", "offsets.npy", "group0.npy", "group1.npy", "group2.npy", "group3.npy")}}
-        for db in ev.SOURCES},
+    "sources": {
+        db: {
+            "manifest_hash": HASH,
+            "rows": 3,
+            "file_sha256": {
+                name: HASH
+                for name in (
+                    "manifest.json",
+                    "cards.npy",
+                    "offsets.npy",
+                    "group0.npy",
+                    "group1.npy",
+                    "group2.npy",
+                    "group3.npy",
+                )
+            },
+        }
+        for db in ev.SOURCES
+    },
 }
 
 
@@ -63,7 +83,16 @@ def record(arm: str = "A_anchor1", formal: bool = True) -> dict:
         "config": {
             **copy.deepcopy(ev.FROZEN_CONFIG),
             "steps": steps,
-            **({"support_sizes": [5], "query_size": 8, "validate_every": 1, "validation_runs": 1} if not formal else {}),
+            **(
+                {
+                    "support_sizes": [5],
+                    "query_size": 8,
+                    "validate_every": 1,
+                    "validation_runs": 1,
+                }
+                if not formal
+                else {}
+            ),
             "purpose": "research" if formal else "gpu-smoke-not-research",
             "model": {**ev.FROZEN_MODEL, "pg_output_scale": float(arm == "A_anchor1")},
         },
@@ -100,7 +129,9 @@ def preflight() -> dict:
 
 class EvidenceTests(unittest.TestCase):
     def setUp(self) -> None:
-        patcher = patch.object(ev, "SOURCE_HASH", ev._digest(FROZEN_PREFLIGHT["sources"]))
+        patcher = patch.object(
+            ev, "SOURCE_HASH", ev._digest(FROZEN_PREFLIGHT["sources"])
+        )
         patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -195,7 +226,9 @@ class EvidenceTests(unittest.TestCase):
         b["endpoint"]["per_database"]["chembl"]["all_tables"]["q95"] = 11.0
         b["endpoint"]["macro_all_table_q95"] = (11 + 9 + 9) / 3
         self.assertEqual(ev.choose([a, b])["decision"], "promising_single_seed")
-        b["endpoint"]["per_database"]["chembl"]["all_tables"]["q95"] = float(np.nextafter(11.0, np.inf))
+        b["endpoint"]["per_database"]["chembl"]["all_tables"]["q95"] = float(
+            np.nextafter(11.0, np.inf)
+        )
         b["endpoint"]["macro_all_table_q95"] = (
             b["endpoint"]["per_database"]["chembl"]["all_tables"]["q95"] + 18
         ) / 3

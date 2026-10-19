@@ -34,50 +34,86 @@ class HoldoutWorkerFilesTests(unittest.TestCase):
 
             def fake_build_report(path):
                 observed_statuses.append(
-                    json.loads((path / "status.json").read_text(encoding="utf-8"))["status"]
+                    json.loads((path / "status.json").read_text(encoding="utf-8"))[
+                        "status"
+                    ]
                 )
                 return {"status": "baseline_verified"}
 
             with (
                 patch.object(runner, "require_supervisor"),
-                patch.object(runner, "environment", return_value={
-                    "mode": "formal", "training": True, "target_read": False,
-                }),
-                patch.object(runner.contract, "load_config", return_value=contract.FROZEN),
+                patch.object(
+                    runner,
+                    "environment",
+                    return_value={
+                        "mode": "formal",
+                        "training": True,
+                        "target_read": False,
+                    },
+                ),
+                patch.object(
+                    runner.contract, "load_config", return_value=contract.FROZEN
+                ),
                 patch.object(runner.contract, "read_json", return_value=data),
                 patch.object(runner.contract, "validate_data", return_value=data),
                 patch.object(runner.contract, "safe_output", return_value=output),
                 patch.object(runner, "_formal_worker_gate") as worker_gate,
-                patch.object(runner, "manifest_hashes", return_value={"dummy": "a" * 64}),
-                patch.object(runner.contract, "dataset_signature", return_value="b" * 64),
+                patch.object(
+                    runner, "manifest_hashes", return_value={"dummy": "a" * 64}
+                ),
+                patch.object(
+                    runner.contract, "dataset_signature", return_value="b" * 64
+                ),
                 patch.object(runner, "load_plan", return_value={}),
-                patch.object(runner.contract, "input_binding", return_value={"dummy": "c" * 64}),
+                patch.object(
+                    runner.contract, "input_binding", return_value={"dummy": "c" * 64}
+                ),
                 patch.object(runner.contract, "sha256", return_value="d" * 64),
                 patch.object(runner.contract, "verify_bound_inputs"),
                 patch.object(runner.contract, "plan_summary", return_value={}),
                 patch.object(runner, "train_holdout", return_value=(object(), {})),
-                patch.object(runner, "evaluate_cells", return_value=[{} for _ in range(50)]),
+                patch.object(
+                    runner, "evaluate_cells", return_value=[{} for _ in range(50)]
+                ),
                 patch.object(report, "build_report", side_effect=fake_build_report),
-                patch.object(runner, "schedule_verification", return_value={
-                    "status": "formal_verified",
-                }),
+                patch.object(
+                    runner,
+                    "schedule_verification",
+                    return_value={
+                        "status": "formal_verified",
+                    },
+                ),
             ):
                 result = runner.worker(
-                    output, "formal", config_path, data_path, plan_path,
-                    approval=approval, launch_binding=binding,
+                    output,
+                    "formal",
+                    config_path,
+                    data_path,
+                    plan_path,
+                    approval=approval,
+                    launch_binding=binding,
                 )
             self.assertEqual(observed_statuses, ["worker_complete"])
             self.assertEqual(result["status"], "formal_verified")
             self.assertEqual(
-                json.loads((output / "status.json").read_text(encoding="utf-8"))["status"],
+                json.loads((output / "status.json").read_text(encoding="utf-8"))[
+                    "status"
+                ],
                 "worker_complete",
             )
             self.assertEqual(
-                json.loads((output / "report.json").read_text(encoding="utf-8"))["status"],
+                json.loads((output / "report.json").read_text(encoding="utf-8"))[
+                    "status"
+                ],
                 "baseline_verified",
             )
             worker_gate.assert_called_once_with(
-                approval, output, binding, config_path, data_path, plan_path,
+                approval,
+                output,
+                binding,
+                config_path,
+                data_path,
+                plan_path,
             )
 
     def test_worker_writes_phase_verification_and_terminal_status(self):
@@ -100,35 +136,61 @@ class HoldoutWorkerFilesTests(unittest.TestCase):
                 path.write_text("{}", encoding="utf-8")
             with (
                 patch.object(runner, "require_supervisor"),
-                patch.object(runner, "environment", return_value={
-                    "mode": "cpu_preflight", "training": True, "target_read": False,
-                }),
-                patch.object(runner.contract, "load_config", return_value=contract.FROZEN),
+                patch.object(
+                    runner,
+                    "environment",
+                    return_value={
+                        "mode": "cpu_preflight",
+                        "training": True,
+                        "target_read": False,
+                    },
+                ),
+                patch.object(
+                    runner.contract, "load_config", return_value=contract.FROZEN
+                ),
                 patch.object(runner.contract, "read_json", return_value=data),
                 patch.object(runner.contract, "validate_data", return_value=data),
                 patch.object(runner.contract, "safe_output", return_value=output),
-                patch.object(runner, "manifest_hashes", return_value={"dummy": "a" * 64}),
-                patch.object(runner.contract, "dataset_signature", return_value="b" * 64),
+                patch.object(
+                    runner, "manifest_hashes", return_value={"dummy": "a" * 64}
+                ),
+                patch.object(
+                    runner.contract, "dataset_signature", return_value="b" * 64
+                ),
                 patch.object(runner, "load_plan", return_value={}),
-                patch.object(runner.contract, "input_binding", return_value={"dummy": "c" * 64}),
+                patch.object(
+                    runner.contract, "input_binding", return_value={"dummy": "c" * 64}
+                ),
                 patch.object(runner.contract, "sha256", return_value="d" * 64),
                 patch.object(runner.contract, "verify_bound_inputs"),
                 patch.object(runner.contract, "plan_summary", return_value={}),
                 patch.object(runner, "train_holdout", return_value=(object(), {})),
-                patch.object(runner, "evaluate_cells", return_value=[{} for _ in range(10)]),
-                patch.object(runner, "schedule_verification", return_value={
-                    "status": "preflight_verified",
-                }),
+                patch.object(
+                    runner, "evaluate_cells", return_value=[{} for _ in range(10)]
+                ),
+                patch.object(
+                    runner,
+                    "schedule_verification",
+                    return_value={
+                        "status": "preflight_verified",
+                    },
+                ),
             ):
                 result = runner.worker(
-                    output, "cpu_preflight", config_path, data_path, plan_path,
+                    output,
+                    "cpu_preflight",
+                    config_path,
+                    data_path,
+                    plan_path,
                 )
             self.assertEqual(result["status"], "preflight_verified")
             self.assertEqual(
-                json.loads((output / "phase.json").read_text())["phase"], "certification"
+                json.loads((output / "phase.json").read_text())["phase"],
+                "certification",
             )
             self.assertEqual(
-                json.loads((output / "status.json").read_text())["status"], "worker_complete"
+                json.loads((output / "status.json").read_text())["status"],
+                "worker_complete",
             )
             self.assertEqual(
                 json.loads((output / "verification.json").read_text())["status"],

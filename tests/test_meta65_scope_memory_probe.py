@@ -59,7 +59,7 @@ class StepParsingTests(unittest.TestCase):
                 self.assertEqual(probe.parse_step(line, previous), expected)
 
     def test_final_done_line_reports_its_last_step(self) -> None:
-        self.assertIn('last_step', REAL_FINAL_LINE)
+        self.assertIn("last_step", REAL_FINAL_LINE)
         self.assertGreaterEqual(probe.parse_step(REAL_FINAL_LINE, 0), 0)
 
     def test_nested_counts_key_is_not_mistaken_for_the_step(self) -> None:
@@ -139,15 +139,27 @@ class DrainTests(unittest.TestCase):
 class RecordShapeTests(unittest.TestCase):
     def test_main_forwards_selected_root_to_supervisor(self) -> None:
         record = {
-            "returncode": 0, "failure": None, "elapsed": 0.0,
-            "final_step_seen": 4000, "samples": [], "cleanup_verified": True,
+            "returncode": 0,
+            "failure": None,
+            "elapsed": 0.0,
+            "final_step_seen": 4000,
+            "samples": [],
+            "cleanup_verified": True,
         }
-        with mock.patch.object(probe, "supervise", return_value=record) as supervise, \
-                mock.patch.object(probe, "log"):
-            result = probe.main([
-                "--root", "/tmp/isolated-meta65-code", "--out", "/tmp/root-probe",
-                "--steps", "4000",
-            ])
+        with (
+            mock.patch.object(probe, "supervise", return_value=record) as supervise,
+            mock.patch.object(probe, "log"),
+        ):
+            result = probe.main(
+                [
+                    "--root",
+                    "/tmp/isolated-meta65-code",
+                    "--out",
+                    "/tmp/root-probe",
+                    "--steps",
+                    "4000",
+                ]
+            )
         self.assertEqual(result, 0)
         supervise.assert_called_once_with(
             Path("/tmp/root-probe"), 4000, root=Path("/tmp/isolated-meta65-code")
@@ -160,20 +172,26 @@ class RecordShapeTests(unittest.TestCase):
             root = Path(directory) / "isolated code"
             root.mkdir()
             out = Path(directory) / "probe-out"
-            with mock.patch.object(probe.subprocess, "Popen", return_value=child) as popen, \
-                    mock.patch.object(probe, "drain", return_value=0), \
-                    mock.patch.object(probe, "group_rss", return_value=0), \
-                    mock.patch.object(probe, "group_alive", return_value=[]), \
-                    mock.patch.object(probe, "cleanup", return_value=(True, [])), \
-                    mock.patch.dict(os.environ, {"PYTHONPATH": "/tmp/existing-imports"}):
+            with (
+                mock.patch.object(
+                    probe.subprocess, "Popen", return_value=child
+                ) as popen,
+                mock.patch.object(probe, "drain", return_value=0),
+                mock.patch.object(probe, "group_rss", return_value=0),
+                mock.patch.object(probe, "group_alive", return_value=[]),
+                mock.patch.object(probe, "cleanup", return_value=(True, [])),
+                mock.patch.dict(os.environ, {"PYTHONPATH": "/tmp/existing-imports"}),
+            ):
                 record = probe.supervise(out, 4000, root=root)
         command = popen.call_args.args[0]
         options = popen.call_args.kwargs
         self.assertEqual(command[command.index("--root") + 1], str(root))
         self.assertEqual(command[command.index("--steps") + 1], "4000")
         self.assertEqual(Path(options["cwd"]), root)
-        self.assertEqual(options["env"]["PYTHONPATH"].split(os.pathsep),
-                         [str(root), "/tmp/existing-imports"])
+        self.assertEqual(
+            options["env"]["PYTHONPATH"].split(os.pathsep),
+            [str(root), "/tmp/existing-imports"],
+        )
         self.assertTrue(record["cleanup_verified"])
 
     def test_poll_interval_and_horizon_cover_a_full_run(self) -> None:
@@ -210,7 +228,9 @@ class RecordShapeTests(unittest.TestCase):
             with tempfile.TemporaryDirectory() as directory:
                 out = Path(directory) / "probe-out"
                 record = probe.supervise(out, 500)
-                persisted = json.loads(out.with_name(out.name + ".probe.json").read_text())
+                persisted = json.loads(
+                    out.with_name(out.name + ".probe.json").read_text()
+                )
         finally:
             probe.subprocess.Popen = real_popen
             probe.drain = real_drain
@@ -283,10 +303,18 @@ class RecordShapeTests(unittest.TestCase):
         probe.group_alive = lambda _pgid: []
         stderr = io.StringIO()
         try:
-            with tempfile.TemporaryDirectory() as directory, \
-                    mock.patch.object(Path, "write_text", side_effect=OSError(28, "No space left on device")), \
-                    redirect_stderr(stderr):
-                result = probe.main(["--out", str(Path(directory) / "probe-out"), "--steps", "500"])
+            with (
+                tempfile.TemporaryDirectory() as directory,
+                mock.patch.object(
+                    Path,
+                    "write_text",
+                    side_effect=OSError(28, "No space left on device"),
+                ),
+                redirect_stderr(stderr),
+            ):
+                result = probe.main(
+                    ["--out", str(Path(directory) / "probe-out"), "--steps", "500"]
+                )
         finally:
             probe.subprocess.Popen = real_popen
             probe.drain = real_drain
@@ -300,7 +328,8 @@ class RecordShapeTests(unittest.TestCase):
 
     def test_default_root_is_the_deployed_scope_code(self) -> None:
         self.assertEqual(
-            str(probe.DEFAULT_ROOT), "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-code"
+            str(probe.DEFAULT_ROOT),
+            "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-code",
         )
 
 
@@ -378,9 +407,19 @@ class SuperviseLoopTests(unittest.TestCase):
         self.assertEqual(
             set(record),
             {
-                "schema", "probe", "steps_requested", "device", "cuda_visible_devices",
-                "returncode", "failure", "elapsed", "samples", "cleanup_verified",
-                "signals", "final_step_seen", "output_bytes",
+                "schema",
+                "probe",
+                "steps_requested",
+                "device",
+                "cuda_visible_devices",
+                "returncode",
+                "failure",
+                "elapsed",
+                "samples",
+                "cleanup_verified",
+                "signals",
+                "final_step_seen",
+                "output_bytes",
             },
         )
         self.assertEqual(record["schema"], 1)

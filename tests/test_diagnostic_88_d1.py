@@ -13,11 +13,20 @@ def cells(n=1000, seed=0, head3_shift=0.0):
     hashes = np.array([f"h{i}" for i in range(n)])
     ids = np.array([f"chembl/pretrain/{i + 1}" for i in range(n)])
     return {
-        "none": {"log_pred": base, "true": true, "n_tables": tables,
-                 "query_hash": hashes, "query_id": ids},
-        "head3": {"log_pred": base + head3_shift, "true": true.copy(),
-                  "n_tables": tables.copy(), "query_hash": hashes.copy(),
-                  "query_id": ids.copy()},
+        "none": {
+            "log_pred": base,
+            "true": true,
+            "n_tables": tables,
+            "query_hash": hashes,
+            "query_id": ids,
+        },
+        "head3": {
+            "log_pred": base + head3_shift,
+            "true": true.copy(),
+            "n_tables": tables.copy(),
+            "query_hash": hashes.copy(),
+            "query_id": ids.copy(),
+        },
     }
 
 
@@ -27,13 +36,16 @@ class Diagnostic88D1Tests(unittest.TestCase):
         result = d1.run_analysis(data, data["none"]["true"])
         low4 = (data["none"]["n_tables"] >= 4) & (data["none"]["true"] < 100)
         self.assertEqual(result["low4_count"], int(low4.sum()))
-        covered = sum(result["buckets"][name]["count"]
-                      for name in ("n_tables=4", "n_tables=5", "n_tables=6+"))
+        covered = sum(
+            result["buckets"][name]["count"]
+            for name in ("n_tables=4", "n_tables=5", "n_tables=6+")
+        )
         self.assertEqual(covered, result["low4_count"])
         for prefix in ("true_tercile_", "pg_tercile_"):
             self.assertEqual(
                 sum(result["buckets"][f"{prefix}{i}"]["count"] for i in (1, 2, 3)),
-                result["low4_count"])
+                result["low4_count"],
+            )
 
     def test_concentration_matches_manual_calculation(self):
         data = cells(seed=4, head3_shift=0.2)
@@ -43,7 +55,9 @@ class Diagnostic88D1Tests(unittest.TestCase):
         positive = delta[low4][delta[low4] > 0]
         top_count = max(1, int(np.ceil(0.01 * int(low4.sum()))))
         expected = np.sort(positive)[::-1][:top_count].sum() / positive.sum()
-        self.assertAlmostEqual(result["concentration_low4"]["share"], expected, places=12)
+        self.assertAlmostEqual(
+            result["concentration_low4"]["share"], expected, places=12
+        )
         self.assertEqual(result["concentration_low4"]["top_count"], top_count)
 
     def test_concentrated_synthetic_reaches_threshold(self):
@@ -54,9 +68,16 @@ class Diagnostic88D1Tests(unittest.TestCase):
         head3 = base.copy()
         head3[:100] += 5.0
         hashes = np.arange(n).astype(str)
-        data = {arm: {"log_pred": values, "true": true.copy(), "n_tables": tables.copy(),
-                      "query_hash": hashes.copy(), "query_id": hashes.copy()}
-                for arm, values in (("none", base), ("head3", head3))}
+        data = {
+            arm: {
+                "log_pred": values,
+                "true": true.copy(),
+                "n_tables": tables.copy(),
+                "query_hash": hashes.copy(),
+                "query_id": hashes.copy(),
+            }
+            for arm, values in (("none", base), ("head3", head3))
+        }
         result = d1.run_analysis(data, true)
         self.assertGreaterEqual(result["concentration_low4"]["share"], 0.99)
         verdict = d1.decide({"chembl": [dict(result, run=run) for run in range(5)]})
@@ -72,9 +93,16 @@ class Diagnostic88D1Tests(unittest.TestCase):
         rng = np.random.default_rng(7)
         head3 = np.log(50) + rng.normal(0, 1.0, n)
         hashes = np.arange(n).astype(str)
-        data = {arm: {"log_pred": values, "true": true.copy(), "n_tables": tables.copy(),
-                      "query_hash": hashes.copy(), "query_id": hashes.copy()}
-                for arm, values in (("none", base), ("head3", head3))}
+        data = {
+            arm: {
+                "log_pred": values,
+                "true": true.copy(),
+                "n_tables": tables.copy(),
+                "query_hash": hashes.copy(),
+                "query_id": hashes.copy(),
+            }
+            for arm, values in (("none", base), ("head3", head3))
+        }
         result = d1.run_analysis(data, true)
         self.assertLess(result["concentration_low4"]["share"], d1.DIFFUSE_THRESHOLD)
         verdict = d1.decide({"chembl": [dict(result, run=run) for run in range(5)]})
@@ -87,9 +115,16 @@ class Diagnostic88D1Tests(unittest.TestCase):
         none = np.full(n, np.log(50) + 1.0)
         head3 = np.full(n, np.log(50))
         hashes = np.arange(n).astype(str)
-        data = {arm: {"log_pred": values, "true": true.copy(), "n_tables": tables.copy(),
-                      "query_hash": hashes.copy(), "query_id": hashes.copy()}
-                for arm, values in (("none", none), ("head3", head3))}
+        data = {
+            arm: {
+                "log_pred": values,
+                "true": true.copy(),
+                "n_tables": tables.copy(),
+                "query_hash": hashes.copy(),
+                "query_id": hashes.copy(),
+            }
+            for arm, values in (("none", none), ("head3", head3))
+        }
         result = d1.run_analysis(data, true)
         self.assertEqual(result["paired_low4"]["better_share"], 1.0)
         verdict = d1.decide({"chembl": [dict(result, run=run) for run in range(5)]})
@@ -129,8 +164,9 @@ class Diagnostic88D1Tests(unittest.TestCase):
         self.assertTrue((np.diff(ids) >= 0).all())
 
     def test_empty_bucket_reports_null(self):
-        report = d1.bucket_report(np.zeros(4, dtype=bool),
-                                  np.zeros(4), np.zeros(4), np.ones(4), np.ones(4))
+        report = d1.bucket_report(
+            np.zeros(4, dtype=bool), np.zeros(4), np.zeros(4), np.ones(4), np.ones(4)
+        )
         self.assertEqual(report["count"], 0)
         self.assertIsNone(report["better_share"])
         self.assertIsNone(report["q95_ratio"])

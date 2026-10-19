@@ -15,7 +15,9 @@ class QErrorTests(unittest.TestCase):
         true = np.asarray([1.0, 1.0, 10.0, 10.0])
         q, log_q = diagnosis.q_error(log_pred, true)
         np.testing.assert_allclose(q, [1.0, 10.0, 10.0, 10.0])
-        np.testing.assert_allclose(log_q, [0.0, np.log(10.0), np.log(10.0), np.log(10.0)])
+        np.testing.assert_allclose(
+            log_q, [0.0, np.log(10.0), np.log(10.0), np.log(10.0)]
+        )
 
     def test_log_q95_is_exp_of_log_space_percentile(self):
         log_pred = np.asarray([0.0, np.log(2.0), np.log(4.0), np.log(8.0)])
@@ -23,7 +25,12 @@ class QErrorTests(unittest.TestCase):
         report = diagnosis.quantile_metrics(log_pred, true)
         expected = float(np.exp(np.percentile(np.log([1.0, 2.0, 4.0, 8.0]), 95)))
         self.assertEqual(report["log_q95"], expected)
-        self.assertNotEqual(report["log_q95"], float(np.percentile(np.exp([0.0, np.log(2.0), np.log(4.0), np.log(8.0)]), 95)))
+        self.assertNotEqual(
+            report["log_q95"],
+            float(
+                np.percentile(np.exp([0.0, np.log(2.0), np.log(4.0), np.log(8.0)]), 95)
+            ),
+        )
 
 
 class BucketTests(unittest.TestCase):
@@ -43,11 +50,26 @@ class BucketTests(unittest.TestCase):
         self.assertEqual(rows["3"]["count"], 1)
 
     def test_d2_fixed_true_bucket_boundaries(self):
-        true = np.asarray([1.0, 99.0, 100.0, 999.0, 1000.0, 9999.0,
-                           10000.0, 99999.0, 100000.0, 999999.0, 1000000.0])
+        true = np.asarray(
+            [
+                1.0,
+                99.0,
+                100.0,
+                999.0,
+                1000.0,
+                9999.0,
+                10000.0,
+                99999.0,
+                100000.0,
+                999999.0,
+                1000000.0,
+            ]
+        )
         rows = diagnosis.true_bucket_rows(true, min_n=1)
-        self.assertEqual([rows[key]["count"] for key in diagnosis.TRUE_BUCKET_LABELS],
-                         [2, 2, 2, 2, 2, 1])
+        self.assertEqual(
+            [rows[key]["count"] for key in diagnosis.TRUE_BUCKET_LABELS],
+            [2, 2, 2, 2, 2, 1],
+        )
         self.assertAlmostEqual(sum(row["share"] for row in rows.values()), 1.0)
 
     def test_below_min_bucket_reports_only_count_and_status(self):
@@ -65,20 +87,26 @@ class BucketTests(unittest.TestCase):
     def test_direction_labels_use_a_and_optional_pg(self):
         a_log_pred = np.asarray([0.0, 3.0, 1.0, 1.0])
         true = np.asarray([1.0, 1.0, 10.0, 10.0])
-        self.assertEqual(diagnosis.direction_labels(a_log_pred, true).tolist(),
-                         ["over", "over", "under", "under"])
+        self.assertEqual(
+            diagnosis.direction_labels(a_log_pred, true).tolist(),
+            ["over", "over", "under", "under"],
+        )
         pg = np.asarray([2.0, 10.0, 1.0, 100.0])
-        self.assertEqual(diagnosis.pg_direction_labels(pg, true).tolist(),
-                         ["over", "over", "under", "over"])
+        self.assertEqual(
+            diagnosis.pg_direction_labels(pg, true).tolist(),
+            ["over", "over", "under", "over"],
+        )
 
     def test_paired_delta_uses_intersection_and_reports_hashes(self):
         left = np.asarray([1.0, 2.0, 3.0])
         right = np.asarray([2.0, 1.0, 3.0])
         result = diagnosis.delta_summary(
-            left, right, hashes=["h1", "h2", "h3"], ids=["i1", "i2", "i3"], top_n=2)
+            left, right, hashes=["h1", "h2", "h3"], ids=["i1", "i2", "i3"], top_n=2
+        )
         self.assertEqual(result["count"], 3)
-        self.assertEqual([item["query_hash"] for item in result["largest"]],
-                         ["h1", "h2"])
+        self.assertEqual(
+            [item["query_hash"] for item in result["largest"]], ["h1", "h2"]
+        )
         self.assertAlmostEqual(result["mean"], 0.0)
         self.assertAlmostEqual(result["p50"], 0.0)
 
@@ -86,9 +114,13 @@ class BucketTests(unittest.TestCase):
         first = [("h1", "i1"), ("h2", "i2")]
         second = [("h1", "i1"), ("h2", "i2")]
         third = [("h2", "i2"), ("h1", "i1")]
-        self.assertEqual(set(diagnosis.verify_query_sets([first, second], "run")), {"h1", "h2"})
+        self.assertEqual(
+            set(diagnosis.verify_query_sets([first, second], "run")), {"h1", "h2"}
+        )
         # Reordering is allowed; losing or adding an identity is not.
-        self.assertEqual(set(diagnosis.verify_query_sets([first, third], "run")), {"h1", "h2"})
+        self.assertEqual(
+            set(diagnosis.verify_query_sets([first, third], "run")), {"h1", "h2"}
+        )
         fourth = [("h1", "i1"), ("h3", "i3")]
         with self.assertRaisesRegex(ValueError, "query set"):
             diagnosis.verify_query_sets([first, fourth], "run")
@@ -109,8 +141,10 @@ class BucketTests(unittest.TestCase):
         # Runs use disjoint query sets by design, so pairing happens on the
         # intersection of identities common to every arm and run.
         self.assertEqual(result["query_count"], 2)
-        self.assertEqual(result["query_set_basis"],
-                         "intersection of identities present in all arms and all runs")
+        self.assertEqual(
+            result["query_set_basis"],
+            "intersection of identities present in all arms and all runs",
+        )
         self.assertIn(result["C_minus_A"]["largest"][0]["query_hash"], {"h1", "h2"})
 
     def test_d5_leave_one_out_reports_sign_and_order_flips(self):
@@ -124,14 +158,21 @@ class BucketTests(unittest.TestCase):
         self.assertFalse(result["k_order_changed"])
 
     def test_d5_real_arm_keys_do_not_silently_skip_leave_one_out(self):
-        cells = {(arm, "telstra", k, run): {
-            "n_tables": np.asarray([4, 5]), "true": np.ones(2),
-            "log_pred": np.full(2, float(index + 1)),
-        } for index, arm in enumerate(diagnosis.ARMS)
-                 for k in diagnosis.SHOTS for run in range(diagnosis.RUNS)}
+        cells = {
+            (arm, "telstra", k, run): {
+                "n_tables": np.asarray([4, 5]),
+                "true": np.ones(2),
+                "log_pred": np.full(2, float(index + 1)),
+            }
+            for index, arm in enumerate(diagnosis.ARMS)
+            for k in diagnosis.SHOTS
+            for run in range(diagnosis.RUNS)
+        }
         result = diagnosis._d5(cells, "telstra")["leave_one_out"]
         self.assertEqual(len(result["leave_one_out"]), 25)
-        self.assertTrue(all(row["continued_positive"] for row in result["leave_one_out"]))
+        self.assertTrue(
+            all(row["continued_positive"] for row in result["leave_one_out"])
+        )
 
     def test_d5_missing_keys_fail_instead_of_claiming_stability(self):
         with self.assertRaises(ValueError):
@@ -154,13 +195,20 @@ class BucketTests(unittest.TestCase):
             ]
             manifest = {"rows": rows}
             (root / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
-            np.save(root / "cards.npy", np.asarray([[1.0, 2.0], [3.0, 2.0], [9.0, 9.0]]))
-            np.save(root / "offsets.npy", np.asarray([[0, 0, 2, 0], [0, 0, 4, 0],
-                                                       [0, 0, 7, 0], [0, 0, 10, 0]]))
+            np.save(
+                root / "cards.npy", np.asarray([[1.0, 2.0], [3.0, 2.0], [9.0, 9.0]])
+            )
+            np.save(
+                root / "offsets.npy",
+                np.asarray([[0, 0, 2, 0], [0, 0, 4, 0], [0, 0, 7, 0], [0, 0, 10, 0]]),
+            )
             status, details, pg = diagnosis.anchor_pg(
-                root, query_id=["telstra/pretrain/1", "telstra/pretrain/2"],
-                query_hash=["h0", "h1"], true=np.asarray([1.0, 3.0]),
-                n_tables=np.asarray([2, 3]))
+                root,
+                query_id=["telstra/pretrain/1", "telstra/pretrain/2"],
+                query_hash=["h0", "h1"],
+                true=np.asarray([1.0, 3.0]),
+                n_tables=np.asarray([2, 3]),
+            )
             self.assertEqual(status, "verified")
             self.assertEqual(details["rows"], [0, 1])
             np.testing.assert_allclose(pg, [2.0, 2.0])
@@ -168,13 +216,21 @@ class BucketTests(unittest.TestCase):
     def test_pg_anchor_failure_is_explicit_and_never_used(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            (root / "manifest.json").write_text(json.dumps({"rows": [
-                {"id": "telstra/pretrain/0", "query_hash": "h0"}]}), encoding="utf-8")
+            (root / "manifest.json").write_text(
+                json.dumps(
+                    {"rows": [{"id": "telstra/pretrain/0", "query_hash": "h0"}]}
+                ),
+                encoding="utf-8",
+            )
             np.save(root / "cards.npy", np.asarray([[2.0, 2.0]]))
             np.save(root / "offsets.npy", np.asarray([[0, 0, 2, 0], [0, 0, 3, 0]]))
             status, details, pg = diagnosis.anchor_pg(
-                root, query_id=["telstra/pretrain/0"], query_hash=["h0"],
-                true=np.asarray([1.0]), n_tables=np.asarray([2]))
+                root,
+                query_id=["telstra/pretrain/0"],
+                query_hash=["h0"],
+                true=np.asarray([1.0]),
+                n_tables=np.asarray([2]),
+            )
             self.assertEqual(status, "failed")
             self.assertIsNone(pg)
             self.assertIn("error", details)
@@ -190,36 +246,65 @@ class BucketTests(unittest.TestCase):
             existing.write_text("{}")
             with self.assertRaisesRegex(ValueError, "cpu"):
                 diagnosis.prepare_outputs(
-                    SimpleNamespace(device="cuda", out=str(root / "new.json"),
-                                    csv_dir=None, old_run=str(input_dir),
-                                    completion_run=str(input_dir), cache=None))
+                    SimpleNamespace(
+                        device="cuda",
+                        out=str(root / "new.json"),
+                        csv_dir=None,
+                        old_run=str(input_dir),
+                        completion_run=str(input_dir),
+                        cache=None,
+                    )
+                )
             with self.assertRaisesRegex(ValueError, "target"):
                 diagnosis.prepare_outputs(
-                    SimpleNamespace(device="cpu", out=str(input_dir / "new.json"),
-                                    csv_dir=None, old_run=str(input_dir),
-                                    completion_run=str(input_dir), cache=None))
+                    SimpleNamespace(
+                        device="cpu",
+                        out=str(input_dir / "new.json"),
+                        csv_dir=None,
+                        old_run=str(input_dir),
+                        completion_run=str(input_dir),
+                        cache=None,
+                    )
+                )
             with self.assertRaisesRegex(ValueError, "overwrite"):
                 diagnosis.prepare_outputs(
-                    SimpleNamespace(device="cpu", out=str(existing),
-                                    csv_dir=None, old_run=str(input_dir),
-                                    completion_run=str(input_dir), cache=None))
+                    SimpleNamespace(
+                        device="cpu",
+                        out=str(existing),
+                        csv_dir=None,
+                        old_run=str(input_dir),
+                        completion_run=str(input_dir),
+                        cache=None,
+                    )
+                )
             with self.assertRaisesRegex(ValueError, "input directory|cache"):
                 diagnosis.prepare_outputs(
-                    SimpleNamespace(device="cpu", out=str(cache_dir / "new.json"),
-                                    csv_dir=None, old_run=str(input_dir),
-                                    completion_run=str(input_dir), cache=str(cache_dir)))
+                    SimpleNamespace(
+                        device="cpu",
+                        out=str(cache_dir / "new.json"),
+                        csv_dir=None,
+                        old_run=str(input_dir),
+                        completion_run=str(input_dir),
+                        cache=str(cache_dir),
+                    )
+                )
 
 
 class EndToEndSyntheticTests(unittest.TestCase):
-    def _write_npz(self, path, query_hash, log_pred, true, tables, db=None, query_id=None):
+    def _write_npz(
+        self, path, query_hash, log_pred, true, tables, db=None, query_id=None
+    ):
         path.parent.mkdir(parents=True, exist_ok=True)
         if query_id is None:
             query_id = [f"id-{h}" for h in query_hash]
-        np.savez(path, log_pred=np.asarray(log_pred, dtype=np.float64),
-                 true=np.asarray(true, dtype=np.float64),
-                 n_tables=np.asarray(tables, dtype=np.int64),
-                 query_hash=np.asarray(query_hash, dtype=str),
-                 query_id=np.asarray(query_id, dtype=str))
+        np.savez(
+            path,
+            log_pred=np.asarray(log_pred, dtype=np.float64),
+            true=np.asarray(true, dtype=np.float64),
+            n_tables=np.asarray(tables, dtype=np.int64),
+            query_hash=np.asarray(query_hash, dtype=str),
+            query_id=np.asarray(query_id, dtype=str),
+        )
 
     def test_execute_reads_only_source_databases_and_writes_evidence(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -235,27 +320,41 @@ class EndToEndSyntheticTests(unittest.TestCase):
                         for run in range(5):
                             self._write_npz(
                                 old / arm / "predictions" / f"{db}-k{k}-run{run}.npz",
-                                hashes, np.log(np.arange(1, 7)), np.arange(1, 7),
+                                hashes,
+                                np.log(np.arange(1, 7)),
+                                np.arange(1, 7),
                                 np.asarray([2, 2, 3, 4, 5, 6]),
-                                query_id=[f"{db}/pretrain/{i}" for i in range(6)])
+                                query_id=[f"{db}/pretrain/{i}" for i in range(6)],
+                            )
                 for k in diagnosis.SHOTS:
                     for run in range(5):
                         self._write_npz(
-                            completion / "C_last3_last3" / "predictions" / f"{db}-k{k}-run{run}.npz",
-                            hashes, np.log(np.arange(1, 7)), np.arange(1, 7),
+                            completion
+                            / "C_last3_last3"
+                            / "predictions"
+                            / f"{db}-k{k}-run{run}.npz",
+                            hashes,
+                            np.log(np.arange(1, 7)),
+                            np.arange(1, 7),
                             np.asarray([2, 2, 3, 4, 5, 6]),
-                            query_id=[f"{db}/pretrain/{i}" for i in range(6)])
+                            query_id=[f"{db}/pretrain/{i}" for i in range(6)],
+                        )
             plan = {}
             for db in diagnosis.SOURCE_DATABASES:
-                plan[db] = [{"run": run, "query": list(range(6))}
-                            for run in range(5)]
+                plan[db] = [{"run": run, "query": list(range(6))} for run in range(5)]
             (old / "endpoint_plan.json").write_text(json.dumps(plan), encoding="utf-8")
-            (completion / "endpoint_plan.json").write_text(json.dumps(plan), encoding="utf-8")
+            (completion / "endpoint_plan.json").write_text(
+                json.dumps(plan), encoding="utf-8"
+            )
             args = SimpleNamespace(
-                old_run=str(old), completion_run=str(completion),
+                old_run=str(old),
+                completion_run=str(completion),
                 cache=None,
-                out=str(root / "out.json"), csv_dir=str(root / "csv"),
-                device="cpu", execute=True, seed=42,
+                out=str(root / "out.json"),
+                csv_dir=str(root / "csv"),
+                device="cpu",
+                execute=True,
+                seed=42,
             )
             result = diagnosis.execute(args, protocol_path=protocol)
             self.assertEqual(result["scope"], "descriptive_diagnosis_only")
@@ -268,7 +367,7 @@ class EndToEndSyntheticTests(unittest.TestCase):
 
 class NoHeavyDependencyTests(unittest.TestCase):
     def test_diagnosis_module_does_not_import_torch(self):
-        text = (Path(diagnosis.__file__).read_text(encoding="utf-8"))
+        text = Path(diagnosis.__file__).read_text(encoding="utf-8")
         self.assertNotIn("import torch", text)
         self.assertNotIn("from torch", text)
 

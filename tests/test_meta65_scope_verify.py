@@ -81,7 +81,9 @@ class ScopeVerifierTests(unittest.TestCase):
     def save(self, name: str, payload: dict) -> None:
         write_json(self.root / name, payload)
 
-    def make_fixture(self, *, formal: bool = True, treatment_factor: float = 1.5) -> None:
+    def make_fixture(
+        self, *, formal: bool = True, treatment_factor: float = 1.5
+    ) -> None:
         mode = "formal" if formal else "cpu_preflight"
         old = json.loads(
             (
@@ -281,7 +283,10 @@ class ScopeVerifierTests(unittest.TestCase):
 
     def test_decision_and_verifier_agree_at_the_ten_percent_boundary(self) -> None:
         """Both classifiers must accept an improvement of exactly 10 percent."""
-        for factor, expected in ((1.8, "promising_single_seed_K20"), (1.8001, "no_candidate")):
+        for factor, expected in (
+            (1.8, "promising_single_seed_K20"),
+            (1.8001, "no_candidate"),
+        ):
             with self.subTest(factor=factor):
                 self.make_fixture(treatment_factor=factor)
                 summary = verify_module.verify(self.root)["summary"]
@@ -325,7 +330,9 @@ class ScopeVerifierTests(unittest.TestCase):
             self.root / "decision.provisional.json",
             {**provisional, "selected_arm": None},
         )
-        self.assertEqual(supervisor._completion(self.root, "formal"), "invalid_decision")
+        self.assertEqual(
+            supervisor._completion(self.root, "formal"), "invalid_decision"
+        )
 
     def _run_real_certification(self) -> None:
         """Mirror the worker's write of the returned certification."""
@@ -359,7 +366,9 @@ class ScopeVerifierTests(unittest.TestCase):
             },
         )
 
-    def test_real_certification_publishes_candidate_only_with_consistent_chain(self) -> None:
+    def test_real_certification_publishes_candidate_only_with_consistent_chain(
+        self,
+    ) -> None:
         """True certify() -> true summary -> true supervisor publication chain."""
         # Exactly 10 percent improvement: the weakest matrix that may publish.
         self.make_fixture(treatment_factor=1.8)
@@ -387,8 +396,6 @@ class ScopeVerifierTests(unittest.TestCase):
         self._mark_worker_complete()
         self.assertIsNone(supervisor._completion(self.root, "formal"))
         self.assertFalse((self.root / "decision.json").exists())
-
-
 
         self.make_fixture(formal=False)
         result = verify_module.verify(self.root, formal=False)

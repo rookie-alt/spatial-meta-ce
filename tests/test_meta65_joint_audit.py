@@ -7,11 +7,16 @@ from scripts import meta65_joint_audit as audit
 
 
 def cells(qs=(1, 2, 4, 8), tables=(1, 2, 4, 5), true=(1, 100, 1000, 1e6)):
-    return {arm: {"query_hash": np.array([f"h{i}" for i in range(4)]),
-                  "query_id": np.array([f"telstra/pretrain/{i+1}" for i in range(4)]),
-                  "true": np.array(true, dtype=float), "n_tables": np.array(tables),
-                  "log_pred": np.log(np.array(true) * np.array(qs) * (index + 1))}
-            for index, arm in enumerate(audit.ARMS)}
+    return {
+        arm: {
+            "query_hash": np.array([f"h{i}" for i in range(4)]),
+            "query_id": np.array([f"telstra/pretrain/{i + 1}" for i in range(4)]),
+            "true": np.array(true, dtype=float),
+            "n_tables": np.array(tables),
+            "log_pred": np.log(np.array(true) * np.array(qs) * (index + 1)),
+        }
+        for index, arm in enumerate(audit.ARMS)
+    }
 
 
 class JointAuditTests(unittest.TestCase):
@@ -30,12 +35,17 @@ class JointAuditTests(unittest.TestCase):
         expected = audit.analyze_run(original, 1)
         reordered = cells()
         reordered[audit.ARMS[1]] = {
-            key: value[::-1] for key, value in reordered[audit.ARMS[1]].items()}
+            key: value[::-1] for key, value in reordered[audit.ARMS[1]].items()
+        }
         self.assertEqual(expected, audit.analyze_run(reordered, 1))
 
     def test_pairing_rejects_mismatch_duplicate_and_nonfinite(self):
-        for field, value in (("true", 9), ("n_tables", 9),
-                             ("query_hash", "h1"), ("log_pred", np.nan)):
+        for field, value in (
+            ("true", 9),
+            ("n_tables", 9),
+            ("query_hash", "h1"),
+            ("log_pred", np.nan),
+        ):
             data = cells()
             data[audit.ARMS[1]][field][0] = value
             with self.subTest(field=field), self.assertRaises(ValueError):
@@ -44,14 +54,18 @@ class JointAuditTests(unittest.TestCase):
     def test_standard_q95_not_log_interpolation(self):
         result = audit.analyze_run(cells(), 1)["marginal"]["all"]["arms"][audit.ARMS[0]]
         self.assertAlmostEqual(result["q95"], float(np.percentile([1, 2, 4, 8], 95)))
-        self.assertNotEqual(result["q95"], float(np.exp(np.percentile(np.log([1, 2, 4, 8]), 95))))
+        self.assertNotEqual(
+            result["q95"], float(np.exp(np.percentile(np.log([1, 2, 4, 8]), 95)))
+        )
 
     def test_mean_of_run_quantiles_and_missing_runs(self):
         first = audit.analyze_run(cells(), 1)["marginal"]["all"]
         second = audit.analyze_run(cells(qs=(100, 100, 100, 100)), 1)["marginal"]["all"]
         result = audit.aggregate_runs([first, second])
-        self.assertAlmostEqual(result["arms"][audit.ARMS[0]]["q95_mean"],
-                               (first["arms"][audit.ARMS[0]]["q95"] + 100) / 2)
+        self.assertAlmostEqual(
+            result["arms"][audit.ARMS[0]]["q95_mean"],
+            (first["arms"][audit.ARMS[0]]["q95"] + 100) / 2,
+        )
         empty = audit.analyze_run(cells(), 30)["joint"]["<100|4"]
         result = audit.aggregate_runs([first, empty])
         self.assertEqual(result["status"], "incomplete_nonempty_runs")

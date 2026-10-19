@@ -539,26 +539,40 @@ class MappingIntegrationTests(unittest.TestCase):
         from spatial_meta_ce.manifests import validate_splits
 
         def fake_arm(config: dict, data: dict, output: Path) -> dict:
-            validate_splits(data['splits'])
-            self.assertEqual(data['splits']['train'], ['chembl'])
-            self.assertEqual(data['splits']['validation'], ['legalacts', 'telstra'])
-            return {'optimizer_steps': 20, 'counts': {'optimizer_steps': 20},
-                    'sample_plan_digest': 'same', 'sample_plan_episodes': 80,
-                    'initialization_hash': 'same', 'parameters': 100,
-                    'validation_plan_hash': 'same'}
+            validate_splits(data["splits"])
+            self.assertEqual(data["splits"]["train"], ["chembl"])
+            self.assertEqual(data["splits"]["validation"], ["legalacts", "telstra"])
+            return {
+                "optimizer_steps": 20,
+                "counts": {"optimizer_steps": 20},
+                "sample_plan_digest": "same",
+                "sample_plan_episodes": 80,
+                "initialization_hash": "same",
+                "parameters": 100,
+                "validation_plan_hash": "same",
+            }
 
         with tempfile.TemporaryDirectory() as d, contextlib.ExitStack() as stack:
-            stack.enter_context(patch.dict('os.environ', {'CUDA_VISIBLE_DEVICES': '4'}))
-            stack.enter_context(patch.object(mapping_smoke, 'available_gpu', return_value='uuid'))
-            for name, value in (('is_available', True), ('device_count', 1),
-                                ('get_device_name', 'mocked')):
+            stack.enter_context(patch.dict("os.environ", {"CUDA_VISIBLE_DEVICES": "4"}))
+            stack.enter_context(
+                patch.object(mapping_smoke, "available_gpu", return_value="uuid")
+            )
+            for name, value in (
+                ("is_available", True),
+                ("device_count", 1),
+                ("get_device_name", "mocked"),
+            ):
                 stack.enter_context(patch.object(torch.cuda, name, return_value=value))
-            stack.enter_context(patch.object(torch.cuda, 'empty_cache'))
-            stack.enter_context(patch.object(torch, 'use_deterministic_algorithms'))
-            stack.enter_context(patch.object(mapping_smoke, 'run_arm', side_effect=fake_arm))
-            result = mapping_smoke.run('/cache', '/sidecars', str(Path(d)/'smoke'), '4')
-            self.assertEqual(result['status'], 'passed')
-            self.assertEqual(result['target_databases_opened'], [])
+            stack.enter_context(patch.object(torch.cuda, "empty_cache"))
+            stack.enter_context(patch.object(torch, "use_deterministic_algorithms"))
+            stack.enter_context(
+                patch.object(mapping_smoke, "run_arm", side_effect=fake_arm)
+            )
+            result = mapping_smoke.run(
+                "/cache", "/sidecars", str(Path(d) / "smoke"), "4"
+            )
+            self.assertEqual(result["status"], "passed")
+            self.assertEqual(result["target_databases_opened"], [])
 
     def test_legacy_unmapped_checkpoint_resumes_with_reconstructed_digest(self) -> None:
         with (
@@ -624,14 +638,32 @@ class MappingIntegrationTests(unittest.TestCase):
             self.assertTrue(np.isfinite(result["macro_log_q95"]))
             self.assertEqual(pool.get("pretrain", "v").mapping.mode, "mapping")
             from scripts.arch_select import main
-            config_path, report_path = root/'selection.json', root/'selection-result.json'
+
+            config_path, report_path = (
+                root / "selection.json",
+                root / "selection-result.json",
+            )
             config_path.write_text(json.dumps({**cfg, **dc}))
-            with patch('sys.argv', ['arch_select', '--config', str(config_path),
-                                   '--checkpoints', f'mapped={root}/trained/last.pt',
-                                   '--output', str(report_path)]):
+            with patch(
+                "sys.argv",
+                [
+                    "arch_select",
+                    "--config",
+                    str(config_path),
+                    "--checkpoints",
+                    f"mapped={root}/trained/last.pt",
+                    "--output",
+                    str(report_path),
+                ],
+            ):
                 main()
-            self.assertTrue(np.isfinite(json.loads(report_path.read_text())[
-                'results']['mapped']['macro_log_q95']))
+            self.assertTrue(
+                np.isfinite(
+                    json.loads(report_path.read_text())["results"]["mapped"][
+                        "macro_log_q95"
+                    ]
+                )
+            )
             for key in ("manifest_hash", "jsonl_hash", "mode"):
                 bad = {
                     **state,

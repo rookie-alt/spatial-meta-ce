@@ -58,20 +58,31 @@ def certificate(columns, stability="stable", rank=None, rows=1216):
     kappa = sigma1 / sigma_r if rank else 0.0
     floor = 1e-12 + 1e-12 * projection_norm
     bound = {
-        "tol": floor, "sigma1": sigma1, "sigma_r": sigma_r,
-        "sigma_cutoff": 1e-12 * sigma1, "kappa_retained": kappa,
-        "projection_norm": projection_norm, "target_scale": 2.0,
-        "amplification_scale": 2.0, "engineering_floor": floor,
+        "tol": floor,
+        "sigma1": sigma1,
+        "sigma_r": sigma_r,
+        "sigma_cutoff": 1e-12 * sigma1,
+        "kappa_retained": kappa,
+        "projection_norm": projection_norm,
+        "target_scale": 2.0,
+        "amplification_scale": 2.0,
+        "engineering_floor": floor,
         "reachable_bound": 8.0 * eps * kappa * 2.0,
-        "accumulation_constant": 8.0, "eps": eps,
-        "scope": ("max_engineering_floor_and_fp64_reachable_bound" if rank
-                  else "rank_zero_engineering_floor"),
+        "accumulation_constant": 8.0,
+        "eps": eps,
+        "scope": (
+            "max_engineering_floor_and_fp64_reachable_bound"
+            if rank
+            else "rank_zero_engineering_floor"
+        ),
     }
     return {
         "retained_subspace_check": {
             "scope": "real_retained_condition_number_fp64_reachable_bound",
-            "reported_residual": 0.0, "reference_residual": 0.0,
-            "reported_bound": copy.deepcopy(bound), "reference_bound": copy.deepcopy(bound),
+            "reported_residual": 0.0,
+            "reference_residual": 0.0,
+            "reported_bound": copy.deepcopy(bound),
+            "reference_bound": copy.deepcopy(bound),
         },
         "engineering_scope": "same_matrix_fixed_cutoff_numeric_consistency",
         "spectrum_specification": "s8-fp64-spectrum-v1.1",

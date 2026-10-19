@@ -57,8 +57,12 @@ class Diagnostic88D2Tests(unittest.TestCase):
 
     def test_verdict_thresholds_and_range(self):
         def status(left, right):
-            return d2.decide({"a": [{"R2_4_protocol": left}] * 5,
-                              "b": [{"R2_4_protocol": right}] * 5})["status"]
+            return d2.decide(
+                {
+                    "a": [{"R2_4_protocol": left}] * 5,
+                    "b": [{"R2_4_protocol": right}] * 5,
+                }
+            )["status"]
 
         self.assertEqual(status(0.90, 0.85), "expressible")
         self.assertEqual(status(0.90, 0.60), "partial")
