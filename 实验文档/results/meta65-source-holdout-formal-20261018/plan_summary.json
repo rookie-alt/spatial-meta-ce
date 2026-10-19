@@ -1,0 +1,122 @@
+{
+  "chembl": {
+    "runs": 5,
+    "support_max": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "query_counts": [
+      49900,
+      49900,
+      49900,
+      49900,
+      49900
+    ],
+    "query_digests": [
+      "2be5a85b529407cede248763208c88ae1f3a17f67c85f9cc7c96ad3a93348fed",
+      "23cca2dd5e487a30b1e4ea8dc6af969520b71e28dee41ebfd23cdf62b6959689",
+      "a42e12330ecfe5434de2bbf70340326a8b3c6f81d21f1f460e37852afad3ba09",
+      "744c73ab9ab66856e56e72b06015ad2f3a82618682eca8c9c4222bb1f7662f8b",
+      "ac554b0d3a43ac7739490fd8f31e1557e3242fabe3887eecc5c7dbd0c05185c8"
+    ]
+  },
+  "legalacts": {
+    "runs": 5,
+    "support_max": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "query_counts": [
+      49404,
+      49404,
+      49404,
+      49404,
+      49404
+    ],
+    "query_digests": [
+      "b7daf89d5c2d66051f4312d0590c1c6a92354f5c451f283d49de5b333f64922c",
+      "8c75d52b01bbfea505e5b9f31fee523f4d6b40d2fdd8c1866d9037f84642a0c4",
+      "efefcaff13fa6a339039b0fad1bd2fa639f849c116d54c31b64f674015981944",
+      "2bf4917c2f9822b0bff43353d8210219f6be90111ba6ae6722025d72acf93489",
+      "4364c4591aa5aa1c388fdb11741671aef6a43e0b12bd59d395e4499c9ce8691f"
+    ]
+  },
+  "telstra": {
+    "runs": 5,
+    "support_max": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "query_counts": [
+      49900,
+      49900,
+      49900,
+      49900,
+      49900
+    ],
+    "query_digests": [
+      "cfae746194795e52c534c34a47542b6a942c4e8adb6befa6628f68e6e51a4e1d",
+      "e81fc5d441d83b38d35140b6b138af10a806b41dbbd1a0e36c828d9a0c4e99fa",
+      "c6ded9fa3376b734fe2bfdfedcf7a55c1f03b6198727583bec196f65403a3b48",
+      "a16fa52245b477783b2ed53d3f8f9af3ead2593e6687117642dac26998eebd9e",
+      "41ec979a20fd0553bc0b185a7c5e061ebcb8e394280b37985e69af5a6c593955"
+    ]
+  },
+  "hepatitis": {
+    "runs": 5,
+    "support_max": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "query_counts": [
+      49900,
+      49900,
+      49900,
+      49900,
+      49900
+    ],
+    "query_digests": [
+      "3f58a040215542dabf144c4017ee8cf325c34975e3192ca5eaa3c1e0a744100b",
+      "4d63d51988969261700a4eaabdd3da140bfd5adbc7d757faaf2d2e5c8fff54de",
+      "d4c3830316df83e41dbc03374fbc29345ee3f0cbacb4bd55697f6e0d1fa133c1",
+      "eeec326c20fdcb9d47f181929f7f532fda62736704e215a37828a8d2b11adb4f",
+      "3b6400d96a335eef7e533a1b611ee8e748679840e8179e47fd39f845bddc60c4"
+    ]
+  },
+  "sakila": {
+    "runs": 5,
+    "support_max": [
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "query_counts": [
+      49900,
+      49900,
+      49900,
+      49900,
+      49900
+    ],
+    "query_digests": [
+      "940dcd0f197b1c501e7acd28b3b4a5a6e6e08391710914ca6eec9787e6dd7136",
+      "82731730def058bb5c480f1dc936354c32f30cd89bc7b575a028ba328a17f831",
+      "5849bc302447223c0d4cfeb4b247600c6611f709b9730d5233e7c0ab5d7d9026",
+      "2405833885b011aedd81f1eb49933c5046208930722288742551e74f5b1e72e9",
+      "52a3a135a26f8ddeae7ec23fca817620cdf49c68109fb3aef748f13286279b9a"
+    ]
+  }
+}

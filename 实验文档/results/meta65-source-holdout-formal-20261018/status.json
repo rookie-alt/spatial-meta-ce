@@ -1,0 +1,12 @@
+{
+  "cells": 50,
+  "experiment": "meta65-source-holdout-20261018",
+  "formal_result": true,
+  "micro_cells": 0,
+  "mode": "formal",
+  "schema": 1,
+  "selection_performed": false,
+  "status": "completed",
+  "target_read": false,
+  "training": true
+}
