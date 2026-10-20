@@ -8,6 +8,8 @@ Nothing here trains a model; these functions only read a validated derived
 cache and build labels/features/matrices.
 """
 
+from __future__ import annotations
+
 import hashlib
 import json
 import math

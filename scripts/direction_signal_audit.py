@@ -36,6 +36,8 @@ zero-shot output, not raw PostgreSQL.  Doc 95's "PG direction" is therefore an
 anchor direction; this audit also reports the raw-PG direction for contrast.
 """
 
+from __future__ import annotations
+
 import argparse
 import csv
 import json
