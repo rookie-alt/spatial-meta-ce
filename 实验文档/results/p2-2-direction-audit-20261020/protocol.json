@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "purpose": "research-read-only-audit",
+  "audit": "p2-2-direction-signal",
+  "definition": {
+    "label": "sign(log(max(true,1)) - log_pred_K0)",
+    "tie_tolerance": 1e-09,
+    "worsened": "log error at K>0 exceeds the K=0 anchor by > tolerance"
+  },
+  "features": {
+    "groups": [
+      "counts",
+      "pg",
+      "table",
+      "filter",
+      "join_hist",
+      "fanout"
+    ],
+    "excluded": [
+      "log_pred_K0"
+    ],
+    "note": "K=0 inputs only; PG log is an input feature, not an output"
+  },
+  "cross_validation": {
+    "primary_group": "query_hash",
+    "folds": 5,
+    "sensitivity_group": "coarse structural signature"
+  },
+  "models": [
+    "hgb",
+    "logistic"
+  ],
+  "bootstrap_reps": 1000,
+  "threshold_auc_ci_lower": 0.5,
+  "target_databases_read": []
+}
