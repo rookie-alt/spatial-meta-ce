@@ -212,6 +212,69 @@ def pairwise_reasoning(database_reports) -> dict:
     }
 
 
+def assert_anchors_cover(anchors, databases) -> None:
+    """Every requested database must have at least one K=0 anchor.
+
+    Reading our side from a predictions export is only sound if the export
+    actually covers the databases asked for; a silent miss would otherwise
+    surface much later as a confusing per-query error.
+    """
+    present = {key[0] for key in anchors}
+    missing = [db for db in databases if db not in present]
+    if missing:
+        raise ValueError(f"predictions export has no K=0 rows for {missing}")
+
+
+def run_source_chunk(task):
+    """Worker body: our side from anchors, PRICE computed here, then diagnose.
+
+    Used for the 26-database sweep, where re-running our model would repeat
+    1.28M rows of inference that the export already contains.  The anchors
+    carry the truth value as well, and ``collect_database`` refuses if it
+    disagrees with the cache, so the two sources cannot drift apart silently.
+    """
+    (
+        cache_root,
+        split,
+        databases,
+        maxima,
+        price_checkpoint,
+        anchors,
+        batch_size,
+        minimum,
+    ) = task
+    import torch
+
+    from spatial_meta_ce.baselines import PriceAdapter
+    from spatial_meta_ce.data import StorePool
+
+    torch.set_num_threads(1)
+    price_population = _load_sibling("price_population_eval")
+    model = PriceAdapter(price_checkpoint, np.asarray(maxima, dtype=np.int64), "cpu")
+    pool = StorePool(cache_root)
+    out = {}
+    for database in databases:
+        store = pool.get(split, database)
+        log_preds, true, n_tables = price_population.collect_database(
+            store, anchors, database, model, "cpu", batch_size
+        )
+        log_true = np.log(np.maximum(true, 1.0))
+        out[database] = diagnose_database(
+            log_preds, log_true, n_tables, minimum=minimum
+        )
+        print(
+            json.dumps(
+                {
+                    "database": database,
+                    "group": "source",
+                    "n": out[database]["overview"]["n"],
+                }
+            ),
+            flush=True,
+        )
+    return out
+
+
 def main(argv):
     parser = argparse.ArgumentParser(
         description="Error-structure diagnosis over target and source databases"
@@ -236,9 +299,28 @@ def main(argv):
     )
     parser.add_argument("--minimum-subgroup", type=int, default=30)
     parser.add_argument("--batch-size", type=int, default=128)
+    parser.add_argument(
+        "--source-predictions",
+        default=None,
+        help="optional predictions CSV (database,run,k,query_hash,"
+        "true_cardinality,log_prediction). When given, our side for the "
+        "SOURCE databases is read from it instead of re-running the model, "
+        "which is what makes the 26-database sweep affordable. Targets always "
+        "run the model, because no export covers them.",
+    )
+    parser.add_argument(
+        "--jobs",
+        type=int,
+        default=1,
+        help="process workers over source databases when --source-predictions "
+        "is given; ignored otherwise",
+    )
     parser.add_argument("--output", required=True)
     parser.add_argument("--protocol", required=True)
     args = parser.parse_args(argv)
+
+    if args.jobs > 1 and args.source_predictions is None:
+        raise ValueError("--jobs > 1 requires --source-predictions")
 
     import torch
 
@@ -260,6 +342,14 @@ def main(argv):
     source_maxima = parse_maxima(args.source_maxima)
     torch.set_num_threads(1)
 
+    anchors = None
+    if args.source_predictions is not None:
+        anchors = price_population.read_k0_predictions(
+            args.source_predictions, args.source_databases
+        )
+        assert_anchors_cover(anchors, args.source_databases)
+        print(f"source anchors: {len(anchors)} unique queries", flush=True)
+
     pool = StorePool(args.cache_root)
     ours_model, state = load_checkpoint(args.checkpoint, "cpu")
     ours_model.eval()
@@ -270,11 +360,57 @@ def main(argv):
         "source": PriceAdapter(args.price_checkpoint, source_maxima, "cpu"),
     }
 
-    plans = [("target", "test", db) for db in args.target_databases]
-    plans += [("source", "pretrain", db) for db in args.source_databases]
-
+    # Source databases are diagnosed first when an export is supplied: the
+    # model-based target loop below holds the loaded checkpoint, and the
+    # worker pool must not inherit it.
     reports = {}
     inspections = {}
+    if anchors is not None:
+        chunks = price_population.parallel_chunks(
+            list(args.source_databases), max(1, args.jobs)
+        )
+        tasks = [
+            (
+                args.cache_root,
+                "pretrain",
+                chunk,
+                source_maxima.tolist(),
+                args.price_checkpoint,
+                anchors,
+                args.batch_size,
+                args.minimum_subgroup,
+            )
+            for chunk in chunks
+        ]
+        if len(tasks) == 1:
+            collected = run_source_chunk(tasks[0])
+        else:
+            import multiprocessing as mp
+
+            context = mp.get_context("spawn")
+            collected = {}
+            with context.Pool(processes=len(tasks)) as worker_pool:
+                for result in worker_pool.map(run_source_chunk, tasks):
+                    collected.update(result)
+        for database in args.source_databases:
+            reports[database] = collected[database]
+            store = pool.get("pretrain", database)
+            inspections[database] = {
+                "group": "source",
+                "split": "pretrain",
+                "max_counts": np.asarray(
+                    store.manifest["inspection"]["max_counts"], dtype=np.int64
+                ).tolist(),
+                "maxima_used": source_maxima.tolist(),
+                "content_hash": store.manifest["content_hash"],
+                "ours_source": "predictions export",
+            }
+        source_plans = []
+    else:
+        source_plans = [("source", "pretrain", db) for db in args.source_databases]
+
+    plans = [("target", "test", db) for db in args.target_databases] + source_plans
+
     for group, split, database in plans:
         store = pool.get(split, database)
         maxima = target_maxima if group == "target" else source_maxima
@@ -365,7 +501,23 @@ def main(argv):
             "decoding": "price_log_predictions(): log1p(card)+1 -> log(card)",
             "adaptation": "none (K=0)",
         },
-        "inputs": {"per_database": inspections},
+        "inputs": {
+            "per_database": inspections,
+            "source_predictions": (
+                None
+                if args.source_predictions is None
+                else {
+                    "path": str(Path(args.source_predictions).resolve()),
+                    "sha256": sha256_file(Path(args.source_predictions)),
+                    "used_for": (
+                        "our side on every source database; the target "
+                        "databases still run the checkpoint because no export "
+                        "covers a held-out target"
+                    ),
+                    "anchors": len(anchors) if anchors is not None else 0,
+                }
+            ),
+        },
         "subgroup_policy": {
             "four_plus_min_tables": FOUR_PLUS_MIN_TABLES,
             "minimum_subgroup": args.minimum_subgroup,

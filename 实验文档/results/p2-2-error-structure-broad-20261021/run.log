@@ -1,0 +1,113 @@
+source anchors: 1279218 unique queries
+{"database": "ccs", "group": "source", "n": 50000}
+{"database": "credit", "group": "source", "n": 50000}
+{"database": "airline", "group": "source", "n": 50000}
+{"database": "basketball", "group": "source", "n": 50000}
+{"database": "accidents", "group": "source", "n": 50000}
+{"database": "carcinogenesis", "group": "source", "n": 50000}
+{"database": "chembl", "group": "source", "n": 50000}
+{"database": "baseball", "group": "source", "n": 50000}
+{"database": "fnhk", "group": "source", "n": 50000}
+{"database": "financial", "group": "source", "n": 50000}
+{"database": "employee", "group": "source", "n": 50000}
+{"database": "consumer", "group": "source", "n": 50000}
+{"database": "sap", "group": "source", "n": 29714}
+{"database": "ssb", "group": "source", "n": 50000}
+{"database": "talkingdata", "group": "source", "n": 50000}
+{"database": "sakila", "group": "source", "n": 50000}
+{"database": "legalacts", "group": "source", "n": 49504}
+{"database": "telstra", "group": "source", "n": 50000}
+{"database": "hockey", "group": "source", "n": 50000}
+{"database": "hepatitis", "group": "source", "n": 50000}
+{"database": "movielens", "group": "source", "n": 50000}
+{"database": "grants", "group": "source", "n": 50000}
+{"database": "seznam", "group": "source", "n": 50000}
+{"database": "tournament", "group": "source", "n": 50000}
+{"database": "tubepricing", "group": "source", "n": 50000}
+{"database": "tpc_h", "group": "source", "n": 50000}
+{"database": "stats", "group": "target", "n": 2603, "ours_k0": {"bias_med": 0.1111, "over_pct": 58.932, "q95": 83.7215, "corr_truth": 0.8393}, "price_k0": {"bias_med": 0.1198, "over_pct": 56.5117, "q95": 39.5201, "corr_truth": 0.8702}, "pg": {"bias_med": 0.0083, "over_pct": 51.287, "q95": 75.65, "corr_truth": 0.8262}}
+{"database": "genome", "group": "target", "n": 1699, "ours_k0": {"bias_med": 0.0473, "over_pct": 57.7987, "q95": 170.8181, "corr_truth": 0.9454}, "price_k0": {"bias_med": 0.2558, "over_pct": 66.8629, "q95": 31.3359, "corr_truth": 0.967}, "pg": {"bias_med": -0.1771, "over_pct": 23.1901, "q95": 1907.3207, "corr_truth": 0.9135}}
+{"database": "ergastf1", "group": "target", "n": 1258, "ours_k0": {"bias_med": 0.0011, "over_pct": 50.0, "q95": 22.2813, "corr_truth": 0.9489}, "price_k0": {"bias_med": 0.0641, "over_pct": 54.69, "q95": 15.2912, "corr_truth": 0.9592}, "pg": {"bias_med": -0.0375, "over_pct": 41.097, "q95": 27.6088, "corr_truth": 0.9468}}
+{"database": "imdb", "group": "target", "n": 521, "ours_k0": {"bias_med": -0.4537, "over_pct": 27.6392, "q95": 32.3672, "corr_truth": 0.9226}, "price_k0": {"bias_med": -0.3269, "over_pct": 35.7006, "q95": 21.0252, "corr_truth": 0.9434}, "pg": {"bias_med": -0.6279, "over_pct": 27.6392, "q95": 87.1098, "corr_truth": 0.9004}}
+{
+  "q95_better_price": {
+    "databases": [
+      "accidents",
+      "airline",
+      "chembl",
+      "telstra",
+      "stats",
+      "genome",
+      "ergastf1",
+      "imdb"
+    ],
+    "n": 8
+  },
+  "q95_better_ours": {
+    "databases": [
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hepatitis",
+      "hockey",
+      "legalacts",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "n": 22
+  },
+  "corr_better_price": {
+    "databases": [
+      "chembl",
+      "movielens",
+      "telstra",
+      "stats",
+      "genome",
+      "ergastf1",
+      "imdb"
+    ],
+    "n": 7
+  },
+  "corr_better_ours": {
+    "databases": [
+      "accidents",
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hepatitis",
+      "hockey",
+      "legalacts",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "n": 23
+  }
+}

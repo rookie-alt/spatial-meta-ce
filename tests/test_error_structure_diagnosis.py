@@ -164,6 +164,20 @@ class DiagnoseDatabaseTests(unittest.TestCase):
         )
 
 
+class AnchorCoverageTests(unittest.TestCase):
+    def test_export_missing_a_database_is_refused(self):
+        anchors = {("accidents", "h1"): (1.0, 2.0)}
+        with self.assertRaises(ValueError):
+            diagnosis.assert_anchors_cover(anchors, ["accidents", "chembl"])
+
+    def test_full_coverage_passes(self):
+        anchors = {
+            ("accidents", "h1"): (1.0, 2.0),
+            ("chembl", "h2"): (1.0, 2.0),
+        }
+        diagnosis.assert_anchors_cover(anchors, ["accidents", "chembl"])
+
+
 class PairwiseReasoningTests(unittest.TestCase):
     def _report(self, ours_q95, price_q95, ours_corr, price_corr):
         return {
