@@ -193,7 +193,15 @@ def collect_database(store, anchors, database, model, device, batch_size):
 
 
 def headline(report):
-    """Compact per-database comparison of the population Q95."""
+    """Compact per-database comparison of the population Q95.
+
+    A database whose queries all have fewer than four tables has an empty
+    ``bucket_4plus``; ``database_report`` records that as ``None`` (an empty
+    bucket has no percentile).  The headline then reports ``None`` for each
+    method rather than crashing -- the bucket is genuinely absent, not
+    skipped, and ``databases.<db>.bucket_4plus.n`` already shows the zero.
+    Non-empty buckets produce exactly the same values as before.
+    """
     ours = report["ours_k0"]
     price = report["price_k0"]
     row = {
@@ -204,8 +212,10 @@ def headline(report):
     row["q95_ratio_price_over_ours"] = (
         float(price["q95"] / ours["q95"]) if ours["q95"] > 0 else None
     )
+    four_plus = report["bucket_4plus"]
     row["bucket_4plus_q95"] = {
-        method: report["bucket_4plus"][method]["q95"] for method in METHODS
+        method: (None if four_plus[method] is None else four_plus[method]["q95"])
+        for method in METHODS
     }
     return row
 
@@ -219,6 +229,83 @@ def write_json(path, value):
     temporary.replace(path)
 
 
+def parse_maxima(value):
+    """Parse an explicit 'a,b,c,d' PRICE layout override (doc 101 §3).
+
+    ``main`` only calls this when ``--maxima`` is given, so the default
+    path (elementwise max over the compared caches' ``inspection.max_counts``,
+    i.e. task C's rule) stays untouched.
+    """
+    parts = [p.strip() for p in str(value).split(",")]
+    if len(parts) != 4:
+        raise ValueError(f"maxima must hold 4 values, got {parts!r}")
+    try:
+        values = [int(p) for p in parts]
+    except ValueError:
+        raise ValueError(f"maxima values must be integers: {value!r}") from None
+    if any(v < 1 for v in values):
+        raise ValueError(f"maxima values must be >= 1: {value!r}")
+    return np.asarray(values, dtype=np.int64)
+
+
+def parallel_chunks(databases, jobs):
+    """Deterministic round-robin split of databases into at most `jobs` chunks.
+
+    Every database appears exactly once and the per-chunk order is preserved,
+    so which worker evaluates a database cannot change its numbers.
+    """
+    width = min(jobs, len(databases))
+    return [tuple(databases[i::width]) for i in range(width)]
+
+
+def run_database_chunk(task):
+    """Worker body for --jobs>1: one model per process over a chunk of databases.
+
+    Same computation as the sequential loop -- one PriceAdapter per worker
+    with the identical maxima, same store, same anchors -- in a separate
+    process, so torch uses a single thread per worker without contention.
+    """
+    (
+        cache_root,
+        split,
+        price_checkpoint,
+        maxima,
+        predictions,
+        batch_size,
+        databases,
+    ) = task
+    import torch
+
+    from spatial_meta_ce.baselines import PriceAdapter
+    from spatial_meta_ce.data import StorePool
+
+    torch.set_num_threads(1)
+    model = PriceAdapter(price_checkpoint, np.asarray(maxima, dtype=np.int64), "cpu")
+    pool = StorePool(cache_root)
+    anchors = read_k0_predictions(predictions, databases)
+    out = {}
+    for database in databases:
+        store = pool.get(split, database)
+        started = time.perf_counter()
+        log_preds, true, n_tables = collect_database(
+            store, anchors, database, model, "cpu", batch_size
+        )
+        report = database_report(log_preds, true, n_tables)
+        out[database] = report
+        print(
+            json.dumps(
+                {
+                    "worker_database": database,
+                    "queries": int(len(true)),
+                    "seconds": round(time.perf_counter() - started, 1),
+                    **headline(report),
+                }
+            ),
+            flush=True,
+        )
+    return out
+
+
 def main(argv):
     parser = argparse.ArgumentParser(
         description="PRICE source-side population comparison (read-only)"
@@ -230,6 +317,20 @@ def main(argv):
     parser.add_argument("--databases", nargs="+", default=list(SOURCE_VALIDATION))
     parser.add_argument("--batch-size", type=int, default=128)
     parser.add_argument("--device", default="cpu")
+    parser.add_argument(
+        "--maxima",
+        default=None,
+        help="explicit 'a,b,c,d' PRICE layout override (doc 101 §3). Omit to "
+        "keep the default rule (elementwise max over the compared caches' "
+        "inspection.max_counts, i.e. task C's behaviour).",
+    )
+    parser.add_argument(
+        "--jobs",
+        type=int,
+        default=1,
+        help="process workers for the PRICE pass (>=2 only with --device cpu; "
+        "results are identical to jobs=1, only the scheduling differs)",
+    )
     parser.add_argument("--output", required=True)
     parser.add_argument("--protocol", required=True)
     args = parser.parse_args(argv)
@@ -244,6 +345,8 @@ def main(argv):
         assert_source_database(database)
     if args.device == "cpu":
         torch.set_num_threads(1)
+    if args.jobs > 1 and args.device != "cpu":
+        raise ValueError("--jobs > 1 requires --device cpu")
 
     pool = StorePool(args.cache_root)
     per_database_maxima = {}
@@ -255,29 +358,72 @@ def main(argv):
         )
         per_database_maxima[database] = counts.tolist()
         maxima = np.maximum(maxima, counts)
+    maxima_rule = (
+        "elementwise max of inspection.max_counts over the compared "
+        "databases, the same rule the source-side PRICE baseline used"
+    )
+    if args.maxima is not None:
+        maxima = parse_maxima(args.maxima)
+        maxima_rule = (
+            "explicit --maxima override (passed on the command line; see "
+            "doc 101 §3: maxima is a PRICE layout parameter, so numbers "
+            "computed under different maxima must not be quoted together)"
+        )
+        for database, counts in per_database_maxima.items():
+            if (np.asarray(counts, dtype=np.int64) > maxima).any():
+                raise ValueError(
+                    f"explicit maxima {maxima.tolist()} cannot hold database "
+                    f"{database!r} max_counts {counts}"
+                )
     model = PriceAdapter(args.price_checkpoint, maxima, args.device)
 
     anchors = read_k0_predictions(args.predictions, databases)
     print(f"k0 anchors: {len(anchors)} unique queries", flush=True)
     databases_report = {}
-    for database in databases:
-        store = pool.get(args.split, database)
-        started = time.perf_counter()
-        log_preds, true, n_tables = collect_database(
-            store, anchors, database, model, args.device, args.batch_size
-        )
-        databases_report[database] = database_report(log_preds, true, n_tables)
-        print(
-            json.dumps(
-                {
-                    "database": database,
-                    "queries": int(len(true)),
-                    "seconds": round(time.perf_counter() - started, 1),
-                    **headline(databases_report[database]),
-                }
-            ),
-            flush=True,
-        )
+    if args.jobs > 1:
+        import multiprocessing as mp
+
+        # Deterministic round-robin: every database lands in exactly one
+        # worker with a fixed maxima, so the per-database numbers match the
+        # sequential path exactly; only the scheduling differs.
+        chunks = parallel_chunks(databases, args.jobs)
+        tasks = [
+            (
+                args.cache_root,
+                args.split,
+                args.price_checkpoint,
+                maxima.tolist(),
+                args.predictions,
+                args.batch_size,
+                chunk,
+            )
+            for chunk in chunks
+        ]
+        context = mp.get_context("spawn")
+        collected = {}
+        with context.Pool(processes=len(tasks)) as worker_pool:
+            for result in worker_pool.map(run_database_chunk, tasks):
+                collected.update(result)
+        databases_report = {db: collected[db] for db in databases}
+    else:
+        for database in databases:
+            store = pool.get(args.split, database)
+            started = time.perf_counter()
+            log_preds, true, n_tables = collect_database(
+                store, anchors, database, model, args.device, args.batch_size
+            )
+            databases_report[database] = database_report(log_preds, true, n_tables)
+            print(
+                json.dumps(
+                    {
+                        "database": database,
+                        "queries": int(len(true)),
+                        "seconds": round(time.perf_counter() - started, 1),
+                        **headline(databases_report[database]),
+                    }
+                ),
+                flush=True,
+            )
 
     protocol = {
         "schema": 1,
@@ -318,10 +464,7 @@ def main(argv):
             "parameters": int(sum(p.numel() for p in model.parameters())),
             "maxima": maxima.tolist(),
             "per_database_max_counts": per_database_maxima,
-            "maxima_rule": (
-                "elementwise max of inspection.max_counts over the compared "
-                "databases, the same rule the source-side PRICE baseline used"
-            ),
+            "maxima_rule": maxima_rule,
             "decoding": (
                 "price_log_predictions(): native output is log1p(card)+1, "
                 "decoded to log(card)"

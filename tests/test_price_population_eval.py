@@ -271,6 +271,56 @@ class CollectDatabaseTests(unittest.TestCase):
             self._collect(np.log1p(100.0) + 1.0)
 
 
+class HeadlineTests(unittest.TestCase):
+    def test_nonempty_four_plus_bucket_is_reported(self):
+        report = {
+            "ours_k0": {"q50": 1.0, "q95": 10.0, "log_q95": 2.0},
+            "price_k0": {"q50": 1.0, "q95": 20.0, "log_q95": 3.0},
+            "pg": {"q50": 1.0, "q95": 30.0, "log_q95": 4.0},
+            "bucket_4plus": {
+                "n": 5,
+                "ours_k0": {"q50": 1.0, "q95": 100.0, "log_q95": 5.0},
+                "price_k0": {"q50": 1.0, "q95": 200.0, "log_q95": 6.0},
+                "pg": {"q50": 1.0, "q95": 300.0, "log_q95": 7.0},
+            },
+        }
+        row = population.headline(report)
+        self.assertEqual(
+            row["bucket_4plus_q95"],
+            {
+                "ours_k0": 100.0,
+                "price_k0": 200.0,
+                "pg": 300.0,
+            },
+        )
+        self.assertAlmostEqual(row["q95_ratio_price_over_ours"], 2.0)
+
+    def test_empty_four_plus_bucket_is_null_not_a_crash(self):
+        # accidents / consumer / fnhk have no query with four or more tables;
+        # the bucket is absent, so every method's 4+ Q95 is null.
+        report = {
+            "ours_k0": {"q50": 1.0, "q95": 10.0, "log_q95": 2.0},
+            "price_k0": {"q50": 1.0, "q95": 20.0, "log_q95": 3.0},
+            "pg": {"q50": 1.0, "q95": 30.0, "log_q95": 4.0},
+            "bucket_4plus": {
+                "n": 0,
+                "ours_k0": None,
+                "price_k0": None,
+                "pg": None,
+            },
+        }
+        row = population.headline(report)
+        self.assertEqual(
+            row["bucket_4plus_q95"],
+            {
+                "ours_k0": None,
+                "price_k0": None,
+                "pg": None,
+            },
+        )
+        self.assertEqual(row["q95"]["ours_k0"], 10.0)
+
+
 class WriteJsonTests(unittest.TestCase):
     def test_write_is_atomic_and_json_safe(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -280,6 +330,49 @@ class WriteJsonTests(unittest.TestCase):
             self.assertFalse(Path(str(path) + ".tmp").exists())
             with self.assertRaises(ValueError):
                 population.write_json(path, {"a": float("nan")})
+
+
+class MaximaOverrideTests(unittest.TestCase):
+    """--maxima is additive: the default rule must stay exactly task C's."""
+
+    def test_parses_explicit_list(self):
+        self.assertEqual(
+            population.parse_maxima("12,12,7,10").tolist(), [12, 12, 7, 10]
+        )
+
+    def test_rejects_wrong_length(self):
+        with self.assertRaises(ValueError):
+            population.parse_maxima("12,12,7")
+
+    def test_rejects_non_integer(self):
+        with self.assertRaises(ValueError):
+            population.parse_maxima("12,12,7,x")
+
+    def test_rejects_nonpositive(self):
+        with self.assertRaises(ValueError):
+            population.parse_maxima("12,12,0,10")
+
+
+class ParallelChunkTests(unittest.TestCase):
+    def test_every_database_appears_exactly_once(self):
+        databases = [f"db{i}" for i in range(26)]
+        chunks = population.parallel_chunks(databases, 12)
+        flat = [db for chunk in chunks for db in chunk]
+        self.assertEqual(sorted(flat), sorted(databases))
+        self.assertEqual(len(chunks), 12)
+
+    def test_more_jobs_than_databases_uses_one_per_database(self):
+        chunks = population.parallel_chunks(["a", "b", "c"], 12)
+        self.assertEqual(len(chunks), 3)
+        self.assertEqual(sorted(len(chunk) for chunk in chunks), [1, 1, 1])
+
+    def test_order_within_chunks_is_preserved(self):
+        chunks = population.parallel_chunks(["a", "b", "c", "d", "e"], 2)
+        self.assertEqual(list(chunks[0]), ["a", "c", "e"])
+        self.assertEqual(list(chunks[1]), ["b", "d"])
+
+    def test_single_job_is_one_chunk(self):
+        self.assertEqual(population.parallel_chunks(["a", "b"], 1), [("a", "b")])
 
 
 if __name__ == "__main__":
