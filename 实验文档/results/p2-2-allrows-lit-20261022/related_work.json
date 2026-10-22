@@ -147,7 +147,7 @@
  },
  "metric_lineage": {
   "title": "同一个方法在不同论文里的数不一样",
-  "why": "JOB-light / IMDb 这套负载被多篇论文各自评测过。同一方法在各自论文里的 Q95 差别可达 2-16 倍，因为它们用的统计单元与工作负载版本不同。读任何一张表都要先问「这张表的数是哪篇论文、哪套负载、哪个统计单元」。",
+  "why": "JOB-light / IMDb 这套负载被多篇论文各自评测过。同一方法的 Q95 在各自论文里可以差一个数量级以上（PostgreSQL 分别是 797 / 817 / 6,955，而 PRICE 表里是 49.44），差在统计单元与工作负载版本，不在实现优劣。读任何一张表都要先问「这张表的数是哪篇论文、哪套负载、哪个统计单元」。",
   "rows": [
    {"method": "PostgreSQL / Histogram", "own": ["DeepDB 原文 817", "FLAT 原文 6,955", "NeuroCard 原文 797"], "price_table": 49.44},
    {"method": "DeepDB", "own": ["DeepDB 原文 3.16", "FLAT 原文 3.769", "NeuroCard 原文 4.90"], "price_table": 5.03},
@@ -155,7 +155,7 @@
    {"method": "NeuroCard", "own": ["NeuroCard 原文 5.91", "FLAT 原文 5.910"], "price_table": 14.25},
    {"method": "FLAT", "own": ["FLAT 原文 2.247"], "price_table": null}
   ],
-  "note": "上表「PRICE Table 2」列是 imdb 那一行的 Q95（即我们第 08 节那张表里的同一列）。同方法的差距最大的是 PostgreSQL（817 → 49.44）与 NeuroCard（5.91 → 14.25）。",
+  "note": "上表「PRICE Table 2」列是 imdb 那一行的 Q95（即我们第 08 节那张表里的同一列）。三篇原文自报的 PostgreSQL 分别是 797（NeuroCard）/ 817（DeepDB）/ 6,955（FLAT），而 PRICE 表里是 49.44；NeuroCard 自己论文报 5.91，PRICE 表里是 14.25。这些差异都不来自方法实现的优劣。",
   "population_note": "PRICE 论文的 Q-ERROR 是在每条查询分解出的子查询上算的，不是整条查询（LLM-CE 论文脚注 3 明确写出这一点，并说明它自己改用整条查询重算）。我们的 all-rows 面板与 PRICE 同单元——证据是我们的 PG 列在四个库上逐位复现 PRICE 发表的 Q95；而 DeepDB / FLAT / NeuroCard 各自论文用的是整条查询单元。",
   "bird_note": "BIRD 全文不含 'cardinality' 一词（grep 命中 0 次），也没有 Q-ERROR：它报的是执行准确率 EX 与 VES。所以「BIRD 上的 PG Q95」这个东西并不存在，任何这样写的对比都缺乏文献依据。",
   "metric_convention": "NeuroCard、FLAT、DeepDB、Naru、MSCN、PRICE 全部使用同一个 q-error 公式 max(真值/估计, 估计/真值)，且都把真值与估计的下界取 1——与我们 Q95 的定义恒等。所以跨论文比 Q95 的大小是可行的，但前提是统计单元与负载版本一致。"
