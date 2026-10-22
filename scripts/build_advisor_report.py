@@ -1387,6 +1387,14 @@ def build_related_work_block(facts: dict) -> str:
 
     takeaways = "".join(f"<li>{esc(item)}</li>" for item in rw["takeaways"])
 
+    lineage = rw["metric_lineage"]
+    lineage_rows = "".join(
+        f"<tr><td>{esc(row['method'])}</td>"
+        f"<td>{'；'.join(esc(v) for v in row['own'])}</td>"
+        f"<td>{fmt_compact(row['price_table']) if row['price_table'] is not None else '—'}</td></tr>"
+        for row in lineage["rows"]
+    )
+
     return f"""
 <h3>相关工作版图：谁和我们在同一根轴上</h3>
 <p class="lede">近年做「基数估计 + 分布外泛化」的公开工作不算少，但把它们按
@@ -1439,6 +1447,19 @@ def build_related_work_block(facts: dict) -> str:
 该文与 PRICE、与我们<b>同设定</b>（26 个预训练库 → 4 个整库留出零样本），
 是除 PRICE 外唯一一条同赛道的公开尝试，但它的结论目前不能当作可靠证据引用。</p>
 
+<h3>同一个方法在不同论文里的数不一样</h3>
+<p class="small">{esc(lineage["why"])}</p>
+<div class="tablewrap"><table>
+<caption><b>JOB-light / IMDb 负载：各论文自报值 vs PRICE Table 2（imdb 行 Q95）</b>
+各论文自报值逐条转录自其原文表格（DeepDB / FLAT / NeuroCard 三篇的 JOB-light 表）。
+末列是 PRICE Table 2 里同一方法的 imdb 行，也就是我们上面那张表里的列。</caption>
+<thead><tr><th>方法</th><th>各论文自报（Q95）</th><th>PRICE Table 2（imdb Q95）</th></tr></thead>
+<tbody>{lineage_rows}</tbody></table></div>
+<p class="small muted">{esc(lineage["note"])}</p>
+<p class="note"><b>统计单元：</b>{esc(lineage["population_note"])}</p>
+<p class="note"><b>一个常被引错的数：</b>{esc(lineage["bird_note"])}</p>
+<p class="small muted">{esc(lineage["metric_convention"])}</p>
+
 <h3>这次调研的结论</h3>
 <ol class="takeaways">{takeaways}</ol>
 <p class="small muted">口径说明：{esc(rw["metric_identity"])}</p>
@@ -1453,6 +1474,19 @@ def build_literature_block(facts: dict) -> str:
     qe = paper["q_error"]
 
     # reproduction check: our re-run of PRICE and PG must land on the paper
+    price_diffs = {
+        (db, p): abs(
+            allrows["databases"][db]["price_k0"][f"q{p}"]
+            - qe[db]["PRICE (Pretrained)"][f"q{p}"]
+        )
+        / qe[db]["PRICE (Pretrained)"][f"q{p}"]
+        for db in PAPER_ORDER
+        for p in (50, 90, 95, 99)
+    }
+    price_spread = "、".join(
+        f"Q{p} 最大差 {max(v for (db, q), v in price_diffs.items() if q == p) * 100:.2f}%"
+        for p in (50, 90, 95, 99)
+    )
     repro = []
     for db in PAPER_ORDER:
         ours_price = allrows["databases"][db]["price_k0"]["q95"]
@@ -1534,9 +1568,10 @@ PVLDB 18(3): 637-650, 2024）与<b>本次实测值</b>（同一份 checkpoint、
 <thead><tr><th>库</th><th>我们复算 PRICE Q95</th><th>论文 PRICE Q95</th><th>差</th>
 <th>我们复算 PG Q95</th><th>论文 PG Q95</th><th>差</th></tr></thead>
 <tbody>{"".join(repro)}</tbody></table></div>
-<p class="small muted">PG 是同一批缓存里的原始估计，不含任何模型，所以四库逐位一致就证明
-<b>我们的缓存、PG 估计与指标定义与论文完全一致</b>；PRICE 列同样逐位吻合（IMDB 差 4.5%，
-是该库尾部插值位置的差异，Q50/Q99 均吻合到 0.1% 以内）。</p>
+<p class="small muted">PG 是同一批缓存里的原始估计，不含任何模型，所以它在四库上都与论文吻合到
+0.04% 以内（最大差出现在 ergastf1）就证明<b>我们的缓存、PG 估计与指标定义与论文一致</b>；
+PRICE 列四库四分位也全部吻合，{price_spread}
+（Q95 的最大差出现在 imdb，是该库尾部插值位置的差异）。</p>
 
 <h3>放进论文那张表：我们在什么位置</h3>
 <div class="tablewrap"><table>
