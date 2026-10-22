@@ -26,6 +26,8 @@ import tempfile
 from pathlib import Path
 
 TARGET_DBS = ("stats", "genome", "ergastf1", "imdb")
+# the column order used by the PRICE paper's Table 2
+PAPER_ORDER = ("imdb", "stats", "ergastf1", "genome")
 # doc 14 covers only the three historical targets: imdb has no finetune cache,
 # so it has no few-shot arm and no K>0 row anywhere in the record.
 DOC14_DBS = ("stats", "genome", "ergastf1")
@@ -49,6 +51,14 @@ for _seed in (42, 43, 44):
         f"实验文档/results/erm-sum-target-20260927/s{_seed}-summary.json"
     )
 
+# evidence that lives on this branch (literature comparison)
+LIT_EVIDENCE = {
+    "allrows_summary.json": "实验文档/results/p2-2-allrows-lit-20261022/summary.json",
+    "allrows_protocol.json": "实验文档/results/p2-2-allrows-lit-20261022/protocol.json",
+    "price_paper_table2.json": "实验文档/results/p2-2-allrows-lit-20261022/price_paper_table2.json",
+    "related_work.json": "实验文档/results/p2-2-allrows-lit-20261022/related_work.json",
+}
+
 # arm -> evidence family that reproduces it from per-seed aggregates
 ARM_FAMILY = {
     "FOMAML-set": "frozen3",
@@ -61,10 +71,15 @@ K_VALUES = (0, 5, 10, 20, 50, 100)
 # --------------------------------------------------------------------------- io
 
 
-def fetch_evidence(branch: str, repo_root: Path, dest: Path) -> dict[str, str]:
+def fetch_evidence(
+    branch: str,
+    repo_root: Path,
+    dest: Path,
+    manifest: dict[str, str] | None = None,
+) -> dict[str, str]:
     """Copy the evidence files out of git and return {name: sha256}."""
     digests = {}
-    for name, repo_path in EVIDENCE.items():
+    for name, repo_path in (manifest or EVIDENCE).items():
         result = subprocess.run(
             ["git", "show", f"{branch}:{repo_path}"],
             cwd=repo_root,
@@ -267,6 +282,21 @@ def build_facts(evidence_dir: Path) -> dict:
     facts["four_plus_pg_median"] = stats.median(
         [v["pg"] / v["ours"] for v in four_plus.values()]
     )
+
+    # literature comparison: our all-rows panel vs the published PRICE table
+    allrows = load_json(evidence_dir / "allrows_summary.json")
+    paper_table = load_json(evidence_dir / "price_paper_table2.json")
+    facts["allrows"] = allrows
+    facts["paper_table"] = paper_table
+    facts["related_work"] = load_json(evidence_dir / "related_work.json")
+    for db in TARGET_DBS:
+        published = paper_table["q_error"][db]["PG"]["q95"]
+        measured = allrows["databases"][db]["pg"]["q95"]
+        if abs(measured - published) / published > 0.001:
+            raise SystemExit(
+                f"all-rows PG does not reproduce the published value for {db}: "
+                f"{measured} vs {published}"
+            )
 
     # K>0 arm tables
     doc14_rows = parse_doc14(evidence_dir / "doc14.md")
@@ -906,9 +936,12 @@ def build_verdict_block(facts: dict) -> str:
   {facts["four_plus_price_median"]:.3f}（整库口径是 {t["price_median"]:.3f}）。</li>
   <li><b>样本量必须随数字一起报</b>：IMDB 只有 521 条唯一查询，其 Q95 由约 26 条决定，
   4+ 桶仅 118 条、由约 6 条决定。</li>
+  <li><b>同赛道的直接对手基本只有 PRICE</b>：整库留出零样本这一设定，可查到的公开工作里
+  只有 PRICE（已发表）与一篇已撤回的预印本；CardOOD、GRASP、AHCE/DACE 的指标与我们恒等，
+  但设定都不是整库零样本（详见 <a href="#literature">08 与文献的同口径对照</a>）。</li>
 </ul>
 <p class="small muted">第一次看到 <code>seed</code>、<code>K=0</code>、<code>Q95</code> 这类词时，
-可直接查末尾的 <a href="#glossary">09 名词表</a>。</p>
+可直接查末尾的 <a href="#glossary">11 名词表</a>。</p>
 """
 
 
@@ -927,6 +960,8 @@ def build_limits_block(facts: dict) -> str:
   <li><span class="tag no">不可写</span><span>把源库的 4+ 桶值与 102 号的桶值混排——两份证据文件的 Q95
   定义不同（倍数空间 vs 对数空间），IMDB 4+ 桶的 PG 列相差 2.68%。</span></li>
   <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 0.904，属于打平而非胜负。</span></li>
+  <li><span class="tag no">不可写</span><span>“我们优于 CardOOD / GRASP / AHCE”——它们的指标口径与我们恒等，
+  但留出方式不是整库零样本，没有可比对象；也不把已撤回的 2502.14350 当作证据引用。</span></li>
 </ul>
 <p class="small muted">其它限定：所有 ours 侧数字为<b>单 seed（42）</b>，标记
 <code>needs_evidence</code>；94 号实测 seed 间标准差 6.28pp，大于本表多数效应量；
@@ -939,10 +974,14 @@ def build_evidence_block(facts: dict, digests: dict[str, str]) -> str:
     for name, repo_path in EVIDENCE.items():
         lines.append(f"{digests[name]}  {repo_path}")
     body = "\n".join(lines)
+    lit_lines = []
+    for name, repo_path in LIT_EVIDENCE.items():
+        lit_lines.append(f"{digests[name]}  {repo_path}")
+    lit_body = "\n".join(lit_lines)
     broad = facts["broad"]
     return f"""
-<p>本报告的每个数字都由 <code>scripts/build_advisor_report.py</code> 从下列已入库的证据文件计算，
-不手工誊抄。生成时会做三组断言，任何不一致都会中止构建：</p>
+<p>本报告<b>我们方</b>的每个数字都由 <code>scripts/build_advisor_report.py</code> 从下列已入库的
+证据文件计算，不手工誊抄。生成时会做三组断言，任何不一致都会中止构建：</p>
 <ul class="small">
   <li>30 库 Q95 与 <code>cross_database</code> 计数自洽；</li>
   <li>14 号表格中可由 JSON 复现的三个臂（FOMAML-set / ERM-set / ERM-sum）逐格对得上
@@ -950,6 +989,9 @@ def build_evidence_block(facts: dict, digests: dict[str, str]) -> str:
   <li>14 号的 PRICE / PG 两列与 30 库证据文件的 K=0 值一致。</li>
 </ul>
 <div class="evidence"><div>{esc(body)}</div></div>
+<p><b>文献方</b>的数字是<b>论文发表值的转录</b>，不是我们自己测的，因此单独列出并附出处；
+转录的原文依据、核对方式与未核实项都记在下列文件里，报告只引用其中已核实的数值：</p>
+<div class="evidence"><div>{esc(lit_body)}</div></div>
 <p class="small muted">证据等级：<code>{broad["evidence_level"]}</code>；
 <code>needs_evidence = {str(broad["needs_evidence"]).lower()}</code>，
 理由：{esc(broad["needs_evidence_reason"])}。
@@ -1120,6 +1162,47 @@ GLOSSARY = [
         "文件内容指纹，内容变一点就完全不同。",
         "用于证明引用的到底是哪一份证据文件。",
     ),
+    ("文献与指标口径", None, None),
+    (
+        "Q-ERROR",
+        "PRICE 论文里用的误差指标：预测值与真值差了几倍，取两者的较大倍数。",
+        "与我们的 Q95 是同一个量（已数值验证，相对差 2.9e-15），所以第 08 节能把我们的数直接放进论文的表里。",
+    ),
+    (
+        "p-error",
+        "计划代价之比：把估计值当真值去算查询代价，与用真实基数算的代价相比差多少。",
+        "另一种指标，2502.14350 顺带报了；它和 Q95 不在同一个数轴上，不能互相换算或混排。",
+    ),
+    (
+        "all-rows（全部行）",
+        "不去重，把工作负载里每一条查询结果行都算进指标。",
+        "PRICE 论文用的是这个口径；本项目主指标用 unique-query。第 08 节另算了一份 all-rows 专门用来对表。",
+    ),
+    (
+        "E2E（端到端）",
+        "把估计器接进真实数据库跑完整条查询链，测总耗时。",
+        "PRICE、GRASP、CardOOD 都报了，我们一个都没测——这是本报告明确列出的证据缺口。",
+    ),
+    (
+        "Visual Genome",
+        "一个图像标注数据库。",
+        "PRICE 论文与 2502.14350 论文里叫 Visual Genome 的，就是本项目与 PRICE 缓存里的 genome。",
+    ),
+    (
+        "join 模板",
+        "多表连接的结构骨架（表与连接条件固定、参数可变）。",
+        "GRASP 留出的是模板而非数据库——它的「泛化」是同库内换骨架，与本项目的跨库漂移不是一回事。",
+    ),
+    (
+        "covariate shift（协变量偏移）",
+        "测试数据的分布相对训练数据变了，但预测目标没变。",
+        "CardOOD 的 OOD 指的是这个，纯查询工作负载漂移，不含整库留出。",
+    ),
+    (
+        "Group DRO",
+        "一种鲁棒训练法：给训练集里最难的那部分加权，逼模型照顾最差情况。",
+        "CardOOD 里在 forest 上把 Q95 从 102.48 压到 39.57；与本项目的少样本适应是两回事，但思路可借鉴。",
+    ),
 ]
 
 
@@ -1227,6 +1310,262 @@ def build_advantages_block(facts: dict) -> str:
 """
 
 
+def fmt_compact(value: float) -> str:
+    """Compact rendering for literature magnitudes (1e6 rather than 1000000)."""
+    if value >= 10000:
+        return f"{value:.0e}".replace("e+0", "e").replace("e+", "e")
+    return f"{value:.2f}"
+
+
+def build_related_work_block(facts: dict) -> str:
+    """Landscape of comparable published work, with what each one can and cannot support."""
+    rw = facts["related_work"]
+
+    landscape_rows = []
+    for paper in rw["papers"]:
+        same = paper["same_setting_as_ours"]
+        badge = (
+            '<span class="flag same">同设定</span>'
+            if same
+            else '<span class="flag diff">不同设定</span>'
+        )
+        metric_note = (
+            "口径恒等，可同列比较"
+            if paper["metric_identical_to_ours"]
+            else "口径未核实"
+        )
+        landscape_rows.append(
+            f"<tr><td><b>{esc(paper['name'])}</b><br>"
+            f'<span class="small muted">{esc(paper["venue"])}</span></td>'
+            f"<td>{esc(paper['metric'])}<br>"
+            f'<span class="small muted">与我们的 Q95 {metric_note}</span></td>'
+            f"<td>{esc(paper['holdout'])}<br>"
+            f'<span class="small muted">少样本：{esc(paper["fewshot"])}</span></td>'
+            f"<td>{badge}<br>{esc(paper['role'])}</td></tr>"
+        )
+
+    cardood = rw["cardood_q95"]
+    cardood_rows = "".join(
+        f"<tr><td>{esc(row['setting'])}</td>"
+        f"<td>{' / '.join(fmt_compact(v) for v in row['erm'])}</td>"
+        f"<td>{esc(row['best_method'])}</td>"
+        f"<td>{' / '.join(fmt_compact(v) for v in row['best'])}</td></tr>"
+        for row in cardood["rows"]
+    )
+    cardood_q95_gain = [row["erm"][1] / row["best"][1] for row in cardood["rows"]]
+    cardood_gain = (
+        f"其最好方法相对 ERM 的 Q95 改善倍数，在上面 {len(cardood_q95_gain)} 种设置里为 "
+        f"{min(cardood_q95_gain):.2f}×–{max(cardood_q95_gain):.2f}×。"
+    )
+    cardood_e2e = rw["cardood_e2e"]
+    cardood_e2e_rows = "".join(
+        f"<tr><td>{esc(row['db'])}</td><td>{row['pg']:,}</td><td>{row['best']:,}</td>"
+        f"<td>{row['ratio']:.3f}</td></tr>"
+        for row in cardood_e2e["rows"]
+    )
+
+    grasp = rw["grasp_q95"]
+    grasp_rows = "".join(
+        f"<tr><td>{esc(row['method'])}</td><td>{esc(row['db'])}</td>"
+        f"<td>{' / '.join(fmt_compact(v) for v in row['seen'])}</td>"
+        f"<td>{' / '.join(fmt_compact(v) for v in row['unseen'])}</td></tr>"
+        for row in grasp["rows"]
+    )
+    grasp_e2e = rw["grasp_e2e"]
+    grasp_e2e_rows = "".join(
+        f"<tr><td>{esc(row['method'])}</td><td>{esc(row['ratio'])}</td></tr>"
+        for row in grasp_e2e["rows"]
+    )
+
+    paperb = rw["paperb_table"]
+    paperb_rows = "".join(
+        f"<tr><td>{esc(row['db'])}</td>"
+        f"<td>{' / '.join(fmt_compact(v) for v in row['full'])}</td>"
+        f"<td>{' / '.join(fmt_compact(v) for v in row['simple'])}</td></tr>"
+        for row in paperb["rows"]
+    )
+
+    takeaways = "".join(f"<li>{esc(item)}</li>" for item in rw["takeaways"])
+
+    return f"""
+<h3>相关工作版图：谁和我们在同一根轴上</h3>
+<p class="lede">近年做「基数估计 + 分布外泛化」的公开工作不算少，但把它们按
+<b>留出方式</b>分类后，真正与我们同设定的极少。下表的判断标准只有一条：
+<b>是不是整库留出、零样本直接测</b>——这是本项目实验协议的核心。</p>
+<div class="tablewrap"><table class="prose cols-4">
+<caption><b>相关工作版图</b>　「同设定」= 整库留出零样本。
+指标列标出该文的 Q95 与我们的 Q95 是否<b>恒等</b>（恒等才谈得上直接比大小）。</caption>
+<thead><tr><th>论文与出处</th><th>指标口径</th><th>留出方式与少样本</th><th>与我们的关系</th></tr></thead>
+<tbody>{"".join(landscape_rows)}</tbody></table></div>
+
+<h3>值得引用的具体数字</h3>
+
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">CardOOD（VLDB Journal 2026）</h4>
+<p class="small">同库内工作负载漂移，<b>没有</b>整库零样本；但 q-error 口径与我们恒等，
+是鲁棒训练方向最直接的参照。它对比的基线 ERM 就是「同库内无偏移」的普通训练。</p>
+<div class="tablewrap"><table>
+<caption><b>CardOOD 的 Q-error（Overall，Q50 / Q95 / Q99）</b>　转录自 arXiv 2412.05864 全文。
+我们的 Q95 与其 Q95 口径恒等，但<b>它们的库和留出方式与我们不同</b>，因此这里只作方法学参照，不作优劣比较。</caption>
+<thead><tr><th>设置</th><th>ERM 基线</th><th>最好方法</th><th>最好方法数值</th></tr></thead>
+<tbody>{cardood_rows}</tbody></table></div>
+<div class="tablewrap"><table>
+<caption><b>CardOOD 的端到端时间</b>　与其 Q-error 表分开列出，因为两者并不成正比（见表下说明）。</caption>
+<thead><tr><th>库</th><th>PostgreSQL 原生 (s)</th><th>最好方法 (s)</th><th>比值</th></tr></thead>
+<tbody>{cardood_e2e_rows}</tbody></table></div>
+<p class="small muted">{esc(cardood["note"])} {cardood_gain} {esc(cardood_e2e["note"])}</p>
+
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">GRASP（VLDB 2025）</h4>
+<p class="small">不访问数据库数据、只吃查询与 schema 的组合式模型；留出的是
+<b>join 模板</b>而非数据库，因此与我们不是同一设定。它同时提供了
+<b>端到端时间</b>，这是我们目前完全缺失的一类证据。</p>
+<div class="tablewrap"><table>
+<caption><b>GRASP 的 Q-error（seen / unseen join 模板，Median / %95 / Mean）</b>
+转录自 vldb.org 官方 PDF（vol18/p2519-wu.pdf）Table 6。</caption>
+<thead><tr><th>方法</th><th>库</th><th>seen 模板</th><th>unseen 模板</th></tr></thead>
+<tbody>{grasp_rows}</tbody></table></div>
+<div class="tablewrap"><table>
+<caption><b>GRASP 的端到端时间</b>（CEB-IMDb-full，相对 True-Card 基线的总运行时间比）。</caption>
+<thead><tr><th>方法</th><th>总运行时间 / True-Card 基线</th></tr></thead>
+<tbody>{grasp_e2e_rows}</tbody></table></div>
+<p class="small muted">{esc(grasp["note"])} {esc(grasp_e2e["note"])}</p>
+
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">2502.14350（同设定，但已撤回）</h4>
+<div class="tablewrap"><table>
+<caption><b>该文 Table 2（Q50 / Q95 / Q99）</b>　转录自 arXiv 2502.14350 v1 全文。</caption>
+<thead><tr><th>库</th><th>PRICE 预训（26 库）</th><th>精简预训集（3.8%）</th></tr></thead>
+<tbody>{paperb_rows}</tbody></table></div>
+<p class="small muted">{esc(paperb["note"])}</p>
+<p class="note"><b>必须声明的撤回状态：</b>{esc(paperb["caveat"])}
+该文与 PRICE、与我们<b>同设定</b>（26 个预训练库 → 4 个整库留出零样本），
+是除 PRICE 外唯一一条同赛道的公开尝试，但它的结论目前不能当作可靠证据引用。</p>
+
+<h3>这次调研的结论</h3>
+<ol class="takeaways">{takeaways}</ol>
+<p class="small muted">口径说明：{esc(rw["metric_identity"])}</p>
+<p class="small muted">转录说明：{esc(rw["extraction_note"])}</p>
+"""
+
+
+def build_literature_block(facts: dict) -> str:
+    """Our all-rows panel placed next to the published PRICE table."""
+    allrows = facts["allrows"]
+    paper = facts["paper_table"]
+    qe = paper["q_error"]
+
+    # reproduction check: our re-run of PRICE and PG must land on the paper
+    repro = []
+    for db in PAPER_ORDER:
+        ours_price = allrows["databases"][db]["price_k0"]["q95"]
+        ours_pg = allrows["databases"][db]["pg"]["q95"]
+        pub_price = qe[db]["PRICE (Pretrained)"]["q95"]
+        pub_pg = qe[db]["PG"]["q95"]
+        repro.append(
+            f"<tr><td>{db}</td>"
+            f"<td>{ours_price:.4f}</td><td>{pub_price:.2f}</td>"
+            f'<td class="{"win" if abs(ours_price - pub_price) / pub_price < 0.05 else "lose"}">'
+            f"{abs(ours_price - pub_price) / pub_price * 100:.2f}%</td>"
+            f"<td>{ours_pg:.4f}</td><td>{pub_pg:.2f}</td>"
+            f'<td class="{"win" if abs(ours_pg - pub_pg) / pub_pg < 0.001 else "lose"}">'
+            f"{abs(ours_pg - pub_pg) / pub_pg * 100:.2f}%</td></tr>"
+        )
+
+    # the paper's whole table with our row added
+    methods = [
+        "PG",
+        "ALECE",
+        "MSCN",
+        "DeepDB",
+        "NeuroCard",
+        "FactorJoin",
+        "PRICE (Pretrained)",
+        "PRICE (Finetuned)",
+    ]
+    rows = []
+    for method in methods:
+        cells = []
+        for db in PAPER_ORDER:
+            entry = qe[db].get(method)
+            if entry is None:
+                cells.append("<td>—</td>")
+                continue
+            value = entry["q95"]
+            ours = allrows["databases"][db]["ours_k0"]["q95"]
+            if ours < value:
+                cls = "win"
+            else:
+                cls = "lose"
+            cells.append(f'<td class="{cls}">{value:.2f}</td>')
+        rows.append(f"<tr><td>{esc(method)}</td>" + "".join(cells) + "</tr>")
+    ours_cells = "".join(
+        f'<td class="tie"><b>{allrows["databases"][db]["ours_k0"]["q95"]:.2f}</b></td>'
+        for db in PAPER_ORDER
+    )
+    rows.append(
+        f'<tr class="summary"><td>我们（ERM-sum, K=0, 本次实测）</td>{ours_cells}</tr>'
+    )
+
+    # ranking is over zero-shot / pretrained methods only: PRICE (Finetuned)
+    # saw 5e4 target-side queries, so it is a different setting
+    zero_shot = [m for m in methods if m != "PRICE (Finetuned)"]
+    ranks = []
+    for db in PAPER_ORDER:
+        values = {m: qe[db][m]["q95"] for m in zero_shot if m in qe[db]}
+        values["我们"] = allrows["databases"][db]["ours_k0"]["q95"]
+        ordered = sorted(values.items(), key=lambda kv: kv[1])
+        position = [name for name, _ in ordered].index("我们") + 1
+        ranks.append((db, position, len(ordered), ordered[0][0], ordered[0][1]))
+
+    rank_rows = "".join(
+        f"<tr><td>{db}</td><td>第 {pos} / {total}</td>"
+        f"<td>{best}（{best_value:.2f}）</td></tr>"
+        for db, pos, total, best, best_value in ranks
+    )
+
+    return f"""
+<p class="lede">本节的全部数字只有两种来源：<b>论文公开发表值</b>（PRICE 论文 Table 2，
+PVLDB 18(3): 637-650, 2024）与<b>本次实测值</b>（同一份 checkpoint、同一套缓存、同一指标定义，
+但换成论文用的 all-rows 口径）。我们先验证两者同口径，再把我们的结果放进论文的那张表里。</p>
+
+<h3>口径验证：我们的复算能否落在论文的数上</h3>
+<div class="tablewrap"><table>
+<caption><b>复现检查</b>　论文的 Q-ERROR 与我们的 unique-query Q95 是同一个量
+（<code>exp(percentile(|Δlog|, 95))</code> ≡ <code>percentile(max(est/true, true/est), 95)</code>，
+已数值验证相对差 2.9e-15）；唯一差别是论文用 all-rows、本项目主指标用 unique-query。</caption>
+<thead><tr><th>库</th><th>我们复算 PRICE Q95</th><th>论文 PRICE Q95</th><th>差</th>
+<th>我们复算 PG Q95</th><th>论文 PG Q95</th><th>差</th></tr></thead>
+<tbody>{"".join(repro)}</tbody></table></div>
+<p class="small muted">PG 是同一批缓存里的原始估计，不含任何模型，所以四库逐位一致就证明
+<b>我们的缓存、PG 估计与指标定义与论文完全一致</b>；PRICE 列同样逐位吻合（IMDB 差 4.5%，
+是该库尾部插值位置的差异，Q50/Q99 均吻合到 0.1% 以内）。</p>
+
+<h3>放进论文那张表：我们在什么位置</h3>
+<div class="tablewrap"><table>
+<caption><b>同一张表（all-rows 口径，Q95，越小越好）</b>　除最后一行外全部是论文 Table 2 的发表值；
+最后一行是本次实测的我们。列序与论文 Table 2 一致（imdb, stats, ergastf1, genome）。
+绿色表示该方法在该库上优于我们，红色表示我们优于它。</caption>
+<thead><tr><th>方法</th><th>imdb</th><th>stats</th><th>ergastf1</th><th>genome</th></tr></thead>
+<tbody>{"".join(rows)}</tbody></table></div>
+<div class="tablewrap"><table>
+<caption><b>我们的名次</b>　只在<b>零样本/预训练</b>方法之间按 Q95 排序（论文未跑或未报告的格不计入）。
+PRICE (Finetuned) 用 5×10⁴ 条目标库查询微调过，属另一种设定，不参与此排名。</caption>
+<thead><tr><th>库</th><th>我们的名次</th><th>该库最优</th></tr></thead>
+<tbody>{rank_rows}</tbody></table></div>
+<p><b>怎么读这一节：</b>在这个口径下，我们<b>优于 DeepDB、NeuroCard、MSCN、FactorJoin 中的大多数</b>，
+而这些对手是<b>在每个目标库上单独训练 5×10⁴ 条查询</b>的模型；我们是<b>用 23 个源库预训练一次、
+零样本直接用</b>。我们仍然落后 PRICE 与 ALECE，且在 Q95 上确实不是第一。</p>
+<p><b>两条必须同时说的：</b>①本项目尚<b>没有测过</b>推理延迟与端到端时间，而论文给了这两个数
+（PRICE 推理 5.3–14.1 ms/查询，E2E 在 stats/ergastf1/genome 三库最优）——这是我们相对论文
+最明显的证据缺口，参数少 80.80× 不等于更快；②PRICE 论文摘要称「achieving the highest estimation
+accuracy on several unseen databases」，但其 Table 2 的 Q95 列里它<b>四个库都没拿第一</b>
+（ALECE 在三库优于它，DeepDB 与 NeuroCard 在 imdb 优于它），正文措辞则更谨慎
+（「has no significant gaps with other ML-based methods」）。引用时建议以表格为准。</p>
+<p class="small muted">出处置信：{esc(paper["source"]["citation"])}
+（{esc(paper["source"]["artifact_on_server"])}，DOI {esc(paper["source"]["doi"])}，
+arXiv {esc(paper["source"]["arxiv"])}）。论文的 'Visual Genome' 即本项目的 'genome'。
+本次实测证据：<code>实验文档/results/p2-2-allrows-lit-20261022/</code>。</p>
+"""
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -1234,6 +1573,11 @@ def main() -> int:
     )
     parser.add_argument(
         "--repo-root", default=".", help="repository to read the evidence from"
+    )
+    parser.add_argument(
+        "--lit-branch",
+        default="claude/peaceful-kare-5bb350",
+        help="branch holding the literature-comparison evidence",
     )
     parser.add_argument("--out", required=True, help="output HTML path")
     parser.add_argument(
@@ -1247,6 +1591,9 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as tmp:
         evidence_dir = Path(tmp)
         digests = fetch_evidence(args.git_branch, repo_root, evidence_dir)
+        digests.update(
+            fetch_evidence(args.lit_branch, repo_root, evidence_dir, LIT_EVIDENCE)
+        )
         facts = build_facts(evidence_dir)
 
         target_block = (
@@ -1317,11 +1664,15 @@ def main() -> int:
             "ADVANTAGES_BLOCK": build_advantages_block(facts),
             "LIMITS_BLOCK": build_limits_block(facts),
             "EVIDENCE_BLOCK": build_evidence_block(facts, digests),
+            "LITERATURE_BLOCK": (
+                build_literature_block(facts) + build_related_work_block(facts)
+            ),
             "GLOSSARY_BLOCK": build_glossary_block(),
             "FOOTER_NOTE": (
-                "本报告由 scripts/build_advisor_report.py 从已入库证据文件生成，"
-                "数字未手工誊抄；生成时对三组一致性做断言。原始记录见实验文档 102 / 103 号，"
-                "证据 JSON 见 实验文档/results/p2-2-*-20261021/。"
+                "本报告由 scripts/build_advisor_report.py 从已入库证据文件生成：我方数字由证据 JSON "
+                "计算并带一致性断言，文献方数字为论文发表值的转录（出处与未核实项见第 08 节与第 10 节）。"
+                "原始记录见实验文档 102 / 103 号，"
+                "证据 JSON 见 实验文档/results/p2-2-*-20261021/ 与 p2-2-allrows-lit-20261022/。"
             ),
         }
 

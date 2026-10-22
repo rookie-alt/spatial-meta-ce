@@ -112,6 +112,11 @@ tr.summary td:first-child{border-left:3px solid var(--primary)}
 .flag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:var(--r);
   border:1px solid var(--border);color:var(--muted-fg);margin-left:6px;vertical-align:middle}
 .flag.noise{border-color:var(--accent);color:var(--accent)}
+.flag.same{border-color:var(--win);color:var(--win)}
+.flag.diff{border-color:var(--border);color:var(--muted-fg)}
+.takeaways{margin:0 0 var(--s3);padding-left:var(--s4);max-width:82ch}
+.takeaways li{margin-bottom:var(--s2)}
+.takeaways li::marker{color:var(--muted-fg);font-family:var(--mono);font-size:13px}
 
 /* ---------- charts ---------- */
 .figure{margin:0 0 var(--s4);border:1px solid var(--border);background:var(--card);padding:var(--s4)}
@@ -223,18 +228,23 @@ footer p{max-width:none}
   {{ADVANTAGES_BLOCK}}
 </section>
 
+<section id="literature">
+  <h2><span class="num">08</span>与文献的同口径对照</h2>
+  {{LITERATURE_BLOCK}}
+</section>
+
 <section id="limits">
-  <h2><span class="num">08</span>边界与不可声称</h2>
+  <h2><span class="num">09</span>边界与不可声称</h2>
   {{LIMITS_BLOCK}}
 </section>
 
 <section id="evidence">
-  <h2><span class="num">09</span>证据与复算</h2>
+  <h2><span class="num">10</span>证据与复算</h2>
   {{EVIDENCE_BLOCK}}
 </section>
 
 <section id="glossary">
-  <h2><span class="num">10</span>名词表</h2>
+  <h2><span class="num">11</span>名词表</h2>
   {{GLOSSARY_BLOCK}}
 </section>
 
