@@ -88,7 +88,7 @@
    {"setting": "IMDB · MSCN · 谓词配比 20/80", "erm": [1.08, 25.55, 241.01], "best": [1.01, 9.63, 61.56], "best_method": "Query Mixup"},
    {"setting": "DSB · MSCN · 整模板留出", "erm": [1.60, 88.51, 298.47], "best": [1.05, 37.93, 185.13], "best_method": "Deep CORAL"}
   ],
-  "note": "CardOOD 的 ERM 基线在这里就是「同库内无偏移」的普通训练；其最好方法相对 ERM 的 Q95 改善在 IMDB 上约 2.4x、forest 上约 2.6x、DSB 模板留出上约 2.3x。"
+  "note": "CardOOD 的 ERM 基线在这里就是「同库内无偏移」的普通训练；其最好方法相对 ERM 的 Q95 改善倍数由报告按本表逐行算出。"
  },
  "cardood_e2e": {
   "columns": ["PostgreSQL 原生 (s)", "最好方法 (s)", "比值"],
