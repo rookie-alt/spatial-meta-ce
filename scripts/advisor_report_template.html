@@ -95,9 +95,13 @@ tr.group td{background:var(--muted);font-weight:600;font-size:12px;letter-spacin
   text-transform:uppercase;color:var(--muted-fg)}
 /* prose table: left aligned, wrapping cells */
 table.prose th,table.prose td{text-align:left;white-space:normal;vertical-align:top}
-table.prose th:first-child,table.prose td:first-child{width:17%}
-table.prose th:nth-child(2),table.prose td:nth-child(2){width:36%}
-table.prose th:nth-child(3),table.prose td:nth-child(3){width:47%}
+table.prose.cols-3 th:nth-child(1),table.prose.cols-3 td:nth-child(1){width:17%}
+table.prose.cols-3 th:nth-child(2),table.prose.cols-3 td:nth-child(2){width:36%}
+table.prose.cols-3 th:nth-child(3),table.prose.cols-3 td:nth-child(3){width:47%}
+table.prose.cols-4 th:nth-child(1),table.prose.cols-4 td:nth-child(1){width:19%}
+table.prose.cols-4 th:nth-child(2),table.prose.cols-4 td:nth-child(2){width:25%}
+table.prose.cols-4 th:nth-child(3),table.prose.cols-4 td:nth-child(3){width:25%}
+table.prose.cols-4 th:nth-child(4),table.prose.cols-4 td:nth-child(4){width:31%}
 table.prose td:first-child{font-size:13.5px}
 table.prose td p{margin:0}
 tr.summary td{background:var(--muted);font-weight:600}
@@ -214,18 +218,23 @@ footer p{max-width:none}
   {{FEWSHOT_BLOCK}}
 </section>
 
+<section id="advantages">
+  <h2><span class="num">07</span>相对基线的优势</h2>
+  {{ADVANTAGES_BLOCK}}
+</section>
+
 <section id="limits">
-  <h2><span class="num">07</span>边界与不可声称</h2>
+  <h2><span class="num">08</span>边界与不可声称</h2>
   {{LIMITS_BLOCK}}
 </section>
 
 <section id="evidence">
-  <h2><span class="num">08</span>证据与复算</h2>
+  <h2><span class="num">09</span>证据与复算</h2>
   {{EVIDENCE_BLOCK}}
 </section>
 
 <section id="glossary">
-  <h2><span class="num">09</span>名词表</h2>
+  <h2><span class="num">10</span>名词表</h2>
   {{GLOSSARY_BLOCK}}
 </section>
 

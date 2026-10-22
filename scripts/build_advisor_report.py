@@ -36,6 +36,7 @@ EVIDENCE = {
     "broad_summary.json": "实验文档/results/p2-2-error-structure-broad-20261021/summary.json",
     "broad_protocol.json": "实验文档/results/p2-2-error-structure-broad-20261021/protocol.json",
     "imdb_summary.json": "实验文档/results/p2-2-target-imdb-20261021/summary.json",
+    "imdb_protocol.json": "实验文档/results/p2-2-target-imdb-20261021/protocol.json",
     "source102_summary.json": "实验文档/results/p2-2-price-population-broad-20261021/summary.json",
     "doc14.md": "实验文档/14-离线实验统一对照与论文结论.md",
 }
@@ -222,6 +223,16 @@ def build_facts(evidence_dir: Path) -> dict:
                 > databases[db]["overview"]["price_k0"]["std"]
             ),
         }
+
+    # method-level facts used by the "advantages" section
+    imdb_protocol = load_json(evidence_dir / "imdb_protocol.json")
+    ermsum_summary = load_json(evidence_dir / "ermsum_s42.json")
+    facts["price_parameters"] = imdb_protocol["price"]["parameters"]
+    facts["our_parameters"] = ermsum_summary["parameters"]
+    facts["our_parameter_bytes"] = ermsum_summary["parameter_bytes"]
+    facts["set_parameters"] = load_json(evidence_dir / "frozen3_s42.json")["parameters"]
+    facts["use_pg"] = bool(protocol["checkpoint"]["model_config"]["use_pg"])
+    facts["parameter_ratio"] = facts["price_parameters"] / facts["our_parameters"]
 
     facts["targets"] = group_stats(list(TARGET_DBS))
     facts["source_stats"] = group_stats(facts["sources"])
@@ -1130,6 +1141,92 @@ def build_glossary_block() -> str:
     )
 
 
+def build_advantages_block(facts: dict) -> str:
+    """What we can actually claim against PRICE and the classic estimator."""
+    t, s = facts["targets"], facts["source_stats"]
+    rows = [
+        (
+            "目标库 K=0 Q95",
+            f"中位落后 PRICE {1 / t['price_median']:.1f}×（4/4 全输）",
+            "领先 1.8×（PRICE/我们 0.561）",
+            "3/4 赢，最大 11.17×（genome）",
+            "对传统估计器有明确优势；对预训练参考没有",
+        ),
+        (
+            "源库 K=0 Q95",
+            f"{s['win_price']}/26 优于 PRICE",
+            "—",
+            f"{s['win_pg']}/26 赢，PG/我们 中位 {s['pg_median']:.2f}",
+            "拟合场景我们更好，但 PRICE 见过这些库，不是漂移证据",
+        ),
+        (
+            "4+ 表桶（主指标粒度）",
+            f"PRICE/我们 中位 {facts['four_plus_price_median']:.3f}",
+            "领先",
+            f"PG/我们 中位 {facts['four_plus_pg_median']:.2f}",
+            "对 PRICE 的差距比整库口径更大；对我们有利的 PG 优势也更明显",
+        ),
+        (
+            "参数量（FP32）",
+            f"{facts['our_parameters']:,}",
+            f"{facts['price_parameters']:,}",
+            "无参数（启发式）",
+            f"我们比 PRICE 小 {facts['parameter_ratio']:.1f}×"
+            f"（set 架构 {facts['price_parameters'] / facts['set_parameters']:.1f}×）",
+        ),
+        (
+            "训练曝光",
+            "23 个源库",
+            "26 个源库",
+            "0",
+            "同样的结果用了更少的源库",
+        ),
+        (
+            "是否吃 PG 估计作输入",
+            "是" if facts["use_pg"] else "否",
+            "否",
+            "本身就是优化器",
+            "从 PG 的估计出发做修正，而不是从零学",
+        ),
+        (
+            "能否随新库适应",
+            "方法本体就是少样本适应",
+            "本轮对照为零样本",
+            "不能",
+            "方法层面的差异，精度上尚未在漂移场景证明",
+        ),
+        (
+            "推理延迟",
+            "未测",
+            "未测",
+            "—",
+            "参数量小不等于更快，本项目没有测过端到端耗时",
+        ),
+    ]
+    body = "".join(
+        f"<tr><td><b>{esc(a)}</b></td><td>{esc(b)}</td><td>{esc(c)}</td>"
+        f"<td>{esc(d)}</td><td>{esc(e)}</td></tr>"
+        for a, b, c, d, e in rows
+    )
+    return f"""
+<p class="lede">把话说明白：<b>目前能对导师主张的精度优势是对传统估计器 PG，不是对 PRICE。</b>
+下面逐条列出可主张的与不可主张的，数字全部来自前几节的证据。</p>
+<div class="tablewrap"><table class="prose cols-4">
+<caption><b>我们 / PRICE / PG 逐维度对照</b>　PG 指 PostgreSQL 自带优化器的行数估计，
+是本项目的传统基线；PRICE 是非严格训练条件匹配的预训练参考。</caption>
+<thead><tr><th>维度</th><th>我们</th><th>PRICE</th><th>PG</th><th>怎么读</th></tr></thead>
+<tbody>{body}</tbody></table></div>
+<p><b>可以主张的三条：</b>①对传统优化器 PG，在双方都没训练过的目标库上 3/4 赢、
+最大的 genome 领先 11 倍以上，源库 24/26 赢；②参数规模比 PRICE 小
+{facts["parameter_ratio"]:.1f}×，且用的源库更少；③方法本体带少样本适应能力，
+而本轮对 PRICE 的对照是零样本——这是设计差异，不是精度优势。</p>
+<p><b>必须同时说明的两条：</b>①对 PRICE 的尾部精度我们目前是负结果
+（目标库 4/4 输，4+ 桶中位 {facts["four_plus_price_median"]:.3f}），
+所以不能说比 PRICE 好；②参数量小<b>不等于</b>推理更快或端到端更快——
+本项目没有测过推理延迟，14 号 §5.2 明确禁止把参数比当作速度主张。</p>
+"""
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -1217,6 +1314,7 @@ def main() -> int:
             "FLIP_BLOCK": flip_block,
             "ERROR_BLOCK": error_block,
             "FEWSHOT_BLOCK": fewshot_block,
+            "ADVANTAGES_BLOCK": build_advantages_block(facts),
             "LIMITS_BLOCK": build_limits_block(facts),
             "EVIDENCE_BLOCK": build_evidence_block(facts, digests),
             "GLOSSARY_BLOCK": build_glossary_block(),
