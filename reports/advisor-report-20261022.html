@@ -93,6 +93,13 @@ th:first-child,td:first-child{text-align:left}
 tbody tr:last-child td{border-bottom:none}
 tr.group td{background:var(--muted);font-weight:600;font-size:12px;letter-spacing:.08em;
   text-transform:uppercase;color:var(--muted-fg)}
+/* prose table: left aligned, wrapping cells */
+table.prose th,table.prose td{text-align:left;white-space:normal;vertical-align:top}
+table.prose th:first-child,table.prose td:first-child{width:17%}
+table.prose th:nth-child(2),table.prose td:nth-child(2){width:36%}
+table.prose th:nth-child(3),table.prose td:nth-child(3){width:47%}
+table.prose td:first-child{font-size:13.5px}
+table.prose td p{margin:0}
 tr.summary td{background:var(--muted);font-weight:600}
 tr.summary td:first-child{border-left:3px solid var(--primary)}
 .win{color:var(--win);font-weight:600}
@@ -195,6 +202,8 @@ footer p{max-width:none}
   <li><b>样本量必须随数字一起报</b>：IMDB 只有 521 条唯一查询，其 Q95 由约 26 条决定，
   4+ 桶仅 118 条、由约 6 条决定。</li>
 </ul>
+<p class="small muted">第一次看到 <code>seed</code>、<code>K=0</code>、<code>Q95</code> 这类词时，
+可直接查末尾的 <a href="#glossary">09 名词表</a>。</p>
 
 </section>
 
@@ -304,6 +313,11 @@ e899877667eff583af60dd5d62f190548b4f507e3520c717a60ff6bdd4fafb94  实验文档/r
 理由：ours_k0 is one seed (42); this diagnosis inherits every single-seed caveat of the accuracy tables it explains。
 <code>target_databases_read = ['stats', 'genome', 'ergastf1', 'imdb']</code>，仅用于最终评估。</p>
 
+</section>
+
+<section id="glossary">
+  <h2><span class="num">09</span>名词表</h2>
+  <div class="tablewrap"><table class="prose"><caption><b>全文出现的缩写与术语</b>　「通俗解释」是给不熟悉这个方向的人看的，「本报告中的含义」是该词在这次实验里的具体所指。</caption><thead><tr><th>名词</th><th>通俗解释</th><th>本报告中的含义</th></tr></thead><tbody><tr class="group"><td colspan="3">训练与模型</td></tr><tr><td><b>seed（随机种子）</b></td><td>训练随机性的起点。同一个配置配同一个 seed，每次跑出的模型都一样；换 seed 等于换一次参数初始化、换一次数据排列顺序，得到一个不同的模型。</td><td>我们只用 seed 42 这一个模型。94 号实测换 seed 会让同一方法的 Q95 波动约 ±6.28 个百分点，所以差距小于它的结论只能算打平。</td></tr><tr><td><b>checkpoint（检查点）</b></td><td>训练过程中的模型存档文件。</td><td>固定取最后一次训练的存档 last.pt，从不在目标库上比较多个存档再挑最好的——那等于按目标测试选模型。</td></tr><tr><td><b>ERM</b></td><td>经验风险最小化，即普通训练：每条查询独立地学一个回归。</td><td>我们四个臂之一。</td></tr><tr><td><b>FOMAML</b></td><td>元学习：先学一个「遇到新库能快速适应的初始化」，再做少量调整。</td><td>本课题的核心方法，与 ERM 对照。</td></tr><tr><td><b>set / sum（臂名后缀）</b></td><td>模型内部的两种聚合结构：一个把特征当集合处理，一个做求和聚合。</td><td>四个臂是 FOMAML-set / ERM-set / FOMAML-sum / ERM-sum；结构在源验证库上选定，主线用 sum。</td></tr><tr><td><b>arm（臂）</b></td><td>一组完整的对照配置（架构 + 训练方式 + seed）。</td><td>14 号主表的每一列就是一个臂。</td></tr><tr><td><b>maxima</b></td><td>PRICE 的输入特征布局长度参数，决定特征向量怎么切分。</td><td>目标库用 [12,14,8,10]、源库用 [12,12,7,10]；换它会改变特征被读到的位置，但实测数值差异相对仅 9.1e-07。</td></tr><tr class="group"><td colspan="3">评估口径</td></tr><tr><td><b>K</b></td><td>适应时给模型看的示例查询条数。</td><td>K=0 表示一条都不给（零样本）；K=5/10/20/50/100 是少样本档位。</td></tr><tr><td><b>support（支撑查询）</b></td><td>用来做适应的示例查询。</td><td>K&gt;0 的部分才有 support。</td></tr><tr><td><b>zero-shot / 零样本</b></td><td>不看任何示例，直接对目标库预测。</td><td>目标库侧的全部数字都是 K=0。</td></tr><tr><td><b>few-shot（少样本）</b></td><td>给少量示例后快速适应一个新库。</td><td>本课题的场景；14 号给了 K=0…100 的完整轨迹。</td></tr><tr><td><b>unique-query（唯一查询）</b></td><td>去重后的不同查询；同一条 SQL 重复出现只算一次。</td><td>所有表都是「全部唯一查询」口径，例如 IMDB 521 条、stats 2,603 条。</td></tr><tr><td><b>population（全体口径）</b></td><td>对该库所有唯一查询一次性全跑，不抽样。</td><td>与 episode 均值是两套口径，报告里不可互换。</td></tr><tr><td><b>episode（适应回合）</b></td><td>一次支撑样本抽样加一次评估。</td><td>14 号主表是 3 seed × 5 次抽样的均值。</td></tr><tr class="group"><td colspan="3">指标</td></tr><tr><td><b>Q95</b></td><td>误差的 95 分位，越小越好。本报告定义为 exp(percentile(|预测对数 − 真值对数|, 95))，精确预测记 1.0。</td><td>四个目标库、26 个源库、4+ 桶全部用它。</td></tr><tr><td><b>log 空间（对数空间）</b></td><td>用对数表示误差：差 10 倍变成差 1。</td><td>所有偏差、相关、离散度统计都在对数空间计算。</td></tr><tr><td><b>Q50 / Q90 / Q99</b></td><td>误差的 50 / 90 / 99 分位。</td><td>Q50 是中位数，Q95 是尾部——两者可以给出相反结论，所以要分开看。</td></tr><tr><td><b>4+ 表桶</b></td><td>参与 join 的表数 ≥ 4 的那批查询。</td><td>项目主指标 macro_four_plus_q95 所在的粒度；IMDB 该桶只有 118 条，Q95 由约 6 条决定。</td></tr><tr><td><b>macro（宏平均）</b></td><td>先算每个库自己的指标，再对库取平均。</td><td>与把所有查询混在一起算不同。</td></tr><tr><td><b>corr（与真值的相关性）</b></td><td>预测值高低与真值高低的一致程度，衡量「排序准不准」。</td><td>解释误差结构的关键量；它高不代表 Q95 就好。</td></tr><tr><td><b>dCorr</b></td><td>corr(PRICE) − corr(我们)。</td><td>正值表示 PRICE 的排序更准；目标库 4/4 为正，源库中位为负。</td></tr><tr><td><b>bias_med（中位偏差）</b></td><td>预测与真值偏差的中位数（对数空间）。</td><td>接近 0 表示既不普遍高估也不普遍低估。</td></tr><tr><td><b>over%（高估占比）</b></td><td>预测偏大的查询所占比例。</td><td>50% 附近表示居中；IMDB 是 27.6%，即 72% 的查询被低估。</td></tr><tr><td><b>离散度（std）</b></td><td>预测值的分散程度。</td><td>若远小于真值的分散度，说明模型过度收缩——报告里 22/30 库我们比 PRICE 更散，这条被否证。</td></tr><tr class="group"><td colspan="3">库与曝光</td></tr><tr><td><b>源训练库</b></td><td>我们训练过的库。</td><td>23 个。</td></tr><tr><td><b>源验证库</b></td><td>只用来选方案（模型结构、适应策略）、没参与训练的库。</td><td>chembl / legalacts / telstra 三个。</td></tr><tr><td><b>目标库</b></td><td>我们和 PRICE 都没训练过的库。</td><td>imdb / stats / genome / ergastf1 四个；唯一对等的漂移比较点，且不参与任何选择。</td></tr><tr><td><b>拟合诊断 vs 漂移证据</b></td><td>在模型见过的分布上比，叫拟合诊断；在双方都没见过的库上比，才叫漂移证据。</td><td>26 源库表是前者，4 目标库表是后者——两者的结论方向相反，所以必须分开讲。</td></tr><tr><td><b>PG（PostgreSQL）</b></td><td>数据库自带优化器给出的行数估计。</td><td>本项目的传统基线，不是学习出来的模型。</td></tr><tr><td><b>PRICE</b></td><td>另一个基数估计方法的官方预训练权重。</td><td>非严格训练条件匹配的强参考（它在全部 26 个源库上都训练过）。</td></tr><tr class="group"><td colspan="3">证据</td></tr><tr><td><b>噪声带（±6.28pp）</b></td><td>由 seed 间标准差界定的「打平区间」。</td><td>落在带内的差异读作打平，报告里灰色标记。</td></tr><tr><td><b>needs_evidence</b></td><td>证据强度标记，提示该结论需要更多实验支撑。</td><td>全报告 ours 侧数字都带这个标记，因为只有单 seed。</td></tr><tr><td><b>sha256</b></td><td>文件内容指纹，内容变一点就完全不同。</td><td>用于证明引用的到底是哪一份证据文件。</td></tr></tbody></table></div>
 </section>
 
 </div>

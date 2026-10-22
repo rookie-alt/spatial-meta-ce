@@ -93,6 +93,13 @@ th:first-child,td:first-child{text-align:left}
 tbody tr:last-child td{border-bottom:none}
 tr.group td{background:var(--muted);font-weight:600;font-size:12px;letter-spacing:.08em;
   text-transform:uppercase;color:var(--muted-fg)}
+/* prose table: left aligned, wrapping cells */
+table.prose th,table.prose td{text-align:left;white-space:normal;vertical-align:top}
+table.prose th:first-child,table.prose td:first-child{width:17%}
+table.prose th:nth-child(2),table.prose td:nth-child(2){width:36%}
+table.prose th:nth-child(3),table.prose td:nth-child(3){width:47%}
+table.prose td:first-child{font-size:13.5px}
+table.prose td p{margin:0}
 tr.summary td{background:var(--muted);font-weight:600}
 tr.summary td:first-child{border-left:3px solid var(--primary)}
 .win{color:var(--win);font-weight:600}
@@ -215,6 +222,11 @@ footer p{max-width:none}
 <section id="evidence">
   <h2><span class="num">08</span>证据与复算</h2>
   {{EVIDENCE_BLOCK}}
+</section>
+
+<section id="glossary">
+  <h2><span class="num">09</span>名词表</h2>
+  {{GLOSSARY_BLOCK}}
 </section>
 
 </div>
