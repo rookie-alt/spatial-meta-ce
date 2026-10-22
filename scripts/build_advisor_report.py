@@ -945,21 +945,34 @@ def build_verdict_block(facts: dict) -> str:
 """
 
 
+def q95_definition_gap(facts: dict) -> float:
+    """IMDB 4+ PG Q95 under the two definitions, as a percent of the 102 value."""
+    doc102 = facts["imdb102"]["databases"]["imdb"]["bucket_4plus"]["pg"]["q95"]
+    doc103 = facts["broad"]["databases"]["imdb"]["four_plus"]["pg"]["q95"]
+    return abs(doc102 - doc103) / doc102 * 100
+
+
 def build_limits_block(facts: dict) -> str:
     s = facts["source_stats"]
     noise = facts["noise_band_sources"]
+    imdb = facts["broad"]["databases"]["imdb"]["overview"]
+    bucket_gap = q95_definition_gap(facts)
+    stats_ratio = (
+        facts["broad"]["databases"]["stats"]["overview"]["pg"]["q95"]
+        / facts["broad"]["databases"]["stats"]["overview"]["ours_k0"]["q95"]
+    )
     return f"""
 <ul class="limits">
   <li><span class="tag ok">可写</span><span>对传统估计器 PG，目标库 3/4 赢、源库 {s["win_pg"]}/26 赢；
-  IMDB 上 Q50 首次优于 PG（2.037 vs 2.278）。</span></li>
+  IMDB 上 Q50 首次优于 PG（{imdb["ours_k0"]["q50"]:.3f} vs {imdb["pg"]["q50"]:.3f}）。</span></li>
   <li><span class="tag ok">可写</span><span>源分布内的拟合可超过给定的 PRICE 参考（{s["win_price"]}/26，
   其中 {s["win_price"] - len(noise)} 个稳赢、{len(noise)} 个打平）。</span></li>
   <li><span class="tag no">不可写</span><span>“我们优于 PRICE”——对等漂移场景是 0/4。</span></li>
   <li><span class="tag no">不可写</span><span>“{s["win_price"]}/26 优于 PRICE”而不带拟合限定——PRICE 全见过这些库。</span></li>
   <li><span class="tag no">不可写</span><span>“四目标库完整验收”——IMDB 只有 K=0，没有 few-shot 行。</span></li>
   <li><span class="tag no">不可写</span><span>把源库的 4+ 桶值与 102 号的桶值混排——两份证据文件的 Q95
-  定义不同（倍数空间 vs 对数空间），IMDB 4+ 桶的 PG 列相差 2.68%。</span></li>
-  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 0.904，属于打平而非胜负。</span></li>
+  定义不同（倍数空间 vs 对数空间），IMDB 4+ 桶的 PG 列相差 {bucket_gap:.2f}%。</span></li>
+  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 {stats_ratio:.3f}，属于打平而非胜负。</span></li>
   <li><span class="tag no">不可写</span><span>“我们优于 CardOOD / GRASP / AHCE”——它们的指标口径与我们恒等，
   但留出方式不是整库零样本，没有可比对象；也不把已撤回的 2502.14350 当作证据引用。</span></li>
 </ul>
@@ -1641,7 +1654,8 @@ def main() -> int:
             + build_target_four_plus_table(facts)
             + '<p class="note"><b>口径提示：</b>本节全部数字取自 103 号证据文件'
             "（Q95 = exp(percentile(|误差|, 95))），与 102 号文件（Q95 = percentile(exp(|误差|), 95)）"
-            "在整库尺度上差 ≤1e-7，但在重尾小样本的 4+ 桶上可见差异（IMDB 4+ 桶 PG 列相差 2.68%）。"
+            f"在整库尺度上差 ≤1e-7，但在重尾小样本的 4+ 桶上可见差异"
+            f"（IMDB 4+ 桶 PG 列相差 {q95_definition_gap(facts):.2f}%）。"
             "两套数字各自成立，不可互相替代或混排。</p>"
         )
 
