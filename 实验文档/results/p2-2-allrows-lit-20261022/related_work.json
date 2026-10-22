@@ -8,6 +8,7 @@
   {
    "key": "price",
    "name": "PRICE",
+   "authors": "Tianjing Zeng, Junwei Lan, Jiahong Ma, et al.（camera-ready 共 11 人）",
    "venue": "PVLDB 18(3): 637-650, 2024",
    "arxiv": "2406.01027",
    "doi": "10.14778/3712221.3712231",
@@ -22,6 +23,7 @@
   {
    "key": "cardood",
    "name": "CardOOD",
+   "authors": "Rui Li, Kangfei Zhao, Jeffrey Xu Yu, Guoren Wang",
    "venue": "The VLDB Journal 35(4)，2026-05-20",
    "arxiv": "2412.05864",
    "doi": "10.1007/s00778-026-00979-3",
@@ -36,6 +38,7 @@
   {
    "key": "grasp",
    "name": "GRASP",
+   "authors": "Peizhi Wu, Rong Kang, Tieying Zhang, et al.（6 人）",
    "venue": "PVLDB 18(8): 2519-2532, 2025（VLDB 2025）",
    "arxiv": "2506.16007",
    "doi": "10.14778/3742728.3742745",
@@ -51,6 +54,7 @@
   {
    "key": "paperb",
    "name": "预训练数据精简（单作者）",
+   "authors": "Boyang Fang（单作者）",
    "venue": "arXiv 2502.14350，v1 2025-02-20；v2 2025-05-28 已被作者撤回，无 venue",
    "arxiv": "2502.14350",
    "doi": null,
@@ -65,6 +69,7 @@
   {
    "key": "ahce",
    "name": "AHCE / DACE",
+   "authors": "Qixiong Zeng, Zilong Wang, Zicheng Zhang, et al.（5 人）",
    "venue": "Expert Systems with Applications 276: 127065, 2025",
    "arxiv": null,
    "doi": "10.1016/j.eswa.2025.127065",
@@ -80,6 +85,7 @@
   {
    "key": "llmce",
    "name": "LLM-CE（LLM 做基数估计）",
+   "authors": "Liangzu Liu, Yiyan Wang, Yinjun Wu, et al.（11 人）",
    "venue": "arXiv 2603.28080, 2026-03",
    "arxiv": "2603.28080",
    "doi": null,
@@ -93,54 +99,266 @@
   }
  ],
  "cardood_q95": {
-  "columns": ["Q50", "Q95", "Q99"],
+  "columns": [
+   "Q50",
+   "Q95",
+   "Q99"
+  ],
   "population": "Overall（该设置下全部测试查询）",
   "rows": [
-   {"setting": "forest · MLP · 谓词配比 20/80", "erm": [1.40, 102.48, 976.64], "best": [1.06, 39.57, 351.06], "best_method": "Group DRO"},
-   {"setting": "forest · MSCN · 谓词配比 50/50", "erm": [1.18, 41.40, 182.31], "best": [1.02, 20.81, 85.77], "best_method": "Deep CORAL"},
-   {"setting": "IMDB · MLP · 谓词配比 20/80", "erm": [1.04, 21.83, 161.88], "best": [1.68, 11.05, 100.93], "best_method": "OrderEmb"},
-   {"setting": "IMDB · MSCN · 谓词配比 20/80", "erm": [1.08, 25.55, 241.01], "best": [1.01, 9.63, 61.56], "best_method": "Query Mixup"},
-   {"setting": "DSB · MSCN · 整模板留出", "erm": [1.60, 88.51, 298.47], "best": [1.05, 37.93, 185.13], "best_method": "Deep CORAL"}
+   {
+    "setting": "forest · MLP · 谓词配比 20/80",
+    "erm": [
+     1.4,
+     102.48,
+     976.64
+    ],
+    "best": [
+     1.06,
+     39.57,
+     351.06
+    ],
+    "best_method": "Group DRO"
+   },
+   {
+    "setting": "forest · MSCN · 谓词配比 50/50",
+    "erm": [
+     1.18,
+     41.4,
+     182.31
+    ],
+    "best": [
+     1.02,
+     20.81,
+     85.77
+    ],
+    "best_method": "Deep CORAL"
+   },
+   {
+    "setting": "IMDB · MLP · 谓词配比 20/80",
+    "erm": [
+     1.04,
+     21.83,
+     161.88
+    ],
+    "best": [
+     1.68,
+     11.05,
+     100.93
+    ],
+    "best_method": "OrderEmb"
+   },
+   {
+    "setting": "IMDB · MSCN · 谓词配比 20/80",
+    "erm": [
+     1.08,
+     25.55,
+     241.01
+    ],
+    "best": [
+     1.01,
+     9.63,
+     61.56
+    ],
+    "best_method": "Query Mixup"
+   },
+   {
+    "setting": "DSB · MSCN · 整模板留出",
+    "erm": [
+     1.6,
+     88.51,
+     298.47
+    ],
+    "best": [
+     1.05,
+     37.93,
+     185.13
+    ],
+    "best_method": "Deep CORAL"
+   }
   ],
   "note": "CardOOD 的 ERM 基线在这里就是「同库内无偏移」的普通训练。"
  },
  "cardood_e2e": {
-  "columns": ["PostgreSQL 原生 (s)", "最好方法 (s)", "比值"],
+  "columns": [
+   "PostgreSQL 原生 (s)",
+   "最好方法 (s)",
+   "比值"
+  ],
   "rows": [
-   {"db": "IMDB", "pg": 40968, "best": 38690, "ratio": 0.944},
-   {"db": "DSB", "pg": 1139, "best": 722, "ratio": 0.634},
-   {"db": "JOB-light", "pg": 9939, "best": 9479, "ratio": 0.954}
+   {
+    "db": "IMDB",
+    "pg": 40968,
+    "best": 38690,
+    "ratio": 0.944
+   },
+   {
+    "db": "DSB",
+    "pg": 1139,
+    "best": 722,
+    "ratio": 0.634
+   },
+   {
+    "db": "JOB-light",
+    "pg": 9939,
+    "best": 9479,
+    "ratio": 0.954
+   }
   ],
   "note": "论文自称端到端提速 5.6% / 36.6% / 4.6%；且其 q-error 改善与端到端提速不成比例。"
  },
  "grasp_q95": {
-  "columns": ["Median", "%95", "Mean"],
+  "columns": [
+   "Median",
+   "%95",
+   "Mean"
+  ],
   "population": "seen / unseen join 模板两套测试集",
   "rows": [
-   {"method": "PostgreSQL（数据侧）", "db": "CEB-IMDb-full", "seen": [1781, 1e6, 4e5], "unseen": [6.1, 702, 717]},
-   {"method": "MSCN w/o Data（仅查询）", "db": "CEB-IMDb-full", "seen": [1.9, 7.1, 3.7], "unseen": [2.5, 663, 2671]},
-   {"method": "GRASP（仅查询）", "db": "CEB-IMDb-full", "seen": [2.0, 9.4, 5.7], "unseen": [1.7, 23, 41]},
-   {"method": "PostgreSQL（数据侧）", "db": "DSB", "seen": [1.5, 9.6, 3.6], "unseen": [1.3, 8.1, 3.2]},
-   {"method": "GRASP（仅查询）", "db": "DSB", "seen": [1.8, 8.7, 6.7], "unseen": [1.8, 15, 9.5]}
+   {
+    "method": "PostgreSQL（数据侧）",
+    "db": "CEB-IMDb-full",
+    "seen": [
+     1781,
+     1000000.0,
+     400000.0
+    ],
+    "unseen": [
+     6.1,
+     702,
+     717
+    ]
+   },
+   {
+    "method": "MSCN w/o Data（仅查询）",
+    "db": "CEB-IMDb-full",
+    "seen": [
+     1.9,
+     7.1,
+     3.7
+    ],
+    "unseen": [
+     2.5,
+     663,
+     2671
+    ]
+   },
+   {
+    "method": "GRASP（仅查询）",
+    "db": "CEB-IMDb-full",
+    "seen": [
+     2.0,
+     9.4,
+     5.7
+    ],
+    "unseen": [
+     1.7,
+     23,
+     41
+    ]
+   },
+   {
+    "method": "PostgreSQL（数据侧）",
+    "db": "DSB",
+    "seen": [
+     1.5,
+     9.6,
+     3.6
+    ],
+    "unseen": [
+     1.3,
+     8.1,
+     3.2
+    ]
+   },
+   {
+    "method": "GRASP（仅查询）",
+    "db": "DSB",
+    "seen": [
+     1.8,
+     8.7,
+     6.7
+    ],
+    "unseen": [
+     1.8,
+     15,
+     9.5
+    ]
+   }
   ],
   "note": "CEB-IMDb-full 由 CEB 基准的 IMDb 数据衍生，是 IMDb 系 join 查询的现成 PG 参照点：PG 在未见模板上 Median 6.1、%95 702，远差于任何学习模型。"
  },
  "grasp_e2e": {
-  "columns": ["方法", "总运行时间 / True-Card 基线"],
+  "columns": [
+   "方法",
+   "总运行时间 / True-Card 基线"
+  ],
   "rows": [
-   {"method": "GRASP", "ratio": "135%"},
-   {"method": "PostgreSQL", "ratio": "176%"},
-   {"method": "MSCN w/o Data", "ratio": "1044%"},
-   {"method": "MSCN w/ Data", "ratio": "930%"}
+   {
+    "method": "GRASP",
+    "ratio": "135%"
+   },
+   {
+    "method": "PostgreSQL",
+    "ratio": "176%"
+   },
+   {
+    "method": "MSCN w/o Data",
+    "ratio": "1044%"
+   },
+   {
+    "method": "MSCN w/ Data",
+    "ratio": "930%"
+   }
   ],
   "note": "在 CEB-IMDb-full 上，GRASP 的端到端开销低于 PostgreSQL 原生统计，说明「不访问数据」的模型也能换取端到端收益。"
  },
  "paperb_table": {
-  "columns": ["库", "PRICE 预训 Q50/Q95/Q99", "精简集 Q50/Q95/Q99"],
+  "columns": [
+   "库",
+   "PRICE 预训 Q50/Q95/Q99",
+   "精简集 Q50/Q95/Q99"
+  ],
   "rows": [
-   {"db": "IMDB", "full": [1.7771, 15.4516, 70.889], "simple": [2.0029, 19.0663, 54.2403]},
-   {"db": "STATS", "full": [1.8709, 35.5513, 579.6716], "simple": [2.494, 62.5588, 1307.7956]},
-   {"db": "Visual Genome", "full": [1.6545, 15.6697, 114.4227], "simple": [1.8303, 15.8277, 85.4872]}
+   {
+    "db": "IMDB",
+    "full": [
+     1.7771,
+     15.4516,
+     70.889
+    ],
+    "simple": [
+     2.0029,
+     19.0663,
+     54.2403
+    ]
+   },
+   {
+    "db": "STATS",
+    "full": [
+     1.8709,
+     35.5513,
+     579.6716
+    ],
+    "simple": [
+     2.494,
+     62.5588,
+     1307.7956
+    ]
+   },
+   {
+    "db": "Visual Genome",
+    "full": [
+     1.6545,
+     15.6697,
+     114.4227
+    ],
+    "simple": [
+     1.8303,
+     15.8277,
+     85.4872
+    ]
+   }
   ],
   "note": "其 PRICE 列的 STATS Q95 = 35.5513 与 PRICE 论文 Table 2 的 35.55 逐位一致，是本项目复现目标的一次独立第三方确认。",
   "caveat": "该文 Table 2 的 ErgastF1 行与 IMDB 行逐位相同（1.7771/15.4516/…），与作者自述的「数据质量顾虑」互相印证，其 ErgastF1 数值不可用；整篇已于 2025-05-28 撤回。"
@@ -149,11 +367,48 @@
   "title": "同一个方法在不同论文里的数不一样",
   "why": "JOB-light / IMDb 这套负载被多篇论文各自评测过。同一方法的 Q95 在各自论文里可以差一个数量级以上（PostgreSQL 分别是 797 / 817 / 6,955，而 PRICE 表里是 49.44），差在统计单元与工作负载版本，不在实现优劣。读任何一张表都要先问「这张表的数是哪篇论文、哪套负载、哪个统计单元」。",
   "rows": [
-   {"method": "PostgreSQL / Histogram", "own": ["DeepDB 原文 817", "FLAT 原文 6,955", "NeuroCard 原文 797"], "price_table": 49.44},
-   {"method": "DeepDB", "own": ["DeepDB 原文 3.16", "FLAT 原文 3.769", "NeuroCard 原文 4.90"], "price_table": 5.03},
-   {"method": "MSCN", "own": ["DeepDB 原文 143", "FLAT 原文 97.60", "NeuroCard 原文 136"], "price_table": 104.2},
-   {"method": "NeuroCard", "own": ["NeuroCard 原文 5.91", "FLAT 原文 5.910"], "price_table": 14.25},
-   {"method": "FLAT", "own": ["FLAT 原文 2.247"], "price_table": null}
+   {
+    "method": "PostgreSQL / Histogram",
+    "own": [
+     "DeepDB 原文 817",
+     "FLAT 原文 6,955",
+     "NeuroCard 原文 797"
+    ],
+    "price_table": 49.44
+   },
+   {
+    "method": "DeepDB",
+    "own": [
+     "DeepDB 原文 3.16",
+     "FLAT 原文 3.769",
+     "NeuroCard 原文 4.90"
+    ],
+    "price_table": 5.03
+   },
+   {
+    "method": "MSCN",
+    "own": [
+     "DeepDB 原文 143",
+     "FLAT 原文 97.60",
+     "NeuroCard 原文 136"
+    ],
+    "price_table": 104.2
+   },
+   {
+    "method": "NeuroCard",
+    "own": [
+     "NeuroCard 原文 5.91",
+     "FLAT 原文 5.910"
+    ],
+    "price_table": 14.25
+   },
+   {
+    "method": "FLAT",
+    "own": [
+     "FLAT 原文 2.247"
+    ],
+    "price_table": null
+   }
   ],
   "note": "上表「PRICE Table 2」列是 imdb 那一行的 Q95（即我们第 08 节那张表里的同一列）。三篇原文自报的 PostgreSQL 分别是 797（NeuroCard）/ 817（DeepDB）/ 6,955（FLAT），而 PRICE 表里是 49.44；NeuroCard 自己论文报 5.91，PRICE 表里是 14.25。这些差异都不来自方法实现的优劣。",
   "population_note": "PRICE 论文的 Q-ERROR 是在每条查询分解出的子查询上算的，不是整条查询（LLM-CE 论文脚注 3 明确写出这一点，并说明它自己改用整条查询重算）。我们的 all-rows 面板与 PRICE 同单元——证据是我们的 PG 列在四个库上逐位复现 PRICE 发表的 Q95；而 DeepDB / FLAT / NeuroCard 各自论文用的是整条查询单元。",
@@ -166,5 +421,70 @@
   "GRASP 与 CardOOD 共同支持一个与我们相同的直觉：不访问目标库数据也能取得强结果，且鲁棒训练能压低尾部；这为「零样本 + 少样本适应」这条路线提供了同行证据。",
   "我们仍然缺的那一项（PRICE、GRASP、CardOOD 都报了，我们没有）是端到端时间。PRICE 报 5.3-14.1 ms/查询推理与三库 E2E 最优，GRASP 报 CEB 上 135%、PG 176%，CardOOD 报 DSB 上 0.634 倍 PG。我们只报误差，没有报时间——这是汇报时必须主动说清的缺口。",
   "同一个方法在不同论文里的数可以差好几倍（PostgreSQL 从 817 到 49.44，NeuroCard 从 5.91 到 14.25），差在统计单元与负载版本，不在实现优劣。我们的数只与 PRICE 那张表可比，且这一点已由 PG 列逐位复现证明。"
+ ],
+ "reference_works": [
+  {
+   "key": "neurocard",
+   "name": "NeuroCard: One Cardinality Estimator for All Tables",
+   "authors": "Zongheng Yang, Amog Kamsetty, Sifei Luan, et al.（7 人）",
+   "venue": "PVLDB 14(1), 2021",
+   "arxiv": "2006.08109",
+   "role": "口径谱系：明示两侧下界取 1；JOB-light 自报 95th = 5.91（Table 2 原文核对）",
+   "comparable": "不能直接比：每库重训；进同一张表须经 PRICE Table 2 的统一复跑"
+  },
+  {
+   "key": "flat",
+   "name": "FLAT: Fast, Lightweight and Accurate Method for Cardinality Estimation",
+   "authors": "Rong Zhu, Ziniu Wu, Yuxing Han, et al.（8 人）",
+   "venue": "PVLDB 14(9), 2021",
+   "arxiv": "2011.09022",
+   "role": "口径谱系：JOB-light 95% = 2.247（Table 2 原文核对）；证明同一 PG 基线在不同论文可差一个数量级",
+   "comparable": "不能直接比：每库重训，且未进入 PRICE 表"
+  },
+  {
+   "key": "deepdb",
+   "name": "DeepDB: Learn from Data, not from Queries!",
+   "authors": "Benjamin Hilprecht, Andreas Schmidt, Moritz Kulessa, et al.（6 人）",
+   "venue": "PVLDB 13(7), 2020",
+   "arxiv": "1909.00607",
+   "role": "口径谱系：q-error 定义段（剔除 true=0 的查询）；JOB-light 自报 3.16",
+   "comparable": "经 PRICE Table 2 复跑后可同列（imdb Q95 5.03，我们 21.33）"
+  },
+  {
+   "key": "naru",
+   "name": "Naru（Deep Unsupervised Cardinality Estimation）",
+   "authors": "Zongheng Yang, Eric Liang, Amog Kamsetty, et al.（10 人）",
+   "venue": "PVLDB 13(3), 2020",
+   "arxiv": "1905.04278",
+   "role": "口径谱系：分选择性桶的 q-error 分位（DMV 高选择性 95th 1.03 / PG 227）",
+   "comparable": "不能直接比：每库重训，未进入 PRICE 表"
+  },
+  {
+   "key": "mscn",
+   "name": "MSCN（Learned Cardinalities: Estimating Correlated Joins with Deep Learning）",
+   "authors": "Andreas Kipf, Thomas Kipf, Bernhard Radke, et al.（6 人）",
+   "venue": "SIGMOD 2020",
+   "arxiv": "1809.00677",
+   "role": "口径谱系：JOB-light 自报 97.6，NeuroCard 复跑 136，DeepDB 复跑 143——跨论文差异的又一例",
+   "comparable": "经 PRICE Table 2 复跑后可同列（imdb Q95 104.2，我们 21.33）"
+  },
+  {
+   "key": "bird",
+   "name": "BIRD: Can LLM Already Serve as A Database Interface?",
+   "authors": "Jinyang Li, Binyuan Hui, Ge Qu, et al.（18 人）",
+   "venue": "NeurIPS 2023 Datasets & Benchmarks",
+   "arxiv": "2305.03111",
+   "role": "排除项：全文 grep cardinal 命中 0、无 q-error，只有 EX/VES——堵死「BIRD 上的 Q95」这类误引",
+   "comparable": "不在本任务轴：text-to-SQL 基准，没有可比的基数指标"
+  },
+  {
+   "key": "cardbench",
+   "name": "CardBench: A Benchmark for Learned Cardinality Estimation in Relational Databases",
+   "authors": "Yannis Chronis, Yawen Wang, Yu Gan, et al.（7 人）",
+   "venue": "arXiv 2408.16170, 2024（正式 venue 未核实）",
+   "arxiv": "2408.16170",
+   "role": "跨数据集聚合 P50/P95 q-error 的基准；二表 join 上 PG P95 达 4.4e6 量级",
+   "comparable": "暂不引用：其留出协议细节未读原文核实，判不了可比性"
+  }
  ]
 }

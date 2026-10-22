@@ -1356,9 +1356,11 @@ def build_related_work_block(facts: dict) -> str:
             if part
         )
         id_line = f"<br>{esc(ids)}" if ids else ""
+        authors_line = f"<br>{esc(paper['authors'])}" if paper.get("authors") else ""
         landscape_rows.append(
             f"<tr><td><b>{esc(paper['name'])}</b><br>"
-            f'<span class="small muted">{esc(paper["venue"])}{id_line}</span></td>'
+            f'<span class="small muted">{esc(paper["venue"])}{id_line}'
+            f"{authors_line}</span></td>"
             f"<td>{esc(paper['metric'])}<br>"
             f'<span class="small muted">与我们的 Q95 {metric_note}</span></td>'
             f"<td>{esc(paper['holdout'])}<br>"
