@@ -1347,9 +1347,18 @@ def build_related_work_block(facts: dict) -> str:
             if paper["metric_identical_to_ours"]
             else "口径未核实"
         )
+        ids = " · ".join(
+            part
+            for part in (
+                f"arXiv {paper['arxiv']}" if paper.get("arxiv") else "",
+                f"DOI {paper['doi']}" if paper.get("doi") else "",
+            )
+            if part
+        )
+        id_line = f"<br>{esc(ids)}" if ids else ""
         landscape_rows.append(
             f"<tr><td><b>{esc(paper['name'])}</b><br>"
-            f'<span class="small muted">{esc(paper["venue"])}</span></td>'
+            f'<span class="small muted">{esc(paper["venue"])}{id_line}</span></td>'
             f"<td>{esc(paper['metric'])}<br>"
             f'<span class="small muted">与我们的 Q95 {metric_note}</span></td>'
             f"<td>{esc(paper['holdout'])}<br>"
