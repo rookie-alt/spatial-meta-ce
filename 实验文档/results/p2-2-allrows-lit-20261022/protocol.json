@@ -1,0 +1,101 @@
+{
+ "cache_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+ "split": "test",
+ "checkpoint": {
+  "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/baseline/last.pt",
+  "sha256": "563ec1596b1a34dd3853e05d098634a473a74947aa176367d0d293857499d8a3",
+  "seed": 42,
+  "method": "erm",
+  "train_databases": [
+   "accidents",
+   "airline",
+   "baseball",
+   "basketball",
+   "carcinogenesis",
+   "ccs",
+   "consumer",
+   "credit",
+   "employee",
+   "financial",
+   "fnhk",
+   "grants",
+   "hepatitis",
+   "hockey",
+   "movielens",
+   "sakila",
+   "sap",
+   "seznam",
+   "ssb",
+   "talkingdata",
+   "tournament",
+   "tpc_h",
+   "tubepricing"
+  ],
+  "validation_databases": [
+   "chembl",
+   "legalacts",
+   "telstra"
+  ],
+  "model_config": {
+   "width": 64,
+   "use_pg": true,
+   "arch": "sum",
+   "layers": 2,
+   "heads": 4
+  },
+  "transform": "price40-group-logfanout-v1",
+  "frozen": true,
+  "selection": "none (passed explicitly; this script never chooses)"
+ },
+ "price": {
+  "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+  "checkpoint_sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92",
+  "maxima": [
+   12,
+   14,
+   8,
+   10
+  ],
+  "decoding": "price_log_predictions(): log1p(card)+1 -> log(card)",
+  "adaptation": "none (K=0)"
+ },
+ "per_database": {
+  "imdb": {
+   "max_counts": [
+    5,
+    8,
+    5,
+    4
+   ],
+   "content_hash": "aa0e1628ed7aa637e90ffedfcd27c7a4c6703e98cb46083e6beef05e3d86d333"
+  },
+  "stats": {
+   "max_counts": [
+    8,
+    12,
+    7,
+    10
+   ],
+   "content_hash": "4f1726a2ddcd0f40a964cc6a5620073fa9fd05ad88e4daf8343d84f2e0248b22"
+  },
+  "genome": {
+   "max_counts": [
+    9,
+    10,
+    6,
+    7
+   ],
+   "content_hash": "f0f0f8660623fe3694b808916d1ec24b4ff51355723e13343a3d95cd897a07f9"
+  },
+  "ergastf1": {
+   "max_counts": [
+    8,
+    12,
+    7,
+    9
+   ],
+   "content_hash": "2a1c15b25326ccc7b4eb3b009c78f8178797ecce7e44d87245519776ac01697a"
+  }
+ },
+ "population_note": "doc 25 §1.2 fixes unique-query as the project's canonical metric; this file reports the all-rows population so the numbers can be placed next to the published PRICE table, which uses all rows"
+}

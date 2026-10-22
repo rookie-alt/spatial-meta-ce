@@ -1,0 +1,57 @@
+{
+ "source": {
+  "citation": "Tianjing Zeng, Junwei Lan, Jiahong Ma, Wenqing Wei, Rong Zhu, Yingli Zhou, Pengfei Li, Bolin Ding, Defu Lian, Zhewei Wei, Jingren Zhou. PRICE: A Pretrained Model for Cross-Database Cardinality Estimation. PVLDB 18(3): 637-650, 2024.",
+  "doi": "10.14778/3712221.3712231",
+  "arxiv": "2406.01027",
+  "artifact_on_server": "/gly/weilin/PRICE-master/PRICE_full_paper.pdf (camera-ready, 1,767,989 bytes)",
+  "extraction": "pdftotext of the camera-ready PDF; the Q-ERROR columns were independently cross-read from the arXiv v1 HTML and the official vldb.org PDF, and the two readings agree cell by cell",
+  "metric": "Q-ERROR = max(Card_hat(Q)/Card(Q), Card(Q)/Card_hat(Q)); each column is a percentile of that multiplier, so 15.45 means 15.45x",
+  "population": "all rows of each test workload: imdb 766, stats 2749, ergastf1 1422, genome 2302",
+  "paper_db_names": "the paper's 'Visual Genome' is the database this project calls 'genome'",
+  "note": "DeepDB and FactorJoin were not run on ergastf1 / VisualGenome in the paper; NeuroCard was not reported for ergastf1"
+ },
+ "q_error": {
+  "imdb": {
+   "PG": {"e2e_s": 4037, "q50": 1.95, "q80": 6.04, "q90": 19.04, "q95": 49.44, "q99": 879.64},
+   "ALECE": {"e2e_s": 3911, "q50": 1.75, "q80": 4.21, "q90": 11.49, "q95": 19.07, "q99": 124.68, "model_mb": 233.11, "train_min": 472.88, "infer_ms": 5.08},
+   "MSCN": {"e2e_s": 4755, "q50": 3.24, "q80": 12.75, "q90": 28.54, "q95": 104.2, "q99": 411.9, "model_mb": 1.57, "train_min": 75.19, "infer_ms": 0.79},
+   "DeepDB": {"e2e_s": 3850, "q50": 1.31, "q80": 2.97, "q90": 3.61, "q95": 5.03, "q99": 14.03, "model_mb": 88.33, "train_min": 73.73, "infer_ms": 4.73},
+   "NeuroCard": {"e2e_s": 3664, "q50": 1.66, "q80": 4.14, "q90": 7.8, "q95": 14.25, "q99": 22.22, "model_mb": 50.27, "train_min": 14.55, "infer_ms": 18.43},
+   "FactorJoin": {"e2e_s": 3588, "q50": 13.86, "q80": 89.88, "q90": 348.96, "q95": 1027.19, "q99": 4794.8, "model_mb": 5.59, "train_min": 78.45, "infer_ms": 3.2},
+   "PRICE (Pretrained)": {"e2e_s": 3910, "q50": 1.77, "q80": 4.07, "q90": 8.39, "q95": 15.45, "q99": 70.88, "model_mb": 41.14, "train_min": 313.56, "infer_ms": 5.27},
+   "PRICE (Finetuned)": {"e2e_s": 3454, "q50": 1.29, "q80": 2.05, "q90": 2.92, "q95": 5.36, "q99": 29.45, "model_mb": 41.14, "train_min": 6.47, "infer_ms": 5.27}
+  },
+  "stats": {
+   "PG": {"e2e_s": 30484, "q50": 1.87, "q80": 7.11, "q90": 20.71, "q95": 73.35, "q99": 1600.22},
+   "ALECE": {"e2e_s": 25716, "q50": 1.67, "q80": 3.79, "q90": 7.93, "q95": 16.44, "q99": 118.96, "model_mb": 233.04, "train_min": 93.09, "infer_ms": 10.88},
+   "MSCN": {"e2e_s": 42051, "q50": 6.19, "q80": 70.02, "q90": 363.71, "q95": 1609.45, "q99": 91500.0, "model_mb": 1.6, "train_min": 2.03, "infer_ms": 0.81},
+   "DeepDB": {"e2e_s": 22931, "q50": 1.84, "q80": 19.94, "q90": 73.52, "q95": 132.63, "q99": 1507.78, "model_mb": 249.93, "train_min": 142.12, "infer_ms": 12.42},
+   "NeuroCard": {"e2e_s": 24435, "q50": 2.12, "q80": 12.57, "q90": 48.4, "q95": 228.41, "q99": 13200.0, "model_mb": 121.88, "train_min": 36.43, "infer_ms": 33.8},
+   "FactorJoin": {"e2e_s": 50179, "q50": 5.41, "q80": 40.44, "q90": 150.52, "q95": 666.59, "q99": 21000.0, "model_mb": 1.86, "train_min": 0.55, "infer_ms": 23.7},
+   "PRICE (Pretrained)": {"e2e_s": 18292, "q50": 1.87, "q80": 5.49, "q90": 12.46, "q95": 35.55, "q99": 579.67, "model_mb": 41.14, "train_min": 313.56, "infer_ms": 14.13},
+   "PRICE (Finetuned)": {"e2e_s": 17192, "q50": 1.41, "q80": 2.28, "q90": 3.67, "q95": 7.07, "q99": 42.03, "model_mb": 41.14, "train_min": 10.2, "infer_ms": 14.13}
+  },
+  "ergastf1": {
+   "PG": {"e2e_s": 48185, "q50": 1.6, "q80": 4.26, "q90": 11.3, "q95": 27.47, "q99": 114.24},
+   "ALECE": {"e2e_s": 50902, "q50": 1.75, "q80": 3.15, "q90": 5.18, "q95": 8.43, "q99": 53.81, "model_mb": 233.34, "train_min": 121.49, "infer_ms": 7.06},
+   "MSCN": {"e2e_s": 45511, "q50": 10.2, "q80": 99.89, "q90": 353.02, "q95": 999.52, "q99": 13200.0, "model_mb": 1.66, "train_min": 5.08, "infer_ms": 0.81},
+   "PRICE (Pretrained)": {"e2e_s": 44532, "q50": 1.43, "q80": 3.12, "q90": 6.45, "q95": 14.57, "q99": 67.97, "model_mb": 41.14, "train_min": 313.56, "infer_ms": 7.14},
+   "PRICE (Finetuned)": {"e2e_s": 44350, "q50": 1.43, "q80": 2.46, "q90": 4.06, "q95": 7.37, "q99": 29.96, "model_mb": 41.14, "train_min": 5.21, "infer_ms": 7.14}
+  },
+  "genome": {
+   "PG": {"e2e_s": 6165, "q50": 1.17, "q80": 4.34, "q90": 15.12, "q95": 383.09, "q99": 11700.0},
+   "ALECE": {"e2e_s": 5874, "q50": 1.13, "q80": 1.34, "q90": 1.44, "q95": 1.58, "q99": 2.01, "model_mb": 232.72, "train_min": 49.68, "infer_ms": 6.25},
+   "MSCN": {"e2e_s": 12070, "q50": 2.84, "q80": 9.34, "q90": 18.91, "q95": 47.45, "q99": 108.48, "model_mb": 1.54, "train_min": 39.86, "infer_ms": 0.78},
+   "NeuroCard": {"e2e_s": 6673, "q50": 1.04, "q80": 12.23, "q90": 14.35, "q95": 26.75, "q99": 53.75, "model_mb": 38.38, "train_min": 12.91, "infer_ms": 9.85},
+   "PRICE (Pretrained)": {"e2e_s": 5840, "q50": 1.65, "q80": 3.59, "q90": 5.17, "q95": 15.67, "q99": 115.61, "model_mb": 41.14, "train_min": 313.56, "infer_ms": 6.22},
+   "PRICE (Finetuned)": {"e2e_s": 5838, "q50": 1.06, "q80": 1.19, "q90": 1.29, "q95": 1.35, "q99": 1.54, "model_mb": 41.14, "train_min": 11.48, "infer_ms": 6.22}
+  }
+ },
+ "protocol_claims": {
+  "pretrain_databases": 26,
+  "pretrain_queries_per_database": 50000,
+  "test_databases": ["imdb", "stats", "ergastf1", "genome"],
+  "finetune_note": "the paper states 100 finetuning queries already outperform almost all other methods; its Table 2 finetuned row uses 5e4 queries",
+  "headline_metric_note": "the paper's own text says it reports only 90%-quantile Q-ERROR and 95%-quantile P-ERROR in the robustness sections; Table 2 gives the full percentile set"
+ }
+}
