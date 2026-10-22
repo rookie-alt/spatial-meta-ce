@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>面向空间漂移的自适应基数估计</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#1E3A5F; --on-primary:#FFFFFF;
+  --secondary:#2563EB; --accent:#A16207;
+  --bg:#F8FAFC; --fg:#0F172A; --card:#FFFFFF;
+  --muted:#E9EEF5; --muted-fg:#475569; --border:#CBD5E1;
+  --destructive:#DC2626;
+  --series-ours:#1E3A5F; --series-price:#A16207; --series-pg:#64748B;
+  --win:#15803D; --tie:#64748B; --lose:#B91C1C;
+  --serif:"EB Garamond",Georgia,"Songti SC",serif;
+  --sans:"Helvetica Neue",Helvetica,Inter,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+  --mono:"Fira Code",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --s1:4px; --s2:8px; --s3:16px; --s4:24px; --s5:32px; --s6:48px; --s7:64px;
+  --r:2px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0B1220; --fg:#E6EDF6; --card:#111A2C; --muted:#1B2740; --muted-fg:#9FB0C7;
+    --border:#2B3A55; --primary:#7FA8D9; --on-primary:#0B1220; --secondary:#60A5FA;
+    --accent:#E0A458; --destructive:#F87171;
+    --series-ours:#8FB8E6; --series-price:#E0A458; --series-pg:#94A3B8;
+    --win:#4ADE80; --tie:#94A3B8; --lose:#F87171;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  font-variant-numeric:tabular-nums;
+}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:var(--s3);top:var(--s3);position:fixed;z-index:99;background:var(--primary);
+  color:var(--on-primary);padding:var(--s2) var(--s3);border-radius:var(--r)}
+:focus-visible{outline:2px solid var(--secondary);outline-offset:2px}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--s4) var(--s7)}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:1px solid var(--border);background:var(--card)}
+.masthead .wrap{padding-top:var(--s6);padding-bottom:var(--s5)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-fg);
+  font-weight:600;margin:0 0 var(--s2)}
+h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,50px);line-height:1.12;font-weight:600;
+  margin:0 0 var(--s2);letter-spacing:-.01em}
+.subtitle{font-size:19px;color:var(--muted-fg);margin:0 0 var(--s4);max-width:70ch}
+.factgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;
+  background:var(--border);border:1px solid var(--border)}
+.fact{background:var(--card);padding:var(--s3)}
+.fact dt{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-fg);
+  font-weight:600;margin:0 0 var(--s1)}
+.fact dd{margin:0;font-size:14px;line-height:1.5}
+.fact dd code{font-family:var(--mono);font-size:12px;word-break:break-all}
+
+/* ---------- sections ---------- */
+section{padding-top:var(--s6);scroll-margin-top:var(--s4)}
+h2{font-family:var(--serif);font-size:clamp(24px,3vw,32px);font-weight:600;margin:0 0 var(--s2);
+  letter-spacing:-.005em;display:flex;align-items:baseline;gap:var(--s3)}
+h2 .num{font-family:var(--mono);font-size:13px;color:var(--muted-fg);font-weight:500;
+  border:1px solid var(--border);padding:2px 8px;border-radius:var(--r);flex:none}
+h3{font-size:17px;font-weight:600;margin:var(--s5) 0 var(--s2)}
+.lede{font-size:17px;max-width:76ch;margin:0 0 var(--s4);color:var(--fg)}
+p{max-width:76ch;margin:0 0 var(--s3)}
+.muted{color:var(--muted-fg)}
+.small{font-size:14px}
+code{font-family:var(--mono);font-size:.88em;background:var(--muted);padding:1px 5px;border-radius:var(--r)}
+
+/* ---------- verdict ---------- */
+.verdict{border:1px solid var(--primary);border-left-width:4px;background:var(--card);
+  padding:var(--s4) var(--s5);margin-bottom:var(--s4)}
+.verdict p:last-child{margin-bottom:0}
+.verdict .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  color:var(--primary);margin:0 0 var(--s2)}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto;border:1px solid var(--border);background:var(--card);margin:0 0 var(--s3)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+caption{text-align:left;padding:var(--s3) var(--s3) var(--s2);font-size:13px;color:var(--muted-fg)}
+caption b{color:var(--fg);font-weight:600}
+th,td{padding:7px var(--s3);text-align:right;white-space:nowrap;border-bottom:1px solid var(--border)}
+th{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted-fg);
+  font-weight:600;background:var(--muted);position:sticky;top:0}
+th:first-child,td:first-child{text-align:left}
+tbody tr:last-child td{border-bottom:none}
+tr.group td{background:var(--muted);font-weight:600;font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted-fg)}
+tr.summary td{background:var(--muted);font-weight:600}
+tr.summary td:first-child{border-left:3px solid var(--primary)}
+.win{color:var(--win);font-weight:600}
+.lose{color:var(--lose);font-weight:600}
+.tie{color:var(--tie)}
+.flag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:var(--r);
+  border:1px solid var(--border);color:var(--muted-fg);margin-left:6px;vertical-align:middle}
+.flag.noise{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- charts ---------- */
+.figure{margin:0 0 var(--s4);border:1px solid var(--border);background:var(--card);padding:var(--s4)}
+.figure figcaption{font-size:13px;color:var(--muted-fg);margin:0 0 var(--s3);max-width:80ch}
+.figure figcaption b{color:var(--fg)}
+.figure svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:var(--s3);margin:0 0 var(--s3);padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted-fg)}
+.swatch{width:11px;height:11px;flex:none;border-radius:2px}
+.axis-note{font-size:12px;color:var(--muted-fg);margin:var(--s2) 0 0}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s3)}
+
+/* ---------- lists ---------- */
+.limits{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--border);
+  border:1px solid var(--border)}
+.limits li{background:var(--card);padding:var(--s3) var(--s4);display:grid;
+  grid-template-columns:118px 1fr;gap:var(--s3);font-size:14px}
+.limits b{font-weight:600}
+.limits .tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  padding-top:2px}
+.tag.ok{color:var(--win)} .tag.no{color:var(--lose)}
+
+.note{border-left:3px solid var(--accent);background:var(--muted);padding:var(--s3) var(--s4);
+  margin:0 0 var(--s3);font-size:14px;max-width:80ch}
+.note b{color:var(--accent)}
+
+.evidence{font-family:var(--mono);font-size:12px;line-height:1.9;background:var(--card);
+  border:1px solid var(--border);padding:var(--s3) var(--s4);overflow-x:auto;margin:0 0 var(--s3)}
+.evidence div{white-space:pre}
+
+footer{border-top:1px solid var(--border);margin-top:var(--s6);padding:var(--s5) 0 var(--s6);
+  color:var(--muted-fg);font-size:13px}
+footer p{max-width:none}
+
+@media (max-width:768px){
+  .wrap{padding-left:var(--s3);padding-right:var(--s3)}
+  .masthead .wrap{padding-top:var(--s5)}
+  .verdict{padding:var(--s3)}
+  .limits li{grid-template-columns:1fr;gap:var(--s1)}
+  table{font-size:13px}
+  th,td{padding:6px var(--s2)}
+}
+@media print{
+  body{background:#fff}
+  .skip,.figure figcaption{display:none}
+  section{break-inside:avoid}
+  .tablewrap{overflow:visible}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">毕业论文 · 阶段性实验汇报</p>
+    <h1>面向空间漂移的自适应基数估计</h1>
+    <p class="subtitle">当前进度与对照结果：漂移场景下我们赢的是拟合，不是迁移</p>
+    <dl class="factgrid">
+      <div class="fact"><dt>日期</dt><dd>2026-10-22</dd></div>
+      <div class="fact"><dt>数据分支</dt><dd><code>experiment/source-broad-imdb-20261021</code></dd></div>
+      <div class="fact"><dt>提交</dt><dd><code>cd13f39</code></dd></div>
+      <div class="fact"><dt>证据等级</dt><dd>single seed · 冻结 checkpoint · 全量 population</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+<section id="verdict">
+  <h2><span class="num">00</span>结论摘要</h2>
+  
+<div class="verdict">
+  <p class="label">一句话结论</p>
+  <p>在<b>双方都没训练过</b>的四个目标库上，我们的 K=0 尾部精度 <b>4/4 全部落后于 PRICE</b>
+  （PRICE/我们 中位 0.561，即我们差约 1.8 倍）；
+  在 <b>PRICE 训练过、我们训练过 23 个</b>的 26 个源库上，我们 <b>22/26</b> 优于 PRICE
+  （中位 1.184，其中 3 个落在 seed 噪声带内、
+  19 个稳赢）。</p>
+  <p><b>这个反转本身就是结论</b>：赢面来自拟合，不是漂移。对传统优化器 PG，两组都好于它
+  （目标库 3/4 赢，源库 24/26 赢）。</p>
+</div>
+<p>三条支撑事实：</p>
+<ul>
+  <li><b>差距落在排序一致性上</b>，不是校准、也不是过度收缩：目标库 4/4 的与真值相关性低于 PRICE
+  （dCorr 中位 +0.0212），源库只有 3/26 落后；两组的偏差中位
+  （+0.024 / -0.026）都贴近零，预测离散度我们反而更大。</li>
+  <li><b>主指标口径下差距更大</b>：4+ 表桶上 PRICE/我们 中位
+  0.322（整库口径是 0.561）。</li>
+  <li><b>样本量必须随数字一起报</b>：IMDB 只有 521 条唯一查询，其 Q95 由约 26 条决定，
+  4+ 桶仅 118 条、由约 6 条决定。</li>
+</ul>
+
+</section>
+
+<section id="protocol">
+  <h2><span class="num">01</span>使用的方案</h2>
+  
+<div class="verdict">
+  <p class="label">评估协议（本次全部数字的共同口径）</p>
+  <p>三个估计量在同一批唯一查询上并列：<b>我们</b>是冻结的 seed42 ERM-sum baseline
+  （<code>baseline/last.pt</code>，
+  sha256 <code>563ec1596b1a…</code>，last.pt，未做任何 checkpoint 选择）、
+  <b>PRICE</b> 是官方提供的权重（<code>model_params.pth</code>，
+  sha256 <code>4f889c4df269…</code>，原生 <code>log1p(card)+1</code>
+  解码到 <code>log(card)</code>）、<b>PG</b> 是缓存里的原始优化器估计。</p>
+  <p>评估是 <b>K=0 零样本</b>，对每个库的<b>全部唯一查询做单次全量推理</b>，无 support。
+  指标是标准 <b>unique-query Q95</b>：预测与真值的对数误差取 95 分位再取指数，
+  精确预测记 1.0，越小越好。目标库用 maxima <code>[12, 14, 8, 10]</code>、
+  源库用 <code>[12, 12, 7, 10]</code>，两组布局差异已实测为相对 9.1e-07。</p>
+</div>
+<h3>曝光矩阵（决定每张表能说明什么）</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>库集合</th><th>数量</th><th>我们训练过</th><th>PRICE 训练过</th><th>这一组比较测的是什么</th></tr></thead>
+<tbody>
+<tr><td>源训练库</td><td>23</td><td>是</td><td>是</td><td>拟合能力，<b>不是</b>空间漂移</td></tr>
+<tr><td>源验证库（chembl / legalacts / telstra）</td><td>3</td><td>否</td><td>是</td><td>我们 out-of-sample，PRICE in-sample</td></tr>
+<tr><td>目标库（imdb / stats / genome / ergastf1）</td><td>4</td><td>否</td><td>否</td><td><b>唯一对等的漂移比较</b></td></tr>
+</tbody></table></div>
+<p class="small muted">目标库只用于最终评估，从不进入训练、超参选择、适应策略选择或 checkpoint 选择；
+脚本在运行时以白名单守卫拒绝任何曝光重叠的 checkpoint。PRICE 在全部 26 个源库上训练过，
+这一点决定了下面两张表的语义完全不同。</p>
+
+</section>
+
+<section id="targets">
+  <h2><span class="num">02</span>目标库：对等漂移比较</h2>
+  <p class="lede">这四个库 PRICE 与我们都没有训练过，是本项目唯一一组对等的空间漂移比较点。口径：seed42 ERM-sum baseline 的 K=0 零样本，全部唯一查询，单次全量，无 support。</p><div class="tablewrap"><table><caption><b>四个目标库 · unique-query Q95（K=0，全量唯一查询）</b>　比值 &gt;1 表示我们更好；PRICE 与我们均未在这些库上训练，是唯一对等的漂移比较点。</caption><thead><tr><th>库</th><th>n</th><th>我们 Q95</th><th>PRICE Q95</th><th>PG Q95</th><th>PRICE / 我们</th><th>PG / 我们</th></tr></thead><tbody><tr><td>stats</td><td>2,603</td><td>83.72</td><td>39.52</td><td>75.65</td><td class="lose">0.472</td><td class="lose">0.904</td></tr><tr><td>genome</td><td>1,699</td><td>170.82</td><td>31.34</td><td>1,907</td><td class="lose">0.183</td><td class="win">11.166</td></tr><tr><td>ergastf1</td><td>1,258</td><td>22.28</td><td>15.29</td><td>27.61</td><td class="lose">0.686</td><td class="win">1.239</td></tr><tr><td>imdb</td><td>521</td><td>32.37</td><td>21.03</td><td>87.11</td><td class="lose">0.650</td><td class="win">2.691</td></tr><tr class="summary"><td>汇总（4 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="lose">0.561</td><td class="win">1.965</td></tr></tbody></table></div><figure class="figure"><figcaption><b>目标库 Q95 对照。</b>四个库上 PRICE 的柱子都更短，即全部落后于 PRICE；对 PG 则在 genome、ergastf1、imdb 上领先。</figcaption><ul class="legend"><li><span class="swatch" style="background:var(--series-ours)"></span>我们（冻结 seed42 baseline）</li><li><span class="swatch" style="background:var(--series-price)"></span>PRICE（官方权重，零样本）</li><li><span class="swatch" style="background:var(--series-pg)"></span>PG（原始优化器估计）</li></ul><svg viewBox="0 0 780 380" role="img" aria-label="四个目标库的 Q95 对照条形图，对数横轴"><line x1="96.0" y1="22" x2="96.0" y2="358" stroke="var(--border)" stroke-width="1"/><text x="96.0" y="372" text-anchor="middle" font-size="11" fill="var(--muted-fg)">10</text><line x1="351.5" y1="22" x2="351.5" y2="358" stroke="var(--border)" stroke-width="1"/><text x="351.5" y="372" text-anchor="middle" font-size="11" fill="var(--muted-fg)">100</text><line x1="607.1" y1="22" x2="607.1" y2="358" stroke="var(--border)" stroke-width="1"/><text x="607.1" y="372" text-anchor="middle" font-size="11" fill="var(--muted-fg)">1000</text><text x="0" y="60.0" font-size="13" font-weight="600" fill="var(--fg)">stats</text><rect x="96" y="34.0" width="235.8" height="15" fill="var(--series-ours)" rx="1"/><text x="337.8" y="46.0" font-size="11" fill="var(--muted-fg)">83.72</text><rect x="96" y="54.0" width="152.5" height="15" fill="var(--series-price)" rx="1"/><text x="254.5" y="66.0" font-size="11" fill="var(--muted-fg)">39.52</text><rect x="96" y="74.0" width="224.6" height="15" fill="var(--series-pg)" rx="1"/><text x="326.6" y="86.0" font-size="11" fill="var(--muted-fg)">75.65</text><text x="0" y="141.0" font-size="13" font-weight="600" fill="var(--fg)">genome</text><rect x="96" y="115.0" width="315.0" height="15" fill="var(--series-ours)" rx="1"/><text x="417.0" y="127.0" font-size="11" fill="var(--muted-fg)">170.82</text><rect x="96" y="135.0" width="126.8" height="15" fill="var(--series-price)" rx="1"/><text x="228.8" y="147.0" font-size="11" fill="var(--muted-fg)">31.34</text><rect x="96" y="155.0" width="582.7" height="15" fill="var(--series-pg)" rx="1"/><text x="684.7" y="167.0" font-size="11" fill="var(--muted-fg)">1,907</text><text x="0" y="222.0" font-size="13" font-weight="600" fill="var(--fg)">ergastf1</text><rect x="96" y="196.0" width="88.9" height="15" fill="var(--series-ours)" rx="1"/><text x="190.9" y="208.0" font-size="11" fill="var(--muted-fg)">22.28</text><rect x="96" y="216.0" width="47.1" height="15" fill="var(--series-price)" rx="1"/><text x="149.1" y="228.0" font-size="11" fill="var(--muted-fg)">15.29</text><rect x="96" y="236.0" width="112.7" height="15" fill="var(--series-pg)" rx="1"/><text x="214.7" y="248.0" font-size="11" fill="var(--muted-fg)">27.61</text><text x="0" y="303.0" font-size="13" font-weight="600" fill="var(--fg)">imdb</text><rect x="96" y="277.0" width="130.4" height="15" fill="var(--series-ours)" rx="1"/><text x="232.4" y="289.0" font-size="11" fill="var(--muted-fg)">32.37</text><rect x="96" y="297.0" width="82.5" height="15" fill="var(--series-price)" rx="1"/><text x="184.5" y="309.0" font-size="11" fill="var(--muted-fg)">21.03</text><rect x="96" y="317.0" width="240.2" height="15" fill="var(--series-pg)" rx="1"/><text x="342.2" y="329.0" font-size="11" fill="var(--muted-fg)">87.11</text></svg><p class="axis-note">横轴为 Q95 的对数刻度（10 / 100 / 1000），每条柱直接标注数值；数值越靠左越准。</p></figure><h3>4+ 表桶：项目主指标所在的粒度</h3><div class="tablewrap"><table><caption><b>同一口径下的 4+ 表桶</b>　项目主指标 macro_four_plus_q95 所在的粒度；IMDB 该桶仅 118 条查询，Q95 由约 6 条决定。</caption><thead><tr><th>库</th><th>n</th><th>我们 Q95</th><th>PRICE Q95</th><th>PG Q95</th><th>PRICE / 我们</th><th>PG / 我们</th></tr></thead><tbody><tr><td>stats</td><td>906</td><td>298.27</td><td>141.73</td><td>230.05</td><td class="lose">0.475</td><td class="lose">0.771</td></tr><tr><td>genome</td><td>544</td><td>956.25</td><td>64.03</td><td>9,986</td><td class="lose">0.067</td><td class="win">10.443</td></tr><tr><td>ergastf1</td><td>258</td><td>77.84</td><td>58.22</td><td>107.26</td><td class="lose">0.748</td><td class="win">1.378</td></tr><tr><td>imdb</td><td>118</td><td>526.59</td><td>88.73</td><td>1,143</td><td class="lose">0.169</td><td class="win">2.171</td></tr><tr class="summary"><td>汇总（4 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="lose">0.322</td><td class="win">1.775</td></tr></tbody></table></div><p class="note"><b>口径提示：</b>本节全部数字取自 103 号证据文件（Q95 = exp(percentile(|误差|, 95))），与 102 号文件（Q95 = percentile(exp(|误差|), 95)）在整库尺度上差 ≤1e-7，但在重尾小样本的 4+ 桶上可见差异（IMDB 4+ 桶 PG 列相差 2.68%）。两套数字各自成立，不可互相替代或混排。</p>
+</section>
+
+<section id="sources">
+  <h2><span class="num">03</span>源库：拟合诊断</h2>
+  <p class="lede">PRICE 在全部 26 个源库上训练过，我们训练过 23 个，所以这张表测的是<b>拟合能力</b>，不是漂移。它给出的是「模型在自己见过的分布里有多强」，以及 PRICE 官方权重在这批库上的拟合水平。</p><div class="tablewrap"><table><caption><b>26 源库分布统计</b></caption><thead><tr><th>统计量</th><th>值</th></tr></thead><tbody><tr><td>优于 PG 的库数</td><td>24 / 26</td></tr><tr><td>优于 PRICE 的库数</td><td>22 / 26</td></tr><tr><td>其中落在 seed 噪声带内</td><td>3（fnhk、movielens、sap）</td></tr><tr><td>噪声带外的稳赢</td><td>19 / 26</td></tr><tr><td>PRICE / 我们 中位</td><td>1.184（0.490 – 3.081）</td></tr><tr><td>PG / 我们 中位</td><td>2.066（0.872 – 4.978）</td></tr><tr><td>训练库 / 源验证库</td><td>23 库我们训练过（21 赢 2 输） / 3 库未训练（1 赢 2 输）</td></tr></tbody></table></div><figure class="figure"><figcaption><b>26 源库的相对位置。</b>我们相对 PRICE 的赢面集中在中段，两端是 chembl（我们大输）与 tpc_h（我们大赢）。</figcaption><ul class="legend"><li><span class="swatch" style="background:var(--series-ours)"></span>我们更好（比值 &gt; 1）</li><li><span class="swatch" style="background:var(--series-price)"></span>PRICE 更好（比值 &lt; 1）</li><li><span class="swatch" style="background:var(--accent);opacity:.5"></span>落在 seed 噪声带内（*）</li></ul><svg viewBox="0 0 780 550" role="img" aria-label="26 个源库的 PRICE 除以我们 的比值条形图，对数横轴，1.0 为持平线"><rect x="344.6" y="20" width="34.3" height="506" fill="var(--accent)" opacity="0.10"/><line x1="361.8" y1="14" x2="361.8" y2="530" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="4 3"/><text x="361.8" y="10" text-anchor="middle" font-size="11" fill="var(--muted-fg)">持平 1.00</text><text x="361.8" y="544" text-anchor="middle" font-size="10" fill="var(--accent)">seed 噪声带 ±6.28%</text><text x="0" y="42.0" font-size="11" fill="var(--fg)">tpc_h</text><rect x="361.8" y="33.0" width="316.6" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="683.3" y="42.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">3.081</text><text x="0" y="61.0" font-size="11" fill="var(--fg)">ssb</text><rect x="361.8" y="52.0" width="153.0" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="519.7" y="61.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.722</text><text x="0" y="80.0" font-size="11" fill="var(--fg)">hockey</text><rect x="361.8" y="71.0" width="144.7" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="511.4" y="80.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.672</text><text x="0" y="99.0" font-size="11" fill="var(--fg)">tournament</text><rect x="361.8" y="90.0" width="91.5" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="458.3" y="99.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.384</text><text x="0" y="118.0" font-size="11" fill="var(--fg)">grants</text><rect x="361.8" y="109.0" width="90.7" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="457.5" y="118.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.380</text><text x="0" y="137.0" font-size="11" fill="var(--fg)">baseball</text><rect x="361.8" y="128.0" width="84.0" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="450.7" y="137.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.348</text><text x="0" y="156.0" font-size="11" fill="var(--fg)">basketball</text><rect x="361.8" y="147.0" width="77.0" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="443.8" y="156.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.315</text><text x="0" y="175.0" font-size="11" fill="var(--fg)">sakila</text><rect x="361.8" y="166.0" width="74.3" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="441.1" y="175.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.303</text><text x="0" y="194.0" font-size="11" fill="var(--fg)">seznam</text><rect x="361.8" y="185.0" width="61.2" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="427.9" y="194.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.243</text><text x="0" y="213.0" font-size="11" fill="var(--fg)">legalacts</text><rect x="361.8" y="204.0" width="55.2" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="421.9" y="213.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.217</text><text x="0" y="232.0" font-size="11" fill="var(--fg)">talkingdata</text><rect x="361.8" y="223.0" width="51.9" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="418.7" y="232.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.203</text><text x="0" y="251.0" font-size="11" fill="var(--fg)">financial</text><rect x="361.8" y="242.0" width="50.6" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="417.4" y="251.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.197</text><text x="0" y="270.0" font-size="11" fill="var(--fg)">employee</text><rect x="361.8" y="261.0" width="48.6" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="415.3" y="270.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.189</text><text x="0" y="289.0" font-size="11" fill="var(--fg)">tubepricing</text><rect x="361.8" y="280.0" width="46.3" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="413.1" y="289.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.179</text><text x="0" y="308.0" font-size="11" fill="var(--fg)">ccs</text><rect x="361.8" y="299.0" width="44.2" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="411.0" y="308.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.170</text><text x="0" y="327.0" font-size="11" fill="var(--fg)">consumer</text><rect x="361.8" y="318.0" width="40.9" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="407.6" y="327.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.156</text><text x="0" y="346.0" font-size="11" fill="var(--fg)">credit</text><rect x="361.8" y="337.0" width="40.8" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="407.6" y="346.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.156</text><text x="0" y="365.0" font-size="11" fill="var(--fg)">carcinogenesis</text><rect x="361.8" y="356.0" width="38.3" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="405.0" y="365.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.146</text><text x="0" y="384.0" font-size="11" fill="var(--fg)">hepatitis</text><rect x="361.8" y="375.0" width="26.0" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="392.8" y="384.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.097</text><text x="0" y="403.0" font-size="11" fill="var(--fg)">sap</text><rect x="361.8" y="394.0" width="14.9" height="11" fill="var(--series-ours)" opacity="0.45" rx="1"/><text x="381.6" y="403.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.054*</text><text x="0" y="422.0" font-size="11" fill="var(--fg)">fnhk</text><rect x="361.8" y="413.0" width="14.8" height="11" fill="var(--series-ours)" opacity="0.45" rx="1"/><text x="381.5" y="422.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.054*</text><text x="0" y="441.0" font-size="11" fill="var(--fg)">movielens</text><rect x="361.8" y="432.0" width="13.1" height="11" fill="var(--series-ours)" opacity="0.45" rx="1"/><text x="379.8" y="441.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.048*</text><text x="0" y="460.0" font-size="11" fill="var(--fg)">accidents</text><rect x="360.0" y="451.0" width="1.7" height="11" fill="var(--series-price)" opacity="1" rx="1"/><text x="355.0" y="460.0" text-anchor="end" font-size="10.5" fill="var(--muted-fg)">0.994</text><text x="0" y="479.0" font-size="11" fill="var(--fg)">airline</text><rect x="341.1" y="470.0" width="20.6" height="11" fill="var(--series-price)" opacity="1" rx="1"/><text x="336.1" y="479.0" text-anchor="end" font-size="10.5" fill="var(--muted-fg)">0.929</text><text x="0" y="498.0" font-size="11" fill="var(--fg)">telstra</text><rect x="264.3" y="489.0" width="97.4" height="11" fill="var(--series-price)" opacity="1" rx="1"/><text x="259.3" y="498.0" text-anchor="end" font-size="10.5" fill="var(--muted-fg)">0.707</text><text x="0" y="517.0" font-size="11" fill="var(--fg)">chembl</text><rect x="161.0" y="508.0" width="200.7" height="11" fill="var(--series-price)" opacity="1" rx="1"/><text x="156.0" y="517.0" text-anchor="end" font-size="10.5" fill="var(--muted-fg)">0.490</text></svg><p class="axis-note">横轴为 PRICE / 我们的比值，对数刻度；条形跨过虚线即为我们更好。带 * 的三个库差距小于 94 号实测的 seed 间标准差 6.28%，应读作打平。</p></figure><div class="tablewrap"><table><caption><b>26 个源库 · unique-query Q95（K=0，1,279,218 条唯一查询）</b>　<span class="flag">拟合诊断</span>PRICE 在全部 26 库训练过，我们训练过 23 个，因此本表不是漂移证据。</caption><thead><tr><th>库</th><th>n</th><th>我们 Q95</th><th>PRICE Q95</th><th>PG Q95</th><th>PRICE / 我们</th><th>PG / 我们</th></tr></thead><tbody><tr><td>accidents</td><td>50,000</td><td>25.06</td><td>24.91</td><td>33.30</td><td class="tie">0.994</td><td class="win">1.329</td></tr><tr><td>airline</td><td>50,000</td><td>14.96</td><td>13.90</td><td>29.50</td><td class="lose">0.929</td><td class="win">1.972</td></tr><tr><td>baseball</td><td>50,000</td><td>21.33</td><td>28.75</td><td>93.69</td><td class="win">1.348</td><td class="win">4.392</td></tr><tr><td>basketball</td><td>50,000</td><td>16.48</td><td>21.68</td><td>34.00</td><td class="win">1.315</td><td class="win">2.063</td></tr><tr><td>carcinogenesis</td><td>50,000</td><td>6.05</td><td>6.94</td><td>9.32</td><td class="win">1.146</td><td class="win">1.540</td></tr><tr><td>ccs</td><td>50,000</td><td>6.29</td><td>7.36</td><td>17.00</td><td class="win">1.170</td><td class="win">2.704</td></tr><tr><td>chembl</td><td>50,000</td><td>68.23</td><td>33.43</td><td>146.06</td><td class="lose">0.490</td><td class="win">2.141</td></tr><tr><td>consumer</td><td>50,000</td><td>3.57</td><td>4.12</td><td>4.84</td><td class="win">1.156</td><td class="win">1.358</td></tr><tr><td>credit</td><td>50,000</td><td>3.16</td><td>3.66</td><td>3.89</td><td class="win">1.156</td><td class="win">1.230</td></tr><tr><td>employee</td><td>50,000</td><td>3.64</td><td>4.33</td><td>15.73</td><td class="win">1.189</td><td class="win">4.317</td></tr><tr><td>financial</td><td>50,000</td><td>5.98</td><td>7.16</td><td>10.35</td><td class="win">1.197</td><td class="win">1.729</td></tr><tr><td>fnhk<span class="flag noise">噪声带内</span></td><td>50,000</td><td>31.98</td><td>33.71</td><td>66.17</td><td class="win">1.054</td><td class="win">2.069</td></tr><tr><td>grants</td><td>50,000</td><td>11.93</td><td>16.47</td><td>34.00</td><td class="win">1.380</td><td class="win">2.851</td></tr><tr><td>hepatitis</td><td>50,000</td><td>3.66</td><td>4.02</td><td>6.25</td><td class="win">1.097</td><td class="win">1.705</td></tr><tr><td>hockey</td><td>50,000</td><td>6.50</td><td>10.87</td><td>23.00</td><td class="win">1.672</td><td class="win">3.540</td></tr><tr><td>legalacts</td><td>49,504</td><td>9.71</td><td>11.82</td><td>26.00</td><td class="win">1.217</td><td class="win">2.677</td></tr><tr><td>movielens<span class="flag noise">噪声带内</span></td><td>50,000</td><td>27.57</td><td>28.88</td><td>63.81</td><td class="win">1.048</td><td class="win">2.315</td></tr><tr><td>sakila</td><td>50,000</td><td>2.20</td><td>2.87</td><td>2.41</td><td class="win">1.303</td><td class="win">1.093</td></tr><tr><td>sap<span class="flag noise">噪声带内</span></td><td>29,714</td><td>11.41</td><td>12.03</td><td>12.93</td><td class="win">1.054</td><td class="win">1.133</td></tr><tr><td>seznam</td><td>50,000</td><td>6.00</td><td>7.45</td><td>15.04</td><td class="win">1.243</td><td class="win">2.509</td></tr><tr><td>ssb</td><td>50,000</td><td>2.17</td><td>3.74</td><td>2.39</td><td class="win">1.722</td><td class="win">1.102</td></tr><tr><td>talkingdata</td><td>50,000</td><td>26.83</td><td>32.28</td><td>56.47</td><td class="win">1.203</td><td class="win">2.104</td></tr><tr><td>telstra</td><td>50,000</td><td>7.99</td><td>5.65</td><td>6.97</td><td class="lose">0.707</td><td class="lose">0.872</td></tr><tr><td>tournament</td><td>50,000</td><td>5.04</td><td>6.98</td><td>25.08</td><td class="win">1.384</td><td class="win">4.978</td></tr><tr><td>tpc_h</td><td>50,000</td><td>2.23</td><td>6.87</td><td>2.08</td><td class="win">3.081</td><td class="lose">0.932</td></tr><tr><td>tubepricing</td><td>50,000</td><td>6.33</td><td>7.46</td><td>28.74</td><td class="win">1.179</td><td class="win">4.542</td></tr><tr class="summary"><td>汇总（26 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="win">1.184</td><td class="win">2.066</td></tr></tbody></table></div>
+</section>
+
+<section id="flip">
+  <h2><span class="num">04</span>漂移与拟合的反转</h2>
+  <p class="lede">把两组并排放，结论就出来了：同一个模型，在没见过的库上落后，在见过的库上更好。赢面集中在模型见过的分布里。</p><figure class="figure"><figcaption><b>反转。</b>同一个模型，在双方都没见过的库上落后 1.8 倍，在 PRICE 见过且我们多数也见过的库上好 1.18 倍。</figcaption><svg viewBox="0 0 780 250" role="img" aria-label="目标库与源库的 PRICE 除以我们 中位比值对比，1.0 为持平线"><line x1="217.9" y1="40" x2="217.9" y2="200" stroke="var(--border)"/><text x="217.9" y="218" text-anchor="middle" font-size="11" fill="var(--muted-fg)">0.5</text><line x1="429.0" y1="40" x2="429.0" y2="200" stroke="var(--border)"/><text x="429.0" y="218" text-anchor="middle" font-size="11" fill="var(--muted-fg)">1.0</text><line x1="640.0" y1="40" x2="640.0" y2="200" stroke="var(--border)"/><text x="640.0" y="218" text-anchor="middle" font-size="11" fill="var(--muted-fg)">2.0</text><line x1="429.0" y1="40" x2="429.0" y2="200" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="4 3"/><text x="429.0" y="30" text-anchor="middle" font-size="11" fill="var(--muted-fg)">持平 1.00（PRICE 与我们打平）</text><line x1="252.9" y1="70" x2="480.3" y2="170" stroke="var(--series-ours)" stroke-width="2" fill="none"/><circle cx="252.9" cy="70" r="7" fill="var(--series-price)"/><text x="266.9" y="74" font-size="13" font-weight="600" fill="var(--fg)">0.561</text><text x="0" y="74" font-size="12" fill="var(--muted-fg)">目标库（4，双方都没训练）</text><circle cx="480.3" cy="170" r="7" fill="var(--series-ours)"/><text x="494.3" y="174" font-size="13" font-weight="600" fill="var(--fg)">1.184</text><text x="0" y="174" font-size="12" fill="var(--muted-fg)">源库（26，PRICE 全训练）</text></svg><p class="axis-note">纵轴为场景、横轴为 PRICE / 我们的中位比值（对数刻度）。同一条连线跨过持平线，说明赢面来源在两组之间发生了反转。</p></figure><div class="tablewrap"><table><caption><b>同一模型的两种场景</b>　左列是双方都没训练过的库（漂移证据），右列是 PRICE 全训练过、我们训练过 23 个的库（拟合诊断）。</caption><thead><tr><th>指标</th><th>目标库（4，对等）</th><th>源库（26，不对称）</th></tr></thead><tbody><tr><td>Q95 输给 PRICE 的库</td><td>4 / 4</td><td>4 / 26</td></tr><tr><td>Q95 输给 PG 的库</td><td>1 / 4</td><td>2 / 26</td></tr><tr><td>PRICE / 我们 中位</td><td>0.561</td><td>1.184</td></tr><tr><td>PRICE / 我们 范围</td><td>0.183 – 0.686</td><td>0.490 – 3.081</td></tr><tr><td>PG / 我们 中位</td><td>1.965</td><td>2.066</td></tr><tr><td>与真值相关性落后 PRICE 的库</td><td>4 / 4</td><td>3 / 26</td></tr><tr><td>dCorr 中位（PRICE − 我们）</td><td>+0.0212</td><td>-0.0053</td></tr><tr><td>我们离散度大于 PRICE 的库</td><td>4 / 4</td><td>18 / 26</td></tr></tbody></table></div>
+</section>
+
+<section id="error">
+  <h2><span class="num">05</span>误差结构诊断</h2>
+  <p class="lede">102 号称出了差距但没回答为什么。103 号把它拆成两个候选解释，用 30 库的误差分解检验：<b>不是校准问题</b>（偏差中位贴近零），<b>不是过度收缩</b>（我们预测更散），<b>是排序一致性差一截</b>，而且这个差距精确跟随训练曝光。</p><div class="tablewrap"><table><caption><b>30 库误差分解（K=0，全量唯一查询）</b>　bias 为 log 空间中位偏差，over% 为高估占比，corr 为与真值的 Pearson 相关，std 为预测离散度（对数空间）。</caption><thead><tr><th>库</th><th>组</th><th>我们 bias</th><th>我们 over%</th><th>我们 corr</th><th>PRICE corr</th><th>dCorr</th><th>我们 std</th><th>PRICE std</th></tr></thead><tbody><tr><td>stats</td><td>目标</td><td>+0.111</td><td>58.9%</td><td>0.8393</td><td>0.8702</td><td>+0.0309</td><td>3.554</td><td>3.387</td></tr><tr><td>genome</td><td>目标</td><td>+0.047</td><td>57.8%</td><td>0.9454</td><td>0.9670</td><td>+0.0216</td><td>4.563</td><td>4.381</td></tr><tr><td>ergastf1</td><td>目标</td><td>+0.001</td><td>50.0%</td><td>0.9489</td><td>0.9592</td><td>+0.0103</td><td>4.094</td><td>3.983</td></tr><tr><td>imdb</td><td>目标</td><td>-0.454</td><td>27.6%</td><td>0.9226</td><td>0.9434</td><td>+0.0208</td><td>3.738</td><td>3.467</td></tr><tr><td>accidents</td><td>源</td><td>-0.053</td><td>45.9%</td><td>0.9428</td><td>0.9413</td><td>-0.0015</td><td>4.267</td><td>4.115</td></tr><tr><td>airline</td><td>源</td><td>-0.043</td><td>43.9%</td><td>0.9479</td><td>0.9474</td><td>-0.0005</td><td>3.548</td><td>3.531</td></tr><tr><td>baseball</td><td>源</td><td>-0.026</td><td>48.3%</td><td>0.9502</td><td>0.9396</td><td>-0.0106</td><td>4.392</td><td>4.324</td></tr><tr><td>basketball</td><td>源</td><td>-0.113</td><td>41.3%</td><td>0.9559</td><td>0.9490</td><td>-0.0070</td><td>4.319</td><td>4.247</td></tr><tr><td>carcinogenesis</td><td>源</td><td>+0.001</td><td>50.1%</td><td>0.9625</td><td>0.9544</td><td>-0.0080</td><td>2.927</td><td>2.956</td></tr><tr><td>ccs</td><td>源</td><td>-0.086</td><td>40.3%</td><td>0.9363</td><td>0.9228</td><td>-0.0135</td><td>2.089</td><td>2.152</td></tr><tr><td>chembl</td><td>源</td><td>+0.022</td><td>51.1%</td><td>0.8451</td><td>0.8990</td><td>+0.0539</td><td>3.281</td><td>3.142</td></tr><tr><td>consumer</td><td>源</td><td>-0.025</td><td>42.7%</td><td>0.9862</td><td>0.9824</td><td>-0.0038</td><td>3.182</td><td>3.137</td></tr><tr><td>credit</td><td>源</td><td>-0.025</td><td>44.2%</td><td>0.9892</td><td>0.9854</td><td>-0.0038</td><td>3.600</td><td>3.492</td></tr><tr><td>employee</td><td>源</td><td>+0.006</td><td>51.7%</td><td>0.9901</td><td>0.9878</td><td>-0.0023</td><td>4.060</td><td>4.223</td></tr><tr><td>financial</td><td>源</td><td>+0.004</td><td>50.6%</td><td>0.9754</td><td>0.9701</td><td>-0.0053</td><td>3.630</td><td>3.485</td></tr><tr><td>fnhk</td><td>源</td><td>-0.222</td><td>33.7%</td><td>0.9503</td><td>0.9406</td><td>-0.0097</td><td>4.414</td><td>4.406</td></tr><tr><td>grants</td><td>源</td><td>+0.106</td><td>59.5%</td><td>0.9456</td><td>0.9285</td><td>-0.0171</td><td>3.075</td><td>3.150</td></tr><tr><td>hepatitis</td><td>源</td><td>-0.043</td><td>46.3%</td><td>0.8979</td><td>0.8845</td><td>-0.0134</td><td>1.316</td><td>1.280</td></tr><tr><td>hockey</td><td>源</td><td>-0.020</td><td>48.4%</td><td>0.9317</td><td>0.8927</td><td>-0.0390</td><td>2.316</td><td>2.352</td></tr><tr><td>legalacts</td><td>源</td><td>-0.110</td><td>36.0%</td><td>0.9220</td><td>0.9121</td><td>-0.0099</td><td>2.357</td><td>2.584</td></tr><tr><td>movielens</td><td>源</td><td>-0.161</td><td>41.3%</td><td>0.9089</td><td>0.9158</td><td>+0.0069</td><td>3.154</td><td>3.077</td></tr><tr><td>sakila</td><td>源</td><td>-0.021</td><td>41.1%</td><td>0.9943</td><td>0.9915</td><td>-0.0028</td><td>3.442</td><td>3.252</td></tr><tr><td>sap</td><td>源</td><td>-0.047</td><td>41.8%</td><td>0.9449</td><td>0.9433</td><td>-0.0016</td><td>3.172</td><td>3.149</td></tr><tr><td>seznam</td><td>源</td><td>-0.189</td><td>33.2%</td><td>0.9745</td><td>0.9696</td><td>-0.0049</td><td>3.653</td><td>3.554</td></tr><tr><td>ssb</td><td>源</td><td>-0.039</td><td>30.2%</td><td>0.9920</td><td>0.9861</td><td>-0.0059</td><td>3.251</td><td>3.015</td></tr><tr><td>talkingdata</td><td>源</td><td>-0.035</td><td>48.4%</td><td>0.9243</td><td>0.9156</td><td>-0.0087</td><td>3.948</td><td>3.888</td></tr><tr><td>telstra</td><td>源</td><td>+0.083</td><td>57.5%</td><td>0.9397</td><td>0.9565</td><td>+0.0167</td><td>2.708</td><td>2.736</td></tr><tr><td>tournament</td><td>源</td><td>-0.026</td><td>46.7%</td><td>0.9861</td><td>0.9808</td><td>-0.0053</td><td>4.450</td><td>4.268</td></tr><tr><td>tpc_h</td><td>源</td><td>-0.026</td><td>39.4%</td><td>0.9912</td><td>0.9814</td><td>-0.0098</td><td>3.934</td><td>3.516</td></tr><tr><td>tubepricing</td><td>源</td><td>+0.027</td><td>51.3%</td><td>0.9355</td><td>0.9350</td><td>-0.0005</td><td>2.425</td><td>2.639</td></tr><tr class="summary"><td>目标库中位</td><td>目标</td><td>+0.024</td><td>53.9%</td><td>—</td><td>—</td><td>+0.0212</td><td>—</td><td>—</td></tr><tr class="summary"><td>源库中位</td><td>源</td><td>-0.026</td><td>45.0%</td><td>—</td><td>—</td><td>-0.0053</td><td>—</td><td>—</td></tr></tbody></table></div><p class="note"><b>更正：</b>第一轮 7 库上「corr 与 Q95 一一对应」成立，扩到 30 库后只有 27/30 一致（accidents、airline 的 corr 略高但 Q95 输不足 1%，实为打平；movielens 的 corr 略低但 Q95 赢）。相关性解释了大部分 Q95 胜负，但不是唯一决定因素。</p>
+</section>
+
+<section id="fewshot">
+  <h2><span class="num">06</span>少样本适应（K&gt;0）</h2>
+  <p class="lede">上面所有数字都是 <b>K=0 零样本</b>，而课题是<b>空间漂移下的少样本元适应</b>。14 号的 K&gt;0 轨迹是另一半：适应在 genome 上把差距显著缩小，在 stats 上反而变差（负迁移），在 ergastf1 上基本持平——但三种情况下都没有超过 PRICE。</p><div class="grid3"><figure class="figure" style="margin:0"><svg viewBox="0 0 300 230" role="img" aria-label="stats 目标库上我们与 PRICE 的 Q95 随 K 的变化"><text x="0" y="12" font-size="12" font-weight="600" fill="var(--fg)">stats</text><line x1="46" y1="190.0" x2="276" y2="190.0" stroke="var(--border)"/><text x="41" y="193.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">29</text><line x1="46" y1="108.0" x2="276" y2="108.0" stroke="var(--border)"/><text x="41" y="111.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">80</text><line x1="46" y1="26.0" x2="276" y2="26.0" stroke="var(--border)"/><text x="41" y="29.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">218</text><line x1="46" y1="165.5" x2="276" y2="165.5" stroke="var(--series-price)" stroke-width="1.5" stroke-dasharray="5 3"/><text x="276" y="160.5" text-anchor="end" font-size="10" fill="var(--series-price)">PRICE 39.5</text><polyline points="46.0,109.2 92.0,50.5 138.0,87.5 184.0,98.4 230.0,88.9 276.0,91.4" fill="none" stroke="var(--series-ours)" stroke-width="2"/><circle cx="46.0" cy="109.2" r="3.5" fill="var(--series-ours)"/><text x="46.0" y="101.2" text-anchor="middle" font-size="9" fill="var(--muted-fg)">79</text><circle cx="92.0" cy="50.5" r="3.5" fill="var(--series-ours)"/><text x="92.0" y="42.5" text-anchor="middle" font-size="9" fill="var(--muted-fg)">162</text><circle cx="138.0" cy="87.5" r="3.5" fill="var(--series-ours)"/><text x="138.0" y="79.5" text-anchor="middle" font-size="9" fill="var(--muted-fg)">103</text><circle cx="184.0" cy="98.4" r="3.5" fill="var(--series-ours)"/><text x="184.0" y="90.4" text-anchor="middle" font-size="9" fill="var(--muted-fg)">90</text><circle cx="230.0" cy="88.9" r="3.5" fill="var(--series-ours)"/><text x="230.0" y="80.9" text-anchor="middle" font-size="9" fill="var(--muted-fg)">101</text><circle cx="276.0" cy="91.4" r="3.5" fill="var(--series-ours)"/><text x="276.0" y="83.4" text-anchor="middle" font-size="9" fill="var(--muted-fg)">98</text><text x="46.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=0</text><text x="92.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=5</text><text x="138.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=10</text><text x="184.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=20</text><text x="230.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=50</text><text x="276.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=100</text></svg><p class="axis-note">纵轴对数刻度。</p></figure><figure class="figure" style="margin:0"><svg viewBox="0 0 300 230" role="img" aria-label="genome 目标库上我们与 PRICE 的 Q95 随 K 的变化"><text x="0" y="12" font-size="12" font-weight="600" fill="var(--fg)">genome</text><line x1="46" y1="190.0" x2="276" y2="190.0" stroke="var(--border)"/><text x="41" y="193.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">23</text><line x1="46" y1="108.0" x2="276" y2="108.0" stroke="var(--border)"/><text x="41" y="111.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">85</text><line x1="46" y1="26.0" x2="276" y2="26.0" stroke="var(--border)"/><text x="41" y="29.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">310</text><line x1="46" y1="171.0" x2="276" y2="171.0" stroke="var(--series-price)" stroke-width="1.5" stroke-dasharray="5 3"/><text x="276" y="166.0" text-anchor="end" font-size="10" fill="var(--series-price)">PRICE 31.3</text><polyline points="46.0,45.0 92.0,71.8 138.0,80.2 184.0,97.3 230.0,100.9 276.0,94.1" fill="none" stroke="var(--series-ours)" stroke-width="2"/><circle cx="46.0" cy="45.0" r="3.5" fill="var(--series-ours)"/><text x="46.0" y="37.0" text-anchor="middle" font-size="9" fill="var(--muted-fg)">230</text><circle cx="92.0" cy="71.8" r="3.5" fill="var(--series-ours)"/><text x="92.0" y="63.8" text-anchor="middle" font-size="9" fill="var(--muted-fg)">150</text><circle cx="138.0" cy="80.2" r="3.5" fill="var(--series-ours)"/><text x="138.0" y="72.2" text-anchor="middle" font-size="9" fill="var(--muted-fg)">132</text><circle cx="184.0" cy="97.3" r="3.5" fill="var(--series-ours)"/><text x="184.0" y="89.3" text-anchor="middle" font-size="9" fill="var(--muted-fg)">101</text><circle cx="230.0" cy="100.9" r="3.5" fill="var(--series-ours)"/><text x="230.0" y="92.9" text-anchor="middle" font-size="9" fill="var(--muted-fg)">95</text><circle cx="276.0" cy="94.1" r="3.5" fill="var(--series-ours)"/><text x="276.0" y="86.1" text-anchor="middle" font-size="9" fill="var(--muted-fg)">106</text><text x="46.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=0</text><text x="92.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=5</text><text x="138.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=10</text><text x="184.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=20</text><text x="230.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=50</text><text x="276.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=100</text></svg><p class="axis-note">纵轴对数刻度。</p></figure><figure class="figure" style="margin:0"><svg viewBox="0 0 300 230" role="img" aria-label="ergastf1 目标库上我们与 PRICE 的 Q95 随 K 的变化"><text x="0" y="12" font-size="12" font-weight="600" fill="var(--fg)">ergastf1</text><line x1="46" y1="190.0" x2="276" y2="190.0" stroke="var(--border)"/><text x="41" y="193.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">11</text><line x1="46" y1="108.0" x2="276" y2="108.0" stroke="var(--border)"/><text x="41" y="111.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">19</text><line x1="46" y1="26.0" x2="276" y2="26.0" stroke="var(--border)"/><text x="41" y="29.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">32</text><line x1="46" y1="142.6" x2="276" y2="142.6" stroke="var(--series-price)" stroke-width="1.5" stroke-dasharray="5 3"/><text x="276" y="137.6" text-anchor="end" font-size="10" fill="var(--series-price)">PRICE 15.3</text><polyline points="46.0,73.4 92.0,75.3 138.0,76.8 184.0,74.5 230.0,82.1 276.0,84.7" fill="none" stroke="var(--series-ours)" stroke-width="2"/><circle cx="46.0" cy="73.4" r="3.5" fill="var(--series-ours)"/><text x="46.0" y="65.4" text-anchor="middle" font-size="9" fill="var(--muted-fg)">24</text><circle cx="92.0" cy="75.3" r="3.5" fill="var(--series-ours)"/><text x="92.0" y="67.3" text-anchor="middle" font-size="9" fill="var(--muted-fg)">23</text><circle cx="138.0" cy="76.8" r="3.5" fill="var(--series-ours)"/><text x="138.0" y="68.8" text-anchor="middle" font-size="9" fill="var(--muted-fg)">23</text><circle cx="184.0" cy="74.5" r="3.5" fill="var(--series-ours)"/><text x="184.0" y="66.5" text-anchor="middle" font-size="9" fill="var(--muted-fg)">24</text><circle cx="230.0" cy="82.1" r="3.5" fill="var(--series-ours)"/><text x="230.0" y="74.1" text-anchor="middle" font-size="9" fill="var(--muted-fg)">22</text><circle cx="276.0" cy="84.7" r="3.5" fill="var(--series-ours)"/><text x="276.0" y="76.7" text-anchor="middle" font-size="9" fill="var(--muted-fg)">22</text><text x="46.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=0</text><text x="92.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=5</text><text x="138.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=10</text><text x="184.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=20</text><text x="230.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=50</text><text x="276.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=100</text></svg><p class="axis-note">纵轴对数刻度。</p></figure></div><p class="axis-note">曲线为 ERM-sum 臂在三个目标库上的 Q95（臂 × seed 均值），虚线为 PRICE 的 <b>K=0</b> 值；PRICE 自己的 K&gt;0 值见下表（它在 stats / genome 上同样没有优于自己的 K=0）。genome 上我们的适应把差距缩小，stats 上适应反而变差，ergastf1 基本持平。</p><div class="tablewrap"><table><caption><b>目标库 few-shot 轨迹（臂 × seed 均值，3 seed × 5 support 抽样）</b>　口径与上方 K=0 population 表不同（episode 均值 vs 全库 population），两者不可互换；PRICE 列是 <b>PRICE 自己的少样本值</b>，不是常数——K&gt;0 时它同样适应，PG 与 K 无关。</caption><thead><tr><th>库</th><th>K</th><th>FOMAML-set</th><th>ERM-set</th><th>FOMAML-sum</th><th>ERM-sum</th><th>PRICE†</th><th>PG</th></tr></thead><tbody><tr><td>stats</td><td>0</td><td>77.32 ± 2.50</td><td>79.37 ± 5.87</td><td>78.02 ± 2.13</td><td>78.77 ± 6.32</td><td>39.52</td><td>75.65</td></tr><tr><td>stats</td><td>5</td><td>96.29 ± 10.02</td><td>116.06 ± 18.58</td><td>96.77 ± 8.85</td><td>161.68 ± 41.80</td><td>43.59</td><td>75.65</td></tr><tr><td>stats</td><td>10</td><td>85.74 ± 4.21</td><td>91.99 ± 9.88</td><td>85.61 ± 4.97</td><td>102.75 ± 11.39</td><td>41.88</td><td>75.65</td></tr><tr><td>stats</td><td>20</td><td>84.20 ± 3.94</td><td>88.70 ± 8.28</td><td>86.41 ± 6.94</td><td>89.87 ± 4.94</td><td>41.83</td><td>75.65</td></tr><tr><td>stats</td><td>50</td><td>90.04 ± 7.58</td><td>97.91 ± 11.58</td><td>90.25 ± 6.38</td><td>100.98 ± 5.95</td><td>42.92</td><td>75.65</td></tr><tr><td>stats</td><td>100</td><td>86.76 ± 5.35</td><td>94.81 ± 12.36</td><td>88.98 ± 7.47</td><td>97.96 ± 6.60</td><td>42.39</td><td>75.65</td></tr><tr><td>genome</td><td>0</td><td>248.69 ± 67.29</td><td>374.09 ± 27.35</td><td>220.30 ± 65.47</td><td>229.64 ± 20.65</td><td>31.34</td><td>1907.32</td></tr><tr><td>genome</td><td>5</td><td>171.96 ± 32.59</td><td>220.31 ± 23.75</td><td>162.91 ± 40.92</td><td>150.39 ± 7.98</td><td>42.40</td><td>1907.32</td></tr><tr><td>genome</td><td>10</td><td>135.47 ± 14.76</td><td>171.81 ± 13.80</td><td>141.12 ± 43.79</td><td>131.63 ± 8.66</td><td>42.96</td><td>1907.32</td></tr><tr><td>genome</td><td>20</td><td>122.99 ± 17.43</td><td>129.99 ± 14.41</td><td>129.76 ± 41.94</td><td>100.51 ± 10.34</td><td>40.75</td><td>1907.32</td></tr><tr><td>genome</td><td>50</td><td>125.63 ± 17.27</td><td>124.14 ± 13.65</td><td>128.89 ± 36.38</td><td>94.96 ± 13.11</td><td>38.45</td><td>1907.32</td></tr><tr><td>genome</td><td>100</td><td>137.66 ± 22.13</td><td>137.33 ± 14.48</td><td>135.94 ± 34.81</td><td>105.71 ± 12.49</td><td>39.05</td><td>1907.32</td></tr><tr><td>ergastf1</td><td>0</td><td>24.53 ± 0.91</td><td>26.14 ± 2.02</td><td>24.03 ± 0.96</td><td>23.70 ± 1.94</td><td>15.29</td><td>27.61</td></tr><tr><td>ergastf1</td><td>5</td><td>23.69 ± 1.52</td><td>24.24 ± 1.24</td><td>23.58 ± 0.20</td><td>23.42 ± 1.62</td><td>14.80</td><td>27.61</td></tr><tr><td>ergastf1</td><td>10</td><td>24.10 ± 1.50</td><td>24.66 ± 1.79</td><td>23.62 ± 0.39</td><td>23.20 ± 1.80</td><td>14.61</td><td>27.61</td></tr><tr><td>ergastf1</td><td>20</td><td>24.18 ± 1.19</td><td>24.02 ± 2.13</td><td>23.66 ± 0.63</td><td>23.53 ± 2.08</td><td>14.53</td><td>27.61</td></tr><tr><td>ergastf1</td><td>50</td><td>23.91 ± 1.64</td><td>23.49 ± 1.75</td><td>23.13 ± 0.73</td><td>22.43 ± 2.06</td><td>14.41</td><td>27.61</td></tr><tr><td>ergastf1</td><td>100</td><td>23.75 ± 1.63</td><td>23.46 ± 1.59</td><td>23.15 ± 0.74</td><td>22.06 ± 2.31</td><td>14.46</td><td>27.61</td></tr></tbody></table></div>
+</section>
+
+<section id="limits">
+  <h2><span class="num">07</span>边界与不可声称</h2>
+  
+<ul class="limits">
+  <li><span class="tag ok">可写</span><span>对传统估计器 PG，目标库 3/4 赢、源库 24/26 赢；
+  IMDB 上 Q50 首次优于 PG（2.037 vs 2.278）。</span></li>
+  <li><span class="tag ok">可写</span><span>源分布内的拟合可超过给定的 PRICE 参考（22/26，
+  其中 19 个稳赢、3 个打平）。</span></li>
+  <li><span class="tag no">不可写</span><span>“我们优于 PRICE”——对等漂移场景是 0/4。</span></li>
+  <li><span class="tag no">不可写</span><span>“22/26 优于 PRICE”而不带拟合限定——PRICE 全见过这些库。</span></li>
+  <li><span class="tag no">不可写</span><span>“四目标库完整验收”——IMDB 只有 K=0，没有 few-shot 行。</span></li>
+  <li><span class="tag no">不可写</span><span>把源库的 4+ 桶值与 102 号的桶值混排——两份证据文件的 Q95
+  定义不同（倍数空间 vs 对数空间），IMDB 4+ 桶的 PG 列相差 2.68%。</span></li>
+  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 0.904，属于打平而非胜负。</span></li>
+</ul>
+<p class="small muted">其它限定：所有 ours 侧数字为<b>单 seed（42）</b>，标记
+<code>needs_evidence</code>；94 号实测 seed 间标准差 6.28pp，大于本表多数效应量；
+推理耗时不等于数据库端到端加速；本页只测精度。</p>
+
+</section>
+
+<section id="evidence">
+  <h2><span class="num">08</span>证据与复算</h2>
+  
+<p>本报告的每个数字都由 <code>scripts/build_advisor_report.py</code> 从下列已入库的证据文件计算，
+不手工誊抄。生成时会做三组断言，任何不一致都会中止构建：</p>
+<ul class="small">
+  <li>30 库 Q95 与 <code>cross_database</code> 计数自洽；</li>
+  <li>14 号表格中可由 JSON 复现的三个臂（FOMAML-set / ERM-set / ERM-sum）逐格对得上
+  （容差 0.01），第四臂 FOMAML-sum 因 seed44 摘要为空只取文档值；</li>
+  <li>14 号的 PRICE / PG 两列与 30 库证据文件的 K=0 值一致。</li>
+</ul>
+<div class="evidence"><div>2af6cbc65ae146cc94e61b7d4d3038976e347205daa30a06fce0e1427120e0f7  实验文档/results/p2-2-error-structure-broad-20261021/summary.json
+54ba799f7b83d74d4b2609bc15e3985d3d919cffa4dda7e98c90ffe3ed5060ea  实验文档/results/p2-2-error-structure-broad-20261021/protocol.json
+af063ca1e8bf3b9257b05c0123455eac99585d0dfc74a67bf67c64a38e2b58a7  实验文档/results/p2-2-target-imdb-20261021/summary.json
+6607c3502934c62673d5320d4680f9bfacc0406504f3b3a09e55b3c416fd8d4d  实验文档/results/p2-2-price-population-broad-20261021/summary.json
+63c1dbe1ea9f1389155a23b93aacb38d39f4f018918cb8ce41368cb53c6703aa  实验文档/14-离线实验统一对照与论文结论.md
+62779cad081eba915fb40b1b83129b36163ca09817d754c9a75eef6c38525f41  实验文档/results/frozen3-20260927/s42-summary.json
+0a492a9d223b0ad05d9ea9301eac2614e11cb1567a686c1f607636722b32762a  实验文档/results/erm-s42-summary.json
+1e3bda5838ab2e0a8351334918955316305feda75af8e5aa866966c03f51819a  实验文档/results/erm-sum-target-20260927/s42-summary.json
+19af5b2d1901934a8d92846c3e6c5caa982bd5dd9bbf110a7cf3fe110f44cc60  实验文档/results/frozen3-20260927/s43-summary.json
+e2eeb6652dfe6a0d76b56a47f56ece9b2748c574e33b03f2065f0b6c582c7cc2  实验文档/results/erm-s43-summary.json
+355c9a37a65706f884b0036eb97686e764c55d64766b212b05943f3335118545  实验文档/results/erm-sum-target-20260927/s43-summary.json
+c5f58c286c73d2441fac110ae1bceb6d3f60f42dc82ba7c8d1c21cb92429bde5  实验文档/results/frozen3-20260927/s44-summary.json
+beb768b5fca48fdc5baeb8735dee1444e098e1908e78511f701fa61d78f54f01  实验文档/results/erm-s44-summary.json
+e899877667eff583af60dd5d62f190548b4f507e3520c717a60ff6bdd4fafb94  实验文档/results/erm-sum-target-20260927/s44-summary.json</div></div>
+<p class="small muted">证据等级：<code>single_seed_frozen_checkpoint_full_population</code>；
+<code>needs_evidence = true</code>，
+理由：ours_k0 is one seed (42); this diagnosis inherits every single-seed caveat of the accuracy tables it explains。
+<code>target_databases_read = ['stats', 'genome', 'ergastf1', 'imdb']</code>，仅用于最终评估。</p>
+
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>本报告由 scripts/build_advisor_report.py 从已入库证据文件生成，数字未手工誊抄；生成时对三组一致性做断言。原始记录见实验文档 102 / 103 号，证据 JSON 见 实验文档/results/p2-2-*-20261021/。</p>
+  </div>
+</footer>
+</body>
+</html>

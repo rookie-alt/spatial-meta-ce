@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#1E3A5F; --on-primary:#FFFFFF;
+  --secondary:#2563EB; --accent:#A16207;
+  --bg:#F8FAFC; --fg:#0F172A; --card:#FFFFFF;
+  --muted:#E9EEF5; --muted-fg:#475569; --border:#CBD5E1;
+  --destructive:#DC2626;
+  --series-ours:#1E3A5F; --series-price:#A16207; --series-pg:#64748B;
+  --win:#15803D; --tie:#64748B; --lose:#B91C1C;
+  --serif:"EB Garamond",Georgia,"Songti SC",serif;
+  --sans:"Helvetica Neue",Helvetica,Inter,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+  --mono:"Fira Code",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --s1:4px; --s2:8px; --s3:16px; --s4:24px; --s5:32px; --s6:48px; --s7:64px;
+  --r:2px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0B1220; --fg:#E6EDF6; --card:#111A2C; --muted:#1B2740; --muted-fg:#9FB0C7;
+    --border:#2B3A55; --primary:#7FA8D9; --on-primary:#0B1220; --secondary:#60A5FA;
+    --accent:#E0A458; --destructive:#F87171;
+    --series-ours:#8FB8E6; --series-price:#E0A458; --series-pg:#94A3B8;
+    --win:#4ADE80; --tie:#94A3B8; --lose:#F87171;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  font-variant-numeric:tabular-nums;
+}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:var(--s3);top:var(--s3);position:fixed;z-index:99;background:var(--primary);
+  color:var(--on-primary);padding:var(--s2) var(--s3);border-radius:var(--r)}
+:focus-visible{outline:2px solid var(--secondary);outline-offset:2px}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--s4) var(--s7)}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:1px solid var(--border);background:var(--card)}
+.masthead .wrap{padding-top:var(--s6);padding-bottom:var(--s5)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-fg);
+  font-weight:600;margin:0 0 var(--s2)}
+h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,50px);line-height:1.12;font-weight:600;
+  margin:0 0 var(--s2);letter-spacing:-.01em}
+.subtitle{font-size:19px;color:var(--muted-fg);margin:0 0 var(--s4);max-width:70ch}
+.factgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;
+  background:var(--border);border:1px solid var(--border)}
+.fact{background:var(--card);padding:var(--s3)}
+.fact dt{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-fg);
+  font-weight:600;margin:0 0 var(--s1)}
+.fact dd{margin:0;font-size:14px;line-height:1.5}
+.fact dd code{font-family:var(--mono);font-size:12px;word-break:break-all}
+
+/* ---------- sections ---------- */
+section{padding-top:var(--s6);scroll-margin-top:var(--s4)}
+h2{font-family:var(--serif);font-size:clamp(24px,3vw,32px);font-weight:600;margin:0 0 var(--s2);
+  letter-spacing:-.005em;display:flex;align-items:baseline;gap:var(--s3)}
+h2 .num{font-family:var(--mono);font-size:13px;color:var(--muted-fg);font-weight:500;
+  border:1px solid var(--border);padding:2px 8px;border-radius:var(--r);flex:none}
+h3{font-size:17px;font-weight:600;margin:var(--s5) 0 var(--s2)}
+.lede{font-size:17px;max-width:76ch;margin:0 0 var(--s4);color:var(--fg)}
+p{max-width:76ch;margin:0 0 var(--s3)}
+.muted{color:var(--muted-fg)}
+.small{font-size:14px}
+code{font-family:var(--mono);font-size:.88em;background:var(--muted);padding:1px 5px;border-radius:var(--r)}
+
+/* ---------- verdict ---------- */
+.verdict{border:1px solid var(--primary);border-left-width:4px;background:var(--card);
+  padding:var(--s4) var(--s5);margin-bottom:var(--s4)}
+.verdict p:last-child{margin-bottom:0}
+.verdict .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  color:var(--primary);margin:0 0 var(--s2)}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto;border:1px solid var(--border);background:var(--card);margin:0 0 var(--s3)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+caption{text-align:left;padding:var(--s3) var(--s3) var(--s2);font-size:13px;color:var(--muted-fg)}
+caption b{color:var(--fg);font-weight:600}
+th,td{padding:7px var(--s3);text-align:right;white-space:nowrap;border-bottom:1px solid var(--border)}
+th{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted-fg);
+  font-weight:600;background:var(--muted);position:sticky;top:0}
+th:first-child,td:first-child{text-align:left}
+tbody tr:last-child td{border-bottom:none}
+tr.group td{background:var(--muted);font-weight:600;font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted-fg)}
+tr.summary td{background:var(--muted);font-weight:600}
+tr.summary td:first-child{border-left:3px solid var(--primary)}
+.win{color:var(--win);font-weight:600}
+.lose{color:var(--lose);font-weight:600}
+.tie{color:var(--tie)}
+.flag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:var(--r);
+  border:1px solid var(--border);color:var(--muted-fg);margin-left:6px;vertical-align:middle}
+.flag.noise{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- charts ---------- */
+.figure{margin:0 0 var(--s4);border:1px solid var(--border);background:var(--card);padding:var(--s4)}
+.figure figcaption{font-size:13px;color:var(--muted-fg);margin:0 0 var(--s3);max-width:80ch}
+.figure figcaption b{color:var(--fg)}
+.figure svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:var(--s3);margin:0 0 var(--s3);padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted-fg)}
+.swatch{width:11px;height:11px;flex:none;border-radius:2px}
+.axis-note{font-size:12px;color:var(--muted-fg);margin:var(--s2) 0 0}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s3)}
+
+/* ---------- lists ---------- */
+.limits{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--border);
+  border:1px solid var(--border)}
+.limits li{background:var(--card);padding:var(--s3) var(--s4);display:grid;
+  grid-template-columns:118px 1fr;gap:var(--s3);font-size:14px}
+.limits b{font-weight:600}
+.limits .tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  padding-top:2px}
+.tag.ok{color:var(--win)} .tag.no{color:var(--lose)}
+
+.note{border-left:3px solid var(--accent);background:var(--muted);padding:var(--s3) var(--s4);
+  margin:0 0 var(--s3);font-size:14px;max-width:80ch}
+.note b{color:var(--accent)}
+
+.evidence{font-family:var(--mono);font-size:12px;line-height:1.9;background:var(--card);
+  border:1px solid var(--border);padding:var(--s3) var(--s4);overflow-x:auto;margin:0 0 var(--s3)}
+.evidence div{white-space:pre}
+
+footer{border-top:1px solid var(--border);margin-top:var(--s6);padding:var(--s5) 0 var(--s6);
+  color:var(--muted-fg);font-size:13px}
+footer p{max-width:none}
+
+@media (max-width:768px){
+  .wrap{padding-left:var(--s3);padding-right:var(--s3)}
+  .masthead .wrap{padding-top:var(--s5)}
+  .verdict{padding:var(--s3)}
+  .limits li{grid-template-columns:1fr;gap:var(--s1)}
+  table{font-size:13px}
+  th,td{padding:6px var(--s2)}
+}
+@media print{
+  body{background:#fff}
+  .skip,.figure figcaption{display:none}
+  section{break-inside:avoid}
+  .tablewrap{overflow:visible}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">毕业论文 · 阶段性实验汇报</p>
+    <h1>{{TITLE}}</h1>
+    <p class="subtitle">{{SUBTITLE}}</p>
+    <dl class="factgrid">
+      <div class="fact"><dt>日期</dt><dd>{{DATE}}</dd></div>
+      <div class="fact"><dt>数据分支</dt><dd><code>{{BRANCH}}</code></dd></div>
+      <div class="fact"><dt>提交</dt><dd><code>{{COMMIT}}</code></dd></div>
+      <div class="fact"><dt>证据等级</dt><dd>{{EVIDENCE_LEVEL}}</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+<section id="verdict">
+  <h2><span class="num">00</span>结论摘要</h2>
+  {{VERDICT_BLOCK}}
+</section>
+
+<section id="protocol">
+  <h2><span class="num">01</span>使用的方案</h2>
+  {{PROTOCOL_BLOCK}}
+</section>
+
+<section id="targets">
+  <h2><span class="num">02</span>目标库：对等漂移比较</h2>
+  {{TARGET_BLOCK}}
+</section>
+
+<section id="sources">
+  <h2><span class="num">03</span>源库：拟合诊断</h2>
+  {{SOURCE_BLOCK}}
+</section>
+
+<section id="flip">
+  <h2><span class="num">04</span>漂移与拟合的反转</h2>
+  {{FLIP_BLOCK}}
+</section>
+
+<section id="error">
+  <h2><span class="num">05</span>误差结构诊断</h2>
+  {{ERROR_BLOCK}}
+</section>
+
+<section id="fewshot">
+  <h2><span class="num">06</span>少样本适应（K&gt;0）</h2>
+  {{FEWSHOT_BLOCK}}
+</section>
+
+<section id="limits">
+  <h2><span class="num">07</span>边界与不可声称</h2>
+  {{LIMITS_BLOCK}}
+</section>
+
+<section id="evidence">
+  <h2><span class="num">08</span>证据与复算</h2>
+  {{EVIDENCE_BLOCK}}
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>{{FOOTER_NOTE}}</p>
+  </div>
+</footer>
+</body>
+</html>
