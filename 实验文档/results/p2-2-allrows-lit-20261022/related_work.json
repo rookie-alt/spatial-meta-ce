@@ -76,6 +76,20 @@
    "same_setting_as_ours": false,
    "role": "不可直接比：依赖 PostgreSQL 直方图等数据侧元信息，违反本项目「不看目标库数据/统计」的约束；论文表格数值未取到，本报告不引用其数字",
    "source": "摘要级书目信息由 Mendeley / Semantic Scholar / Unpaywall 三方一致；正文细节未核实；代码事实来自官方仓库 raw 文件"
+  },
+  {
+   "key": "llmce",
+   "name": "LLM-CE（LLM 做基数估计）",
+   "venue": "arXiv 2603.28080, 2026-03",
+   "arxiv": "2603.28080",
+   "doi": null,
+   "metric": "q-error 50/90/95/99，倍数空间，与我们恒等；但它改用整条查询作统计单元",
+   "metric_identical_to_ours": true,
+   "holdout": "IMDB / STATS / ErgastF1 / Genome 四库，与 PRICE 同一组库；LLM 作查询编码器 + MLP 或微调",
+   "fewshot": "有：预微调（PFT）与微调（FT）两档",
+   "same_setting_as_ours": false,
+   "role": "不同设定：每个库上都要跑 LLM 编码，且统计单元与 PRICE 不同。它的价值之一是明确写出 PRICE 的 Q-ERROR 算在分解后的子查询上——这正是我们第 08 节 all-rows 面板所对齐的单元",
+   "source": "arXiv PDF 全文：脚注 3（PRICE 的子查询口径）、Table 2（IMDB 等四库的 q-error 与训练时间）、Table 12（IMDB 上各 LLM 的 q-error）"
   }
  ],
  "cardood_q95": {
@@ -131,10 +145,26 @@
   "note": "其 PRICE 列的 STATS Q95 = 35.5513 与 PRICE 论文 Table 2 的 35.55 逐位一致，是本项目复现目标的一次独立第三方确认。",
   "caveat": "该文 Table 2 的 ErgastF1 行与 IMDB 行逐位相同（1.7771/15.4516/…），与作者自述的「数据质量顾虑」互相印证，其 ErgastF1 数值不可用；整篇已于 2025-05-28 撤回。"
  },
+ "metric_lineage": {
+  "title": "同一个方法在不同论文里的数不一样",
+  "why": "JOB-light / IMDb 这套负载被多篇论文各自评测过。同一方法在各自论文里的 Q95 差别可达 2-16 倍，因为它们用的统计单元与工作负载版本不同。读任何一张表都要先问「这张表的数是哪篇论文、哪套负载、哪个统计单元」。",
+  "rows": [
+   {"method": "PostgreSQL / Histogram", "own": ["DeepDB 原文 817", "FLAT 原文 6,955", "NeuroCard 原文 797"], "price_table": 49.44},
+   {"method": "DeepDB", "own": ["DeepDB 原文 3.16", "FLAT 原文 3.769", "NeuroCard 原文 4.90"], "price_table": 5.03},
+   {"method": "MSCN", "own": ["DeepDB 原文 143", "FLAT 原文 97.60", "NeuroCard 原文 136"], "price_table": 104.2},
+   {"method": "NeuroCard", "own": ["NeuroCard 原文 5.91", "FLAT 原文 5.910"], "price_table": 14.25},
+   {"method": "FLAT", "own": ["FLAT 原文 2.247"], "price_table": null}
+  ],
+  "note": "上表「PRICE Table 2」列是 imdb 那一行的 Q95（即我们第 08 节那张表里的同一列）。同方法的差距最大的是 PostgreSQL（817 → 49.44）与 NeuroCard（5.91 → 14.25）。",
+  "population_note": "PRICE 论文的 Q-ERROR 是在每条查询分解出的子查询上算的，不是整条查询（LLM-CE 论文脚注 3 明确写出这一点，并说明它自己改用整条查询重算）。我们的 all-rows 面板与 PRICE 同单元——证据是我们的 PG 列在四个库上逐位复现 PRICE 发表的 Q95；而 DeepDB / FLAT / NeuroCard 各自论文用的是整条查询单元。",
+  "bird_note": "BIRD 全文不含 'cardinality' 一词（grep 命中 0 次），也没有 Q-ERROR：它报的是执行准确率 EX 与 VES。所以「BIRD 上的 PG Q95」这个东西并不存在，任何这样写的对比都缺乏文献依据。",
+  "metric_convention": "NeuroCard、FLAT、DeepDB、Naru、MSCN、PRICE 全部使用同一个 q-error 公式 max(真值/估计, 估计/真值)，且都把真值与估计的下界取 1——与我们 Q95 的定义恒等。所以跨论文比 Q95 的大小是可行的，但前提是统计单元与负载版本一致。"
+ },
  "takeaways": [
   "整库留出零样本这一设定，在可查到的公开工作里只有三条线：PRICE（已发表）、2502.14350（已撤回）、以及本项目。也就是说我们面对的直接同行对手基本只有 PRICE 一个。",
   "CardOOD、GRASP、AHCE/DACE 三篇的指标口径与我们恒等（AHCE 的 Q95 定义未核实），但设定都不是整库零样本：前两者是同库内留出，AHCE 是同库 workload 漂移且依赖目标库直方图。它们不与我们在同一根轴上竞争，不能用来证明我们更强或更弱。",
   "GRASP 与 CardOOD 共同支持一个与我们相同的直觉：不访问目标库数据也能取得强结果，且鲁棒训练能压低尾部；这为「零样本 + 少样本适应」这条路线提供了同行证据。",
-  "我们仍然缺的那一项（PRICE、GRASP、CardOOD 都报了，我们没有）是端到端时间。PRICE 报 5.3-14.1 ms/查询推理与三库 E2E 最优，GRASP 报 CEB 上 135%、PG 176%，CardOOD 报 DSB 上 0.634 倍 PG。我们只报误差，没有报时间——这是汇报时必须主动说清的缺口。"
+  "我们仍然缺的那一项（PRICE、GRASP、CardOOD 都报了，我们没有）是端到端时间。PRICE 报 5.3-14.1 ms/查询推理与三库 E2E 最优，GRASP 报 CEB 上 135%、PG 176%，CardOOD 报 DSB 上 0.634 倍 PG。我们只报误差，没有报时间——这是汇报时必须主动说清的缺口。",
+  "同一个方法在不同论文里的数可以差好几倍（PostgreSQL 从 817 到 49.44，NeuroCard 从 5.91 到 14.25），差在统计单元与负载版本，不在实现优劣。我们的数只与 PRICE 那张表可比，且这一点已由 PG 列逐位复现证明。"
  ]
 }
