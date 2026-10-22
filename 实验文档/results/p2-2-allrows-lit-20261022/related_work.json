@@ -1,0 +1,140 @@
+{
+ "purpose": "research-read-only-audit",
+ "audit": "p2-2-related-work-landscape",
+ "scope": "近几年与「跨库/空间漂移基数估计」相关的公开工作，及其指标口径与我们是否同设定",
+ "extraction_note": "以下事实与数字全部转录自论文公开版本（arXiv HTML / 官方 PDF / Crossref 元数据 / 官方代码仓库），每条附出处。转录中凡未取到原文的，标为 unverified，本报告不引用其数值。",
+ "metric_identity": "本项目的 Q95 = exp(percentile(|max(log_pred,0) - log(max(true,1))|, 95))，与 max(ĉ/c, c/ĉ) 在倍数空间取 95 分位恒等（两侧下取 1）。下表 metric_identical_to_ours = true 的论文，其 Q95 可与我们同列比较，无需换算。",
+ "papers": [
+  {
+   "key": "price",
+   "name": "PRICE",
+   "venue": "PVLDB 18(3): 637-650, 2024",
+   "arxiv": "2406.01027",
+   "doi": "10.14778/3712221.3712231",
+   "metric": "Q-ERROR = max(ĉ/c, c/ĉ)，倍数空间；报 Q50/Q80/Q90/Q95/Q99",
+   "metric_identical_to_ours": true,
+   "holdout": "26 个源库各 5×10⁴ 条查询预训练 → 4 个整库零样本测试（imdb/stats/ergastf1/genome）",
+   "fewshot": "有：PRICE (Finetuned) 在目标库查询上微调",
+   "same_setting_as_ours": true,
+   "role": "同一设定的直接对手，已在本文第 08 节同口径对表",
+   "source": "论文 camera-ready PDF（服务器 /gly/weilin/PRICE-master/PRICE_full_paper.pdf）+ arXiv v1 + vldb.org PDF，两处转录逐格一致"
+  },
+  {
+   "key": "cardood",
+   "name": "CardOOD",
+   "venue": "The VLDB Journal 35(4)，2026-05-20",
+   "arxiv": "2412.05864",
+   "doi": "10.1007/s00778-026-00979-3",
+   "metric": "逐查询 Q-error = max{c/ĉ, ĉ/c}，倍数空间；报 Q50/Q75/Q95/Q99",
+   "metric_identical_to_ours": true,
+   "holdout": "同库内留 10% 查询作测试，另按谓词数配比 / join 数配比 / 整模板留出 / 表数留出四类构造偏移",
+   "fewshot": "无（论文明确只做离线一次性训练）",
+   "same_setting_as_ours": false,
+   "role": "不同设定：covariate shift（同库工作负载漂移），不含整库留出零样本。但 q-error 口径与我们恒等，是最接近的鲁棒训练方法学参照",
+   "source": "arXiv abs + HTML 全文、arXiv API、Crossref DOI 记录；期刊正式版全文在付费墙后未逐表比对"
+  },
+  {
+   "key": "grasp",
+   "name": "GRASP",
+   "venue": "PVLDB 18(8): 2519-2532, 2025（VLDB 2025）",
+   "arxiv": "2506.16007",
+   "doi": "10.14778/3742728.3742745",
+   "code": "github.com/shoupzwu/GRASP",
+   "metric": "Q-error = max(ĉ(q)/c(q), c(q)/ĉ(q)) ≥ 1，原始基数空间直接取倍数；报 Median / %95 / Mean",
+   "metric_identical_to_ours": true,
+   "holdout": "留出 join 模板（不是留出数据库），训练只用 10%-20% 的 join 模板；seen / unseen 模板两套测试集",
+   "fewshot": "无适应实验（只有训练查询比例扫描与模板不平衡扫描）",
+   "same_setting_as_ours": false,
+   "role": "不同设定：同库训练同库测试，泛化对象是未见 join 模板，不是跨库漂移。可作为「不访问数据也能强」的方法学对照",
+   "source": "vldb.org 官方 PDF 全文（vol18/p2519-wu.pdf）逐表核对 + 官方代码 get_join_qerror 实现"
+  },
+  {
+   "key": "paperb",
+   "name": "预训练数据精简（单作者）",
+   "venue": "arXiv 2502.14350，v1 2025-02-20；v2 2025-05-28 已被作者撤回，无 venue",
+   "arxiv": "2502.14350",
+   "doi": null,
+   "metric": "q-error = max(Ĉ/C, C/Ĉ)，倍数空间；报 Q50/Q80/Q90/Q95/Q99；另有 p-error（计划代价比），不可换算为 q-error",
+   "metric_identical_to_ours": true,
+   "holdout": "26 个预训练数据集（与 PRICE 同一语料）→ 留出 4 个整库做零样本（IMDB/STATS/ErgastF1/Visual Genome）",
+   "fewshot": "未找到",
+   "same_setting_as_ours": true,
+   "role": "设定与 PRICE、我们完全一致（整库留出零样本），但已撤回，只能当「同设定的另一条尝试」提及，不能作为可靠证据",
+   "source": "arXiv abs（v1 与 v2，含撤回 comment）、v1 HTML 全文；作者撤回理由：\"Preliminary analysis uncovered data quality concerns in our experimental dataset\""
+  },
+  {
+   "key": "ahce",
+   "name": "AHCE / DACE",
+   "venue": "Expert Systems with Applications 276: 127065, 2025",
+   "arxiv": null,
+   "doi": "10.1016/j.eswa.2025.127065",
+   "code": "github.com/zengqx20/AHCE-DACE",
+   "metric": "摘要只声明 mean q-error；Q95/中位数的确切定义未核实（全文付费墙）",
+   "metric_identical_to_ours": false,
+   "holdout": "从代码看 source/target 是同一 IMDB 库上的不同 workload（source=subtrain-5000；target=job-light / synthetic / subtrain-500），即 workload 漂移；是否存在整库跨库实验未核实",
+   "fewshot": "有无标签目标域适应（MMD 与 GRL 两种变体），属无监督适应，不是少样本标注",
+   "same_setting_as_ours": false,
+   "role": "不可直接比：依赖 PostgreSQL 直方图等数据侧元信息，违反本项目「不看目标库数据/统计」的约束；论文表格数值未取到，本报告不引用其数字",
+   "source": "摘要级书目信息由 Mendeley / Semantic Scholar / Unpaywall 三方一致；正文细节未核实；代码事实来自官方仓库 raw 文件"
+  }
+ ],
+ "cardood_q95": {
+  "columns": ["Q50", "Q95", "Q99"],
+  "population": "Overall（该设置下全部测试查询）",
+  "rows": [
+   {"setting": "forest · MLP · 谓词配比 20/80", "erm": [1.40, 102.48, 976.64], "best": [1.06, 39.57, 351.06], "best_method": "Group DRO"},
+   {"setting": "forest · MSCN · 谓词配比 50/50", "erm": [1.18, 41.40, 182.31], "best": [1.02, 20.81, 85.77], "best_method": "Deep CORAL"},
+   {"setting": "IMDB · MLP · 谓词配比 20/80", "erm": [1.04, 21.83, 161.88], "best": [1.68, 11.05, 100.93], "best_method": "OrderEmb"},
+   {"setting": "IMDB · MSCN · 谓词配比 20/80", "erm": [1.08, 25.55, 241.01], "best": [1.01, 9.63, 61.56], "best_method": "Query Mixup"},
+   {"setting": "DSB · MSCN · 整模板留出", "erm": [1.60, 88.51, 298.47], "best": [1.05, 37.93, 185.13], "best_method": "Deep CORAL"}
+  ],
+  "note": "CardOOD 的 ERM 基线在这里就是「同库内无偏移」的普通训练；其最好方法相对 ERM 的 Q95 改善在 IMDB 上约 2.4x、forest 上约 2.6x、DSB 模板留出上约 2.3x。"
+ },
+ "cardood_e2e": {
+  "columns": ["PostgreSQL 原生 (s)", "最好方法 (s)", "比值"],
+  "rows": [
+   {"db": "IMDB", "pg": 40968, "best": 38690, "ratio": 0.944},
+   {"db": "DSB", "pg": 1139, "best": 722, "ratio": 0.634},
+   {"db": "JOB-light", "pg": 9939, "best": 9479, "ratio": 0.954}
+  ],
+  "note": "论文自称端到端提速 5.6% / 36.6% / 4.6%；且其 q-error 改善与端到端提速不成比例。"
+ },
+ "grasp_q95": {
+  "columns": ["Median", "%95", "Mean"],
+  "population": "seen / unseen join 模板两套测试集",
+  "rows": [
+   {"method": "PostgreSQL（数据侧）", "db": "CEB-IMDb-full", "seen": [1781, 1e6, 4e5], "unseen": [6.1, 702, 717]},
+   {"method": "MSCN w/o Data（仅查询）", "db": "CEB-IMDb-full", "seen": [1.9, 7.1, 3.7], "unseen": [2.5, 663, 2671]},
+   {"method": "GRASP（仅查询）", "db": "CEB-IMDb-full", "seen": [2.0, 9.4, 5.7], "unseen": [1.7, 23, 41]},
+   {"method": "PostgreSQL（数据侧）", "db": "DSB", "seen": [1.5, 9.6, 3.6], "unseen": [1.3, 8.1, 3.2]},
+   {"method": "GRASP（仅查询）", "db": "DSB", "seen": [1.8, 8.7, 6.7], "unseen": [1.8, 15, 9.5]}
+  ],
+  "note": "CEB-IMDb-full 由 CEB 基准的 IMDb 数据衍生，是 IMDb 系 join 查询的现成 PG 参照点：PG 在未见模板上 Median 6.1、%95 702，远差于任何学习模型。"
+ },
+ "grasp_e2e": {
+  "columns": ["方法", "总运行时间 / True-Card 基线"],
+  "rows": [
+   {"method": "GRASP", "ratio": "135%"},
+   {"method": "PostgreSQL", "ratio": "176%"},
+   {"method": "MSCN w/o Data", "ratio": "1044%"},
+   {"method": "MSCN w/ Data", "ratio": "930%"}
+  ],
+  "note": "在 CEB-IMDb-full 上，GRASP 的端到端开销低于 PostgreSQL 原生统计，说明「不访问数据」的模型也能换取端到端收益。"
+ },
+ "paperb_table": {
+  "columns": ["库", "PRICE 预训 Q50/Q95/Q99", "精简集 Q50/Q95/Q99"],
+  "rows": [
+   {"db": "IMDB", "full": [1.7771, 15.4516, 70.889], "simple": [2.0029, 19.0663, 54.2403]},
+   {"db": "STATS", "full": [1.8709, 35.5513, 579.6716], "simple": [2.494, 62.5588, 1307.7956]},
+   {"db": "Visual Genome", "full": [1.6545, 15.6697, 114.4227], "simple": [1.8303, 15.8277, 85.4872]}
+  ],
+  "note": "其 PRICE 列的 STATS Q95 = 35.5513 与 PRICE 论文 Table 2 的 35.55 逐位一致，是本项目复现目标的一次独立第三方确认。",
+  "caveat": "该文 Table 2 的 ErgastF1 行与 IMDB 行逐位相同（1.7771/15.4516/…），与作者自述的「数据质量顾虑」互相印证，其 ErgastF1 数值不可用；整篇已于 2025-05-28 撤回。"
+ },
+ "takeaways": [
+  "整库留出零样本这一设定，在可查到的公开工作里只有三条线：PRICE（已发表）、2502.14350（已撤回）、以及本项目。也就是说我们面对的直接同行对手基本只有 PRICE 一个。",
+  "CardOOD、GRASP、AHCE/DACE 三篇的指标口径与我们恒等（AHCE 的 Q95 定义未核实），但设定都不是整库零样本：前两者是同库内留出，AHCE 是同库 workload 漂移且依赖目标库直方图。它们不与我们在同一根轴上竞争，不能用来证明我们更强或更弱。",
+  "GRASP 与 CardOOD 共同支持一个与我们相同的直觉：不访问目标库数据也能取得强结果，且鲁棒训练能压低尾部；这为「零样本 + 少样本适应」这条路线提供了同行证据。",
+  "我们仍然缺的那一项（PRICE、GRASP、CardOOD 都报了，我们没有）是端到端时间。PRICE 报 5.3-14.1 ms/查询推理与三库 E2E 最优，GRASP 报 CEB 上 135%、PG 176%，CardOOD 报 DSB 上 0.634 倍 PG。我们只报误差，没有报时间——这是汇报时必须主动说清的缺口。"
+ ]
+}
