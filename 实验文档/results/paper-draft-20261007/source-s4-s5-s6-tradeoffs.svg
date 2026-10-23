@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="600" viewBox="0 0 768 600" role="img" aria-labelledby="title desc">
+<title id="title">S4/S5/S6: source-only 4+ table Q95 trade-offs</title><desc id="desc">Seed42 only, 4000 updates, no error bars. Relative B/A Q95 change for chembl/legalacts/telstra and equal-database arithmetic macro, not pooled Q95. All three studies: no_candidate. Negative means improvement.</desc>
+<rect width="100%" height="100%" fill="white"/>
+<g font-family="sans-serif" font-size="14" fill="#222">
+<text x="70" y="30" font-size="20">S4/S5/S6: source-only 4+ table Q95 trade-offs</text>
+<line x1="353.30" y1="65.00" x2="353.30" y2="505.00" stroke="#666666" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="353.30" y="532.00" text-anchor="middle">-10%</text>
+<line x1="391.99" y1="65.00" x2="391.99" y2="505.00" stroke="#666666" stroke-width="1.6"/>
+<text x="391.99" y="532.00" text-anchor="middle">+0%</text>
+<line x1="430.68" y1="65.00" x2="430.68" y2="505.00" stroke="#666666" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="430.68" y="532.00" text-anchor="middle">+10%</text>
+<text x="195.00" y="88.00" text-anchor="end">S4 / chembl</text>
+<line x1="391.99" y1="83.00" x2="631.97" y2="83.00" stroke="#0072b2" stroke-width="1.6"/>
+<circle cx="631.97" cy="83" r="4" fill="#0072b2"/>
+<text x="639.97" y="75.00" font-size="12">+62.03%</text>
+<text x="195.00" y="123.00" text-anchor="end">S4 / legalacts</text>
+<line x1="391.99" y1="118.00" x2="511.50" y2="118.00" stroke="#0072b2" stroke-width="1.6"/>
+<circle cx="511.50" cy="118" r="4" fill="#0072b2"/>
+<text x="519.50" y="110.00" font-size="12">+30.89%</text>
+<text x="195.00" y="158.00" text-anchor="end">S4 / telstra</text>
+<line x1="391.99" y1="153.00" x2="248.69" y2="153.00" stroke="#0072b2" stroke-width="1.6"/>
+<circle cx="248.69" cy="153" r="4" fill="#0072b2"/>
+<text x="256.69" y="145.00" font-size="12">-37.04%</text>
+<text x="195.00" y="193.00" text-anchor="end">S4 / macro</text>
+<line x1="391.99" y1="188.00" x2="583.15" y2="188.00" stroke="#0072b2" stroke-width="1.6"/>
+<circle cx="583.15" cy="188" r="4" fill="#0072b2"/>
+<text x="591.15" y="180.00" font-size="12">+49.41%</text>
+<text x="195.00" y="228.00" text-anchor="end">S5 / chembl</text>
+<line x1="391.99" y1="223.00" x2="607.81" y2="223.00" stroke="#d55e00" stroke-width="1.6"/>
+<circle cx="607.81" cy="223" r="4" fill="#d55e00"/>
+<text x="615.81" y="215.00" font-size="12">+55.78%</text>
+<text x="195.00" y="263.00" text-anchor="end">S5 / legalacts</text>
+<line x1="391.99" y1="258.00" x2="492.73" y2="258.00" stroke="#d55e00" stroke-width="1.6"/>
+<circle cx="492.73" cy="258" r="4" fill="#d55e00"/>
+<text x="500.73" y="250.00" font-size="12">+26.04%</text>
+<text x="195.00" y="298.00" text-anchor="end">S5 / telstra</text>
+<line x1="391.99" y1="293.00" x2="300.59" y2="293.00" stroke="#d55e00" stroke-width="1.6"/>
+<circle cx="300.59" cy="293" r="4" fill="#d55e00"/>
+<text x="308.59" y="285.00" font-size="12">-23.62%</text>
+<text x="195.00" y="333.00" text-anchor="end">S5 / macro</text>
+<line x1="391.99" y1="328.00" x2="566.49" y2="328.00" stroke="#d55e00" stroke-width="1.6"/>
+<circle cx="566.49" cy="328" r="4" fill="#d55e00"/>
+<text x="574.49" y="320.00" font-size="12">+45.10%</text>
+<text x="195.00" y="368.00" text-anchor="end">S6 / chembl</text>
+<line x1="391.99" y1="363.00" x2="351.90" y2="363.00" stroke="#009e73" stroke-width="1.6"/>
+<circle cx="351.90" cy="363" r="4" fill="#009e73"/>
+<text x="359.90" y="355.00" font-size="12">-10.36%</text>
+<text x="195.00" y="403.00" text-anchor="end">S6 / legalacts</text>
+<line x1="391.99" y1="398.00" x2="452.74" y2="398.00" stroke="#009e73" stroke-width="1.6"/>
+<circle cx="452.74" cy="398" r="4" fill="#009e73"/>
+<text x="460.74" y="390.00" font-size="12">+15.70%</text>
+<text x="195.00" y="438.00" text-anchor="end">S6 / telstra</text>
+<line x1="391.99" y1="433.00" x2="260.00" y2="433.00" stroke="#009e73" stroke-width="1.6"/>
+<circle cx="260.00" cy="433" r="4" fill="#009e73"/>
+<text x="268.00" y="425.00" font-size="12">-34.12%</text>
+<text x="195.00" y="473.00" text-anchor="end">S6 / macro</text>
+<line x1="391.99" y1="468.00" x2="355.55" y2="468.00" stroke="#009e73" stroke-width="1.6"/>
+<circle cx="355.55" cy="468" r="4" fill="#009e73"/>
+<text x="363.55" y="460.00" font-size="12">-9.42%</text>
+<text x="75.00" y="562.00" font-size="13">Single seed; no SD. Macro is the mean of database Q95 values, not a pooled quantile.</text>
+<text x="75.00" y="585.00" font-size="13">Guides: -10% macro improvement / +10% per-database Q95 limit; Q50 guards not shown.</text>
+</g></svg>

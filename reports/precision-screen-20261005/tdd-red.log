@@ -1,0 +1,21 @@
+test_precision_screen (unittest.loader._FailedTest.test_precision_screen) ... ERROR
+
+======================================================================
+ERROR: test_precision_screen (unittest.loader._FailedTest.test_precision_screen)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_precision_screen
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/tests/test_precision_screen.py", line 10, in <module>
+    from scripts import run_precision_screen as screen
+ImportError: cannot import name 'run_precision_screen' from 'scripts' (unknown location)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

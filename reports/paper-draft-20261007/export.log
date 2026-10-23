@@ -1,0 +1,10 @@
+{
+  "artifacts": 19,
+  "chapter_written": true,
+  "input_files_checked": 70,
+  "original_14_sources_checked": 36,
+  "source_endpoint_cells": 36,
+  "status": "success",
+  "target_cells": 108,
+  "target_episode_records": 1260
+}

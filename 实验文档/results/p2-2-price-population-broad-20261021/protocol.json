@@ -1,0 +1,361 @@
+{
+  "schema": 1,
+  "purpose": "research-read-only-audit",
+  "audit": "p2-2-price-population-broad",
+  "target_databases_read": [],
+  "metric": "unique-query population Q95 (single pass, NOT episode mean)",
+  "databases_expected": [
+    "accidents",
+    "airline",
+    "baseball",
+    "basketball",
+    "carcinogenesis",
+    "ccs",
+    "chembl",
+    "consumer",
+    "credit",
+    "employee",
+    "financial",
+    "fnhk",
+    "grants",
+    "hepatitis",
+    "hockey",
+    "legalacts",
+    "movielens",
+    "sakila",
+    "sap",
+    "seznam",
+    "ssb",
+    "talkingdata",
+    "telstra",
+    "tournament",
+    "tpc_h",
+    "tubepricing"
+  ],
+  "databases_reported": [
+    "accidents",
+    "airline",
+    "baseball",
+    "basketball",
+    "carcinogenesis",
+    "ccs",
+    "chembl",
+    "consumer",
+    "credit",
+    "employee",
+    "financial",
+    "fnhk",
+    "grants",
+    "hepatitis",
+    "hockey",
+    "legalacts",
+    "movielens",
+    "sakila",
+    "sap",
+    "seznam",
+    "ssb",
+    "talkingdata",
+    "telstra",
+    "tournament",
+    "tpc_h",
+    "tubepricing"
+  ],
+  "price": {
+    "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+    "checkpoint_sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92",
+    "parameters": 10709330,
+    "maxima": [
+      12,
+      12,
+      7,
+      10
+    ],
+    "per_database_max_counts": {
+      "accidents": [
+        3,
+        4,
+        3,
+        7
+      ],
+      "airline": [
+        12,
+        12,
+        7,
+        7
+      ],
+      "baseball": [
+        10,
+        12,
+        7,
+        7
+      ],
+      "basketball": [
+        10,
+        12,
+        7,
+        6
+      ],
+      "carcinogenesis": [
+        6,
+        10,
+        6,
+        6
+      ],
+      "ccs": [
+        7,
+        8,
+        5,
+        10
+      ],
+      "chembl": [
+        11,
+        12,
+        7,
+        10
+      ],
+      "consumer": [
+        3,
+        4,
+        3,
+        6
+      ],
+      "credit": [
+        9,
+        12,
+        7,
+        6
+      ],
+      "employee": [
+        7,
+        10,
+        6,
+        3
+      ],
+      "financial": [
+        10,
+        12,
+        7,
+        7
+      ],
+      "fnhk": [
+        3,
+        4,
+        3,
+        7
+      ],
+      "grants": [
+        10,
+        12,
+        7,
+        10
+      ],
+      "hepatitis": [
+        10,
+        12,
+        7,
+        7
+      ],
+      "hockey": [
+        9,
+        12,
+        7,
+        9
+      ],
+      "legalacts": [
+        5,
+        6,
+        4,
+        10
+      ],
+      "movielens": [
+        10,
+        12,
+        7,
+        7
+      ],
+      "sakila": [
+        12,
+        12,
+        7,
+        10
+      ],
+      "sap": [
+        5,
+        6,
+        4,
+        10
+      ],
+      "seznam": [
+        4,
+        6,
+        4,
+        7
+      ],
+      "ssb": [
+        8,
+        8,
+        5,
+        7
+      ],
+      "talkingdata": [
+        10,
+        12,
+        7,
+        10
+      ],
+      "telstra": [
+        5,
+        8,
+        5,
+        5
+      ],
+      "tournament": [
+        8,
+        12,
+        7,
+        7
+      ],
+      "tpc_h": [
+        11,
+        12,
+        7,
+        7
+      ],
+      "tubepricing": [
+        7,
+        10,
+        6,
+        10
+      ]
+    },
+    "maxima_rule": "explicit --maxima override (passed on the command line; see doc 101 \u00a73: maxima is a PRICE layout parameter, so numbers computed under different maxima must not be quoted together)",
+    "decoding": "price_log_predictions(): native output is log1p(card)+1, decoded to log(card)",
+    "adaptation": "none (K=0, no support, no inner steps)"
+  },
+  "inputs": {
+    "predictions": {
+      "path": "/gly/weilin/spatial-meta-ce-p2-2-source-broad-20261021-code/runs/p2-2-source-broad-20261021/predictions_k0.csv",
+      "sha256": "93adefbb577a9ad7e8089cb4937295103c1f9ba027e953e388a8012a8c11d7b8"
+    },
+    "caches": {
+      "accidents": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/accidents",
+        "content_hash": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e"
+      },
+      "airline": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/airline",
+        "content_hash": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29"
+      },
+      "baseball": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/baseball",
+        "content_hash": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782"
+      },
+      "basketball": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/basketball",
+        "content_hash": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02"
+      },
+      "carcinogenesis": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/carcinogenesis",
+        "content_hash": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09"
+      },
+      "ccs": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/ccs",
+        "content_hash": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2"
+      },
+      "chembl": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/chembl",
+        "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061"
+      },
+      "consumer": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/consumer",
+        "content_hash": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3"
+      },
+      "credit": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/credit",
+        "content_hash": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062"
+      },
+      "employee": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/employee",
+        "content_hash": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54"
+      },
+      "financial": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/financial",
+        "content_hash": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7"
+      },
+      "fnhk": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/fnhk",
+        "content_hash": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd"
+      },
+      "grants": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/grants",
+        "content_hash": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8"
+      },
+      "hepatitis": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/hepatitis",
+        "content_hash": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe"
+      },
+      "hockey": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/hockey",
+        "content_hash": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220"
+      },
+      "legalacts": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/legalacts",
+        "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6"
+      },
+      "movielens": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/movielens",
+        "content_hash": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7"
+      },
+      "sakila": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/sakila",
+        "content_hash": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da"
+      },
+      "sap": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/sap",
+        "content_hash": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f"
+      },
+      "seznam": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/seznam",
+        "content_hash": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9"
+      },
+      "ssb": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/ssb",
+        "content_hash": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c"
+      },
+      "talkingdata": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/talkingdata",
+        "content_hash": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797"
+      },
+      "telstra": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/telstra",
+        "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "tournament": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/tournament",
+        "content_hash": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e"
+      },
+      "tpc_h": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/tpc_h",
+        "content_hash": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb"
+      },
+      "tubepricing": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/tubepricing",
+        "content_hash": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295"
+      }
+    },
+    "raw_summary": "/gly/weilin/spatial-meta-ce-p2-2-source-broad-20261021-code/runs/p2-2-price-population-broad-20261021/raw_summary.json",
+    "raw_protocol": "/gly/weilin/spatial-meta-ce-p2-2-source-broad-20261021-code/runs/p2-2-price-population-broad-20261021/raw_protocol.json"
+  },
+  "aggregation": {
+    "source": "scripts/broad_distribution_summary.py",
+    "rule": "beats_pg_and_price: our Q95 strictly below both; beats_pg_loses_price: strictly below PG but not below PRICE; loses_pg: greater than or equal to PG (ties count as losses)",
+    "ratio_convention": "ratio > 1 means we have the lower (better) Q error; ratio < 1 means the baseline is better than us"
+  },
+  "comparability": {
+    "comparable_to": "the rows inside this report only: one maxima, one query population definition, one checkpoint",
+    "not_comparable_to": [
+      "the task-C three-database table (maxima [11,12,7,10] vs the 26-source [12,12,7,10]): see the layout sensitivity check in the report before quoting the two together",
+      "the four target-database rows, which measure drift rather than in-sample fit"
+    ]
+  }
+}

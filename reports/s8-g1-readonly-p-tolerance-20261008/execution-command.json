@@ -1,0 +1,8 @@
+{
+  "attempt": 1,
+  "frozen_command": "cd /gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-tolerance-code-20261008 && timeout --signal=TERM --kill-after=1s 899s env PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 NUMEXPR_NUM_THREADS=4 VECLIB_MAXIMUM_THREADS=4 /gly/weilin/PRICE-master/venv/bin/python -B scripts/verify_s8_readonly_p.py --contract /gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-tolerance-code-20261008/reports/s8-g1-readonly-p-tolerance-20261008/execution-contract.json --contract-sha256 b85c41f0b04fb394c391f6143008e4d4e5bca907b7c6a1fb35d9c03105f6290e --output /gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-tolerance-proof-20261008 --execute",
+  "contract_sha256": "b85c41f0b04fb394c391f6143008e4d4e5bca907b7c6a1fb35d9c03105f6290e",
+  "archive_sha256": "e9fe330f0f90eae9d98d8f9d0cf6164b1c7bd3eb54d4cb34a6450570f237e1cd",
+  "entry_sha256": "85e0ccda9719040276d44993d87f29b8b1c643d818662450daef759b7074c5f3",
+  "retry_allowed": false
+}

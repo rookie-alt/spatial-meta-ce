@@ -1,0 +1,262 @@
+{
+  "configs/data.json": {
+    "sha256": "a9057d65c7cb220bd21e7cd67dacbc15c0c20dcc87f61d9b3e6470c0ea094d90",
+    "allowed_old": null
+  },
+  "configs/s5_weight.json": {
+    "sha256": "32f0b15d102b288c8cfcfd03cb5909a79cba4968f0c8bb3025c7c8836afcc812",
+    "allowed_old": null
+  },
+  "scripts/mapping_smoke.py": {
+    "sha256": "6f897a37f94150ccfed4d074a4be45c888d27a60d0ef376d7333d9724ecc4b96",
+    "allowed_old": null
+  },
+  "scripts/precision_screen_evidence.py": {
+    "sha256": "b5af3c14866e8ff81838792a7f38db5f50bab62035e605910f530f660030da95",
+    "allowed_old": null
+  },
+  "scripts/run_mapping_ablation.py": {
+    "sha256": "f16c543b2601dba911157472a97e856f06c3f40f847ec28421df978314f53473",
+    "allowed_old": null
+  },
+  "scripts/run_precision_screen.py": {
+    "sha256": "c0b91dda7e214abd6b98eb1fbe6afb74b5e70dcf1631615358db1016dccefa62",
+    "allowed_old": null
+  },
+  "scripts/run_s4_anchor.py": {
+    "sha256": "7006dc02d14e9c2d39c34be63863d655d51037ed6b21a533e93dbd7794ba17e9",
+    "allowed_old": null
+  },
+  "scripts/run_s5_weight.py": {
+    "sha256": "0586176a879712b5f7a1fd070af30efacef78778e4f8e6fb8e500c3ad9933983",
+    "allowed_old": null
+  },
+  "scripts/s2_source_replay.py": {
+    "sha256": "d43672471f8bb5fed740071a4bd8a69e3dd8c45824e2d44ad0cb731aed2dac0a",
+    "allowed_old": null
+  },
+  "scripts/s4_anchor_evidence.py": {
+    "sha256": "1db8bf133c5f31b29e768cb394efdf51bdf89e11f953f1d807e7425b036d76cb",
+    "allowed_old": null
+  },
+  "scripts/s5_weight_evidence.py": {
+    "sha256": "f5f58309e9033a2ab7d21a2008bb9ce112fefb39cb076b03a81774486067eddd",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/__init__.py": {
+    "sha256": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/baselines.py": {
+    "sha256": "c5113e990c816bcebe79f2f5fd2f2a96a0810e1a5feefd218278bda0953e1ea4",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/checkpoints.py": {
+    "sha256": "efb21c956fb836938aaf7675f0d1eb047ef767e537576f47d6b591a5a3bdf504",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/cli.py": {
+    "sha256": "78169fe62236bf87f8b618c8436d644e1e6507b8bf88ccfc3f027afe0ba23d29",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/data.py": {
+    "sha256": "1f490f1891e4222edcd25b598df32c287c3914ff185477f6ae76c566cfeacd17",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/evaluate.py": {
+    "sha256": "4aeea67ed1fd23e435012ec6e662f7321b26fab119afacb34d0a51d390da98b3",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/features.py": {
+    "sha256": "cec76180fb0567bd6a6f9b8d73c4d913d16b92582cd784df7e8d9ab3fdc2dcef",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/manifests.py": {
+    "sha256": "fc96df193c36ade103b2116f777325afb6bb8fb0c368ff0516998fa33fac6d30",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/mappings.py": {
+    "sha256": "fa52a3cc64b23cb14f704573bdb079569dab22ef18c137eab2800765d1ff07fe",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/meta.py": {
+    "sha256": "b9920299345aa9c0bfa32c446c1b7695d64ad5781c615f51609bcf9331cb7ed1",
+    "allowed_old": "954051f01578dbee51cd8d1f2992746ad686e213faf06832b94d116cacbb006e"
+  },
+  "spatial_meta_ce/metrics.py": {
+    "sha256": "ec940c3b29bb5b165f560a369c9874cd9ec630d2bbc21e7f78893a64fe1c56a5",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/model.py": {
+    "sha256": "0d6d7c4c3a04368bb7ae03a99018cfd343f37f8dc1182443ac169d19928022a4",
+    "allowed_old": null
+  },
+  "spatial_meta_ce/train.py": {
+    "sha256": "87c239649373abadc6d0dfa0202468515112a192b7d36ee039a45117bef4dd99",
+    "allowed_old": "0869d030220e588232148d6a7bc249f97c0e1dcf8b30dfb626ef8ea646d456f8"
+  },
+  "tests/test_s5_loss.py": {
+    "sha256": "fcde7a499b54de670a77f3db273b08f9b68573f63c88c779366e2da524fddaed",
+    "allowed_old": null
+  },
+  "tests/test_s5_runner.py": {
+    "sha256": "0f9b9f7a186cfb6171bd920bb7498c1d0428e66fc9ba8de4462c2489d3f4e49f",
+    "allowed_old": null
+  },
+  "tests/test_s5_supervisor.py": {
+    "sha256": "efa90f9f1647f4571daee2c3fd2d028014c72c9cebfb880d8af9e7c5af280491",
+    "allowed_old": null
+  },
+  "tests/test_s5_weight_evidence.py": {
+    "sha256": "c7b6c2045b2b34a06809cc0d93e38bd5ebc9fe69e3a57187dbbb6ebec4b0df92",
+    "allowed_old": null
+  },
+  "vendor/price_baseline/encoder.py": {
+    "sha256": "94f3060996cd9a9b3d60da08d525cc4ab8e1666c1eb4d53b3f610f5c248c6bce",
+    "allowed_old": null
+  },
+  "vendor/price_baseline/module.py": {
+    "sha256": "15d98eb2f1aed939dc53002302016098394e0602719e0d56df6c351a29f4f66e",
+    "allowed_old": null
+  },
+  "vendor/price_features/features_tool.py": {
+    "sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "allowed_old": null
+  },
+  "实验文档/19-S5复杂查询损失加权单因素精度提升方案.md": {
+    "sha256": "4ac019d51b384aba7fc616bbdadc536439a33e633596f011f4d78b48011a1d56",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-preflight-20261003/chembl/manifest.json": {
+    "sha256": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-preflight-20261003/legalacts/manifest.json": {
+    "sha256": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-preflight-20261003/telstra/manifest.json": {
+    "sha256": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/accidents/manifest.json": {
+    "sha256": "a142a6a4f14c38fd03cd0e87d476fe7e4bbd492d4bbae1ced164a46d08504902",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/airline/manifest.json": {
+    "sha256": "0915c9cc2a123db66f8bbea534ec6112cca07f48269e7736e8b266761835f140",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/baseball/manifest.json": {
+    "sha256": "b30db40424f32fbcde4cd12d639ec8d9fd7aec8097f58a785fa73295ab5abe34",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/basketball/manifest.json": {
+    "sha256": "90b2ebecc485a393f8bd18cb91a1001f3219121219c57906f77ae8181d4e90ef",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/carcinogenesis/manifest.json": {
+    "sha256": "d7aec8b9c6d3bdd026a8a541156aa8debbdebc44ded2b337761e94703fa19f1c",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/ccs/manifest.json": {
+    "sha256": "74e97e0cc2be2511233d38a2bc4174637dbc0f2c56e1a2588d5039792469eab4",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/consumer/manifest.json": {
+    "sha256": "8ca3868033d93fa3d5ec76a34dd07f1d2937c4afc4e2efdc48f952d70f4c107a",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/credit/manifest.json": {
+    "sha256": "ae0496329b2fdb9e3c9c7a2c7525e87a077c5ddad3e47142d41c3bcd29829c30",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/employee/manifest.json": {
+    "sha256": "68fd3f06eec4f5821dc806916aeb663a94bfd1997c0924c814c9f689becb0d14",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/financial/manifest.json": {
+    "sha256": "2f013adfc1088f3c3bad60aa158d845d150e9f9f16b6664bf8a5f6ac97ce21e3",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/fnhk/manifest.json": {
+    "sha256": "11b2bb98105873ae94909e300dab2fdee3219f6ddec9c30831097a9a98630fc3",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/grants/manifest.json": {
+    "sha256": "d0ef826490c074efc5681f71f6dbaf5498d716170c2d23b9b3c04edf44cdbf44",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/hepatitis/manifest.json": {
+    "sha256": "22db1fd4835f0d472bb25f8a0008fed9662b6b93e9a94106e9a062aa7066b8d6",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/hockey/manifest.json": {
+    "sha256": "fe6d993054187700f449f1d2cea38748152b62f2d7027bb7eb35236e831198d4",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/movielens/manifest.json": {
+    "sha256": "dfd771d3814c1d69255f9bdaf46a949d929efbed454cec277b45d54cefeeb506",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/sakila/manifest.json": {
+    "sha256": "69111234ad60532b44a409e0e7009ec139b828d0f16e2ea7a00a2d57fe0e1fb4",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/sap/manifest.json": {
+    "sha256": "a0b247f07722c032efff20ffff1d4aec9ebb100d697fe39aba60b75205d1e4e3",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/seznam/manifest.json": {
+    "sha256": "40efac924aeb91c770cdb7c532d7f6001bd1328f9df598100098e7edb8ca37df",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/ssb/manifest.json": {
+    "sha256": "54cf2caecbe3533c86e4e35373694f3d8379b54f5311de9f6a33300a195bc68f",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/talkingdata/manifest.json": {
+    "sha256": "8abff4ad93c3be4aac082f127a1377f2af9625489391d06c997cb1c5918e3fd9",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/tournament/manifest.json": {
+    "sha256": "b25f50528132bbd59ce5221b9eb187c1c1f8d154940f54cdc0cfd16440be4370",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/tpc_h/manifest.json": {
+    "sha256": "d549adee1f518a82c64013ff02ff4fef109760e8b92cb14050881b647bf883ee",
+    "allowed_old": null
+  },
+  "实验文档/results/p1-mapping-sidecar-train23-20261004/tubepricing/manifest.json": {
+    "sha256": "67f400f5160011a3b62cf146d1deb0ca812e3d24f707861a2841f4a801ea927b",
+    "allowed_old": null
+  },
+  "实验文档/results/precision-screen-20261006/preflight.json": {
+    "sha256": "3b037edd777a7e39259033b020ffff8015cbb4cd6bd169ab8453b16bc5d8bfe8",
+    "allowed_old": null
+  },
+  "实验文档/results/precision-screen-20261006/summary.json": {
+    "sha256": "3fd40103ba5ce19c93c3fa7861a5012c902a4237da5ba7502b5add7b04eae78a",
+    "allowed_old": null
+  },
+  "实验文档/results/s2-source-exposure-20261006/protocol.json": {
+    "sha256": "dbbf3eac6a9db3c7b92a04738e27332184d3a878202ffb09927d5357b34cbcc2",
+    "allowed_old": null
+  },
+  "实验文档/results/s2-source-exposure-20261006/status.json": {
+    "sha256": "e1fb35dc79a35b5fd59e5d54ca106a2082d31e9420a21974bc64d611b62cd8cb",
+    "allowed_old": null
+  },
+  "实验文档/results/s2-source-exposure-20261006/summary.json": {
+    "sha256": "cce4e01da46f7d25893f9250cfd8267fb269366589953c9ef5fc14742f57f48e",
+    "allowed_old": null
+  },
+  "实验文档/results/s2-source-exposure-20261006/verification.json": {
+    "sha256": "6fb51bd97947adfe39d1b3080d2fd656ed31f9fb306956c65b8a41ff56bab525",
+    "allowed_old": null
+  },
+  "实验文档/results/s4-pg-output-anchor-20261006-pidfix/summary.json": {
+    "sha256": "aafa2bd935deb5fc008982d00aedcbfecbc0a379fde2f96e95c2081e88dda6ee",
+    "allowed_old": null
+  }
+}

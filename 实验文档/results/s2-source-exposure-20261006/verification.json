@@ -1,0 +1,37 @@
+{
+  "checks": [
+    "independent_rng_hash_chain",
+    "every_prefix_per_query_roles_mass",
+    "episodes_k_counts_conservation",
+    "complete_unique_csv_rows",
+    "all_40_buckets_pool_exposure_comparison",
+    "residuals_all_statistics",
+    "repeat_distributions"
+  ],
+  "prefixes": [
+    1000,
+    2000,
+    4000
+  ],
+  "row_counts": {
+    "pool": 1160,
+    "exposure": 2880,
+    "residuals": 6920,
+    "comparison": 1872
+  },
+  "replay": {
+    "episodes": 16000,
+    "presentations": 1621915,
+    "digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8"
+  },
+  "databases": 26,
+  "unique_queries": 1279218,
+  "tolerances": {
+    "rtol": 0,
+    "row_atol": 1e-10,
+    "total_atol": 1e-08
+  },
+  "source_rehashed_after": true,
+  "code_rehashed_after": true,
+  "replay_verified": true
+}

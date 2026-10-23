@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 46163,
+  "changed_unique_queries": 46163,
+  "unchanged_rows": 3837,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 3837,
+  "changed_fraction": 0.92326,
+  "sql_flags": {
+    "multiple_filters": 10135
+  },
+  "database": "baseball",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 222.98166612302884
+}

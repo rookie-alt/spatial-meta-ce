@@ -1,0 +1,72 @@
+{
+  "phase": "failed_timeout_partial_artifacts_verified",
+  "base_commit": "2959a46",
+  "branch": "experiment/meta65-source-screen-20261009",
+  "formal_status": "failed_timeout_incomplete_matrix",
+  "scope": "source_only_no_target_evaluation",
+  "last_layer_cpu_red": {
+    "tests": 7,
+    "errors": 4,
+    "exit_code": 1
+  },
+  "last_layer_cpu_green": {
+    "tests": 7,
+    "errors": 0,
+    "exit_code": 0
+  },
+  "gpu_smoke": "passed_synthetic_not_formal",
+  "source_preflight": "passed_26_databases_1300000_rows",
+  "initial_server_full_regression": {
+    "tests": 815,
+    "errors": 24,
+    "exit_code": 1,
+    "limitations": [
+      "graphify/jsonschema not installed",
+      "macOS /private/tmp absent",
+      "managed deploy omits CSV evidence",
+      "new runner test arrived before implementation"
+    ]
+  },
+  "local_full_regression": {
+    "tests": 868,
+    "skipped": 15,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 93.283,
+    "exit_code": 0
+  },
+  "changed_core_ruff": "passed",
+  "full_repository_ruff": {
+    "exit_code": 1,
+    "errors": 110,
+    "historical_errors_not_changed": true
+  },
+  "runtime": {
+    "local_python": "/opt/anaconda3/bin/python",
+    "server_python": "/gly/weilin/PRICE-master/venv/bin/python",
+    "server_numpy": "1.26.1",
+    "server_torch": "2.1.0+cu121"
+  },
+  "protocol_sha256": "fef38e8d18f46c4c167030628ee1dfa73dfbd9575f7b7eb76acf6e6c7844d8e4",
+  "server_integration": {
+    "runner_supervisor_tests": 39,
+    "last_layer_tests": 7,
+    "exit_code": 0
+  },
+  "changed_files_ruff": "passed",
+  "supervisor_tests": {
+    "tests": 17,
+    "exit_code": 0
+  },
+  "independent_review": "approved_after_blocking_fixes",
+  "formal_remote_root": "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen",
+  "frozen_commit": "0b5958046c5252e454b80a2c3435e61620c361a0",
+  "freeze_pushed_and_remote_sha_verified": true,
+  "formal_exit_code": 124,
+  "supervisor_seconds": 7200.221068050945,
+  "complete_training_arms": 3,
+  "complete_endpoint_arms": 2,
+  "C_raw_prediction_files": 30,
+  "formal_candidate_selection": "not_permitted",
+  "post_failure_artifact_verification": "passed150cells_source_hashes_unchanged_not_formal_completion"
+}

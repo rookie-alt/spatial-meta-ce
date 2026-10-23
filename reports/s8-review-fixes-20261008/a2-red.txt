@@ -1,0 +1,125 @@
+test_confirmation_timeout_does_not_extend_wall_budget (test_s8_supervisor_exit.ExitRaceTests.test_confirmation_timeout_does_not_extend_wall_budget) ... FAIL
+test_confirmed_exit_still_requires_worker_proof (test_s8_supervisor_exit.ExitRaceTests.test_confirmed_exit_still_requires_worker_proof) ... FAIL
+test_confirmed_nonzero_exit_is_not_sampling_success (test_s8_supervisor_exit.ExitRaceTests.test_confirmed_nonzero_exit_is_not_sampling_success) ... FAIL
+test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) ... 
+  test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='KeyError') ... FAIL
+  test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='FileNotFoundError') ... ERROR
+  test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='ValueError') ... ERROR
+test_group_disappearing_during_cleanup_is_not_supervisor_failure (test_s8_supervisor_exit.ExitRaceTests.test_group_disappearing_during_cleanup_is_not_supervisor_failure) ... ERROR
+test_persistent_live_unobservability_fails_and_cleans_group (test_s8_supervisor_exit.ExitRaceTests.test_persistent_live_unobservability_fails_and_cleans_group) ... ERROR
+test_proc_zombie_and_missing_window_reject_counter_sample (test_s8_supervisor_exit.ExitRaceTests.test_proc_zombie_and_missing_window_reject_counter_sample) ... ok
+test_real_linux_quick_exit_zombie_window (test_s8_supervisor_exit.ExitRaceTests.test_real_linux_quick_exit_zombie_window) ... skipped 'real Linux /proc integration not verified on macOS'
+
+======================================================================
+ERROR: test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='FileNotFoundError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 45, in test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped
+    result, child, kill = self.run_race(error)
+                          ^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 38, in run_race
+    result = ro.supervise(child, self.output, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 784, in supervise
+    write_json(output / 'supervisor.json', record)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 198, in write_json
+    fd = capability_open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, 'O_NOFOLLOW', 0), parent_fd)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 93, in capability_open
+    return os.open(path.name, flags, mode, dir_fd=parent_fd)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: 'supervisor.json'
+
+======================================================================
+ERROR: test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 45, in test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped
+    result, child, kill = self.run_race(error)
+                          ^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 38, in run_race
+    result = ro.supervise(child, self.output, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 784, in supervise
+    write_json(output / 'supervisor.json', record)
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 198, in write_json
+    fd = capability_open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, 'O_NOFOLLOW', 0), parent_fd)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 93, in capability_open
+    return os.open(path.name, flags, mode, dir_fd=parent_fd)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: 'supervisor.json'
+
+======================================================================
+ERROR: test_group_disappearing_during_cleanup_is_not_supervisor_failure (test_s8_supervisor_exit.ExitRaceTests.test_group_disappearing_during_cleanup_is_not_supervisor_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 80, in test_group_disappearing_during_cleanup_is_not_supervisor_failure
+    result = ro.supervise(child, self.output)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 772, in supervise
+    os.killpg(child.pid, signal.SIGKILL)
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+ProcessLookupError
+
+======================================================================
+ERROR: test_persistent_live_unobservability_fails_and_cleans_group (test_s8_supervisor_exit.ExitRaceTests.test_persistent_live_unobservability_fails_and_cleans_group)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 67, in test_persistent_live_unobservability_fails_and_cleans_group
+    self.assertFalse(result['exit_confirmed_after_observation_failure'])
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'exit_confirmed_after_observation_failure'
+
+======================================================================
+FAIL: test_confirmation_timeout_does_not_extend_wall_budget (test_s8_supervisor_exit.ExitRaceTests.test_confirmation_timeout_does_not_extend_wall_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 73, in test_confirmation_timeout_does_not_extend_wall_budget
+    self.assertEqual(result['failure_reason'], 'wall_timeout')
+AssertionError: 'resource_observation_failed' != 'wall_timeout'
+- resource_observation_failed
++ wall_timeout
+
+
+======================================================================
+FAIL: test_confirmed_exit_still_requires_worker_proof (test_s8_supervisor_exit.ExitRaceTests.test_confirmed_exit_still_requires_worker_proof)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 61, in test_confirmed_exit_still_requires_worker_proof
+    self.assertEqual(result['failure_reason'], 'missing_worker_proof')
+AssertionError: 'resource_observation_failed' != 'missing_worker_proof'
+- resource_observation_failed
++ missing_worker_proof
+
+
+======================================================================
+FAIL: test_confirmed_nonzero_exit_is_not_sampling_success (test_s8_supervisor_exit.ExitRaceTests.test_confirmed_nonzero_exit_is_not_sampling_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 55, in test_confirmed_nonzero_exit_is_not_sampling_success
+    self.assertEqual(result['failure_reason'], 'child_exit')
+AssertionError: 'resource_observation_failed' != 'child_exit'
+- resource_observation_failed
++ child_exit
+
+
+======================================================================
+FAIL: test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='KeyError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 46, in test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped
+    self.assertIsNone(result['failure_reason'])
+AssertionError: 'resource_observation_failed' is not None
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.018s
+
+FAILED (failures=4, errors=4, skipped=1)

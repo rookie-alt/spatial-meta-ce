@@ -1,0 +1,215 @@
+{
+  "database": "accidents",
+  "role": "train",
+  "workload_rows": 50000,
+  "source_feature_rows": 50000,
+  "cache_rows": 50000,
+  "unique_queries": 50000,
+  "source_feature_fields": [
+    "data_features",
+    "n_fanouts",
+    "n_filter_cols",
+    "n_join_cols",
+    "n_tables",
+    "pg_est_cards",
+    "true_cards"
+  ],
+  "cache_manifest_fields": [
+    "content_hash",
+    "inspection",
+    "provenance",
+    "rows",
+    "schema",
+    "transform",
+    "unique_queries"
+  ],
+  "cache_row_fields": [
+    "exact_hash",
+    "id",
+    "query_hash",
+    "source_line"
+  ],
+  "cache_regenerated": false,
+  "input_hashes": {
+    "workload": "b4c53ef1d5d77cf35182cec8cdc236550800067c54cee9b0943a01568ef3bf73",
+    "source_features": "fa64d39bc83a38e80f4425a8ebafefd800ea8dff829fdc768d870c104449e769",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "4bb363e38ab88643ca775a6ba6cdac22c456b8a6d22fb773ea22dd3e4c1c90a0",
+    "statistics/fanout40.pkl": "cb03f0912a7df55ce3e2c2fb249555d49b9726d81a48894eb8e1d65f63cc19af",
+    "statistics/histogram40.pkl": "2dcf269f458bee1913957d0aad5933ad459b2dab34350e3a88513dc8f117820e",
+    "statistics/size.pkl": "8482a6ada13264d69b20c1d712ba080472bbdc684e296162c6aaf073f6a41994",
+    "statistics/summary40.pkl": "10e1f0eee35714b68c1fba07dea01bcf00644f5178c94b3489753010c63aaf33"
+  },
+  "provenance_errors": [],
+  "inputs_unchanged": true,
+  "recreate_all_features": true,
+  "totals": {
+    "recreated_rows": 50000,
+    "checked_rows": 50000,
+    "rows_with_errors": 0,
+    "mapping_recoverable": 50000,
+    "sql_mapping_recoverable": 50000,
+    "rows_with_risk_flags": 9890
+  },
+  "sql_flags": {
+    "multiple_filters": 9890
+  },
+  "by_tables": {
+    "3": {
+      "rows": 20515,
+      "mapping_recoverable": 20515,
+      "sql_mapping_recoverable": 20515,
+      "errors": {}
+    },
+    "2": {
+      "rows": 29485,
+      "mapping_recoverable": 29485,
+      "sql_mapping_recoverable": 29485,
+      "errors": {}
+    }
+  },
+  "by_predicate": {
+    "EQ": {
+      "rows": 50000,
+      "mapping_recoverable": 50000,
+      "sql_mapping_recoverable": 50000,
+      "errors": {}
+    },
+    "GTE": {
+      "rows": 18118,
+      "mapping_recoverable": 18118,
+      "sql_mapping_recoverable": 18118,
+      "errors": {}
+    },
+    "LT": {
+      "rows": 28961,
+      "mapping_recoverable": 28961,
+      "sql_mapping_recoverable": 28961,
+      "errors": {}
+    }
+  },
+  "by_flag": {
+    "no_risk_flag": {
+      "rows": 40110,
+      "mapping_recoverable": 40110,
+      "sql_mapping_recoverable": 40110,
+      "errors": {}
+    },
+    "multiple_filters": {
+      "rows": 9890,
+      "mapping_recoverable": 9890,
+      "sql_mapping_recoverable": 9890,
+      "errors": {}
+    }
+  },
+  "first_failures": [],
+  "mapping_examples": [
+    {
+      "query_hash": "b8e26e15aae9312673dd43251a30b56fd20bd822d2f92fdeb604702e7591e31a",
+      "source_line": 1,
+      "tables": [
+        "acdt_n",
+        "acdt_o",
+        "acdt_ue"
+      ],
+      "table_names": [
+        "nesreca",
+        "oseba",
+        "upravna_enota"
+      ],
+      "join_columns": [
+        "acdt_n.upravna_enota",
+        "acdt_o.upravna_enota",
+        "acdt_ue.id_upravna_enota"
+      ],
+      "filter_columns": [
+        "acdt_n.kategorija_cesta",
+        "acdt_n.y_wgs84",
+        "acdt_o.spol",
+        "acdt_o.starost_d",
+        "acdt_o.strokovni_pregled"
+      ],
+      "join_column_tables": [
+        0,
+        1,
+        2
+      ],
+      "filter_column_tables": [
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "fanout_join_columns": [
+        2,
+        0,
+        2,
+        1
+      ],
+      "counts": [
+        3,
+        4,
+        3,
+        5
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ",
+        "GTE",
+        "LT"
+      ],
+      "mapping_recoverable": true
+    },
+    {
+      "query_hash": "4dfe4f977bdf55416ecc08b5ad237cdf2c525deb242b650833cad1854b364e98",
+      "source_line": 2,
+      "tables": [
+        "acdt_n",
+        "acdt_ue"
+      ],
+      "table_names": [
+        "nesreca",
+        "upravna_enota"
+      ],
+      "join_columns": [
+        "acdt_n.upravna_enota",
+        "acdt_ue.id_upravna_enota"
+      ],
+      "filter_columns": [
+        "acdt_n.stanje_vozisce",
+        "acdt_n.tip_nesreca",
+        "acdt_n.vreme_nesreca"
+      ],
+      "join_column_tables": [
+        0,
+        1
+      ],
+      "filter_column_tables": [
+        0,
+        0,
+        0
+      ],
+      "fanout_join_columns": [
+        0,
+        1
+      ],
+      "counts": [
+        2,
+        2,
+        2,
+        3
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ"
+      ],
+      "mapping_recoverable": true
+    }
+  ],
+  "seconds": 720.3156897989102,
+  "stored_alignment_passed": true,
+  "alignment_passed": true,
+  "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+  "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+}

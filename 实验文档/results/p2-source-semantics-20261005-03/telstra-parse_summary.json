@@ -1,0 +1,34 @@
+{
+  "database": "telstra",
+  "status": "completed",
+  "source_rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_groups": 0,
+  "mismatches": {},
+  "unsupported": {},
+  "legacy_flags": {
+    "multiple_filters": 3333
+  },
+  "by_tables": {
+    "3": 17501,
+    "4": 14785,
+    "5": 5526,
+    "2": 12188
+  },
+  "by_predicate": {
+    "EQ+LT": 36946,
+    "EQ": 6406,
+    "EQ+GTE+LT": 3333,
+    "EQ+GTE": 3315
+  },
+  "row_status": {
+    "parsed": 50000
+  },
+  "multiple_filters_cross_tab": {
+    "independent_multiple=0/legacy_multiple=0": 46667,
+    "independent_multiple=1/legacy_multiple=1": 3333
+  },
+  "mismatch_examples": [],
+  "parse_rows_file": "telstra-parse_rows.jsonl",
+  "parse_rows_sha256": "7b7f08cca736c559135c2b10e46b2c45b07484940f220e62b07248d9075bfabb"
+}

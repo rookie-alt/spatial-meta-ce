@@ -1,0 +1,338 @@
+scripts/audit_input_mapping.py:19:1: E402 Module level import not at top of file
+   |
+17 | sys.path.insert(0, str(ROOT))
+18 |
+19 | from spatial_meta_ce.cli import data_settings, read_json, safe_output
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+20 | from spatial_meta_ce.data import GROUP_DIMS, FeatureStore
+21 | from spatial_meta_ce.features import COUNT_KEYS, extractor, lower_except_quotes
+   |
+
+scripts/audit_input_mapping.py:20:1: E402 Module level import not at top of file
+   |
+19 | from spatial_meta_ce.cli import data_settings, read_json, safe_output
+20 | from spatial_meta_ce.data import GROUP_DIMS, FeatureStore
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+21 | from spatial_meta_ce.features import COUNT_KEYS, extractor, lower_except_quotes
+22 | from spatial_meta_ce.manifests import file_hash, read_workload
+   |
+
+scripts/audit_input_mapping.py:21:1: E402 Module level import not at top of file
+   |
+19 | from spatial_meta_ce.cli import data_settings, read_json, safe_output
+20 | from spatial_meta_ce.data import GROUP_DIMS, FeatureStore
+21 | from spatial_meta_ce.features import COUNT_KEYS, extractor, lower_except_quotes
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+22 | from spatial_meta_ce.manifests import file_hash, read_workload
+   |
+
+scripts/audit_input_mapping.py:22:1: E402 Module level import not at top of file
+   |
+20 | from spatial_meta_ce.data import GROUP_DIMS, FeatureStore
+21 | from spatial_meta_ce.features import COUNT_KEYS, extractor, lower_except_quotes
+22 | from spatial_meta_ce.manifests import file_hash, read_workload
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+23 |
+24 | TARGETS = {'imdb', 'stats', 'genome', 'ergastf1'}
+   |
+
+scripts/build_mapping_sidecar.py:20:1: E402 Module level import not at top of file
+   |
+18 |   sys.path.insert(0, str(ROOT))
+19 |
+20 | / from scripts.audit_input_mapping import (
+21 | |     feature_groups_match,
+22 | |     provenance_checks,
+23 | |     query_layout,
+24 | |     source_databases,
+25 | |     write_report,
+26 | | )
+   | |_^ E402
+27 |   from spatial_meta_ce.cli import data_settings, read_json, safe_output
+28 |   from spatial_meta_ce.data import FeatureStore
+   |
+
+scripts/build_mapping_sidecar.py:27:1: E402 Module level import not at top of file
+   |
+25 |     write_report,
+26 | )
+27 | from spatial_meta_ce.cli import data_settings, read_json, safe_output
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+28 | from spatial_meta_ce.data import FeatureStore
+29 | from spatial_meta_ce.manifests import digest, file_hash, read_workload
+   |
+
+scripts/build_mapping_sidecar.py:28:1: E402 Module level import not at top of file
+   |
+26 | )
+27 | from spatial_meta_ce.cli import data_settings, read_json, safe_output
+28 | from spatial_meta_ce.data import FeatureStore
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+29 | from spatial_meta_ce.manifests import digest, file_hash, read_workload
+   |
+
+scripts/build_mapping_sidecar.py:29:1: E402 Module level import not at top of file
+   |
+27 | from spatial_meta_ce.cli import data_settings, read_json, safe_output
+28 | from spatial_meta_ce.data import FeatureStore
+29 | from spatial_meta_ce.manifests import digest, file_hash, read_workload
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+30 |
+31 | RELATIONS = ('join_column_tables', 'filter_column_tables', 'fanout_join_columns')
+   |
+
+scripts/deploy.py:49:45: E701 Multiple statements on one line (colon)
+   |
+47 |     files={}
+48 |     for f in root.rglob('*'):
+49 |         if not f.is_file() or f.is_symlink(): continue
+   |                                             ^ E701
+50 |         rel=f.relative_to(root)
+51 |         if set(rel.parts)&{'__pycache__','runs','artifacts','.git'} or f.name.startswith('.'): continue
+   |
+
+scripts/deploy.py:51:94: E701 Multiple statements on one line (colon)
+   |
+49 |         if not f.is_file() or f.is_symlink(): continue
+50 |         rel=f.relative_to(root)
+51 |         if set(rel.parts)&{'__pycache__','runs','artifacts','.git'} or f.name.startswith('.'): continue
+   |                                                                                              ^ E701
+52 |         if rel.suffix not in ('.py','.json','.md','.sh','.txt','.toml'): continue
+53 |         files[str(rel)]=base64.b64encode(f.read_bytes()).decode()
+   |
+
+scripts/deploy.py:52:72: E701 Multiple statements on one line (colon)
+   |
+50 |         rel=f.relative_to(root)
+51 |         if set(rel.parts)&{'__pycache__','runs','artifacts','.git'} or f.name.startswith('.'): continue
+52 |         if rel.suffix not in ('.py','.json','.md','.sh','.txt','.toml'): continue
+   |                                                                        ^ E701
+53 |         files[str(rel)]=base64.b64encode(f.read_bytes()).decode()
+54 |     payload={'root':args.remote_root,'files':files}
+   |
+
+scripts/eval_frozen.py:13:1: E402 Module level import not at top of file
+   |
+11 | sys.path.insert(0, str(ROOT))
+12 |
+13 | from spatial_meta_ce.cli import data_settings, read_json
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+14 | from spatial_meta_ce.evaluate import evaluate
+   |
+
+scripts/eval_frozen.py:14:1: E402 Module level import not at top of file
+   |
+13 | from spatial_meta_ce.cli import data_settings, read_json
+14 | from spatial_meta_ce.evaluate import evaluate
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+15 |
+16 | TARGETS = ['stats', 'genome', 'ergastf1']
+   |
+
+scripts/price_fewshot.py:16:1: E402 Module level import not at top of file
+   |
+14 | sys.path.insert(0, str(ROOT))
+15 |
+16 | from spatial_meta_ce.cli import data_settings, read_json
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+17 | from spatial_meta_ce.evaluate import evaluate
+   |
+
+scripts/price_fewshot.py:17:1: E402 Module level import not at top of file
+   |
+16 | from spatial_meta_ce.cli import data_settings, read_json
+17 | from spatial_meta_ce.evaluate import evaluate
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+18 |
+19 | TARGETS = ['stats', 'genome', 'ergastf1']
+   |
+
+scripts/run_experiments.py:95:30: E701 Multiple statements on one line (colon)
+   |
+93 |         for seed in (specification['seeds'] if baseline=='random' else [42]):
+94 |             settings=copy.deepcopy(ec)
+95 |             if baseline!='pg': settings['inner_lr']=baseline_choices[f'{baseline}-{seed}']['inner_lr']
+   |                              ^ E701
+96 |             evaluate(settings,dc,output/'evaluation'/baseline/f'seed{seed}',args.device,baseline=baseline,training_seed=seed)
+97 |     # Keep per-seed distributions separate; don't treat repeats as independent training runs.
+   |
+
+spatial_meta_ce/cli.py:26:38: E701 Multiple statements on one line (colon)
+   |
+24 |     else:
+25 |         location=Path(config.get('data_config','configs/data.json'))
+26 |         if not location.is_absolute(): location=PROJECT/location
+   |                                      ^ E701
+27 |         data=read_json(location)
+28 |     data=copy.deepcopy(data)
+   |
+
+spatial_meta_ce/cli.py:30:31: E701 Multiple statements on one line (colon)
+   |
+28 |     data=copy.deepcopy(data)
+29 |     cache=Path(data['cache_root'])
+30 |     if not cache.is_absolute(): cache=PROJECT/cache
+   |                               ^ E701
+31 |     data['cache_root']=str(cache.resolve())
+32 |     data['data_root']=str(Path(data['data_root']).resolve())
+   |
+
+spatial_meta_ce/cli.py:55:21: E702 Multiple statements on one line (semicolon)
+   |
+53 |         workload=root/'datas/workloads'/split/db/'workloads.sql'
+54 |         feature=root/'setup/features'/split/db/'features40.pkl'
+55 |         hashes=set(); count=0
+   |                     ^ E702
+56 |         import hashlib
+57 |         with workload.open() as stream:
+   |
+
+spatial_meta_ce/cli.py:59:36: E701 Multiple statements on one line (colon)
+   |
+57 |         with workload.open() as stream:
+58 |             for line in stream:
+59 |                 if not line.strip(): continue
+   |                                    ^ E701
+60 |                 count+=1
+61 |                 hashes.add(hashlib.sha256(line.split('||')[0].strip().encode()).hexdigest())
+   |
+
+spatial_meta_ce/cli.py:64:40: E701 Multiple statements on one line (colon)
+   |
+62 |         row={'split':split,'db':db,'workload_rows':count,'distinct_exact_sql':len(hashes),
+63 |              'workload_sha256':file_hash(workload),'features_present':feature.exists()}
+64 |         if db in data['splits']['test']: target_hashes[(split,db)]=hashes
+   |                                        ^ E701
+65 |         if feature.exists():
+66 |             with feature.open('rb') as stream: features=pickle.load(stream)
+   |
+
+spatial_meta_ce/cli.py:66:46: E701 Multiple statements on one line (colon)
+   |
+64 |         if db in data['splits']['test']: target_hashes[(split,db)]=hashes
+65 |         if feature.exists():
+66 |             with feature.open('rb') as stream: features=pickle.load(stream)
+   |                                              ^ E701
+67 |             row['features']=inspect_features(features)
+68 |             row['feature_sha256']=file_hash(feature)
+   |
+
+spatial_meta_ce/cli.py:77:23: E701 Multiple statements on one line (colon)
+   |
+75 |         report['exact_target_overlap'][db]=len(target_hashes[('finetune',db)]&target_hashes[('test',db)])
+76 |     output.parent.mkdir(parents=True,exist_ok=True)
+77 |     if output.exists(): raise FileExistsError(output)
+   |                       ^ E701
+78 |     output.write_text(json.dumps(report,indent=2))
+79 |     return report
+   |
+
+spatial_meta_ce/cli.py:86:52: E701 Multiple statements on one line (colon)
+   |
+84 |     pairs=[('pretrain',db) for db in data['splits']['train']+data['splits']['validation']]
+85 |     pairs += [(split,db) for db in data['splits']['test'] for split in ('test','finetune')]
+86 |     if selected and selected-{db for _,db in pairs}: raise ValueError('Unknown database')
+   |                                                    ^ E701
+87 |     for split,db in pairs:
+88 |         if selected is None or db in selected:
+   |
+
+spatial_meta_ce/cli.py:130:42: E702 Multiple statements on one line (semicolon)
+    |
+128 |         raise ValueError('Target appeared in training or model selection')
+129 |     pool=StorePool(data['cache_root'])
+130 |     ss=pool.get('finetune',args.database); ts=pool.get('test',args.database)
+    |                                          ^ E702
+131 |     indices,overlap=support_plan(ss,ts,args.k,config['support_seed'],0)
+132 |     params=adapt(model,ss.batch(indices,args.device),config['inner_lr'],config['inner_steps'],config['adapt_scope'],config['loss'],tr…
+    |
+
+spatial_meta_ce/cli.py:161:22: E701 Multiple statements on one line (colon)
+    |
+159 |     parser.add_argument('--allow-exclusions',action='store_true')
+160 |     args=parser.parse_args()
+161 |     if args.threads<1: parser.error('--threads must be positive')
+    |                      ^ E701
+162 |     torch.set_num_threads(args.threads)
+163 |     config=read_json(args.config)
+    |
+
+spatial_meta_ce/cli.py:168:29: E701 Multiple statements on one line (colon)
+    |
+166 |     for arg,key in [('seed','seed'),('steps','steps'),('inner_lr','inner_lr'),('inner_steps','inner_steps'),('scope','adapt_scope')]:
+167 |         value=getattr(args,arg)
+168 |         if value is not None: config[key]=value
+    |                             ^ E701
+169 |     if args.no_pg: config['model']['use_pg']=False
+170 |     stamp=datetime.datetime.now(datetime.timezone.utc).astimezone().strftime('%Y%m%d-%H%M%S-%f')
+    |
+
+spatial_meta_ce/cli.py:169:18: E701 Multiple statements on one line (colon)
+    |
+167 |         value=getattr(args,arg)
+168 |         if value is not None: config[key]=value
+169 |     if args.no_pg: config['model']['use_pg']=False
+    |                  ^ E701
+170 |     stamp=datetime.datetime.now(datetime.timezone.utc).astimezone().strftime('%Y%m%d-%H%M%S-%f')
+171 |     output=safe_output(args.output or str(PROJECT/'runs'/f'{args.command}-{stamp}'),data)
+    |
+
+spatial_meta_ce/cli.py:185:30: E701 Multiple statements on one line (colon)
+    |
+183 |         adapt_one(config,data,output,args)
+184 |     else:
+185 |         if args.device!='cpu': parser.error('smoke is CPU-only; formal training is a separate action')
+    |                              ^ E701
+186 |         smoke(config,data,output)
+    |
+
+tests/test_integrity.py:50:25: E702 Multiple statements on one line (semicolon)
+   |
+48 |     def test_resume_rejects_changed_hyperparameters(self):
+49 |         with tempfile.TemporaryDirectory() as d:
+50 |             root=Path(d); cfg,dc=fixtures(root)
+   |                         ^ E702
+51 |             train(cfg,dc,root/'run')
+52 |             cfg['inner_lr']=0.5
+   |
+
+tests/test_integrity.py:66:25: E702 Multiple statements on one line (semicolon)
+   |
+64 |         from spatial_meta_ce.evaluate import evaluate
+65 |         with tempfile.TemporaryDirectory() as d:
+66 |             root=Path(d); cfg,dc=fixtures(root)
+   |                         ^ E702
+67 |             train(cfg,dc,root/'train')
+68 |             model,state=load_checkpoint(root/'train/best.pt')
+   |
+
+tests/test_integrity.py:116:24: E701 Multiple statements on one line (colon)
+    |
+114 |             for j,(g,dim) in enumerate(zip(groups,(40,40,4,43))):
+115 |                 padding=torch.full((1,dim),-1000.)
+116 |                 if j==2: padding[:,0]=0
+    |                        ^ E701
+117 |                 parts.append(torch.cat([g,padding]).flatten())
+118 |             x=torch.cat(parts)[None,:]
+    |
+
+tests/test_p2_semantics.py:19:36: E702 Multiple statements on one line (semicolon)
+   |
+18 |     def test_histogram_boundaries_and_empty_range(self):
+19 |         bins = np.array([20., 30.]); edges = np.array([0., 10., 20.])
+   |                                    ^ E702
+20 |         self.assertAlmostEqual(numeric_histogram_selectivity(bins, edges, 5., 15., 100), .25)
+21 |         self.assertEqual(numeric_histogram_selectivity(bins, edges, 12., 12., 100), 0.)
+   |
+
+tests/test_paired.py:28:25: E702 Multiple statements on one line (semicolon)
+   |
+26 |     def test_paired_manifest_is_shared_across_methods(self):
+27 |         with tempfile.TemporaryDirectory() as d:
+28 |             root=Path(d); cfg,dc=fixtures(root)
+   |                         ^ E702
+29 |             ec={'shots':[0,5],'support_runs':2,'support_seed':2026,'inner_lr':0.01,
+30 |                 'inner_steps':1,'adapt_scope':'all','loss':'smooth_l1','batch_size':8,
+   |
+
+Found 34 errors.

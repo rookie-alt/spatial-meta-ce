@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "server_run": "/gly/weilin/spatial-meta-ce/runs/s4-pg-output-anchor-20261006-pidfix",
+  "archived_original_sha256": {
+    "summary.json": "aafa2bd935deb5fc008982d00aedcbfecbc0a379fde2f96e95c2081e88dda6ee",
+    "output-manifest.json": "8d362121cb8c98461ba20e20a204724b2178b5159b52fccf7f172de95fbab06d",
+    "protocol.json": "20eebcad6a950f43cb6645a52db77476de0960f85ab18d48107a27b884af19da",
+    "verification.json": "d642d778ac0d979abab1a03fcaac5233c3163b1ec1f2ad2505f8bed9303f5334",
+    "preflight.json": "768e28718646ce431ddbdce5b3df7f5f6874c853313f920ad02b45521de5499d",
+    "status.json": "1840dbc8784e0ca00153008be8153147a95e052456e50673f54600fe2b36bf42",
+    "runs.json": "04f18804173633a0b0d5e759a060daa0ed0877e20bd376a73462283198172dd5",
+    "smoke/summary.json": "b34e7ae49ce532d2a98c1ae2e57e42643e11dc6497a46a7e956721b482c3cfea",
+    "smoke/verification.json": "d7fc9fabbad4260fccffa2aa0b914b21eac430b3de7258861f74f38925cb2b23"
+  },
+  "server_original_sha256": {
+    "summary.json": "aafa2bd935deb5fc008982d00aedcbfecbc0a379fde2f96e95c2081e88dda6ee",
+    "output-manifest.json": "8d362121cb8c98461ba20e20a204724b2178b5159b52fccf7f172de95fbab06d",
+    "protocol.json": "20eebcad6a950f43cb6645a52db77476de0960f85ab18d48107a27b884af19da",
+    "verification.json": "d642d778ac0d979abab1a03fcaac5233c3163b1ec1f2ad2505f8bed9303f5334",
+    "preflight.json": "768e28718646ce431ddbdce5b3df7f5f6874c853313f920ad02b45521de5499d",
+    "status.json": "1840dbc8784e0ca00153008be8153147a95e052456e50673f54600fe2b36bf42",
+    "runs.json": "04f18804173633a0b0d5e759a060daa0ed0877e20bd376a73462283198172dd5",
+    "smoke/summary.json": "b34e7ae49ce532d2a98c1ae2e57e42643e11dc6497a46a7e956721b482c3cfea",
+    "smoke/verification.json": "d7fc9fabbad4260fccffa2aa0b914b21eac430b3de7258861f74f38925cb2b23"
+  },
+  "original_bytes_match": true,
+  "derived_csv_sha256": {
+    "metrics.csv": "ee023e6004df04e5525f19e84ce5c554c7e0182d55a30cf435f3c006c59a7e60",
+    "strata.csv": "0ce3f3f904050a27253ac5f4ee743f0f8feef2013af256b184be4ff35e7688f5"
+  },
+  "derived_from": "server summary.json verified against original raw JSONL; CSV extraction does not rerun models",
+  "raw_weights_and_rows_retained_on_server": true,
+  "status": "completed",
+  "decision": "no_candidate",
+  "independent_verification_report": "independent-row-verification.json"
+}

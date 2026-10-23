@@ -1,0 +1,14 @@
+test_actual_sigalrm_leaves_failed_status (test_s8_smoke_runner.SmokeRunnerTests.test_actual_sigalrm_leaves_failed_status) ... ok
+test_checkpoint_rejects_missing_optimizer_and_non_fp32_weight_state (test_s8_smoke_runner.SmokeRunnerTests.test_checkpoint_rejects_missing_optimizer_and_non_fp32_weight_state) ... ok
+test_default_plan_does_not_train_or_claim_formal_readiness (test_s8_smoke_runner.SmokeRunnerTests.test_default_plan_does_not_train_or_claim_formal_readiness) ... ok
+test_fresh_checkpoint_reload_binds_signature_step_and_model (test_s8_smoke_runner.SmokeRunnerTests.test_fresh_checkpoint_reload_binds_signature_step_and_model) ... ok
+test_holdout_guard_rejects_before_any_semantic_file_read (test_s8_smoke_runner.SmokeRunnerTests.test_holdout_guard_rejects_before_any_semantic_file_read) ... ok
+test_real_training_call_uses_only_panel_positions (test_s8_smoke_runner.SmokeRunnerTests.test_real_training_call_uses_only_panel_positions) ... ok
+test_sparse_metrics_validate_even_without_reporting_percentiles (test_s8_smoke_runner.SmokeRunnerTests.test_sparse_metrics_validate_even_without_reporting_percentiles) ... ok
+test_wallclock_signal_is_an_exception_not_process_default_termination (test_s8_smoke_runner.SmokeRunnerTests.test_wallclock_signal_is_an_exception_not_process_default_termination) ... ok
+test_wrong_project_root_is_rejected_before_output_creation (test_s8_smoke_runner.SmokeRunnerTests.test_wrong_project_root_is_rejected_before_output_creation) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 3.221s
+
+OK

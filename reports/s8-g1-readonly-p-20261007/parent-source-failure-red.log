@@ -1,0 +1,25 @@
+test_parent_source_sha_failure_keeps_failed_schema_proof (test_s8_readonly_p.ReadOnlyPTests.test_parent_source_sha_failure_keeps_failed_schema_proof) ... ERROR
+
+======================================================================
+ERROR: test_parent_source_sha_failure_keeps_failed_schema_proof (test_s8_readonly_p.ReadOnlyPTests.test_parent_source_sha_failure_keeps_failed_schema_proof)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 341, in test_parent_source_sha_failure_keeps_failed_schema_proof
+    code = ro.main(['--contract', str(manifest), '--contract-sha256', pin,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/verify_s8_readonly_p.py", line 782, in main
+    check_sources(contract)
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+ValueError: source SHA mismatch
+
+----------------------------------------------------------------------
+Ran 1 test in 0.014s
+
+FAILED (errors=1)

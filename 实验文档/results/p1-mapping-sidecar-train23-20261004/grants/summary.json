@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 46009,
+  "changed_unique_queries": 46009,
+  "unchanged_rows": 3991,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 3991,
+  "changed_fraction": 0.92018,
+  "sql_flags": {
+    "multiple_filters": 11758
+  },
+  "database": "grants",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 242.10764377005398
+}

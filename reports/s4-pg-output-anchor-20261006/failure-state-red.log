@@ -1,0 +1,29 @@
+test_initial_gpu_query_failure_is_recorded_without_training (test_s4_anchor.S4AnchorTests.test_initial_gpu_query_failure_is_recorded_without_training) ... FAIL
+test_supervisor_timeout_cleanup_error_and_no_premature_completion (test_s4_anchor.S4AnchorTests.test_supervisor_timeout_cleanup_error_and_no_premature_completion) ... FAIL
+
+======================================================================
+FAIL: test_initial_gpu_query_failure_is_recorded_without_training (test_s4_anchor.S4AnchorTests.test_initial_gpu_query_failure_is_recorded_without_training)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 579, in test_initial_gpu_query_failure_is_recorded_without_training
+    self.assertEqual(state['status'],'failed')
+AssertionError: 'planned' != 'failed'
+- planned
++ failed
+
+
+======================================================================
+FAIL: test_supervisor_timeout_cleanup_error_and_no_premature_completion (test_s4_anchor.S4AnchorTests.test_supervisor_timeout_cleanup_error_and_no_premature_completion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 384, in test_supervisor_timeout_cleanup_error_and_no_premature_completion
+    self.assertEqual(current["status"], "failed")
+AssertionError: 'partial' != 'failed'
+- partial
++ failed
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.010s
+
+FAILED (failures=2)

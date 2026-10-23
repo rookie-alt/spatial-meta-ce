@@ -1,0 +1,41 @@
+test_cross_database_hashes_are_not_deduplicated (test_s2_exposure_stats.StatisticsTests.test_cross_database_hashes_are_not_deduplicated) ... ok
+test_equal_database_pool_and_unweighted_quantiles (test_s2_exposure_stats.StatisticsTests.test_equal_database_pool_and_unweighted_quantiles) ... ok
+test_exposure_reports_global_and_within_database_mass_shares (test_s2_exposure_stats.StatisticsTests.test_exposure_reports_global_and_within_database_mass_shares) ... ok
+test_fixed_boundaries_and_complete_axes (test_s2_exposure_stats.StatisticsTests.test_fixed_boundaries_and_complete_axes) ... ok
+test_fp32_rounding_does_not_change_reference_direction (test_s2_exposure_stats.StatisticsTests.test_fp32_rounding_does_not_change_reference_direction) ... ok
+test_inputs_remain_unchanged (test_s2_exposure_stats.StatisticsTests.test_inputs_remain_unchanged) ... ok
+test_invalid_inputs_fail_instead_of_dropping_rows (test_s2_exposure_stats.StatisticsTests.test_invalid_inputs_fail_instead_of_dropping_rows) ... ok
+test_small_pool_remains_sparse_and_empty_exposure_is_undefined (test_s2_exposure_stats.StatisticsTests.test_small_pool_remains_sparse_and_empty_exposure_is_undefined) ... ok
+test_sparse_unique_cannot_be_inflated_by_repeats (test_s2_exposure_stats.StatisticsTests.test_sparse_unique_cannot_be_inflated_by_repeats) ... ok
+test_unequal_database_sizes_keep_equal_and_pooled_estimands_separate (test_s2_exposure_stats.StatisticsTests.test_unequal_database_sizes_keep_equal_and_pooled_estimands_separate) ... ok
+test_unweighted_linear_and_weighted_ecdf_are_distinct (test_s2_exposure_stats.StatisticsTests.test_unweighted_linear_and_weighted_ecdf_are_distinct) ... ok
+test_weighted_quantiles_inverse_ecdf (test_s2_exposure_stats.StatisticsTests.test_weighted_quantiles_inverse_ecdf) ... ok
+test_zero_denominator_and_comparison_conservation (test_s2_exposure_stats.StatisticsTests.test_zero_denominator_and_comparison_conservation) ... ok
+test_zero_source_nonzero_validation_is_not_smoothed (test_s2_exposure_stats.StatisticsTests.test_zero_source_nonzero_validation_is_not_smoothed) ... ok
+test_analysis_pipeline_uses_real_synthetic_statistics_and_verifier (test_s2_runner.S2RunnerTests.test_analysis_pipeline_uses_real_synthetic_statistics_and_verifier) ... ok
+test_csv_utf8_lf_and_json_no_nan (test_s2_runner.S2RunnerTests.test_csv_utf8_lf_and_json_no_nan) ... ok
+test_fresh_process_no_torch_or_training (test_s2_runner.S2RunnerTests.test_fresh_process_no_torch_or_training) ... ok
+test_launcher_and_absolute_deadline (test_s2_runner.S2RunnerTests.test_launcher_and_absolute_deadline) ... ok
+test_output_must_be_fresh_under_runs (test_s2_runner.S2RunnerTests.test_output_must_be_fresh_under_runs) ... ok
+test_owned_worker_success_failure_and_memory_error_states (test_s2_runner.S2RunnerTests.test_owned_worker_success_failure_and_memory_error_states) ... ok
+test_supervisor_nonzero_timeout_and_bad_manifest (test_s2_runner.S2RunnerTests.test_supervisor_nonzero_timeout_and_bad_manifest) ... ok
+test_supervisor_success_requires_all_hashes (test_s2_runner.S2RunnerTests.test_supervisor_success_requires_all_hashes) ... ok
+test_worker_rejects_unowned_or_gpu_execution (test_s2_runner.S2RunnerTests.test_worker_rejects_unowned_or_gpu_execution) ... ok
+test_cache_first_identity_and_no_features (test_s2_source_replay.S2ReplayTests.test_cache_first_identity_and_no_features) ... ok
+test_conflicting_duplicates_stop_without_filter (test_s2_source_replay.S2ReplayTests.test_conflicting_duplicates_stop_without_filter) ... ok
+test_fresh_process_never_imports_torch_or_models (test_s2_source_replay.S2ReplayTests.test_fresh_process_never_imports_torch_or_models) ... ok
+test_frozen_contract_and_hashes (test_s2_source_replay.S2ReplayTests.test_frozen_contract_and_hashes) ... ok
+test_invalid_sampling_and_digest_block (test_s2_source_replay.S2ReplayTests.test_invalid_sampling_and_digest_block) ... ok
+test_manifest_identity_shape_offsets_and_values (test_s2_source_replay.S2ReplayTests.test_manifest_identity_shape_offsets_and_values) ... ok
+test_replay_matches_independent_original_calls_and_chain (test_s2_source_replay.S2ReplayTests.test_replay_matches_independent_original_calls_and_chain) ... ok
+test_target_and_symlink_refused_before_read (test_s2_source_replay.S2ReplayTests.test_target_and_symlink_refused_before_read) ... ok
+test_complete_fixture (test_s2_verify.VerifyTests.test_complete_fixture) ... ok
+test_corruption_rejected (test_s2_verify.VerifyTests.test_corruption_rejected) ... ok
+test_missing_duplicate_nan_rejected (test_s2_verify.VerifyTests.test_missing_duplicate_nan_rejected) ... ok
+test_replay_corruption (test_s2_verify.VerifyTests.test_replay_corruption) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 9.577s
+
+OK
+{"purpose": "S2 dry-run, no inputs opened or analysis executed", "output": "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpnmx3x1m1/runs/dry", "timeout_seconds": 1800, "address_space_bytes": 4294967296}

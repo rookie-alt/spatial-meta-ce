@@ -1,0 +1,9 @@
+{
+  "purpose": "tiny-local-dtype-capability-only-not-a-high-precision-certificate",
+  "dtype": "float128",
+  "itemsize": 16,
+  "epsilon": "1.084202172485504434e-19",
+  "local_numpy_longdouble_svd_supported": false,
+  "error_type": "TypeError",
+  "error": "array type float128 is unsupported in linalg"
+}

@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "experiment": "meta65-joint-control-20261010",
+  "k": 20,
+  "databases": ["chembl", "legalacts", "telstra"],
+  "checkpoints": ["A", "B", "C"],
+  "operators": ["none", "head3", "last3"],
+  "runs": [0, 1, 2, 3, 4],
+  "batch_size": 512,
+  "inner_lr": 0.001,
+  "inner_steps": 3,
+  "loss": "smooth_l1",
+  "cuda_workspace_config": ":4096:8",
+  "model": {"arch": "sum", "use_pg": true, "width": 64, "layers": 2, "heads": 4},
+  "protocol_file": "实验文档/56-Meta65同初始化适应算子最小受控协议.md",
+  "protocol_sha256": "cc87ef93451e2664aba4aa51257a1cdba47c6638c004cb8e4b943773171ca4d2",
+  "limits": {
+    "total_seconds": 4800,
+    "preparation_seconds": 300,
+    "evaluation_seconds": 3600,
+    "certification_seconds": 900,
+    "rss_bytes": 4294967296,
+    "vram_bytes": 8589934592,
+    "output_bytes": 1073741824
+  },
+  "cpu_preflight": {
+    "micro_queries": 32,
+    "total_seconds": 900,
+    "preparation_seconds": 300,
+    "evaluation_seconds": 120,
+    "certification_seconds": 300
+  },
+  "gpu_preflight": {
+    "micro_queries": 32,
+    "total_seconds": 900,
+    "preparation_seconds": 300,
+    "evaluation_seconds": 300,
+    "certification_seconds": 300
+  }
+}

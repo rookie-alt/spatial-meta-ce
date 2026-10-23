@@ -1,0 +1,9 @@
+{
+  "archive_members": 9,
+  "all_source_test_contract_archive_SHA_match": true,
+  "all_members_safe_regular_relative": true,
+  "protected_old_local_files_unchanged": 88,
+  "original_frozen_archive_unchanged": true,
+  "future_real_P_deployment_or_run": false,
+  "check_scope": "primary_local_freeze_verification_not_independent_review"
+}

@@ -1,0 +1,14 @@
+test_output_ancestor_symlink_cannot_overwrite_historical_files (test_paper_results.PaperResultsTests.test_output_ancestor_symlink_cannot_overwrite_historical_files) ... FAIL
+
+======================================================================
+FAIL: test_output_ancestor_symlink_cannot_overwrite_historical_files (test_paper_results.PaperResultsTests.test_output_ancestor_symlink_cannot_overwrite_historical_files)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_paper_results.py", line 76, in test_output_ancestor_symlink_cannot_overwrite_historical_files
+    with self.assertRaisesRegex(ValueError, 'symlink|alias'):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.319s
+
+FAILED (failures=1)

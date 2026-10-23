@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "experiment": "p0-3-failure-audit-20261020",
+  "date": "2026-10-20",
+  "purpose": "research-read-only-audit",
+  "target_databases_read": [],
+  "input": {
+    "checkpoint": "runs/p1-screen-20261020/baseline/last.pt",
+    "shots": [
+      0,
+      5,
+      20,
+      100
+    ],
+    "support_runs": 5
+  },
+  "findings": {
+    "k20": {
+      "chembl": {
+        "worsened_fraction": 0.43651999999999996,
+        "top1pct_share": 0.110318205483197,
+        "shape": "diffuse",
+        "population": {
+          "over": 25543,
+          "under": 24457,
+          "tie": 0
+        },
+        "worsened_rate_by_pg_direction": {
+          "over": 0.34239517676075637,
+          "under": 0.5348243856564583
+        }
+      },
+      "legalacts": {
+        "worsened_fraction": 0.4920733678086619,
+        "top1pct_share": 0.057562490709685846,
+        "shape": "diffuse",
+        "population": {
+          "over": 17839,
+          "under": 31665,
+          "tie": 0
+        },
+        "worsened_rate_by_pg_direction": {
+          "over": 0.9208027355793487,
+          "under": 0.25054160745302384
+        }
+      },
+      "telstra": {
+        "worsened_fraction": 0.400692,
+        "top1pct_share": 0.12372562141718937,
+        "shape": "diffuse",
+        "population": {
+          "over": 28732,
+          "under": 21268,
+          "tie": 0
+        },
+        "worsened_rate_by_pg_direction": {
+          "over": 0.26185437839342895,
+          "under": 0.5882546548805717
+        }
+      }
+    },
+    "k100": {
+      "chembl": {
+        "worsened_fraction": 0.407376,
+        "top1pct_share": 0.1153529086985396,
+        "shape": "diffuse",
+        "population": {
+          "over": 25543,
+          "under": 24457,
+          "tie": 0
+        },
+        "worsened_rate_by_pg_direction": {
+          "over": 0.2379438593743883,
+          "under": 0.5843316841803983
+        }
+      },
+      "legalacts": {
+        "worsened_fraction": 0.4727698771816419,
+        "top1pct_share": 0.05636119794623752,
+        "shape": "diffuse",
+        "population": {
+          "over": 17839,
+          "under": 31665,
+          "tie": 0
+        },
+        "worsened_rate_by_pg_direction": {
+          "over": 0.8726722349907506,
+          "under": 0.24747828833096477
+        }
+      },
+      "telstra": {
+        "worsened_fraction": 0.383568,
+        "top1pct_share": 0.1185552844971943,
+        "shape": "other",
+        "population": {
+          "over": 28732,
+          "under": 21268,
+          "tie": 0
+        },
+        "worsened_rate_by_pg_direction": {
+          "over": 0.19457747459278854,
+          "under": 0.6388847094226067
+        }
+      }
+    }
+  }
+}

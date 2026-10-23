@@ -1,0 +1,16 @@
+test_bound_never_tighter_than_frozen_floor (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_never_tighter_than_frozen_floor) ... ok
+test_residual_at_bound_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_residual_at_bound_passes) ... ok
+test_strongly_rank_deficient_pair_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strongly_rank_deficient_pair_passes) ... FAIL
+
+======================================================================
+FAIL: test_strongly_rank_deficient_pair_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strongly_rank_deficient_pair_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_retained_tolerance.py", line 154, in test_strongly_rank_deficient_pair_passes
+    self.assertTrue(cert['retained_subspace_pass'])
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
+
+FAILED (failures=1)

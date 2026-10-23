@@ -1,0 +1,52 @@
+{
+  "command": [
+    "/opt/anaconda3/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "exit_status": 0,
+  "source_sha256_before": {
+    "scripts/s8_independent_verify.py": "1a2ecf06c3dbc1f86b066eb366c030d15fd6e91cbea6903a2d63da12aa038d45",
+    "scripts/verify_s8_readonly_p.py": "0c15a91d118f583e7d8e5c32922edd522c5d3e03d5e50c90ee2749ba968e1679",
+    "scripts/eval_frozen.py": "15d6cf221b55864de490bc43e6fc0755583c73d3b2a9425be0d4979de2d8a595",
+    "scripts/price_fewshot.py": "60e1eccde89f6dceae9203e6a8303ccf2009d14fc1e96969d7b227d4ea1ee90b",
+    "spatial_meta_ce/evaluate.py": "1b637fcf3a45b5fe2fedc2857d6a2017e1c77a26b183cf684155f10767f2296f",
+    "spatial_meta_ce/metrics.py": "ec940c3b29bb5b165f560a369c9874cd9ec630d2bbc21e7f78893a64fe1c56a5",
+    "spatial_meta_ce/s8_probe.py": "7c7847ce1122f0cf265541781812f4ed8cff2f671c9dc42c8e2abda71e48cfad",
+    "tests/test_paired.py": "22855b754aa432720bfc7d1d067c70c3be18fd4c8a7bff30380476b1bde2672c",
+    "tests/test_paired_metrics.py": "64438588a370d436175cbecc7e5fce2289b80fabbe8b044d52230bc59c21d61a",
+    "tests/test_s8_independent_v2.py": "f94e7e46abf5d9ad60a41e576b5a1aafdc298f9736d9adf326941d1a8a055585",
+    "tests/test_s8_retained_record_acceptance.py": "342dd1bf32e89970a191bac86e19a6ee27ada5b68ca4cd1853e20cbcb9c189f7",
+    "tests/test_s8_supervisor_exit.py": "8ee327a2eefb1c273005674050739efc003ce4b4bada0dec2386000ca515e2c8"
+  },
+  "source_sha256_after": {
+    "scripts/s8_independent_verify.py": "1a2ecf06c3dbc1f86b066eb366c030d15fd6e91cbea6903a2d63da12aa038d45",
+    "scripts/verify_s8_readonly_p.py": "0c15a91d118f583e7d8e5c32922edd522c5d3e03d5e50c90ee2749ba968e1679",
+    "scripts/eval_frozen.py": "15d6cf221b55864de490bc43e6fc0755583c73d3b2a9425be0d4979de2d8a595",
+    "scripts/price_fewshot.py": "60e1eccde89f6dceae9203e6a8303ccf2009d14fc1e96969d7b227d4ea1ee90b",
+    "spatial_meta_ce/evaluate.py": "1b637fcf3a45b5fe2fedc2857d6a2017e1c77a26b183cf684155f10767f2296f",
+    "spatial_meta_ce/metrics.py": "ec940c3b29bb5b165f560a369c9874cd9ec630d2bbc21e7f78893a64fe1c56a5",
+    "spatial_meta_ce/s8_probe.py": "7c7847ce1122f0cf265541781812f4ed8cff2f671c9dc42c8e2abda71e48cfad",
+    "tests/test_paired.py": "22855b754aa432720bfc7d1d067c70c3be18fd4c8a7bff30380476b1bde2672c",
+    "tests/test_paired_metrics.py": "64438588a370d436175cbecc7e5fce2289b80fabbe8b044d52230bc59c21d61a",
+    "tests/test_s8_independent_v2.py": "f94e7e46abf5d9ad60a41e576b5a1aafdc298f9736d9adf326941d1a8a055585",
+    "tests/test_s8_retained_record_acceptance.py": "342dd1bf32e89970a191bac86e19a6ee27ada5b68ca4cd1853e20cbcb9c189f7",
+    "tests/test_s8_supervisor_exit.py": "8ee327a2eefb1c273005674050739efc003ce4b4bada0dec2386000ca515e2c8"
+  },
+  "sources_unchanged_during_run": true,
+  "environment": {
+    "OMP_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "4",
+    "MKL_NUM_THREADS": "4",
+    "VECLIB_MAXIMUM_THREADS": "4",
+    "NUMEXPR_NUM_THREADS": "4",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "real_experiments_executed": false
+}

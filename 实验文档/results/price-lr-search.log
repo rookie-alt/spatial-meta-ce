@@ -1,0 +1,7 @@
+PRICE params=10709330 maxima=[11, 12, 7, 10]
+episodes=75 dbs=['chembl', 'legalacts', 'telstra'] K=[5, 10, 20, 50, 100] runs=5
+{"inner_lr": 1e-06, "macro_log_q95": 2.360436767335645, "elapsed_seconds": 712.1124951620586, "per_db_mean_q95": {"chembl": 28.758879720898378, "legalacts": 9.48784480662851, "telstra": 5.384051596122813}, "per_db_max_q95": {"chembl": 61.02720757325953, "legalacts": 17.2862874329563, "telstra": 7.577373003320845}}
+{"inner_lr": 1e-05, "macro_log_q95": 2.4366287945459653, "elapsed_seconds": 716.997456062003, "per_db_mean_q95": {"chembl": 35.093510854200844, "legalacts": 10.289796574374082, "telstra": 5.599560994077786}, "per_db_max_q95": {"chembl": 123.23560756444493, "legalacts": 20.973173802958765, "telstra": 9.95706628756858}}
+{"inner_lr": 0.0001, "macro_log_q95": 7.204600714271801, "elapsed_seconds": 705.2301886550849, "per_db_mean_q95": {"chembl": 1859344.4082574376, "legalacts": 352.2510457995448, "telstra": 257.4282067190205}, "per_db_max_q95": {"chembl": 32284667.597762626, "legalacts": 2757.526038339284, "telstra": 594.8397177133376}}
+{"inner_lr": 0.001, "macro_log_q95": 19.68618779882839, "elapsed_seconds": 703.2720511670923, "per_db_mean_q95": {"chembl": 4.804300582163438e+44, "legalacts": 3442515068269.352, "telstra": 2.2358756514093142e+31}, "per_db_max_q95": {"chembl": 1.1989552242002285e+46, "legalacts": 67622131063428.625, "telstra": 5.5896891285171536e+32}}
+CHOSEN inner_lr=1e-06 macro_log_q95=2.3604 -> runs/price-lr-search-20260926/result.json

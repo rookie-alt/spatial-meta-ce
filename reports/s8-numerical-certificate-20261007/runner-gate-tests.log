@@ -1,0 +1,8 @@
+test_full_p_certificate_refusal_stops_before_nomination_or_holdout (test_s8_smoke_certificate_gate.SmokeCertificateGateTests.test_full_p_certificate_refusal_stops_before_nomination_or_holdout) ... ok
+test_small_panel_certificate_refusal_leaves_failed_without_probe_artifacts (test_s8_smoke_certificate_gate.SmokeCertificateGateTests.test_small_panel_certificate_refusal_leaves_failed_without_probe_artifacts) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.056s
+
+OK
+All checks passed!

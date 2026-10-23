@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "protocol_sha256": "d63c4f503f55eb87b59896e54f0379768e8829c8d48f2bad0a3f6224b53e0be3",
+  "data_config": "configs/data.json",
+  "source_binding_sha256": "3d708226437e105c88562970fdd0b2ccf711a833105b4ec8c66d899aa61f79a6",
+  "timeout_seconds": 21600,
+  "training": {
+    "method": "erm", "seed": 42, "steps": 4000, "meta_batch": 4,
+    "accumulation": 1, "query_size": 64, "support_sizes": [5,10,20,50,100],
+    "outer_lr": 0.0003, "inner_lr": 0.001, "inner_steps": 0,
+    "adapt_scope": "all", "validate_every": 100, "validation_runs": 5,
+    "validation_seed": 1729, "patience": 41, "min_delta": 0.0001,
+    "loss": "smooth_l1"
+  },
+  "model": {"arch": "sum", "use_pg": true, "layers": 2, "heads": 4, "width": 64},
+  "arms": {"A_anchor1": {"pg_output_scale": 1.0}, "B_anchor0": {"pg_output_scale": 0.0}}
+}

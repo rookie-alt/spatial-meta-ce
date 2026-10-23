@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "updated_at": "2026-10-06T06:11:43.670528+00:00",
+  "output_sha256": {
+    "protocol.json": "dbbf3eac6a9db3c7b92a04738e27332184d3a878202ffb09927d5357b34cbcc2",
+    "summary.json": "cce4e01da46f7d25893f9250cfd8267fb269366589953c9ef5fc14742f57f48e",
+    "pool.csv": "c2c734ed8ce96aeb78c3123ab5cc0207a922546d42478d8c6d7578b225740d25",
+    "exposure.csv": "1abacb63c036f62d844fe58b50bd4b33492f6264a8890dbd85d470d1e159d7b3",
+    "residuals.csv": "5241ef04a44fce20c25a21dd6ec926ae23c71a9f48080e41aa8cd81f7dd0e474",
+    "comparison.csv": "53f45a0d5b0d8408dc0ec5f988b6786cc3995ee3c0fdaad167a4d9b74cd9d0fb",
+    "verification.json": "6fb51bd97947adfe39d1b3080d2fd656ed31f9fb306956c65b8a41ff56bab525"
+  },
+  "replay_verified": true,
+  "causal_explanation_verified": false,
+  "training": false,
+  "inference": false,
+  "target_data_read": false,
+  "seconds": 111.54276844183914,
+  "supervisor_peak_rss_kib_linux": 20276
+}

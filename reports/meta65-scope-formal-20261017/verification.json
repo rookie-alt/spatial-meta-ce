@@ -1,0 +1,32 @@
+{
+  "status": "formal_verified",
+  "mode": "formal",
+  "formal_result": true,
+  "engineering_verified": true,
+  "reproduction_verified": true,
+  "cells_verified": 60,
+  "all_metrics_verified": true,
+  "summary": {
+    "status": "no_candidate",
+    "decision": "no_candidate",
+    "selected_arm": null,
+    "primary_macro": {
+      "R_head3": 37.803303444422994,
+      "T_all3": 42.43636779993923
+    },
+    "primary_improvement": -0.12255712949339448,
+    "gates": {
+      "primary_10_percent": false,
+      "chembl_all_four_q50_q95": false,
+      "chembl_low4_reference": true,
+      "chembl_low4_no_negative_transfer": false,
+      "legalacts_all_four_q50_q95": false,
+      "legalacts_low4_reference": true,
+      "legalacts_low4_no_negative_transfer": false,
+      "telstra_all_four_q50_q95": true,
+      "telstra_low4_reference": true,
+      "telstra_low4_no_negative_transfer": false,
+      "low4_min_n": true
+    }
+  }
+}

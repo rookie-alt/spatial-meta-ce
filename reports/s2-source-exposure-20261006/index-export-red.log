@@ -1,0 +1,38 @@
+test_ast_ids_are_portable_between_roots (test_graph_build.GraphBuildTests.test_ast_ids_are_portable_between_roots) ... ok
+test_ast_unbound_external_symbol_keeps_edges_without_file_hash (test_graph_build.GraphBuildTests.test_ast_unbound_external_symbol_keeps_edges_without_file_hash) ... ERROR
+test_atomic_json_replaces_instead_of_growing_old_graph (test_graph_build.GraphBuildTests.test_atomic_json_replaces_instead_of_growing_old_graph) ... ok
+test_duplicate_non_placeholder_nodes_are_rejected (test_graph_build.GraphBuildTests.test_duplicate_non_placeholder_nodes_are_rejected) ... ok
+test_file_limit_allows_206_and_rejects_251_before_output (test_graph_build.GraphBuildTests.test_file_limit_allows_206_and_rejects_251_before_output) ... ok
+test_graph_is_deterministic_and_inputs_are_immutable (test_graph_build.GraphBuildTests.test_graph_is_deterministic_and_inputs_are_immutable) ... ok
+test_html_evidence_is_script_safe_and_has_source_metadata (test_graph_build.GraphBuildTests.test_html_evidence_is_script_safe_and_has_source_metadata) ... ok
+test_json_build_export_and_rebuild_clears_old_fields (test_graph_build.GraphBuildTests.test_json_build_export_and_rebuild_clears_old_fields) ... ok
+test_preserves_multiple_relations_and_deduplicates_identical_evidence (test_graph_build.GraphBuildTests.test_preserves_multiple_relations_and_deduplicates_identical_evidence) ... ok
+test_rejects_dangling_edge_and_conflicting_node_id (test_graph_build.GraphBuildTests.test_rejects_dangling_edge_and_conflicting_node_id) ... ok
+test_rejects_unsafe_ids_external_claims_and_output (test_graph_build.GraphBuildTests.test_rejects_unsafe_ids_external_claims_and_output) ... ok
+test_rejects_unsafe_semantic_paths_and_invalid_confidence (test_graph_build.GraphBuildTests.test_rejects_unsafe_semantic_paths_and_invalid_confidence) ... ok
+test_semantic_sources_must_match_current_content_and_cover_documents (test_graph_build.GraphBuildTests.test_semantic_sources_must_match_current_content_and_cover_documents) ... ok
+
+======================================================================
+ERROR: test_ast_unbound_external_symbol_keeps_edges_without_file_hash (test_graph_build.GraphBuildTests.test_ast_unbound_external_symbol_keeps_edges_without_file_hash)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_graph_build.py", line 217, in test_ast_unbound_external_symbol_keeps_edges_without_file_hash
+    exported = build(root, Path(output), None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 565, in build
+    "git": git_snapshot(root),
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 350, in git_snapshot
+    "branch": read(["branch", "--show-current"]),
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 345, in read
+    return subprocess.run(
+           ^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', '-C', '/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmp9fmlm5gp', 'branch', '--show-current']' returned non-zero exit status 128.
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.839s
+
+FAILED (errors=1)

@@ -1,0 +1,30 @@
+{
+  "last_step": 20,
+  "best_validation_macro_log_q95": 2.79686281435925,
+  "counts": {
+    "support_presentations": 0,
+    "query_presentations": 5520,
+    "backward_calls": 80,
+    "optimizer_steps": 20
+  },
+  "total_seconds": 4.517637401819229,
+  "parameters": 132545,
+  "purpose": "smoke-only; not research evidence",
+  "device": "cuda:0",
+  "optimizer_steps": 20,
+  "sample_plan_digest": "08e6c8e42c8904c9dbfca8972b23874da815a23cf9efc0b97175094b1609c663",
+  "sample_plan_episodes": 80,
+  "validation_plan_hash": "905bf4b9a1ae82537e63fdd578ea2fbcd6a6fbec1823bd9933a4540c29a79582",
+  "mapping_provenance": {},
+  "checkpoint_roundtrip_exact": true,
+  "optimizer_changed_weights": true,
+  "cpu_gpu_max_abs_difference": 0.0,
+  "cpu_gpu_tolerance": {
+    "rtol": 0.0001,
+    "atol": 0.0001
+  },
+  "checkpoint_sha256": "b7d02421d1b40947ff0458c22916a1603770c9b57a6c9fbe6b04ddca85e770e5",
+  "initialization_hash": "41e594b03ef19c56c3f236237da850929f2ec5c919702b44402dd9b2864d284a",
+  "gpu_seconds_including_data_load": 7.439222527202219,
+  "peak_memory_bytes": 73747456
+}

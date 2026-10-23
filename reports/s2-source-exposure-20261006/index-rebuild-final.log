@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 642, in <module>
+    main()
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 636, in main
+    build(args.root, args.out, args.semantic)
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 587, in build
+    export_outputs(extraction, detection, out, root, capture)
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 450, in export_outputs
+    labels = label_communities(graph, communities)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 378, in label_communities
+    sources = Counter(
+              ^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/collections/__init__.py", line 599, in __init__
+    self.update(iterable, **kwds)
+  File "/opt/anaconda3/lib/python3.11/collections/__init__.py", line 690, in update
+    _count_elements(self, iterable)
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 379, in <genexpr>
+    graph.nodes[n].get("source_file", "").split("/")[0] for n in members
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'split'

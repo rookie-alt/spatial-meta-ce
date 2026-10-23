@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "experiment": "meta65-source-screen-20261009",
+  "protocol_file": "实验文档/48-Meta65低维适应源侧对照协议.md",
+  "protocol_sha256": "fef38e8d18f46c4c167030628ee1dfa73dfbd9575f7b7eb76acf6e6c7844d8e4",
+  "source_binding_sha256": "3d708226437e105c88562970fdd0b2ccf711a833105b4ec8c66d899aa61f79a6",
+  "training": {
+    "method": "fomaml",
+    "seed": 42,
+    "steps": 4000,
+    "meta_batch": 4,
+    "accumulation": 1,
+    "query_size": 64,
+    "support_sizes": [
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "outer_lr": 0.0003,
+    "inner_lr": 0.001,
+    "validate_every": 100,
+    "validation_runs": 5,
+    "validation_seed": 1729,
+    "patience": 41,
+    "min_delta": 0.0001
+  },
+  "model": {
+    "arch": "sum",
+    "use_pg": true,
+    "layers": 2,
+    "heads": 4
+  },
+  "arms": {
+    "A_all5_head3": {
+      "train_scope": "all",
+      "train_steps": 5,
+      "eval_scope": "head",
+      "eval_steps": 3
+    },
+    "B_head3_head3": {
+      "train_scope": "head",
+      "train_steps": 3,
+      "eval_scope": "head",
+      "eval_steps": 3
+    },
+    "C_last3_last3": {
+      "train_scope": "last",
+      "train_steps": 3,
+      "eval_scope": "last",
+      "eval_steps": 3
+    }
+  },
+  "evaluation": {
+    "support_seed": 2718,
+    "support_runs": 5,
+    "shots": [
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "batch_size": 512
+  },
+  "screen": {
+    "min_improvement": 0.1,
+    "max_regression": 0.1
+  },
+  "timeout_seconds": 7200
+}

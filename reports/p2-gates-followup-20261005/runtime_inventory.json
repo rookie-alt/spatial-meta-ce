@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "checked_at": "2026-10-05T21:51:09.510971+08:00",
+  "inventory_correction": "Prior temporary inventory used a wrong workload filename; this fresh run uses the frozen preflight path layout.",
+  "scope": "authorized PRICE source/project paths; chembl/legalacts/telstra pretrain only",
+  "project": "/gly/weilin/spatial-meta-ce",
+  "source": "/gly/weilin/PRICE-master",
+  "data_root_contents": [
+    ".DS_Store",
+    "statistics",
+    "workloads"
+  ],
+  "commands": {
+    "psql": null,
+    "postgres": null,
+    "initdb": null,
+    "pg_ctl": null,
+    "docker": null,
+    "podman": null,
+    "apptainer": null,
+    "singularity": null
+  },
+  "known_postgresql_paths": {
+    "/usr/lib/postgresql": false,
+    "/var/lib/postgresql": false,
+    "/var/run/postgresql": false,
+    "/usr/local/pgsql/bin": false
+  },
+  "database_environment_names": [],
+  "source_statistics": {
+    "chembl": {
+      "statistics": {
+        "abbrev_col_type.pkl": "4c1b22573cf113adf9d1c733fa8324647534cc9b926b41e33e8ee5923058c1dc",
+        "fanout40.pkl": "41b4ce7827184d064d21a30ca2a5dd87d610f6beb01ca3b6e55786b6a36c275d",
+        "histogram40.pkl": "c67fb1fb81b742e31163fc97d9ee9a019932bda339cc498c980127ff5b45568f",
+        "size.pkl": "60e82e0b78195f4ab4108e9024057bd383258f679770c6db8afe1f435282d2c7",
+        "summary40.pkl": "c8acc044dcb53a253676cda230a41af2f6689aee7836b20ea8e1b3da9d603200"
+      },
+      "workload_present": true
+    },
+    "legalacts": {
+      "statistics": {
+        "abbrev_col_type.pkl": "63eee1e55833c5b66c322f3f95c6cd73afc20ec5c6af4641ff2eaff9010e4970",
+        "fanout40.pkl": "df4ea29d1154d17bd189408dae95bef24bdf537679f29d128f51768a71d7b104",
+        "histogram40.pkl": "615e05f2ac9e303c3e2a13d65b0ee789edb3455754c6f1c2eda1ec2fdbd2ceda",
+        "size.pkl": "1db4520b1d1bd59176db84a8e1479949bbfe9c18906d44e14af84137b680becb",
+        "summary40.pkl": "7f30ad89ddfaccc3c8111736db9307278ffd4115de5c0d794b137b13ac8cf5f1"
+      },
+      "workload_present": true
+    },
+    "telstra": {
+      "statistics": {
+        "abbrev_col_type.pkl": "b9aae24e5d089db2ea29b751a0e6c71e5c7e6b152d71d930b5608dd5e64e7840",
+        "fanout40.pkl": "e1cbb847ef88884452b6a07cd519ab2b7f91b5952e462b31406df619cdec940d",
+        "histogram40.pkl": "9dbbc1e1120e646eb3492d85525e0a973abbc7a51867f0b60ff8d1416ebe8843",
+        "size.pkl": "312e212d218c21ee3b0012e9f4002874eb0803f7681e1cdb996708929dc017c9",
+        "summary40.pkl": "8707c57c576ebaf2a4903e217c6b166f88b88a724e0868079aebe34dd1371831"
+      },
+      "workload_present": true
+    }
+  },
+  "historical_row_artifacts": [
+    {
+      "database": "chembl",
+      "path": "/gly/weilin/spatial-meta-ce/runs/p2-source-semantics-20261005-03/chembl-parse_rows.jsonl",
+      "bytes": 59691374,
+      "sha256": "517695906b762a21cfffb7bcd4802154cbc21637d5b40dc3479a8bc17656a113",
+      "matches_prior_record": true
+    },
+    {
+      "database": "legalacts",
+      "path": "/gly/weilin/spatial-meta-ce/runs/p2-source-semantics-20261005-03/legalacts-parse_rows.jsonl",
+      "bytes": 46952890,
+      "sha256": "15d0687442bb9b8007bc9dd75e85fb4bae8a7d06c251cc80bdb29f1fc281965b",
+      "matches_prior_record": true
+    },
+    {
+      "database": "telstra",
+      "path": "/gly/weilin/spatial-meta-ce/runs/p2-source-semantics-20261005-03/telstra-parse_rows.jsonl",
+      "bytes": 46690865,
+      "sha256": "7b7f08cca736c559135c2b10e46b2c45b07484940f220e62b07248d9075bfabb",
+      "matches_prior_record": true
+    }
+  ],
+  "same_version_source_tables_verified": false,
+  "statistics_to_source_lineage_verified": false,
+  "g1": "blocked_snapshot_unverified",
+  "b_reference_self_check": "blocked_postgresql_unavailable",
+  "b_workload_types": "blocked_snapshot_unverified",
+  "c": "blocked",
+  "database_access": false,
+  "database_count": false,
+  "target_data_read": false,
+  "formal_model_training": false,
+  "formal_model_inference": false,
+  "limitation": "Inventory is limited to the authorized visible paths. No absence claim about other hosts; no same-version source-table identity chain supplied.",
+  "original_source_before": {
+    "files": 37,
+    "sha256": {
+      "benchmark/e2e.py": "4381289e85e14122dd9bc074a46ab6f5945dfa2d05e73e3bd4da1634422b2c26",
+      "benchmark/perror.py": "4edfc2352ef4164ff20877bb8a4ea19e1a2ae374a9d332bfc7213616a909684a",
+      "benchmark/subquery.py": "372f9d85e21b9b27ec61269346b2b453c47fcc1c770411be137f607acc681bee",
+      "config/meta_config.py": "ae0855ce8ae39024907e4be62a3ed8519e389f61cfdf96efa7578591eec65a2d",
+      "evaluate.py": "b519344d4104103635b7fc010bd55c7b3453a95efd57d008506560f4cf099735",
+      "finetune.py": "7f2d926fa119e560f0e475faa2c86927bf0fee93a3f821d52993ebc8f4d5f0dc",
+      "meta_evaluate.py": "3ae7da6be531449271df75300ebd47500246fd267e3c929b024d2c86e633f481",
+      "meta_evaluate_v2.py": "1480825ad389270216245019043d010f988fcb1734142f17de8bfa08c0d08b45",
+      "meta_train.py": "01159ca7deb4bb37d6a9301a0f3ac90944fa439c8d54fb28d074d5fa70e4007e",
+      "meta_train_v2.py": "ac7428cf2e59613450039b8bc4a56e566436da754d9eff93727bcbac650275c6",
+      "model/__init__.py": "fc4cc752c0803a3f51f3b30118fd489c38fff9020506c1866e4aaed1b63c6c3d",
+      "model/encoder.py": "b1804c654fdad0454a32a19c362a1f5b644a3886e1892c682ee5ef94ee9dbc6c",
+      "model/meta_encoder.py": "c531d9cd4f5c1a9861c893d01beee4f648cd5b02c3ebb4775c24ce03faafe459",
+      "model/meta_encoder_v2.py": "acb1f8a706d7a9a0f21261c6a88b66e73bf9f7a560abe5b305829f36e385a74c",
+      "model/meta_module.py": "a72ca2696d65a1f2b3230f34b75787f5c4aacdf3f8d3e757d95e4b1f360098f8",
+      "model/meta_module_v2.py": "6b68b89543991ca6c3b3abee59229335e034baa52606ebd8f38be20c48676325",
+      "model/module.py": "15d98eb2f1aed939dc53002302016098394e0602719e0d56df6c351a29f4f66e",
+      "pretrain.py": "3da60dfc2c4ebb70f088f2559f36f0296915c6e3928a119a451262a808c74cca",
+      "quick_adapt.py": "bf1a048f4c9904bcdda14513db3d59aec389d5d122ca00873b1aa58c005cf8b4",
+      "quick_adapt_v2.py": "b537d2236e1891c00e29f261258ce3cf3c11b31bde34719650f5a27c2f8dd1c1",
+      "setup/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "setup/features_generate.py": "f79d4c2e7ec6e4abbad4d7b68f9acc9c4868e8de75b1af0f8f88224920626da8",
+      "setup/features_tool.py": "f3bc51e63d76bcb5d5410ff4ba669e4a89c111f458d2b6c0f1fd1ab21065e2c9",
+      "utils/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utils/model/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utils/model/args.py": "12b7ee7b3812cfdab90838f56cfb40ed6f404a8b4040c54c70076a2c0f61b1da",
+      "utils/model/dataset.py": "fe5afdb2b400da89df59bfe581feac407eb2c42d045f78248d8cc541180fc830",
+      "utils/model/padding.py": "cfb155402e831e457366b22c93f377f741acdba3f115a57228ec6be419bfe537",
+      "utils/model/perror_input.py": "769810ce7c546a7bb04ce418aa4d6816cd0f9edd7061eda3d850a0eb81689226",
+      "utils/model/qerror.py": "bc8aa978cab40a30f4e4fb518193cc0d9874b756d55b8cb5a8a3a1f1ed87b94f",
+      "utils/model/tuple_dataset.py": "a148cac71d2e448c038f3d383fcc55258680431232a8f711923be58a1c91b04e",
+      "utils/statistics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utils/statistics/gen_fanout.py": "dcef7cc56165a7ee61b02dc83ae2d5e2e988689b3c74333f45650e61f57d05ad",
+      "utils/statistics/gen_histogram.py": "8ad5181892859bc548921db46e21d49d9d9a29c51bb236f3074d3c80c9012cf0",
+      "utils/statistics/gen_size.py": "6f2c7e28dadeb020870b2deae64dc58cf6e140415c8c7a2bb88e2a44c8df6819",
+      "utils/statistics/gen_summary.py": "30ea3df4b26e8cbb3c7e53a33a8b55b3af664bede0be2ff131c2b4e994837a5d",
+      "utils/statistics/tools.py": "d89ed28db054f78d2d42e5a81435676dfd4b415ef5b1d76d68549e52f87ac307"
+    }
+  }
+}

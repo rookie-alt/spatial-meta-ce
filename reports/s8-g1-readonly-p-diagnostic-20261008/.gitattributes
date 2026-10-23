@@ -1,0 +1,2 @@
+# Preserve raw SSH/process log bytes and their recorded SHA256 on all checkouts.
+*.log -text

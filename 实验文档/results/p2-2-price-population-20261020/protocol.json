@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "purpose": "research-read-only-audit",
+  "audit": "p2-2-price-population",
+  "target_databases_read": [],
+  "metric": "unique-query population Q95 (single pass, NOT episode mean)",
+  "metric_definitions": {
+    "population": "every unique query_hash of the derived cache, one pass, no support sampling and no episode structure",
+    "q_error": "exp(abs(max(log_prediction, 0) - log(max(true_cardinality, 1))))",
+    "q50": "percentile(q_error, 50) over the population",
+    "q95": "percentile(q_error, 95) over the population",
+    "log_q95": "percentile(abs(max(log_prediction, 0) - log(max(true_cardinality, 1))), 95) over the population",
+    "price_shifted_q*": "exp(abs(logaddexp(max(log_prediction, 0), 0) - log1p(true_cardinality)))"
+  },
+  "estimators": {
+    "ours_k0": "our seed-42 baseline checkpoint, zero-shot, read from the export written by scripts/export_source_predictions.py",
+    "price_k0": "the provided PRICE weights, zero-shot, no adaptation",
+    "pg": "raw PostgreSQL estimate in the cache (cards[:, 1])"
+  },
+  "price": {
+    "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+    "checkpoint_sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92",
+    "parameters": 10709330,
+    "maxima": [
+      11,
+      12,
+      7,
+      10
+    ],
+    "per_database_max_counts": {
+      "chembl": [
+        11,
+        12,
+        7,
+        10
+      ],
+      "legalacts": [
+        5,
+        6,
+        4,
+        10
+      ],
+      "telstra": [
+        5,
+        8,
+        5,
+        5
+      ]
+    },
+    "maxima_rule": "elementwise max of inspection.max_counts over the compared databases, the same rule the source-side PRICE baseline used",
+    "decoding": "price_log_predictions(): native output is log1p(card)+1, decoded to log(card)",
+    "adaptation": "none (K=0, no support, no inner steps)"
+  },
+  "buckets": {
+    "table_count": [
+      "1",
+      "2-3",
+      "4-5",
+      "6+"
+    ],
+    "bucket_4plus": "n_tables >= 4 (table buckets 4-5 and 6+)"
+  },
+  "inputs": {
+    "predictions": {
+      "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p0-3-audit-20261020/predictions.csv",
+      "sha256": "325a2160729acb9b3b278a934e51bb396b8fc2f973f1ce6c20597fca2962c88a"
+    },
+    "caches": {
+      "chembl": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/chembl",
+        "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061"
+      },
+      "legalacts": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/legalacts",
+        "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6"
+      },
+      "telstra": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain/telstra",
+        "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      }
+    }
+  },
+  "comparability": {
+    "comparable_to": "the ours_k0 / price_k0 / pg numbers inside this report, which share one query population and one metric definition",
+    "not_comparable_to": [
+      "results/price-lr-search-result.json per_db_mean_q95, which is an episode mean over 64-query episodes",
+      "the PRICE figures quoted in docs 14 and 94, which are also episode-granular"
+    ],
+    "reason": "an episode mean of 64-query Q95s and a single-pass population Q95 measure different things; quoting them side by side would compare unlike units"
+  }
+}

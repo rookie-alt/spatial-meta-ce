@@ -1,0 +1,18 @@
+{
+  "verified_at": "2026-10-01T16:07:50.112701+08:00",
+  "status": "running short-budget time=2026-10-01T16:03:28+08:00",
+  "latest_validation": {
+    "step": 100,
+    "train_loss": 0.582396324723959,
+    "validation_macro_log_q95": 3.043650450483486,
+    "counts": {
+      "support_presentations": 0,
+      "query_presentations": 39925,
+      "backward_calls": 400,
+      "optimizer_steps": 100
+    }
+  },
+  "last_checkpoint_exists": true,
+  "processes": "  PID  PPID     ELAPSED COMMAND\n79697 79696       04:22 bash \u5b9e\u9a8c\u6587\u6863/results/p0-fixed-budget-20261001/launch.sh\n79702 79697       04:22 /gly/weilin/PRICE-master/venv/bin/python -B -u -m spatial_meta_ce.cli train --config configs/erm_sum_fixed_budget.json --steps 4000 --device cuda --output /gly/weilin/spatial-meta-ce/runs/p0-fixed-budget-seed42-20261001/training\n",
+  "gpu": "6, 354 MiB, 0 %\n"
+}

@@ -1,0 +1,12 @@
+{
+  "purpose": "independent recorded-array arithmetic; no inference or training",
+  "status": "verified",
+  "scalar_checks": 456,
+  "input_files_rehashed": 16,
+  "global_metrics_tail_counts_and_pg_reference_groups_verified": true,
+  "sparse_cell_q99_rules_verified": true,
+  "training": false,
+  "inference": false,
+  "target_data_read": false,
+  "summary_sha256": "d4adf1d1a2908d8093122b1020c8172233ccf19e6d63eb4b52e99da1d06e2199"
+}

@@ -1,0 +1,26 @@
+{
+  "purpose": "bounded synthetic feasibility not production acceptance",
+  "tests": 7,
+  "successful": true,
+  "failures": 0,
+  "errors": 0,
+  "wall_seconds_budget_check_only": 0.008492292021401227,
+  "maxrss_bytes": 19664896,
+  "limits": {
+    "wall_seconds": 30,
+    "CPU_seconds": 20,
+    "RSS_bytes": 134217728,
+    "matrix_shape_limit": [
+      16,
+      8
+    ],
+    "sqrt_decimal_scale_digits": 80
+  },
+  "production_modified": false,
+  "real_P_read": false,
+  "network_used": false,
+  "GPU_used": false,
+  "training": false,
+  "G1_status": "failed",
+  "rank_acceptance_in_production": "unchanged_unknown"
+}

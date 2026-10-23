@@ -1,0 +1,13 @@
+{
+  "attempts": 1,
+  "failure_reason": null,
+  "returncode": 0,
+  "signal": null,
+  "sampled_peak_rss_bytes": 1332236288,
+  "sampled_peak_address_space_bytes": 4290519040,
+  "rss_measurement": "sampled_not_hard_cap",
+  "poll_seconds": 0.05,
+  "RLIMIT_AS_bytes": 12884901888,
+  "wall_limit_seconds": 900,
+  "seconds": 8.05157156707719
+}

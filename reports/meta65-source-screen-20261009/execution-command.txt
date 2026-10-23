@@ -1,0 +1,11 @@
+Frozen commit: 0b5958046c5252e454b80a2c3435e61620c361a0
+Remote root: /gly/weilin/spatial-meta-ce-meta65-20261009-frozen
+Source cache (read-only): /gly/weilin/spatial-meta-ce/artifacts/cache
+GPU: GPU-0050e82c-8c24-d85d-00d3-b73f12638df0 (GPU6 at prelaunch)
+
+cd /gly/weilin/spatial-meta-ce-meta65-20261009-frozen
+PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES=GPU-0050e82c-8c24-d85d-00d3-b73f12638df0 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /gly/weilin/PRICE-master/venv/bin/python -B scripts/run_meta65_supervised.py --config configs/meta65_screen.json --data-config configs/meta65_server_data.json --out runs/meta65-source-screen-20261009 --device cuda --execute
+
+No resume, target evaluation, automatic retry, second seed or parameter search.
+Supervisor owns only its new child process group; total budget7200 seconds.
+This file records launch, not completion or an accuracy result.

@@ -1,0 +1,29 @@
+Meta65 formal GPU gate: single read-only ssh myserver snapshot
+User request: 查看 gpu 是否有空闲，继续实验
+Recorded after the query, local Asia/Shanghai: 2026-10-11T17:13:35+08:00
+This is not a GPU-provided timestamp and does not imply continuous monitoring.
+
+index, gpu_uuid, memory.used MiB, utilization %
+0, GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d, 21463, 89
+1, GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed, 7488, 45
+2, GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7, 6448, 67
+3, GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d, 10566, 73
+4, GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f, 6450, 50
+5, GPU-9c97317f-e01f-4906-7d6d-a2875e6ed792, 7352, 66
+6, GPU-0050e82c-8c24-d85d-00d3-b73f12638df0, 10526, 79
+7, GPU-42e7d4ca-13de-5dfe-e7f3-6c6b232c5b1f, 7474, 80
+
+COMPUTE_PROCESSES
+gpu_uuid, pid, used_memory MiB
+GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d, 43423, 10956
+GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d, 48945, 10498
+GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed, 41735, 7482
+GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7, 74697, 6442
+GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d, 58495, 10560
+GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f, 34177, 6444
+GPU-9c97317f-e01f-4906-7d6d-a2875e6ed792, 19161, 7346
+GPU-0050e82c-8c24-d85d-00d3-b73f12638df0, 34623, 10520
+GPU-42e7d4ca-13de-5dfe-e7f3-6c6b232c5b1f, 96950, 7468
+
+Gate: no GPU meets memory.used <=100 MiB, utilization=0%, and no compute process.
+Decision: blocked_no_idle_gpu. No approval, GPU binding, supervisor, or formal run.

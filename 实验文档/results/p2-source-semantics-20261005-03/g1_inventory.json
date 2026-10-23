@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-10-05T17:58:07.429259+08:00",
+  "scope": "chembl/legalacts/telstra pretrain only",
+  "data_root_contents": [
+    ".DS_Store",
+    "statistics",
+    "workloads"
+  ],
+  "source_statistics_present": true,
+  "source_workloads_present": true,
+  "raw_source_table_snapshot_verified": false,
+  "historical_statistics_to_snapshot_lineage_verified": false,
+  "source_postgresql_client_available": false,
+  "postgresql_server_available": false,
+  "database_connection_environment_configured": false,
+  "status": "blocked_snapshot_unverified",
+  "limitation": "Inventory cannot prove a database is absent elsewhere; no authenticated same-version snapshot or historical import chain identified in the authorized source/project paths. No source table row count executed."
+}

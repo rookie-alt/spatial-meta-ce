@@ -1,0 +1,237 @@
+{
+  "server_time": "2026-10-01T15:57:46.083199+08:00",
+  "python": "3.11.4",
+  "torch": "2.1.0+cu121",
+  "cuda_runtime": "12.1",
+  "disk_free_bytes": 238320353280,
+  "server_source_sha256": {
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/baselines.py": "8c33abc32eca96add688000c389527ff76886bf5d8de84f797c3735edb5b2064",
+    "spatial_meta_ce/checkpoints.py": "efb21c956fb836938aaf7675f0d1eb047ef767e537576f47d6b591a5a3bdf504",
+    "spatial_meta_ce/cli.py": "5acff5d2e59274ac4a68c152f07383618b4e8851055e4a4b0340b706f1dc5022",
+    "spatial_meta_ce/data.py": "af6132569a15be3c406fb9268dbb8f5ef361234aa5a9a54b163549ab695033ca",
+    "spatial_meta_ce/evaluate.py": "4aeea67ed1fd23e435012ec6e662f7321b26fab119afacb34d0a51d390da98b3",
+    "spatial_meta_ce/features.py": "5a165cd905f7c7de9f73f98783b97d796412d8072b81690de66a26005d12162d",
+    "spatial_meta_ce/manifests.py": "fc96df193c36ade103b2116f777325afb6bb8fb0c368ff0516998fa33fac6d30",
+    "spatial_meta_ce/meta.py": "10fe9bed655ba71bca3d77a2960c27aefb4e933a75e6f84fe4162581945a361f",
+    "spatial_meta_ce/metrics.py": "ec940c3b29bb5b165f560a369c9874cd9ec630d2bbc21e7f78893a64fe1c56a5",
+    "spatial_meta_ce/model.py": "0f52e3b895f1916755496cdbb016152759905a218f06acfa07bd1a78b7e9923c",
+    "spatial_meta_ce/train.py": "5b7e45ff378315bd504ba10906cae73da558ccdc0558a1eba2ad5048de7b4e54",
+    "scripts/arch_select.py": "3e5ad72a3761d239a26b691d311e64d0373f031c556a11a36324b890a30b943f",
+    "configs/meta.json": "88cec2886e9eff737fae6e4381601297ac204e5e249f185a51c75679f0175ecd",
+    "configs/data.json": "a9057d65c7cb220bd21e7cd67dacbc15c0c20dcc87f61d9b3e6470c0ea094d90"
+  },
+  "source_caches": {
+    "accidents": {
+      "content_hash": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "airline": {
+      "content_hash": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "baseball": {
+      "content_hash": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "basketball": {
+      "content_hash": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "carcinogenesis": {
+      "content_hash": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "ccs": {
+      "content_hash": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "consumer": {
+      "content_hash": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "credit": {
+      "content_hash": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "employee": {
+      "content_hash": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "financial": {
+      "content_hash": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "fnhk": {
+      "content_hash": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "grants": {
+      "content_hash": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "hepatitis": {
+      "content_hash": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "hockey": {
+      "content_hash": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "movielens": {
+      "content_hash": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "sakila": {
+      "content_hash": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "sap": {
+      "content_hash": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "rows": 50000,
+      "unique_queries": 29714
+    },
+    "seznam": {
+      "content_hash": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "ssb": {
+      "content_hash": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "talkingdata": {
+      "content_hash": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "tournament": {
+      "content_hash": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "tpc_h": {
+      "content_hash": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "tubepricing": {
+      "content_hash": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "chembl": {
+      "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "rows": 50000,
+      "unique_queries": 50000
+    },
+    "legalacts": {
+      "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "rows": 50000,
+      "unique_queries": 49504
+    },
+    "telstra": {
+      "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+      "rows": 50000,
+      "unique_queries": 50000
+    }
+  },
+  "data_splits": {
+    "train": [
+      "accidents",
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hepatitis",
+      "hockey",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "validation": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "test": [
+      "imdb",
+      "stats",
+      "genome",
+      "ergastf1"
+    ]
+  },
+  "created_at": "2026-10-01T15:55:05.142382+08:00",
+  "baseline_code_commit": "06e77c060f69ac958cde7b4003f650916d6b3955",
+  "branch": "experiment/p0-fixed-budget-20261001",
+  "input_sha256": {
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/baselines.py": "8c33abc32eca96add688000c389527ff76886bf5d8de84f797c3735edb5b2064",
+    "spatial_meta_ce/checkpoints.py": "efb21c956fb836938aaf7675f0d1eb047ef767e537576f47d6b591a5a3bdf504",
+    "spatial_meta_ce/cli.py": "5acff5d2e59274ac4a68c152f07383618b4e8851055e4a4b0340b706f1dc5022",
+    "spatial_meta_ce/data.py": "af6132569a15be3c406fb9268dbb8f5ef361234aa5a9a54b163549ab695033ca",
+    "spatial_meta_ce/evaluate.py": "4aeea67ed1fd23e435012ec6e662f7321b26fab119afacb34d0a51d390da98b3",
+    "spatial_meta_ce/features.py": "5a165cd905f7c7de9f73f98783b97d796412d8072b81690de66a26005d12162d",
+    "spatial_meta_ce/manifests.py": "fc96df193c36ade103b2116f777325afb6bb8fb0c368ff0516998fa33fac6d30",
+    "spatial_meta_ce/meta.py": "10fe9bed655ba71bca3d77a2960c27aefb4e933a75e6f84fe4162581945a361f",
+    "spatial_meta_ce/metrics.py": "ec940c3b29bb5b165f560a369c9874cd9ec630d2bbc21e7f78893a64fe1c56a5",
+    "spatial_meta_ce/model.py": "0f52e3b895f1916755496cdbb016152759905a218f06acfa07bd1a78b7e9923c",
+    "spatial_meta_ce/train.py": "5b7e45ff378315bd504ba10906cae73da558ccdc0558a1eba2ad5048de7b4e54",
+    "scripts/arch_select.py": "3e5ad72a3761d239a26b691d311e64d0373f031c556a11a36324b890a30b943f",
+    "configs/meta.json": "88cec2886e9eff737fae6e4381601297ac204e5e249f185a51c75679f0175ecd",
+    "configs/data.json": "a9057d65c7cb220bd21e7cd67dacbc15c0c20dcc87f61d9b3e6470c0ea094d90",
+    "configs/erm_sum_fixed_budget.json": "32eeb8e77e29b51638a50eeecdebc776d70aa48618f7c3267c75ba691d88dd5b",
+    "实验文档/results/p0-fixed-budget-20261001/protocol.json": "f59bce1c2b06eae667f04034be47819a62db3f64d948547482e4b44ceb63db1d",
+    "实验文档/results/p0-fixed-budget-20261001/launch.sh": "7840481fe35fa0a8af5bd4f53188eee8a4253f9aec5563518ea86f3590a3a73f"
+  },
+  "verification": {
+    "server_tests_passed": 44,
+    "test_command": "CUDA_VISIBLE_DEVICES=\"\" python -B -m unittest discover -s tests -v",
+    "config_changes_only": {
+      "steps": [
+        4000,
+        20000
+      ],
+      "patience": [
+        10,
+        201
+      ]
+    },
+    "shell_syntax_checked": true,
+    "embedded_python_blocks_compiled": 3
+  },
+  "estimated_wall_hours": [
+    5,
+    6
+  ]
+}

@@ -1,0 +1,22 @@
+test_confirmation_timeout_does_not_extend_wall_budget (test_s8_supervisor_exit.ExitRaceTests.test_confirmation_timeout_does_not_extend_wall_budget) ... ok
+test_confirmed_exit_still_requires_worker_proof (test_s8_supervisor_exit.ExitRaceTests.test_confirmed_exit_still_requires_worker_proof) ... ok
+test_confirmed_nonzero_exit_is_not_sampling_success (test_s8_supervisor_exit.ExitRaceTests.test_confirmed_nonzero_exit_is_not_sampling_success) ... ok
+test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) ... ok
+test_exit_confirmation_finishing_after_deadline_still_fails_wall_budget (test_s8_supervisor_exit.ExitRaceTests.test_exit_confirmation_finishing_after_deadline_still_fails_wall_budget) ... FAIL
+test_group_disappearing_during_cleanup_is_not_supervisor_failure (test_s8_supervisor_exit.ExitRaceTests.test_group_disappearing_during_cleanup_is_not_supervisor_failure) ... ok
+test_persistent_live_unobservability_fails_and_cleans_group (test_s8_supervisor_exit.ExitRaceTests.test_persistent_live_unobservability_fails_and_cleans_group) ... ok
+test_proc_zombie_and_missing_window_reject_counter_sample (test_s8_supervisor_exit.ExitRaceTests.test_proc_zombie_and_missing_window_reject_counter_sample) ... ok
+test_real_linux_quick_exit_zombie_window (test_s8_supervisor_exit.ExitRaceTests.test_real_linux_quick_exit_zombie_window) ... skipped 'real Linux /proc integration not verified on macOS'
+
+======================================================================
+FAIL: test_exit_confirmation_finishing_after_deadline_still_fails_wall_budget (test_s8_supervisor_exit.ExitRaceTests.test_exit_confirmation_finishing_after_deadline_still_fails_wall_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 83, in test_exit_confirmation_finishing_after_deadline_still_fails_wall_budget
+    self.assertEqual(result['failure_reason'], 'wall_timeout')
+AssertionError: None != 'wall_timeout'
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.015s
+
+FAILED (failures=1, skipped=1)

@@ -1,0 +1,561 @@
+{
+  "schema": 1,
+  "purpose": "research-read-only-audit",
+  "audit": "p2-2-direction-audit-three-seed",
+  "target_databases_read": [],
+  "seeds": [
+    "42",
+    "43",
+    "44"
+  ],
+  "per_seed": {
+    "42": {
+      "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/bold-sinoussi-0e59f4/\u5b9e\u9a8c\u6587\u6863/results/p2-2-direction-audit-20261020/audit.json",
+      "in_database": {
+        "hgb": {
+          "chembl": 0.916678280278819,
+          "legalacts": 0.9553414978919071,
+          "telstra": 0.9770586044487157
+        },
+        "logistic": {
+          "chembl": 0.8265967843764426,
+          "legalacts": 0.7698027713131119,
+          "telstra": 0.8143486809649798
+        }
+      },
+      "near_duplicate": {
+        "hgb": {
+          "chembl": 0.9054852886910164,
+          "legalacts": 0.9447192884525233,
+          "telstra": 0.9284220077138645
+        }
+      },
+      "lodo": {
+        "hgb": {
+          "chembl": 0.5412298385226537,
+          "legalacts": 0.5962125902041849,
+          "telstra": 0.3821814953656146
+        },
+        "logistic": {
+          "chembl": 0.38882063019838936,
+          "legalacts": 0.5713259616978492,
+          "telstra": 0.662627834980986
+        }
+      },
+      "lodo_accuracy": {
+        "hgb": {
+          "chembl": 0.54302,
+          "legalacts": 0.6358274078862314,
+          "telstra": 0.44504
+        },
+        "logistic": {
+          "chembl": 0.4272,
+          "legalacts": 0.4683661926308985,
+          "telstra": 0.58202
+        }
+      },
+      "lodo_majority": {
+        "hgb": {
+          "chembl": 0.51086,
+          "legalacts": 0.6396452811893988,
+          "telstra": 0.57464
+        },
+        "logistic": {
+          "chembl": 0.51086,
+          "legalacts": 0.6396452811893988,
+          "telstra": 0.57464
+        }
+      },
+      "inputs": {
+        "predictions": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/predictions.csv",
+          "sha256": "325a2160729acb9b3b278a934e51bb396b8fc2f973f1ce6c20597fca2962c88a",
+          "rows": 2392064
+        },
+        "caches": {
+          "chembl": {
+            "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/chembl",
+            "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+            "queries": 50000
+          },
+          "legalacts": {
+            "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/legalacts",
+            "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+            "queries": 50000
+          },
+          "telstra": {
+            "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/telstra",
+            "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+            "queries": 50000
+          }
+        }
+      },
+      "verdict": {
+        "significant_in_database": {
+          "chembl": true,
+          "legalacts": true,
+          "telstra": true
+        },
+        "transfers_across_databases": {
+          "chembl": false,
+          "legalacts": true,
+          "telstra": false
+        },
+        "any_database_has_signal": true,
+        "all_databases_transfer": false,
+        "status": "needs_evidence"
+      }
+    },
+    "43": {
+      "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/bold-sinoussi-0e59f4/\u5b9e\u9a8c\u6587\u6863/results/p2-2-direction-audit-20261020-seed43/audit.json",
+      "in_database": {
+        "hgb": {
+          "chembl": 0.9114810051206466,
+          "legalacts": 0.963326580833023,
+          "telstra": 0.9767925629381273
+        },
+        "logistic": {
+          "chembl": 0.8256194988420544,
+          "legalacts": 0.7718852461493731,
+          "telstra": 0.8189716087223049
+        }
+      },
+      "near_duplicate": {
+        "hgb": {
+          "chembl": 0.9011134266178751,
+          "legalacts": 0.9549495510615943,
+          "telstra": 0.8926136814582213
+        }
+      },
+      "lodo": {
+        "hgb": {
+          "chembl": 0.5081381590269147,
+          "legalacts": 0.6130311028899614,
+          "telstra": 0.4374169099954545
+        },
+        "logistic": {
+          "chembl": 0.4212577550205269,
+          "legalacts": 0.6217067727658097,
+          "telstra": 0.6521685486595024
+        }
+      },
+      "lodo_accuracy": {
+        "hgb": {
+          "chembl": 0.48164,
+          "legalacts": 0.5754080478345184,
+          "telstra": 0.57062
+        },
+        "logistic": {
+          "chembl": 0.4204,
+          "legalacts": 0.6291208791208791,
+          "telstra": 0.601
+        }
+      },
+      "lodo_majority": {
+        "hgb": {
+          "chembl": 0.55102,
+          "legalacts": 0.53219941822883,
+          "telstra": 0.601
+        },
+        "logistic": {
+          "chembl": 0.55102,
+          "legalacts": 0.53219941822883,
+          "telstra": 0.601
+        }
+      },
+      "inputs": {
+        "predictions": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/bold-sinoussi-0e59f4/runs/p2-2-seed43-20261020/predictions.csv",
+          "sha256": "d647d8a1bbc72f11ef42af5793c572f02458223383213cf396893b995de06c5e",
+          "rows": 2392064
+        },
+        "caches": {
+          "chembl": {
+            "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/chembl",
+            "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+            "queries": 50000
+          },
+          "legalacts": {
+            "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/legalacts",
+            "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+            "queries": 50000
+          },
+          "telstra": {
+            "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/telstra",
+            "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+            "queries": 50000
+          }
+        }
+      },
+      "verdict": {
+        "significant_in_database": {
+          "chembl": true,
+          "legalacts": true,
+          "telstra": true
+        },
+        "transfers_across_databases": {
+          "chembl": false,
+          "legalacts": true,
+          "telstra": false
+        },
+        "any_database_has_signal": true,
+        "all_databases_transfer": false,
+        "status": "needs_evidence"
+      }
+    },
+    "44": {
+      "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/bold-sinoussi-0e59f4/\u5b9e\u9a8c\u6587\u6863/results/p2-2-direction-audit-20261020-seed44/audit.json",
+      "in_database": {
+        "hgb": {
+          "chembl": 0.9102471907004461,
+          "legalacts": 0.9650351135773173,
+          "telstra": 0.9847139416844072
+        },
+        "logistic": {
+          "chembl": 0.8064020460482896,
+          "legalacts": 0.7939167021858601,
+          "telstra": 0.8747581279902519
+        }
+      },
+      "near_duplicate": {
+        "hgb": {
+          "chembl": 0.8984963245366138,
+          "legalacts": 0.9583249214669959,
+          "telstra": 0.9451581291452014
+        }
+      },
+      "lodo": {
+        "hgb": {
+          "chembl": 0.5365202470308402,
+          "legalacts": 0.5754608221053448,
+          "telstra": 0.4720671388106724
+        },
+        "logistic": {
+          "chembl": 0.49569926018880184,
+          "legalacts": 0.6584926577570338,
+          "telstra": 0.748662104001224
+        }
+      },
+      "lodo_accuracy": {
+        "hgb": {
+          "chembl": 0.56138,
+          "legalacts": 0.5694287330316742,
+          "telstra": 0.75916
+        },
+        "logistic": {
+          "chembl": 0.54578,
+          "legalacts": 0.5255130898513252,
+          "telstra": 0.76282
+        }
+      },
+      "lodo_majority": {
+        "hgb": {
+          "chembl": 0.5645,
+          "legalacts": 0.5255130898513252,
+          "telstra": 0.76282
+        },
+        "logistic": {
+          "chembl": 0.5645,
+          "legalacts": 0.5255130898513252,
+          "telstra": 0.76282
+        }
+      },
+      "inputs": {
+        "predictions": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/bold-sinoussi-0e59f4/runs/p2-2-seed44-20261020/predictions.csv",
+          "sha256": "55c29c4a2180d39cc586494e5c52d92b2baa30dc12b5560d9fb043cd41773f0d",
+          "rows": 2392064
+        },
+        "caches": {
+          "chembl": {
+            "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/chembl",
+            "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+            "queries": 50000
+          },
+          "legalacts": {
+            "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/legalacts",
+            "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+            "queries": 50000
+          },
+          "telstra": {
+            "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/telstra",
+            "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+            "queries": 50000
+          }
+        }
+      },
+      "verdict": {
+        "significant_in_database": {
+          "chembl": true,
+          "legalacts": true,
+          "telstra": true
+        },
+        "transfers_across_databases": {
+          "chembl": false,
+          "legalacts": true,
+          "telstra": false
+        },
+        "any_database_has_signal": true,
+        "all_databases_transfer": false,
+        "status": "needs_evidence"
+      }
+    }
+  },
+  "summary": {
+    "in_database": {
+      "hgb": {
+        "chembl": {
+          "mean": 0.9128021586999706,
+          "std": 0.003413035800630378,
+          "min": 0.9102471907004461,
+          "max": 0.916678280278819,
+          "n": 3
+        },
+        "legalacts": {
+          "mean": 0.9612343974340826,
+          "std": 0.005174405260047695,
+          "min": 0.9553414978919071,
+          "max": 0.9650351135773173,
+          "n": 3
+        },
+        "telstra": {
+          "mean": 0.9795217030237501,
+          "std": 0.004498577692255155,
+          "min": 0.9767925629381273,
+          "max": 0.9847139416844072,
+          "n": 3
+        }
+      },
+      "logistic": {
+        "chembl": {
+          "mean": 0.8195394430889289,
+          "std": 0.011387808064174573,
+          "min": 0.8064020460482896,
+          "max": 0.8265967843764426,
+          "n": 3
+        },
+        "legalacts": {
+          "mean": 0.7785349065494483,
+          "std": 0.013361657947693681,
+          "min": 0.7698027713131119,
+          "max": 0.7939167021858601,
+          "n": 3
+        },
+        "telstra": {
+          "mean": 0.8360261392258455,
+          "std": 0.03362243418458777,
+          "min": 0.8143486809649798,
+          "max": 0.8747581279902519,
+          "n": 3
+        }
+      }
+    },
+    "near_duplicate": {
+      "hgb": {
+        "chembl": {
+          "mean": 0.9016983466151683,
+          "std": 0.0035310060238275573,
+          "min": 0.8984963245366138,
+          "max": 0.9054852886910164,
+          "n": 3
+        },
+        "legalacts": {
+          "mean": 0.9526645869937044,
+          "std": 0.00708478002656309,
+          "min": 0.9447192884525233,
+          "max": 0.9583249214669959,
+          "n": 3
+        },
+        "telstra": {
+          "mean": 0.9220646061057624,
+          "std": 0.026842916422912602,
+          "min": 0.8926136814582213,
+          "max": 0.9451581291452014,
+          "n": 3
+        }
+      },
+      "logistic": {
+        "chembl": null,
+        "legalacts": null,
+        "telstra": null
+      }
+    },
+    "lodo": {
+      "hgb": {
+        "chembl": {
+          "mean": 0.5286294148601361,
+          "std": 0.017901500976785185,
+          "min": 0.5081381590269147,
+          "max": 0.5412298385226537,
+          "n": 3
+        },
+        "legalacts": {
+          "mean": 0.5949015050664971,
+          "std": 0.018819423682393505,
+          "min": 0.5754608221053448,
+          "max": 0.6130311028899614,
+          "n": 3
+        },
+        "telstra": {
+          "mean": 0.4305551813905805,
+          "std": 0.04533397968376731,
+          "min": 0.3821814953656146,
+          "max": 0.4720671388106724,
+          "n": 3
+        }
+      },
+      "logistic": {
+        "chembl": {
+          "mean": 0.43525921513590604,
+          "std": 0.05479772852207278,
+          "min": 0.38882063019838936,
+          "max": 0.49569926018880184,
+          "n": 3
+        },
+        "legalacts": {
+          "mean": 0.6171751307402309,
+          "std": 0.04375968532855967,
+          "min": 0.5713259616978492,
+          "max": 0.6584926577570338,
+          "n": 3
+        },
+        "telstra": {
+          "mean": 0.6878194958805709,
+          "std": 0.0529501311592448,
+          "min": 0.6521685486595024,
+          "max": 0.748662104001224,
+          "n": 3
+        }
+      }
+    },
+    "lodo_accuracy": {
+      "hgb": {
+        "chembl": {
+          "mean": 0.5286799999999999,
+          "std": 0.04175935344327063,
+          "min": 0.48164,
+          "max": 0.56138,
+          "n": 3
+        },
+        "legalacts": {
+          "mean": 0.5935547295841413,
+          "std": 0.036731084240760915,
+          "min": 0.5694287330316742,
+          "max": 0.6358274078862314,
+          "n": 3
+        },
+        "telstra": {
+          "mean": 0.5916066666666667,
+          "std": 0.15810810774066372,
+          "min": 0.44504,
+          "max": 0.75916,
+          "n": 3
+        }
+      },
+      "logistic": {
+        "chembl": {
+          "mean": 0.46446000000000004,
+          "std": 0.07050721097873608,
+          "min": 0.4204,
+          "max": 0.54578,
+          "n": 3
+        },
+        "legalacts": {
+          "mean": 0.5410000538677009,
+          "std": 0.08148866085509306,
+          "min": 0.4683661926308985,
+          "max": 0.6291208791208791,
+          "n": 3
+        },
+        "telstra": {
+          "mean": 0.6486133333333334,
+          "std": 0.09936011339231322,
+          "min": 0.58202,
+          "max": 0.76282,
+          "n": 3
+        }
+      }
+    },
+    "lodo_majority": {
+      "hgb": {
+        "chembl": {
+          "mean": 0.5421266666666666,
+          "std": 0.027903959097829355,
+          "min": 0.51086,
+          "max": 0.5645,
+          "n": 3
+        },
+        "legalacts": {
+          "mean": 0.565785929756518,
+          "std": 0.06405138243908011,
+          "min": 0.5255130898513252,
+          "max": 0.6396452811893988,
+          "n": 3
+        },
+        "telstra": {
+          "mean": 0.6461533333333334,
+          "std": 0.10189232421204915,
+          "min": 0.57464,
+          "max": 0.76282,
+          "n": 3
+        }
+      },
+      "logistic": {
+        "chembl": {
+          "mean": 0.5421266666666666,
+          "std": 0.027903959097829355,
+          "min": 0.51086,
+          "max": 0.5645,
+          "n": 3
+        },
+        "legalacts": {
+          "mean": 0.565785929756518,
+          "std": 0.06405138243908011,
+          "min": 0.5255130898513252,
+          "max": 0.6396452811893988,
+          "n": 3
+        },
+        "telstra": {
+          "mean": 0.6461533333333334,
+          "std": 0.10189232421204915,
+          "min": 0.57464,
+          "max": 0.76282,
+          "n": 3
+        }
+      }
+    }
+  },
+  "verdict": {
+    "in_database_auc_min_over_seeds_and_databases": {
+      "value": 0.9102471907004461,
+      "threshold": 0.85,
+      "comparison": ">",
+      "pass": true
+    },
+    "lodo_auc_max_over_seeds_and_databases": {
+      "value": 0.6130311028899614,
+      "threshold": 0.65,
+      "comparison": "<",
+      "pass": true
+    },
+    "telstra_lodo_below_half": {
+      "value": 3,
+      "seeds": [
+        "42",
+        "43",
+        "44"
+      ],
+      "per_seed": {
+        "42": 0.3821814953656146,
+        "43": 0.4374169099954545,
+        "44": 0.4720671388106724
+      },
+      "threshold": 2,
+      "comparison": ">=",
+      "pass": true
+    },
+    "all_pass": true,
+    "conclusion": "confirmed",
+    "note": "Thresholds are the ones frozen in doc 97 section 4.3 before the seed-43/44 runs. A failure downgrades doc 96 to inconclusive; the affected numbers may then only appear in an appendix."
+  }
+}

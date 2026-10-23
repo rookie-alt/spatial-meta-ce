@@ -1,0 +1,43 @@
+{
+  "status": "new_local_package_prepared_not_real_P_executed",
+  "revision": "readonly-P-handshake-v2",
+  "archive": "/private/tmp/s8-g1-readonly-p-handshake-v2-package-20261008.tar.gz",
+  "archive_sha256": "128d1b3c164812152e43bf13e712149db897a9e347903d7ff0cd5c462b456fb2",
+  "archive_bytes": 42509,
+  "contract_relative_path": "reports/s8-g1-readonly-p-handshake-v2-20261008/execution-contract.json",
+  "execution_contract_sha256": "35a7ad5fa21374b33a14f13745af8b297d7b857d7cc741eb548a05c900a67b96",
+  "files_sha256": {
+    "scripts/verify_s8_readonly_p.py": "5320ffe926cf7b56ddf2970b7888f79391e18fb62cf50298127e4eb2af8e5471",
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/s8_probe.py": "cea49d50eefe814c4ee3ad315d047787f897170d39ad855b18229f796b0cb12a",
+    "实验文档/27-S8G1运行器与真实smoke协议.md": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+    "实验文档/34-S8G1工程验收v2批准协议.md": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+    "reports/s8-g1-readonly-p-20261007/proof.schema.json": "8b375ff815463436736bb55fa32984fbd2f8d3ec7dabb55e455d65c7810665cb",
+    "tests/test_s8_readonly_p.py": "f4b93b28070278814c3328a140317d54d79c9e52e4a199d9f682d204b65d9654",
+    "tests/test_s8_readonly_handshake_linux.py": "e91375e111638c245dea0729ee0784426693416eff552ffff38cdf76cfaac100",
+    "reports/s8-g1-readonly-p-handshake-v2-20261008/execution-contract.json": "35a7ad5fa21374b33a14f13745af8b297d7b857d7cc741eb548a05c900a67b96"
+  },
+  "source_sha256": {
+    "scripts/verify_s8_readonly_p.py": "5320ffe926cf7b56ddf2970b7888f79391e18fb62cf50298127e4eb2af8e5471",
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/s8_probe.py": "cea49d50eefe814c4ee3ad315d047787f897170d39ad855b18229f796b0cb12a",
+    "实验文档/27-S8G1运行器与真实smoke协议.md": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+    "实验文档/34-S8G1工程验收v2批准协议.md": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+    "reports/s8-g1-readonly-p-20261007/proof.schema.json": "8b375ff815463436736bb55fa32984fbd2f8d3ec7dabb55e455d65c7810665cb"
+  },
+  "test_sha256": {
+    "tests/test_s8_readonly_p.py": "f4b93b28070278814c3328a140317d54d79c9e52e4a199d9f682d204b65d9654",
+    "tests/test_s8_readonly_handshake_linux.py": "e91375e111638c245dea0729ee0784426693416eff552ffff38cdf76cfaac100"
+  },
+  "original_archive_sha256_preserved": "39ee9efcdaecd0cb5e71aa6d03009b5a78aa5b1cf8dfa8cf763ad2153282d23c",
+  "original_contract_sha256_preserved": "5d1ea6f4c9cd0f061f3db9ad5d9d7a88485485a88a169c213ddd7a25ed7e8650",
+  "new_server_package_if_separately_approved": "/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-code-handshake-v2-20261008",
+  "new_server_proof_if_separately_approved": "/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-proof-handshake-v2-20261008",
+  "future_real_P_deployment_performed": false,
+  "real_P_read": false,
+  "smoke_performed": false,
+  "formal_training_started": false,
+  "formal_ready": false,
+  "original_G1_status": "failed",
+  "strict_certificate": "unknown"
+}

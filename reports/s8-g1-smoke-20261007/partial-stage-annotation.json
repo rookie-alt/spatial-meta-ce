@@ -1,0 +1,10 @@
+{
+  "applies_to_sha256": "ed7af352e72f90e434b7e7818a78f1faa8e2db58312065655dfdbb8b4d05461d",
+  "optimizer_steps_directly_reverified_by_partial_verifier": false,
+  "optimizer_steps_evidence": "fixed two-step contract, episode step records and original runner checkpoint reload validation; partial verifier assigns 2 rather than reloading optimizer state",
+  "sampling_identity_replayed_independently": true,
+  "checkpoint_bytes_hash_verified": true,
+  "reload_output_delta_is_original_runner_record_not_new_inference": true,
+  "overall_smoke_status": "failed",
+  "H_statement_scope": "No H label/token semantic loading or inference; preflight did read H identity/count and bytes for SHA"
+}

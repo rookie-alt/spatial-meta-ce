@@ -1,0 +1,21 @@
+test_s6_runner (unittest.loader._FailedTest.test_s6_runner) ... ERROR
+
+======================================================================
+ERROR: test_s6_runner (unittest.loader._FailedTest.test_s6_runner)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_s6_runner
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/tests/test_s6_runner.py", line 7, in <module>
+    from scripts import run_s6_tail as s
+ImportError: cannot import name 'run_s6_tail' from 'scripts' (unknown location)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

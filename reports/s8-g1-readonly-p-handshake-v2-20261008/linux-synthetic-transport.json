@@ -1,0 +1,1 @@
+{"step":"one_bounded_Linux_synthetic_handshake_suite", "attempt":1, "ssh_and_outer_returncode":0, "local_shell_wall_seconds_rounded":2, "outer_TERM_seconds":59, "outer_KILL_grace_seconds":1, "CPU_threads":1, "CUDA_VISIBLE_DEVICES":"", "retried":false, "real_P_data_CLI_invoked":false}

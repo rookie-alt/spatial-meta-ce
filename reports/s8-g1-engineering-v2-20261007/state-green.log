@@ -1,0 +1,126 @@
+test_even_recomputed_body_digest_rejects_wrong_decision_or_binding (test_s8_state.NominationTests) ... ok
+test_formal_gate_recomputed_on_read (test_s8_state.NominationTests) ... ok
+test_formal_selection_and_no_candidate_remain_distinct_from_smoke (test_s8_state.NominationTests) ... ok
+test_invalid_path_type_is_engineering_error (test_s8_state.NominationTests) ... ok
+test_missing_formal_metrics_and_invalid_bindings_leave_no_seal (test_s8_state.NominationTests) ... ok
+test_missing_seal_and_bad_file_sha_block_h (test_s8_state.NominationTests) ... ok
+test_modified_source_protocol_panel_auxiliary_and_mode_block_h (test_s8_state.NominationTests) ... ok
+test_noncanonical_duplicate_keys_and_nonfinite_json_block_h (test_s8_state.NominationTests) ... ok
+test_overwrite_rejected_and_original_bytes_unchanged (test_s8_state.NominationTests) ... ok
+test_parent_swap_cannot_redirect_creation (test_s8_state.NominationTests) ... ok
+test_smoke_never_selects_or_reads_metrics (test_s8_state.NominationTests) ... ok
+test_symlink_final_parent_ancestor_and_dotdot_rejected (test_s8_state.NominationTests) ... ok
+test_tamper_and_recomputed_file_hash_do_not_bypass_body_digest (test_s8_state.NominationTests) ... ok
+test_both_references_and_each_all_four_plus_quantile_protect (test_s8_state.SelectionTests) ... ok
+test_macro_not_pooled_or_each_database_gate (test_s8_state.SelectionTests) ... ok
+test_missing_extra_arms_database_cohort_or_quantile_rejected (test_s8_state.SelectionTests) ... ok
+test_no_candidate_is_a_valid_development_decision (test_s8_state.SelectionTests) ... ok
+test_overflowing_numeric_summary_is_engineering_error (test_s8_state.SelectionTests) ... ok
+test_sparse_four_plus_and_unpaired_counts_rejected (test_s8_state.SelectionTests) ... ok
+test_sparse_nonfinite_invalid_counts_and_quantiles_rejected (test_s8_state.SelectionTests) ... ok
+test_threshold_equality_and_tie_order (test_s8_state.SelectionTests) ... ok
+test_all_required_fields_are_mandatory (test_s8_state.SignatureTests) ... ok
+test_bad_sha_and_type_rejected (test_s8_state.SignatureTests) ... ok
+test_cyclic_or_unencodable_metadata_is_engineering_error (test_s8_state.SignatureTests) ... ok
+test_fixed_model_and_no_unsafe_overrides (test_s8_state.SignatureTests) ... ok
+test_literal_partitions_match_frozen_contract (test_s8_state.SignatureTests) ... ok
+test_mode_purpose_steps_and_frozen_controls (test_s8_state.SignatureTests) ... ok
+test_signature_is_canonical_and_binds_auxiliary_fields (test_s8_state.SignatureTests) ... ok
+test_smoke_resource_budget_is_required_exact_and_signed (test_s8_state.SignatureTests) ... ok
+test_unknown_target_heldout_and_changed_order_rejected (test_s8_state.SignatureTests) ... ok
+test_unsafe_auxiliary_database_and_non_json_values_rejected (test_s8_state.SignatureTests) ... ok
+test_rehashed_seal_revision_tampering_cannot_match_pinned_bindings (test_s8_state_v2.EngineeringV2SealTests) ... ok
+test_seal_h_gate_rejects_schema1_schema2_in_both_directions (test_s8_state_v2.EngineeringV2SealTests) ... ok
+test_v2_seal_h_gate_rejects_changed_or_removed_revision_and_policy (test_s8_state_v2.EngineeringV2SealTests) ... ok
+test_v2_seal_round_trip_keeps_policy_hash_and_smoke_not_selection (test_s8_state_v2.EngineeringV2SealTests) ... ERROR
+test_legacy_schema1_smoke_and_formal_keep_canonical_semantics (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema1_rejects_either_or_both_v2_fields_even_without_valid_policy (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_acceptance_requires_canonical_sha256 (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_keeps_all_original_required_fields (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_preserves_data_model_resource_and_step_gates (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_rejects_formal_even_with_matching_formal_purpose_and_steps (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_rejects_unknown_wrong_or_non_string_policy (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_requires_each_policy_and_acceptance_field (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_smoke_accepts_only_engineering_permission_and_signs_all_keys (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema_is_exact_integer_version_not_coercible_or_unknown (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+
+======================================================================
+ERROR: test_v2_seal_round_trip_keeps_policy_hash_and_smoke_not_selection (test_s8_state_v2.EngineeringV2SealTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_state_v2.py", line 142, in test_v2_seal_round_trip_keeps_policy_hash_and_smoke_not_selection
+    verified = require_nomination(path, data, file_sha(path))
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_state.py", line 292, in require_nomination
+    _check_sha(expected_file_sha, 'expected_file_sha')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_state.py", line 54, in _check_sha
+    raise ValueError(f'S8 invalid SHA256: {field}')
+ValueError: S8 invalid SHA256: expected_file_sha
+
+----------------------------------------------------------------------
+Ran 45 tests in 0.120s
+
+FAILED (errors=1)
+
+STATE_TEST_EXIT_CODE=1
+All checks passed!
+
+RUFF_EXIT_CODE=0
+
+=== Corrected test call order: GREEN rerun ===
+test_even_recomputed_body_digest_rejects_wrong_decision_or_binding (test_s8_state.NominationTests) ... ok
+test_formal_gate_recomputed_on_read (test_s8_state.NominationTests) ... ok
+test_formal_selection_and_no_candidate_remain_distinct_from_smoke (test_s8_state.NominationTests) ... ok
+test_invalid_path_type_is_engineering_error (test_s8_state.NominationTests) ... ok
+test_missing_formal_metrics_and_invalid_bindings_leave_no_seal (test_s8_state.NominationTests) ... ok
+test_missing_seal_and_bad_file_sha_block_h (test_s8_state.NominationTests) ... ok
+test_modified_source_protocol_panel_auxiliary_and_mode_block_h (test_s8_state.NominationTests) ... ok
+test_noncanonical_duplicate_keys_and_nonfinite_json_block_h (test_s8_state.NominationTests) ... ok
+test_overwrite_rejected_and_original_bytes_unchanged (test_s8_state.NominationTests) ... ok
+test_parent_swap_cannot_redirect_creation (test_s8_state.NominationTests) ... ok
+test_smoke_never_selects_or_reads_metrics (test_s8_state.NominationTests) ... ok
+test_symlink_final_parent_ancestor_and_dotdot_rejected (test_s8_state.NominationTests) ... ok
+test_tamper_and_recomputed_file_hash_do_not_bypass_body_digest (test_s8_state.NominationTests) ... ok
+test_both_references_and_each_all_four_plus_quantile_protect (test_s8_state.SelectionTests) ... ok
+test_macro_not_pooled_or_each_database_gate (test_s8_state.SelectionTests) ... ok
+test_missing_extra_arms_database_cohort_or_quantile_rejected (test_s8_state.SelectionTests) ... ok
+test_no_candidate_is_a_valid_development_decision (test_s8_state.SelectionTests) ... ok
+test_overflowing_numeric_summary_is_engineering_error (test_s8_state.SelectionTests) ... ok
+test_sparse_four_plus_and_unpaired_counts_rejected (test_s8_state.SelectionTests) ... ok
+test_sparse_nonfinite_invalid_counts_and_quantiles_rejected (test_s8_state.SelectionTests) ... ok
+test_threshold_equality_and_tie_order (test_s8_state.SelectionTests) ... ok
+test_all_required_fields_are_mandatory (test_s8_state.SignatureTests) ... ok
+test_bad_sha_and_type_rejected (test_s8_state.SignatureTests) ... ok
+test_cyclic_or_unencodable_metadata_is_engineering_error (test_s8_state.SignatureTests) ... ok
+test_fixed_model_and_no_unsafe_overrides (test_s8_state.SignatureTests) ... ok
+test_literal_partitions_match_frozen_contract (test_s8_state.SignatureTests) ... ok
+test_mode_purpose_steps_and_frozen_controls (test_s8_state.SignatureTests) ... ok
+test_signature_is_canonical_and_binds_auxiliary_fields (test_s8_state.SignatureTests) ... ok
+test_smoke_resource_budget_is_required_exact_and_signed (test_s8_state.SignatureTests) ... ok
+test_unknown_target_heldout_and_changed_order_rejected (test_s8_state.SignatureTests) ... ok
+test_unsafe_auxiliary_database_and_non_json_values_rejected (test_s8_state.SignatureTests) ... ok
+test_rehashed_seal_revision_tampering_cannot_match_pinned_bindings (test_s8_state_v2.EngineeringV2SealTests) ... ok
+test_seal_h_gate_rejects_schema1_schema2_in_both_directions (test_s8_state_v2.EngineeringV2SealTests) ... ok
+test_v2_seal_h_gate_rejects_changed_or_removed_revision_and_policy (test_s8_state_v2.EngineeringV2SealTests) ... ok
+test_v2_seal_round_trip_keeps_policy_hash_and_smoke_not_selection (test_s8_state_v2.EngineeringV2SealTests) ... ok
+test_legacy_schema1_smoke_and_formal_keep_canonical_semantics (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema1_rejects_either_or_both_v2_fields_even_without_valid_policy (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_acceptance_requires_canonical_sha256 (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_keeps_all_original_required_fields (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_preserves_data_model_resource_and_step_gates (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_rejects_formal_even_with_matching_formal_purpose_and_steps (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_rejects_unknown_wrong_or_non_string_policy (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_requires_each_policy_and_acceptance_field (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema2_smoke_accepts_only_engineering_permission_and_signs_all_keys (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+test_schema_is_exact_integer_version_not_coercible_or_unknown (test_s8_state_v2.EngineeringV2SignatureTests) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 0.117s
+
+OK
+
+STATE_TEST_EXIT_CODE=0
+All checks passed!
+
+RUFF_EXIT_CODE=0
+
+SCOPED_DIFF_CHECK_EXIT_CODE=0

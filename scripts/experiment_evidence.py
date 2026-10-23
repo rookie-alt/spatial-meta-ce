@@ -206,7 +206,7 @@ def _load(path: Path) -> tuple[dict, str, int]:
     except (ValueError, UnicodeError, RecursionError, OSError) as error:
         raise ValueError(f"invalid JSON in {path}: {error}") from error
     if not isinstance(value, dict):
-        raise ValueError(f"JSON evidence must be an object: {path}")
+        raise ValueError(f"JSON evidence must be an object: {path}")  # noqa: TRY004 - malformed evidence uses ValueError consistently.
     if len(value) > MAX_FIELDS:
         raise ValueError(f"JSON field limit exceeded: {path}")
     return value, hashlib.sha256(raw).hexdigest(), (len(raw) + 3) // 4

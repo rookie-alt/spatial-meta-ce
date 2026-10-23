@@ -1,0 +1,31 @@
+test_cleanup_timeout_keeps_original_failure_and_failed_state (test_s3_runner.S3RunnerTests.test_cleanup_timeout_keeps_original_failure_and_failed_state) ... ERROR
+
+======================================================================
+ERROR: test_cleanup_timeout_keeps_original_failure_and_failed_state (test_s3_runner.S3RunnerTests.test_cleanup_timeout_keeps_original_failure_and_failed_state)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/run_s3_diagnosis.py", line 360, in supervise
+    raise RuntimeError(
+RuntimeError: S3 worker did not complete: exit=4, status=running
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s3_runner.py", line 152, in test_cleanup_timeout_keeps_original_failure_and_failed_state
+    runner.supervise(['synthetic'],output)
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/run_s3_diagnosis.py", line 383, in supervise
+    stop_child(child)
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+subprocess.TimeoutExpired: Command 'cleanup' timed out after 10 seconds
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (errors=1)

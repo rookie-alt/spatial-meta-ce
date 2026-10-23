@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "purpose": "research-read-only-audit",
+  "audit": "p2-2-direction-audit-three-seed",
+  "target_databases_read": [],
+  "aggregation": "mean and sample SD (ddof=1) over seeds",
+  "model": "hgb is the primary model; logistic is reported alongside",
+  "thresholds_source": "doc 97 section 4.3, frozen before the runs",
+  "thresholds": {
+    "in_database_auc_min": 0.85,
+    "lodo_auc_max": 0.65,
+    "telstra_lodo_below_half": 0.5,
+    "telstra_lodo_required_seeds": 2
+  },
+  "inputs": {
+    "42": {
+      "predictions": {
+        "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/predictions.csv",
+        "sha256": "325a2160729acb9b3b278a934e51bb396b8fc2f973f1ce6c20597fca2962c88a",
+        "rows": 2392064
+      },
+      "caches": {
+        "chembl": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/chembl",
+          "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+          "queries": 50000
+        },
+        "legalacts": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/legalacts",
+          "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+          "queries": 50000
+        },
+        "telstra": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/telstra",
+          "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+          "queries": 50000
+        }
+      }
+    },
+    "43": {
+      "predictions": {
+        "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/bold-sinoussi-0e59f4/runs/p2-2-seed43-20261020/predictions.csv",
+        "sha256": "d647d8a1bbc72f11ef42af5793c572f02458223383213cf396893b995de06c5e",
+        "rows": 2392064
+      },
+      "caches": {
+        "chembl": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/chembl",
+          "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+          "queries": 50000
+        },
+        "legalacts": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/legalacts",
+          "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+          "queries": 50000
+        },
+        "telstra": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/telstra",
+          "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+          "queries": 50000
+        }
+      }
+    },
+    "44": {
+      "predictions": {
+        "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/bold-sinoussi-0e59f4/runs/p2-2-seed44-20261020/predictions.csv",
+        "sha256": "55c29c4a2180d39cc586494e5c52d92b2baa30dc12b5560d9fb043cd41773f0d",
+        "rows": 2392064
+      },
+      "caches": {
+        "chembl": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/chembl",
+          "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+          "queries": 50000
+        },
+        "legalacts": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/legalacts",
+          "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+          "queries": 50000
+        },
+        "telstra": {
+          "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/telstra",
+          "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+          "queries": 50000
+        }
+      }
+    }
+  }
+}

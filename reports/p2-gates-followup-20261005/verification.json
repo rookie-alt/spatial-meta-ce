@@ -1,0 +1,59 @@
+{
+  "branch": "audit/p2-gates-followup-20261005",
+  "base_commit": "204a24c",
+  "scope": "historical lint / current status repair / authorized read-only source inventory",
+  "build": "35 changed Python files AST parse passed",
+  "type_check": "not run; no project type-check gate configured",
+  "tests": {
+    "local": {
+      "tests": 160,
+      "seconds": 8.188,
+      "passed": true,
+      "sha256": "940165cbdc1bd98e6578091f6f49e806e8369c85783a3e6227ef74904ec41f3c"
+    },
+    "server": {
+      "tests": 160,
+      "seconds": 7.837,
+      "passed": true,
+      "sha256": "7d1f30c27d95251249c4ec51225ade239c085f1bfdf56ead61b2ff2accfdce22"
+    }
+  },
+  "lint": {
+    "ruff": "0.16.10",
+    "passed": true,
+    "command": "ruff check --no-cache scripts tests spatial_meta_ce",
+    "narrowed_rules": false,
+    "contract_preserving_single_line_noqa": 6
+  },
+  "source_integrity": {
+    "checked_at": "2026-10-05T21:53:19.014731+08:00",
+    "original_tracked_python_files_checked": 37,
+    "original_source_changed": [],
+    "deployed_python_files": 35,
+    "deployment_mismatches": [],
+    "frozen_p2_script_sha256_match": {
+      "A": true,
+      "B": true
+    },
+    "source_statistics_checked": 15,
+    "source_statistics_mismatches": [],
+    "source_workloads_checked": 3,
+    "source_workload_mismatches": [],
+    "database_count_executed": false,
+    "formal_training_executed": false,
+    "target_data_read": false,
+    "passed": true
+  },
+  "formal_training": false,
+  "formal_inference": false,
+  "database_count": false,
+  "target_read": false,
+  "p2_overall": "blocked",
+  "remaining_gates": [
+    "independent PostgreSQL reference",
+    "actual workload type semantics",
+    "same-version source tables and historical lineage",
+    "frozen complete C count plan"
+  ],
+  "existing_work_preservation": "initial full diff saved to /tmp/spatial-meta-ce-initial-workspace-20261005.patch; reviewed and integrated only historical lint work, restored committed P2 section 8"
+}

@@ -1,0 +1,128 @@
+test_initialization_hash_and_capacity_unchanged (test_s4_model.PGAnchorModelTests.test_initialization_hash_and_capacity_unchanged) ... ERROR
+test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) ... 
+  test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=-1) ... ERROR
+  test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=0.5) ... ERROR
+  test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=2) ... ERROR
+  test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=nan) ... ERROR
+  test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=inf) ... ERROR
+  test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=True) ... ERROR
+  test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid='0') ... ERROR
+  test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=None) ... ERROR
+test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) ... ERROR
+test_legacy_forward_and_gradient_identical (test_s4_model.PGAnchorModelTests.test_legacy_forward_and_gradient_identical) ... ERROR
+test_same_inputs_live_head_and_forward_difference (test_s4_model.PGAnchorModelTests.test_same_inputs_live_head_and_forward_difference) ... ERROR
+test_zero_anchor_roundtrip_and_legacy_checkpoint (test_s4_model.PGAnchorModelTests.test_zero_anchor_roundtrip_and_legacy_checkpoint) ... ERROR
+
+======================================================================
+ERROR: test_initialization_hash_and_capacity_unchanged (test_s4_model.PGAnchorModelTests.test_initialization_hash_and_capacity_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 40, in test_initialization_hash_and_capacity_unchanged
+    a = SetEstimator(arch="sum", pg_output_scale=1.0)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 118, in test_invalid_scale_and_no_pg_compatibility
+    SetEstimator(pg_output_scale=invalid)
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=0.5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 118, in test_invalid_scale_and_no_pg_compatibility
+    SetEstimator(pg_output_scale=invalid)
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 118, in test_invalid_scale_and_no_pg_compatibility
+    SetEstimator(pg_output_scale=invalid)
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 118, in test_invalid_scale_and_no_pg_compatibility
+    SetEstimator(pg_output_scale=invalid)
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 118, in test_invalid_scale_and_no_pg_compatibility
+    SetEstimator(pg_output_scale=invalid)
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 118, in test_invalid_scale_and_no_pg_compatibility
+    SetEstimator(pg_output_scale=invalid)
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid='0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 118, in test_invalid_scale_and_no_pg_compatibility
+    SetEstimator(pg_output_scale=invalid)
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility) (invalid=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 118, in test_invalid_scale_and_no_pg_compatibility
+    SetEstimator(pg_output_scale=invalid)
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_invalid_scale_and_no_pg_compatibility (test_s4_model.PGAnchorModelTests.test_invalid_scale_and_no_pg_compatibility)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 121, in test_invalid_scale_and_no_pg_compatibility
+    model = SetEstimator(arch="sum", use_pg=False, pg_output_scale=scale)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_legacy_forward_and_gradient_identical (test_s4_model.PGAnchorModelTests.test_legacy_forward_and_gradient_identical)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 83, in test_legacy_forward_and_gradient_identical
+    explicit = SetEstimator(arch="sum", pg_output_scale=1.0)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_same_inputs_live_head_and_forward_difference (test_s4_model.PGAnchorModelTests.test_same_inputs_live_head_and_forward_difference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 59, in test_same_inputs_live_head_and_forward_difference
+    a = SetEstimator(arch="sum", pg_output_scale=1.0)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+======================================================================
+ERROR: test_zero_anchor_roundtrip_and_legacy_checkpoint (test_s4_model.PGAnchorModelTests.test_zero_anchor_roundtrip_and_legacy_checkpoint)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_model.py", line 98, in test_zero_anchor_roundtrip_and_legacy_checkpoint
+    model = SetEstimator(arch="sum", pg_output_scale=scale)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: SetEstimator.__init__() got an unexpected keyword argument 'pg_output_scale'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.052s
+
+FAILED (errors=13)

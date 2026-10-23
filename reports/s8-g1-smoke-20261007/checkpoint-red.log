@@ -1,0 +1,32 @@
+test_checkpoint_rejects_missing_optimizer_and_non_fp32_weight_state (test_s8_smoke_runner.SmokeRunnerTests.test_checkpoint_rejects_missing_optimizer_and_non_fp32_weight_state) ... FAIL
+test_default_plan_does_not_train_or_claim_formal_readiness (test_s8_smoke_runner.SmokeRunnerTests.test_default_plan_does_not_train_or_claim_formal_readiness) ... ok
+test_fresh_checkpoint_reload_binds_signature_step_and_model (test_s8_smoke_runner.SmokeRunnerTests.test_fresh_checkpoint_reload_binds_signature_step_and_model) ... ok
+test_holdout_guard_rejects_before_any_semantic_file_read (test_s8_smoke_runner.SmokeRunnerTests.test_holdout_guard_rejects_before_any_semantic_file_read) ... ok
+test_real_training_call_uses_only_panel_positions (test_s8_smoke_runner.SmokeRunnerTests.test_real_training_call_uses_only_panel_positions) ... ok
+test_sparse_metrics_validate_even_without_reporting_percentiles (test_s8_smoke_runner.SmokeRunnerTests.test_sparse_metrics_validate_even_without_reporting_percentiles) ... ok
+test_wrong_project_root_is_rejected_before_output_creation (test_s8_smoke_runner.SmokeRunnerTests.test_wrong_project_root_is_rejected_before_output_creation) ... FAIL
+
+======================================================================
+FAIL: test_checkpoint_rejects_missing_optimizer_and_non_fp32_weight_state (test_s8_smoke_runner.SmokeRunnerTests.test_checkpoint_rejects_missing_optimizer_and_non_fp32_weight_state)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_runner.py", line 127, in test_checkpoint_rejects_missing_optimizer_and_non_fp32_weight_state
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_project_root_is_rejected_before_output_creation (test_s8_smoke_runner.SmokeRunnerTests.test_wrong_project_root_is_rejected_before_output_creation)
+----------------------------------------------------------------------
+ValueError: Frozen server S8 engineering environment required
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_runner.py", line 101, in test_wrong_project_root_is_rejected_before_output_creation
+    with self.assertRaisesRegex(ValueError, 'root|project'):
+AssertionError: "root|project" does not match "Frozen server S8 engineering environment required"
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.996s
+
+FAILED (failures=2)

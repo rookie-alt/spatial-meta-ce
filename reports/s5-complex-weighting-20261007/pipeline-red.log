@@ -1,0 +1,54 @@
+test_cli_dry_busy_execute_and_main_deadline (test_s5_runner.S5PipelineTests.test_cli_dry_busy_execute_and_main_deadline) ... ok
+test_completed_arms_use_real_pair_and_decision (test_s5_runner.S5PipelineTests.test_completed_arms_use_real_pair_and_decision) ... ok
+test_output_hash_manifest_and_record_crosscheck (test_s5_runner.S5PipelineTests.test_output_hash_manifest_and_record_crosscheck) ... ERROR
+test_real_smoke_config_is_accepted (test_s5_runner.S5PipelineTests.test_real_smoke_config_is_accepted) ... ERROR
+test_supervisor_success_and_cleanup_error (test_s5_runner.S5PipelineTests.test_supervisor_success_and_cleanup_error) ... ok
+test_worker_pipeline_and_error_leave_status (test_s5_runner.S5PipelineTests.test_worker_pipeline_and_error_leave_status) ... ok
+test_baseline_failure_stops_before_b (test_s5_runner.S5RunnerTests.test_baseline_failure_stops_before_b) ... ok
+test_expired_budget_never_starts_child (test_s5_runner.S5RunnerTests.test_expired_budget_never_starts_child) ... ok
+test_frozen_plan_only_changes_training_weight (test_s5_runner.S5RunnerTests.test_frozen_plan_only_changes_training_weight) ... ok
+test_matrix_tampering_is_rejected (test_s5_runner.S5RunnerTests.test_matrix_tampering_is_rejected) ... ok
+test_missing_record_hashes_are_rejected (test_s5_runner.S5RunnerTests.test_missing_record_hashes_are_rejected) ... ok
+test_output_verifier_rejects_incomplete_manifest (test_s5_runner.S5RunnerTests.test_output_verifier_rejects_incomplete_manifest) ... ok
+test_protocol_tampering_is_rejected (test_s5_runner.S5RunnerTests.test_protocol_tampering_is_rejected) ... ok
+test_source_evidence_is_checked_before_run (test_s5_runner.S5RunnerTests.test_source_evidence_is_checked_before_run) ... ok
+test_source_plan_rejects_target_and_cache_redirection (test_s5_runner.S5RunnerTests.test_source_plan_rejects_target_and_cache_redirection) ... ok
+test_worker_requires_supervisor_before_any_preflight (test_s5_runner.S5RunnerTests.test_worker_requires_supervisor_before_any_preflight) ... ok
+
+======================================================================
+ERROR: test_output_hash_manifest_and_record_crosscheck (test_s5_runner.S5PipelineTests.test_output_hash_manifest_and_record_crosscheck)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/tests/test_s5_runner.py", line 169, in test_output_hash_manifest_and_record_crosscheck
+    s.anchor.output_manifest(root)
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/scripts/run_s4_anchor.py", line 535, in output_manifest
+    hashes = {
+             ^
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/scripts/run_s4_anchor.py", line 536, in <dictcomp>
+    str(p.relative_to(output)): file_hash(checked_path(output, p))
+                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/scripts/precision_screen_evidence.py", line 40, in checked_path
+    raise ValueError(f"Symlink not allowed: {path}")
+ValueError: Symlink not allowed: /var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpp34p_gcl/A_uniform/endpoint_rows.jsonl
+
+======================================================================
+ERROR: test_real_smoke_config_is_accepted (test_s5_runner.S5PipelineTests.test_real_smoke_config_is_accepted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/tests/test_s5_runner.py", line 111, in test_real_smoke_config_is_accepted
+    s.verifier.verify_pair([value, {**record(s.ARMS[1],False),
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/scripts/s5_weight_evidence.py", line 251, in verify_pair
+    _record(record, formal)
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/scripts/s5_weight_evidence.py", line 186, in _record
+    steps = _config(record, formal)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/scripts/s5_weight_evidence.py", line 62, in _config
+    _require(
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/scripts/s4_anchor_evidence.py", line 84, in _require
+    raise ValueError(message)
+ValueError: Frozen config changed: purpose
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.066s
+
+FAILED (errors=2)

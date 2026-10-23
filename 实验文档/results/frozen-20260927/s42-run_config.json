@@ -1,0 +1,61 @@
+{
+  "checkpoint": "runs/formal-fomaml-20260925-seed42/best.pt",
+  "strategy_source": "runs/adapt-search-20260927/result.json",
+  "chosen": {
+    "inner_steps": 3,
+    "inner_lr": 0.001,
+    "scope": "head",
+    "fallback": false,
+    "macro_log_q95": 2.659682954539587,
+    "per_checkpoint": {
+      "runs/formal-fomaml-20260925-seed42/best.pt": 2.66383039185316,
+      "runs/formal-fomaml-20260925-seed43/best.pt": 2.6555355172260144
+    },
+    "per_db": {
+      "chembl": 4.114300697413168,
+      "legalacts": 2.35159982281429,
+      "telstra": 1.5131483433913047
+    },
+    "per_k": {
+      "5": 2.472080189965638,
+      "10": 2.652196091546546,
+      "20": 2.639574173527052,
+      "50": 2.607690958673601,
+      "100": 2.9268733589851
+    }
+  },
+  "device": "cuda",
+  "targets": [
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "config": {
+    "data_config": "configs/data.json",
+    "shots": [
+      0,
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "support_runs": 5,
+    "support_seed": 2026,
+    "training_seeds": [
+      42,
+      43,
+      44
+    ],
+    "inner_lr": 0.001,
+    "inner_steps": 3,
+    "adapt_scope": "head",
+    "loss": "smooth_l1",
+    "batch_size": 128,
+    "latency_repetitions": 30,
+    "model": {
+      "width": 64,
+      "use_pg": true
+    }
+  }
+}

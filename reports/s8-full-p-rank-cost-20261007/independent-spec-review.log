@@ -1,0 +1,141 @@
+独立只读数值规格审查 — 2026-10-07
+工作目录：/private/tmp/spatial-meta-ce-s7-diagnosis-20261007
+基准HEAD：8d39deaa03e26e1c5fc523576d0671861a4353eb
+权限：不编辑、不提交、不推送、不联网/服务器、不数据/训练/GPU/smoke、不递归。
+唯一写入本日志；未创建矩阵、调用分解、跑计时probe或历史回归。
+worktree缺委派记忆，已只读主检出对应memory文件，未复制/改写。
+已有未跟踪31号及reports/s8-full-p-rank-cost-20261007/为他方修改，未纳入本任务。
+
+版本边界（重要）
+初读31号SHA256=362a9fb4eba888ce01b2019095cc36bb9c693aa5767b7d5ac93717361880da94。
+初次写日志前断言其冻结hash失败，命令exit1，尚未打开/写入日志文件。
+后续发现新增第6节；本审查不核验其中合成probe、成本及longdouble结果，不将它们计为自身证据。
+30号及源码hash不变，相对8d39dea的git diff为空；HEAD仍为基准。
+本结论仅对应初读数学规格第1-5节，不是对后增整份草稿的整体批准。
+
+总裁定
+批准：A保留unknown；31号零尾阻断的规则内结论；B极分解beta的条件性代数结论；C/QR/Gram谨慎边界。
+不批准：B/C冻结为新版生产认证TDD替换依据、任何新增通过出口、真实full-P认证、G1/服务器/资源可执行性。
+不要求放宽rcond或sciencegate。隔离规格研究/拒绝性测试不等于生产TDD替换，本线程也不执行它们。
+
+一、4504阈值/19456阻断及三类结论
+证据：31号8-18行；s8_probe.py 237-299行。
+独立SVD用eta=gamma*s1；其零尾strict discard要求gamma<rho*(1-gamma)。
+代数等价d<rho/[eps*(1+2rho)]，4503满足、4504不满足；19456行非零A有任何丢弃方向就被该规则阻断。
+这仅核对主代理推导，未重复其gamma分解或测量。全秩且间隔足够不是必然失败；全A零且三谱零有旧特判。
+工程gamma并非任意SVD/BLAS/LAPACK的普适已证误差常数，因此不能称真实秩或solver错误的证明。
+三类应分开：认证规则保守性已证；真实数值问题未证；真实full-P证据缺口当前存在。
+三类非互斥，规则保守不排除真实困难；unknown既非solver错误，也非数值可靠通过。
+
+二、B条件性数学界成立，但计算证书未闭合
+证据：31号32-41行；s8_probe.py 253-274行。
+前提须补明确：A/U/S/V存储值视为精确实数；k=min(m,n)，U:m*k、V:n*k、S完整k项对角矩阵。
+S须finite、非负非增；smax=||S||2为候选S最大值，不冒称真sigma1。
+r>=||A-USV^T||2，eU>=||U^TU-I||2，eV>=||V^TV-I||2，均是未归一的可信向外上界，且0<=eU,eV<1。
+极分解U=Q_U H_U使Q_U列正交，且||U-Q_U||2<=delta(eU)=1-sqrt(1-eU)=eU/[1+sqrt(1-eU)]；V同理。
+将USV^T-Q_U S Q_V^T展开为两线性项与一交叉项，得到
+beta=r+smax*(delta(eU)+delta(eV)+delta(eU)*delta(eV))。
+所以||A-Q_U S Q_V^T||2<=beta；参考正交分解完整奇异值就是S，真奇异值逐项偏差<=beta。
+Fro上界可替代谱范数上界，但普通测得Fro不是向外上界；Gram_F/sqrt(k)尤其不是谱范数上界。
+不能把普通FP64 residual/Gram、np.linalg.norm或末尾一次nextafter包装为证书。
+必须覆盖dot/GEMM、减法、缩放、范数、sqrt和beta/cutoff的全计算链、下溢/溢出/FTZ与backend假设。
+计算delta的分母必须向安全方向处理；IEEE FP64 dtype本身不能证明BLAS reduction模型。
+
+三、通用FP64 Gram误差包络仍可能过宽：独立精确标量核验
+在标准长度m点积误差模型确实适用于backend时，|fl(U^TU)-U^TU|<=gamma_m |U|^T|U|（逐元素），
+还要计减I与范数舍入。理想列正交U的|U|^T|U|对角为1，因而谱范数>=1。
+若采用“观测Gram残差范数+该通用包络范数”作eU，则理想零观测残差的eU也至少gamma_m。
+即使r=eV=0、零尾，strict discard仍需delta(eU)<t=rho/(1+rho)，等价eU<2t-t^2。
+本轮仅用Fraction作exact比较；Decimal仅展示数值，不是向外sqrt验证。
+19456长度即使用实际unit roundoff u=2^-53而不是工程eps=2^-52，也有gamma_m>2t-t^2。
+故这种通用Gram验证路径可能在证明预算层面继续阻断，不能承诺B会解锁full-P。
+这不是实际误差下界，更不是一切FP64认证法不可能。结构性精确性、严格分块/补偿/精确累加或高精度
+可能更紧，但需预先审核算法与成本，不能以“误差很小”代替证明。
+
+四、cutoff与保留子空间规格未闭合（阻断）
+证据：31号41行；s8_probe.py 280-299、395-421行。
+各谱j必须明确可信[L_i^j,U_i^j]，strict keep要求L_i>rho*U_1，discard要求U_i<rho*L_1；端点向外、触边unknown。
+数值rank须等于各算法自身固定rho计数，并三谱一致；不能共享主谱cutoff锚点。
+只有SVD beta不能自动覆盖LS谱；可研究通过验证性逐项谱差q_j传递beta_j=beta+q_j，但未审定实现。
+完整长度、排序、输入绑定、三谱误差及rank比较都需保留。
+beta只认证谱位置，不自动认证真保留子空间，也不自动认证原LS预测。
+原U_r U_r^T不是极分解Q_U,r Q_U,r^T；须处理校正误差、投影/GEMV舍入、target尺度及边界gap到投影的定量界。
+全列保留的高瘦矩阵也须考虑其列空间到外部零方向的gap，不能只看已返回k个sigma内部间隔。
+需明确误差预算如何满足原prediction rtol=atol=1e-12。若仅保留旧allclose，就限定为工程子空间检查，
+不可升级措辞为严格真子空间计算机证明。
+原reference prediction/objective、normal及objective inequality gate不可省略；不主张full linear optimality。
+
+五、C、QR/TSQR与A^TA
+证据：31号43-49行；s8_probe.py 362、383-385行。
+高精度/Jacobi/两个solver一致不自动提供严格界；需固定同A、精度、迭代/终止、硬预算和验证性证书。
+原pair中的两次np.linalg.lstsq为同路径重算，不是两种独立算法的严格证明。
+QR压缩必须认证rQR>=||A-QR||2和eQ>=||Q^TQ-I||2，再把压缩R的betaR回传原A。
+在正确完整形状、eQ<1及R有已证betaR时，组合可取
+betaA <= rQR + sqrt(1+eQ)*betaR + delta(eQ)*smax，且计算该表达式需向外。
+这只是展示误差回传不可省略，不是新冻结生产公式；TSQR各阶段误差/最终Q一致性也需闭合。
+不能只将19456维度换成775而不计压缩误差。
+精确A^TA保持rank，但奇异值比平方，rho=1e-12对应rho^2=1e-24；满列秩时kappa2(A^TA)=kappa2(A)^2。
+普通FP64通用Gram界通常无法分辨该尺度；不把精确恒等式当实际Gram证书，也不否认经认证结构化/高精度路径。
+
+六、最小缺失证据与用户决策
+M1 全链可信算术契约：r/eU/eV/beta/端点的算法、backend假设、向外证明、异常及硬预算。
+M2 所选路径的误差预算可行性：通用gamma_m已有上述标量阻断，不能只用小raw residual保证解锁。
+M3 三谱各自cutoff/rank、保留子空间认证范围、原预测/目标/normal gate的联合接受条件与失败规则。
+M4 预先冻结拒绝性验收：e>=1、nonfinite、FTZ/下溢未知、边界触碰、锚点偏移、rank同但方向/预测错、
+   归一Gram误用、QR漏误差、高精度一致无证书、大m通用包络过宽。此处只列清单，未执行TDD。
+M5 隔离候选实现的本地资源/尺寸/时限与停止条件；小probe不外推full-P/server ETA或12GiB足够。
+数学M1-M3未闭合，当前不足进入新版生产认证TDD替换，应停unknown。
+缺全尺寸成本不必阻止另行授权的隔离研究性标量测试，但不能预先批准生产full-P资源可行性。
+用户可选A保持unknown并停止，或另授权有界B/C规格研究（明确精度、预算、证明范围）；无需放宽rcond/sciencegate。
+真实P核验、smoke重试、正式训练分别仍需授权。
+
+实际验证与未做事项
+执行pwd/git status/git rev-parse/git log；cat/sed/nl/rg读取指定文件；git diff基准指定30号及源码为空。
+初次冻结断言exit1（输入31号发生变更，未写日志），后续读取确认新增节；未复核该节记录的测量。
+本轮成功的scalar脚本只导入Python标准库Fraction/Decimal/Path/hashlib，不调用项目代码或矩阵分解。
+两种gamma_m与eU_budget的精确比较及30号/源码hash断言均通过。SHA输出如下。
+未跑历史617测试，未读取真实P，未读取报告目录内容，未跑分解/计时probe，不提供server/full-P成本数值。
+未改任何仓库文件、进度、索引或failed证据，未提交/推送。
+
+自检（非实验认证）
+Accuracy 4：条件性代数与有理数预算已核；未认证具体BLAS模型（本任务禁止网络与算法执行）。
+Completeness 5：覆盖所要求A/B/C、阈值、Gram预算、cutoff/子空间、QR与最小缺失证据。
+Clarity 4：误差对象多层，已区分数学界/测量/验证上界，后续契约仍需命名冻结。
+Actionability 4：给出M1-M5与停止条件，具体可信算术选型仍需后续授权研究。
+Conciseness 4：完整日志较长，最终采用摘要。平均4.2/5。
+优先改进：先闭合算术与cutoff/子空间契约，再定有界验证路径，再谈实现成本；用户认可待判断。
+
+精确标量核验（退出0；assertions passed）：
+eps=2^-52: gamma_m=4.32009983344007239266724386094680940763236990E-12; eU_budget=1.99999999999699995977329925863191084372991196E-12; exact gamma_m>eU_budget=True
+u=2^-53: gamma_m=2.16004991671537038069090977356076192401106419E-12; eU_budget=1.99999999999699995977329925863191084372991196E-12; exact gamma_m>eU_budget=True
+
+当前读取SHA256：
+308f63c9118afa1b58d981b0893f94613b1738d4d5a8e9c5049e049cbd7336c6  /private/tmp/spatial-meta-ce-s7-diagnosis-20261007/实验文档/31-S8fullP秩稳定性规格与成本审查.md
+34ebd88cf3d96c1efa215cfc46c78fd67c08e2ac4a0ec45e5523db06704841b3  /private/tmp/spatial-meta-ce-s7-diagnosis-20261007/实验文档/30-S8数值谱认证规格与本地修订.md
+c3d85f98dc78d70fca4475ae671022ffd1a7a3b9e6d306304a53bac417b481c5  /private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py
+初读31号在当前前71行按末尾换行约定匹配结果：[]
+
+
+最新用户指示后的规格复核（2026-10-07；补充，不覆盖初审留痕）
+用户明确告知主代理已完成有界复核，要求继续只读新版规格、不重复benchmark/成本算术。
+因此复核现版31号数学范围与停止决策，SHA256=308f63c9118afa1b58d981b0893f94613b1738d4d5a8e9c5049e049cbd7336c6.
+新版30行已明确B仅先认证奇异值区间/固定cutoff数值秩；41行补充gap、子空间与预测误差须单独界。
+89行正确说明C在保持原v1.1 gamma时无法自行解除unknown，也说明普通FP64 gamma_m可能继续阻断B。
+批准上述范围澄清；这解决了表述越界，不构成缺失算法/证明的补齐。
+结论不变且更明确：现在应停A unknown，不实施B/C，不启动新版生产认证TDD替换。
+保持原gamma作为接受合取时，B即使另算出较窄证书也同样不能自动越过旧unknown；它至多是新增证据。
+要改变接受路径，需另审版本化数值证书规格，不等于也不要求放宽rho/sciencegate。
+用户提供的6case/计时/RSS/longdouble TypeError/65failed SHA信息只作为主代理报告，未独立重跑或核原JSON。
+本轮独立核源码和30号hash仍与初读/基准一致；当前git status仍仅显示他方未跟踪项。
+
+最小下一授权（仅用户决定，不自动执行）
+若选A收尾，无须新增计算授权，也不需要为了确定性阻断而再跑full-P。
+若希望继续，只授权有界本地数学规格研究：先提交r/eU/eV验证算术的算法与假设、固定rho下预算可行性、
+各谱cutoff接受契约及保留子空间的证明范围；必要时仅少量标量/小算例验证，不生产改码、不安装工具、
+不联网/服务器、不真实P、不分解benchmark、不训练/GPU/smoke，并写独立新研究证据不改旧failed。
+该阶段不要求产出通过；无法获得有效窄界时停止unknown。完成后再次独立审定，才讨论另授权生产TDD。
+真实P只读验证、smoke或正式实验均不包含在这项最小授权中。
+
+最终批准范围：数值规格审查/文档澄清/A停止决策/条件性beta代数结论。
+最终未批准范围：B/C实现及新版生产接受出口、真实full-P/G1、资源可行性或历史617作为本轮结果。
+新增实测：无。新增代码/提交/推送：无。唯一写入：本日志。

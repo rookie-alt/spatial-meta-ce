@@ -1,0 +1,23 @@
+test_adam_matches_fixed_torch_reference_and_is_deterministic (test_s8_probe.S8ProbeTests.test_adam_matches_fixed_torch_reference_and_is_deterministic) ... ok
+test_adam_zero_init_pg_and_exact_update_count (test_s8_probe.S8ProbeTests.test_adam_zero_init_pg_and_exact_update_count) ... ok
+test_apply_rejects_bad_normalizers (test_s8_probe.S8ProbeTests.test_apply_rejects_bad_normalizers) ... ok
+test_apply_uses_p_only_without_mutating_normalizer (test_s8_probe.S8ProbeTests.test_apply_uses_p_only_without_mutating_normalizer) ... ok
+test_certification_objective_inequality_is_not_assumed (test_s8_probe.S8ProbeTests.test_certification_objective_inequality_is_not_assumed) ... ok
+test_certification_recomputes_objective_and_normal_residual (test_s8_probe.S8ProbeTests.test_certification_recomputes_objective_and_normal_residual) ... ok
+test_certification_rejects_bad_rank_shape_and_nonfinite (test_s8_probe.S8ProbeTests.test_certification_rejects_bad_rank_shape_and_nonfinite) ... ok
+test_known_linear_oracle_and_independent_normal_equation (test_s8_probe.S8ProbeTests.test_known_linear_oracle_and_independent_normal_equation) ... ok
+test_ls_failure_and_invalid_solver_outputs_never_fallback (test_s8_probe.S8ProbeTests.test_ls_failure_and_invalid_solver_outputs_never_fallback) ... ok
+test_rank_deficient_minimum_norm_and_cutoff (test_s8_probe.S8ProbeTests.test_rank_deficient_minimum_norm_and_cutoff) ... ok
+test_rank_zero_and_underdetermined_are_explicitly_limited (test_s8_probe.S8ProbeTests.test_rank_zero_and_underdetermined_are_explicitly_limited) ... ok
+test_residual_casts_before_subtracting (test_s8_probe.S8ProbeTests.test_residual_casts_before_subtracting) ... ok
+test_residual_rejects_wrong_dtype_shape_and_nonfinite (test_s8_probe.S8ProbeTests.test_residual_rejects_wrong_dtype_shape_and_nonfinite) ... ok
+test_row_permutation_keeps_normalizer_and_ls (test_s8_probe.S8ProbeTests.test_row_permutation_keeps_normalizer_and_ls) ... ok
+test_solvers_reject_shape_dtype_nonfinite_overflow (test_s8_probe.S8ProbeTests.test_solvers_reject_shape_dtype_nonfinite_overflow) ... ok
+test_standardize_population_bias_and_fp64 (test_s8_probe.S8ProbeTests.test_standardize_population_bias_and_fp64) ... ok
+test_standardize_rejects_shape_dtype_nonfinite_and_overflow (test_s8_probe.S8ProbeTests.test_standardize_rejects_shape_dtype_nonfinite_and_overflow) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.864s
+
+OK
+exit_code=0

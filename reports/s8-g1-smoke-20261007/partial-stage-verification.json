@@ -1,0 +1,25 @@
+{
+  "partial_stage_verification_passed": true,
+  "overall_smoke_status": "failed",
+  "formal_ready": false,
+  "episodes_verified": 8,
+  "training_unique_exposed": 772,
+  "actual_training_counts_from_record": {
+    "optimizer_steps": 2,
+    "backward_calls": 8,
+    "support_role_presentations": 260,
+    "query_role_presentations": 512
+  },
+  "panel_identity_digest": "07656938be67b52d5d417028414f0045765397e3025623be67ff8316f014983d",
+  "checkpoint_byte_sha256": "596c615e7cc5b48bf38b2494964cc3c21ac53950310aaf16cc70700d49bccd25",
+  "checkpoint_reload_record_raw_delta": 0,
+  "checkpoint_reload_record_only_not_second_inference": true,
+  "H_events_absent": true,
+  "inputs_rehashed_before_and_after": 183,
+  "execution_code_files_rehashed": 14,
+  "F0_updates_performed_by_verifier": 0,
+  "new_inference": false,
+  "target_data_read": false,
+  "GPU_used": false,
+  "claim": "P-only sample identity/provenance and existing checkpoint bytes authenticated; entire G1 NOT passed"
+}

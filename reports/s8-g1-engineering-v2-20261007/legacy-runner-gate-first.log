@@ -1,0 +1,35 @@
+test_full_p_certificate_refusal_stops_before_nomination_or_holdout (test_s8_smoke_certificate_gate.SmokeCertificateGateTests.test_full_p_certificate_refusal_stops_before_nomination_or_holdout) ... FAIL
+test_small_panel_certificate_refusal_leaves_failed_without_probe_artifacts (test_s8_smoke_certificate_gate.SmokeCertificateGateTests.test_small_panel_certificate_refusal_leaves_failed_without_probe_artifacts) ... FAIL
+
+======================================================================
+FAIL: test_full_p_certificate_refusal_stops_before_nomination_or_holdout (test_s8_smoke_certificate_gate.SmokeCertificateGateTests.test_full_p_certificate_refusal_stops_before_nomination_or_holdout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_certificate_gate.py", line 155, in test_full_p_certificate_refusal_stops_before_nomination_or_holdout
+    self.check_rejection(resource=True)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_certificate_gate.py", line 142, in check_rejection
+    safe_hash.assert_called_once()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 918, in assert_called_once
+    raise AssertionError(msg)
+AssertionError: Expected 'safe_hash' to have been called once. Called 2 times.
+Calls: [call(PosixPath('/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/实验文档/34-S8G1工程验收v2批准协议.md')),
+ call(PosixPath('/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/实验文档/27-S8G1运行器与真实smoke协议.md'))].
+
+======================================================================
+FAIL: test_small_panel_certificate_refusal_leaves_failed_without_probe_artifacts (test_s8_smoke_certificate_gate.SmokeCertificateGateTests.test_small_panel_certificate_refusal_leaves_failed_without_probe_artifacts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_certificate_gate.py", line 152, in test_small_panel_certificate_refusal_leaves_failed_without_probe_artifacts
+    self.check_rejection(resource=False)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_certificate_gate.py", line 142, in check_rejection
+    safe_hash.assert_called_once()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 918, in assert_called_once
+    raise AssertionError(msg)
+AssertionError: Expected 'safe_hash' to have been called once. Called 2 times.
+Calls: [call(PosixPath('/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/实验文档/34-S8G1工程验收v2批准协议.md')),
+ call(PosixPath('/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/实验文档/27-S8G1运行器与真实smoke协议.md'))].
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.109s
+
+FAILED (failures=2)

@@ -1,0 +1,391 @@
+{
+  "python": "3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]",
+  "torch": "2.1.0+cu121",
+  "numpy": "1.26.1",
+  "sqlglot": "18.17.0",
+  "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+  "gpu_index": "4",
+  "protocol_sha256": "ccc5d39f4f8acc87e8daeee2cd65c55f05730e42802c6321ca51bfd598a87152",
+  "config_sha256": "cd401ea8b361c6e8b003ddae24c5a743b9768b04efe52db1503f7346f5ad5112",
+  "source_binding": "3d708226437e105c88562970fdd0b2ccf711a833105b4ec8c66d899aa61f79a6",
+  "code_sha256": {
+    "scripts/._audit_input_mapping.py": "7a249e87a5edf44c063d458fce698862ed33c64708d456686e17859a38e31625",
+    "scripts/adapt_strategy_search.py": "3a742b391652fe15add717c2777ff48861699c2ad817a74262e101d99af55a6f",
+    "scripts/arch_select.py": "2dd4fcc3ef8248c3d7d4dbe5a09992bf8fe0e7026fb1c674df84b0951bfe7a91",
+    "scripts/audit_input_mapping.py": "1a6851d889814d897fa0f366c529b7304f8a02d116712f58fbb518bcf26766a5",
+    "scripts/audit_p2_semantics.py": "0b85a64b5bbfa95a72d4fd8b1a63c110b3a2a411f4083c4ae5de4a04b76c20ac",
+    "scripts/audit_p2_source.py": "ba0a1d343418edca7fe92408d4491c293a4ea973432c94e2253bdcb185e35033",
+    "scripts/build_experiment_graph.py": "f67829f271cb5be814f6c86fba5aa4362f2174afbd561ef7180f03e1604b041b",
+    "scripts/build_mapping_sidecar.py": "3daa25ab52b880a68db6091e21c64f05526e10c8bbdf3fa36c85a31c03276a52",
+    "scripts/deploy.py": "71b6d99bfc91303aecfc2bcdce54aa3555db9187a517c8026aa9b74f8e3efa84",
+    "scripts/diagnose_source_sql.py": "0a86bd08fb6c93294094943ca47faa9d922c7828d841cac784858d0392409425",
+    "scripts/error_by_joins.py": "43580c2f73e90a3d0f96ca3864d18bcc12de124bde3400970b690611652e39a1",
+    "scripts/eval_frozen.py": "fbff6b3d7bc2dccbed8d88f8ed49a1d02e3b2860d5b61feebc69e091fbd382c6",
+    "scripts/experiment_evidence.py": "844fcd19425c87ba7d7841fed0b0af11405cffc21b88e8362057ab64397887c4",
+    "scripts/mapping_ablation_endpoint.py": "2ff5f02d579ad707a003c585162eaddd3e5dbbf30dbb37f8bebb23a7e46f9edf",
+    "scripts/mapping_smoke.py": "6f897a37f94150ccfed4d074a4be45c888d27a60d0ef376d7333d9724ecc4b96",
+    "scripts/precision_screen_evidence.py": "b5af3c14866e8ff81838792a7f38db5f50bab62035e605910f530f660030da95",
+    "scripts/price_fewshot.py": "9a7fab130cbbacdd7cf24e042b12d74b89ec1a2fbc1ef134fefd43ffcd88a132",
+    "scripts/price_lr_search.py": "d4aef9e168bb10d03570b7a8a4947770577943454937aaab6f33a8120b1a0d72",
+    "scripts/run_experiments.py": "68dd14fcdc70e952596ccc7eafe9aa926ecedcddb48fb08ce9565f630605d2ea",
+    "scripts/run_mapping_ablation.py": "f16c543b2601dba911157472a97e856f06c3f40f847ec28421df978314f53473",
+    "scripts/run_precision_screen.py": "c0b91dda7e214abd6b98eb1fbe6afb74b5e70dcf1631615358db1016dccefa62",
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/baselines.py": "c5113e990c816bcebe79f2f5fd2f2a96a0810e1a5feefd218278bda0953e1ea4",
+    "spatial_meta_ce/checkpoints.py": "efb21c956fb836938aaf7675f0d1eb047ef767e537576f47d6b591a5a3bdf504",
+    "spatial_meta_ce/cli.py": "78169fe62236bf87f8b618c8436d644e1e6507b8bf88ccfc3f027afe0ba23d29",
+    "spatial_meta_ce/data.py": "1f490f1891e4222edcd25b598df32c287c3914ff185477f6ae76c566cfeacd17",
+    "spatial_meta_ce/evaluate.py": "4aeea67ed1fd23e435012ec6e662f7321b26fab119afacb34d0a51d390da98b3",
+    "spatial_meta_ce/features.py": "cec76180fb0567bd6a6f9b8d73c4d913d16b92582cd784df7e8d9ab3fdc2dcef",
+    "spatial_meta_ce/manifests.py": "fc96df193c36ade103b2116f777325afb6bb8fb0c368ff0516998fa33fac6d30",
+    "spatial_meta_ce/mappings.py": "fa52a3cc64b23cb14f704573bdb079569dab22ef18c137eab2800765d1ff07fe",
+    "spatial_meta_ce/meta.py": "954051f01578dbee51cd8d1f2992746ad686e213faf06832b94d116cacbb006e",
+    "spatial_meta_ce/metrics.py": "ec940c3b29bb5b165f560a369c9874cd9ec630d2bbc21e7f78893a64fe1c56a5",
+    "spatial_meta_ce/model.py": "d0e4fb717b7394c43a233fc7d01dfa27b484358a88959af9756792d9b779c68e",
+    "spatial_meta_ce/train.py": "0869d030220e588232148d6a7bc249f97c0e1dcf8b30dfb626ef8ea646d456f8",
+    "vendor/price_baseline/encoder.py": "94f3060996cd9a9b3d60da08d525cc4ab8e1666c1eb4d53b3f610f5c248c6bce",
+    "vendor/price_baseline/module.py": "15d98eb2f1aed939dc53002302016098394e0602719e0d56df6c351a29f4f66e",
+    "vendor/price_features/features_tool.py": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+  },
+  "sources": {
+    "accidents": {
+      "manifest_hash": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "file_sha256": {
+        "manifest.json": "ff823dfdc94051780b91ef76c914da20566869c9e3967cb8ab2edf58343493c8",
+        "cards.npy": "d83d6b61a164725e27d002838c20a5ffeb118bae46d4dec55e53425b277a295e",
+        "offsets.npy": "9a8e987650f56bedd5e9d1ba50fdc2708a53fc56981387b4c0ceb36b011f4b9a",
+        "group0.npy": "e388cf11c6fff94e323676b9b4fef007a8d1efc9fd12a1f2f726bea4ed510686",
+        "group1.npy": "6849da34955d712398fcd6eaa6f433bb7bde6c1bb03a890a29b73f7a8e39cfe6",
+        "group2.npy": "3eb7828931b49bf6bed8c3e79efe5b5dc032c06e1d702c1e2ddb0531d448f27d",
+        "group3.npy": "0254f43b5a2232c621df47dc464f7f13a15a9282336a88f2601a058543282e36"
+      },
+      "rows": 50000
+    },
+    "airline": {
+      "manifest_hash": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "file_sha256": {
+        "manifest.json": "6589e7d1ce5cf600fed5dd66edaa8abaf65d8aa1a2d09bee220183c8a9512784",
+        "cards.npy": "cfb64e792d8408ed18bbc1816ea1787f07d8b380bb2dab95a6d6a4d274802078",
+        "offsets.npy": "402b46d9718404efe3d1df0ac955f7fb58dfb307109b42217570e3944ad3d61a",
+        "group0.npy": "b7331b78f523da854f91c2584d4f7a3eef2937d7d0c58d6a25fd7016182fdcdd",
+        "group1.npy": "73cde1780d0c57567a6ef7c745fbe019025c1f6db1550a9b133bddc172dd469f",
+        "group2.npy": "f74d6e4ace0246cdb855e918da0fe37e06049a181adfafb8592976658bf78de9",
+        "group3.npy": "9b55198180b9a908bb2995c65818eb690be9a12298b4871576c598e2f737f117"
+      },
+      "rows": 50000
+    },
+    "baseball": {
+      "manifest_hash": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "file_sha256": {
+        "manifest.json": "f350876bc121289364d1cee386dc97bace304721a3e2fa093d11c19c61b78663",
+        "cards.npy": "296e50ca9c59ad7b093aaf47e8941d4801fb8f51e765f6e7a2158545d7f3005d",
+        "offsets.npy": "88bbd1df94192c00382f53a1ffa74901ff72dae12e6dccd3a0c17f7de4c233a1",
+        "group0.npy": "447f2d7c7fd9969103ea1240f8495b783a4f569859186d8f45927faefbe13a4a",
+        "group1.npy": "2736b186ffef0c68fe2de26e6531dfc06c3622529a680f746fedf844159b4638",
+        "group2.npy": "d68432bc98ed51109ed280da37214baffe1e505f6aabf6a16b64ce938f1885da",
+        "group3.npy": "f5343128d967b10d163147a45473efa74aa00e2b3fae04860b4ee7b7335499d6"
+      },
+      "rows": 50000
+    },
+    "basketball": {
+      "manifest_hash": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "file_sha256": {
+        "manifest.json": "c420cb4d1eee71ead3ade34e984da0383f79b6e8ed94ebe141fb7548e83425fb",
+        "cards.npy": "00adac236b23bb8d98cc9605ea2873791693685afa0ae3f4562acba24a973a47",
+        "offsets.npy": "b62996411885fcbed1851d322fb233539ad844ed3cb4e6b3d9260b5e90548820",
+        "group0.npy": "9380ac125cf978c02d6a56d40f742a0a03cc4b822124d02878caa9064ece01df",
+        "group1.npy": "35eb00993b9defd2953ea58515bd43bb77c5921b1c4489c499399fb7889b9a92",
+        "group2.npy": "4c99ecc30bb439aa27bbe16343e16864cffe3ef91eaf984d01a0facf53abaa92",
+        "group3.npy": "29ab55e003064ede3a3578341bc0aed556a0b15aff77c2740edcaa6a615e87ca"
+      },
+      "rows": 50000
+    },
+    "carcinogenesis": {
+      "manifest_hash": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "file_sha256": {
+        "manifest.json": "498e869ada2f116b16a4965c673d70853dc4a52c97fd1558a855639d3d3b8a8a",
+        "cards.npy": "c354ba3839278a953544ecb8966452929e95b1f6eb1a4bb31f8318cc3e96168d",
+        "offsets.npy": "9682518426e98975b96f0f488dd2619a14b2c502b7db4db30bb27f2e51e2a041",
+        "group0.npy": "ffe6bdf9ff433ea513b9927440ffe82e10d231aabbc793645b3a4b2c816a686e",
+        "group1.npy": "2757a43077a727cc60c93c9101beb104423cf47ef02b5e3d7492bb461ccb4b0d",
+        "group2.npy": "4b0c68d1c34d82db69f0a91bc58dd464e2cfda311ac208b86ed6aa072e702679",
+        "group3.npy": "75b3b976257ed5b85cf95f9111cb008dea20de3e3d182a6df63c5713dad8132d"
+      },
+      "rows": 50000
+    },
+    "ccs": {
+      "manifest_hash": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "file_sha256": {
+        "manifest.json": "3f9ae6a5525076144f5022421379e9acf2d0bf912a91c7c08184c57edbe35ca8",
+        "cards.npy": "0bcae93f11d1e3fd437d6915eba35bf16530688c127b002a522165279c89f418",
+        "offsets.npy": "8c01b196a0b46486a4b1c9e3a747066ebc256caa7445006a9fa50bbe98c3dc42",
+        "group0.npy": "cc6988cb8f4e71b7ccf23bf3d4c3c6a9360c093546917100c5280834be508620",
+        "group1.npy": "fd4aea7823029414aa034a994b002ab76634d8782baee82320cf4f66edca05c8",
+        "group2.npy": "76499228caff9d3b591a421b004bc0c32903e763c56ee5b9e0086bc52cae9bc4",
+        "group3.npy": "e64a96dab64e8f2f363315443d3ecf45f19e4e0cedb02777d194d468aa1bcede"
+      },
+      "rows": 50000
+    },
+    "consumer": {
+      "manifest_hash": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "file_sha256": {
+        "manifest.json": "0b0a636ba7d76732118dc945f41cec78ae5224c53323ab293f128a3f0a8b581a",
+        "cards.npy": "e69f129c80eeb7a495b9c25a4f784314d7fef11fc1b588b88151f3246cde3fb5",
+        "offsets.npy": "0985381120cc783323def07a79d6941096bdda763db62711ed33b54cdd48f7e0",
+        "group0.npy": "8597d6365a3268b4e6815fa3b6278aa3adcb8569edb6227ce6656e0162c44136",
+        "group1.npy": "bd22e1e97479000551c0da31b3fd866cb9f96d5eaedcbb2abdce2426c49d0eab",
+        "group2.npy": "8c81b495f53d75b87641ce83ea3a67515509f8e8a89aba6d9c8e46c82cfa5ca7",
+        "group3.npy": "3f38af0aa3e8bca9423514f31f9f5e7ba0807a626c93e2c1d7711b0c8a6d5b69"
+      },
+      "rows": 50000
+    },
+    "credit": {
+      "manifest_hash": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "file_sha256": {
+        "manifest.json": "f90d8a803685831149d93db11acce01b2dd4e87e83004cecadcaedfd0a0f7fe3",
+        "cards.npy": "2c070c8f8b48f9796ee287b87220d300bce3a53c93beae0861de006740e4b024",
+        "offsets.npy": "f5effbb3b84c0f58fe0c60c6b29ecbbb15732fd5d529534e0495ef10ba116ec6",
+        "group0.npy": "ae085c9b872466287cfac4cd61c511341656c6e327e442ab5bc0d1b4b8e2662b",
+        "group1.npy": "887838ae9601b1d9d137ba91a156c472738dd9ffcce0b190b575e704d31dc964",
+        "group2.npy": "a042156cd352247bc4cbddbf6b391f715ee22bd31ddecc82d190eb29021fceb9",
+        "group3.npy": "dc468acf98f85323142b7699f82247f33d3e0d389c69a567e95e7f4c1d622f81"
+      },
+      "rows": 50000
+    },
+    "employee": {
+      "manifest_hash": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "file_sha256": {
+        "manifest.json": "65f521f7bfcfdb10948d00c535448bda0ad74281ebedba9f0c18acba90164f62",
+        "cards.npy": "265c467b4859407ff187a3bd0e9fd06958de26d63b330d3c5890228dbeaf299b",
+        "offsets.npy": "6fe5fb1e9083f7b0a5fcc849861146310a0824283921c8266c929478ddb7706a",
+        "group0.npy": "3ab8ec240ed9759ef6f288b63691301470f1f43d59c01a20573f0510ff84144e",
+        "group1.npy": "c320be9dbcba452c5d060f8466a934d12367ad9d39d31f21c9feddbfa7e38cbf",
+        "group2.npy": "43411c4a723493d6b3641c1cb2a201334851c670bfd26c269e9db4960027e22f",
+        "group3.npy": "bc9207da76ff23a49ac67ab5f5bcd4e86f5606df6a6bba24917d60aa76208d86"
+      },
+      "rows": 50000
+    },
+    "financial": {
+      "manifest_hash": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "file_sha256": {
+        "manifest.json": "65876ead6f557da3fce5436d5e50bb713d784778848e73444bc7187be6bb92a8",
+        "cards.npy": "f9c56c95325996092556efba925385728d2183eefc950062b050226c26b11b3b",
+        "offsets.npy": "5664ebedeb8e65c603630de52d51da209825dce02edc7effe74e11c28c312248",
+        "group0.npy": "d916578ac2d7481f88a703cce0f94cdb8667c8996141fd7c728e6845768c85cf",
+        "group1.npy": "83fbc95023f6121dd1520940b8d43f2797990c8d574de67300358c29814104be",
+        "group2.npy": "6d9d967863164541f1a4080972c163e0e287747973f219a83057fa8eafee079d",
+        "group3.npy": "73d40929cec6c82325d673fa4c04095c0743cc61357a79c435a533f72697c378"
+      },
+      "rows": 50000
+    },
+    "fnhk": {
+      "manifest_hash": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "file_sha256": {
+        "manifest.json": "3ee5edd07c8dd9aa85a388464dfbe59a38f3caef12585743daf1b240d9b11144",
+        "cards.npy": "f1955531581ca84da2f43322180dc81948b5d6d769a56cb4ca74e1ada018be05",
+        "offsets.npy": "e04ae3913227a53e2caf53d3a4cbd6caa76312c07d41f0c99fe7b04625e15f44",
+        "group0.npy": "71b7cfa85766fc005bd88e43f922d9e912387beba257fbe44cb74a5f7c0af2d0",
+        "group1.npy": "9b319860e12899e2f4cf3be173a0ea49f721bddb06a10a19361a8ade0b40bc50",
+        "group2.npy": "23af39ddb94dbe75476d24df4720e1b72cf8b5882f0cade12fe858c0f092def4",
+        "group3.npy": "828b67c405a9d9f1c29421e9462c471bd7c81c7d9440dc6cce94a2299c725218"
+      },
+      "rows": 50000
+    },
+    "grants": {
+      "manifest_hash": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "file_sha256": {
+        "manifest.json": "24c2032c6e7c9acb4365a0125fcdc3cae5f7e6b99c487f642e5cb216609ed5dc",
+        "cards.npy": "8dd25d48ddfb768694c280d02dac94ff1ed560e9df60c1ef03ea11c91b01f909",
+        "offsets.npy": "b69e63f1af739bd00dad5e6e3ef6ac1d6696bdb0c66525eed8562dd01eb0bb24",
+        "group0.npy": "d3872b8e90bccbf70156c11c3e8dd8dd07326e8aed717cf399c8f811698906b7",
+        "group1.npy": "3305a78b27804c6ab4aa23c53521b8af2937912a81c6d435a7d5335cecdb8cbe",
+        "group2.npy": "cbe3b0f76430e2b1f454456fb876382f939ab95073a31cb42117b21a93ccb9c5",
+        "group3.npy": "31b7633369c9038115d50f4766d0d1133dcfab9e12868f2866bd3d723c965978"
+      },
+      "rows": 50000
+    },
+    "hepatitis": {
+      "manifest_hash": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "file_sha256": {
+        "manifest.json": "e83a753d466350f365c6c6a6b493f23f9c086dd0018c24722f2215cf483d4e09",
+        "cards.npy": "68c63cc91f48404c8c184920aa768d29d61cbe5cdd88043bfa2f19c8ba8f2906",
+        "offsets.npy": "8fd267f5e47437a77bd1df0aba785449973a24e39a10878ea24d4b7a19183e87",
+        "group0.npy": "3044518cb7ac7f62fc082868b51b968f411cd2395d2b6bb9ded7b9d5cd66a3f1",
+        "group1.npy": "22c7abb6764e186a8b63609fc2e1591e9d9dbc3069039aa8336308c1f32fcfd4",
+        "group2.npy": "7834158851ca75248374405061f29e758ee67898a634e799cebc667f2df48a2a",
+        "group3.npy": "cc0149b1fe79a79ce1abbd79f70e7288db3a51342efc6a8df617ff14e6baf5cf"
+      },
+      "rows": 50000
+    },
+    "hockey": {
+      "manifest_hash": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "file_sha256": {
+        "manifest.json": "81188aa035bf803d41e1568b47bf68f7f4da65c3acc69255c7d9a3c4d2673ede",
+        "cards.npy": "33d5f7c715b14ea5f7b7ca17cc1a990380a7f679702e5091f83eb5139aaeadc3",
+        "offsets.npy": "a04d6165694649dd0fbcac09f9ceb79e7f9963f0ef0619f8973b180449a17037",
+        "group0.npy": "ea96a65a85a50de53f608ebff121cd12d5fa4cddeca97221aedc2465079b1da3",
+        "group1.npy": "fd56b8708307e5d086199d90d606108c8ac4d07ae17c3f8e99dbce39c6895c47",
+        "group2.npy": "7ca3e6aec805a2c0504b0eb9058e79065337c33167d4f9a5405ad97c26a6ad38",
+        "group3.npy": "7acbca91ec0961cb98018e9f6cf4c6e7bdbaed7d129d312e9780c7d52353f82f"
+      },
+      "rows": 50000
+    },
+    "movielens": {
+      "manifest_hash": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "file_sha256": {
+        "manifest.json": "0e76c11fa83601ecb4c938de42f2eb71a3670e3a729d8a61f5d97b126b36c2f4",
+        "cards.npy": "ad6965d936a28dfd670df04c2bf8ae2adff05b9e9fc2c39f5560febcb1faf8d8",
+        "offsets.npy": "ec1487b92daec5021a701eafa08aeaa5e5b83f3f428855ee1757ba14fbb5c8b5",
+        "group0.npy": "79c9f9a23765bcd4f072601bae5d319984f17ba15060a852d04a43ba13d60f87",
+        "group1.npy": "e3202b7fb7901fa20c5f4a2c50bfbc188b723c7582b8e9e5dcfe8e570de569af",
+        "group2.npy": "6359e7e6b928ee5dc2acade7483bcde2758846283bb523f53f0149a4c97d8e88",
+        "group3.npy": "096f1ab245c088b098f679d9afb701ce955dbe1087abc072046c34d7b4bafb43"
+      },
+      "rows": 50000
+    },
+    "sakila": {
+      "manifest_hash": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "file_sha256": {
+        "manifest.json": "9a518b7c4b045457f93081106cb506942af8c8dbc775f5a8d43bc92bf129fcb5",
+        "cards.npy": "cc54f41ed372b5a9f1b4419e48de533683a5e3c337d945429d855cdf866325c0",
+        "offsets.npy": "366f327c620ef81ef9a03acd5945e6be604a7cdee656d993b9cf15b3c17bfd0e",
+        "group0.npy": "332403221e98594ebcb75f8a5ee12caf2a527af2a7c61e6891bb8e07d55c1581",
+        "group1.npy": "6fb6e9c003fcdb0767ab55fdbe88853757da7b23646d6e53d19d42dbaba2c56d",
+        "group2.npy": "dc75a9471f827e82ae734c5a6e0c524ec6cfc741f500f94d98758232b234cc85",
+        "group3.npy": "a755104f00347342da29c7b1bc5a03780b63e00c27e5a9f2d5c3d056bf0d8cdb"
+      },
+      "rows": 50000
+    },
+    "sap": {
+      "manifest_hash": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "file_sha256": {
+        "manifest.json": "9e12062c46ff20acd7677153f3f21dcabef189017bf5faf710647b536e3288a9",
+        "cards.npy": "403415761905e7726b59206cb416cfc283a3dd4e60b0e5e4cd96d37ffc8707c0",
+        "offsets.npy": "b04e881cd077c601897bcd9a6c08fed94610b51e37fe4c3d14d2262a41131a9b",
+        "group0.npy": "4d083aa0bf64af1e9f38a0b33be8c2a6d69bac2753da9bfd938ee354dc8247ff",
+        "group1.npy": "06bc5e28221eb447b08a34cf117521e35af1dfc5cd8dd0ae49cf3e4499b04076",
+        "group2.npy": "d737720290f4804db5ba9fb6b148d09a913608e544c495ecdf7173a419d3e73a",
+        "group3.npy": "0dce65b350ba8eacb33de967278303cbf1e2ddbdf61e0add4bb5746c6a6545ba"
+      },
+      "rows": 50000
+    },
+    "seznam": {
+      "manifest_hash": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "file_sha256": {
+        "manifest.json": "f8440202f24c5cd2c1a968da575561aabf7fbad4fae37d33e2ad8b37c6282f1f",
+        "cards.npy": "f54aafe9c185ac01f1af8931290d540938147a72a2ebc5931f8394947fde07f9",
+        "offsets.npy": "61e59e988cddb59d8e5b190e23526046ac7001fb68510405416f7a407b8a3377",
+        "group0.npy": "5e4bd9fff456e9d84df3b6bd28d26a473ed66d60fb008ded911db2952d044e61",
+        "group1.npy": "02a2cd1702a426717fd02ae5712e2b0dce047ace2daf27960dd54fd873c7e3fc",
+        "group2.npy": "a9a45ffbac57719b6f72572dfc97c96b5c340a6b2bb331554f4cab561d1a92e9",
+        "group3.npy": "be0dfe1c43e931d0e379a6ccfbbd866412ece55cc0ef1c177ed64acaf86dd902"
+      },
+      "rows": 50000
+    },
+    "ssb": {
+      "manifest_hash": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "file_sha256": {
+        "manifest.json": "b47234152f17846696b680d723336cb03e999c5a9902bff765a76dbbc4adb942",
+        "cards.npy": "d11e9b9b81271a28a3e2227bc6f2b9f1e97dc460e5d02e0be4f51431ce7326f9",
+        "offsets.npy": "f7abd5fa82d9380dd6d5afc6c8250698186bf9fab161df81a9a6eb4d003d56cb",
+        "group0.npy": "acc750672aff7346f93bc43f6bbc8db3cc15a169eac9d577b3e24d59c6fec4c4",
+        "group1.npy": "d050c2d2ab1f89f552500624a881feebccb233fae5007e6daf79dc315934ed48",
+        "group2.npy": "9449b730403dee9d084ab20a1b326466d6ac12a73aa82f3629b9972b315645fc",
+        "group3.npy": "1804a305d5bed7e24569def2dff19f56dd53079334b07aea18b1ffdb0f762ac3"
+      },
+      "rows": 50000
+    },
+    "talkingdata": {
+      "manifest_hash": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "file_sha256": {
+        "manifest.json": "bfb7e5e5be00b3400ad91b2459265469f45370d0608ee08d8a8293a6e9202d96",
+        "cards.npy": "90f1bf1d2adc0b1c1552a9cce788c7c4e18cfa7d2abf0de3d6d1ba7dd9a048c7",
+        "offsets.npy": "4bbe895dea4e9c13b3e888d42e3f7d75c564361e4130985b54a946a738030a08",
+        "group0.npy": "c9dac58c2f24588e9dd88f92cdd589b1ef8669dee70932a33f85d0a728405d3d",
+        "group1.npy": "b7b56131b1cfbfc0aca6856652ea3b0031cc5a4fb5343ce3ef4e87df3966b95d",
+        "group2.npy": "710898a53803bbe301d5ebbcd121cc20153d5ad5a718bbf048034e0b56e5ddf3",
+        "group3.npy": "3401c0232e0769adc0cb8bf8a776c8af13c6dd79e25deb0c6577f302d30a1856"
+      },
+      "rows": 50000
+    },
+    "tournament": {
+      "manifest_hash": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "file_sha256": {
+        "manifest.json": "907c45b0be134437de7e654388cd604795cd42434f69b1ed7e3e636b6008ebd9",
+        "cards.npy": "572624501b37d8e9f28bb9dfc328042afd832bb79ae64febb46594563a9f0668",
+        "offsets.npy": "edd1ad9ddf7e78c24f6140329af97faed8313aca9b9370528d77f60f8b3d4a99",
+        "group0.npy": "87f22612b69beb484d35ab8532062f846aa06c7aab78c29ac156f6877d479b43",
+        "group1.npy": "6fb1192134cef00b8e7a3907fa1b3888d6437a912e2f308b69c9f038b45bb093",
+        "group2.npy": "32f64ec4841c51b2ed382dbd513aa177349e16fc4c9ce2f102ff7159e7269820",
+        "group3.npy": "6ab4f44593be999f60f4ac2b609525f43dfd70303ebce0d4ab9d81c246d1d11a"
+      },
+      "rows": 50000
+    },
+    "tpc_h": {
+      "manifest_hash": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "file_sha256": {
+        "manifest.json": "ac4e675c5f07232f453df70a7e082847b9286ecd750e0073469103e83be28760",
+        "cards.npy": "fb6bad69aad696754fa20fe1158dd0c05aa89aacc34a703c168d6a7c5beb2606",
+        "offsets.npy": "28ce6f939a0fd02c0eeb621d89fb02fa00be5292f197125e2dcdc8184b5892c0",
+        "group0.npy": "fb04e9c74133f7b5eb07f407e2fe916db63cfbca74bc3d649b252fa09807d0de",
+        "group1.npy": "11929b9e45a89f576c94c6a534f0d48f19ab8576fc3d71987fc8d16e71e2d274",
+        "group2.npy": "f05be95a29d5f7adc89208e0a5fd508278d072380b1886b2fb8ba851388f293f",
+        "group3.npy": "a07f866ba5b21b38a7e7f564517c4bcd246f1e1ff7554d151157845016f94a47"
+      },
+      "rows": 50000
+    },
+    "tubepricing": {
+      "manifest_hash": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "file_sha256": {
+        "manifest.json": "cb3460d9aefbb3c3e10ed5022185fd9050168eda1dd2a0864a351f6cbc31bc90",
+        "cards.npy": "e9358398d218aba1df4ba13164baf428cec747764ff76718285b8573188e32a4",
+        "offsets.npy": "2f8ebe70fb5bbfbccfd873d6a315cd10934d63e24c2c4a81f862e0f8d84fe3a1",
+        "group0.npy": "2710b9ca0b1ebf8539232e7c76eda21159a8fab3040ed7d6362090892aa292e8",
+        "group1.npy": "e1ad4e355429b0e30f62dad3f30cdba95590a044f2f172c2fc7ff6041137022a",
+        "group2.npy": "0866f01de27f81bae4145503ea25ec47e7601a02cafc1f2214e2a6577c31e5b4",
+        "group3.npy": "fc37182d56546cd1120ca562ce63c03d0df787879779681bd9e1732f95985175"
+      },
+      "rows": 50000
+    },
+    "chembl": {
+      "manifest_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "file_sha256": {
+        "manifest.json": "7a936bbe92c1f919bb4a9d8e0276f1cba418f93e1bb0a5595b51cf0c8d837952",
+        "cards.npy": "11d638adede17523c34893ca37f8fc13c728c01af2146991f58034a670adbd44",
+        "offsets.npy": "a401fdb739eedc1902faed45b5e068d33b4c262bc5aa7b7a3425be6071f19765",
+        "group0.npy": "d522589b6cb3ccdb9684ecad2e83db94a3b213c732de1fe737561696c0ae5ba4",
+        "group1.npy": "0ac6dfb2401ef5bec24b80ec5593ef64fda6ba3ef97af380a6e3d4e175b009e5",
+        "group2.npy": "0e52ceeb3418de73d188c897a8c77ae1b33b222e589446e560d067bfb9c0c7c6",
+        "group3.npy": "d808ff804adbc4442689b2552d3c33596fc20c78becc99575eb5fddd8c0b150b"
+      },
+      "rows": 50000
+    },
+    "legalacts": {
+      "manifest_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "file_sha256": {
+        "manifest.json": "a87b4ceb61d687f0f0525ea763422b4b8f29cad4bb56b664ee6d305f40e7d225",
+        "cards.npy": "13a9afe2b62e5c6697367993e4ded72d1a025ee26b425b8c04446e10aba76dd3",
+        "offsets.npy": "67aa46828a9dcfb2a9f1335c11f8658882333025ea394a17d863f249f50c9144",
+        "group0.npy": "49c6e9f212ef767a8a4664dfb78347f8b1b336f37a1b4fe99d28da736c87188a",
+        "group1.npy": "3cd65ae187956ba8d59f1dcd03f0c6e39c81d89abfdc8b39da0a8f06293822aa",
+        "group2.npy": "1e7ebd2a9f1d2b1e7fc386e6ce3c38836cd728c55c2d38c9da536d55a2c3b58c",
+        "group3.npy": "9487079283c0c482745d951413e6668ba6787af988f8d00546aa1d32b7620696"
+      },
+      "rows": 50000
+    },
+    "telstra": {
+      "manifest_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+      "file_sha256": {
+        "manifest.json": "3df79cbd9b0913d1cb8d6f7b0b58eca8bf9ef7094f2048657ade2fc49c8ec144",
+        "cards.npy": "c15f05bdb013320516f0ead9fbef0b776870e061d930847e3833014c47ef291a",
+        "offsets.npy": "9f1d6fd6d8cda47162da4592acf3486a3bcf6448813a610758db33c9643f77e6",
+        "group0.npy": "2304c6e474308b0f17f956c6ad3864e129c716d629f16801f740779cb777567a",
+        "group1.npy": "86735ac3dc5b9d843e6f06c6b4f7acf8f1153bfb24afe0dd673c4748a91d826d",
+        "group2.npy": "ad6becd65f27c805a41c5ac4aec82de1999a1ca79cbb50227d72f2d06f4ae135",
+        "group3.npy": "6f372b92258a9fa7fde03228c68cc430e0c0ecb2757bac407b9040ee924fc033"
+      },
+      "rows": 50000
+    }
+  },
+  "smoke": false
+}

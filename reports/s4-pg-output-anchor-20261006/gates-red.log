@@ -1,0 +1,36 @@
+test_ordered_pg_identity_matches_independent_verifier (test_s4_anchor.S4AnchorTests.test_ordered_pg_identity_matches_independent_verifier) ... FAIL
+test_worker_original_error_survives_supervisor_failure (test_s4_anchor.S4AnchorTests.test_worker_original_error_survives_supervisor_failure) ... ERROR
+test_manifest_rejects_missing_hashes_symlinks_and_changes (test_s4_anchor.S4AnchorTests.test_manifest_rejects_missing_hashes_symlinks_and_changes) ... FAIL
+
+======================================================================
+ERROR: test_worker_original_error_survives_supervisor_failure (test_s4_anchor.S4AnchorTests.test_worker_original_error_survives_supervisor_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 492, in test_worker_original_error_survives_supervisor_failure
+    self.assertIn('Nonfinite outer gradient', status['worker_error'])
+                                              ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'worker_error'
+
+======================================================================
+FAIL: test_ordered_pg_identity_matches_independent_verifier (test_s4_anchor.S4AnchorTests.test_ordered_pg_identity_matches_independent_verifier)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 478, in test_ordered_pg_identity_matches_independent_verifier
+    self.assertEqual(s.pg_identity(rows), checked['endpoint']['pg_identity_digest'])
+AssertionError: 'f600187e16b8c8effbb29c5dc438a79d01b7d8ba5c6df20c93f0640c44eb8dd6' != 'd535a094a241ec48d4a4bbb5647bf8c494f9d9f0a9287409f340311e9f900659'
+- f600187e16b8c8effbb29c5dc438a79d01b7d8ba5c6df20c93f0640c44eb8dd6
++ d535a094a241ec48d4a4bbb5647bf8c494f9d9f0a9287409f340311e9f900659
+
+
+======================================================================
+FAIL: test_manifest_rejects_missing_hashes_symlinks_and_changes (test_s4_anchor.S4AnchorTests.test_manifest_rejects_missing_hashes_symlinks_and_changes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_s4_anchor.py", line 458, in test_manifest_rejects_missing_hashes_symlinks_and_changes
+    with self.assertRaisesRegex(ValueError, "record"):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.034s
+
+FAILED (failures=2, errors=1)

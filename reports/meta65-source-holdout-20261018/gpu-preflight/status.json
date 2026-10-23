@@ -1,0 +1,12 @@
+{
+  "cells": 0,
+  "experiment": "meta65-source-holdout-20261018",
+  "formal_result": false,
+  "micro_cells": 10,
+  "mode": "gpu_preflight",
+  "schema": 1,
+  "selection_performed": false,
+  "status": "preflight_completed",
+  "target_read": false,
+  "training": true
+}

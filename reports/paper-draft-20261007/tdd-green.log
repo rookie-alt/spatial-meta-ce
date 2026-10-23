@@ -1,0 +1,19 @@
+test_all_k_and_uncertainty_are_separate (test_paper_results.PaperResultsTests.test_all_k_and_uncertainty_are_separate) ... ok
+test_deterministic_export_and_valid_svg (test_paper_results.PaperResultsTests.test_deterministic_export_and_valid_svg) ... ok
+test_frozen_36_sources_checked (test_paper_results.PaperResultsTests.test_frozen_36_sources_checked) ... ok
+test_live_status_and_agents_are_not_authenticated_inputs (test_paper_results.PaperResultsTests.test_live_status_and_agents_are_not_authenticated_inputs) ... ok
+test_reject_csv_duplicate_and_missing_row (test_paper_results.PaperResultsTests.test_reject_csv_duplicate_and_missing_row) ... ok
+test_reject_duplicate_and_incomplete_target_episodes (test_paper_results.PaperResultsTests.test_reject_duplicate_and_incomplete_target_episodes) ... ok
+test_reject_duplicate_json_keys (test_paper_results.PaperResultsTests.test_reject_duplicate_json_keys) ... ok
+test_reject_invalid_metrics_and_support_identity (test_paper_results.PaperResultsTests.test_reject_invalid_metrics_and_support_identity) ... ok
+test_reject_missing_or_tampered_hash_input_and_no_success (test_paper_results.PaperResultsTests.test_reject_missing_or_tampered_hash_input_and_no_success) ... ok
+test_reject_missing_target_metric_and_mismatched_aggregate (test_paper_results.PaperResultsTests.test_reject_missing_target_metric_and_mismatched_aggregate) ... ok
+test_reject_source_duplicate_incomplete_and_nonfinite (test_paper_results.PaperResultsTests.test_reject_source_duplicate_incomplete_and_nonfinite) ... ok
+test_source_macro_is_not_pooled_and_has_no_sd (test_paper_results.PaperResultsTests.test_source_macro_is_not_pooled_and_has_no_sd) ... ok
+test_target_figures_keep_all_points_and_different_sd_labels (test_paper_results.PaperResultsTests.test_target_figures_keep_all_points_and_different_sd_labels) ... ok
+test_target_values_match_frozen_table (test_paper_results.PaperResultsTests.test_target_values_match_frozen_table) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.772s
+
+OK

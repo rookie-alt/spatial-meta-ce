@@ -1,0 +1,6 @@
+test_frozen_linux_backend_counters_are_read_without_installing_dependency (test_s8_smoke_runner.SmokeRunnerTests.test_frozen_linux_backend_counters_are_read_without_installing_dependency) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK

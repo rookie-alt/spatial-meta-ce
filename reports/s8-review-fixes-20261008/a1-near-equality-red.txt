@@ -1,0 +1,36 @@
+test_empty_or_non_string_query_identity_is_rejected (test_paired_metrics.PairedMetricsTests.test_empty_or_non_string_query_identity_is_rejected) ... ok
+test_equal_near_truth_under_over_error_is_neutral_in_both_directions (test_paired_metrics.PairedMetricsTests.test_equal_near_truth_under_over_error_is_neutral_in_both_directions) ... 
+  test_equal_near_truth_under_over_error_is_neutral_in_both_directions (test_paired_metrics.PairedMetricsTests.test_equal_near_truth_under_over_error_is_neutral_in_both_directions) (pred=125, reference=80) ... FAIL
+  test_equal_near_truth_under_over_error_is_neutral_in_both_directions (test_paired_metrics.PairedMetricsTests.test_equal_near_truth_under_over_error_is_neutral_in_both_directions) (pred=80, reference=125) ... FAIL
+test_invalid_arrays_fail_closed (test_paired_metrics.PairedMetricsTests.test_invalid_arrays_fail_closed) ... ok
+test_label_and_query_bindings_must_match_before_clamping (test_paired_metrics.PairedMetricsTests.test_label_and_query_bindings_must_match_before_clamping) ... ok
+test_mean_median_and_q95_use_different_scales (test_paired_metrics.PairedMetricsTests.test_mean_median_and_q95_use_different_scales) ... ok
+test_no_reference_remains_none (test_paired_metrics.PairedMetricsTests.test_no_reference_remains_none) ... ok
+test_nonrepresentable_q_errors_fail_without_clipping (test_paired_metrics.PairedMetricsTests.test_nonrepresentable_q_errors_fail_without_clipping) ... ok
+test_q95_is_percentile_of_q_not_exp_percentile_log_q (test_paired_metrics.PairedMetricsTests.test_q95_is_percentile_of_q_not_exp_percentile_log_q) ... ok
+test_small_real_improvements_are_not_rounded_to_ties (test_paired_metrics.PairedMetricsTests.test_small_real_improvements_are_not_rounded_to_ties) ... ok
+test_summarize_unique_q95_is_unchanged (test_paired_metrics.PairedMetricsTests.test_summarize_unique_q95_is_unchanged) ... ok
+test_true_100_pg_10_model_100_is_improved (test_paired_metrics.PairedMetricsTests.test_true_100_pg_10_model_100_is_improved) ... ok
+test_under_over_cross_truth_and_equal_errors (test_paired_metrics.PairedMetricsTests.test_under_over_cross_truth_and_equal_errors) ... ok
+test_zero_labels_and_negative_log_predictions_follow_standard_clamps (test_paired_metrics.PairedMetricsTests.test_zero_labels_and_negative_log_predictions_follow_standard_clamps) ... ok
+
+======================================================================
+FAIL: test_equal_near_truth_under_over_error_is_neutral_in_both_directions (test_paired_metrics.PairedMetricsTests.test_equal_near_truth_under_over_error_is_neutral_in_both_directions) (pred=125, reference=80)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 67, in test_equal_near_truth_under_over_error_is_neutral_in_both_directions
+    self.assertEqual(actual['fraction_queries_improved'], 0.0)
+AssertionError: 1.0 != 0.0
+
+======================================================================
+FAIL: test_equal_near_truth_under_over_error_is_neutral_in_both_directions (test_paired_metrics.PairedMetricsTests.test_equal_near_truth_under_over_error_is_neutral_in_both_directions) (pred=80, reference=125)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired_metrics.py", line 68, in test_equal_near_truth_under_over_error_is_neutral_in_both_directions
+    self.assertEqual(actual['fraction_queries_worsened'], 0.0)
+AssertionError: 1.0 != 0.0
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.008s
+
+FAILED (failures=2)

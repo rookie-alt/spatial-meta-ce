@@ -1,0 +1,125 @@
+{
+  "status": "verified",
+  "engineering_verified": true,
+  "rank_stability": "unknown",
+  "strict_certificate": {
+    "status": "unknown",
+    "scopes": [
+      "true_rank",
+      "rigorous_retained_subspace",
+      "strict_linear_optimality"
+    ],
+    "reason": "no_verified_arithmetic_certificate"
+  },
+  "full_linear_optimality_verified": false,
+  "resource_only": true,
+  "coefficients_discarded": true,
+  "not_used_for_predictions_or_selection": true,
+  "reference_kind": "zero_reference_not_Adam",
+  "claim": "resource_only_engineering_not_G1",
+  "rows": 19456,
+  "columns": 65,
+  "matrix_bytes": 10117120,
+  "standardization_seconds": 0.031060990877449512,
+  "solver_certification_seconds": 0.1004932620562613,
+  "seconds": 0.1315542529337108,
+  "linalg_calls": 3,
+  "rank": 50,
+  "normalizer_source": {
+    "scope": "this_P_panel_only",
+    "fit_indices_sha256": "90c213ec0fa1f22eb5d86870beea2e187ad5fe7e5c92dee7792cb55bbb1f7da9",
+    "fit_rows": 19456,
+    "feature_columns": 64,
+    "dtype": "float64",
+    "ddof": 0,
+    "panel_identity_digest": "07656938be67b52d5d417028414f0045765397e3025623be67ff8316f014983d",
+    "input_sha256": "62fa49d49f75b19c28df0794f6f6635c2a3573e89b4bd84289d8625f16d05c0b",
+    "selection": "all_P_rows",
+    "normalizer_sha256": {
+      "mean": "e53ee758f3d16592c7ce8b2c79ee8e41583ce009a8f40b76f3d86dc242e38a5d",
+      "std": "ccd33b58279a32adcfddeadf7ed2c416c9157157c8b4ab5c58ea55e5ed2e703f",
+      "scale": "c54a196b17b142ee3015de552c6e427e5e5bfd8246a5d33c2ffec8e7d3b20a05",
+      "zero_mask": "ffa6b07d2d72927b11f3c8c474e74f1063e2ec82b2a4c27dec0e3ed4a8bfe723",
+      "tiny_mask": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b"
+    }
+  },
+  "certificate": {
+    "spectrum_specification": "s8-fp64-spectrum-v1.1",
+    "spectrum_dtype": "float64",
+    "spectrum_numpy_version": "1.26.1",
+    "spectrum_matrix_shape": [
+      19456,
+      65
+    ],
+    "spectrum_epsilon": 2.220446049250313e-16,
+    "spectrum_gamma": 4.320099833440072e-12,
+    "spectrum_error_bound": 2.7641854678466988e-09,
+    "spectrum_comparison_bound": 5.5283709356933975e-09,
+    "spectrum_pass": true,
+    "reference_spectrum_pass": true,
+    "svd_backend_pass": true,
+    "svd_scaled_reconstruction_residual": 7.364673816228946e-15,
+    "svd_u_orthogonality_residual": 1.1920009275578377e-14,
+    "svd_v_orthogonality_residual": 1.0872894510553602e-14,
+    "svd_u_normalized_orthogonality_residual": 1.478495186797267e-15,
+    "svd_v_normalized_orthogonality_residual": 1.3486165848329777e-15,
+    "svd_normalized_orthogonality_bound": 4.334532732760325e-12,
+    "observed_ranks": {
+      "svd": 50,
+      "reported_ls": 50,
+      "reference_ls": 50
+    },
+    "observed_rank_agreement": true,
+    "rank_stability": "unknown",
+    "rank_cutoff_interval": [
+      6.398429606738165e-10,
+      6.398429606793448e-10
+    ],
+    "rank_cutoff_intervals": {
+      "svd": [
+        6.398429606738165e-10,
+        6.398429606793448e-10
+      ],
+      "reported_ls": [
+        6.398429606738165e-10,
+        6.398429606793448e-10
+      ],
+      "reference_ls": [
+        6.398429606738165e-10,
+        6.398429606793448e-10
+      ]
+    },
+    "rank_interval_margin": -2.1243895873152075e-09,
+    "retained_subspace_pass": true,
+    "reference_retained_subspace_pass": true,
+    "engineering_verified": true,
+    "engineering_scope": "same_matrix_fixed_cutoff_numeric_consistency",
+    "strict_certificate": {
+      "status": "unknown",
+      "scopes": [
+        "true_rank",
+        "rigorous_retained_subspace",
+        "strict_linear_optimality"
+      ],
+      "reason": "no_verified_arithmetic_certificate"
+    },
+    "pass": false,
+    "solver_verified": false,
+    "rank_limited": true,
+    "numerical_rank_limited": true,
+    "fullrank_numeric_solver": false,
+    "full_linear_optimality_verified": false,
+    "full_linear_optimality": false,
+    "reference_objective": 1.5979521561435373,
+    "reference_objective_pass": true,
+    "reference_prediction_pass": true,
+    "reference_pass": true,
+    "certification_linalg_calls": 2,
+    "normalized_normal_residual": 2.991667528586546e-16,
+    "normal_residual_pass": true,
+    "objective_pass": true,
+    "metadata_pass": true,
+    "objective_ls": 1.5979521561435373,
+    "objective_adam": 1.819289692335974
+  }
+}

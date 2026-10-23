@@ -1,0 +1,13 @@
+{
+  "new38_local_links_checked": [
+    "../scripts/verify_s8_readonly_p.py",
+    "../reports/s8-g1-readonly-p-handshake-v2-20261008/final-verification.json",
+    "../reports/s8-g1-readonly-p-handshake-v2-20261008/linux-synthetic.stdout.log",
+    "../reports/s8-g1-readonly-p-handshake-v2-20261008/linux-synthetic.stderr.log",
+    "../tests/test_s8_readonly_handshake_linux.py",
+    "../reports/s8-g1-readonly-p-handshake-v2-20261008/linux-handshake-test-design.md",
+    "../reports/s8-g1-readonly-p-handshake-v2-20261008/package-manifest.json",
+    "../reports/s8-g1-readonly-p-handshake-v2-20261008/independent-final-review.md"
+  ],
+  "all_exist": true
+}

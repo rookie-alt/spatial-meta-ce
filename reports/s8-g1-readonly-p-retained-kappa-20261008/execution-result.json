@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-08",
+  "revision": "retained-kappa-real-condition-number-20261008",
+  "status": "failed",
+  "status_scope": "physical_check_passed_but_supervisor_observation_failed_not_success",
+  "single_attempt": 1,
+  "retried_or_resumed": false,
+  "archive_sha256": "40ca43c6d8e73e7e73e1466864fb92dc11b2b4778343af779b7c870cf48bb658",
+  "contract_sha256": "54f9c24c47062b1a73e5f2be4b651fb143760a1ce689ae75bd27e63567ddd99f",
+  "entry_sha256": "bba63497b9da593827f1f20c60a7766aacc30d470561b9334280396d929f61bf",
+  "s8_probe_sha256": "7c7847ce1122f0cf265541781812f4ed8cff2f671c9dc42c8e2abda71e48cfad",
+  "allowed_inputs_read": [
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-h.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-label.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-pg_log.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-x.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/contract.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/panels.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/preflight.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/status.json"
+  ],
+  "input_sha_before_after_match": true,
+  "input_sha_matches_contract": true,
+  "deployed_code_unchanged_after_attempt": true,
+  "new_proof_bytes_match_server_inventory": true,
+  "worker_record": {
+    "status": "verified_readonly_P_engineering",
+    "stage": "final_source_validation",
+    "note": "worker subprocess exited 0 and wrote a complete verified proof; the parent supervisor overrode the top-level status to failed on a /proc observation race"
+  },
+  "supervisor": {
+    "attempts": 1,
+    "failure_reason": "resource_observation_failed",
+    "returncode": 0,
+    "signal": null,
+    "sampled_peak_rss_bytes": 1321377792,
+    "sampled_peak_address_space_bytes": 4289466368,
+    "rss_measurement": "sampled_not_hard_cap",
+    "poll_seconds": 0.05,
+    "RLIMIT_AS_bytes": 12884901888,
+    "wall_limit_seconds": 900,
+    "error": "'VmRSS'",
+    "seconds": 7.922383275814354
+  },
+  "returncodes": {
+    "ssh_and_outer": 1,
+    "worker_child": 0,
+    "signal": null
+  },
+  "wall_seconds_worker": 7.522,
+  "wall_seconds_supervisor": 7.9224,
+  "worker_ru_maxrss_bytes": 1321377792,
+  "sampled_peak_rss_bytes": 1321377792,
+  "sampled_peak_address_space_bytes": 4289466368,
+  "RLIMIT_AS_bytes": [
+    12884901888,
+    12884901888
+  ],
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "numpy": "1.26.1",
+  "torch": "2.1.0+cu121",
+  "panels": {
+    "h": {
+      "small_P_zero_reference": {
+        "status": "verified",
+        "engineering_verified": true,
+        "rank_stability": "stable",
+        "strict_certificate": "unknown",
+        "rank": 46
+      },
+      "full_P_resource": {
+        "status": "verified",
+        "engineering_verified": true,
+        "rank_stability": "unknown",
+        "strict_certificate": "unknown",
+        "rank": 50
+      }
+    },
+    "x": {
+      "small_P_zero_reference": {
+        "status": "verified",
+        "engineering_verified": true,
+        "rank_stability": "stable",
+        "strict_certificate": "unknown",
+        "rank": 586
+      },
+      "full_P_resource": {
+        "status": "verified",
+        "engineering_verified": true,
+        "rank_stability": "unknown",
+        "strict_certificate": "unknown",
+        "rank": 596
+      }
+    }
+  },
+  "failure_reason": "resource_observation_failed",
+  "failure_error": "'VmRSS'",
+  "failure_is_gate_or_budget": false,
+  "failure_is_supervisor_proc_observation_race": true,
+  "retained_bound_comparison_record": "panel-bound-comparison.json",
+  "original_G1_status": "failed",
+  "formal_ready": false,
+  "strict_certificate": "unknown",
+  "A_engineering_passed_this_attempt": false,
+  "A_physical_checks_passed_this_attempt": true,
+  "B_or_training_started": false,
+  "excluded_failure_causes": [
+    "not the tightened retained bound (all four panels retained_subspace_pass=true under the new kappa bound)",
+    "not source/shape/finite/identity/rank (input SHAs before==after==contract; rank 46/586/50/596; spectra pass)",
+    "not resource or wall budget (worker RSS 1.231GiB, AS 3.995GiB, wall 7.52s vs 12GiB/900s)",
+    "not data-boundary violation (dedup access-log == the eight authorised inputs; H/target/checkpoint/GPU/smoke all false)",
+    "single cause: parent supervisor VmRSS /proc sample race at child-exit window (sample_process KeyError VmRSS)"
+  ],
+  "not_retried_per_rule": true,
+  "second_tolerance_adjustment_performed": false
+}

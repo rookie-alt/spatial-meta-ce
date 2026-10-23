@@ -1,0 +1,18 @@
+{
+  "purpose": "exact-rational-scalar-review-not-a-real-error-bound",
+  "assumed_verification_model": "generic length-m round-to-nearest dot envelope only; not every FP64 algorithm",
+  "rows": 19456,
+  "unit_roundoff": 1.1102230246251565e-16,
+  "gamma_m_unit_roundoff": 2.1600499167153704e-12,
+  "idealized_assumptions": [
+    "r=0",
+    "eV=0",
+    "eU upper envelope includes gamma_m",
+    "no data-specific or compensated improvement"
+  ],
+  "required_eU_strictly_less_than": 1.999999999997e-12,
+  "generic_model_budget_exceeds_requirement": true,
+  "is_actual_Gram_error_lower_bound": false,
+  "rules_out_all_FP64_methods": false,
+  "real_P_read": false
+}

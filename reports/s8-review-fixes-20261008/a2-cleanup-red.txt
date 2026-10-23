@@ -1,0 +1,280 @@
+test_cleanup_reap_timeout_keeps_failed_proof_and_restores_signals (test_s8_supervisor_exit.ExitRaceTests.test_cleanup_reap_timeout_keeps_failed_proof_and_restores_signals) ... FAIL
+test_cleanup_signal_error_is_failed_durable_and_does_not_wait_forever (test_s8_supervisor_exit.ExitRaceTests.test_cleanup_signal_error_is_failed_durable_and_does_not_wait_forever) ... ERROR
+test_confirmation_timeout_does_not_extend_wall_budget (test_s8_supervisor_exit.ExitRaceTests.test_confirmation_timeout_does_not_extend_wall_budget) ... FAIL
+test_confirmed_exit_still_requires_worker_proof (test_s8_supervisor_exit.ExitRaceTests.test_confirmed_exit_still_requires_worker_proof) ... FAIL
+test_confirmed_nonzero_exit_is_not_sampling_success (test_s8_supervisor_exit.ExitRaceTests.test_confirmed_nonzero_exit_is_not_sampling_success) ... FAIL
+test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) ... 
+  test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='KeyError') ... FAIL
+  test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='FileNotFoundError') ... FAIL
+  test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='ValueError') ... FAIL
+test_exit_confirmation_finishing_after_deadline_still_fails_wall_budget (test_s8_supervisor_exit.ExitRaceTests.test_exit_confirmation_finishing_after_deadline_still_fails_wall_budget) ... FAIL
+test_group_disappearing_during_cleanup_is_not_supervisor_failure (test_s8_supervisor_exit.ExitRaceTests.test_group_disappearing_during_cleanup_is_not_supervisor_failure) ... FAIL
+test_persistent_live_unobservability_fails_and_cleans_group (test_s8_supervisor_exit.ExitRaceTests.test_persistent_live_unobservability_fails_and_cleans_group) ... FAIL
+test_proc_zombie_and_missing_window_reject_counter_sample (test_s8_supervisor_exit.ExitRaceTests.test_proc_zombie_and_missing_window_reject_counter_sample) ... ok
+test_real_linux_exited_leader_group_with_live_descendant_is_cleaned (test_s8_supervisor_exit.ExitRaceTests.test_real_linux_exited_leader_group_with_live_descendant_is_cleaned) ... skipped 'real Linux descendant cleanup not verified on macOS'
+test_real_linux_quick_exit_zombie_window (test_s8_supervisor_exit.ExitRaceTests.test_real_linux_quick_exit_zombie_window) ... skipped 'real Linux /proc integration not verified on macOS'
+
+======================================================================
+ERROR: test_cleanup_signal_error_is_failed_durable_and_does_not_wait_forever (test_s8_supervisor_exit.ExitRaceTests.test_cleanup_signal_error_is_failed_durable_and_does_not_wait_forever)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 119, in test_cleanup_signal_error_is_failed_durable_and_does_not_wait_forever
+    result = ro.supervise(child, self.output)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 864, in supervise
+    os.killpg(child.pid, signal.SIGKILL)
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+PermissionError: cannot clean owned group
+
+======================================================================
+FAIL: test_cleanup_reap_timeout_keeps_failed_proof_and_restores_signals (test_s8_supervisor_exit.ExitRaceTests.test_cleanup_reap_timeout_keeps_failed_proof_and_restores_signals)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 104, in test_cleanup_reap_timeout_keeps_failed_proof_and_restores_signals
+    result = ro.supervise(child, self.output)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 868, in supervise
+    child.wait()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 27, in wait
+    raise AssertionError('all child waits must be bounded')
+AssertionError: all child waits must be bounded
+
+======================================================================
+FAIL: test_confirmation_timeout_does_not_extend_wall_budget (test_s8_supervisor_exit.ExitRaceTests.test_confirmation_timeout_does_not_extend_wall_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 74, in test_confirmation_timeout_does_not_extend_wall_budget
+    result, _, _ = self.run_race(KeyError('VmRSS'), code=-9, persistent=True,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 41, in run_race
+    result = ro.supervise(child, self.output, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 868, in supervise
+    child.wait()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 27, in wait
+    raise AssertionError('all child waits must be bounded')
+AssertionError: all child waits must be bounded
+
+======================================================================
+FAIL: test_confirmed_exit_still_requires_worker_proof (test_s8_supervisor_exit.ExitRaceTests.test_confirmed_exit_still_requires_worker_proof)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 63, in test_confirmed_exit_still_requires_worker_proof
+    result, _, _ = self.run_race(KeyError('VmRSS'))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 41, in run_race
+    result = ro.supervise(child, self.output, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 868, in supervise
+    child.wait()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 27, in wait
+    raise AssertionError('all child waits must be bounded')
+AssertionError: all child waits must be bounded
+
+======================================================================
+FAIL: test_confirmed_nonzero_exit_is_not_sampling_success (test_s8_supervisor_exit.ExitRaceTests.test_confirmed_nonzero_exit_is_not_sampling_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 57, in test_confirmed_nonzero_exit_is_not_sampling_success
+    result, _, _ = self.run_race(KeyError('VmRSS'), code=7)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 41, in run_race
+    result = ro.supervise(child, self.output, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 868, in supervise
+    child.wait()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 27, in wait
+    raise AssertionError('all child waits must be bounded')
+AssertionError: all child waits must be bounded
+
+======================================================================
+FAIL: test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='KeyError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 48, in test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped
+    result, child, kill = self.run_race(error)
+                          ^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 41, in run_race
+    result = ro.supervise(child, self.output, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 868, in supervise
+    child.wait()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 27, in wait
+    raise AssertionError('all child waits must be bounded')
+AssertionError: all child waits must be bounded
+
+======================================================================
+FAIL: test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='FileNotFoundError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 48, in test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped
+    result, child, kill = self.run_race(error)
+                          ^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 41, in run_race
+    result = ro.supervise(child, self.output, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 868, in supervise
+    child.wait()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 27, in wait
+    raise AssertionError('all child waits must be bounded')
+AssertionError: all child waits must be bounded
+
+======================================================================
+FAIL: test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped (test_s8_supervisor_exit.ExitRaceTests.test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped) (error='ValueError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 48, in test_exit_between_counter_failure_and_poll_is_confirmed_and_reaped
+    result, child, kill = self.run_race(error)
+                          ^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 41, in run_race
+    result = ro.supervise(child, self.output, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 868, in supervise
+    child.wait()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 27, in wait
+    raise AssertionError('all child waits must be bounded')
+AssertionError: all child waits must be bounded
+
+======================================================================
+FAIL: test_exit_confirmation_finishing_after_deadline_still_fails_wall_budget (test_s8_supervisor_exit.ExitRaceTests.test_exit_confirmation_finishing_after_deadline_still_fails_wall_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 83, in test_exit_confirmation_finishing_after_deadline_still_fails_wall_budget
+    result = ro.supervise(child, self.output, wall_seconds=1.0)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 868, in supervise
+    child.wait()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 27, in wait
+    raise AssertionError('all child waits must be bounded')
+AssertionError: all child waits must be bounded
+
+======================================================================
+FAIL: test_group_disappearing_during_cleanup_is_not_supervisor_failure (test_s8_supervisor_exit.ExitRaceTests.test_group_disappearing_during_cleanup_is_not_supervisor_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 92, in test_group_disappearing_during_cleanup_is_not_supervisor_failure
+    result = ro.supervise(child, self.output)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 868, in supervise
+    child.wait()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 27, in wait
+    raise AssertionError('all child waits must be bounded')
+AssertionError: all child waits must be bounded
+
+======================================================================
+FAIL: test_persistent_live_unobservability_fails_and_cleans_group (test_s8_supervisor_exit.ExitRaceTests.test_persistent_live_unobservability_fails_and_cleans_group)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 67, in test_persistent_live_unobservability_fails_and_cleans_group
+    result, _, kill = self.run_race(PermissionError('unobservable live process'),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 41, in run_race
+    result = ro.supervise(child, self.output, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/scripts/verify_s8_readonly_p.py", line 868, in supervise
+    child.wait()
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_s8_supervisor_exit.py", line 27, in wait
+    raise AssertionError('all child waits must be bounded')
+AssertionError: all child waits must be bounded
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.017s
+
+FAILED (failures=10, errors=1, skipped=2)

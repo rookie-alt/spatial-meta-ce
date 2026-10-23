@@ -1,0 +1,33 @@
+{
+  "source_snapshot": {
+    "scripts/verify_s8_readonly_p.py": "0f781f3500ea438eebe5c1d4962da0c454be3826a81c85df75412d71f97fcf35",
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/s8_probe.py": "cea49d50eefe814c4ee3ad315d047787f897170d39ad855b18229f796b0cb12a",
+    "实验文档/27-S8G1运行器与真实smoke协议.md": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+    "实验文档/34-S8G1工程验收v2批准协议.md": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+    "reports/s8-g1-readonly-p-20261007/proof.schema.json": "8b375ff815463436736bb55fa32984fbd2f8d3ec7dabb55e455d65c7810665cb"
+  },
+  "transport_and_runtime_evidence_sha256": {
+    "authorization.json": "d609153e8eebbf533d5a825c9e95e9d4d0cfa0022c0ff8b5bfc9403b54aebbb5",
+    "execution-command.json": "0640f1a66401d4dd6414745789d18b262b03189ccb026164e7993e6b4d1d5bcf",
+    "execution.stdout.log": "4c79087ccc8a10abd24f77d28bbaf78c41bf12528cca6766d521a49061ceef91",
+    "execution.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "execution-transport.json": "e327318216be8f6aa00d854963228a8bde977b66d43bf998a22829aa28f97a0c",
+    "runtime-preflight.py": "02e03c7c291c1fa674542a0e6dd0f4d41860004869aba4c730b42abb8de44830",
+    "runtime-preflight.stdout.json": "fc09f3433811ceac2b9591b9e41dbc042a6c027416669701ad85ff0ec41d1a09",
+    "runtime-preflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime-preflight-transport.json": "793d9486f346bca5062b8ec508bb9ce358eb5a6d385f16402c79083f467eda86",
+    "post-failure-inventory.py": "84574eb631cb7720f47ce77afbf540a4f0241b130feab00b07e988ac6f01eb86",
+    "post-failure-inventory.stdout.json": "0653d142685afb000d21f8fb121ee49b3ddbd7a6516d32300a1c2f1da9beac49",
+    "post-failure-inventory-transport.json": "e1cb031e4f976d27a6f6fade579206f7a78d9b444af1055cb050264aafd6247e"
+  },
+  "recovered_new_proof_sha256": {
+    "execution-contract.json": "5d1ea6f4c9cd0f061f3db9ad5d9d7a88485485a88a169c213ddd7a25ed7e8650",
+    "proof.json": "99d088474e0d35a3f5fb3510bc0f09c6cf1d27ae08dd56545a4baf212925a6da",
+    "stderr.log": "0d999801aacfad578367a3abfb9645984b693e985ce6d04b2ec39c859623f968",
+    "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "supervisor.json": "be5e36c039e4a8aa640be4e11b52e947f72c8fee018a038361a0972162006b2d"
+  },
+  "local_copy_equals_server_inventory": true,
+  "review_scope": "primary_bindings_check_not_independent_review_or_numeric_recompute"
+}

@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-08",
+  "RED_commit": "7c89b0b",
+  "production_source_sha256": "5320ffe926cf7b56ddf2970b7888f79391e18fb62cf50298127e4eb2af8e5471",
+  "test_sha256": {
+    "tests/test_s8_readonly_p.py": "f4b93b28070278814c3328a140317d54d79c9e52e4a199d9f682d204b65d9654",
+    "tests/test_s8_readonly_handshake_linux.py": "e91375e111638c245dea0729ee0784426693416eff552ffff38cdf76cfaac100"
+  },
+  "local_targeted": {
+    "tests": 67,
+    "seconds": 3.991,
+    "exit_code": 0,
+    "passed": true,
+    "log": "local-targeted-final.log"
+  },
+  "local_full": {
+    "tests_total_including_skips": 754,
+    "tests_executed": 741,
+    "seconds": 95.377,
+    "exit_code": 0,
+    "passed": true,
+    "Linux_tests_skipped_on_macOS": 13,
+    "log": "local-full-final.log"
+  },
+  "local_path_mock_tests": 12,
+  "local_POSIX_TERM_cleanup_test": {
+    "tests": 1,
+    "seconds": 0.136,
+    "exit_code": 0,
+    "passed": true,
+    "not_Linux": true
+  },
+  "changed_Ruff_passed": true,
+  "repository_Ruff_passed": false,
+  "repository_Ruff_existing_issues": 110,
+  "log_sha256": {
+    "handshake-red.log": "cc0cfa4107903a996d15bb7cc09762aaa57837b7681b0437c2064568894faf7c",
+    "handshake-green.log": "2b86eb5f37ad14cad6553996d3961d15f9ebb68490794bf1ef7c0549c4c9a91f",
+    "suite-interrupt-red.log": "0a9c3f09af6629cccf6f62f9245bca1fb4acd698d55e5a3801fefa1fb25385b2",
+    "suite-interrupt-green.log": "63ccdf08707d3b48430f6d29fb982cdd4a20ca7133ab7b93d766b2eadbe9b320",
+    "local-targeted-final.log": "272b49f86fabf5c1acc92a83b9962a5baf0f4802b4aab75d49f1045384707b93",
+    "local-full-final.log": "44432cb894a573db6d92949661ea57acad0e0c7f05cc193bf73d8b4f471c10f0",
+    "linux-fixture-local-skip.log": "84bf8edde0cd3d23916c9aa8589a6406c331f648a3aad21cba98cd16a70e2671",
+    "changed-ruff-pre-linux.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "repository-ruff.log": "6a9e972102c95d9fa25e306701856c6292bc2950f67db92c5bdb36933d54806d"
+  },
+  "Linux_real_integration": "not_yet_executed",
+  "real_P_read": false,
+  "smoke_or_training": false,
+  "formal_ready": false,
+  "strict_certificate": "unknown"
+}

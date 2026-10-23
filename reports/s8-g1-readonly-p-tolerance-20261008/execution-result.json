@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-08",
+  "status": "verified_readonly_P_engineering",
+  "single_attempt": 1,
+  "retried_or_resumed": false,
+  "tolerance_archive_sha256": "e9fe330f0f90eae9d98d8f9d0cf6164b1c7bd3eb54d4cb34a6450570f237e1cd",
+  "tolerance_contract_sha256": "b85c41f0b04fb394c391f6143008e4d4e5bca907b7c6a1fb35d9c03105f6290e",
+  "entry_sha256": "85e0ccda9719040276d44993d87f29b8b1c643d818662450daef759b7074c5f3",
+  "s8_probe_sha256": "36d4eb6c9a61b9280e3c29705ee23e436bbb4ac81ffde6f30e02415c7f251281",
+  "allowed_inputs_read": [
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-h.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-label.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-pg_log.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-x.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/contract.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/panels.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/preflight.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/status.json"
+  ],
+  "input_sha_before_after_match": true,
+  "deployed_code_unchanged_after_attempt": true,
+  "new_proof_bytes_match_server_inventory": true,
+  "returncodes": {
+    "ssh_and_outer": 0,
+    "child": 0,
+    "signal": null
+  },
+  "wall_seconds": 8.05157156707719,
+  "worker_ru_maxrss_bytes": 1332494336,
+  "sampled_peak_rss_bytes": 1332236288,
+  "sampled_peak_address_space_bytes": 4290519040,
+  "RLIMIT_AS_bytes": [
+    12884901888,
+    12884901888
+  ],
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "numpy": "1.26.1",
+  "torch": "2.1.0+cu121",
+  "panels": {
+    "h": {
+      "small_P_zero_reference": {
+        "status": "verified",
+        "engineering_verified": true,
+        "rank_stability": "stable",
+        "strict_certificate": "unknown"
+      },
+      "full_P_resource": {
+        "status": "verified",
+        "engineering_verified": true,
+        "rank_stability": "unknown",
+        "strict_certificate": "unknown"
+      }
+    },
+    "x": {
+      "small_P_zero_reference": {
+        "status": "verified",
+        "engineering_verified": true,
+        "rank_stability": "stable",
+        "strict_certificate": "unknown"
+      },
+      "full_P_resource": {
+        "status": "verified",
+        "engineering_verified": true,
+        "rank_stability": "unknown",
+        "strict_certificate": "unknown"
+      }
+    }
+  },
+  "original_G1_status": "failed",
+  "formal_ready": false,
+  "strict_certificate": "unknown",
+  "A_engineering_passed": true,
+  "A_reclassified_as_scientific": false,
+  "B_or_training_started": false
+}

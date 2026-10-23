@@ -1,0 +1,375 @@
+{
+  "started_at": "2026-10-02T14:04:31.102957+08:00",
+  "databases": [
+    "accidents",
+    "airline",
+    "baseball",
+    "basketball",
+    "carcinogenesis"
+  ],
+  "data_splits": {
+    "train": [
+      "accidents",
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hepatitis",
+      "hockey",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "validation": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "test": [
+      "imdb",
+      "stats",
+      "genome",
+      "ergastf1"
+    ]
+  },
+  "recreate_all_features": true,
+  "scope": "pretrain source only; no cache writes, no training, no target evaluation",
+  "script_sha256": "58802d3a93fe8a0517f1a7423559aa50db95c3ef89537dc98a0363ccc61b13fe",
+  "sqlglot": "18.17.0",
+  "completed_at": "2026-10-02T15:00:42.632461+08:00",
+  "databases_completed": 5,
+  "checked_rows": 250000,
+  "mapping_recoverable": 250000,
+  "sql_mapping_recoverable": 250000,
+  "failed_databases": [],
+  "reports": [
+    {
+      "database": "accidents",
+      "role": "train",
+      "workload_rows": 50000,
+      "source_feature_rows": 50000,
+      "cache_rows": 50000,
+      "unique_queries": 50000,
+      "source_feature_fields": [
+        "data_features",
+        "n_fanouts",
+        "n_filter_cols",
+        "n_join_cols",
+        "n_tables",
+        "pg_est_cards",
+        "true_cards"
+      ],
+      "cache_manifest_fields": [
+        "content_hash",
+        "inspection",
+        "provenance",
+        "rows",
+        "schema",
+        "transform",
+        "unique_queries"
+      ],
+      "cache_row_fields": [
+        "exact_hash",
+        "id",
+        "query_hash",
+        "source_line"
+      ],
+      "cache_regenerated": false,
+      "input_hashes": {
+        "workload": "b4c53ef1d5d77cf35182cec8cdc236550800067c54cee9b0943a01568ef3bf73",
+        "source_features": "fa64d39bc83a38e80f4425a8ebafefd800ea8dff829fdc768d870c104449e769",
+        "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+        "statistics/abbrev_col_type.pkl": "4bb363e38ab88643ca775a6ba6cdac22c456b8a6d22fb773ea22dd3e4c1c90a0",
+        "statistics/fanout40.pkl": "cb03f0912a7df55ce3e2c2fb249555d49b9726d81a48894eb8e1d65f63cc19af",
+        "statistics/histogram40.pkl": "2dcf269f458bee1913957d0aad5933ad459b2dab34350e3a88513dc8f117820e",
+        "statistics/size.pkl": "8482a6ada13264d69b20c1d712ba080472bbdc684e296162c6aaf073f6a41994",
+        "statistics/summary40.pkl": "10e1f0eee35714b68c1fba07dea01bcf00644f5178c94b3489753010c63aaf33"
+      },
+      "provenance_errors": [],
+      "inputs_unchanged": true,
+      "recreate_all_features": true,
+      "totals": {
+        "recreated_rows": 50000,
+        "checked_rows": 50000,
+        "rows_with_errors": 0,
+        "mapping_recoverable": 50000,
+        "sql_mapping_recoverable": 50000,
+        "rows_with_risk_flags": 9890
+      },
+      "sql_flags": {
+        "multiple_filters": 9890
+      },
+      "first_failures": [],
+      "seconds": 720.3156897989102,
+      "stored_alignment_passed": true,
+      "alignment_passed": true,
+      "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+      "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+    },
+    {
+      "database": "airline",
+      "role": "train",
+      "workload_rows": 50000,
+      "source_feature_rows": 50000,
+      "cache_rows": 50000,
+      "unique_queries": 50000,
+      "source_feature_fields": [
+        "data_features",
+        "n_fanouts",
+        "n_filter_cols",
+        "n_join_cols",
+        "n_tables",
+        "pg_est_cards",
+        "true_cards"
+      ],
+      "cache_manifest_fields": [
+        "content_hash",
+        "inspection",
+        "provenance",
+        "rows",
+        "schema",
+        "transform",
+        "unique_queries"
+      ],
+      "cache_row_fields": [
+        "exact_hash",
+        "id",
+        "query_hash",
+        "source_line"
+      ],
+      "cache_regenerated": false,
+      "input_hashes": {
+        "workload": "9e5f7b0f2443fc3c7851215b337168fcf073099748741cf3b3fae3126e0150e9",
+        "source_features": "aef2de10ec1dda5f8ba8d9a77f77e51da1a27857a5df9a03a958a04ea109ee79",
+        "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+        "statistics/abbrev_col_type.pkl": "62456a79bce7073d4e637144523a167d38f01b1e867dedf00938901b49f53ae2",
+        "statistics/fanout40.pkl": "2220c6cd77a38f8897499595502412cf8fbd162e273f0dbea60eb523f85b3a8a",
+        "statistics/histogram40.pkl": "31de826cf2e123c5077d261d809218423068c6cc64ab739cf8f3de03aba26f6f",
+        "statistics/size.pkl": "d64339cb7316cde88a43a82e1ea5f60b86cacff460de16248de91f396fa2eb4c",
+        "statistics/summary40.pkl": "7f4b26f8bda96ab710408b1e1193693f438b9142723c5c6af51d78ea5c713112"
+      },
+      "provenance_errors": [],
+      "inputs_unchanged": true,
+      "recreate_all_features": true,
+      "totals": {
+        "recreated_rows": 50000,
+        "checked_rows": 50000,
+        "rows_with_errors": 0,
+        "mapping_recoverable": 50000,
+        "sql_mapping_recoverable": 50000,
+        "rows_with_risk_flags": 13477
+      },
+      "sql_flags": {
+        "multiple_filters": 13477
+      },
+      "first_failures": [],
+      "seconds": 875.7226113080978,
+      "stored_alignment_passed": true,
+      "alignment_passed": true,
+      "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+      "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+    },
+    {
+      "database": "baseball",
+      "role": "train",
+      "workload_rows": 50000,
+      "source_feature_rows": 50000,
+      "cache_rows": 50000,
+      "unique_queries": 50000,
+      "source_feature_fields": [
+        "data_features",
+        "n_fanouts",
+        "n_filter_cols",
+        "n_join_cols",
+        "n_tables",
+        "pg_est_cards",
+        "true_cards"
+      ],
+      "cache_manifest_fields": [
+        "content_hash",
+        "inspection",
+        "provenance",
+        "rows",
+        "schema",
+        "transform",
+        "unique_queries"
+      ],
+      "cache_row_fields": [
+        "exact_hash",
+        "id",
+        "query_hash",
+        "source_line"
+      ],
+      "cache_regenerated": false,
+      "input_hashes": {
+        "workload": "ebac72bca5d7e0fbf237b725bc9097e7e73fdec921398941972b83583b851837",
+        "source_features": "739873f345c26b656449ba1377e15a0f16516808e4fbc3d5a31ed420afe61ded",
+        "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+        "statistics/abbrev_col_type.pkl": "18e374ea5920c9f08e377bab331012281b7dcd4423cd9abaaa10dc9f41368af4",
+        "statistics/fanout40.pkl": "d601b229995f276b76cc1eee63aa5bac79d0ba274a8a9c2b247915b0c529fd8c",
+        "statistics/histogram40.pkl": "3835e42561caf763a09b5f53d19032832d8a46750906768593e29a65ab63ee54",
+        "statistics/size.pkl": "c1c554c564a5834aa379aaee3d8e07e125f70fa770dae5da632d9cdcffc5443e",
+        "statistics/summary40.pkl": "ca2447f344474f83a94951e74cc9556c36c11c31715fb2ed9bf2511eee2093b7"
+      },
+      "provenance_errors": [],
+      "inputs_unchanged": true,
+      "recreate_all_features": true,
+      "totals": {
+        "recreated_rows": 50000,
+        "checked_rows": 50000,
+        "rows_with_errors": 0,
+        "mapping_recoverable": 50000,
+        "sql_mapping_recoverable": 50000,
+        "rows_with_risk_flags": 10135
+      },
+      "sql_flags": {
+        "multiple_filters": 10135
+      },
+      "first_failures": [],
+      "seconds": 581.5855168139096,
+      "stored_alignment_passed": true,
+      "alignment_passed": true,
+      "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+      "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+    },
+    {
+      "database": "basketball",
+      "role": "train",
+      "workload_rows": 50000,
+      "source_feature_rows": 50000,
+      "cache_rows": 50000,
+      "unique_queries": 50000,
+      "source_feature_fields": [
+        "data_features",
+        "n_fanouts",
+        "n_filter_cols",
+        "n_join_cols",
+        "n_tables",
+        "pg_est_cards",
+        "true_cards"
+      ],
+      "cache_manifest_fields": [
+        "content_hash",
+        "inspection",
+        "provenance",
+        "rows",
+        "schema",
+        "transform",
+        "unique_queries"
+      ],
+      "cache_row_fields": [
+        "exact_hash",
+        "id",
+        "query_hash",
+        "source_line"
+      ],
+      "cache_regenerated": false,
+      "input_hashes": {
+        "workload": "266750e2d9980e950175124adc4f99062b6c22c7f970d102dccf7398c95dcb50",
+        "source_features": "1ef2cf73aa56a0b867f933c72530ea9d53aeea8c82348dfd8945c9bf627bd086",
+        "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+        "statistics/abbrev_col_type.pkl": "0e7898b79d1ea73928d74960a5e7463f91ad09dbb304e7ac433a15545790714f",
+        "statistics/fanout40.pkl": "c3c921fd4e5b951ba8bd2128d907a886506a6c93121ffd013874c5a6c3bd5726",
+        "statistics/histogram40.pkl": "f998fd2db60b4375561ed6491dd25afaedcccd554a1a6e437a6379d833f841da",
+        "statistics/size.pkl": "845b4bffbfc2e0d49d0d2666d55a0042903ad3e61448104c114c0d96f0752380",
+        "statistics/summary40.pkl": "23f745a30db789c658d1921c7865fcf85ae66bcf61c455ee2c01ce7d046bb2a0"
+      },
+      "provenance_errors": [],
+      "inputs_unchanged": true,
+      "recreate_all_features": true,
+      "totals": {
+        "recreated_rows": 50000,
+        "checked_rows": 50000,
+        "rows_with_errors": 0,
+        "mapping_recoverable": 50000,
+        "sql_mapping_recoverable": 50000,
+        "rows_with_risk_flags": 14457
+      },
+      "sql_flags": {
+        "multiple_filters": 14457
+      },
+      "first_failures": [],
+      "seconds": 695.564509636024,
+      "stored_alignment_passed": true,
+      "alignment_passed": true,
+      "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+      "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+    },
+    {
+      "database": "carcinogenesis",
+      "role": "train",
+      "workload_rows": 50000,
+      "source_feature_rows": 50000,
+      "cache_rows": 50000,
+      "unique_queries": 50000,
+      "source_feature_fields": [
+        "data_features",
+        "n_fanouts",
+        "n_filter_cols",
+        "n_join_cols",
+        "n_tables",
+        "pg_est_cards",
+        "true_cards"
+      ],
+      "cache_manifest_fields": [
+        "content_hash",
+        "inspection",
+        "provenance",
+        "rows",
+        "schema",
+        "transform",
+        "unique_queries"
+      ],
+      "cache_row_fields": [
+        "exact_hash",
+        "id",
+        "query_hash",
+        "source_line"
+      ],
+      "cache_regenerated": false,
+      "input_hashes": {
+        "workload": "71e5e6ef1038d47344b9677251fce80829249e95d16ddf0374b3e11a1db997cd",
+        "source_features": "f0030f899d2cf04bb101ab018db15af1435e08965948fcff4433227b1dd8fd3f",
+        "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+        "statistics/abbrev_col_type.pkl": "909df503a107b9e6ee0aa0bfae447889ffb6f9970619b726e1d96084a8742a4b",
+        "statistics/fanout40.pkl": "3d2e495f4f39ee58f1460fe0fcfb62eaf0e75f5b531f61455691c1dab60914f1",
+        "statistics/histogram40.pkl": "12f83f5351dba31420fb0e7380940d9d1904ca9fd6d31be7cb54546902757b5b",
+        "statistics/size.pkl": "b13360fc0c50009d1b102ba84d0ecad8ee870dc694fa0f9f1e88a61e947d8fba",
+        "statistics/summary40.pkl": "525c91402c55820ceb16cd813a034f74332ffdd9b48c51707c05d801ec3004b3"
+      },
+      "provenance_errors": [],
+      "inputs_unchanged": true,
+      "recreate_all_features": true,
+      "totals": {
+        "recreated_rows": 50000,
+        "checked_rows": 50000,
+        "rows_with_errors": 0,
+        "mapping_recoverable": 50000,
+        "sql_mapping_recoverable": 50000,
+        "rows_with_risk_flags": 9671
+      },
+      "sql_flags": {
+        "multiple_filters": 9671
+      },
+      "first_failures": [],
+      "seconds": 495.8275956190191,
+      "stored_alignment_passed": true,
+      "alignment_passed": true,
+      "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+      "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+    }
+  ]
+}

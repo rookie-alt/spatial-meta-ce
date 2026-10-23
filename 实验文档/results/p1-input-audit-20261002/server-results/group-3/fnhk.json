@@ -1,0 +1,217 @@
+{
+  "database": "fnhk",
+  "role": "train",
+  "workload_rows": 50000,
+  "source_feature_rows": 50000,
+  "cache_rows": 50000,
+  "unique_queries": 50000,
+  "source_feature_fields": [
+    "data_features",
+    "n_fanouts",
+    "n_filter_cols",
+    "n_join_cols",
+    "n_tables",
+    "pg_est_cards",
+    "true_cards"
+  ],
+  "cache_manifest_fields": [
+    "content_hash",
+    "inspection",
+    "provenance",
+    "rows",
+    "schema",
+    "transform",
+    "unique_queries"
+  ],
+  "cache_row_fields": [
+    "exact_hash",
+    "id",
+    "query_hash",
+    "source_line"
+  ],
+  "cache_regenerated": false,
+  "input_hashes": {
+    "workload": "f57bbfc4308cd196f23bfd6e66da644e667f2abd8bb6cb7c28f222cc657fe52c",
+    "source_features": "e62cc924dbcde9a8e1be7087b6ee29fc32f9517ca70d34919deb8e148a8fd911",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "b61c24a31e638034076741167c360f1f885b545a165bdab9bec76c3dab3ab5ff",
+    "statistics/fanout40.pkl": "800757932c86aefa28db84d2782987d23808ea9b045fe10cabc4642c7aa60f21",
+    "statistics/histogram40.pkl": "1216a85a92c377edf868146a6decfeae9407911f08d7770490945d6f6adc7273",
+    "statistics/size.pkl": "c9b15230f3b912f3711d70ec0c9b52f593690f82c5667e5ad6b18e51ce1a25d3",
+    "statistics/summary40.pkl": "c6acac8738852001ba53d5f22b73181c950795791186ebbf733bddd2174d0b18"
+  },
+  "provenance_errors": [],
+  "inputs_unchanged": true,
+  "recreate_all_features": true,
+  "totals": {
+    "recreated_rows": 50000,
+    "checked_rows": 50000,
+    "rows_with_errors": 0,
+    "mapping_recoverable": 50000,
+    "sql_mapping_recoverable": 50000,
+    "rows_with_risk_flags": 14375
+  },
+  "sql_flags": {
+    "multiple_filters": 14375
+  },
+  "by_tables": {
+    "2": {
+      "rows": 32331,
+      "mapping_recoverable": 32331,
+      "sql_mapping_recoverable": 32331,
+      "errors": {}
+    },
+    "3": {
+      "rows": 17669,
+      "mapping_recoverable": 17669,
+      "sql_mapping_recoverable": 17669,
+      "errors": {}
+    }
+  },
+  "by_predicate": {
+    "EQ": {
+      "rows": 50000,
+      "mapping_recoverable": 50000,
+      "sql_mapping_recoverable": 50000,
+      "errors": {}
+    },
+    "GTE": {
+      "rows": 29130,
+      "mapping_recoverable": 29130,
+      "sql_mapping_recoverable": 29130,
+      "errors": {}
+    },
+    "LT": {
+      "rows": 45259,
+      "mapping_recoverable": 45259,
+      "sql_mapping_recoverable": 45259,
+      "errors": {}
+    }
+  },
+  "by_flag": {
+    "multiple_filters": {
+      "rows": 14375,
+      "mapping_recoverable": 14375,
+      "sql_mapping_recoverable": 14375,
+      "errors": {}
+    },
+    "no_risk_flag": {
+      "rows": 35625,
+      "mapping_recoverable": 35625,
+      "sql_mapping_recoverable": 35625,
+      "errors": {}
+    }
+  },
+  "first_failures": [],
+  "mapping_examples": [
+    {
+      "query_hash": "0442146fab01a15484c169dc8d40805b3a08ffdd9f8795ce353651b89fc9d969",
+      "source_line": 1,
+      "tables": [
+        "fnhk_p",
+        "fnhk_v"
+      ],
+      "table_names": [
+        "pripady",
+        "vykony"
+      ],
+      "join_columns": [
+        "fnhk_p.identifikace_pripadu",
+        "fnhk_v.identifikace_pripadu"
+      ],
+      "filter_columns": [
+        "fnhk_p.delka_hospitalizace",
+        "fnhk_p.identifikator_pacienta",
+        "fnhk_v.body",
+        "fnhk_v.kod_polozky"
+      ],
+      "join_column_tables": [
+        0,
+        1
+      ],
+      "filter_column_tables": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "fanout_join_columns": [
+        0,
+        1
+      ],
+      "counts": [
+        2,
+        2,
+        2,
+        4
+      ],
+      "flags": [
+        "multiple_filters"
+      ],
+      "predicate_types": [
+        "EQ",
+        "GTE",
+        "LT"
+      ],
+      "mapping_recoverable": true
+    },
+    {
+      "query_hash": "8a1e34b037ae94e1ded1d54055f34518399d068d6f26dabe36c00161dff6c39c",
+      "source_line": 2,
+      "tables": [
+        "fnhk_p",
+        "fnhk_z"
+      ],
+      "table_names": [
+        "pripady",
+        "zup"
+      ],
+      "join_columns": [
+        "fnhk_p.identifikace_pripadu",
+        "fnhk_z.identifikace_pripadu"
+      ],
+      "filter_columns": [
+        "fnhk_p.pohlavi_pacienta",
+        "fnhk_p.drg_skupina",
+        "fnhk_p.identifikator_pacienta",
+        "fnhk_z.cena",
+        "fnhk_z.pocet"
+      ],
+      "join_column_tables": [
+        0,
+        1
+      ],
+      "filter_column_tables": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "fanout_join_columns": [
+        0,
+        1
+      ],
+      "counts": [
+        2,
+        2,
+        2,
+        5
+      ],
+      "flags": [
+        "multiple_filters"
+      ],
+      "predicate_types": [
+        "EQ",
+        "GTE",
+        "LT"
+      ],
+      "mapping_recoverable": true
+    }
+  ],
+  "seconds": 610.650817933958,
+  "stored_alignment_passed": true,
+  "alignment_passed": true,
+  "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+  "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+}

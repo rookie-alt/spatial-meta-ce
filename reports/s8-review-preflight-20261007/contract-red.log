@@ -1,0 +1,21 @@
+test_s8_contract (unittest.loader._FailedTest.test_s8_contract) ... ERROR
+
+======================================================================
+ERROR: test_s8_contract (unittest.loader._FailedTest.test_s8_contract)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_s8_contract
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_contract.py", line 10, in <module>
+    from spatial_meta_ce.s8_contract import (
+ModuleNotFoundError: No module named 'spatial_meta_ce.s8_contract'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

@@ -1,0 +1,13 @@
+{
+  "stage": "before_CreateProcess",
+  "tool_status": "automatic_permission_review_deadline_exceeded",
+  "command_process_created": false,
+  "server_test_started": false,
+  "local_execution_artifacts_exist": {
+    "linux-synthetic.stdout.log": false,
+    "linux-synthetic.stderr.log": false,
+    "linux-synthetic-transport.json": false
+  },
+  "approval_request_retry_allowed_once_by_tool": true,
+  "not_a_Linux_test_failure_or_server_retry": true
+}

@@ -1,0 +1,24 @@
+{
+  "scope": "in_progress_counts_only_not_final_accuracy",
+  "status": "running",
+  "arms": {
+    "A_all5_head3": "completed",
+    "B_head3_head3": "running",
+    "C_last3_last3": "planned"
+  },
+  "A": {
+    "last_step": 4000,
+    "optimizer_steps": 4000,
+    "support_presentations": 2989575,
+    "query_presentations": 1024000,
+    "backward_calls": 96000,
+    "training_seconds": 2325.9817387179937,
+    "endpoint_seconds": 925.772875152994,
+    "endpoint_cells": 75
+  },
+  "B_observed_step": 800,
+  "elapsed_since_spawn_seconds": 3556.76,
+  "formal_complete": false,
+  "independent_real_endpoint_verification": "not_run",
+  "frozen_commit": "0b5958046c5252e454b80a2c3435e61620c361a0"
+}

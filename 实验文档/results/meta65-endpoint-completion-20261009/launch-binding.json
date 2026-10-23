@@ -1,0 +1,27 @@
+{
+  "commit": "aca09dba2ac96ee8451cb5f2ddec1826444143ea",
+  "files": {
+    "scripts/run_meta65_screen.py": "505d6b9865250429fcb5e54a94630df1eadd5f35c84b4e767baeb2388777d863",
+    "scripts/run_meta65_supervised.py": "0ebd919395c053631c3dbe154ece81c608e5cfaaf8d43b69a7310c453cbb4094",
+    "scripts/precision_screen_evidence.py": "b5af3c14866e8ff81838792a7f38db5f50bab62035e605910f530f660030da95",
+    "scripts/run_s8_preflight.py": "fa10dddf083f4eb4d157b294df53afdfdd0c22cdd44bd0d0c3348d6896d5adcd",
+    "scripts/mapping_smoke.py": "6f897a37f94150ccfed4d074a4be45c888d27a60d0ef376d7333d9724ecc4b96",
+    "spatial_meta_ce/train.py": "98524256783da007e730b7f5b6f18c597fa0877f99a5587407c67fffd46c245a",
+    "spatial_meta_ce/meta.py": "1e4daddf6825d2b5907566a02642f38a8e0bf3c4cfc326e443a0d1895ff27736",
+    "spatial_meta_ce/data.py": "1f490f1891e4222edcd25b598df32c287c3914ff185477f6ae76c566cfeacd17",
+    "spatial_meta_ce/model.py": "0d6d7c4c3a04368bb7ae03a99018cfd343f37f8dc1182443ac169d19928022a4",
+    "spatial_meta_ce/checkpoints.py": "efb21c956fb836938aaf7675f0d1eb047ef767e537576f47d6b591a5a3bdf504",
+    "spatial_meta_ce/manifests.py": "fc96df193c36ade103b2116f777325afb6bb8fb0c368ff0516998fa33fac6d30",
+    "spatial_meta_ce/metrics.py": "ec940c3b29bb5b165f560a369c9874cd9ec630d2bbc21e7f78893a64fe1c56a5",
+    "scripts/complete_meta65_endpoint.py": "6ae1e472afd51318a3dfa6aff904ce20bc87d02a83e9e3511bb3ba2b74cb1c9a",
+    "configs/meta65_screen.json": "ebd5564cb66a8df03f2c78f293c4cacb493b8af1836932ce7a9cceca6f3d3c36",
+    "configs/meta65_server_data.json": "a6907d602ed92fdfe42abe2828bbbac9369be07de04241c17cf6a3bd61544283",
+    "reports/meta65-source-screen-20261009/verify_endpoint.py": "c88179126a8b08bc8bfbe3f1d473edb8738feca4d478f8b8d4dbedb9e06d13dc",
+    "reports/meta65-source-screen-20261009/verify_completion.py": "c2b5f3c6b00bd02b9f97f62c4d5d87c5a443744c19a6d874ab7a404852facc48",
+    "configs/meta65_completion.json": "dab251f10cb37dc3001159fe5672a878badbb2ec1c04e03e49cbd5c60d258bd8",
+    "实验文档/50-Meta65仅补齐C端点评估协议.md": "08eaa606701fa56ae427e07202b17d10d6debd6dc1d8a878b2a29d73661321e3"
+  },
+  "gpu_uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+  "gpu_prelaunch": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0, 1, 0",
+  "status": "freeze_and_idle_verified_not_completed"
+}

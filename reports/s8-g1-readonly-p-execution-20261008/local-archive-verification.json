@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-08",
+  "frozen_source_test_contract_and_package_member_SHA_unchanged": true,
+  "protected_historical_files_unchanged": 66,
+  "raw_failed_proof_satisfies_frozen_JSON_schema": true,
+  "supervisor_record_matches_failed_proof": true,
+  "no_numeric_stage_files_exist": true,
+  "new37_local_links_checked": 9,
+  "unittest_rerun": false,
+  "Ruff_regression_from_preparation_not_rerun_this_task": true,
+  "check_scope": "primary_record_integrity_no_independent_numeric_recompute"
+}

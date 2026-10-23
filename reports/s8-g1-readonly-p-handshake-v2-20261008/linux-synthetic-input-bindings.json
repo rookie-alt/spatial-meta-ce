@@ -1,0 +1,10 @@
+{
+  "source_test_sha256": {
+    "scripts/verify_s8_readonly_p.py": "5320ffe926cf7b56ddf2970b7888f79391e18fb62cf50298127e4eb2af8e5471",
+    "tests/test_s8_readonly_handshake_linux.py": "e91375e111638c245dea0729ee0784426693416eff552ffff38cdf76cfaac100"
+  },
+  "runner_sha256": "d8d04f41bd2b1e6c55cf7b90e1dd1c320ce90c985b9066899350338d4763fe68",
+  "server_executed": false,
+  "no_production_main_called": true,
+  "TERM_cleanup_bridge_present": true
+}

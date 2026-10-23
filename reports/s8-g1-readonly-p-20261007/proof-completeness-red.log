@@ -1,0 +1,2 @@
+test_success_proof_rejects_use_shape_normalizer_and_numeric_conflicts (test_s8_readonly_p.ReadOnlyPTests.test_success_proof_rejects_use_shape_normalizer_and_numeric_conflicts) ... OMP: Error #179: Function Can't open SHM failed:
+OMP: System error #0: Undefined error: 0

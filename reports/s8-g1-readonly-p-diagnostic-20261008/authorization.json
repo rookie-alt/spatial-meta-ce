@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-08",
+  "timezone": "Asia/Shanghai",
+  "authorization_source": "human_user_current_chat",
+  "authorization_quote": "请执行一次diagnostic-only定位，不改变任何生产gate，不试图把A改成通过。",
+  "scope": "one_diagnostic_only_saved_P_execution_explaining_x_small_1216_retained_subspace_failure",
+  "allowed": [
+    "connect_myserver",
+    "deploy_frozen_diagnostic_package_to_new_isolated_code_directory",
+    "verify_runtime",
+    "read_the_eight_allowed_old_inputs_once",
+    "execute_one_diagnostic_only_checker",
+    "recover_diagnostic_proof_and_raw_logs",
+    "update_reports_and_progress",
+    "local_commit_task_evidence"
+  ],
+  "forbidden": [
+    "gate_rcond_threshold_scientific_gate_or_protocol_34_changes",
+    "read_scope_expansion",
+    "H_target_oldcheckpoint_reads",
+    "B_smoke_F0_Adam_training_GPU",
+    "automatic_retry_or_resume",
+    "overwrite_old_proof",
+    "Gitee_push_or_merge_main"
+  ],
+  "attempt_limit": 1,
+  "wall_seconds": 900,
+  "cpu_threads": 4,
+  "cuda_visible_devices": "",
+  "address_space_bytes": 12884901888,
+  "rss_scope": "sampled_stop_threshold_not_hard_cap",
+  "diagnostic_archive_sha256": "ea075b85475481ae16ecac9290503620e00685b741c1422ff0339dcc34f84949",
+  "diagnostic_contract_sha256": "5b350dc533697adbe1bad226542c56b2cdd4c8a8737fcc0c2456f6d7a6bfc1c7",
+  "diagnostic_entry_sha256": "7dc783034d4ce5e48469605296adb253c737b6e866dbdeca34c04591e042bae7",
+  "status": "authorized_not_yet_connected",
+  "diagnostic_test_sha256": "9730b3c009955441b1942bb52464d3cebc047a0753fbf259c068acca8aee9707"
+}

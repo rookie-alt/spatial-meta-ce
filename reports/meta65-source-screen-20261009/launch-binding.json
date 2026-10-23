@@ -1,0 +1,20 @@
+{
+  "commit": "0b5958046c5252e454b80a2c3435e61620c361a0",
+  "branch": "experiment/meta65-source-screen-20261009",
+  "source_files": {
+    "spatial_meta_ce/meta.py": "1e4daddf6825d2b5907566a02642f38a8e0bf3c4cfc326e443a0d1895ff27736",
+    "scripts/run_meta65_screen.py": "505d6b9865250429fcb5e54a94630df1eadd5f35c84b4e767baeb2388777d863",
+    "scripts/run_meta65_supervised.py": "0ebd919395c053631c3dbe154ece81c608e5cfaaf8d43b69a7310c453cbb4094",
+    "tests/test_last_layer_adaptation.py": "85630920ca97b7b9e69590e7a419c55873f2f60d792da6813474c1160888dee2",
+    "tests/test_meta65_screen.py": "657843e66511a7a997309ffe74de305cced961037972f4b8d0e0c794d744b850",
+    "tests/test_meta65_supervised.py": "7a9df2c80dfcaa95365829f365d29e3b03423d4dc221a183afd38565dbe5971f",
+    "configs/meta65_screen.json": "ebd5564cb66a8df03f2c78f293c4cacb493b8af1836932ce7a9cceca6f3d3c36",
+    "configs/meta65_server_data.json": "a6907d602ed92fdfe42abe2828bbbac9369be07de04241c17cf6a3bd61544283",
+    "实验文档/48-Meta65低维适应源侧对照协议.md": "fef38e8d18f46c4c167030628ee1dfa73dfbd9575f7b7eb76acf6e6c7844d8e4"
+  },
+  "remote_root": "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen",
+  "gpu_uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+  "budget_seconds": 7200,
+  "status": "frozen_prelaunch",
+  "targets_read": false
+}

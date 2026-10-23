@@ -1,0 +1,2180 @@
+I001 [*] Import block is un-sorted or un-formatted
+  --> scripts/run_s2_diagnosis.py:17:1
+   |
+15 |   sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+16 |
+17 | / from scripts.run_s1_diagnosis import (
+18 | |     MEMORY_BYTES,
+19 | |     SUPERVISOR_MEMORY_BYTES,
+20 | |     WORKER_MEMORY_BYTES,
+21 | |     THREAD_ENV,
+22 | |     TIMEOUT,
+23 | |     stop_child,
+24 | |     interrupted,
+25 | | )
+   | |_^
+26 |
+27 |   ROOT = Path(__file__).resolve().parents[1]
+   |
+help: Organize imports
+   |
+19 |     SUPERVISOR_MEMORY_BYTES,
+   -     WORKER_MEMORY_BYTES,
+20 |     THREAD_ENV,
+21 |     TIMEOUT,
+22 +     WORKER_MEMORY_BYTES,
+23 +     interrupted,
+24 |     stop_child,
+   -     interrupted,
+25 | )
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+   --> scripts/run_s2_diagnosis.py:108:5
+    |
+107 |   def analyze(root: Path, output: Path) -> dict:
+108 | /     import numpy as np
+109 | |     from scripts import s2_source_replay as core, s2_exposure_stats as stats, s2_verify
+    | |_______________________________________________________________________________________^
+110 |
+111 |       started = time.monotonic()
+    |
+help: Organize imports
+    |
+108 |     import numpy as np
+    -     from scripts import s2_source_replay as core, s2_exposure_stats as stats, s2_verify
+109 |
+110 +     from scripts import s2_exposure_stats as stats
+111 +     from scripts import s2_source_replay as core
+112 +     from scripts import s2_verify
+113 +
+114 |     started = time.monotonic()
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> scripts/run_s3_diagnosis.py:18:1
+   |
+16 |   sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+17 |
+18 | / from scripts.run_s2_diagnosis import (
+19 | |     MEMORY_BYTES,
+20 | |     SUPERVISOR_MEMORY_BYTES,
+21 | |     WORKER_MEMORY_BYTES,
+22 | |     THREAD_ENV,
+23 | |     TIMEOUT,
+24 | |     safe,
+25 | |     file_hash,
+26 | |     write_json,
+27 | |     update_status,
+28 | |     stop_child,
+29 | |     interrupted,
+30 | | )
+   | |_^
+31 |
+32 |   ROOT = Path(__file__).resolve().parents[1]
+   |
+help: Organize imports
+   |
+20 |     SUPERVISOR_MEMORY_BYTES,
+   -     WORKER_MEMORY_BYTES,
+21 |     THREAD_ENV,
+22 |     TIMEOUT,
+23 +     WORKER_MEMORY_BYTES,
+24 +     file_hash,
+25 +     interrupted,
+26 |     safe,
+   -     file_hash,
+   -     write_json,
+27 +     stop_child,
+28 |     update_status,
+   -     stop_child,
+   -     interrupted,
+29 +     write_json,
+30 | )
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> scripts/run_s3_diagnosis.py:85:5
+   |
+84 |   def read_metadata(root: Path, db: str, frozen: dict) -> dict:
+85 | /     import numpy as np
+86 | |     from scripts import s2_source_replay as core
+   | |________________________________________________^
+87 |
+88 |       data = core.read_cache(root, db, frozen)
+   |
+help: Organize imports
+   |
+85 |     import numpy as np
+86 +
+87 |     from scripts import s2_source_replay as core
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+   --> scripts/run_s3_diagnosis.py:107:5
+    |
+106 |   def check_denominators(root: Path, caches: dict) -> None:
+107 | /     import numpy as np
+108 | |     from scripts.s2_exposure_stats import CARDINALITY, TABLES
+    | |_____________________________________________________________^
+109 |
+110 |       old = json.loads((root / S2 / "summary.json").read_text())
+    |
+help: Organize imports
+    |
+107 |     import numpy as np
+108 +
+109 |     from scripts.s2_exposure_stats import CARDINALITY, TABLES
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+   --> scripts/run_s3_diagnosis.py:191:5
+    |
+190 |   def analyze(root: Path, output: Path) -> dict:
+191 | /     import numpy as np
+192 | |     from scripts import s2_source_replay as core, s3_conditional_analysis as stats
+193 | |     from scripts.s3_verify import Verification
+    | |______________________________________________^
+194 |
+195 |       started = time.monotonic()
+    |
+help: Organize imports
+    |
+191 |     import numpy as np
+    -     from scripts import s2_source_replay as core, s3_conditional_analysis as stats
+192 +
+193 +     from scripts import s2_source_replay as core
+194 +     from scripts import s3_conditional_analysis as stats
+195 |     from scripts.s3_verify import Verification
+    |
+
+BLE001 Do not catch blind exception: `BaseException`
+   --> scripts/run_s3_diagnosis.py:386:20
+    |
+384 |             try:
+385 |                 stop_child(child)
+386 |             except BaseException as cleanup:
+    |                    ^^^^^^^^^^^^^
+387 |                 cleanup_error = f"{type(cleanup).__name__}: {cleanup}"
+388 |         current = json.loads((output / "status.json").read_text())
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> scripts/run_s4_anchor.py:16:1
+   |
+14 |   sys.path.append(str(Path(__file__).resolve().parents[1]))
+15 |
+16 | / import numpy as np
+17 | | import torch
+18 | |
+19 | | from scripts import run_precision_screen as precision
+20 | | from scripts.precision_screen_evidence import (
+21 | |     COVERAGE,
+22 | |     SOURCE_BINDING,
+23 | |     VALIDATION as VALIDATION,
+24 | |     checked_path,
+25 | |     endpoint,
+26 | |     historical_sources,
+27 | |     source_evidence,
+28 | |     write_json,
+29 | | )
+30 | | from scripts.mapping_smoke import state_hash
+31 | | from scripts.run_mapping_ablation import configure_determinism
+32 | | from spatial_meta_ce.checkpoints import load_checkpoint
+33 | | from spatial_meta_ce.cli import data_settings, read_json
+34 | | from spatial_meta_ce.data import StorePool
+35 | | from spatial_meta_ce.manifests import digest, file_hash
+36 | | from spatial_meta_ce.model import SetEstimator
+37 | | from spatial_meta_ce.train import seed_all, train
+   | |_________________________________________________^
+38 |
+39 |   ROOT = Path(__file__).resolve().parents[1]
+   |
+help: Organize imports
+   |
+19 | from scripts import run_precision_screen as precision
+20 + from scripts.mapping_smoke import state_hash
+21 | from scripts.precision_screen_evidence import (
+22 |     COVERAGE,
+23 |     SOURCE_BINDING,
+   -     VALIDATION as VALIDATION,
+24 |     checked_path,
+--------------------------------------------------------------------------------
+29 | )
+   - from scripts.mapping_smoke import state_hash
+30 + from scripts.precision_screen_evidence import (
+31 +     VALIDATION as VALIDATION,
+32 + )
+33 | from scripts.run_mapping_ablation import configure_determinism
+   |
+
+PLC0414 Import alias does not rename original package
+  --> scripts/run_s4_anchor.py:23:5
+   |
+21 |     COVERAGE,
+22 |     SOURCE_BINDING,
+23 |     VALIDATION as VALIDATION,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+24 |     checked_path,
+25 |     endpoint,
+   |
+help: Remove import alias
+
+BLE001 Do not catch blind exception: `BaseException`
+   --> scripts/run_s4_anchor.py:733:20
+    |
+731 |             try:
+732 |                 stop_child(child)
+733 |             except BaseException as cleanup:
+    |                    ^^^^^^^^^^^^^
+734 |                 cleanup_error = f"{type(cleanup).__name__}: {cleanup}"
+735 |         current = read_json(output / "status.json")
+    |
+
+BLE001 Do not catch blind exception: `BaseException`
+   --> scripts/run_s5_weight.py:481:20
+    |
+479 |             try:
+480 |                 anchor.stop_child(child)
+481 |             except BaseException as cleanup:
+    |                    ^^^^^^^^^^^^^
+482 |                 cleanup_error = f"{type(cleanup).__name__}: {cleanup}"
+483 |         current = read_json(output / "status.json")
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> scripts/run_s6_tail.py:14:1
+   |
+12 |   sys.path.append(str(Path(__file__).resolve().parents[1]))
+13 |
+14 | / import numpy as np
+15 | | import torch
+16 | |
+17 | | from scripts import run_s4_anchor as anchor
+18 | | from scripts import s6_tail_evidence as verifier
+19 | | from scripts.s6_loss_verify import verify_loss_evidence
+20 | | from scripts.precision_screen_evidence import (
+21 | |     COVERAGE,
+22 | |     SOURCE_BINDING,
+23 | |     checked_path,
+24 | |     historical_sources,
+25 | |     source_evidence,
+26 | |     write_json,
+27 | | )
+28 | | from scripts.run_mapping_ablation import configure_determinism
+29 | | from spatial_meta_ce.cli import data_settings, read_json
+30 | | from spatial_meta_ce.data import StorePool
+31 | | from spatial_meta_ce.manifests import file_hash
+   | |_______________________________________________^
+32 |
+33 |   ROOT = Path(__file__).resolve().parents[1]
+   |
+help: Organize imports
+   |
+18 | from scripts import s6_tail_evidence as verifier
+   - from scripts.s6_loss_verify import verify_loss_evidence
+19 | from scripts.precision_screen_evidence import (
+--------------------------------------------------------------------------------
+27 | from scripts.run_mapping_ablation import configure_determinism
+28 + from scripts.s6_loss_verify import verify_loss_evidence
+29 | from spatial_meta_ce.cli import data_settings, read_json
+   |
+
+BLE001 Do not catch blind exception: `BaseException`
+   --> scripts/run_s6_tail.py:504:20
+    |
+502 |             try:
+503 |                 anchor.stop_child(child)
+504 |             except BaseException as cleanup:
+    |                    ^^^^^^^^^^^^^
+505 |                 cleanup_error = f"{type(cleanup).__name__}: {cleanup}"
+506 |         current = read_json(output / "status.json")
+    |
+
+UP034 [*] Avoid extraneous parentheses
+   --> scripts/s2_verify.py:488:9
+    |
+486 |   def _distribution(data: dict, members: list, axis: str, weights: dict) -> np.ndarray:
+487 |       counts = sum(
+488 | /         (
+489 | |             np.bincount(data[d][axis], weights=weights[d], minlength=len(AXES[axis]))
+490 | |             for d in members
+491 | |         )
+    | |_________^
+492 |       )
+493 |       return counts / counts.sum()
+    |
+help: Remove extraneous parentheses
+    |
+487 |     counts = sum(
+    -         (
+488 +
+489 |             np.bincount(data[d][axis], weights=weights[d], minlength=len(AXES[axis]))
+490 |             for d in members
+    -         )
+491 +
+492 |     )
+    |
+
+RUF007 Prefer `itertools.pairwise()` over `zip()` when iterating over successive pairs
+   --> scripts/s3_verify.py:305:35
+    |
+303 |             groups[db] = {
+304 |                 data["keys"][int(codes[start])]: positions[start:end]
+305 |                 for start, end in zip(starts[:-1], starts[1:])
+    |                                   ^^^
+306 |                 if end > start
+307 |             }
+    |
+help: Replace `zip()` with `itertools.pairwise()`
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> scripts/s3_verify.py:455:16
+    |
+453 |               signed = math.fsum(q * d for q, d in differences)
+454 |               absolute = math.fsum(q * abs(d) for q, d in differences)
+455 |           return dict(
+    |  ________________^
+456 | |             axis=axis,
+457 | |             bucket=bucket,
+458 | |             source_population=source_name,
+459 | |             validation_database=target,
+460 | |             status=status,
+461 | |             common_conditions=len(keys),
+462 | |             source_pool_unique=st["unique"],
+463 | |             validation_pool_unique=vt["unique"],
+464 | |             source_observed_unique=st["observed"],
+465 | |             source_weight_mass=st["mass"],
+466 | |             validation_weight_mass=vt["mass"],
+467 | |             source_common_unique=sc["unique"],
+468 | |             validation_common_unique=vc["unique"],
+469 | |             source_common_observed_unique=sc["observed"],
+470 | |             source_common_weight_mass=sc["mass"],
+471 | |             validation_common_weight_mass=vc["mass"],
+472 | |             source_unique_coverage=_ratio(sc["unique"], st["unique"]),
+473 | |             validation_unique_coverage=_ratio(vc["unique"], vt["unique"]),
+474 | |             source_mass_coverage=_ratio(sc["mass"], st["mass"]),
+475 | |             validation_mass_coverage=_ratio(vc["mass"], vt["mass"]),
+476 | |             source_db_coverage=sum(
+477 | |                 any(k in groups[db] for k in keys) for db in self.train
+478 | |             ),
+479 | |             validation_db_coverage=sum(n > 0 for n in coverage.values()),
+480 | |             validation_db_coverage_json=json.dumps(coverage, sort_keys=True),
+481 | |             full_train_mean=sm,
+482 | |             full_validation_mean=vm,
+483 | |             full_mean_difference=vm - sm if sm is not None and vm is not None else None,
+484 | |             common_train_mean=cm,
+485 | |             common_validation_mean=cv,
+486 | |             common_mean_difference=cv - cm
+487 | |             if cm is not None and cv is not None
+488 | |             else None,
+489 | |             d_signed=signed,
+490 | |             d_absolute=absolute,
+491 | |         )
+    | |_________^
+492 |
+493 |       def check(self, chunk: dict) -> None:
+    |
+help: Rewrite as a literal
+
+TRY004 Prefer `TypeError` exception for invalid type
+   --> scripts/s3_verify.py:537:17
+    |
+535 |             identities = set()
+536 |             if not isinstance(chunk[table], list):
+537 |                 raise ValueError(f"{table}: rows must be a list")
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+538 |             for row in chunk[table]:
+539 |                 fields = (
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> scripts/s5_weight_evidence.py:5:1
+   |
+ 3 |   """
+ 4 |
+ 5 | / from collections import Counter
+ 6 | | import hashlib
+ 7 | | import math
+ 8 | |
+ 9 | | import numpy as np
+10 | |
+11 | | from scripts.s4_anchor_evidence import (
+12 | |     FROZEN_CONFIG,
+13 | |     FROZEN_MODEL,
+14 | |     INITIAL_HASH,
+15 | |     SAMPLE_DIGEST,
+16 | |     VALIDATION_HASH,
+17 | |     SOURCE_HASH,
+18 | |     SOURCES,
+19 | |     DATABASES,
+20 | |     BUCKETS,
+21 | |     COVERAGE as COVERAGE,
+22 | |     _digest,
+23 | |     _endpoint,
+24 | |     _hash,
+25 | |     _integer,
+26 | |     _number,
+27 | |     _require,
+28 | |     verify_rows as verify_rows,
+29 | |     analyze_rows as analyze_rows,
+30 | | )
+31 | | from scripts.s2_source_replay import TRAIN
+   | |__________________________________________^
+32 |
+33 |   ARMS = ("A_uniform", "B_complex2")
+   |
+help: Organize imports
+   |
+4  |
+   - from collections import Counter
+5  | import hashlib
+6  | import math
+7  + from collections import Counter
+8  |
+9  | import numpy as np
+10 |
+11 + from scripts.s2_source_replay import TRAIN
+12 | from scripts.s4_anchor_evidence import (
+13 +     BUCKETS,
+14 +     DATABASES,
+15 |     FROZEN_CONFIG,
+16 |     FROZEN_MODEL,
+17 |     INITIAL_HASH,
+18 |     SAMPLE_DIGEST,
+   -     VALIDATION_HASH,
+19 |     SOURCE_HASH,
+20 |     SOURCES,
+   -     DATABASES,
+   -     BUCKETS,
+   -     COVERAGE as COVERAGE,
+21 +     VALIDATION_HASH,
+22 |     _digest,
+--------------------------------------------------------------------------------
+27 |     _require,
+   -     verify_rows as verify_rows,
+28 + )
+29 + from scripts.s4_anchor_evidence import (
+30 +     COVERAGE as COVERAGE,
+31 + )
+32 + from scripts.s4_anchor_evidence import (
+33 |     analyze_rows as analyze_rows,
+34 | )
+   - from scripts.s2_source_replay import TRAIN
+35 + from scripts.s4_anchor_evidence import (
+36 +     verify_rows as verify_rows,
+37 + )
+38 |
+   |
+
+PLC0414 Import alias does not rename original package
+  --> scripts/s5_weight_evidence.py:21:5
+   |
+19 |     DATABASES,
+20 |     BUCKETS,
+21 |     COVERAGE as COVERAGE,
+   |     ^^^^^^^^^^^^^^^^^^^^
+22 |     _digest,
+23 |     _endpoint,
+   |
+help: Remove import alias
+
+PLC0414 Import alias does not rename original package
+  --> scripts/s5_weight_evidence.py:28:5
+   |
+26 |     _number,
+27 |     _require,
+28 |     verify_rows as verify_rows,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+29 |     analyze_rows as analyze_rows,
+30 | )
+   |
+help: Remove import alias
+
+PLC0414 Import alias does not rename original package
+  --> scripts/s5_weight_evidence.py:29:5
+   |
+27 |     _require,
+28 |     verify_rows as verify_rows,
+29 |     analyze_rows as analyze_rows,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+30 | )
+31 | from scripts.s2_source_replay import TRAIN
+   |
+help: Remove import alias
+
+SIM905 [*] Consider using a list literal instead of `str.split`
+  --> scripts/s6_loss_verify.py:12:5
+   |
+11 | AUDIT_FIELDS = frozenset(
+12 |     "step episode_index database k n m tau h e mode mean_loss tail_mean mixed_loss coefficient_sum coefficient_square_sum low_mass high_mass under_mass over_mass exact_mass sample_plan_digest".split()
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+13 | )
+14 | SAMPLE_FIELDS = frozenset(
+   |
+help: Replace with list literal
+   |
+11 | AUDIT_FIELDS = frozenset(
+   -     "step episode_index database k n m tau h e mode mean_loss tail_mean mixed_loss coefficient_sum coefficient_square_sum low_mass high_mass under_mass over_mass exact_mass sample_plan_digest".split()
+12 +     ["step", "episode_index", "database", "k", "n", "m", "tau", "h", "e", "mode", "mean_loss", "tail_mean", "mixed_loss", "coefficient_sum", "coefficient_square_sum", "low_mass", "high_mass", "under_mass", "over_mass", "exact_mass", "sample_plan_digest"]
+13 | )
+   |
+
+SIM905 [*] Consider using a list literal instead of `str.split`
+  --> scripts/s6_loss_verify.py:15:5
+   |
+13 | )
+14 | SAMPLE_FIELDS = frozenset(
+15 |     "query_hash role log_pred label loss coefficient n_tables".split()
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+16 | )
+17 | MASS_FIELDS = (
+   |
+help: Replace with list literal
+   |
+14 | SAMPLE_FIELDS = frozenset(
+   -     "query_hash role log_pred label loss coefficient n_tables".split()
+15 +     ["query_hash", "role", "log_pred", "label", "loss", "coefficient", "n_tables"]
+16 | )
+   |
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> scripts/s6_loss_verify.py:292:12
+    |
+290 |       _close(row["mixed_loss"], np.sum(coeff * loss), "FP64 independent mixed reduction")
+291 |       tables = store["tables"][chosen]
+292 |       mass = dict(
+    |  ____________^
+293 | |         coefficient_sum=coeff.sum(),
+294 | |         low_mass=coeff[tables < 4].sum(),
+295 | |         high_mass=coeff[tables >= 4].sum(),
+296 | |         under_mass=coeff[pred < label].sum(),
+297 | |         over_mass=coeff[pred > label].sum(),
+298 | |         exact_mass=coeff[pred == label].sum(),
+299 | |         coefficient_square_sum=np.sum(coeff**2),
+300 | |     )
+    | |_____^
+301 |       for field, value in mass.items():
+302 |           _close(row[field], value, f"Snapshot {field}")
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> scripts/s6_loss_verify.py:345:20
+    |
+343 |               }
+344 |           )
+345 |           identity = dict(
+    |  ____________________^
+346 | |             step=step,
+347 | |             episode_index=episode,
+348 | |             database=db,
+349 | |             k=k,
+350 | |             n=n,
+351 | |             sample_plan_digest=previous,
+352 | |         )
+    | |_________^
+353 |           _audit(row, identity, config["tail_risk_mode"])
+354 |           if step in snapshot_steps:
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> scripts/s6_loss_verify.py:374:12
+    |
+372 |               "Historical formal sampling budget/digest mismatch",
+373 |           )
+374 |       return dict(
+    |  ____________^
+375 | |         mode=config["tail_risk_mode"],
+376 | |         episodes=episodes,
+377 | |         presentations=presentations,
+378 | |         sample_plan_digest=previous,
+379 | |         snapshot_rows=snapshot_index,
+380 | |         passed=True,
+381 | |         per_database=totals,
+382 | |         audit_sha256=audit_sha,
+383 | |         snapshots_sha256=snapshots_sha,
+384 | |         verification_scope="Content verification only: full audit sampling replay and nominal mass checks; independent SmoothL1 and…
+385 | |     )
+    | |_____^
+help: Rewrite as a literal
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> scripts/s6_tail_evidence.py:6:1
+   |
+ 4 |   """
+ 5 |
+ 6 | / import math
+ 7 | |
+ 8 | | from scripts.s4_anchor_evidence import (
+ 9 | |     FROZEN_CONFIG,
+10 | |     FROZEN_MODEL,
+11 | |     INITIAL_HASH,
+12 | |     SAMPLE_DIGEST,
+13 | |     VALIDATION_HASH,
+14 | |     SOURCE_HASH,
+15 | |     SOURCES,
+16 | |     DATABASES,
+17 | |     BUCKETS,
+18 | |     COVERAGE as COVERAGE,
+19 | |     _digest,
+20 | |     _endpoint,
+21 | |     _hash,
+22 | |     _integer,
+23 | |     _number,
+24 | |     _require,
+25 | |     verify_rows as verify_rows,
+26 | |     analyze_rows as analyze_rows,
+27 | | )
+   | |_^
+28 |
+29 |   ARMS = ("A_mean", "B_mean_tail10")
+   |
+help: Organize imports
+   |
+8  | from scripts.s4_anchor_evidence import (
+9  +     BUCKETS,
+10 +     DATABASES,
+11 |     FROZEN_CONFIG,
+12 |     FROZEN_MODEL,
+13 |     INITIAL_HASH,
+14 |     SAMPLE_DIGEST,
+   -     VALIDATION_HASH,
+15 |     SOURCE_HASH,
+16 |     SOURCES,
+   -     DATABASES,
+   -     BUCKETS,
+   -     COVERAGE as COVERAGE,
+17 +     VALIDATION_HASH,
+18 |     _digest,
+--------------------------------------------------------------------------------
+23 |     _require,
+24 + )
+25 + from scripts.s4_anchor_evidence import (
+26 +     COVERAGE as COVERAGE,
+27 + )
+28 + from scripts.s4_anchor_evidence import (
+29 +     analyze_rows as analyze_rows,
+30 + )
+31 + from scripts.s4_anchor_evidence import (
+32 |     verify_rows as verify_rows,
+   -     analyze_rows as analyze_rows,
+33 | )
+   |
+
+PLC0414 Import alias does not rename original package
+  --> scripts/s6_tail_evidence.py:18:5
+   |
+16 |     DATABASES,
+17 |     BUCKETS,
+18 |     COVERAGE as COVERAGE,
+   |     ^^^^^^^^^^^^^^^^^^^^
+19 |     _digest,
+20 |     _endpoint,
+   |
+help: Remove import alias
+
+PLC0414 Import alias does not rename original package
+  --> scripts/s6_tail_evidence.py:25:5
+   |
+23 |     _number,
+24 |     _require,
+25 |     verify_rows as verify_rows,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+26 |     analyze_rows as analyze_rows,
+27 | )
+   |
+help: Remove import alias
+
+PLC0414 Import alias does not rename original package
+  --> scripts/s6_tail_evidence.py:26:5
+   |
+24 |     _require,
+25 |     verify_rows as verify_rows,
+26 |     analyze_rows as analyze_rows,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+27 | )
+   |
+help: Remove import alias
+
+I001 [*] Import block is un-sorted or un-formatted
+   --> tests/test_graph_build.py:163:9
+    |
+162 |       def test_ast_unbound_external_symbol_keeps_edges_without_file_hash(self):
+163 | /         from scripts.build_experiment_graph import ast_fragment
+164 | |         from unittest.mock import patch
+    | |_______________________________________^
+165 |
+166 |           with tempfile.TemporaryDirectory() as folder:
+    |
+help: Organize imports
+    |
+162 |     def test_ast_unbound_external_symbol_keeps_edges_without_file_hash(self):
+    -         from scripts.build_experiment_graph import ast_fragment
+163 |         from unittest.mock import patch
+164 |
+165 +         from scripts.build_experiment_graph import ast_fragment
+166 +
+167 |         with tempfile.TemporaryDirectory() as folder:
+    |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+  --> tests/test_s2_runner.py:86:9
+   |
+84 |           from unittest.mock import patch
+85 |
+86 | /         with (
+87 | |             tempfile.TemporaryDirectory() as d,
+88 | |             patch.dict(os.environ, {"CUDA_VISIBLE_DEVICES": "4"}),
+89 | |         ):
+90 | |             with self.assertRaises(RuntimeError):
+   | |_________________________________________________^
+91 |                   runner.worker(Path(d), Path(d))
+   |
+help: Combine `with` statements
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_s2_runner.py:94:9
+   |
+93 |       def test_analysis_pipeline_uses_real_synthetic_statistics_and_verifier(self):
+94 | /         import numpy as np
+95 | |         from unittest.mock import patch
+96 | |         from scripts import s2_source_replay as core
+   | |____________________________________________________^
+97 |
+98 |           config = dict(
+   |
+help: Organize imports
+   |
+93 |     def test_analysis_pipeline_uses_real_synthetic_statistics_and_verifier(self):
+94 +         from unittest.mock import patch
+95 +
+96 |         import numpy as np
+   -         from unittest.mock import patch
+97 +
+98 |         from scripts import s2_source_replay as core
+   |
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s2_runner.py:98:18
+    |
+ 96 |           from scripts import s2_source_replay as core
+ 97 |
+ 98 |           config = dict(
+    |  __________________^
+ 99 | |             seed=42,
+100 | |             steps=4000,
+101 | |             meta_batch=1,
+102 | |             query_size=1,
+103 | |             support_sizes=[1, 2],
+104 | |             accumulation=1,
+105 | |         )
+    | |_________^
+106 |           caches = {
+107 |               db: dict(
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s2_runner.py:107:17
+    |
+105 |           )
+106 |           caches = {
+107 |               db: dict(
+    |  _________________^
+108 | |                 true=np.tile(
+109 | |                     [0.0, 1.0, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 500000.0], 32
+110 | |                 ),
+111 | |                 pg=np.tile(
+112 | |                     [0.0, 2.0, 5.0, 100.0, 500.0, 20000.0, 100000.0, 1000000.0], 32
+113 | |                 ),
+114 | |                 n_tables=np.tile(np.arange(1, 9), 32),
+115 | |                 raw_rows=512,
+116 | |                 indices=np.arange(0, 512, 2),
+117 | |                 query_hash=[str(i) for i in range(256)],
+118 | |             )
+    | |_____________^
+119 |               for db in ["accidents", "airline", "chembl"]
+120 |           }
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s2_runner.py:121:20
+    |
+119 |               for db in ["accidents", "airline", "chembl"]
+120 |           }
+121 |           contract = dict(
+    |  ____________________^
+122 | |             train=["accidents", "airline"],
+123 | |             validation=["chembl"],
+124 | |             config=config,
+125 | |             sources={db: {} for db in caches},
+126 | |         )
+    | |_________^
+127 |           for changed in (False, True):
+128 |               with (
+    |
+help: Rewrite as a literal
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_s2_runner.py:164:9
+    |
+162 |                       )
+163 |                   certify.assert_called_once()
+164 | /         with (
+165 | |             tempfile.TemporaryDirectory() as d,
+166 | |             patch.object(np, "__version__", "wrong"),
+167 | |         ):
+168 | |             with self.assertRaisesRegex(ValueError, "NumPy"):
+    | |_____________________________________________________________^
+169 |                   runner.analyze(runner.ROOT, Path(d))
+    |
+help: Combine `with` statements
+
+I001 [*] Import block is un-sorted or un-formatted
+   --> tests/test_s2_runner.py:172:9
+    |
+171 |       def test_owned_worker_success_failure_and_memory_error_states(self):
+172 | /         from unittest.mock import patch, Mock
+173 | |         from scripts.s2_source_replay import ReplayMismatch
+    | |___________________________________________________________^
+174 |
+175 |           parent = os.getppid()
+    |
+help: Organize imports
+    |
+171 |     def test_owned_worker_success_failure_and_memory_error_states(self):
+    -         from unittest.mock import patch, Mock
+172 +         from unittest.mock import Mock, patch
+173 +
+174 |         from scripts.s2_source_replay import ReplayMismatch
+    |
+
+PLW1510 `subprocess.run` without explicit `check` argument
+   --> tests/test_s2_runner.py:270:13
+    |
+269 |     def test_fresh_process_no_torch_or_training(self):
+270 |         p = subprocess.run(
+    |             ^^^^^^^^^^^^^^
+271 |             [
+272 |                 sys.executable,
+    |
+help: Add explicit `check=False`
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_s2_source_replay.py:224:9
+    |
+222 |           self.assertEqual(len(contract["train"]), 23)
+223 |           self.assertEqual(contract["validation"], ["chembl", "legalacts", "telstra"])
+224 | /         with tempfile.TemporaryDirectory() as d:
+225 | |             with self.assertRaises((ValueError, FileNotFoundError)):
+    | |____________________________________________________________________^
+226 |                   core.load_contract(Path(d))
+    |
+help: Combine `with` statements
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_s2_verify.py:3:1
+   |
+ 1 |   """Synthetic S2 oracle tests, without production replay/statistics imports."""
+ 2 |
+ 3 | / import copy
+ 4 | | import hashlib
+ 5 | | import json
+ 6 | | import unittest
+ 7 | |
+ 8 | | import numpy as np
+ 9 | |
+10 | | from scripts.s2_verify import verify
+   | |____________________________________^
+help: Organize imports
+   |
+11 |
+   -
+12 | CARDS = [
+   |
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+  --> tests/test_s2_verify.py:45:14
+   |
+43 |           for db, n in [("a", 240), ("b", 220), ("v", 200)]
+44 |       }
+45 |       config = dict(
+   |  ______________^
+46 | |         seed=42,
+47 | |         steps=4000,
+48 | |         meta_batch=1,
+49 | |         query_size=1,
+50 | |         support_sizes=[1, 2],
+51 | |         accumulation=1,
+52 | |     )
+   | |_____^
+53 |       rng = np.random.default_rng(43)
+54 |       chain = hashlib.sha256(b"").hexdigest()
+   |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+  --> tests/test_s2_verify.py:56:13
+   |
+54 |       chain = hashlib.sha256(b"").hexdigest()
+55 |       states = {
+56 |           db: dict(
+   |  _____________^
+57 | |             support=np.zeros(len(caches[db]["true"]), dtype=int),
+58 | |             query=np.zeros(len(caches[db]["true"]), dtype=int),
+59 | |             mass=np.zeros(len(caches[db]["true"])),
+60 | |             episodes=0,
+61 | |             k_counts={1: 0, 2: 0},
+62 | |         )
+   | |_________^
+63 |           for db in train
+64 |       }
+   |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+  --> tests/test_s2_verify.py:71:19
+   |
+69 |           raw = rng.choice(caches[db]["indices"], k + 1, replace=False)
+70 |           chosen = raw // 2
+71 |           episode = dict(
+   |  ___________________^
+72 | |             db=db, support=[str(i) for i in chosen[:k]], query=[str(chosen[-1])]
+73 | |         )
+   | |_________^
+74 |           chain = hashlib.sha256(
+75 |               json.dumps(
+   |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+  --> tests/test_s2_verify.py:76:17
+   |
+74 |         chain = hashlib.sha256(
+75 |             json.dumps(
+76 |                 dict(previous=chain, episode=episode),
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+77 |                 sort_keys=True,
+78 |                 ensure_ascii=False,
+   |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+  --> tests/test_s2_verify.py:88:40
+   |
+86 |           total += k + 1
+87 |           if step in (1000, 2000, 4000):
+88 |               replay["prefixes"][step] = dict(
+   |  ________________________________________^
+89 | |                 databases=copy.deepcopy(states),
+90 | |                 digest=chain,
+91 | |                 episodes=step,
+92 | |                 presentations=total,
+93 | |             )
+   | |_____________^
+94 |       replay["digest"] = chain
+95 |       tables = dict(pool=[], exposure=[], residuals=[], comparison=[])
+   |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+  --> tests/test_s2_verify.py:95:14
+   |
+93 |             )
+94 |     replay["digest"] = chain
+95 |     tables = dict(pool=[], exposure=[], residuals=[], comparison=[])
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+96 |     groups = [(db, [db], False) for db in train + validation] + [
+97 |         ("train_pooled", train, False),
+   |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s2_verify.py:109:19
+    |
+107 |               active = bucket in ACTIVE
+108 |               ok = active and observed >= 200
+109 |               row = dict(
+    |  ___________________^
+110 | |                 database=name,
+111 | |                 population=pop,
+112 | |                 step=step,
+113 | |                 axis=axis,
+114 | |                 bucket=bucket,
+115 | |                 source_db_coverage=len(members) if active else 0,
+116 | |                 pool_unique=n if active else 0,
+117 | |                 observed_unique=int(observed) if active else 0,
+118 | |                 weight_mass=mass if active else 0.0,
+119 | |                 status="ok" if ok else "sparse",
+120 | |                 quantile_method="linear" if weights is None else "inverse_ecdf",
+121 | |             )
+    | |_____________^
+122 |               row.update(
+123 |                   {
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s2_verify.py:153:17
+    |
+151 |               active = bucket in ACTIVE
+152 |               tables["pool"].append(
+153 | /                 dict(
+154 | |                     database=name,
+155 | |                     population=pop,
+156 | |                     axis=axis,
+157 | |                     bucket=bucket,
+158 | |                     raw_rows=2 * n + 3 * len(members),
+159 | |                     duplicate_rows=n + 3 * len(members),
+160 | |                     pool_unique=n if active else 0,
+161 | |                     pool_total=n,
+162 | |                     weight_mass=(len(members) if equal else n) if active else 0,
+163 | |                     share=float(active),
+164 | |                     source_db_coverage=len(members) if active else 0,
+165 | |                 )
+    | |_________________^
+166 |               )
+167 |           residual(name, members, pop, 0, weights)
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s2_verify.py:186:23
+    |
+184 |               for axis, bucket in BUCKETS:
+185 |                   active = bucket in ACTIVE
+186 |                   row = dict(
+    |  _______________________^
+187 | |                     database=name,
+188 | |                     step=step,
+189 | |                     axis=axis,
+190 | |                     bucket=bucket,
+191 | |                     pool_unique=n if active else 0,
+192 | |                     observed_unique=observed if active else 0,
+193 | |                     coverage=observed / n if active else "undefined",
+194 | |                     source_db_coverage=len(members) if active else 0,
+195 | |                 )
+    | |_________________^
+196 |                   for key, label in [
+197 |                       ("support", "support"),
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s2_verify.py:226:46
+    |
+224 |                       )
+225 |                   )
+226 |                   summaries[str(step)][name] = dict(
+    |  ______________________________________________^
+227 | |                     episodes=prefix["databases"][name]["episodes"],
+228 | |                     k_counts=prefix["databases"][name]["k_counts"],
+229 | |                     repeat_counts=counts,
+230 | |                     repeat_shares={key: value / n for key, value in counts.items()},
+231 | |                     repeat_quantile_method="linear",
+232 | |                     repeat_quantiles=dict(
+233 | |                         zip(
+234 | |                             ["min", "p10", "median", "p90", "max"],
+235 | |                             map(float, np.quantile(repeat, [0, 0.1, 0.5, 0.9, 1])),
+236 | |                         )
+237 | |                     ),
+238 | |                 )
+    | |_________________^
+239 |           for axis, bucket in BUCKETS[1:]:
+240 |               active = bucket in ACTIVE
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s2_verify.py:249:25
+    |
+247 |                   for target in ["v", "validation_db_equal_pool"]:
+248 |                       tables["comparison"].append(
+249 | /                         dict(
+250 | |                             step=step,
+251 | |                             axis=axis,
+252 | |                             bucket=bucket,
+253 | |                             source_population=source,
+254 | |                             validation_database=target,
+255 | |                             source_share=float(active),
+256 | |                             validation_share=float(active),
+257 | |                             difference=0.0,
+258 | |                             ratio=1.0 if active else "undefined",
+259 | |                             source_db_coverage=2 if active else 0,
+260 | |                             axis_tv=0.0,
+261 | |                         )
+    | |_________________________^
+262 |                       )
+263 |       tables["distribution_summary"] = dict(
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s2_verify.py:263:38
+    |
+261 |                           )
+262 |                       )
+263 |       tables["distribution_summary"] = dict(
+    |  ______________________________________^
+264 | |         prefixes=summaries,
+265 | |         minimum_unique=200,
+266 | |         weighted_quantiles="inverse_ecdf",
+267 | |         unweighted_quantiles="linear",
+268 | |     )
+    | |_____^
+269 |       return caches, replay, tables, train, validation, config
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s3_runner.py:228:18
+    |
+226 |           from scripts import s2_source_replay as core
+227 |
+228 |           config = dict(
+    |  __________________^
+229 | |             seed=42,
+230 | |             steps=4000,
+231 | |             meta_batch=1,
+232 | |             query_size=1,
+233 | |             support_sizes=[1, 2],
+234 | |             accumulation=1,
+235 | |         )
+    | |_________^
+236 |           names = ["accidents", "airline", "chembl", "legalacts", "telstra"]
+237 |           caches = {
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s3_runner.py:238:17
+    |
+236 |           names = ["accidents", "airline", "chembl", "legalacts", "telstra"]
+237 |           caches = {
+238 |               db: dict(
+    |  _________________^
+239 | |                 true=np.tile([0.0, 1.0, 10.0, 100.0, 1000.0, 10000.0, 100000.0], 60),
+240 | |                 pg=np.tile([0.0, 2.0, 5.0, 100.0, 500.0, 20000.0, 100000.0], 60),
+241 | |                 n_tables=np.tile(np.arange(1, 8), 60),
+242 | |                 token_counts=np.column_stack(
+243 | |                     [
+244 | |                         np.ones(420, dtype=int),
+245 | |                         np.full(420, 2),
+246 | |                         np.tile(np.arange(1, 8), 60),
+247 | |                         np.zeros(420, dtype=int),
+248 | |                     ]
+249 | |                 ),
+250 | |                 raw_rows=840,
+251 | |                 indices=np.arange(0, 840, 2),
+252 | |                 query_hash=[str(i) for i in range(420)],
+253 | |             )
+    | |_____________^
+254 |               for db in names
+255 |           }
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s3_runner.py:256:20
+    |
+254 |               for db in names
+255 |           }
+256 |           contract = dict(
+    |  ____________________^
+257 | |             train=names[:2],
+258 | |             validation=names[2:],
+259 | |             config=config,
+260 | |             sources={db: {} for db in names},
+261 | |         )
+    | |_________^
+262 |           for changed in (False, True):
+263 |               with (
+    |
+help: Rewrite as a literal
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_s3_runner.py:298:9
+    |
+296 |                       self.assertNotIn(b"\r", (out / "conditions.csv").read_bytes())
+297 |                   certify.assert_called_once()
+298 | /         with (
+299 | |             tempfile.TemporaryDirectory() as d,
+300 | |             patch.object(np, "__version__", "wrong"),
+301 | |         ):
+302 | |             with self.assertRaisesRegex(ValueError, "NumPy"):
+    | |_____________________________________________________________^
+303 |                   runner.analyze(runner.ROOT, Path(d))
+    |
+help: Combine `with` statements
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s3_runner.py:310:17
+    |
+308 |           names = ["chembl", "legalacts", "telstra"]
+309 |           caches = {
+310 |               db: dict(
+    |  _________________^
+311 | |                 true=np.array([0.0, 1.0, 10.0, 100.0, 1000.0, 10000.0, 100000.0]),
+312 | |                 n_tables=np.arange(1, 8),
+313 | |                 raw_rows=7,
+314 | |             )
+    | |_____________^
+315 |               for db in names
+316 |           }
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s3_runner.py:317:28
+    |
+315 |             for db in names
+316 |         }
+317 |         source_pool = {db: dict(raw_rows=7, unique_queries=7) for db in names}
+    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+318 |         per_database = {}
+319 |         for db in names:
+    |
+help: Rewrite as a literal
+
+PLW1510 `subprocess.run` without explicit `check` argument
+   --> tests/test_s3_runner.py:387:13
+    |
+385 |     def test_import_and_dry_run_no_torch_or_source_reads(self):
+386 |         code = 'import sys; from scripts import run_s3_diagnosis; assert not any(n=="torch" or n.startswith("spatial_meta_ce") for n …
+387 |         p = subprocess.run([sys.executable, "-B", "-c", code], capture_output=True)
+    |             ^^^^^^^^^^^^^^
+388 |         self.assertEqual(p.returncode, 0, p.stderr.decode())
+389 |         with tempfile.TemporaryDirectory() as d:
+    |
+help: Add explicit `check=False`
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_s3_verify.py:3:1
+   |
+ 1 |   """Independent fixtures and corruption tests for the streaming S3 verifier."""
+ 2 |
+ 3 | / from __future__ import annotations
+ 4 | |
+ 5 | | import copy
+ 6 | | import importlib.util
+ 7 | | import json
+ 8 | | import os
+ 9 | | from pathlib import Path
+10 | | import unittest
+11 | |
+12 | | import numpy as np
+   | |__________________^
+13 |
+14 |   _PATH = Path(__file__).resolve().parents[1] / "scripts" / "s3_verify.py"
+   |
+help: Organize imports
+   |
+8  | import os
+9  + import unittest
+10 | from pathlib import Path
+   - import unittest
+11 |
+   |
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s3_verify.py:95:19
+    |
+ 93 |       if active:
+ 94 |           for db, pop, n, mass, coverage, linear in specs:
+ 95 |               row = dict(
+    |  ___________________^
+ 96 | |                 database=db,
+ 97 | |                 population=pop,
+ 98 | |                 axis=axis,
+ 99 | |                 bucket=bucket,
+100 | |                 condition="2,0,0,1,0",
+101 | |                 pg_bucket="[10,100)",
+102 | |                 n_join_column_tokens=0,
+103 | |                 n_fanout_tokens=0,
+104 | |                 n_table_tokens=1,
+105 | |                 n_filter_tokens=0,
+106 | |                 pool_unique=n,
+107 | |                 observed_unique=n,
+108 | |                 group_pool_unique=n,
+109 | |                 weight_mass=mass,
+110 | |                 group_weight_mass=mass,
+111 | |                 share=1.0,
+112 | |                 source_db_coverage=coverage,
+113 | |             )
+    | |_____________^
+114 |               rows.append(row)
+115 |               statistics = {
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s3_verify.py:187:12
+    |
+185 |                   )
+186 |               )
+187 |       return dict(
+    |  ____________^
+188 | |         axis=axis,
+189 | |         bucket=bucket,
+190 | |         conditions=rows,
+191 | |         residuals=residuals,
+192 | |         alignment=alignment,
+193 | |     )
+    | |_____^
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s3_verify.py:375:20
+    |
+374 |         def summary(n: int, mass: float, mean: float, observed: int = 200) -> dict:
+375 |             return dict(unique=n, observed=observed, mass=mass, sum=mass * mean)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+376 |
+377 |         source = {keys[0]: summary(200, 100.0, 0.0), keys[1]: summary(200, 900.0, 0.0)}
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s3_verify.py:467:30
+    |
+465 |                       condition = np.full(n, 8)
+466 |                       pg = np.full(n, 10.0)
+467 |                   caches[db] = dict(
+    |  ______________________________^
+468 | |                     true=true,
+469 | |                     pg=pg,
+470 | |                     n_tables=rng.integers(1, 9, n),
+471 | |                     indices=np.arange(n),
+472 | |                     raw_rows=n,
+473 | |                     query_hash=[f"h{i}" for i in range(n)],
+474 | |                     token_counts=np.column_stack(
+475 | |                         (
+476 | |                             condition,
+477 | |                             condition % 2,
+478 | |                             np.ones(n, dtype=int),
+479 | |                             np.zeros(n, dtype=int),
+480 | |                         )
+481 | |                     ),
+482 | |                 )
+    | |_________________^
+483 |                   if db in TRAIN:
+484 |                       support = rng.integers(0, 4, n)
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s3_verify.py:489:34
+    |
+487 |                           support = np.where(condition == 0, 0, support)
+488 |                           query = np.where(condition == 0, 0, query)
+489 |                       states[db] = dict(
+    |  __________________________________^
+490 | |                         support=support,
+491 | |                         query=query,
+492 | |                         mass=(support + query) * rng.uniform(0.5, 2.0, n),
+493 | |                     )
+    | |_____________________^
+494 |               mass_total = sum(float(s["mass"].sum()) for s in states.values())
+495 |               states = {
+    |
+help: Rewrite as a literal
+
+SIM117 [*] Use a single `with` statement with multiple contexts instead of nested `with` statements
+  --> tests/test_s4_anchor.py:60:13
+   |
+58 |                       s.gpu_gate("cuda", "4", expected_uuid="GPU-one"), "GPU-one"
+59 |                   )
+60 | /             with patch.object(
+61 | |                 s.subprocess,
+62 | |                 "check_output",
+63 | |                 side_effect=["4, GPU-one, 300, 75\n", "GPU-one, 999999\n"],
+64 | |             ):
+65 | |                 with self.assertRaises(s.GPUBusy):
+   | |__________________________________________________^
+66 |                       s.gpu_gate("cuda", "4", expected_uuid="GPU-one")
+   |
+help: Combine `with` statements
+   |
+63 |                 side_effect=["4, GPU-one, 300, 75\n", "GPU-one, 999999\n"],
+   -             ):
+   -                 with self.assertRaises(s.GPUBusy):
+   -                     s.gpu_gate("cuda", "4", expected_uuid="GPU-one")
+64 +             ), self.assertRaises(s.GPUBusy):
+65 +                 s.gpu_gate("cuda", "4", expected_uuid="GPU-one")
+66 |
+   |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+  --> tests/test_s4_anchor.py:88:9
+   |
+86 |                   else:
+87 |                       self.assertEqual(s.own_nvml_pid(), expected)
+88 | /         with patch.object(s.Path, "read_text", side_effect=OSError("unreadable")):
+89 | |             with self.assertRaises(RuntimeError):
+   | |_________________________________________________^
+90 |                   s.own_nvml_pid()
+   |
+help: Combine `with` statements
+
+SIM117 [*] Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_s4_anchor.py:118:13
+    |
+116 |                           with self.assertRaises(s.GPUBusy):
+117 |                               s.gpu_gate("cuda", "4", expected_uuid="GPU-one")
+118 | /             with patch.object(
+119 | |                 s.subprocess,
+120 | |                 "check_output",
+121 | |                 side_effect=["4, GPU-one, 300, 0\n", "GPU-one, 456\n"],
+122 | |             ):
+123 | |                 with self.assertRaises(s.GPUBusy):
+    | |__________________________________________________^
+124 |                       s.gpu_gate("cuda", "4", initial=True)
+    |
+help: Combine `with` statements
+    |
+121 |                 side_effect=["4, GPU-one, 300, 0\n", "GPU-one, 456\n"],
+    -             ):
+    -                 with self.assertRaises(s.GPUBusy):
+    -                     s.gpu_gate("cuda", "4", initial=True)
+122 +             ), self.assertRaises(s.GPUBusy):
+123 +                 s.gpu_gate("cuda", "4", initial=True)
+124 |
+    |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_s4_anchor.py:379:13
+    |
+377 |                   )
+378 |           for values in [[{"bad": True}], [{}, {"bad": True}]]:
+379 | /             with tempfile.TemporaryDirectory() as temp:
+380 | |                 with (
+381 | |                     patch("scripts.s4_anchor_evidence", verifier),
+382 | |                     patch.dict(sys.modules, {"scripts.s4_anchor_evidence": verifier}),
+383 | |                     patch.object(s, "gpu_gate"),
+384 | |                     patch.object(s, "source_evidence", side_effect=values),
+385 | |                     patch.object(s, "run_one", return_value={}),
+386 | |                     self.assertRaises(ValueError),
+387 | |                 ):
+    | |__________________^
+388 |                       s.execute_arms(
+389 |                           configs,
+    |
+help: Combine `with` statements
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_s4_anchor.py:640:17
+    |
+638 |                       "cache_root": str(root / "cache"),
+639 |                   }
+640 | /                 with (
+641 | |                     patch.object(s.sys, "argv", args),
+642 | |                     patch.object(s.sys, "platform", "linux"),
+643 | |                     patch.object(s, "ROOT", root),
+644 | |                     patch.object(s, "load_plan", return_value=self.plan()),
+645 | |                     patch.object(s, "data_settings", return_value=data),
+646 | |                     patch.object(s, "validate_data"),
+647 | |                     patch.object(s, "gpu_gate", side_effect=failure),
+648 | |                     patch.object(s, "supervise") as supervise,
+649 | |                 ):
+650 | |                     with self.assertRaises(type(failure)):
+    | |__________________________________________________________^
+651 |                           s.run_main(s.time.monotonic() + 60)
+652 |                   state = json.loads((output / "status.json").read_text())
+    |
+help: Combine `with` statements
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> tests/test_s4_anchor_evidence.py:1:1
+  |
+1 | / import copy
+2 | | import unittest
+3 | | from unittest.mock import patch
+4 | |
+5 | | import numpy as np
+6 | |
+7 | | from scripts import s4_anchor_evidence as ev
+  | |____________________________________________^
+help: Organize imports
+  |
+8 |
+  -
+9 | HASH = "a" * 64
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_s4_model.py:1:1
+   |
+ 1 | / import copy
+ 2 | | import tempfile
+ 3 | | import unittest
+ 4 | | from pathlib import Path
+ 5 | |
+ 6 | | import torch
+ 7 | |
+ 8 | | from spatial_meta_ce.checkpoints import load_checkpoint, save_checkpoint
+ 9 | | from spatial_meta_ce.data import batch_samples
+10 | | from spatial_meta_ce.model import SetEstimator
+11 | | from scripts.mapping_smoke import state_hash
+   | |____________________________________________^
+help: Organize imports
+   |
+7  |
+8  + from scripts.mapping_smoke import state_hash
+9  | from spatial_meta_ce.checkpoints import load_checkpoint, save_checkpoint
+10 | from spatial_meta_ce.data import batch_samples
+11 | from spatial_meta_ce.model import SetEstimator
+   - from scripts.mapping_smoke import state_hash
+12 |
+   |
+
+RUF012 Mutable default value for class attribute
+  --> tests/test_s5_loss.py:16:16
+   |
+15 | class Store:
+16 |     manifest = {"content_hash": "s5-fixture"}
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+17 |     rows = [{"id": str(i), "query_hash": str(i)} for i in range(20)]
+   |
+help: Consider initializing in `__init__` or annotating with `typing.ClassVar`
+
+RUF012 Mutable default value for class attribute
+  --> tests/test_s5_loss.py:17:12
+   |
+15 | class Store:
+16 |     manifest = {"content_hash": "s5-fixture"}
+17 |     rows = [{"id": str(i), "query_hash": str(i)} for i in range(20)]
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+18 |
+19 |     def unique_indices(self):
+   |
+help: Consider initializing in `__init__` or annotating with `typing.ClassVar`
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+  --> tests/test_s5_runner.py:34:9
+   |
+33 |       def test_protocol_tampering_is_rejected(self):
+34 | /         with patch.object(s, "file_hash", return_value="0" * 64):
+35 | |             with self.assertRaises(ValueError):
+   | |_______________________________________________^
+36 |                   s.load_plan()
+   |
+help: Combine `with` statements
+
+I001 [*] Import block is un-sorted or un-formatted
+   --> tests/test_s5_runner.py:313:9
+    |
+312 |       def test_cli_dry_busy_execute_and_main_deadline(self):
+313 | /         import sys
+314 | |         from contextlib import ExitStack
+315 | |         import io
+    | |_________________^
+316 |
+317 |           for execute, busy in ((False, False), (True, False), (True, True)):
+    |
+help: Organize imports
+    |
+312 |     def test_cli_dry_busy_execute_and_main_deadline(self):
+313 +         import io
+314 |         import sys
+315 |         from contextlib import ExitStack
+    -         import io
+316 |
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_s5_supervisor.py:22:1
+   |
+20 |   s = importlib.util.module_from_spec(spec)
+21 |   spec.loader.exec_module(s)
+22 | / from scripts import s4_anchor_evidence as s4  # noqa: E402
+23 | | from test_s4_anchor_evidence import rows  # noqa: E402
+24 | | from test_s5_weight_evidence import record, preflight  # noqa: E402
+   | |_____________________________________________________^
+help: Organize imports
+   |
+21 | spec.loader.exec_module(s)
+   - from scripts import s4_anchor_evidence as s4  # noqa: E402
+22 | from test_s4_anchor_evidence import rows  # noqa: E402
+   - from test_s5_weight_evidence import record, preflight  # noqa: E402
+23 + from test_s5_weight_evidence import preflight, record  # noqa: E402
+24 +
+25 + from scripts import s4_anchor_evidence as s4  # noqa: E402
+26 |
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+  --> tests/test_s5_supervisor.py:22:47
+   |
+20 | s = importlib.util.module_from_spec(spec)
+21 | spec.loader.exec_module(s)
+22 | from scripts import s4_anchor_evidence as s4  # noqa: E402
+   |                                               ^^^^^^^^^^^^
+23 | from test_s4_anchor_evidence import rows  # noqa: E402
+24 | from test_s5_weight_evidence import record, preflight  # noqa: E402
+   |
+help: Remove unused `noqa` directive
+   |
+21 | spec.loader.exec_module(s)
+   - from scripts import s4_anchor_evidence as s4  # noqa: E402
+22 + from scripts import s4_anchor_evidence as s4
+23 | from test_s4_anchor_evidence import rows  # noqa: E402
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+  --> tests/test_s5_supervisor.py:23:43
+   |
+21 | spec.loader.exec_module(s)
+22 | from scripts import s4_anchor_evidence as s4  # noqa: E402
+23 | from test_s4_anchor_evidence import rows  # noqa: E402
+   |                                           ^^^^^^^^^^^^
+24 | from test_s5_weight_evidence import record, preflight  # noqa: E402
+   |
+help: Remove unused `noqa` directive
+   |
+22 | from scripts import s4_anchor_evidence as s4  # noqa: E402
+   - from test_s4_anchor_evidence import rows  # noqa: E402
+23 + from test_s4_anchor_evidence import rows
+24 | from test_s5_weight_evidence import record, preflight  # noqa: E402
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+  --> tests/test_s5_supervisor.py:24:56
+   |
+22 | from scripts import s4_anchor_evidence as s4  # noqa: E402
+23 | from test_s4_anchor_evidence import rows  # noqa: E402
+24 | from test_s5_weight_evidence import record, preflight  # noqa: E402
+   |                                                        ^^^^^^^^^^^^
+help: Remove unused `noqa` directive
+   |
+23 | from test_s4_anchor_evidence import rows  # noqa: E402
+   - from test_s5_weight_evidence import record, preflight  # noqa: E402
+24 + from test_s5_weight_evidence import record, preflight
+25 |
+   |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_s5_supervisor.py:214:13
+    |
+212 |       def test_source_and_code_changes_are_rejected(self) -> None:
+213 |           for name in ("source_evidence", "code_hashes"):
+214 | /             with self.subTest(name=name), patch.object(s, name, return_value={}):
+215 | |                 with self.assertRaises(ValueError):
+    | |___________________________________________________^
+216 |                       s.verify_content(self.root)
+    |
+help: Combine `with` statements
+
+I001 [*] Import block is un-sorted or un-formatted
+   --> tests/test_s5_supervisor.py:239:9
+    |
+237 |   class TrainingFlowReadTests(unittest.TestCase):
+238 |       def test_reads_all_23_pretrain_stores_before_independent_replay(self) -> None:
+239 | /         import numpy as np
+240 | |         from unittest.mock import Mock
+    | |______________________________________^
+241 |
+242 |           plan = s.load_plan()
+    |
+help: Organize imports
+    |
+238 |     def test_reads_all_23_pretrain_stores_before_independent_replay(self) -> None:
+    -         import numpy as np
+239 |         from unittest.mock import Mock
+240 |
+241 +         import numpy as np
+242 +
+243 |         plan = s.load_plan()
+    |
+
+RUF012 Mutable default value for class attribute
+  --> tests/test_s6_loss.py:20:16
+   |
+19 | class StoreMock:
+20 |     manifest = {"content_hash": "synthetic-s6"}
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+21 |     rows = [{"id": str(i), "query_hash": f"hash-查询-{i}"} for i in range(180)]
+   |
+help: Consider initializing in `__init__` or annotating with `typing.ClassVar`
+
+RUF012 Mutable default value for class attribute
+  --> tests/test_s6_loss.py:21:12
+   |
+19 | class StoreMock:
+20 |     manifest = {"content_hash": "synthetic-s6"}
+21 |     rows = [{"id": str(i), "query_hash": f"hash-查询-{i}"} for i in range(180)]
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+22 |
+23 |     def unique_indices(self):
+   |
+help: Consider initializing in `__init__` or annotating with `typing.ClassVar`
+
+SIM905 [*] Consider using a list literal instead of `str.split`
+   --> tests/test_s6_loss.py:397:25
+    |
+395 | … set(row),
+396 | … set(
+397 | …     "step episode_index database k n m tau h e mode mean_loss tail_mean mixed_loss coefficient_sum coefficient_square_sum low_mass high_mass under_mass over_mass exact_mass sample_plan_digest".split()
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+398 | … ),
+399 | …
+    |
+help: Replace with list literal
+    |
+396 |                     set(
+    -                         "step episode_index database k n m tau h e mode mean_loss tail_mean mixed_loss coefficient_sum coefficient_square_sum low_mass high_mass under_mass over_mass exact_mass sample_plan_digest".split()
+397 +                         ["step", "episode_index", "database", "k", "n", "m", "tau", "h", "e", "mode", "mean_loss", "tail_mean", "mixed_loss", "coefficient_sum", "coefficient_square_sum", "low_mass", "high_mass", "under_mass", "over_mass", "exact_mass", "sample_plan_digest"]
+398 |                     ),
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_s6_loss_verify.py:3:1
+   |
+ 1 |   """Independent synthetic evidence; no production loss or training imports."""
+ 2 |
+ 3 | / import copy
+ 4 | | import hashlib
+ 5 | | import json
+ 6 | | from pathlib import Path
+ 7 | | import tempfile
+ 8 | | import unittest
+ 9 | |
+10 | | import numpy as np
+11 | |
+12 | | from scripts.s2_source_replay import TRAIN
+13 | | from scripts.s6_loss_verify import verify_loss_evidence
+   | |_______________________________________________________^
+help: Organize imports
+  |
+5 | import json
+  - from pathlib import Path
+6 | import tempfile
+7 | import unittest
+8 + from pathlib import Path
+9 |
+  |
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+  --> tests/test_s6_loss_verify.py:23:14
+   |
+22 |   def fixture(steps=2, mode="mean_tail10", predictions=None, formal=False):
+23 |       config = dict(
+   |  ______________^
+24 | |         steps=steps,
+25 | |         meta_batch=4,
+26 | |         accumulation=1,
+27 | |         seed=42,
+28 | |         query_size=8,
+29 | |         support_sizes=[5],
+30 | |         tail_risk_mode=mode,
+31 | |     )
+   | |_____^
+32 |       if formal:
+33 |           config = {
+   |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+  --> tests/test_s6_loss_verify.py:42:13
+   |
+40 |       # All 23 sources; include a duplicate whose first index must be preserved.
+41 |       stores = {
+42 |           db: dict(
+   |  _____________^
+43 | |             query_hashes=[f"{db}-{i}" for i in range(pool)] + [f"{db}-0"],
+44 | |             unique=np.arange(pool),
+45 | |             tables=np.array([1, 4, 2, 5, 3] * (pool // 5) + [1]),
+46 | |             labels=np.zeros(pool + 1, dtype=np.float64),
+47 | |         )
+   | |_________^
+48 |           for db in TRAIN
+49 |       }
+   |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+  --> tests/test_s6_loss_verify.py:61:13
+   |
+59 |           hashes = [stores[db]["query_hashes"][i] for i in chosen]
+60 |           previous = digest(
+61 | /             dict(
+62 | |                 previous=previous,
+63 | |                 episode=dict(db=db, support=hashes[:k], query=hashes[k:]),
+64 | |             )
+   | |_____________^
+65 |           )
+66 |           pred = (
+   |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+  --> tests/test_s6_loss_verify.py:63:25
+   |
+61 |             dict(
+62 |                 previous=previous,
+63 |                 episode=dict(db=db, support=hashes[:k], query=hashes[k:]),
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+64 |             )
+65 |         )
+   |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s6_loss_verify.py:96:15
+    |
+ 94 |           cd = c.astype(np.float64)
+ 95 |           tables = stores[db]["tables"][chosen]
+ 96 |           row = dict(
+    |  _______________^
+ 97 | |             step=(episode - 1) // 4 + 1,
+ 98 | |             episode_index=episode,
+ 99 | |             database=db,
+100 | |             k=k,
+101 | |             n=n,
+102 | |             m=m,
+103 | |             tau=float(tau),
+104 | |             h=h,
+105 | |             e=e,
+106 | |             mode=mode,
+107 | |             mean_loss=float(np.mean(loss)),
+108 | |             tail_mean=float(np.sum(a * loss)),
+109 | |             mixed_loss=float(np.sum(c * loss))
+110 | |             if mode == "mean_tail10"
+111 | |             else float(np.mean(loss)),
+112 | |             coefficient_sum=float(cd.sum()),
+113 | |             coefficient_square_sum=float((cd * cd).sum()),
+114 | |             low_mass=float(cd[tables < 4].sum()),
+115 | |             high_mass=float(cd[tables >= 4].sum()),
+116 | |             under_mass=float(cd[pred < 0].sum()),
+117 | |             over_mass=float(cd[pred > 0].sum()),
+118 | |             exact_mass=float(cd[pred == 0].sum()),
+119 | |             sample_plan_digest=previous,
+120 | |         )
+    | |_________^
+121 |           samples = [
+122 |               dict(
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s6_loss_verify.py:122:13
+    |
+120 |           )
+121 |           samples = [
+122 | /             dict(
+123 | |                 query_hash=hashes[j],
+124 | |                 role="support" if j < k else "query",
+125 | |                 log_pred=float(pred[j]),
+126 | |                 label=0.0,
+127 | |                 loss=float(loss[j]),
+128 | |                 coefficient=float(c[j]),
+129 | |                 n_tables=int(tables[j]),
+130 | |             )
+    | |_____________^
+131 |               for j in range(n)
+132 |           ]
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s6_loss_verify.py:135:30
+    |
+133 |         rows.append(row)
+134 |         if not formal or row["step"] in (1, 1000, 2000, 4000):
+135 |             snapshots.append(dict(audit=copy.deepcopy(row), samples=samples))
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+136 |     return config, stores, rows, snapshots
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s6_loss_verify.py:253:19
+    |
+252 |       def test_exact_replay_and_audit_invariants(self):
+253 |           changes = dict(
+    |  ___________________^
+254 | |             step=2,
+255 | |             episode_index=2,
+256 | |             database=TRAIN[0],
+257 | |             k=10,
+258 | |             n=8,
+259 | |             m=3,
+260 | |             h=2,
+261 | |             e=0,
+262 | |             tau=-1.0,
+263 | |             mode="mean",
+264 | |             sample_plan_digest="0" * 64,
+265 | |             coefficient_sum=0.9,
+266 | |             coefficient_square_sum=0.5,
+267 | |             low_mass=0.99,
+268 | |             under_mass=0.99,
+269 | |             mean_loss=-1.0,
+270 | |             tail_mean=0.0,
+271 | |             mixed_loss=99.0,
+272 | |         )
+    | |_________^
+273 |           for field, value in changes.items():
+274 |               data = list(fixture())
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s6_loss_verify.py:280:29
+    |
+279 |       def test_snapshot_numeric_tampering(self):
+280 |           for field, value in dict(
+    |  _____________________________^
+281 | |             log_pred=100.0, label=1.0, loss=100.0, coefficient=0.4
+282 | |         ).items():
+    | |_________^
+283 |               data = list(fixture())
+284 |               data[3][0]["samples"][0][field] = value
+    |
+help: Rewrite as a literal
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s6_loss_verify.py:325:29
+    |
+324 |       def test_invalid_config_types_and_nonfinite_evidence(self):
+325 |           for field, value in dict(
+    |  _____________________________^
+326 | |             seed=43,
+327 | |             accumulation=2,
+328 | |             meta_batch=1,
+329 | |             steps=True,
+330 | |             query_size=0,
+331 | |             support_sizes=[5, 5],
+332 | |             tail_risk_mode="bogus",
+333 | |         ).items():
+    | |_________^
+334 |               data = list(fixture())
+335 |               data[0][field] = value
+    |
+help: Rewrite as a literal
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_s6_pipeline.py:20:1
+   |
+18 |   sys.path.insert(0, str(ROOT))
+19 |   sys.path.insert(0, str(ROOT / "tests"))
+20 | / from scripts import run_s6_tail as s  # noqa: E402
+21 | | from scripts import s4_anchor_evidence as s4  # noqa: E402
+22 | | from scripts.s2_source_replay import TRAIN  # noqa: E402
+23 | | from spatial_meta_ce.data import batch_samples  # noqa: E402
+24 | | from spatial_meta_ce.train import train  # noqa: E402
+25 | | from test_s4_anchor_evidence import rows  # noqa: E402
+26 | | from test_s6_tail_evidence import preflight, record  # noqa: E402
+   | |___________________________________________________^
+help: Organize imports
+   |
+19 | sys.path.insert(0, str(ROOT / "tests"))
+20 + from test_s4_anchor_evidence import rows  # noqa: E402
+21 + from test_s6_tail_evidence import preflight, record  # noqa: E402
+22 +
+23 | from scripts import run_s6_tail as s  # noqa: E402
+--------------------------------------------------------------------------------
+27 | from spatial_meta_ce.train import train  # noqa: E402
+   - from test_s4_anchor_evidence import rows  # noqa: E402
+   - from test_s6_tail_evidence import preflight, record  # noqa: E402
+28 |
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+  --> tests/test_s6_pipeline.py:20:39
+   |
+18 | sys.path.insert(0, str(ROOT))
+19 | sys.path.insert(0, str(ROOT / "tests"))
+20 | from scripts import run_s6_tail as s  # noqa: E402
+   |                                       ^^^^^^^^^^^^
+21 | from scripts import s4_anchor_evidence as s4  # noqa: E402
+22 | from scripts.s2_source_replay import TRAIN  # noqa: E402
+   |
+help: Remove unused `noqa` directive
+   |
+19 | sys.path.insert(0, str(ROOT / "tests"))
+   - from scripts import run_s6_tail as s  # noqa: E402
+20 + from scripts import run_s6_tail as s
+21 | from scripts import s4_anchor_evidence as s4  # noqa: E402
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+  --> tests/test_s6_pipeline.py:21:47
+   |
+19 | sys.path.insert(0, str(ROOT / "tests"))
+20 | from scripts import run_s6_tail as s  # noqa: E402
+21 | from scripts import s4_anchor_evidence as s4  # noqa: E402
+   |                                               ^^^^^^^^^^^^
+22 | from scripts.s2_source_replay import TRAIN  # noqa: E402
+23 | from spatial_meta_ce.data import batch_samples  # noqa: E402
+   |
+help: Remove unused `noqa` directive
+   |
+20 | from scripts import run_s6_tail as s  # noqa: E402
+   - from scripts import s4_anchor_evidence as s4  # noqa: E402
+21 + from scripts import s4_anchor_evidence as s4
+22 | from scripts.s2_source_replay import TRAIN  # noqa: E402
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+  --> tests/test_s6_pipeline.py:22:45
+   |
+20 | from scripts import run_s6_tail as s  # noqa: E402
+21 | from scripts import s4_anchor_evidence as s4  # noqa: E402
+22 | from scripts.s2_source_replay import TRAIN  # noqa: E402
+   |                                             ^^^^^^^^^^^^
+23 | from spatial_meta_ce.data import batch_samples  # noqa: E402
+24 | from spatial_meta_ce.train import train  # noqa: E402
+   |
+help: Remove unused `noqa` directive
+   |
+21 | from scripts import s4_anchor_evidence as s4  # noqa: E402
+   - from scripts.s2_source_replay import TRAIN  # noqa: E402
+22 + from scripts.s2_source_replay import TRAIN
+23 | from spatial_meta_ce.data import batch_samples  # noqa: E402
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+  --> tests/test_s6_pipeline.py:23:49
+   |
+21 | from scripts import s4_anchor_evidence as s4  # noqa: E402
+22 | from scripts.s2_source_replay import TRAIN  # noqa: E402
+23 | from spatial_meta_ce.data import batch_samples  # noqa: E402
+   |                                                 ^^^^^^^^^^^^
+24 | from spatial_meta_ce.train import train  # noqa: E402
+25 | from test_s4_anchor_evidence import rows  # noqa: E402
+   |
+help: Remove unused `noqa` directive
+   |
+22 | from scripts.s2_source_replay import TRAIN  # noqa: E402
+   - from spatial_meta_ce.data import batch_samples  # noqa: E402
+23 + from spatial_meta_ce.data import batch_samples
+24 | from spatial_meta_ce.train import train  # noqa: E402
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+  --> tests/test_s6_pipeline.py:24:42
+   |
+22 | from scripts.s2_source_replay import TRAIN  # noqa: E402
+23 | from spatial_meta_ce.data import batch_samples  # noqa: E402
+24 | from spatial_meta_ce.train import train  # noqa: E402
+   |                                          ^^^^^^^^^^^^
+25 | from test_s4_anchor_evidence import rows  # noqa: E402
+26 | from test_s6_tail_evidence import preflight, record  # noqa: E402
+   |
+help: Remove unused `noqa` directive
+   |
+23 | from spatial_meta_ce.data import batch_samples  # noqa: E402
+   - from spatial_meta_ce.train import train  # noqa: E402
+24 + from spatial_meta_ce.train import train
+25 | from test_s4_anchor_evidence import rows  # noqa: E402
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+  --> tests/test_s6_pipeline.py:25:43
+   |
+23 | from spatial_meta_ce.data import batch_samples  # noqa: E402
+24 | from spatial_meta_ce.train import train  # noqa: E402
+25 | from test_s4_anchor_evidence import rows  # noqa: E402
+   |                                           ^^^^^^^^^^^^
+26 | from test_s6_tail_evidence import preflight, record  # noqa: E402
+   |
+help: Remove unused `noqa` directive
+   |
+24 | from spatial_meta_ce.train import train  # noqa: E402
+   - from test_s4_anchor_evidence import rows  # noqa: E402
+25 + from test_s4_anchor_evidence import rows
+26 | from test_s6_tail_evidence import preflight, record  # noqa: E402
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `E402`)
+  --> tests/test_s6_pipeline.py:26:54
+   |
+24 | from spatial_meta_ce.train import train  # noqa: E402
+25 | from test_s4_anchor_evidence import rows  # noqa: E402
+26 | from test_s6_tail_evidence import preflight, record  # noqa: E402
+   |                                                      ^^^^^^^^^^^^
+help: Remove unused `noqa` directive
+   |
+25 | from test_s4_anchor_evidence import rows  # noqa: E402
+   - from test_s6_tail_evidence import preflight, record  # noqa: E402
+26 + from test_s6_tail_evidence import preflight, record
+27 |
+   |
+
+RUF024 Do not pass mutable objects as values to `dict.fromkeys`
+   --> tests/test_s6_pipeline.py:391:19
+    |
+389 |       def test_preflight_checks_runtime_and_all_26_source_bindings(self) -> None:
+390 |           data = {"splits": s.load_plan()["splits"]}
+391 |           sources = dict.fromkeys(
+    |  ___________________^
+392 | |             data["splits"]["train"] + data["splits"]["validation"], {}
+393 | |         )
+    | |_________^
+394 |           with ExitStack() as stack:
+395 |               for obj, name, value in (
+    |
+help: Replace with comprehension
+
+C408 Unnecessary `dict()` call (rewrite as a literal)
+   --> tests/test_s6_pipeline.py:542:28
+    |
+540 |                     patch.object(s, "checked_path", side_effect=lambda _, path: path)
+541 |                 )
+542 |                 evidence = dict(sources={}, code_sha256={}, input_sha256={})
+    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+543 |                 pre = stack.enter_context(
+544 |                     patch.object(s, "preflight", return_value=(evidence, {}))
+    |
+help: Rewrite as a literal
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+  --> tests/test_s6_runner.py:32:9
+   |
+30 |                   with self.assertRaises(ValueError):
+31 |                       s.load_plan(p)
+32 | /         with patch.object(s, "file_hash", return_value="0" * 64):
+33 | |             with self.assertRaises(ValueError):
+   | |_______________________________________________^
+34 |                   s.load_plan()
+   |
+help: Combine `with` statements
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_s6_runner.py:85:9
+   |
+84 |       def test_loss_stores_only_training_caches(self):
+85 | /         import numpy as np
+86 | |         from unittest.mock import Mock
+   | |______________________________________^
+87 |
+88 |           p = s.load_plan()
+   |
+help: Organize imports
+   |
+84 |     def test_loss_stores_only_training_caches(self):
+   -         import numpy as np
+85 |         from unittest.mock import Mock
+86 |
+87 +         import numpy as np
+88 +
+89 |         p = s.load_plan()
+   |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_s6_tail_evidence.py:500:21
+    |
+498 |                           historical = {**historical, name: 10 + 0.01 / 3}
+499 |                       history = {"runs": [{"arm": "A_uniform", "endpoint": historical}]}
+500 | /                     with self.subTest(db=db, bucket=bucket, q=q):
+501 | |                         with self.assertRaisesRegex(ValueError, "reproduction_blocked"):
+    | |________________________________________________________________________________________^
+502 |                               s6.verify_baseline(a, history)
+503 |           with self.assertRaisesRegex(ValueError, "reproduction_blocked"):
+    |
+help: Combine `with` statements
+
+Found 110 errors.
+[*] 39 fixable with the `--fix` option (49 hidden fixes can be enabled with the `--unsafe-fixes` option).

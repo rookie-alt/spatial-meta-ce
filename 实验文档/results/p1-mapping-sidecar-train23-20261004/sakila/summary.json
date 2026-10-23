@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 48026,
+  "changed_unique_queries": 48026,
+  "unchanged_rows": 1974,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 1974,
+  "changed_fraction": 0.96052,
+  "sql_flags": {
+    "multiple_filters": 11253
+  },
+  "database": "sakila",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 296.3433767009992
+}

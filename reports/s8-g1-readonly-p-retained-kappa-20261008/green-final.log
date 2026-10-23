@@ -1,0 +1,23 @@
+test_anomalous_condition_number_does_not_falsely_pass (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_anomalous_condition_number_does_not_falsely_pass) ... ok
+test_bound_does_not_use_observed_residual (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_does_not_use_observed_residual) ... ok
+test_bound_is_insensitive_to_unretained_spectrum (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_is_insensitive_to_unretained_spectrum) ... ok
+test_bound_never_wider_than_frozen_cutoff_bound (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_never_wider_than_frozen_cutoff_bound) ... ok
+test_bound_signature_and_outputs_exclude_residual_inputs (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_signature_and_outputs_exclude_residual_inputs) ... ok
+test_bound_uses_real_retained_condition_number (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_uses_real_retained_condition_number) ... ok
+test_condition_number_anomaly_keeps_strict_unknown (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_condition_number_anomaly_keeps_strict_unknown) ... ok
+test_nonfinite_sigma_r_or_inputs_raise (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_nonfinite_sigma_r_or_inputs_raise) ... ok
+test_rank_zero_uses_engineering_floor (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_rank_zero_uses_engineering_floor) ... ok
+test_rcond_and_rank_definition_unchanged (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_rcond_and_rank_definition_unchanged) ... ok
+test_residual_at_new_bound_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_residual_at_new_bound_passes) ... ok
+test_residual_slightly_above_new_bound_still_fails (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_residual_slightly_above_new_bound_still_fails) ... ok
+test_sigma_r_at_or_below_frozen_cutoff_is_fail_closed (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_sigma_r_at_or_below_frozen_cutoff_is_fail_closed) ... ok
+test_strict_certificate_fields_preserved (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strict_certificate_fields_preserved) ... ok
+test_strongly_rank_deficient_pair_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strongly_rank_deficient_pair_passes) ... ok
+test_strongly_rank_deficient_panel_uses_wider_bound (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strongly_rank_deficient_panel_uses_wider_bound) ... ok
+test_well_conditioned_panel_still_passes_as_before (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_well_conditioned_panel_still_passes_as_before) ... ok
+test_well_conditioned_panel_uses_tight_bound_not_rcond (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_well_conditioned_panel_uses_tight_bound_not_rcond) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.005s
+
+OK

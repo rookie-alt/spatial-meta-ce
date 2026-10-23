@@ -1,0 +1,280 @@
+{
+  "database": "airline",
+  "role": "train",
+  "workload_rows": 50000,
+  "source_feature_rows": 50000,
+  "cache_rows": 50000,
+  "unique_queries": 50000,
+  "source_feature_fields": [
+    "data_features",
+    "n_fanouts",
+    "n_filter_cols",
+    "n_join_cols",
+    "n_tables",
+    "pg_est_cards",
+    "true_cards"
+  ],
+  "cache_manifest_fields": [
+    "content_hash",
+    "inspection",
+    "provenance",
+    "rows",
+    "schema",
+    "transform",
+    "unique_queries"
+  ],
+  "cache_row_fields": [
+    "exact_hash",
+    "id",
+    "query_hash",
+    "source_line"
+  ],
+  "cache_regenerated": false,
+  "input_hashes": {
+    "workload": "9e5f7b0f2443fc3c7851215b337168fcf073099748741cf3b3fae3126e0150e9",
+    "source_features": "aef2de10ec1dda5f8ba8d9a77f77e51da1a27857a5df9a03a958a04ea109ee79",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "62456a79bce7073d4e637144523a167d38f01b1e867dedf00938901b49f53ae2",
+    "statistics/fanout40.pkl": "2220c6cd77a38f8897499595502412cf8fbd162e273f0dbea60eb523f85b3a8a",
+    "statistics/histogram40.pkl": "31de826cf2e123c5077d261d809218423068c6cc64ab739cf8f3de03aba26f6f",
+    "statistics/size.pkl": "d64339cb7316cde88a43a82e1ea5f60b86cacff460de16248de91f396fa2eb4c",
+    "statistics/summary40.pkl": "7f4b26f8bda96ab710408b1e1193693f438b9142723c5c6af51d78ea5c713112"
+  },
+  "provenance_errors": [],
+  "inputs_unchanged": true,
+  "recreate_all_features": true,
+  "totals": {
+    "recreated_rows": 50000,
+    "checked_rows": 50000,
+    "rows_with_errors": 0,
+    "mapping_recoverable": 50000,
+    "sql_mapping_recoverable": 50000,
+    "rows_with_risk_flags": 13477
+  },
+  "sql_flags": {
+    "multiple_filters": 13477
+  },
+  "by_tables": {
+    "3": {
+      "rows": 12710,
+      "mapping_recoverable": 12710,
+      "sql_mapping_recoverable": 12710,
+      "errors": {}
+    },
+    "6": {
+      "rows": 4146,
+      "mapping_recoverable": 4146,
+      "sql_mapping_recoverable": 4146,
+      "errors": {}
+    },
+    "4": {
+      "rows": 15941,
+      "mapping_recoverable": 15941,
+      "sql_mapping_recoverable": 15941,
+      "errors": {}
+    },
+    "5": {
+      "rows": 11138,
+      "mapping_recoverable": 11138,
+      "sql_mapping_recoverable": 11138,
+      "errors": {}
+    },
+    "2": {
+      "rows": 5414,
+      "mapping_recoverable": 5414,
+      "sql_mapping_recoverable": 5414,
+      "errors": {}
+    },
+    "7": {
+      "rows": 651,
+      "mapping_recoverable": 651,
+      "sql_mapping_recoverable": 651,
+      "errors": {}
+    }
+  },
+  "by_predicate": {
+    "EQ": {
+      "rows": 50000,
+      "mapping_recoverable": 50000,
+      "sql_mapping_recoverable": 50000,
+      "errors": {}
+    },
+    "LT": {
+      "rows": 40336,
+      "mapping_recoverable": 40336,
+      "sql_mapping_recoverable": 40336,
+      "errors": {}
+    },
+    "GTE": {
+      "rows": 24106,
+      "mapping_recoverable": 24106,
+      "sql_mapping_recoverable": 24106,
+      "errors": {}
+    }
+  },
+  "by_flag": {
+    "no_risk_flag": {
+      "rows": 36523,
+      "mapping_recoverable": 36523,
+      "sql_mapping_recoverable": 36523,
+      "errors": {}
+    },
+    "multiple_filters": {
+      "rows": 13477,
+      "mapping_recoverable": 13477,
+      "sql_mapping_recoverable": 13477,
+      "errors": {}
+    }
+  },
+  "first_failures": [],
+  "mapping_examples": [
+    {
+      "query_hash": "4e241d387e8cc88d1cffd90e2d2660fb7457abae8cf2174529522e9dcd164adb",
+      "source_line": 1,
+      "tables": [
+        "al_ototp",
+        "al_wkd",
+        "al_wac"
+      ],
+      "table_names": [
+        "on_time_on_time_performance_2016_1",
+        "l_weekdays",
+        "l_world_area_codes"
+      ],
+      "join_columns": [
+        "al_ototp.dayofweek",
+        "al_ototp.originwac",
+        "al_wkd.code",
+        "al_wac.code"
+      ],
+      "filter_columns": [
+        "al_ototp.month",
+        "al_ototp.carrier",
+        "al_ototp.originairportid"
+      ],
+      "join_column_tables": [
+        0,
+        0,
+        1,
+        2
+      ],
+      "filter_column_tables": [
+        0,
+        0,
+        0
+      ],
+      "fanout_join_columns": [
+        0,
+        2,
+        1,
+        3
+      ],
+      "counts": [
+        4,
+        4,
+        3,
+        3
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ",
+        "LT"
+      ],
+      "mapping_recoverable": true
+    },
+    {
+      "query_hash": "bb09cfbee7e1d4670895f4128181f4914fdf860d83b4f7e866febe52ace65389",
+      "source_line": 2,
+      "tables": [
+        "al_ototp",
+        "al_qtr",
+        "al_wkd",
+        "al_apsi",
+        "al_odg",
+        "al_ali"
+      ],
+      "table_names": [
+        "on_time_on_time_performance_2016_1",
+        "l_quarters",
+        "l_weekdays",
+        "l_airport_seq_id",
+        "l_ontime_delay_groups",
+        "l_airline_id"
+      ],
+      "join_columns": [
+        "al_ototp.airlineid",
+        "al_ototp.arrivaldelaygroups",
+        "al_ototp.originairportseqid",
+        "al_ototp.quarter",
+        "al_ototp.dayofweek",
+        "al_qtr.code",
+        "al_wkd.code",
+        "al_apsi.code",
+        "al_odg.code",
+        "al_ali.code"
+      ],
+      "filter_columns": [
+        "al_ototp.cancelled",
+        "al_ototp.depdel15",
+        "al_ototp.uniquecarrier",
+        "al_ototp.destcitymarketid",
+        "al_ototp.wheelson",
+        "al_ototp.arrdelayminutes",
+        "al_ototp.taxiout"
+      ],
+      "join_column_tables": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "filter_column_tables": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fanout_join_columns": [
+        0,
+        9,
+        1,
+        8,
+        2,
+        7,
+        3,
+        5,
+        4,
+        6
+      ],
+      "counts": [
+        10,
+        10,
+        6,
+        7
+      ],
+      "flags": [
+        "multiple_filters"
+      ],
+      "predicate_types": [
+        "EQ",
+        "GTE",
+        "LT"
+      ],
+      "mapping_recoverable": true
+    }
+  ],
+  "seconds": 875.7226113080978,
+  "stored_alignment_passed": true,
+  "alignment_passed": true,
+  "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+  "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+}

@@ -1,0 +1,7 @@
+{
+  "database": "movielens",
+  "checked_rows": 50000,
+  "rows": 50000,
+  "seconds": 896.4882599029224,
+  "errors": 0
+}

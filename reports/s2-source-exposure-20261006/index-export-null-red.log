@@ -1,0 +1,31 @@
+test_ast_unbound_external_symbol_keeps_edges_without_file_hash (test_graph_build.GraphBuildTests.test_ast_unbound_external_symbol_keeps_edges_without_file_hash) ... [graphify] Extraction warning (2 issues): Node 1 (id='code_7640d89ae689b7ccea83d4bcc9222c8d') missing required field 'file_type'
+ERROR
+
+======================================================================
+ERROR: test_ast_unbound_external_symbol_keeps_edges_without_file_hash (test_graph_build.GraphBuildTests.test_ast_unbound_external_symbol_keeps_edges_without_file_hash)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/tests/test_graph_build.py", line 219, in test_ast_unbound_external_symbol_keeps_edges_without_file_hash
+    exported = build(root, Path(output), None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 587, in build
+    export_outputs(extraction, detection, out, root, capture)
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 450, in export_outputs
+    labels = label_communities(graph, communities)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 378, in label_communities
+    sources = Counter(
+              ^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/collections/__init__.py", line 599, in __init__
+    self.update(iterable, **kwds)
+  File "/opt/anaconda3/lib/python3.11/collections/__init__.py", line 690, in update
+    _count_elements(self, iterable)
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-ishizaka-0c8101/scripts/build_experiment_graph.py", line 379, in <genexpr>
+    graph.nodes[n].get("source_file", "").split("/")[0] for n in members
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'split'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.352s
+
+FAILED (errors=1)

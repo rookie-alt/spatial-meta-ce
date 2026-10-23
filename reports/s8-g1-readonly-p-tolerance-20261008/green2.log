@@ -1,0 +1,16 @@
+test_abnormal_condition_number_keeps_rank_stability_unknown (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_abnormal_condition_number_keeps_rank_stability_unknown) ... ok
+test_bound_is_derived_from_condition_number (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_is_derived_from_condition_number) ... ok
+test_bound_uses_only_fp64_reachable_precision_inputs (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_uses_only_fp64_reachable_precision_inputs) ... ok
+test_ill_conditioned_rank_deficient_pair_passes_with_new_bound (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_ill_conditioned_rank_deficient_pair_passes_with_new_bound) ... ok
+test_nonfinite_or_empty_inputs_raise (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_nonfinite_or_empty_inputs_raise) ... ok
+test_probe_rcond_and_rank_definition_unchanged (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_probe_rcond_and_rank_definition_unchanged) ... ok
+test_rank_zero_uses_engineering_floor (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_rank_zero_uses_engineering_floor) ... ok
+test_residual_at_new_bound_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_residual_at_new_bound_passes) ... ok
+test_residual_slightly_above_new_bound_still_fails (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_residual_slightly_above_new_bound_still_fails) ... ok
+test_strict_certificate_and_linear_optimality_fields_preserved (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strict_certificate_and_linear_optimality_fields_preserved) ... ok
+test_well_conditioned_bound_is_tight (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_well_conditioned_bound_is_tight) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.007s
+
+OK

@@ -1,0 +1,15 @@
+test_real_backend_version_family_and_origin_mismatch_stops (test_s8_readonly_p.ReadOnlyPTests.test_real_backend_version_family_and_origin_mismatch_stops) ... ERROR
+
+======================================================================
+ERROR: test_real_backend_version_family_and_origin_mismatch_stops (test_s8_readonly_p.ReadOnlyPTests.test_real_backend_version_family_and_origin_mismatch_stops)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 313, in test_real_backend_version_family_and_origin_mismatch_stops
+    ro.check_runtime_binding(contract, '1.26.1', '2.1.0+cu121', pools)
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.verify_s8_readonly_p' has no attribute 'check_runtime_binding'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+FAILED (errors=1)

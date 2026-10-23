@@ -1,0 +1,33 @@
+{
+  "database": "legalacts",
+  "status": "completed",
+  "source_rows": 50000,
+  "unique_queries": 49504,
+  "duplicate_groups": 496,
+  "mismatches": {},
+  "unsupported": {},
+  "legacy_flags": {
+    "multiple_filters": 8406
+  },
+  "by_tables": {
+    "4": 9298,
+    "3": 20571,
+    "2": 20131
+  },
+  "by_predicate": {
+    "EQ": 8228,
+    "EQ+GTE": 7882,
+    "EQ+LT": 24051,
+    "EQ+GTE+LT": 9839
+  },
+  "row_status": {
+    "parsed": 50000
+  },
+  "multiple_filters_cross_tab": {
+    "independent_multiple=0/legacy_multiple=0": 41594,
+    "independent_multiple=1/legacy_multiple=1": 8406
+  },
+  "mismatch_examples": [],
+  "parse_rows_file": "legalacts-parse_rows.jsonl",
+  "parse_rows_sha256": "15d0687442bb9b8007bc9dd75e85fb4bae8a7d06c251cc80bdb29f1fc281965b"
+}

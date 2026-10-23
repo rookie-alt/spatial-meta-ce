@@ -1,0 +1,31 @@
+Meta65 resumed GPU readiness check; recorded after SSH snapshot: 2026-10-11T11:06:13+08:00 (Asia/Shanghai).
+The timestamp comes from the local date command, not from nvidia-smi. This is a one-time snapshot, not continuous monitoring.
+Worktree HEAD before check: d9a1798884cda02c2895263b6f31af9fe301f0a8 (documentation-only successor to frozen ac893b65bcf078dff940fa30ebcff72c60bdc4c6).
+Local launch-binding SHA256: f7a2332d4e61518a340f3faf3c1ad08924660d92ec7739cb9914450cc42a3952.
+SSH alias: myserver. First sandboxed SSH attempt was denied (Operation not permitted); approved read-only SSH command exited 0.
+SSH command: set -e; timeout 10s nvidia-smi --query-gpu=index,uuid,memory.used,utilization.gpu --format=csv,noheader,nounits; echo COMPUTE_PROCESSES; timeout 10s nvidia-smi --query-compute-apps=gpu_uuid,pid,used_memory --format=csv,noheader,nounits
+
+GPU query stdout (index, UUID, memory.used MiB, utilization.gpu percent):
+0, GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d, 21533, 96
+1, GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed, 6338, 55
+2, GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7, 6462, 74
+3, GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d, 10436, 81
+4, GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f, 6324, 70
+5, GPU-9c97317f-e01f-4906-7d6d-a2875e6ed792, 7356, 54
+6, GPU-0050e82c-8c24-d85d-00d3-b73f12638df0, 10502, 72
+7, GPU-42e7d4ca-13de-5dfe-e7f3-6c6b232c5b1f, 7496, 52
+COMPUTE_PROCESSES
+GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d, 43423, 10956
+GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d, 20191, 10568
+GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed, 95912, 6332
+GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7, 59679, 6456
+GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d, 97614, 10430
+GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f, 41070, 6318
+GPU-9c97317f-e01f-4906-7d6d-a2875e6ed792, 15360, 7350
+GPU-0050e82c-8c24-d85d-00d3-b73f12638df0, 53180, 10496
+GPU-42e7d4ca-13de-5dfe-e7f3-6c6b232c5b1f, 10087, 7490
+
+Decision: blocked_no_idle_gpu. All eight GPUs exceed 100 MiB, have nonzero utilization and at least one compute process.
+No GPU selected; no approval created/consumed, formal worker/supervisor or new run directory started, and no automatic retry.
+Live full plan/checkpoint/cache and remote code were not recertified on this attempt because the earlier GPU stop gate failed.
+Formal 135-cell matrix: 0 cells, 0 diagonal anchors; no formal result or resource peak telemetry.

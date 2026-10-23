@@ -1,0 +1,124 @@
+{
+  "verification": "passed",
+  "checked225": 225,
+  "scope": "completed_source_endpoint_matrix_after_old_timeout; not retroactive old run success",
+  "macros": {
+    "A_all5_head3": {
+      "macro_four_plus_q95": 44.49797889568323,
+      "macro_all_q95": 27.6412515416902,
+      "macro_mean_log_q95": 3.1426745841885455,
+      "macro_all_mean_log_q95": 2.840111568588129
+    },
+    "B_head3_head3": {
+      "macro_four_plus_q95": 39.000403352286426,
+      "macro_all_q95": 26.70770356013436,
+      "macro_mean_log_q95": 3.121384093282162,
+      "macro_all_mean_log_q95": 2.838795990758217
+    },
+    "C_last3_last3": {
+      "macro_four_plus_q95": 39.01038305004801,
+      "macro_all_q95": 26.342702985183273,
+      "macro_mean_log_q95": 3.1264204592460825,
+      "macro_all_mean_log_q95": 2.7902174025912236
+    }
+  },
+  "gates": {
+    "B_head3_head3": {
+      "improvement_gate": true,
+      "regressions": [
+        {
+          "database": "telstra",
+          "k": 5,
+          "metric": "all_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 5,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 50,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 100,
+          "metric": "four_plus_q95"
+        }
+      ],
+      "eligible": false
+    },
+    "C_last3_last3": {
+      "improvement_gate": true,
+      "regressions": [
+        {
+          "database": "telstra",
+          "k": 5,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 10,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 20,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 50,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 100,
+          "metric": "four_plus_q95"
+        }
+      ],
+      "eligible": false
+    }
+  },
+  "decision": {
+    "status": "no_candidate",
+    "selected_arm": null,
+    "candidates": []
+  },
+  "verified_counts": {
+    "source_databases": 26,
+    "source_rows": 1300000,
+    "cache_databases_loaded": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "prediction_sha256_bound": 225,
+    "unique_prediction_sha256": 225,
+    "checkpoint_sha256_bound": 3,
+    "retained_input_sha256_bound": 15,
+    "code_sha256_bound": 17,
+    "evidence_files_sha256_bound": 310
+  },
+  "config_sha256": "dab251f10cb37dc3001159fe5672a878badbb2ec1c04e03e49cbd5c60d258bd8",
+  "endpoint_plan_digest": "46d6bce098ab97cf3e442b98495f0321732319fdb26be54265af8ef1d7138b68",
+  "verification_seconds": 109.51349927601404,
+  "limits": {
+    "csv_rtol": 1e-12,
+    "csv_atol": 1e-12,
+    "new_training_updates": 0,
+    "stage_elapsed_seconds_before_verification": 1034.2571257629897,
+    "timeout_seconds": 3000,
+    "checkpoint_deserialized": false,
+    "raw_predictions_unclipped": true,
+    "query_rows_filtered": 0,
+    "targets_loaded": false,
+    "parent_supervisor_exit_checked": false,
+    "source26_hashes_are_records_not_full_cache_rehash": true,
+    "training_metadata_and_model_unchanged_are_hash_bound_records": true,
+    "C_initialization_digest_source": "authenticated_shared_A_training_record",
+    "C_initial_parameter_hash_recomputed": false,
+    "not_significance_target_generalization_or_PRICE_superiority": true
+  }
+}

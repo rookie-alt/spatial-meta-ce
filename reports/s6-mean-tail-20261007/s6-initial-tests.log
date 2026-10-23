@@ -1,0 +1,68 @@
+test_a_actual_legacy_loss_and_model_state_equivalence (test_s6_loss.S6TrainingTests.test_a_actual_legacy_loss_and_model_state_equivalence) ... {"step": 1, "train_loss": 3.364321708679199, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.328742742538452, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.364321708679199, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.328742742538452, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+ok
+test_a_ignores_helper_objective_and_audits_actual_loss (test_s6_loss.S6TrainingTests.test_a_ignores_helper_objective_and_audits_actual_loss) ... {"step": 1, "train_loss": 3.364321708679199, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.328742742538452, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+ok
+test_audit_snapshots_independent_reconstruction_and_counts (test_s6_loss.S6TrainingTests.test_audit_snapshots_independent_reconstruction_and_counts) ... {"step": 1, "train_loss": 3.364321708679199, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.328742742538452, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.7036197185516357, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.685289978981018, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+ok
+test_b_uses_helper_objective_for_backward (test_s6_loss.S6TrainingTests.test_b_uses_helper_objective_for_backward) ... {"step": 1, "train_loss": 3.7036197185516357, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.685289978981018, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+ok
+test_real_validation_adaptation_uses_legacy_loss_only (test_s6_loss.S6TrainingTests.test_real_validation_adaptation_uses_legacy_loss_only) ... {"step": 1, "train_loss": 3.7036197185516357, "validation_macro_log_q95": 4.541152825144719, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.685289978981018, "validation_macro_log_q95": 4.533836593417119, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+ok
+test_restrictions_and_no_resume_before_side_effects (test_s6_loss.S6TrainingTests.test_restrictions_and_no_resume_before_side_effects) ... ok
+test_capture_append_mass_directions_and_non_snapshot (test_s6_loss.TailTermsTests.test_capture_append_mass_directions_and_non_snapshot) ... ok
+test_fixed_snapshot_selection_4000 (test_s6_loss.TailTermsTests.test_fixed_snapshot_selection_4000) ... ok
+test_fp32_coefficients_independent_of_default_dtype (test_s6_loss.TailTermsTests.test_fp32_coefficients_independent_of_default_dtype) ... ok
+test_invalid_inputs_modes_and_overflow (test_s6_loss.TailTermsTests.test_invalid_inputs_modes_and_overflow) ... ok
+test_mean_matches_original_and_rng_unchanged (test_s6_loss.TailTermsTests.test_mean_matches_original_and_rng_unchanged) ... ok
+test_mixed_hand_gradient_and_detached_coefficients (test_s6_loss.TailTermsTests.test_mixed_hand_gradient_and_detached_coefficients) ... ok
+test_threshold_ties_permutation_and_all_equal (test_s6_loss.TailTermsTests.test_threshold_ties_permutation_and_all_equal) ... ok
+test_underflow_and_threshold_neighbours (test_s6_loss.TailTermsTests.test_underflow_and_threshold_neighbours) ... ok
+test_actual_fp32_zero_ties_and_threshold_neighbors (test_s6_loss_verify.LossEvidenceTests.test_actual_fp32_zero_ties_and_threshold_neighbors) ... ok
+test_audit_and_snapshot_order_coverage (test_s6_loss_verify.LossEvidenceTests.test_audit_and_snapshot_order_coverage) ... ok
+test_cache_label_and_unique_drift (test_s6_loss_verify.LossEvidenceTests.test_cache_label_and_unique_drift) ... ok
+test_complete_synthetic_formal_replay_rejects_historical_claim (test_s6_loss_verify.LossEvidenceTests.test_complete_synthetic_formal_replay_rejects_historical_claim) ... ok
+test_exact_replay_and_audit_invariants (test_s6_loss_verify.LossEvidenceTests.test_exact_replay_and_audit_invariants) ... ok
+test_formal_cannot_claim_historical_digest_from_small_pool (test_s6_loss_verify.LossEvidenceTests.test_formal_cannot_claim_historical_digest_from_small_pool) ... ok
+test_invalid_config_types_and_nonfinite_evidence (test_s6_loss_verify.LossEvidenceTests.test_invalid_config_types_and_nonfinite_evidence) ... ok
+test_parent_passed_and_unknown_schema_not_trusted (test_s6_loss_verify.LossEvidenceTests.test_parent_passed_and_unknown_schema_not_trusted) ... ok
+test_recorded_reduction_must_be_actual_fp32 (test_s6_loss_verify.LossEvidenceTests.test_recorded_reduction_must_be_actual_fp32) ... ok
+test_small_configs_not_bound_to_formal_budget (test_s6_loss_verify.LossEvidenceTests.test_small_configs_not_bound_to_formal_budget) ... ok
+test_smoke_and_mass_conservation (test_s6_loss_verify.LossEvidenceTests.test_smoke_and_mass_conservation) ... ok
+test_snapshot_audit_boolean_alias_cannot_match_integer (test_s6_loss_verify.LossEvidenceTests.test_snapshot_audit_boolean_alias_cannot_match_integer) ... ok
+test_snapshot_identity_roles_and_missing_support (test_s6_loss_verify.LossEvidenceTests.test_snapshot_identity_roles_and_missing_support) ... ok
+test_snapshot_numeric_tampering (test_s6_loss_verify.LossEvidenceTests.test_snapshot_numeric_tampering) ... ok
+test_incomplete_outputs_and_expired_deadline (test_s6_runner.S6RunnerTests.test_incomplete_outputs_and_expired_deadline) ... ok
+test_loss_stores_only_training_caches (test_s6_runner.S6RunnerTests.test_loss_stores_only_training_caches) ... ok
+test_matrix_and_protocol_tampering (test_s6_runner.S6RunnerTests.test_matrix_and_protocol_tampering) ... ok
+test_plan_only_changes_reduction (test_s6_runner.S6RunnerTests.test_plan_only_changes_reduction) ... ok
+test_source_mismatch_blocks_before_forward (test_s6_runner.S6RunnerTests.test_source_mismatch_blocks_before_forward) ... ok
+test_worker_owner_required_before_preflight (test_s6_runner.S6RunnerTests.test_worker_owner_required_before_preflight) ... ok
+test_bad_arm_config_sha_and_evidence (test_s6_tail_evidence.Gates.test_bad_arm_config_sha_and_evidence) ... ok
+test_baseline (test_s6_tail_evidence.Gates.test_baseline) ... ok
+test_counts_gradients_and_rows_fail_closed (test_s6_tail_evidence.Gates.test_counts_gradients_and_rows_fail_closed) ... ok
+test_pair_scale_and_initial_endpoint (test_s6_tail_evidence.Gates.test_pair_scale_and_initial_endpoint) ... ok
+test_threshold_boundaries_and_mandatory (test_s6_tail_evidence.Gates.test_threshold_boundaries_and_mandatory) ... ok
+test_valid_formal_and_smoke (test_s6_tail_evidence.Gates.test_valid_formal_and_smoke) ... ok
+test_baseline_all_fourteen_metrics_and_tolerance (test_s6_tail_evidence.LossAuthentication.test_baseline_all_fourteen_metrics_and_tolerance) ... ok
+test_initialization_identity_and_flow_must_match (test_s6_tail_evidence.LossAuthentication.test_initialization_identity_and_flow_must_match) ... ok
+test_loss_verification_exact_counts_mode_hashes (test_s6_tail_evidence.LossAuthentication.test_loss_verification_exact_counts_mode_hashes) ... ok
+test_missing_evidence_blocks_selection (test_s6_tail_evidence.LossAuthentication.test_missing_evidence_blocks_selection) ... ok
+test_pair_loss_tracks_may_differ (test_s6_tail_evidence.LossAuthentication.test_pair_loss_tracks_may_differ) ... ok
+test_q50_guard_independent_of_q95 (test_s6_tail_evidence.LossAuthentication.test_q50_guard_independent_of_q95) ... ok
+test_s5_weight_and_quantization_fields_forbidden (test_s6_tail_evidence.LossAuthentication.test_s5_weight_and_quantization_fields_forbidden) ... ok
+test_smoke_purpose_and_snapshot_budget (test_s6_tail_evidence.LossAuthentication.test_smoke_purpose_and_snapshot_budget) ... ok
+test_summary_loss_counts_and_mode (test_s6_tail_evidence.LossAuthentication.test_summary_loss_counts_and_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 7.563s
+
+OK

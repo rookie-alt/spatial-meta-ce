@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "purpose": "independent-math-quantile-and-identity-verification",
+  "sample_queries": 94208,
+  "cohorts": 46,
+  "role_exposure_verified": true,
+  "role_presentations": {
+    "support": 597915,
+    "query": 1024000
+  },
+  "verified_statistic_cells": 1504,
+  "tail_partition_unique": 9178,
+  "s6_decision": "no_candidate",
+  "causal_explanation_verified": false,
+  "recheck_only": true,
+  "training": false,
+  "inference": false,
+  "adaptation": false,
+  "target_data_read": false,
+  "device": "cpu",
+  "historical_files_rehashed_before_and_after": 210,
+  "inputs_unchanged": true,
+  "historical_code_unchanged": true,
+  "verifier_sha256": "0cdb02e1b899e155f04ff3bd68749fb5dd2926f3ad48328005a060a91f90527b",
+  "seconds": 45.64077990385704,
+  "sample_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+  "memory_limit_bytes": 8589934592,
+  "timeout_seconds": 300
+}

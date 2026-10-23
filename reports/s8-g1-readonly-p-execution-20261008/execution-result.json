@@ -1,0 +1,142 @@
+{
+  "date": "2026-10-08",
+  "status": "failed_before_saved_P_read",
+  "single_frozen_entrypoint_attempts": 1,
+  "retried_or_resumed": false,
+  "preparation_commit": "3047494f3a301bf78d56f71bf0873fe7e289f96b",
+  "package_archive_sha256": "39ee9efcdaecd0cb5e71aa6d03009b5a78aa5b1cf8dfa8cf763ad2153282d23c",
+  "contract_sha256": "5d1ea6f4c9cd0f061f3db9ad5d9d7a88485485a88a169c213ddd7a25ed7e8650",
+  "server_connected": true,
+  "new_isolated_package_deployed": true,
+  "deployment_and_runtime_preflight": "passed",
+  "single_entrypoint_invoked": true,
+  "actual_P_verification_completed": false,
+  "real_saved_P_array_read": false,
+  "read_boundary_evidence": "worker_argparse_exit_in_verify_worker_handshake_before_worker()_before_check_saved_p(); proof.input_paths_empty; no_OS_syscall_trace_claim",
+  "eight_old_run_files_read": [],
+  "old_array_or_metadata_SHA_rechecked_in_this_execution": false,
+  "failure_stage": "parent_child_contract_argument_binding",
+  "error": "Supervisor arguments do not bind this worker",
+  "root_cause": "frozen_36_command_parent_contract_relative; child_argv_contract_absolute; handshake_compares_parent_raw_string_to_child_absolute_string",
+  "SSH_returncode": 1,
+  "outer_timeout_returncode": 1,
+  "parent_checker_returncode": 1,
+  "child_returncode": 2,
+  "child_signal": null,
+  "wall": {
+    "supervised_child_seconds": 0.15128966281190515,
+    "local_shell_transport_wall_seconds_rounded": 0,
+    "outer_TERM_seconds": 899,
+    "outer_KILL_grace_seconds": 1,
+    "child_limit_seconds": 900,
+    "deadline_reached": false,
+    "end_to_end_subsecond_precision_available": false
+  },
+  "resources": {
+    "threads_limit": 4,
+    "CUDA_VISIBLE_DEVICES": "",
+    "preflight_cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "RLIMIT_AS_soft_hard_bytes": [
+      12884901888,
+      12884901888
+    ],
+    "child_sampled_peak_RSS_bytes": 20320256,
+    "child_sampled_peak_address_space_bytes": 107446272,
+    "RSS_measurement": "0.05s_sampling_not_hard_cap; AS_is_virtual_address_space_not_RSS",
+    "worker_ru_maxrss": "not_run_or_unavailable_before_worker_runtime",
+    "runtime_preflight_peak_RSS_not_checker_RSS": 352546816,
+    "parent_limits_verified_by_frozen_install_resource_limits": "returned_without_failure_before_spawn",
+    "child_limits_inheritance_scope": "Linux_inheritance_and_parent_affinity; worker_runtime_independent_measurement_not_run"
+  },
+  "panels": {
+    "h": {
+      "small_P_zero_reference": {
+        "status": "not_run",
+        "engineering_verified": null,
+        "rank_stability": "not_run",
+        "strict_certificate": {
+          "status": "unknown"
+        },
+        "full_linear_optimality_verified": false
+      },
+      "full_P_resource": {
+        "status": "not_run",
+        "engineering_verified": null,
+        "rank_stability": "not_run",
+        "strict_certificate": {
+          "status": "unknown"
+        },
+        "full_linear_optimality_verified": false
+      }
+    },
+    "x": {
+      "small_P_zero_reference": {
+        "status": "not_run",
+        "engineering_verified": null,
+        "rank_stability": "not_run",
+        "strict_certificate": {
+          "status": "unknown"
+        },
+        "full_linear_optimality_verified": false
+      },
+      "full_P_resource": {
+        "status": "not_run",
+        "engineering_verified": null,
+        "rank_stability": "not_run",
+        "strict_certificate": {
+          "status": "unknown"
+        },
+        "full_linear_optimality_verified": false
+      }
+    }
+  },
+  "original_G1_status": "failed",
+  "formal_ready": false,
+  "strict_certificate": "unknown",
+  "can_retroactively_pass_original_G1": false,
+  "identity_scope": "historical_SHA_bound_attestation_only; fresh_row_query_hash_historical_normalizer_SQL_selectivity_not_revalidated",
+  "original_inputs_unchanged_field": false,
+  "original_inputs_unchanged_interpretation": "input_certification_not_executed; not_evidence_of_changed_original_bytes",
+  "deployed_code_unchanged_after_attempt": true,
+  "recovered_proof_log_files_match_server_SHA": true,
+  "stage_numeric_certificates_written": 0,
+  "worker_access_log_present": false,
+  "worker_runtime_json_present": false,
+  "record_integrity_review": "independently_accepted_as_failed_startup_record_not_A_pass",
+  "independent_numeric_recompute": false,
+  "H_read": false,
+  "target_read": false,
+  "old_checkpoint_read": false,
+  "training_state_read": false,
+  "F0_updates": 0,
+  "Adam_updates": 0,
+  "GPU_task_started": false,
+  "B_smoke_started": false,
+  "formal_S8_started": false,
+  "eligible_to_request_B_now": false,
+  "suggested_minimal_next_scope": "separately_review_and_freeze_relative_absolute_handshake_invocation_fix_with_Linux_positive_negative_test_and_new_isolated_paths; no_numeric_changes_or_automatic_retry",
+  "server_paths": {
+    "package": "/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-code-20261007",
+    "new_proof": "/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-proof-20261007"
+  },
+  "pushed_this_task": false,
+  "merged_main": false,
+  "raw_new_proof_sha256": {
+    "execution-contract.json": "5d1ea6f4c9cd0f061f3db9ad5d9d7a88485485a88a169c213ddd7a25ed7e8650",
+    "proof.json": "99d088474e0d35a3f5fb3510bc0f09c6cf1d27ae08dd56545a4baf212925a6da",
+    "stderr.log": "0d999801aacfad578367a3abfb9645984b693e985ce6d04b2ec39c859623f968",
+    "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "supervisor.json": "be5e36c039e4a8aa640be4e11b52e947f72c8fee018a038361a0972162006b2d"
+  },
+  "independent_record_review": "independent-record-review.md",
+  "remaining_execution_blockers": [
+    "relative_absolute_contract_argument_handshake_mismatch"
+  ],
+  "single_execution_authorization_consumed": true,
+  "git_status": "pre_commit_execution_evidence_snapshot_ready_for_local_archiving"
+}

@@ -1,0 +1,283 @@
+{
+  "purpose": "bounded-local-synthetic-rank-and-cost-review-only",
+  "numpy_version": "1.26.4",
+  "python_executable": "/opt/anaconda3/bin/python",
+  "threadpools": [
+    {
+      "filepath": "/opt/anaconda3/lib/libopenblasp-r0.3.21.dylib",
+      "prefix": "libopenblas",
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "version": "0.3.21",
+      "num_threads": 1,
+      "threading_layer": "pthreads",
+      "architecture": "Nehalem"
+    },
+    {
+      "filepath": "/opt/anaconda3/lib/libomp.dylib",
+      "prefix": "libomp",
+      "user_api": "openmp",
+      "internal_api": "openmp",
+      "version": null,
+      "num_threads": 1
+    }
+  ],
+  "elapsed_seconds_excluding_imports": 0.12072879198240116,
+  "process_maxrss_bytes_including_imports_and_all_cases": 201052160,
+  "exact_dimension_records": [
+    {
+      "dimension": 1216,
+      "gamma": 2.7000623958891097e-13,
+      "gamma_over_rcond": 0.27000623958891096,
+      "zero_tail_can_be_stably_discarded": true,
+      "fullrank_minimum_ratio_required": 1.270006239589181e-12
+    },
+    {
+      "dimension": 4503,
+      "gamma": 9.998668559784156e-13,
+      "gamma_over_rcond": 0.9998668559784157,
+      "zero_tail_can_be_stably_discarded": true,
+      "fullrank_minimum_ratio_required": 1.9998668559794155e-12
+    },
+    {
+      "dimension": 4504,
+      "gamma": 1.0000889005833413e-12,
+      "gamma_over_rcond": 1.000088900583341,
+      "zero_tail_can_be_stably_discarded": false,
+      "fullrank_minimum_ratio_required": 2.0000889005843413e-12
+    },
+    {
+      "dimension": 19456,
+      "gamma": 4.320099833440072e-12,
+      "gamma_over_rcond": 4.320099833440072,
+      "zero_tail_can_be_stably_discarded": false,
+      "fullrank_minimum_ratio_required": 5.320099833444392e-12
+    }
+  ],
+  "full_P_protocol_shape_costs": [
+    {
+      "rows": 19456,
+      "columns": 65,
+      "A_bytes": 10117120,
+      "U_bytes": 10117120,
+      "Vh_bytes": 33800,
+      "Gram_bytes": 33800,
+      "backend_GEMM_scalar_flops": 329355650,
+      "standard_pair_factorizations": 3,
+      "certification_factorizations": 2,
+      "peak_RSS_bound": null,
+      "full_P_or_server_time_estimate": null
+    },
+    {
+      "rows": 19456,
+      "columns": 775,
+      "A_bytes": 120627200,
+      "U_bytes": 120627200,
+      "Vh_bytes": 4805000,
+      "Gram_bytes": 4805000,
+      "backend_GEMM_scalar_flops": 47674008750,
+      "standard_pair_factorizations": 3,
+      "certification_factorizations": 2,
+      "peak_RSS_bound": null,
+      "full_P_or_server_time_estimate": null
+    }
+  ],
+  "synthetic_cases": [
+    {
+      "case": "exact_rank_one_4503x2",
+      "purpose": "synthetic-only-not-research-not-real-full-P",
+      "shape": [
+        4503,
+        2
+      ],
+      "dtype": "float64",
+      "input_bytes": 72048,
+      "wall_seconds": 0.0051857089856639504,
+      "factorizations": [
+        {
+          "kind": "lstsq",
+          "seconds": 0.0004461670177988708
+        },
+        {
+          "kind": "svd",
+          "seconds": 0.0014028330333530903
+        },
+        {
+          "kind": "lstsq",
+          "seconds": 0.0003977079759351909
+        }
+      ],
+      "inferred_rank": 1,
+      "certificate_pass": true,
+      "rank_stability": "stable",
+      "spectrum_gamma": 9.998668559784156e-13,
+      "backend_pass": true,
+      "timing_is_not_full_P_or_server_ETA": true,
+      "stored_matrix_algebraic_rank_exact": 1
+    },
+    {
+      "case": "exact_rank_one_4504x2",
+      "purpose": "synthetic-only-not-research-not-real-full-P",
+      "shape": [
+        4504,
+        2
+      ],
+      "dtype": "float64",
+      "input_bytes": 72064,
+      "wall_seconds": 0.0018078749999403954,
+      "factorizations": [
+        {
+          "kind": "lstsq",
+          "seconds": 0.00036108301719650626
+        },
+        {
+          "kind": "svd",
+          "seconds": 0.0003655410255305469
+        },
+        {
+          "kind": "lstsq",
+          "seconds": 0.0003666250267997384
+        }
+      ],
+      "inferred_rank": 1,
+      "certificate_pass": false,
+      "rank_stability": "unknown",
+      "spectrum_gamma": 1.0000889005833413e-12,
+      "backend_pass": true,
+      "timing_is_not_full_P_or_server_ETA": true,
+      "stored_matrix_algebraic_rank_exact": 1
+    },
+    {
+      "case": "exact_rank_one_19456x2",
+      "purpose": "synthetic-only-not-research-not-real-full-P",
+      "shape": [
+        19456,
+        2
+      ],
+      "dtype": "float64",
+      "input_bytes": 311296,
+      "wall_seconds": 0.0076112920069135725,
+      "factorizations": [
+        {
+          "kind": "lstsq",
+          "seconds": 0.0016910000122152269
+        },
+        {
+          "kind": "svd",
+          "seconds": 0.001687042007688433
+        },
+        {
+          "kind": "lstsq",
+          "seconds": 0.0015512910322286189
+        }
+      ],
+      "inferred_rank": 1,
+      "certificate_pass": false,
+      "rank_stability": "unknown",
+      "spectrum_gamma": 4.320099833440072e-12,
+      "backend_pass": true,
+      "timing_is_not_full_P_or_server_ETA": true,
+      "stored_matrix_algebraic_rank_exact": 1
+    },
+    {
+      "case": "dense_DCT_synthetic_512x65",
+      "purpose": "synthetic-only-not-research-not-real-full-P",
+      "shape": [
+        512,
+        65
+      ],
+      "dtype": "float64",
+      "input_bytes": 266240,
+      "wall_seconds": 0.015536457998678088,
+      "factorizations": [
+        {
+          "kind": "lstsq",
+          "seconds": 0.005359291972126812
+        },
+        {
+          "kind": "svd",
+          "seconds": 0.005019416974391788
+        },
+        {
+          "kind": "lstsq",
+          "seconds": 0.003978207998443395
+        }
+      ],
+      "inferred_rank": 64,
+      "certificate_pass": true,
+      "rank_stability": "stable",
+      "spectrum_gamma": 1.1368683772162895e-13,
+      "backend_pass": true,
+      "timing_is_not_full_P_or_server_ETA": true
+    },
+    {
+      "case": "dense_DCT_synthetic_1024x65",
+      "purpose": "synthetic-only-not-research-not-real-full-P",
+      "shape": [
+        1024,
+        65
+      ],
+      "dtype": "float64",
+      "input_bytes": 532480,
+      "wall_seconds": 0.024021250021178275,
+      "factorizations": [
+        {
+          "kind": "lstsq",
+          "seconds": 0.006884833972435445
+        },
+        {
+          "kind": "svd",
+          "seconds": 0.008287792035844177
+        },
+        {
+          "kind": "lstsq",
+          "seconds": 0.006601208006031811
+        }
+      ],
+      "inferred_rank": 64,
+      "certificate_pass": true,
+      "rank_stability": "stable",
+      "spectrum_gamma": 2.2737367544328376e-13,
+      "backend_pass": true,
+      "timing_is_not_full_P_or_server_ETA": true
+    },
+    {
+      "case": "dense_DCT_synthetic_2048x65",
+      "purpose": "synthetic-only-not-research-not-real-full-P",
+      "shape": [
+        2048,
+        65
+      ],
+      "dtype": "float64",
+      "input_bytes": 1064960,
+      "wall_seconds": 0.04330304195173085,
+      "factorizations": [
+        {
+          "kind": "lstsq",
+          "seconds": 0.011888750013895333
+        },
+        {
+          "kind": "svd",
+          "seconds": 0.014895500033162534
+        },
+        {
+          "kind": "lstsq",
+          "seconds": 0.012311375001445413
+        }
+      ],
+      "inferred_rank": 64,
+      "certificate_pass": true,
+      "rank_stability": "stable",
+      "spectrum_gamma": 4.547473508866709e-13,
+      "backend_pass": true,
+      "timing_is_not_full_P_or_server_ETA": true
+    }
+  ],
+  "server_access": false,
+  "real_P_read": false,
+  "GPU_used": false,
+  "optimizer_updates": 0,
+  "smoke_restarted": false,
+  "formal_ready": false,
+  "original_G1_status": "failed"
+}

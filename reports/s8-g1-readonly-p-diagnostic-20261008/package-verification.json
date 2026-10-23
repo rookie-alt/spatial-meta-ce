@@ -1,0 +1,10 @@
+{
+  "archive_members": 8,
+  "all_source_test_contract_archive_SHA_match": true,
+  "all_members_safe_regular_relative": true,
+  "prior_handshake_archive_unchanged": true,
+  "protected_88_files_unchanged": true,
+  "gate_or_threshold_changed": false,
+  "real_P_read": false,
+  "check_scope": "primary_local_freeze_not_independent_review"
+}

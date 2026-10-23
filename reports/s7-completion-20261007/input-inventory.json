@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-10-07T14:45:43.873694+08:00",
+  "scope": "authorized project/source directory metadata only; no target labels or database query read",
+  "roots": {
+    "/gly/weilin/PRICE-master/setup": {
+      "exists": true,
+      "is_directory": true,
+      "entries": [
+        "__init__.py",
+        "__pycache__",
+        "features",
+        "features_generate.py",
+        "features_log",
+        "features_tool.py",
+        "generate.sh"
+      ],
+      "entry_count": 7
+    },
+    "/gly/weilin/PRICE-master/data": {
+      "exists": false
+    },
+    "/gly/weilin/PRICE-master/datasets": {
+      "exists": false
+    },
+    "/gly/weilin/spatial-meta-ce/data": {
+      "exists": false
+    },
+    "/gly/weilin/spatial-meta-ce/artifacts/cache/finetune/imdb": {
+      "exists": false
+    }
+  },
+  "imdb_related_directories": [
+    {
+      "path": "/gly/weilin/PRICE-master/setup/features/test/imdb",
+      "exists": true,
+      "is_directory": true,
+      "entries": [
+        "features40.pkl"
+      ],
+      "entry_count": 1
+    }
+  ],
+  "psql_available": false,
+  "pg_ctl_available": false,
+  "postgresql_socket_present": false,
+  "connection_environment_present": false,
+  "authenticated_source_snapshot_identified": false,
+  "historical_lineage_authenticated": false,
+  "training": false,
+  "inference": false,
+  "database_count": false,
+  "limitation": "Availability metadata cannot prove inputs are absent elsewhere or authenticate a same-version snapshot; no fallback/exclusion used."
+}

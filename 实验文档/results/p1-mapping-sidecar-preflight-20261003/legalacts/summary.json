@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 49504,
+  "duplicate_rows": 496,
+  "changed_rows": 39468,
+  "changed_unique_queries": 39062,
+  "unchanged_rows": 10532,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 10532,
+  "changed_fraction": 0.78936,
+  "sql_flags": {
+    "multiple_filters": 8406
+  },
+  "database": "legalacts",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 211.83209520298988
+}

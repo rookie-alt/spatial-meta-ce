@@ -1,0 +1,1 @@
+{"step": 2, "train_loss": 0.501577615737915, "validation_macro_log_q95": 3.1476751175613673, "counts": {"support_presentations": 780, "query_presentations": 512, "backward_calls": 32, "optimizer_steps": 2}}

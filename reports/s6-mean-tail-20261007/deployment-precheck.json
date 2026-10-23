@@ -1,0 +1,8 @@
+{
+  "checked": 67,
+  "conflicts": [],
+  "active_project_processes": [],
+  "observed_at": "2026-10-07T04:01:55.383098+00:00",
+  "gpu": "0, GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d, 1, 0\n1, GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed, 1, 0\n2, GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7, 1, 0\n3, GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d, 1, 0\n4, GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f, 1, 0\n5, GPU-9c97317f-e01f-4906-7d6d-a2875e6ed792, 1, 0\n6, GPU-0050e82c-8c24-d85d-00d3-b73f12638df0, 1, 0\n7, GPU-42e7d4ca-13de-5dfe-e7f3-6c6b232c5b1f, 1, 0\n",
+  "gpu_apps": ""
+}

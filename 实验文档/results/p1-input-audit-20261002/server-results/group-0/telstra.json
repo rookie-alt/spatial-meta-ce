@@ -1,0 +1,235 @@
+{
+  "database": "telstra",
+  "role": "validation",
+  "workload_rows": 50000,
+  "source_feature_rows": 50000,
+  "cache_rows": 50000,
+  "unique_queries": 50000,
+  "source_feature_fields": [
+    "data_features",
+    "n_fanouts",
+    "n_filter_cols",
+    "n_join_cols",
+    "n_tables",
+    "pg_est_cards",
+    "true_cards"
+  ],
+  "cache_manifest_fields": [
+    "content_hash",
+    "inspection",
+    "provenance",
+    "rows",
+    "schema",
+    "transform",
+    "unique_queries"
+  ],
+  "cache_row_fields": [
+    "exact_hash",
+    "id",
+    "query_hash",
+    "source_line"
+  ],
+  "cache_regenerated": false,
+  "input_hashes": {
+    "workload": "019b3755d93491775aceb650e4ce1a9f5cc52d87711c77ce7ce2b5b59840aeeb",
+    "source_features": "3224e94426c92ae78e377e987edff7d273f79a4a1c98e797a2ec7739708aa1ab",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "b9aae24e5d089db2ea29b751a0e6c71e5c7e6b152d71d930b5608dd5e64e7840",
+    "statistics/fanout40.pkl": "e1cbb847ef88884452b6a07cd519ab2b7f91b5952e462b31406df619cdec940d",
+    "statistics/histogram40.pkl": "9dbbc1e1120e646eb3492d85525e0a973abbc7a51867f0b60ff8d1416ebe8843",
+    "statistics/size.pkl": "312e212d218c21ee3b0012e9f4002874eb0803f7681e1cdb996708929dc017c9",
+    "statistics/summary40.pkl": "8707c57c576ebaf2a4903e217c6b166f88b88a724e0868079aebe34dd1371831"
+  },
+  "provenance_errors": [],
+  "inputs_unchanged": true,
+  "recreate_all_features": true,
+  "totals": {
+    "recreated_rows": 50000,
+    "checked_rows": 50000,
+    "rows_with_errors": 0,
+    "mapping_recoverable": 50000,
+    "sql_mapping_recoverable": 50000,
+    "rows_with_risk_flags": 3333
+  },
+  "sql_flags": {
+    "multiple_filters": 3333
+  },
+  "by_tables": {
+    "3": {
+      "rows": 17501,
+      "mapping_recoverable": 17501,
+      "sql_mapping_recoverable": 17501,
+      "errors": {}
+    },
+    "4": {
+      "rows": 14785,
+      "mapping_recoverable": 14785,
+      "sql_mapping_recoverable": 14785,
+      "errors": {}
+    },
+    "5": {
+      "rows": 5526,
+      "mapping_recoverable": 5526,
+      "sql_mapping_recoverable": 5526,
+      "errors": {}
+    },
+    "2": {
+      "rows": 12188,
+      "mapping_recoverable": 12188,
+      "sql_mapping_recoverable": 12188,
+      "errors": {}
+    }
+  },
+  "by_predicate": {
+    "EQ": {
+      "rows": 50000,
+      "mapping_recoverable": 50000,
+      "sql_mapping_recoverable": 50000,
+      "errors": {}
+    },
+    "LT": {
+      "rows": 40279,
+      "mapping_recoverable": 40279,
+      "sql_mapping_recoverable": 40279,
+      "errors": {}
+    },
+    "GTE": {
+      "rows": 6648,
+      "mapping_recoverable": 6648,
+      "sql_mapping_recoverable": 6648,
+      "errors": {}
+    }
+  },
+  "by_flag": {
+    "no_risk_flag": {
+      "rows": 46667,
+      "mapping_recoverable": 46667,
+      "sql_mapping_recoverable": 46667,
+      "errors": {}
+    },
+    "multiple_filters": {
+      "rows": 3333,
+      "mapping_recoverable": 3333,
+      "sql_mapping_recoverable": 3333,
+      "errors": {}
+    }
+  },
+  "first_failures": [],
+  "mapping_examples": [
+    {
+      "query_hash": "7830d87f42c264212753bdeb1f405f6de03e0afd05ec2f3b07e37e26af370a88",
+      "source_line": 1,
+      "tables": [
+        "ts_rt",
+        "ts_lf",
+        "ts_st"
+      ],
+      "table_names": [
+        "resource_type",
+        "log_feature",
+        "severity_type"
+      ],
+      "join_columns": [
+        "ts_rt.id",
+        "ts_lf.id",
+        "ts_st.id"
+      ],
+      "filter_columns": [
+        "ts_rt.resource_type",
+        "ts_lf.volume",
+        "ts_st.severity_type"
+      ],
+      "join_column_tables": [
+        0,
+        1,
+        2
+      ],
+      "filter_column_tables": [
+        0,
+        1,
+        2
+      ],
+      "fanout_join_columns": [
+        0,
+        1,
+        0,
+        2
+      ],
+      "counts": [
+        3,
+        4,
+        3,
+        3
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ",
+        "LT"
+      ],
+      "mapping_recoverable": true
+    },
+    {
+      "query_hash": "ff517c1618cfe8c86895b4bb9de5e63cf01c4e0f58e3684415fdbb3b0ba3d87b",
+      "source_line": 2,
+      "tables": [
+        "ts_et",
+        "ts_rt",
+        "ts_lf",
+        "ts_st"
+      ],
+      "table_names": [
+        "event_type",
+        "resource_type",
+        "log_feature",
+        "severity_type"
+      ],
+      "join_columns": [
+        "ts_et.id",
+        "ts_rt.id",
+        "ts_lf.id",
+        "ts_st.id"
+      ],
+      "filter_columns": [
+        "ts_rt.resource_type",
+        "ts_lf.volume",
+        "ts_st.severity_type"
+      ],
+      "join_column_tables": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "filter_column_tables": [
+        1,
+        2,
+        3
+      ],
+      "fanout_join_columns": [
+        0,
+        3,
+        0,
+        1,
+        0,
+        2
+      ],
+      "counts": [
+        4,
+        6,
+        4,
+        3
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ",
+        "LT"
+      ],
+      "mapping_recoverable": true
+    }
+  ],
+  "seconds": 552.7209100830369,
+  "stored_alignment_passed": true,
+  "alignment_passed": true,
+  "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+  "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+}

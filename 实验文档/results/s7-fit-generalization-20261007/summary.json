@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "training": false,
+  "inference": true,
+  "device": "cpu",
+  "adaptation": false,
+  "target_data_read": false,
+  "s6_decision": "no_candidate",
+  "sample_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+  "inference_queries": 94208,
+  "source_databases": 26,
+  "per_training_database_cohort_limit": 2048,
+  "seconds": 71.13398605701514,
+  "inputs_unchanged": true,
+  "code_unchanged": true,
+  "independent_verification_passed": true,
+  "causal_explanation_verified": false,
+  "peak_rss_kib_linux": 975668
+}

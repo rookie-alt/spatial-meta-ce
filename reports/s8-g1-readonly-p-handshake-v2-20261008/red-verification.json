@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-08",
+  "baseline_HEAD": "72eb0874efd38cab7f5819045f32176a06102732",
+  "production_source_sha256": "0f781f3500ea438eebe5c1d4962da0c454be3826a81c85df75412d71f97fcf35",
+  "mock_handshake_tests": 12,
+  "RED_errors": 2,
+  "exit_code": 1,
+  "failure": "Supervisor arguments do not bind this worker for legal relative contract and differing child cwd; legal absolute and rejection tests pass",
+  "log_sha256": "cc0cfa4107903a996d15bb7cc09762aaa57837b7681b0437c2064568894faf7c",
+  "initial_fixture_error_log_preserved": "handshake-red-fixture-error.log",
+  "scope": "local_mock_regression_only_not_real_Linux"
+}

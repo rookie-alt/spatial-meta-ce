@@ -1,0 +1,6298 @@
+{
+  "runs": [
+    {
+      "arm": "A_uniform",
+      "config": {
+        "method": "erm",
+        "seed": 42,
+        "steps": 2,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "query_size": 8,
+        "support_sizes": [
+          5
+        ],
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 0,
+        "adapt_scope": "all",
+        "validate_every": 1,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 41,
+        "min_delta": 0.0001,
+        "loss": "smooth_l1",
+        "complex_query_weight": 1,
+        "model": {
+          "arch": "sum",
+          "use_pg": true,
+          "layers": 2,
+          "heads": 4,
+          "width": 64,
+          "pg_output_scale": 1.0
+        },
+        "data_config": "configs/data.json",
+        "purpose": "gpu-smoke-not-research"
+      },
+      "output": "/gly/weilin/spatial-meta-ce/runs/s5-complex-weighting-20261007/smoke/A_uniform",
+      "initialization_hash": "41e594b03ef19c56c3f236237da850929f2ec5c919702b44402dd9b2864d284a",
+      "parameters": 132545,
+      "optimizer_steps": 2,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 104,
+        "backward_calls": 8,
+        "optimizer_steps": 2
+      },
+      "sample_plan_digest": "7fc8f7cf9e6343d485e43c0558611309c2d3a176272cbf2809fa3f9e457cb4a8",
+      "sample_plan_episodes": 8,
+      "validation_plan_hash": "4497740c177f4f09f784ac8961662471eea9657c1024a4ca7a0e139770104d86",
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "checkpoint_sha256": "0ceb37fd99d49a35c027abfdadd6ef94684c7f38dffc0ae8a6ad06c4b5c6724a",
+      "checkpoint_checks": {
+        "roundtrip_exact": true,
+        "optimizer_changed_weights": true,
+        "cpu_device_max_abs_difference": 0.0,
+        "checkpoint_steps": 2
+      },
+      "endpoint_rows_sha256": "09be68cb371187bd6281feb071a5408cff1d3dda1ec2b7fb5435cf5394608333",
+      "initial_endpoint_rows_sha256": "147e4a2d9bdbf63667ea461b3a7639b34c1f07bd6c907fde5d64a97e5d39cb83",
+      "initial_endpoint": {
+        "per_database": {
+          "chembl": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 1.7164422994661757,
+              "q95": 86.93884463773907
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 2.403899021190493,
+              "q95": 157.07655847084834
+            }
+          },
+          "legalacts": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 2.5058906884443544,
+              "q95": 34.33703923462177
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 5.120233216168706,
+              "q95": 113.4124996836845
+            }
+          },
+          "telstra": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 1.4855346658950461,
+              "q95": 7.551890405456535
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 1.7541188356343782,
+              "q95": 5.704502202898313
+            }
+          }
+        },
+        "identity_digest": "83899a34bdf83f8ee948725915871bd6409f5838fbe72644fc5235d56eac3115",
+        "unique_queries": 192,
+        "macro_four_plus_q95": 92.06452011914371,
+        "macro_all_table_q95": 42.94259142593913,
+        "pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315"
+      },
+      "endpoint": {
+        "per_database": {
+          "chembl": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 1.7170412812572353,
+              "q95": 87.94162338275366
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 2.378952631096385,
+              "q95": 155.3694721312617
+            }
+          },
+          "legalacts": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 2.4856619266688655,
+              "q95": 34.05245138448437
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 5.074900951355902,
+              "q95": 112.43439268518613
+            }
+          },
+          "telstra": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 1.4737629817108977,
+              "q95": 7.521258316288711
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 1.7527655990792568,
+              "q95": 5.7577396062848205
+            }
+          }
+        },
+        "identity_digest": "83899a34bdf83f8ee948725915871bd6409f5838fbe72644fc5235d56eac3115",
+        "unique_queries": 192,
+        "macro_four_plus_q95": 91.1872014742442,
+        "macro_all_table_q95": 43.17177769450891,
+        "pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315"
+      },
+      "pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315",
+      "initial_pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315",
+      "rows_verification": {
+        "passed": true,
+        "formal": false,
+        "endpoint": {
+          "per_database": {
+            "chembl": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 1.7170412812572353,
+                "q95": 87.94162338275366
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 2.378952631096385,
+                "q95": 155.3694721312617
+              }
+            },
+            "legalacts": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 2.4856619266688655,
+                "q95": 34.05245138448437
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 5.074900951355902,
+                "q95": 112.43439268518613
+              }
+            },
+            "telstra": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 1.4737629817108977,
+                "q95": 7.521258316288711
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 1.7527655990792568,
+                "q95": 5.7577396062848205
+              }
+            }
+          },
+          "identity_digest": "83899a34bdf83f8ee948725915871bd6409f5838fbe72644fc5235d56eac3115",
+          "pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315",
+          "unique_queries": 192,
+          "macro_four_plus_q95": 91.1872014742442,
+          "macro_all_table_q95": 43.17177769450891
+        },
+        "analysis": [
+          {
+            "database": "chembl",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 1.7170412812572353,
+            "q95": 87.94162338275366,
+            "raw_log_mae": 1.1660133537942623,
+            "raw_log_mse": 3.3324902487130386,
+            "raw_signed_log_error_mean": -0.2513419946985781,
+            "anchor_mean": 10.87941039353609,
+            "head_output_mean": 0.009005462750792503,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.009005462750792503,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+            "pg_reference_under_fraction": 0.5625,
+            "pg_reference_over_fraction": 0.421875,
+            "pg_reference_exact_fraction": 0.015625,
+            "pg_input_under_fraction": 0.5625,
+            "pg_input_over_fraction": 0.4375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 2.378952631096385,
+            "q95": 155.3694721312617,
+            "raw_log_mae": 1.6610343214525773,
+            "raw_log_mse": 5.60498888835638,
+            "raw_signed_log_error_mean": -0.7859837915150597,
+            "anchor_mean": 10.435525193810463,
+            "head_output_mean": 0.011253084987401962,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.011253084987401962,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+            "pg_reference_under_fraction": 0.65625,
+            "pg_reference_over_fraction": 0.34375,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.65625,
+            "pg_input_over_fraction": 0.34375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)",
+            "n": 37,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=4",
+            "n": 16,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=5",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=6plus",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 3,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_under",
+            "n": 36,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_over",
+            "n": 27,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_exact",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 21,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 2.4856619266688655,
+            "q95": 34.05245138448437,
+            "raw_log_mae": 1.259724294985017,
+            "raw_log_mse": 3.2180744750194634,
+            "raw_signed_log_error_mean": -0.8557499052356161,
+            "anchor_mean": 6.350974306464195,
+            "head_output_mean": 0.007601488381624222,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.007601488381624222,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.7405496594876695e-07,
+            "pg_reference_under_fraction": 0.703125,
+            "pg_reference_over_fraction": 0.296875,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.703125,
+            "pg_input_over_fraction": 0.296875,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 5.074900951355902,
+            "q95": 112.43439268518613,
+            "raw_log_mae": 1.861481928286619,
+            "raw_log_mse": 5.436669245700168,
+            "raw_signed_log_error_mean": -1.2928608138408157,
+            "anchor_mean": 4.991055354475975,
+            "head_output_mean": 0.008860312402248383,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.008860312402248383,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.467155712006843e-07,
+            "pg_reference_under_fraction": 0.75,
+            "pg_reference_over_fraction": 0.25,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.75,
+            "pg_input_over_fraction": 0.25,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)",
+            "n": 12,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)",
+            "n": 14,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)",
+            "n": 20,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)",
+            "n": 17,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=4",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 13,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_under",
+            "n": 45,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_over",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 24,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 1.4737629817108977,
+            "q95": 7.521258316288711,
+            "raw_log_mae": 0.6840271626581576,
+            "raw_log_mse": 1.104339441329727,
+            "raw_signed_log_error_mean": -0.11911545192416712,
+            "anchor_mean": 6.462999310344458,
+            "head_output_mean": 0.006893087178468704,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.006893087178468704,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.4145213529134253e-07,
+            "pg_reference_under_fraction": 0.609375,
+            "pg_reference_over_fraction": 0.390625,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.609375,
+            "pg_input_over_fraction": 0.390625,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 1.7527655990792568,
+            "q95": 5.7577396062848205,
+            "raw_log_mae": 0.7971034439605672,
+            "raw_log_mse": 1.2593396622871291,
+            "raw_signed_log_error_mean": -0.23716113856834672,
+            "anchor_mean": 6.167444750666618,
+            "head_output_mean": 0.008253540843725204,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.008253540843725204,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.235467070401455e-07,
+            "pg_reference_under_fraction": 0.65625,
+            "pg_reference_over_fraction": 0.34375,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.65625,
+            "pg_input_over_fraction": 0.34375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)",
+            "n": 16,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)",
+            "n": 12,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)",
+            "n": 15,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=4",
+            "n": 22,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=5",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 9,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 3,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_under",
+            "n": 39,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_over",
+            "n": 25,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 21,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          }
+        ]
+      },
+      "initial_rows_verification": {
+        "passed": true,
+        "formal": false,
+        "endpoint": {
+          "per_database": {
+            "chembl": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 1.7164422994661757,
+                "q95": 86.93884463773907
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 2.403899021190493,
+                "q95": 157.07655847084834
+              }
+            },
+            "legalacts": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 2.5058906884443544,
+                "q95": 34.33703923462177
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 5.120233216168706,
+                "q95": 113.4124996836845
+              }
+            },
+            "telstra": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 1.4855346658950461,
+                "q95": 7.551890405456535
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 1.7541188356343782,
+                "q95": 5.704502202898313
+              }
+            }
+          },
+          "identity_digest": "83899a34bdf83f8ee948725915871bd6409f5838fbe72644fc5235d56eac3115",
+          "pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315",
+          "unique_queries": 192,
+          "macro_four_plus_q95": 92.06452011914371,
+          "macro_all_table_q95": 42.94259142593913
+        },
+        "analysis": [
+          {
+            "database": "chembl",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 1.7164422994661757,
+            "q95": 86.93884463773907,
+            "raw_log_mae": 1.1673340822779372,
+            "raw_log_mse": 3.3385907821032506,
+            "raw_signed_log_error_mean": -0.2603474574493706,
+            "anchor_mean": 10.87941039353609,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+            "pg_reference_under_fraction": 0.5625,
+            "pg_reference_over_fraction": 0.421875,
+            "pg_reference_exact_fraction": 0.015625,
+            "pg_input_under_fraction": 0.5625,
+            "pg_input_over_fraction": 0.4375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 2.403899021190493,
+            "q95": 157.07655847084834,
+            "raw_log_mae": 1.6644856352760389,
+            "raw_log_mse": 5.621310553608376,
+            "raw_signed_log_error_mean": -0.7972368765024617,
+            "anchor_mean": 10.435525193810463,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+            "pg_reference_under_fraction": 0.65625,
+            "pg_reference_over_fraction": 0.34375,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.65625,
+            "pg_input_over_fraction": 0.34375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)",
+            "n": 37,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=4",
+            "n": 16,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=5",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=6plus",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 3,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_under",
+            "n": 36,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_over",
+            "n": 27,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_exact",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 21,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 2.5058906884443544,
+            "q95": 34.33703923462177,
+            "raw_log_mae": 1.263210902208766,
+            "raw_log_mse": 3.2324655974788925,
+            "raw_signed_log_error_mean": -0.8633513936172403,
+            "anchor_mean": 6.350974306464195,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.7405496594876695e-07,
+            "pg_reference_under_fraction": 0.703125,
+            "pg_reference_over_fraction": 0.296875,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.703125,
+            "pg_input_over_fraction": 0.296875,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 5.120233216168706,
+            "q95": 113.4124996836845,
+            "raw_log_mae": 1.865939454195566,
+            "raw_log_mse": 5.459461010588523,
+            "raw_signed_log_error_mean": -1.3017211262430641,
+            "anchor_mean": 4.991055354475975,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.467155712006843e-07,
+            "pg_reference_under_fraction": 0.75,
+            "pg_reference_over_fraction": 0.25,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.75,
+            "pg_input_over_fraction": 0.25,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)",
+            "n": 12,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)",
+            "n": 14,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)",
+            "n": 20,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)",
+            "n": 17,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=4",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 13,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_under",
+            "n": 45,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_over",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 24,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 1.4855346658950461,
+            "q95": 7.551890405456535,
+            "raw_log_mae": 0.6857068401743796,
+            "raw_log_mse": 1.1065597694719125,
+            "raw_signed_log_error_mean": -0.12600853910263582,
+            "anchor_mean": 6.462999310344458,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.4145213529134253e-07,
+            "pg_reference_under_fraction": 0.609375,
+            "pg_reference_over_fraction": 0.390625,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.609375,
+            "pg_input_over_fraction": 0.390625,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 1.7541188356343782,
+            "q95": 5.704502202898313,
+            "raw_log_mae": 0.799768542717119,
+            "raw_log_mse": 1.263541808428449,
+            "raw_signed_log_error_mean": -0.24541467941207193,
+            "anchor_mean": 6.167444750666618,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.235467070401455e-07,
+            "pg_reference_under_fraction": 0.65625,
+            "pg_reference_over_fraction": 0.34375,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.65625,
+            "pg_input_over_fraction": 0.34375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)",
+            "n": 16,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)",
+            "n": 12,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)",
+            "n": 15,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=4",
+            "n": 22,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=5",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 9,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 3,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_under",
+            "n": 39,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_over",
+            "n": 25,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 21,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          }
+        ]
+      },
+      "strata": [
+        {
+          "database": "chembl",
+          "bucket": "all_tables",
+          "n": 64,
+          "status": "descriptive",
+          "q50": 1.7170412812572353,
+          "q95": 87.94162338275366,
+          "raw_log_mae": 1.1660133537942623,
+          "raw_log_mse": 3.3324902487130386,
+          "raw_signed_log_error_mean": -0.2513419946985781,
+          "anchor_mean": 10.87941039353609,
+          "head_output_mean": 0.009005462750792503,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.009005462750792503,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+          "pg_reference_under_fraction": 0.5625,
+          "pg_reference_over_fraction": 0.421875,
+          "pg_reference_exact_fraction": 0.015625,
+          "pg_input_under_fraction": 0.5625,
+          "pg_input_over_fraction": 0.4375,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "chembl",
+          "bucket": "four_plus_tables",
+          "n": 32,
+          "status": "descriptive",
+          "q50": 2.378952631096385,
+          "q95": 155.3694721312617,
+          "raw_log_mae": 1.6610343214525773,
+          "raw_log_mse": 5.60498888835638,
+          "raw_signed_log_error_mean": -0.7859837915150597,
+          "anchor_mean": 10.435525193810463,
+          "head_output_mean": 0.011253084987401962,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.011253084987401962,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+          "pg_reference_under_fraction": 0.65625,
+          "pg_reference_over_fraction": 0.34375,
+          "pg_reference_exact_fraction": 0.0,
+          "pg_input_under_fraction": 0.65625,
+          "pg_input_over_fraction": 0.34375,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=0",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=(0,10)",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10,100)",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100,1000)",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[1000,10000)",
+          "n": 8,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10000,100000)",
+          "n": 7,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100000,inf)",
+          "n": 37,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "tables=1-3",
+          "n": 32,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "tables=4",
+          "n": 16,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "tables=5",
+          "n": 5,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "tables=6plus",
+          "n": 11,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=0|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=0|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=0|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=0|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=(0,10)|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=(0,10)|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=(0,10)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=(0,10)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10,100)|tables=1-3",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10,100)|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10,100)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10,100)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100,1000)|tables=1-3",
+          "n": 5,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100,1000)|tables=4",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100,1000)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100,1000)|tables=6plus",
+          "n": 3,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[1000,10000)|tables=1-3",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[1000,10000)|tables=4",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[1000,10000)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[1000,10000)|tables=6plus",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10000,100000)|tables=1-3",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10000,100000)|tables=4",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10000,100000)|tables=5",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10000,100000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100000,inf)|tables=1-3",
+          "n": 19,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100000,inf)|tables=4",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100000,inf)|tables=5",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100000,inf)|tables=6plus",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "all_tables:pg_under",
+          "n": 36,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "all_tables:pg_over",
+          "n": 27,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "all_tables:pg_exact",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "four_plus_tables:pg_under",
+          "n": 21,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "four_plus_tables:pg_over",
+          "n": 11,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "four_plus_tables:pg_exact",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "all_tables",
+          "n": 64,
+          "status": "descriptive",
+          "q50": 2.4856619266688655,
+          "q95": 34.05245138448437,
+          "raw_log_mae": 1.259724294985017,
+          "raw_log_mse": 3.2180744750194634,
+          "raw_signed_log_error_mean": -0.8557499052356161,
+          "anchor_mean": 6.350974306464195,
+          "head_output_mean": 0.007601488381624222,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.007601488381624222,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 4.7405496594876695e-07,
+          "pg_reference_under_fraction": 0.703125,
+          "pg_reference_over_fraction": 0.296875,
+          "pg_reference_exact_fraction": 0.0,
+          "pg_input_under_fraction": 0.703125,
+          "pg_input_over_fraction": 0.296875,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "legalacts",
+          "bucket": "four_plus_tables",
+          "n": 32,
+          "status": "descriptive",
+          "q50": 5.074900951355902,
+          "q95": 112.43439268518613,
+          "raw_log_mae": 1.861481928286619,
+          "raw_log_mse": 5.436669245700168,
+          "raw_signed_log_error_mean": -1.2928608138408157,
+          "anchor_mean": 4.991055354475975,
+          "head_output_mean": 0.008860312402248383,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.008860312402248383,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 4.467155712006843e-07,
+          "pg_reference_under_fraction": 0.75,
+          "pg_reference_over_fraction": 0.25,
+          "pg_reference_exact_fraction": 0.0,
+          "pg_input_under_fraction": 0.75,
+          "pg_input_over_fraction": 0.25,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=0",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=(0,10)",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10,100)",
+          "n": 12,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100,1000)",
+          "n": 14,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[1000,10000)",
+          "n": 20,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10000,100000)",
+          "n": 17,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100000,inf)",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "tables=1-3",
+          "n": 32,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "tables=4",
+          "n": 32,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=0|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=0|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=0|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=0|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=(0,10)|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=(0,10)|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=(0,10)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=(0,10)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10,100)|tables=1-3",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10,100)|tables=4",
+          "n": 8,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10,100)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10,100)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100,1000)|tables=1-3",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100,1000)|tables=4",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100,1000)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100,1000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[1000,10000)|tables=1-3",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[1000,10000)|tables=4",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[1000,10000)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[1000,10000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10000,100000)|tables=1-3",
+          "n": 13,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10000,100000)|tables=4",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10000,100000)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10000,100000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100000,inf)|tables=1-3",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100000,inf)|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100000,inf)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100000,inf)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "all_tables:pg_under",
+          "n": 45,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "all_tables:pg_over",
+          "n": 19,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "all_tables:pg_exact",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "four_plus_tables:pg_under",
+          "n": 24,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "four_plus_tables:pg_over",
+          "n": 8,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "four_plus_tables:pg_exact",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "all_tables",
+          "n": 64,
+          "status": "descriptive",
+          "q50": 1.4737629817108977,
+          "q95": 7.521258316288711,
+          "raw_log_mae": 0.6840271626581576,
+          "raw_log_mse": 1.104339441329727,
+          "raw_signed_log_error_mean": -0.11911545192416712,
+          "anchor_mean": 6.462999310344458,
+          "head_output_mean": 0.006893087178468704,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.006893087178468704,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 4.4145213529134253e-07,
+          "pg_reference_under_fraction": 0.609375,
+          "pg_reference_over_fraction": 0.390625,
+          "pg_reference_exact_fraction": 0.0,
+          "pg_input_under_fraction": 0.609375,
+          "pg_input_over_fraction": 0.390625,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "telstra",
+          "bucket": "four_plus_tables",
+          "n": 32,
+          "status": "descriptive",
+          "q50": 1.7527655990792568,
+          "q95": 5.7577396062848205,
+          "raw_log_mae": 0.7971034439605672,
+          "raw_log_mse": 1.2593396622871291,
+          "raw_signed_log_error_mean": -0.23716113856834672,
+          "anchor_mean": 6.167444750666618,
+          "head_output_mean": 0.008253540843725204,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.008253540843725204,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 4.235467070401455e-07,
+          "pg_reference_under_fraction": 0.65625,
+          "pg_reference_over_fraction": 0.34375,
+          "pg_reference_exact_fraction": 0.0,
+          "pg_input_under_fraction": 0.65625,
+          "pg_input_over_fraction": 0.34375,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=0",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=(0,10)",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10,100)",
+          "n": 19,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100,1000)",
+          "n": 16,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[1000,10000)",
+          "n": 12,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10000,100000)",
+          "n": 15,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100000,inf)",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "tables=1-3",
+          "n": 32,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "tables=4",
+          "n": 22,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "tables=5",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=0|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=0|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=0|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=0|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=(0,10)|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=(0,10)|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=(0,10)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=(0,10)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10,100)|tables=1-3",
+          "n": 9,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10,100)|tables=4",
+          "n": 8,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10,100)|tables=5",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10,100)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100,1000)|tables=1-3",
+          "n": 7,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100,1000)|tables=4",
+          "n": 5,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100,1000)|tables=5",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100,1000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[1000,10000)|tables=1-3",
+          "n": 7,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[1000,10000)|tables=4",
+          "n": 3,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[1000,10000)|tables=5",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[1000,10000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10000,100000)|tables=1-3",
+          "n": 8,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10000,100000)|tables=4",
+          "n": 5,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10000,100000)|tables=5",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10000,100000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100000,inf)|tables=1-3",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100000,inf)|tables=4",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100000,inf)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100000,inf)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "all_tables:pg_under",
+          "n": 39,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "all_tables:pg_over",
+          "n": 25,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "all_tables:pg_exact",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "four_plus_tables:pg_under",
+          "n": 21,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "four_plus_tables:pg_over",
+          "n": 11,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "four_plus_tables:pg_exact",
+          "n": 0,
+          "status": "below_min_cell_n"
+        }
+      ],
+      "summary": {
+        "last_step": 2,
+        "best_validation_macro_log_q95": 1.4359811098966675,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 104,
+          "backward_calls": 8,
+          "optimizer_steps": 2
+        },
+        "total_seconds": 0.3506745579652488,
+        "parameters": 132545,
+        "purpose": "gpu-smoke-not-research",
+        "gradient_stats": {
+          "count": 2,
+          "total_norm": 0.8275294303894043,
+          "max_norm": 0.42386752367019653,
+          "clipped_count": 0
+        }
+      },
+      "seconds": 10.788038472877815,
+      "peak_memory_bytes": 70899200,
+      "gpu_uuid": "GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d"
+    },
+    {
+      "arm": "B_complex2",
+      "config": {
+        "method": "erm",
+        "seed": 42,
+        "steps": 2,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "query_size": 8,
+        "support_sizes": [
+          5
+        ],
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 0,
+        "adapt_scope": "all",
+        "validate_every": 1,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 41,
+        "min_delta": 0.0001,
+        "loss": "smooth_l1",
+        "complex_query_weight": 2,
+        "model": {
+          "arch": "sum",
+          "use_pg": true,
+          "layers": 2,
+          "heads": 4,
+          "width": 64,
+          "pg_output_scale": 1.0
+        },
+        "data_config": "configs/data.json",
+        "purpose": "gpu-smoke-not-research"
+      },
+      "output": "/gly/weilin/spatial-meta-ce/runs/s5-complex-weighting-20261007/smoke/B_complex2",
+      "initialization_hash": "41e594b03ef19c56c3f236237da850929f2ec5c919702b44402dd9b2864d284a",
+      "parameters": 132545,
+      "optimizer_steps": 2,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 104,
+        "backward_calls": 8,
+        "optimizer_steps": 2
+      },
+      "sample_plan_digest": "7fc8f7cf9e6343d485e43c0558611309c2d3a176272cbf2809fa3f9e457cb4a8",
+      "sample_plan_episodes": 8,
+      "validation_plan_hash": "4497740c177f4f09f784ac8961662471eea9657c1024a4ca7a0e139770104d86",
+      "manifest_hashes": {
+        "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      },
+      "checkpoint_sha256": "0682065cc9a89fd279edee9717b027dba93468ed7a554d2a902bd4211da2bdd6",
+      "checkpoint_checks": {
+        "roundtrip_exact": true,
+        "optimizer_changed_weights": true,
+        "cpu_device_max_abs_difference": 0.0,
+        "checkpoint_steps": 2
+      },
+      "endpoint_rows_sha256": "bc3b8e27de34cde7722744267f7899dff4b1b43333389e3b07a05a6d42b83790",
+      "initial_endpoint_rows_sha256": "147e4a2d9bdbf63667ea461b3a7639b34c1f07bd6c907fde5d64a97e5d39cb83",
+      "initial_endpoint": {
+        "per_database": {
+          "chembl": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 1.7164422994661757,
+              "q95": 86.93884463773907
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 2.403899021190493,
+              "q95": 157.07655847084834
+            }
+          },
+          "legalacts": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 2.5058906884443544,
+              "q95": 34.33703923462177
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 5.120233216168706,
+              "q95": 113.4124996836845
+            }
+          },
+          "telstra": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 1.4855346658950461,
+              "q95": 7.551890405456535
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 1.7541188356343782,
+              "q95": 5.704502202898313
+            }
+          }
+        },
+        "identity_digest": "83899a34bdf83f8ee948725915871bd6409f5838fbe72644fc5235d56eac3115",
+        "unique_queries": 192,
+        "macro_four_plus_q95": 92.06452011914371,
+        "macro_all_table_q95": 42.94259142593913,
+        "pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315"
+      },
+      "endpoint": {
+        "per_database": {
+          "chembl": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 1.717041942003568,
+              "q95": 87.93806811000835
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 2.3790447379553923,
+              "q95": 155.3757927330291
+            }
+          },
+          "legalacts": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 2.4857401606891156,
+              "q95": 34.05351743997086
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 5.075064248362706,
+              "q95": 112.43797308074328
+            }
+          },
+          "telstra": {
+            "all_tables": {
+              "queries": 64,
+              "q50": 1.4738093636075784,
+              "q95": 7.521392168216187
+            },
+            "four_plus_tables": {
+              "queries": 32,
+              "q50": 1.7527689123178272,
+              "q95": 5.757536442559081
+            }
+          }
+        },
+        "identity_digest": "83899a34bdf83f8ee948725915871bd6409f5838fbe72644fc5235d56eac3115",
+        "unique_queries": 192,
+        "macro_four_plus_q95": 91.19043408544381,
+        "macro_all_table_q95": 43.1709925727318,
+        "pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315"
+      },
+      "pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315",
+      "initial_pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315",
+      "rows_verification": {
+        "passed": true,
+        "formal": false,
+        "endpoint": {
+          "per_database": {
+            "chembl": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 1.717041942003568,
+                "q95": 87.93806811000835
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 2.3790447379553923,
+                "q95": 155.3757927330291
+              }
+            },
+            "legalacts": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 2.4857401606891156,
+                "q95": 34.05351743997086
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 5.075064248362706,
+                "q95": 112.43797308074328
+              }
+            },
+            "telstra": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 1.4738093636075784,
+                "q95": 7.521392168216187
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 1.7527689123178272,
+                "q95": 5.757536442559081
+              }
+            }
+          },
+          "identity_digest": "83899a34bdf83f8ee948725915871bd6409f5838fbe72644fc5235d56eac3115",
+          "pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315",
+          "unique_queries": 192,
+          "macro_four_plus_q95": 91.19043408544381,
+          "macro_all_table_q95": 43.1709925727318
+        },
+        "analysis": [
+          {
+            "database": "chembl",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 1.717041942003568,
+            "q95": 87.93806811000835,
+            "raw_log_mae": 1.1660178166920399,
+            "raw_log_mse": 3.3325122156575873,
+            "raw_signed_log_error_mean": -0.2513770496802866,
+            "anchor_mean": 10.87941039353609,
+            "head_output_mean": 0.008970407769083977,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.008970407769083977,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+            "pg_reference_under_fraction": 0.5625,
+            "pg_reference_over_fraction": 0.421875,
+            "pg_reference_exact_fraction": 0.015625,
+            "pg_input_under_fraction": 0.5625,
+            "pg_input_over_fraction": 0.4375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 2.3790447379553923,
+            "q95": 155.3757927330291,
+            "raw_log_mae": 1.6610468682303026,
+            "raw_log_mse": 5.605048979978296,
+            "raw_signed_log_error_mean": -0.7860249485222771,
+            "anchor_mean": 10.435525193810463,
+            "head_output_mean": 0.011211927980184555,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.011211927980184555,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+            "pg_reference_under_fraction": 0.65625,
+            "pg_reference_over_fraction": 0.34375,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.65625,
+            "pg_input_over_fraction": 0.34375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)",
+            "n": 37,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=4",
+            "n": 16,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=5",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=6plus",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 3,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_under",
+            "n": 36,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_over",
+            "n": 27,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_exact",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 21,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 2.4857401606891156,
+            "q95": 34.05351743997086,
+            "raw_log_mae": 1.2597369935683218,
+            "raw_log_mse": 3.218127621246164,
+            "raw_signed_log_error_mean": -0.8557791590090074,
+            "anchor_mean": 6.350974306464195,
+            "head_output_mean": 0.007572234608232975,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.007572234608232975,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.7405496594876695e-07,
+            "pg_reference_under_fraction": 0.703125,
+            "pg_reference_over_fraction": 0.296875,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.703125,
+            "pg_input_over_fraction": 0.296875,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 5.075064248362706,
+            "q95": 112.43797308074328,
+            "raw_log_mae": 1.8614981314367722,
+            "raw_log_mse": 5.436752357913321,
+            "raw_signed_log_error_mean": -1.2928931400473807,
+            "anchor_mean": 4.991055354475975,
+            "head_output_mean": 0.00882798619568348,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.00882798619568348,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.467155712006843e-07,
+            "pg_reference_under_fraction": 0.75,
+            "pg_reference_over_fraction": 0.25,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.75,
+            "pg_input_over_fraction": 0.25,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)",
+            "n": 12,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)",
+            "n": 14,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)",
+            "n": 20,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)",
+            "n": 17,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=4",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 13,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_under",
+            "n": 45,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_over",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 24,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 1.4738093636075784,
+            "q95": 7.521392168216187,
+            "raw_log_mae": 0.6840338793565657,
+            "raw_log_mse": 1.104347870148954,
+            "raw_signed_log_error_mean": -0.11914408823069139,
+            "anchor_mean": 6.462999310344458,
+            "head_output_mean": 0.0068644508719444275,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0068644508719444275,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.4145213529134253e-07,
+            "pg_reference_under_fraction": 0.609375,
+            "pg_reference_over_fraction": 0.390625,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.609375,
+            "pg_input_over_fraction": 0.390625,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 1.7527689123178272,
+            "q95": 5.757536442559081,
+            "raw_log_mae": 0.7971138933998544,
+            "raw_log_mse": 1.2593557818267618,
+            "raw_signed_log_error_mean": -0.23719371623200677,
+            "anchor_mean": 6.167444750666618,
+            "head_output_mean": 0.008220963180065155,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.008220963180065155,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.235467070401455e-07,
+            "pg_reference_under_fraction": 0.65625,
+            "pg_reference_over_fraction": 0.34375,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.65625,
+            "pg_input_over_fraction": 0.34375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)",
+            "n": 16,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)",
+            "n": 12,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)",
+            "n": 15,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=4",
+            "n": 22,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=5",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 9,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 3,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_under",
+            "n": 39,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_over",
+            "n": 25,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 21,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          }
+        ]
+      },
+      "initial_rows_verification": {
+        "passed": true,
+        "formal": false,
+        "endpoint": {
+          "per_database": {
+            "chembl": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 1.7164422994661757,
+                "q95": 86.93884463773907
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 2.403899021190493,
+                "q95": 157.07655847084834
+              }
+            },
+            "legalacts": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 2.5058906884443544,
+                "q95": 34.33703923462177
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 5.120233216168706,
+                "q95": 113.4124996836845
+              }
+            },
+            "telstra": {
+              "all_tables": {
+                "queries": 64,
+                "q50": 1.4855346658950461,
+                "q95": 7.551890405456535
+              },
+              "four_plus_tables": {
+                "queries": 32,
+                "q50": 1.7541188356343782,
+                "q95": 5.704502202898313
+              }
+            }
+          },
+          "identity_digest": "83899a34bdf83f8ee948725915871bd6409f5838fbe72644fc5235d56eac3115",
+          "pg_identity_digest": "843da45a21db4041e1aee69ee31c4ad171ffb9d31f14a12fc90740bb3e075315",
+          "unique_queries": 192,
+          "macro_four_plus_q95": 92.06452011914371,
+          "macro_all_table_q95": 42.94259142593913
+        },
+        "analysis": [
+          {
+            "database": "chembl",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 1.7164422994661757,
+            "q95": 86.93884463773907,
+            "raw_log_mae": 1.1673340822779372,
+            "raw_log_mse": 3.3385907821032506,
+            "raw_signed_log_error_mean": -0.2603474574493706,
+            "anchor_mean": 10.87941039353609,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+            "pg_reference_under_fraction": 0.5625,
+            "pg_reference_over_fraction": 0.421875,
+            "pg_reference_exact_fraction": 0.015625,
+            "pg_input_under_fraction": 0.5625,
+            "pg_input_over_fraction": 0.4375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 2.403899021190493,
+            "q95": 157.07655847084834,
+            "raw_log_mae": 1.6644856352760389,
+            "raw_log_mse": 5.621310553608376,
+            "raw_signed_log_error_mean": -0.7972368765024617,
+            "anchor_mean": 10.435525193810463,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+            "pg_reference_under_fraction": 0.65625,
+            "pg_reference_over_fraction": 0.34375,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.65625,
+            "pg_input_over_fraction": 0.34375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)",
+            "n": 37,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=4",
+            "n": 16,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=5",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "tables=6plus",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 3,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_under",
+            "n": 36,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_over",
+            "n": 27,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "all_tables:pg_exact",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 21,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "chembl",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 2.5058906884443544,
+            "q95": 34.33703923462177,
+            "raw_log_mae": 1.263210902208766,
+            "raw_log_mse": 3.2324655974788925,
+            "raw_signed_log_error_mean": -0.8633513936172403,
+            "anchor_mean": 6.350974306464195,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.7405496594876695e-07,
+            "pg_reference_under_fraction": 0.703125,
+            "pg_reference_over_fraction": 0.296875,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.703125,
+            "pg_input_over_fraction": 0.296875,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 5.120233216168706,
+            "q95": 113.4124996836845,
+            "raw_log_mae": 1.865939454195566,
+            "raw_log_mse": 5.459461010588523,
+            "raw_signed_log_error_mean": -1.3017211262430641,
+            "anchor_mean": 4.991055354475975,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.467155712006843e-07,
+            "pg_reference_under_fraction": 0.75,
+            "pg_reference_over_fraction": 0.25,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.75,
+            "pg_input_over_fraction": 0.25,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)",
+            "n": 12,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)",
+            "n": 14,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)",
+            "n": 20,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)",
+            "n": 17,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=4",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 13,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_under",
+            "n": 45,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_over",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "all_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 24,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "legalacts",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables",
+            "n": 64,
+            "status": "descriptive",
+            "q50": 1.4855346658950461,
+            "q95": 7.551890405456535,
+            "raw_log_mae": 0.6857068401743796,
+            "raw_log_mse": 1.1065597694719125,
+            "raw_signed_log_error_mean": -0.12600853910263582,
+            "anchor_mean": 6.462999310344458,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.4145213529134253e-07,
+            "pg_reference_under_fraction": 0.609375,
+            "pg_reference_over_fraction": 0.390625,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.609375,
+            "pg_input_over_fraction": 0.390625,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables",
+            "n": 32,
+            "status": "descriptive",
+            "q50": 1.7541188356343782,
+            "q95": 5.704502202898313,
+            "raw_log_mae": 0.799768542717119,
+            "raw_log_mse": 1.263541808428449,
+            "raw_signed_log_error_mean": -0.24541467941207193,
+            "anchor_mean": 6.167444750666618,
+            "head_output_mean": 0.0,
+            "head_output_mode": "pg_residual_correction",
+            "total_correction_vs_pg_mean": 0.0,
+            "identity_max_abs_error": 0.0,
+            "pg_input_minus_reference_max_abs": 4.235467070401455e-07,
+            "pg_reference_under_fraction": 0.65625,
+            "pg_reference_over_fraction": 0.34375,
+            "pg_reference_exact_fraction": 0.0,
+            "pg_input_under_fraction": 0.65625,
+            "pg_input_over_fraction": 0.34375,
+            "pg_input_exact_fraction": 0.0
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)",
+            "n": 19,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)",
+            "n": 16,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)",
+            "n": 12,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)",
+            "n": 15,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=1-3",
+            "n": 32,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=4",
+            "n": 22,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=5",
+            "n": 10,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=0|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=1-3",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=4",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=(0,10)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=1-3",
+            "n": 9,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=4",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10,100)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=1-3",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=4",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=5",
+            "n": 4,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100,1000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=1-3",
+            "n": 7,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=4",
+            "n": 3,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[1000,10000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=1-3",
+            "n": 8,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=4",
+            "n": 5,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=5",
+            "n": 2,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[10000,100000)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=1-3",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=4",
+            "n": 1,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=5",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "true=[100000,inf)|tables=6plus",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_under",
+            "n": 39,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_over",
+            "n": 25,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "all_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_under",
+            "n": 21,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_over",
+            "n": 11,
+            "status": "below_min_cell_n"
+          },
+          {
+            "database": "telstra",
+            "bucket": "four_plus_tables:pg_exact",
+            "n": 0,
+            "status": "below_min_cell_n"
+          }
+        ]
+      },
+      "strata": [
+        {
+          "database": "chembl",
+          "bucket": "all_tables",
+          "n": 64,
+          "status": "descriptive",
+          "q50": 1.717041942003568,
+          "q95": 87.93806811000835,
+          "raw_log_mae": 1.1660178166920399,
+          "raw_log_mse": 3.3325122156575873,
+          "raw_signed_log_error_mean": -0.2513770496802866,
+          "anchor_mean": 10.87941039353609,
+          "head_output_mean": 0.008970407769083977,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.008970407769083977,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+          "pg_reference_under_fraction": 0.5625,
+          "pg_reference_over_fraction": 0.421875,
+          "pg_reference_exact_fraction": 0.015625,
+          "pg_input_under_fraction": 0.5625,
+          "pg_input_over_fraction": 0.4375,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "chembl",
+          "bucket": "four_plus_tables",
+          "n": 32,
+          "status": "descriptive",
+          "q50": 2.3790447379553923,
+          "q95": 155.3757927330291,
+          "raw_log_mae": 1.6610468682303026,
+          "raw_log_mse": 5.605048979978296,
+          "raw_signed_log_error_mean": -0.7860249485222771,
+          "anchor_mean": 10.435525193810463,
+          "head_output_mean": 0.011211927980184555,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.011211927980184555,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 7.718528785005674e-07,
+          "pg_reference_under_fraction": 0.65625,
+          "pg_reference_over_fraction": 0.34375,
+          "pg_reference_exact_fraction": 0.0,
+          "pg_input_under_fraction": 0.65625,
+          "pg_input_over_fraction": 0.34375,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=0",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=(0,10)",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10,100)",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100,1000)",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[1000,10000)",
+          "n": 8,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10000,100000)",
+          "n": 7,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100000,inf)",
+          "n": 37,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "tables=1-3",
+          "n": 32,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "tables=4",
+          "n": 16,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "tables=5",
+          "n": 5,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "tables=6plus",
+          "n": 11,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=0|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=0|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=0|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=0|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=(0,10)|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=(0,10)|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=(0,10)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=(0,10)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10,100)|tables=1-3",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10,100)|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10,100)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10,100)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100,1000)|tables=1-3",
+          "n": 5,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100,1000)|tables=4",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100,1000)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100,1000)|tables=6plus",
+          "n": 3,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[1000,10000)|tables=1-3",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[1000,10000)|tables=4",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[1000,10000)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[1000,10000)|tables=6plus",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10000,100000)|tables=1-3",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10000,100000)|tables=4",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10000,100000)|tables=5",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[10000,100000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100000,inf)|tables=1-3",
+          "n": 19,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100000,inf)|tables=4",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100000,inf)|tables=5",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "true=[100000,inf)|tables=6plus",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "all_tables:pg_under",
+          "n": 36,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "all_tables:pg_over",
+          "n": 27,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "all_tables:pg_exact",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "four_plus_tables:pg_under",
+          "n": 21,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "four_plus_tables:pg_over",
+          "n": 11,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "chembl",
+          "bucket": "four_plus_tables:pg_exact",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "all_tables",
+          "n": 64,
+          "status": "descriptive",
+          "q50": 2.4857401606891156,
+          "q95": 34.05351743997086,
+          "raw_log_mae": 1.2597369935683218,
+          "raw_log_mse": 3.218127621246164,
+          "raw_signed_log_error_mean": -0.8557791590090074,
+          "anchor_mean": 6.350974306464195,
+          "head_output_mean": 0.007572234608232975,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.007572234608232975,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 4.7405496594876695e-07,
+          "pg_reference_under_fraction": 0.703125,
+          "pg_reference_over_fraction": 0.296875,
+          "pg_reference_exact_fraction": 0.0,
+          "pg_input_under_fraction": 0.703125,
+          "pg_input_over_fraction": 0.296875,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "legalacts",
+          "bucket": "four_plus_tables",
+          "n": 32,
+          "status": "descriptive",
+          "q50": 5.075064248362706,
+          "q95": 112.43797308074328,
+          "raw_log_mae": 1.8614981314367722,
+          "raw_log_mse": 5.436752357913321,
+          "raw_signed_log_error_mean": -1.2928931400473807,
+          "anchor_mean": 4.991055354475975,
+          "head_output_mean": 0.00882798619568348,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.00882798619568348,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 4.467155712006843e-07,
+          "pg_reference_under_fraction": 0.75,
+          "pg_reference_over_fraction": 0.25,
+          "pg_reference_exact_fraction": 0.0,
+          "pg_input_under_fraction": 0.75,
+          "pg_input_over_fraction": 0.25,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=0",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=(0,10)",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10,100)",
+          "n": 12,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100,1000)",
+          "n": 14,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[1000,10000)",
+          "n": 20,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10000,100000)",
+          "n": 17,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100000,inf)",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "tables=1-3",
+          "n": 32,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "tables=4",
+          "n": 32,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=0|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=0|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=0|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=0|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=(0,10)|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=(0,10)|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=(0,10)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=(0,10)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10,100)|tables=1-3",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10,100)|tables=4",
+          "n": 8,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10,100)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10,100)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100,1000)|tables=1-3",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100,1000)|tables=4",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100,1000)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100,1000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[1000,10000)|tables=1-3",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[1000,10000)|tables=4",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[1000,10000)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[1000,10000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10000,100000)|tables=1-3",
+          "n": 13,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10000,100000)|tables=4",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10000,100000)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[10000,100000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100000,inf)|tables=1-3",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100000,inf)|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100000,inf)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "true=[100000,inf)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "all_tables:pg_under",
+          "n": 45,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "all_tables:pg_over",
+          "n": 19,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "all_tables:pg_exact",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "four_plus_tables:pg_under",
+          "n": 24,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "four_plus_tables:pg_over",
+          "n": 8,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "legalacts",
+          "bucket": "four_plus_tables:pg_exact",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "all_tables",
+          "n": 64,
+          "status": "descriptive",
+          "q50": 1.4738093636075784,
+          "q95": 7.521392168216187,
+          "raw_log_mae": 0.6840338793565657,
+          "raw_log_mse": 1.104347870148954,
+          "raw_signed_log_error_mean": -0.11914408823069139,
+          "anchor_mean": 6.462999310344458,
+          "head_output_mean": 0.0068644508719444275,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.0068644508719444275,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 4.4145213529134253e-07,
+          "pg_reference_under_fraction": 0.609375,
+          "pg_reference_over_fraction": 0.390625,
+          "pg_reference_exact_fraction": 0.0,
+          "pg_input_under_fraction": 0.609375,
+          "pg_input_over_fraction": 0.390625,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "telstra",
+          "bucket": "four_plus_tables",
+          "n": 32,
+          "status": "descriptive",
+          "q50": 1.7527689123178272,
+          "q95": 5.757536442559081,
+          "raw_log_mae": 0.7971138933998544,
+          "raw_log_mse": 1.2593557818267618,
+          "raw_signed_log_error_mean": -0.23719371623200677,
+          "anchor_mean": 6.167444750666618,
+          "head_output_mean": 0.008220963180065155,
+          "head_output_mode": "pg_residual_correction",
+          "total_correction_vs_pg_mean": 0.008220963180065155,
+          "identity_max_abs_error": 0.0,
+          "pg_input_minus_reference_max_abs": 4.235467070401455e-07,
+          "pg_reference_under_fraction": 0.65625,
+          "pg_reference_over_fraction": 0.34375,
+          "pg_reference_exact_fraction": 0.0,
+          "pg_input_under_fraction": 0.65625,
+          "pg_input_over_fraction": 0.34375,
+          "pg_input_exact_fraction": 0.0
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=0",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=(0,10)",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10,100)",
+          "n": 19,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100,1000)",
+          "n": 16,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[1000,10000)",
+          "n": 12,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10000,100000)",
+          "n": 15,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100000,inf)",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "tables=1-3",
+          "n": 32,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "tables=4",
+          "n": 22,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "tables=5",
+          "n": 10,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=0|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=0|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=0|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=0|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=(0,10)|tables=1-3",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=(0,10)|tables=4",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=(0,10)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=(0,10)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10,100)|tables=1-3",
+          "n": 9,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10,100)|tables=4",
+          "n": 8,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10,100)|tables=5",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10,100)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100,1000)|tables=1-3",
+          "n": 7,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100,1000)|tables=4",
+          "n": 5,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100,1000)|tables=5",
+          "n": 4,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100,1000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[1000,10000)|tables=1-3",
+          "n": 7,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[1000,10000)|tables=4",
+          "n": 3,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[1000,10000)|tables=5",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[1000,10000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10000,100000)|tables=1-3",
+          "n": 8,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10000,100000)|tables=4",
+          "n": 5,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10000,100000)|tables=5",
+          "n": 2,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[10000,100000)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100000,inf)|tables=1-3",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100000,inf)|tables=4",
+          "n": 1,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100000,inf)|tables=5",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "true=[100000,inf)|tables=6plus",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "all_tables:pg_under",
+          "n": 39,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "all_tables:pg_over",
+          "n": 25,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "all_tables:pg_exact",
+          "n": 0,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "four_plus_tables:pg_under",
+          "n": 21,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "four_plus_tables:pg_over",
+          "n": 11,
+          "status": "below_min_cell_n"
+        },
+        {
+          "database": "telstra",
+          "bucket": "four_plus_tables:pg_exact",
+          "n": 0,
+          "status": "below_min_cell_n"
+        }
+      ],
+      "summary": {
+        "last_step": 2,
+        "best_validation_macro_log_q95": 1.4359991422885336,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 104,
+          "backward_calls": 8,
+          "optimizer_steps": 2
+        },
+        "total_seconds": 0.5206577728968114,
+        "parameters": 132545,
+        "purpose": "gpu-smoke-not-research",
+        "gradient_stats": {
+          "count": 2,
+          "total_norm": 1.085756927728653,
+          "max_norm": 0.5869274735450745,
+          "clipped_count": 0
+        }
+      },
+      "seconds": 9.153229012154043,
+      "peak_memory_bytes": 70899712,
+      "gpu_uuid": "GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d"
+    }
+  ]
+}

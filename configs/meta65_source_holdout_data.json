@@ -1,0 +1,44 @@
+{
+  "data_root": "/gly/weilin/PRICE-master",
+  "cache_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+  "splits": {
+    "train": [
+      "accidents",
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hockey",
+      "movielens",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "validation": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "holdout": [
+      "hepatitis",
+      "sakila"
+    ],
+    "test": [
+      "imdb",
+      "stats",
+      "genome",
+      "ergastf1"
+    ]
+  }
+}

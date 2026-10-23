@@ -1,0 +1,126 @@
+test_bound_derived_from_frozen_cutoff (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_derived_from_frozen_cutoff) ... ok
+test_bound_does_not_use_observed_residual (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_does_not_use_observed_residual) ... ok
+test_bound_never_tighter_than_frozen_floor (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_bound_never_tighter_than_frozen_floor) ... ok
+test_condition_number_anomaly_keeps_strict_unknown (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_condition_number_anomaly_keeps_strict_unknown) ... ok
+test_nonfinite_or_out_of_range_inputs_raise (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_nonfinite_or_out_of_range_inputs_raise) ... ok
+test_rank_zero_uses_engineering_floor (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_rank_zero_uses_engineering_floor) ... ok
+test_rcond_and_rank_definition_unchanged (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_rcond_and_rank_definition_unchanged) ... ok
+test_residual_at_bound_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_residual_at_bound_passes) ... ok
+test_residual_slightly_above_bound_still_fails (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_residual_slightly_above_bound_still_fails) ... ok
+test_strict_certificate_fields_preserved (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strict_certificate_fields_preserved) ... ok
+test_strongly_rank_deficient_pair_passes (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_strongly_rank_deficient_pair_passes) ... ok
+test_well_conditioned_panel_still_passes_as_before (tests.test_s8_retained_tolerance.RetainedToleranceTests.test_well_conditioned_panel_still_passes_as_before) ... ok
+test_absolute_contract_call_still_passes (tests.test_s8_readonly_p.MockHandshakeTests.test_absolute_contract_call_still_passes) ... ok
+test_forged_parent_identity_rejected (tests.test_s8_readonly_p.MockHandshakeTests.test_forged_parent_identity_rejected) ... ok
+test_forged_pipe_owner_rejected (tests.test_s8_readonly_p.MockHandshakeTests.test_forged_pipe_owner_rejected) ... ok
+test_linux_suite_TERM_handler_unwinds_owned_process_cleanup (tests.test_s8_readonly_p.MockHandshakeTests.test_linux_suite_TERM_handler_unwinds_owned_process_cleanup) ... ok
+test_missing_parent_execute_still_rejected (tests.test_s8_readonly_p.MockHandshakeTests.test_missing_parent_execute_still_rejected) ... ok
+test_parent_contract_symlink_alias_rejected (tests.test_s8_readonly_p.MockHandshakeTests.test_parent_contract_symlink_alias_rejected) ... ok
+test_relative_contract_same_frozen_file_passes (tests.test_s8_readonly_p.MockHandshakeTests.test_relative_contract_same_frozen_file_passes) ... ok
+test_relative_contract_uses_parent_cwd_not_child_cwd (tests.test_s8_readonly_p.MockHandshakeTests.test_relative_contract_uses_parent_cwd_not_child_cwd) ... ok
+test_same_basename_wrong_contract_file_rejected (tests.test_s8_readonly_p.MockHandshakeTests.test_same_basename_wrong_contract_file_rejected) ... ok
+test_wrong_parent_contract_SHA_rejected (tests.test_s8_readonly_p.MockHandshakeTests.test_wrong_parent_contract_SHA_rejected) ... ok
+test_wrong_parent_cwd_contract_rejected (tests.test_s8_readonly_p.MockHandshakeTests.test_wrong_parent_cwd_contract_rejected) ... ok
+test_wrong_parent_output_rejected (tests.test_s8_readonly_p.MockHandshakeTests.test_wrong_parent_output_rejected) ... ok
+test_wrong_ticket_contract_SHA_rejected (tests.test_s8_readonly_p.MockHandshakeTests.test_wrong_ticket_contract_SHA_rejected) ... ok
+test_access_guard_rejects_h_target_checkpoint_and_writes (tests.test_s8_readonly_p.ReadOnlyPTests.test_access_guard_rejects_h_target_checkpoint_and_writes) ... ok
+test_complete_direct_worker_invocation_rejected (tests.test_s8_readonly_p.ReadOnlyPTests.test_complete_direct_worker_invocation_rejected) ... usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: Worker output must be the frozen new proof directory
+ok
+test_computation_guard_rejects_adam_and_checkpoint_loader (tests.test_s8_readonly_p.ReadOnlyPTests.test_computation_guard_rejects_adam_and_checkpoint_loader) ... ok
+test_contract_budget_cannot_be_relaxed (tests.test_s8_readonly_p.ReadOnlyPTests.test_contract_budget_cannot_be_relaxed) ... ok
+test_contract_data_path_rejected_before_bytes (tests.test_s8_readonly_p.ReadOnlyPTests.test_contract_data_path_rejected_before_bytes) ... usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: Only the frozen package contract path may be read; no data/checkpoint as contract
+ok
+test_default_cli_is_plan_only_no_saved_p_reads (tests.test_s8_readonly_p.ReadOnlyPTests.test_default_cli_is_plan_only_no_saved_p_reads) ... ok
+test_direct_worker_cli_denied (tests.test_s8_readonly_p.ReadOnlyPTests.test_direct_worker_cli_denied) ... usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: the following arguments are required: --contract
+ok
+test_dtype_mismatch_not_silently_converted (tests.test_s8_readonly_p.ReadOnlyPTests.test_dtype_mismatch_not_silently_converted) ... ok
+test_duplicate_panel_positions_rejected (tests.test_s8_readonly_p.ReadOnlyPTests.test_duplicate_panel_positions_rejected) ... ok
+test_engineering_failure_preserved_stops_before_x (tests.test_s8_readonly_p.ReadOnlyPTests.test_engineering_failure_preserved_stops_before_x) ... ok
+test_failed_retained_stage_records_diagnostic_without_gate_change (tests.test_s8_readonly_p.ReadOnlyPTests.test_failed_retained_stage_records_diagnostic_without_gate_change) ... ok
+test_fifo_input_is_rejected_without_blocking (tests.test_s8_readonly_p.ReadOnlyPTests.test_fifo_input_is_rejected_without_blocking) ... ok
+test_guarded_local_numeric_import_and_synthetic_ls (tests.test_s8_readonly_p.ReadOnlyPTests.test_guarded_local_numeric_import_and_synthetic_ls) ... ok
+test_h_target_checkpoint_extra_files_rejected (tests.test_s8_readonly_p.ReadOnlyPTests.test_h_target_checkpoint_extra_files_rejected) ... ok
+test_identity_mismatch_fails_closed (tests.test_s8_readonly_p.ReadOnlyPTests.test_identity_mismatch_fails_closed) ... ok
+test_non_readonly_entrypoint_rejected_before_input_io (tests.test_s8_readonly_p.ReadOnlyPTests.test_non_readonly_entrypoint_rejected_before_input_io) ... ok
+test_nonfinite_input_fails_closed (tests.test_s8_readonly_p.ReadOnlyPTests.test_nonfinite_input_fails_closed) ... ok
+test_old_failed_output_and_existing_output_rejected (tests.test_s8_readonly_p.ReadOnlyPTests.test_old_failed_output_and_existing_output_rejected) ... ok
+test_output_directory_swap_between_check_and_write_rejected (tests.test_s8_readonly_p.ReadOnlyPTests.test_output_directory_swap_between_check_and_write_rejected) ... ok
+test_output_schema_not_run_not_false_success (tests.test_s8_readonly_p.ReadOnlyPTests.test_output_schema_not_run_not_false_success) ... ok
+test_parent_and_worker_runtime_limits_are_bounded (tests.test_s8_readonly_p.ReadOnlyPTests.test_parent_and_worker_runtime_limits_are_bounded) ... ok
+test_parent_directory_swap_between_check_and_read_rejected (tests.test_s8_readonly_p.ReadOnlyPTests.test_parent_directory_swap_between_check_and_read_rejected) ... ok
+test_parent_directory_symlink_rejected (tests.test_s8_readonly_p.ReadOnlyPTests.test_parent_directory_symlink_rejected) ... ok
+test_parent_source_sha_failure_keeps_failed_schema_proof (tests.test_s8_readonly_p.ReadOnlyPTests.test_parent_source_sha_failure_keeps_failed_schema_proof) ... ok
+test_partial_recovery_rejects_parseable_unbound_stage_records (tests.test_s8_readonly_p.ReadOnlyPTests.test_partial_recovery_rejects_parseable_unbound_stage_records) ... ok
+test_partial_stage_records_after_child_kill_are_not_not_run (tests.test_s8_readonly_p.ReadOnlyPTests.test_partial_stage_records_after_child_kill_are_not_not_run) ... ok
+test_proof_validator_rejects_missing_and_conflicting_success (tests.test_s8_readonly_p.ReadOnlyPTests.test_proof_validator_rejects_missing_and_conflicting_success) ... ok
+test_protected_price_and_old_code_output_rejected (tests.test_s8_readonly_p.ReadOnlyPTests.test_protected_price_and_old_code_output_rejected) ... ok
+test_read_guard_actual_denials_in_isolated_process (tests.test_s8_readonly_p.ReadOnlyPTests.test_read_guard_actual_denials_in_isolated_process) ... ok
+test_real_backend_version_family_and_origin_mismatch_stops (tests.test_s8_readonly_p.ReadOnlyPTests.test_real_backend_version_family_and_origin_mismatch_stops) ... ok
+test_real_contract_cannot_use_synthetic_shapes (tests.test_s8_readonly_p.ReadOnlyPTests.test_real_contract_cannot_use_synthetic_shapes) ... ok
+test_resource_unknown_rank_allowed_only_when_engineering_true (tests.test_s8_readonly_p.ReadOnlyPTests.test_resource_unknown_rank_allowed_only_when_engineering_true) ... ok
+test_retained_projection_diagnostic_metrics_and_directions (tests.test_s8_readonly_p.ReadOnlyPTests.test_retained_projection_diagnostic_metrics_and_directions) ... ok
+test_schema_accepts_not_run_and_synthetic_success (tests.test_s8_readonly_p.ReadOnlyPTests.test_schema_accepts_not_run_and_synthetic_success) ... ok
+test_sha_mismatch_fails_and_keeps_new_failure (tests.test_s8_readonly_p.ReadOnlyPTests.test_sha_mismatch_fails_and_keeps_new_failure) ... ok
+test_shape_mismatch_fails_closed (tests.test_s8_readonly_p.ReadOnlyPTests.test_shape_mismatch_fails_closed) ... ok
+test_solver_exception_marks_started_stage_failed_not_not_run (tests.test_s8_readonly_p.ReadOnlyPTests.test_solver_exception_marks_started_stage_failed_not_not_run) ... ok
+test_source_binding_mismatch_rejected (tests.test_s8_readonly_p.ReadOnlyPTests.test_source_binding_mismatch_rejected) ... ok
+test_source_changed_during_solve_failure (tests.test_s8_readonly_p.ReadOnlyPTests.test_source_changed_during_solve_failure) ... ok
+test_source_sha_mismatch_prevents_import (tests.test_s8_readonly_p.ReadOnlyPTests.test_source_sha_mismatch_prevents_import) ... ok
+test_success_proof_rejects_use_shape_normalizer_and_numeric_conflicts (tests.test_s8_readonly_p.ReadOnlyPTests.test_success_proof_rejects_use_shape_normalizer_and_numeric_conflicts) ... ok
+test_symlink_input_rejected (tests.test_s8_readonly_p.ReadOnlyPTests.test_symlink_input_rejected) ... ok
+test_synthetic_success_is_not_real_p_or_g1 (tests.test_s8_readonly_p.ReadOnlyPTests.test_synthetic_success_is_not_real_p_or_g1) ... ok
+test_target_database_identity_fails_closed (tests.test_s8_readonly_p.ReadOnlyPTests.test_target_database_identity_fails_closed) ... ok
+test_training_calls_absent (tests.test_s8_readonly_p.ReadOnlyPTests.test_training_calls_absent) ... ok
+test_truncated_worker_proof_recovers_stages_but_never_success (tests.test_s8_readonly_p.ReadOnlyPTests.test_truncated_worker_proof_recovers_stages_but_never_success) ... ok
+test_untrusted_contract_sha_rejected_before_input_read (tests.test_s8_readonly_p.ReadOnlyPTests.test_untrusted_contract_sha_rejected_before_input_read) ... usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: Only the frozen package contract path may be read; no data/checkpoint as contract
+ok
+test_worker_limit_failure_leaves_evidence (tests.test_s8_readonly_p.ReadOnlyPTests.test_worker_limit_failure_leaves_evidence) ... ok
+test_abnormal_exit_records_failure (tests.test_s8_readonly_p.SupervisorTests.test_abnormal_exit_records_failure) ... ok
+test_address_space_exceeded_stops (tests.test_s8_readonly_p.SupervisorTests.test_address_space_exceeded_stops) ... ok
+test_missing_resource_observation_fails_closed (tests.test_s8_readonly_p.SupervisorTests.test_missing_resource_observation_fails_closed) ... ok
+test_rss_exceeded_stops_and_labels_sample_not_hard_cap (tests.test_s8_readonly_p.SupervisorTests.test_rss_exceeded_stops_and_labels_sample_not_hard_cap) ... ok
+test_signal_exit_records_signal (tests.test_s8_readonly_p.SupervisorTests.test_signal_exit_records_signal) ... ok
+test_success_without_worker_proof_is_failure (tests.test_s8_readonly_p.SupervisorTests.test_success_without_worker_proof_is_failure) ... ok
+test_supervisor_sigterm_cleans_owned_child_and_keeps_evidence (tests.test_s8_readonly_p.SupervisorTests.test_supervisor_sigterm_cleans_owned_child_and_keeps_evidence) ... ok
+test_timeout_kills_and_records_no_retry (tests.test_s8_readonly_p.SupervisorTests.test_timeout_kills_and_records_no_retry) ... ok
+
+----------------------------------------------------------------------
+Ran 81 tests in 2.810s
+
+OK
+{
+  "status": "prepared_not_executed",
+  "saved_P_read": false,
+  "input_paths_if_approved": [
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpf6_5e78v/old-failed/P-h.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpf6_5e78v/old-failed/P-x.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpf6_5e78v/old-failed/P-label.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpf6_5e78v/old-failed/P-pg_log.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpf6_5e78v/old-failed/status.json",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpf6_5e78v/old-failed/contract.json",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpf6_5e78v/old-failed/panels.json",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpf6_5e78v/old-failed/preflight.json"
+  ],
+  "contract_sha256": "0000101cc576592ec4c6abd98f1ecff648b407daaf3ec7f380800f8b007b607a",
+  "budget": {
+    "threads": 4,
+    "wall_seconds": 900,
+    "address_space_bytes": 12884901888,
+    "rss_stop_bytes": 12884901888,
+    "cuda_visible_devices": "",
+    "attempts": 1
+  },
+  "formal_ready": false
+}

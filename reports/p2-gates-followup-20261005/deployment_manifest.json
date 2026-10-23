@@ -1,0 +1,177 @@
+{
+  "scripts/adapt_strategy_search.py": {
+    "before_sha256": "d99beba1e79303311cd2222124afde8e7ca02977d72e26cede48b7a172187e19",
+    "after_sha256": "3a742b391652fe15add717c2777ff48861699c2ad817a74262e101d99af55a6f",
+    "executable": true
+  },
+  "scripts/arch_select.py": {
+    "before_sha256": "2dd4fcc3ef8248c3d7d4dbe5a09992bf8fe0e7026fb1c674df84b0951bfe7a91",
+    "after_sha256": "2dd4fcc3ef8248c3d7d4dbe5a09992bf8fe0e7026fb1c674df84b0951bfe7a91",
+    "executable": true
+  },
+  "scripts/audit_input_mapping.py": {
+    "before_sha256": "58802d3a93fe8a0517f1a7423559aa50db95c3ef89537dc98a0363ccc61b13fe",
+    "after_sha256": "1a6851d889814d897fa0f366c529b7304f8a02d116712f58fbb518bcf26766a5",
+    "executable": true
+  },
+  "scripts/build_experiment_graph.py": {
+    "before_sha256": "9567331878f33a8d06c3c35e42cb41785e6c8c3e0fc9bc00f08f568597ae2832",
+    "after_sha256": "f67829f271cb5be814f6c86fba5aa4362f2174afbd561ef7180f03e1604b041b",
+    "executable": false
+  },
+  "scripts/build_mapping_sidecar.py": {
+    "before_sha256": "304601dba325a65743f1b5d3f49099602db1877ed982331236efc730daee8dc4",
+    "after_sha256": "3daa25ab52b880a68db6091e21c64f05526e10c8bbdf3fa36c85a31c03276a52",
+    "executable": true
+  },
+  "scripts/deploy.py": {
+    "before_sha256": "239d6c0dead06d28a7f4d4869a35d9e941e9debd1df73e09547842b388e688d5",
+    "after_sha256": "71b6d99bfc91303aecfc2bcdce54aa3555db9187a517c8026aa9b74f8e3efa84",
+    "executable": true
+  },
+  "scripts/diagnose_source_sql.py": {
+    "before_sha256": "3b0e7741c38f2c20aa8a36a94cec06ecd7b8d26b58c4aa4d7babd95a8a107965",
+    "after_sha256": "0a86bd08fb6c93294094943ca47faa9d922c7828d841cac784858d0392409425",
+    "executable": false
+  },
+  "scripts/error_by_joins.py": {
+    "before_sha256": "3aa6d4d3a8c296c37a954575677400e51cbd2b5181db8b188e54c6c1e1d8e3c2",
+    "after_sha256": "43580c2f73e90a3d0f96ca3864d18bcc12de124bde3400970b690611652e39a1",
+    "executable": true
+  },
+  "scripts/eval_frozen.py": {
+    "before_sha256": "20259b6dd2e1ebb902ebec47e08ad26a848cd892ca078c2fa456210a6c616502",
+    "after_sha256": "fbff6b3d7bc2dccbed8d88f8ed49a1d02e3b2860d5b61feebc69e091fbd382c6",
+    "executable": true
+  },
+  "scripts/experiment_evidence.py": {
+    "before_sha256": "be4565f3b1abcdb4ce084fcae1b7ff3c1c9c0b72b2d3061d364b6a4b8488772f",
+    "after_sha256": "844fcd19425c87ba7d7841fed0b0af11405cffc21b88e8362057ab64397887c4",
+    "executable": false
+  },
+  "scripts/mapping_ablation_endpoint.py": {
+    "before_sha256": "2ff5f02d579ad707a003c585162eaddd3e5dbbf30dbb37f8bebb23a7e46f9edf",
+    "after_sha256": "2ff5f02d579ad707a003c585162eaddd3e5dbbf30dbb37f8bebb23a7e46f9edf",
+    "executable": true
+  },
+  "scripts/mapping_smoke.py": {
+    "before_sha256": "6f897a37f94150ccfed4d074a4be45c888d27a60d0ef376d7333d9724ecc4b96",
+    "after_sha256": "6f897a37f94150ccfed4d074a4be45c888d27a60d0ef376d7333d9724ecc4b96",
+    "executable": true
+  },
+  "scripts/price_fewshot.py": {
+    "before_sha256": "cd615b2135f33d01bc79367f182fec51d733b804ac0a4ecd3225e201eaa3f1fd",
+    "after_sha256": "9a7fab130cbbacdd7cf24e042b12d74b89ec1a2fbc1ef134fefd43ffcd88a132",
+    "executable": true
+  },
+  "scripts/price_lr_search.py": {
+    "before_sha256": "d4aef9e168bb10d03570b7a8a4947770577943454937aaab6f33a8120b1a0d72",
+    "after_sha256": "d4aef9e168bb10d03570b7a8a4947770577943454937aaab6f33a8120b1a0d72",
+    "executable": true
+  },
+  "scripts/run_experiments.py": {
+    "before_sha256": "1bda553623ba9f72928bb04403f8addd523d8addf5b5bee25ce536746616bcc1",
+    "after_sha256": "68dd14fcdc70e952596ccc7eafe9aa926ecedcddb48fb08ce9565f630605d2ea",
+    "executable": true
+  },
+  "scripts/run_mapping_ablation.py": {
+    "before_sha256": "f16c543b2601dba911157472a97e856f06c3f40f847ec28421df978314f53473",
+    "after_sha256": "f16c543b2601dba911157472a97e856f06c3f40f847ec28421df978314f53473",
+    "executable": true
+  },
+  "spatial_meta_ce/baselines.py": {
+    "before_sha256": "8c33abc32eca96add688000c389527ff76886bf5d8de84f797c3735edb5b2064",
+    "after_sha256": "c5113e990c816bcebe79f2f5fd2f2a96a0810e1a5feefd218278bda0953e1ea4",
+    "executable": false
+  },
+  "spatial_meta_ce/cli.py": {
+    "before_sha256": "5acff5d2e59274ac4a68c152f07383618b4e8851055e4a4b0340b706f1dc5022",
+    "after_sha256": "78169fe62236bf87f8b618c8436d644e1e6507b8bf88ccfc3f027afe0ba23d29",
+    "executable": false
+  },
+  "spatial_meta_ce/data.py": {
+    "before_sha256": "ce95da90f859d931aa68f39a86c7c81a47e41963b02097c62acd50cd3cae696f",
+    "after_sha256": "1f490f1891e4222edcd25b598df32c287c3914ff185477f6ae76c566cfeacd17",
+    "executable": false
+  },
+  "spatial_meta_ce/features.py": {
+    "before_sha256": "5a165cd905f7c7de9f73f98783b97d796412d8072b81690de66a26005d12162d",
+    "after_sha256": "cec76180fb0567bd6a6f9b8d73c4d913d16b92582cd784df7e8d9ab3fdc2dcef",
+    "executable": false
+  },
+  "spatial_meta_ce/mappings.py": {
+    "before_sha256": "9485b3991d5403a84ad70bf6565026585bda29ffbfc867112f7d4b9d54ded0af",
+    "after_sha256": "fa52a3cc64b23cb14f704573bdb079569dab22ef18c137eab2800765d1ff07fe",
+    "executable": false
+  },
+  "spatial_meta_ce/meta.py": {
+    "before_sha256": "10fe9bed655ba71bca3d77a2960c27aefb4e933a75e6f84fe4162581945a361f",
+    "after_sha256": "954051f01578dbee51cd8d1f2992746ad686e213faf06832b94d116cacbb006e",
+    "executable": false
+  },
+  "spatial_meta_ce/train.py": {
+    "before_sha256": "37d789286c44755f009e10066dcb55b879757050c173aafa1003984e92e84812",
+    "after_sha256": "0869d030220e588232148d6a7bc249f97c0e1dcf8b30dfb626ef8ea646d456f8",
+    "executable": false
+  },
+  "tests/test_arch.py": {
+    "before_sha256": "a057acf0c521671a7378eb89372802e0ddc54ea24d879cda68504bf915aae8af",
+    "after_sha256": "f3f8de045347501660d9223406e4d81ffbe70ae99517ea138e6dc0c5e71f4ee9",
+    "executable": false
+  },
+  "tests/test_core.py": {
+    "before_sha256": "6d7ad986fd0bb10f0a1527daabfc8cfb9c1b3bb3905ffb39a4b7e4e00bf3347d",
+    "after_sha256": "34abffd339d6f4db90e91a7023c3ad1eaa82da4b1717bb1cfb3c73d1d131e537",
+    "executable": false
+  },
+  "tests/test_data.py": {
+    "before_sha256": "119e4e08175eda3fff9acbfa539fb47261e81a873454affd0e92723572d9ad58",
+    "after_sha256": "a97e434ed2d907f9bf5fefb0a7ed843fc0c863a285489a6552783acd1b5f8741",
+    "executable": false
+  },
+  "tests/test_experiment_graph.py": {
+    "before_sha256": "decd2c873828e0de2a3d4c6e479674864440ea0421008e3469f16b609024fb99",
+    "after_sha256": "582199fd8ccd953824b8b8c2653aa907f0cc020d461cf1c660c6d73811593b4c",
+    "executable": false
+  },
+  "tests/test_graph_build.py": {
+    "before_sha256": "45b6dd269d459663822769238ee0b8d4bd316044c62791f7b9d200f2e972157d",
+    "after_sha256": "a161c6bf60e250b7160db551a4e19b3a6a9a966ed699d14cd4d48d4856b1ccce",
+    "executable": false
+  },
+  "tests/test_input_audit.py": {
+    "before_sha256": "e6cbf557e3cf09a185ba3c6175a732e00871c83e8b617d6326fbd755020fbfe2",
+    "after_sha256": "3fe8d45f4038f431b72bebf8b7b366eb571f04a96acb5e2577f44da999db7611",
+    "executable": false
+  },
+  "tests/test_integrity.py": {
+    "before_sha256": "1f0d2142f19a586f2d638b140c2e8f999585400d7d6e1b76b4f20de057c79ae1",
+    "after_sha256": "67c487a9ebfda4b4752259adcd9b6d3d6529369ad31ca0ef6ebc675f91034f36",
+    "executable": false
+  },
+  "tests/test_mapping_ablation.py": {
+    "before_sha256": "05742ce0d13a278e73afe23a4720c553c8674ff8ab4048a632c12789e5a39f0e",
+    "after_sha256": "b6bf5cd09879246b84081f9a9cc6b3fc86427dca0308a989271acea66fc8138e",
+    "executable": false
+  },
+  "tests/test_mapping_model.py": {
+    "before_sha256": "730a555d2346ed4edf93fb1d03c178d6d2908d4d74d6476750c68ec1e59a3e65",
+    "after_sha256": "788ef2031ef78bad0997f0b490f1d6ddd203a054a68c277faf6b581f95efb9a1",
+    "executable": false
+  },
+  "tests/test_mapping_sidecar.py": {
+    "before_sha256": "cd230a58d2a50d9ccf7f00b8d2ca28bc8ad78f4ee138f84dbcf2925c48f68c48",
+    "after_sha256": "8e7cac8ece040347b74e9e332e36c9513223da0ff5115d4e991cdccdfe7fdbcc",
+    "executable": false
+  },
+  "tests/test_paired.py": {
+    "before_sha256": "aa34c0ab8ad8bb4b69edd50f20ea5d07833e50ca62cf55ae3005661365a777f3",
+    "after_sha256": "445df833ff44354afd6dc444dc955271dd37498f660c233030cd78604198735b",
+    "executable": false
+  },
+  "tests/test_protocol.py": {
+    "before_sha256": "227329f0d3bcc23f266b6a44a52cd4bbf7f7165bba274b73a0e6fd3e0a9c047c",
+    "after_sha256": "7fd73c91aa2752f0b9fb6686a1da0bfa22645c852e9b8107931c48c819a89d51",
+    "executable": false
+  }
+}

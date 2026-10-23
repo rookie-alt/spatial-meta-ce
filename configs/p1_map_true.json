@@ -1,0 +1,32 @@
+{
+  "data_config": "configs/data.json",
+  "model": {
+    "width": 64,
+    "use_pg": true,
+    "arch": "sum_map",
+    "layers": 2,
+    "heads": 4
+  },
+  "method": "erm",
+  "seed": 42,
+  "steps": 4000,
+  "meta_batch": 4,
+  "accumulation": 1,
+  "outer_lr": 0.0003,
+  "inner_lr": 0.001,
+  "inner_steps": 5,
+  "adapt_scope": "all",
+  "support_sizes": [5, 10, 20, 50, 100],
+  "query_size": 64,
+  "loss": "smooth_l1",
+  "validate_every": 100,
+  "validation_runs": 5,
+  "validation_seed": 1729,
+  "patience": 41,
+  "min_delta": 0.0001,
+  "purpose": "p1-mapping-ablation true-mapping arm; frozen 4000-step budget; source-only",
+  "mapping": {
+    "root": "/gly/weilin/spatial-meta-ce/runs/mapping-sidecars-source26-20261004",
+    "mode": "mapping"
+  }
+}

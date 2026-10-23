@@ -1,0 +1,18 @@
+{
+  "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+  "spatial_meta_ce/model.py": "0d6d7c4c3a04368bb7ae03a99018cfd343f37f8dc1182443ac169d19928022a4",
+  "spatial_meta_ce/data.py": "1f490f1891e4222edcd25b598df32c287c3914ff185477f6ae76c566cfeacd17",
+  "spatial_meta_ce/checkpoints.py": "efb21c956fb836938aaf7675f0d1eb047ef767e537576f47d6b591a5a3bdf504",
+  "spatial_meta_ce/mappings.py": "fa52a3cc64b23cb14f704573bdb079569dab22ef18c137eab2800765d1ff07fe",
+  "spatial_meta_ce/manifests.py": "fc96df193c36ade103b2116f777325afb6bb8fb0c368ff0516998fa33fac6d30",
+  "scripts/s2_source_replay.py": "d43672471f8bb5fed740071a4bd8a69e3dd8c45824e2d44ad0cb731aed2dac0a",
+  "scripts/s7_source_diagnosis.py": "9a8e04a8a60d52b1a68dc73950c85d7ea2d7ee14f5f40e07e3e24e264c30a63a",
+  "scripts/s7_independent_verify.py": "ac758a1ec35edeaaf89b00e952f71e6c75e4d7ccfeae647e9bf1907b5b1e4549",
+  "scripts/run_s7_diagnosis.py": "ca1464af752d9cf4c83e3b7146596dd6eba6b63bad6024883257d5a49684e139",
+  "tests/test_s7_diagnosis.py": "20b8eeb642284e4e1b7a1b7c857f1dee81f74fc9d07fb3545388b37d449a8bf2",
+  "configs/s7_diagnosis.json": "67c9cb8ef76d658d7dcc159282529fdeedd3be468f34b5374f14465b78ebecab",
+  "实验文档/21-S7已有预测误差与源侧泛化诊断协议.md": "da51db373a8dbb3ada71d097f08990c8d31649c4250aca93911298fc9c15aef9",
+  "实验文档/results/s6-mean-tail-20261007/summary.json": "84587864eb0ab55a29f6465080436ab392dca2507d4b425ca3a1c23d182fe51f",
+  "实验文档/results/s6-mean-tail-20261007/preflight.json": "902b0b0bb4594620354ff6ccee58bfdc9e36ebe188dc874913871810a601ab96",
+  "实验文档/results/s6-mean-tail-20261007/status.json": "703a3beb3f8417b38d4fda0aa685a444c4897a01673cf5711ac6e89ac043c9d7"
+}

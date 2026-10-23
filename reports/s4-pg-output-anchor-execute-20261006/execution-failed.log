@@ -1,0 +1,26 @@
+{"step": 1, "train_loss": 0.6263839229941368, "validation_macro_log_q95": 1.4387821149422404, "counts": {"support_presentations": 0, "query_presentations": 52, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 0.4294893841724843, "validation_macro_log_q95": 1.4359811098966675, "counts": {"support_presentations": 0, "query_presentations": 104, "backward_calls": 8, "optimizer_steps": 2}}
+Traceback (most recent call last):
+  File "/gly/weilin/spatial-meta-ce/scripts/run_s4_anchor.py", line 810, in <module>
+    main()
+  File "/gly/weilin/spatial-meta-ce/scripts/run_s4_anchor.py", line 802, in main
+    run_main(deadline)
+  File "/gly/weilin/spatial-meta-ce/scripts/run_s4_anchor.py", line 742, in run_main
+    worker(Path(args.output), args.gpu_index)
+  File "/gly/weilin/spatial-meta-ce/scripts/run_s4_anchor.py", line 606, in worker
+    execute_arms(
+  File "/gly/weilin/spatial-meta-ce/scripts/run_s4_anchor.py", line 436, in execute_arms
+    gpu_gate("cuda", index, expected_uuid=evidence["gpu_uuid"])
+  File "/gly/weilin/spatial-meta-ce/scripts/run_s4_anchor.py", line 177, in gpu_gate
+    raise GPUBusy("Selected GPU has external processes; no retry")
+GPUBusy: Selected GPU has external processes; no retry
+Traceback (most recent call last):
+  File "/gly/weilin/spatial-meta-ce/scripts/run_s4_anchor.py", line 810, in <module>
+    main()
+  File "/gly/weilin/spatial-meta-ce/scripts/run_s4_anchor.py", line 802, in main
+    run_main(deadline)
+  File "/gly/weilin/spatial-meta-ce/scripts/run_s4_anchor.py", line 778, in run_main
+    supervise(
+  File "/gly/weilin/spatial-meta-ce/scripts/run_s4_anchor.py", line 690, in supervise
+    raise RuntimeError(f"S4 worker did not complete: {code}")
+RuntimeError: S4 worker did not complete: 1

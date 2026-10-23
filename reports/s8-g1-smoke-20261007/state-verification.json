@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "date": "2026-10-07",
+  "worktree": "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007",
+  "base_revision": "04561e8d320d98998cd05b96fc4c4ffb435e77ab",
+  "branch": "feat/s8-g1-smoke-runner-20261007",
+  "evidence_kind": "synthetic_state_module_verification_not_research",
+  "training_executed": false,
+  "real_smoke_executed": false,
+  "formal_ready": false,
+  "committed": false,
+  "pushed": false,
+  "owned_files": [
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_state.py",
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_state.py"
+  ],
+  "file_sha256": {
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_state.py": "4afe46d43d94e5e608b49e3b3f2e3593cd4bdf127b95a422f964e25b99d843f7",
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_state.py": "7feee52a40cb2b361c9769c8ae0b1d75e2d60160f442a86d54271d8e8c63ca76",
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/实验文档/24-S8源侧受控机制检验协议草案.md": "bff361147fa86385cf479a866eb7384ed2b1d214e86740fde68cd118cf60af2b",
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/实验文档/26-S8方案审查与G1工程预检.md": "383b8be0882300df969b88314a3d5d5b58ded5c0f171504a6b0b8a39dec03100",
+    "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-smoke-20261007/state-review.md": "39412c2eb2343202aa59a0dc7e7fabe0de863cc30b3632be2eeaeabc0af917eb"
+  },
+  "checks": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /opt/anaconda3/bin/python -B -m unittest discover -s tests -p test_s8_state.py -v",
+      "exit_code": 0,
+      "tests": 31,
+      "seconds": 0.114,
+      "log": "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-smoke-20261007/state-green.log"
+    },
+    {
+      "command": "/Users/williamlin/.cache/uv/archive-v0/YGscLdzyjxxZtKYJn0d_H/ruff-0.16.10.data/scripts/ruff check --no-cache spatial_meta_ce/s8_state.py tests/test_s8_state.py",
+      "exit_code": 0,
+      "log": "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-smoke-20261007/state-ruff.log"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /opt/anaconda3/bin/python -B -S (stdlib import and AST literal contract comparison)",
+      "exit_code": 0,
+      "log": "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-g1-smoke-20261007/state-stdlib.log"
+    }
+  ],
+  "remaining_runner_responsibilities": [
+    "trusted checkpoint file SHA before pickle load; metadata and optimizer step verification",
+    "source/panel identities and complete paired endpoint/solver certificates",
+    "pin seal file SHA at creation and call require_nomination before H semantic access",
+    "Pfull LS resource measurement and fixed CPU/timeout/memory enforcement",
+    "fixed H accept/veto complete report; no candidate switching"
+  ]
+}

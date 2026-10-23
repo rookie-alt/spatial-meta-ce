@@ -1,0 +1,286 @@
+{
+  "purpose": "synthetic-numerical-engineering-not-research",
+  "original_smoke_status": "failed",
+  "formal_ready": false,
+  "real_P_matrices_reverified": false,
+  "source_sha256": {
+    "spatial_meta_ce/s8_probe.py": "c3d85f98dc78d70fca4475ae671022ffd1a7a3b9e6d306304a53bac417b481c5",
+    "tests/test_s8_numerical_certificate.py": "7859a66064865b5f1b7d4741fd733dc4cfb7dd0861d7141f0a0d9a91618a5da6",
+    "tests/test_s8_smoke_certificate_gate.py": "bda87eb50f10a66aa77a83513d18689908a4f37f3fc7062baae5d5dcfb7862e3"
+  },
+  "environment_sha256": "6a138c80a7e91fe2a53cfeca0dab50c3ce365314415fb7a1028ed47a6fef73f7",
+  "cases": {
+    "zero": {
+      "input_provenance": "synthetic-only-not-research",
+      "design_sha256": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1",
+      "target_sha256": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0",
+      "certificate": {
+        "spectrum_specification": "s8-fp64-spectrum-v1.1",
+        "spectrum_dtype": "float64",
+        "spectrum_numpy_version": "1.26.4",
+        "spectrum_matrix_shape": [
+          3,
+          2
+        ],
+        "spectrum_epsilon": 2.220446049250313e-16,
+        "spectrum_gamma": 6.661338147750944e-16,
+        "spectrum_error_bound": 0.0,
+        "spectrum_comparison_bound": 0.0,
+        "spectrum_pass": true,
+        "reference_spectrum_pass": true,
+        "svd_backend_pass": true,
+        "svd_scaled_reconstruction_residual": 0.0,
+        "svd_u_orthogonality_residual": 0.0,
+        "svd_v_orthogonality_residual": 0.0,
+        "svd_u_normalized_orthogonality_residual": 0.0,
+        "svd_v_normalized_orthogonality_residual": 0.0,
+        "svd_normalized_orthogonality_bound": 1.1102230246251577e-15,
+        "rank_stability": "stable",
+        "rank_cutoff_interval": [
+          0.0,
+          0.0
+        ],
+        "rank_cutoff_intervals": {
+          "svd": [
+            0.0,
+            0.0
+          ],
+          "reported_ls": [
+            0.0,
+            0.0
+          ],
+          "reference_ls": [
+            0.0,
+            0.0
+          ]
+        },
+        "rank_interval_margin": 0.0,
+        "retained_subspace_pass": true,
+        "reference_retained_subspace_pass": true,
+        "pass": true,
+        "solver_verified": true,
+        "rank_limited": true,
+        "numerical_rank_limited": true,
+        "fullrank_numeric_solver": false,
+        "full_linear_optimality_verified": false,
+        "full_linear_optimality": false,
+        "reference_objective": 0.0,
+        "reference_objective_pass": true,
+        "reference_prediction_pass": true,
+        "reference_pass": true,
+        "certification_linalg_calls": 2,
+        "normalized_normal_residual": 0.0,
+        "normal_residual_pass": true,
+        "objective_pass": true,
+        "metadata_pass": true,
+        "objective_ls": 0.0,
+        "objective_adam": 0.0
+      }
+    },
+    "roundoff_tail": {
+      "input_provenance": "synthetic-only-not-research",
+      "design_sha256": "d12aeae94aacf42beb35a5fb53626edf372564db271e49281a888dcee1148561",
+      "target_sha256": "9d908ecfb6b256def8b49a7c504e6c889c4b0e41fe6ce3e01863dd7b61a20aa0",
+      "certificate": {
+        "spectrum_specification": "s8-fp64-spectrum-v1.1",
+        "spectrum_dtype": "float64",
+        "spectrum_numpy_version": "1.26.4",
+        "spectrum_matrix_shape": [
+          3,
+          3
+        ],
+        "spectrum_epsilon": 2.220446049250313e-16,
+        "spectrum_gamma": 6.661338147750944e-16,
+        "spectrum_error_bound": 6.661338147750944e-16,
+        "spectrum_comparison_bound": 1.3322676295501888e-15,
+        "spectrum_pass": true,
+        "reference_spectrum_pass": true,
+        "svd_backend_pass": true,
+        "svd_scaled_reconstruction_residual": 0.0,
+        "svd_u_orthogonality_residual": 0.0,
+        "svd_v_orthogonality_residual": 0.0,
+        "svd_u_normalized_orthogonality_residual": 0.0,
+        "svd_v_normalized_orthogonality_residual": 0.0,
+        "svd_normalized_orthogonality_bound": 1.3322676295501896e-15,
+        "rank_stability": "stable",
+        "rank_cutoff_interval": [
+          9.999999999999994e-13,
+          1.0000000000000006e-12
+        ],
+        "rank_cutoff_intervals": {
+          "svd": [
+            9.999999999999994e-13,
+            1.0000000000000006e-12
+          ],
+          "reported_ls": [
+            9.999999999999994e-13,
+            1.0000000000000006e-12
+          ],
+          "reference_ls": [
+            9.999999999999994e-13,
+            1.0000000000000006e-12
+          ]
+        },
+        "rank_interval_margin": 9.990007992778367e-13,
+        "retained_subspace_pass": true,
+        "reference_retained_subspace_pass": true,
+        "pass": true,
+        "solver_verified": true,
+        "rank_limited": true,
+        "numerical_rank_limited": true,
+        "fullrank_numeric_solver": false,
+        "full_linear_optimality_verified": false,
+        "full_linear_optimality": false,
+        "reference_objective": 0.0,
+        "reference_objective_pass": true,
+        "reference_prediction_pass": true,
+        "reference_pass": true,
+        "certification_linalg_calls": 2,
+        "normalized_normal_residual": 0.0,
+        "normal_residual_pass": true,
+        "objective_pass": true,
+        "metadata_pass": true,
+        "objective_ls": 0.0,
+        "objective_adam": 0.0
+      }
+    },
+    "near_cutoff": {
+      "input_provenance": "synthetic-only-not-research",
+      "design_sha256": "167d3f28cc18bc1e771f53af2b8377cfc594ce0b6d24b49c0972bd569e386731",
+      "target_sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+      "certificate": {
+        "spectrum_specification": "s8-fp64-spectrum-v1.1",
+        "spectrum_dtype": "float64",
+        "spectrum_numpy_version": "1.26.4",
+        "spectrum_matrix_shape": [
+          2,
+          2
+        ],
+        "spectrum_epsilon": 2.220446049250313e-16,
+        "spectrum_gamma": 4.440892098500628e-16,
+        "spectrum_error_bound": 4.440892098500628e-16,
+        "spectrum_comparison_bound": 8.881784197001256e-16,
+        "spectrum_pass": true,
+        "reference_spectrum_pass": true,
+        "svd_backend_pass": true,
+        "svd_scaled_reconstruction_residual": 0.0,
+        "svd_u_orthogonality_residual": 0.0,
+        "svd_v_orthogonality_residual": 0.0,
+        "svd_u_normalized_orthogonality_residual": 0.0,
+        "svd_v_normalized_orthogonality_residual": 0.0,
+        "svd_normalized_orthogonality_bound": 8.88178419700126e-16,
+        "rank_stability": "unknown",
+        "rank_cutoff_interval": [
+          9.999999999999996e-13,
+          1.0000000000000004e-12
+        ],
+        "rank_cutoff_intervals": {
+          "svd": [
+            9.999999999999996e-13,
+            1.0000000000000004e-12
+          ],
+          "reported_ls": [
+            9.999999999999996e-13,
+            1.0000000000000004e-12
+          ],
+          "reference_ls": [
+            9.999999999999996e-13,
+            1.0000000000000004e-12
+          ]
+        },
+        "rank_interval_margin": -4.440892098504665e-16,
+        "retained_subspace_pass": true,
+        "reference_retained_subspace_pass": true,
+        "pass": false,
+        "solver_verified": false,
+        "rank_limited": true,
+        "numerical_rank_limited": true,
+        "fullrank_numeric_solver": false,
+        "full_linear_optimality_verified": false,
+        "full_linear_optimality": false,
+        "reference_objective": 0.0,
+        "reference_objective_pass": true,
+        "reference_prediction_pass": true,
+        "reference_pass": true,
+        "certification_linalg_calls": 2,
+        "normalized_normal_residual": 0.0,
+        "normal_residual_pass": true,
+        "objective_pass": true,
+        "metadata_pass": true,
+        "objective_ls": 0.0,
+        "objective_adam": 0.0
+      }
+    },
+    "full_p_dimension_synthetic": {
+      "input_provenance": "synthetic-only-not-research",
+      "design_sha256": "ff7e41b479dc79b9c57967fb02e19a3732bb7ef5022e3799b30e034efeec10ca",
+      "target_sha256": "bea46ecdb78d8820477eb558d9a28b7752fd6d1fe8c6246e187c3da419531f68",
+      "certificate": {
+        "spectrum_specification": "s8-fp64-spectrum-v1.1",
+        "spectrum_dtype": "float64",
+        "spectrum_numpy_version": "1.26.4",
+        "spectrum_matrix_shape": [
+          19456,
+          2
+        ],
+        "spectrum_epsilon": 2.220446049250313e-16,
+        "spectrum_gamma": 4.320099833440072e-12,
+        "spectrum_error_bound": 6.025881151991096e-10,
+        "spectrum_comparison_bound": 1.2051762303982191e-09,
+        "spectrum_pass": true,
+        "reference_spectrum_pass": true,
+        "svd_backend_pass": true,
+        "svd_scaled_reconstruction_residual": 1.2973075902898685e-16,
+        "svd_u_orthogonality_residual": 4.878251018808933e-15,
+        "svd_v_orthogonality_residual": 0.0,
+        "svd_u_normalized_orthogonality_residual": 3.4494443757299806e-15,
+        "svd_v_normalized_orthogonality_residual": 0.0,
+        "svd_normalized_orthogonality_bound": 4.3205439226499265e-12,
+        "rank_stability": "unknown",
+        "rank_cutoff_interval": [
+          1.3948476619269898e-10,
+          1.3948476619390415e-10
+        ],
+        "rank_cutoff_intervals": {
+          "svd": [
+            1.3948476619269898e-10,
+            1.3948476619390415e-10
+          ],
+          "reported_ls": [
+            1.3948476619269898e-10,
+            1.3948476619390415e-10
+          ],
+          "reference_ls": [
+            1.3948476619269898e-10,
+            1.3948476619390415e-10
+          ]
+        },
+        "rank_interval_margin": -4.631033490064106e-10,
+        "retained_subspace_pass": true,
+        "reference_retained_subspace_pass": true,
+        "pass": false,
+        "solver_verified": false,
+        "rank_limited": true,
+        "numerical_rank_limited": true,
+        "fullrank_numeric_solver": false,
+        "full_linear_optimality_verified": false,
+        "full_linear_optimality": false,
+        "reference_objective": 0.0,
+        "reference_objective_pass": true,
+        "reference_prediction_pass": true,
+        "reference_pass": true,
+        "certification_linalg_calls": 2,
+        "normalized_normal_residual": 0.0,
+        "normal_residual_pass": true,
+        "objective_pass": true,
+        "metadata_pass": true,
+        "objective_ls": 0.0,
+        "objective_adam": 0.0
+      }
+    }
+  },
+  "server_access": false,
+  "training_performed": false,
+  "GPU_used": false,
+  "smoke_restarted": false
+}

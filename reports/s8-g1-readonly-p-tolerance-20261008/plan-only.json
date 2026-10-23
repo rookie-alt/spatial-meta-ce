@@ -1,0 +1,24 @@
+{
+  "status": "prepared_not_executed",
+  "saved_P_read": false,
+  "input_paths_if_approved": [
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-h.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-x.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-label.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-pg_log.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/status.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/contract.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/panels.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/preflight.json"
+  ],
+  "contract_sha256": "b85c41f0b04fb394c391f6143008e4d4e5bca907b7c6a1fb35d9c03105f6290e",
+  "budget": {
+    "threads": 4,
+    "wall_seconds": 900,
+    "address_space_bytes": 12884901888,
+    "rss_stop_bytes": 12884901888,
+    "cuda_visible_devices": "",
+    "attempts": 1
+  },
+  "formal_ready": false
+}

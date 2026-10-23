@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "observation_phase": "initial read-only GPU check before implementation",
+  "observed_at": null,
+  "recorded_at": "2026-10-06T13:19:06.481453+00:00",
+  "source": "nvidia-smi tool output in this session; no scheduled recheck",
+  "cards": [
+    {
+      "index": 0,
+      "memory_used_mib": 10560,
+      "utilization_percent": 70,
+      "external_pid": 69789
+    },
+    {
+      "index": 1,
+      "memory_used_mib": 10460,
+      "utilization_percent": 56,
+      "external_pid": 84591
+    },
+    {
+      "index": 2,
+      "memory_used_mib": 10586,
+      "utilization_percent": 53,
+      "external_pid": 85281
+    },
+    {
+      "index": 3,
+      "memory_used_mib": 6436,
+      "utilization_percent": 54,
+      "external_pid": 19612
+    },
+    {
+      "index": 4,
+      "memory_used_mib": 7486,
+      "utilization_percent": 0,
+      "external_pid": 89074
+    },
+    {
+      "index": 5,
+      "memory_used_mib": 10506,
+      "utilization_percent": 0,
+      "external_pid": 29471
+    },
+    {
+      "index": 6,
+      "memory_used_mib": 10566,
+      "utilization_percent": 70,
+      "external_pid": 62277
+    },
+    {
+      "index": 7,
+      "memory_used_mib": 10372,
+      "utilization_percent": 66,
+      "external_pid": 90917
+    }
+  ],
+  "all_cards_occupied_at_observation": true,
+  "current_gpu_state_not_rechecked": true
+}

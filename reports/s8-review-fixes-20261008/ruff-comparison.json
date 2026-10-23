@@ -1,0 +1,676 @@
+{
+  "ruff_version": "ruff 0.16.10",
+  "baseline_commit": "b3390b7463d0dd0fc002903f98214b68c696a11b",
+  "baseline_exit": 1,
+  "final_exit": 1,
+  "baseline_findings": 110,
+  "final_findings": 110,
+  "new_findings_count": 0,
+  "new_findings": [],
+  "removed_findings_count": 0,
+  "removed_findings": [],
+  "changed_scope_exit": 0,
+  "existing_findings": [
+    {
+      "file": "scripts/run_s2_diagnosis.py",
+      "code": "I001",
+      "line": 17,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "scripts/run_s2_diagnosis.py",
+      "code": "I001",
+      "line": 108,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "scripts/run_s3_diagnosis.py",
+      "code": "I001",
+      "line": 18,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "scripts/run_s3_diagnosis.py",
+      "code": "I001",
+      "line": 85,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "scripts/run_s3_diagnosis.py",
+      "code": "I001",
+      "line": 107,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "scripts/run_s3_diagnosis.py",
+      "code": "I001",
+      "line": 191,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "scripts/run_s3_diagnosis.py",
+      "code": "BLE001",
+      "line": 386,
+      "message": "Do not catch blind exception: `BaseException`"
+    },
+    {
+      "file": "scripts/run_s4_anchor.py",
+      "code": "I001",
+      "line": 16,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "scripts/run_s4_anchor.py",
+      "code": "PLC0414",
+      "line": 23,
+      "message": "Import alias does not rename original package"
+    },
+    {
+      "file": "scripts/run_s4_anchor.py",
+      "code": "BLE001",
+      "line": 733,
+      "message": "Do not catch blind exception: `BaseException`"
+    },
+    {
+      "file": "scripts/run_s5_weight.py",
+      "code": "BLE001",
+      "line": 481,
+      "message": "Do not catch blind exception: `BaseException`"
+    },
+    {
+      "file": "scripts/run_s6_tail.py",
+      "code": "I001",
+      "line": 14,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "scripts/run_s6_tail.py",
+      "code": "BLE001",
+      "line": 504,
+      "message": "Do not catch blind exception: `BaseException`"
+    },
+    {
+      "file": "scripts/s2_verify.py",
+      "code": "UP034",
+      "line": 488,
+      "message": "Avoid extraneous parentheses"
+    },
+    {
+      "file": "scripts/s3_verify.py",
+      "code": "RUF007",
+      "line": 305,
+      "message": "Prefer `itertools.pairwise()` over `zip()` when iterating over successive pairs"
+    },
+    {
+      "file": "scripts/s3_verify.py",
+      "code": "C408",
+      "line": 455,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "scripts/s3_verify.py",
+      "code": "TRY004",
+      "line": 537,
+      "message": "Prefer `TypeError` exception for invalid type"
+    },
+    {
+      "file": "scripts/s5_weight_evidence.py",
+      "code": "I001",
+      "line": 5,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "scripts/s5_weight_evidence.py",
+      "code": "PLC0414",
+      "line": 21,
+      "message": "Import alias does not rename original package"
+    },
+    {
+      "file": "scripts/s5_weight_evidence.py",
+      "code": "PLC0414",
+      "line": 28,
+      "message": "Import alias does not rename original package"
+    },
+    {
+      "file": "scripts/s5_weight_evidence.py",
+      "code": "PLC0414",
+      "line": 29,
+      "message": "Import alias does not rename original package"
+    },
+    {
+      "file": "scripts/s6_loss_verify.py",
+      "code": "SIM905",
+      "line": 12,
+      "message": "Consider using a list literal instead of `str.split`"
+    },
+    {
+      "file": "scripts/s6_loss_verify.py",
+      "code": "SIM905",
+      "line": 15,
+      "message": "Consider using a list literal instead of `str.split`"
+    },
+    {
+      "file": "scripts/s6_loss_verify.py",
+      "code": "C408",
+      "line": 292,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "scripts/s6_loss_verify.py",
+      "code": "C408",
+      "line": 345,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "scripts/s6_loss_verify.py",
+      "code": "C408",
+      "line": 374,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "scripts/s6_tail_evidence.py",
+      "code": "I001",
+      "line": 6,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "scripts/s6_tail_evidence.py",
+      "code": "PLC0414",
+      "line": 18,
+      "message": "Import alias does not rename original package"
+    },
+    {
+      "file": "scripts/s6_tail_evidence.py",
+      "code": "PLC0414",
+      "line": 25,
+      "message": "Import alias does not rename original package"
+    },
+    {
+      "file": "scripts/s6_tail_evidence.py",
+      "code": "PLC0414",
+      "line": 26,
+      "message": "Import alias does not rename original package"
+    },
+    {
+      "file": "tests/test_graph_build.py",
+      "code": "I001",
+      "line": 163,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s2_runner.py",
+      "code": "SIM117",
+      "line": 86,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s2_runner.py",
+      "code": "I001",
+      "line": 94,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s2_runner.py",
+      "code": "C408",
+      "line": 98,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_runner.py",
+      "code": "C408",
+      "line": 107,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_runner.py",
+      "code": "C408",
+      "line": 121,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_runner.py",
+      "code": "SIM117",
+      "line": 164,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s2_runner.py",
+      "code": "I001",
+      "line": 172,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s2_runner.py",
+      "code": "PLW1510",
+      "line": 270,
+      "message": "`subprocess.run` without explicit `check` argument"
+    },
+    {
+      "file": "tests/test_s2_source_replay.py",
+      "code": "SIM117",
+      "line": 224,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "I001",
+      "line": 3,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 45,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 56,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 71,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 76,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 88,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 95,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 109,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 153,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 186,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 226,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 249,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s2_verify.py",
+      "code": "C408",
+      "line": 263,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s3_runner.py",
+      "code": "C408",
+      "line": 228,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s3_runner.py",
+      "code": "C408",
+      "line": 238,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s3_runner.py",
+      "code": "C408",
+      "line": 256,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s3_runner.py",
+      "code": "SIM117",
+      "line": 298,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s3_runner.py",
+      "code": "C408",
+      "line": 310,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s3_runner.py",
+      "code": "C408",
+      "line": 317,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s3_runner.py",
+      "code": "PLW1510",
+      "line": 387,
+      "message": "`subprocess.run` without explicit `check` argument"
+    },
+    {
+      "file": "tests/test_s3_verify.py",
+      "code": "I001",
+      "line": 3,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s3_verify.py",
+      "code": "C408",
+      "line": 95,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s3_verify.py",
+      "code": "C408",
+      "line": 187,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s3_verify.py",
+      "code": "C408",
+      "line": 375,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s3_verify.py",
+      "code": "C408",
+      "line": 467,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s3_verify.py",
+      "code": "C408",
+      "line": 489,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s4_anchor.py",
+      "code": "SIM117",
+      "line": 60,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s4_anchor.py",
+      "code": "SIM117",
+      "line": 88,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s4_anchor.py",
+      "code": "SIM117",
+      "line": 118,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s4_anchor.py",
+      "code": "SIM117",
+      "line": 379,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s4_anchor.py",
+      "code": "SIM117",
+      "line": 640,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s4_anchor_evidence.py",
+      "code": "I001",
+      "line": 1,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s4_model.py",
+      "code": "I001",
+      "line": 1,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s5_loss.py",
+      "code": "RUF012",
+      "line": 16,
+      "message": "Mutable default value for class attribute"
+    },
+    {
+      "file": "tests/test_s5_loss.py",
+      "code": "RUF012",
+      "line": 17,
+      "message": "Mutable default value for class attribute"
+    },
+    {
+      "file": "tests/test_s5_runner.py",
+      "code": "SIM117",
+      "line": 34,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s5_runner.py",
+      "code": "I001",
+      "line": 313,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s5_supervisor.py",
+      "code": "I001",
+      "line": 22,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s5_supervisor.py",
+      "code": "RUF100",
+      "line": 22,
+      "message": "Unused `noqa` directive (non-enabled: `E402`)"
+    },
+    {
+      "file": "tests/test_s5_supervisor.py",
+      "code": "RUF100",
+      "line": 23,
+      "message": "Unused `noqa` directive (non-enabled: `E402`)"
+    },
+    {
+      "file": "tests/test_s5_supervisor.py",
+      "code": "RUF100",
+      "line": 24,
+      "message": "Unused `noqa` directive (non-enabled: `E402`)"
+    },
+    {
+      "file": "tests/test_s5_supervisor.py",
+      "code": "SIM117",
+      "line": 214,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s5_supervisor.py",
+      "code": "I001",
+      "line": 239,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s6_loss.py",
+      "code": "RUF012",
+      "line": 20,
+      "message": "Mutable default value for class attribute"
+    },
+    {
+      "file": "tests/test_s6_loss.py",
+      "code": "RUF012",
+      "line": 21,
+      "message": "Mutable default value for class attribute"
+    },
+    {
+      "file": "tests/test_s6_loss.py",
+      "code": "SIM905",
+      "line": 397,
+      "message": "Consider using a list literal instead of `str.split`"
+    },
+    {
+      "file": "tests/test_s6_loss_verify.py",
+      "code": "I001",
+      "line": 3,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s6_loss_verify.py",
+      "code": "C408",
+      "line": 23,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s6_loss_verify.py",
+      "code": "C408",
+      "line": 42,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s6_loss_verify.py",
+      "code": "C408",
+      "line": 61,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s6_loss_verify.py",
+      "code": "C408",
+      "line": 63,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s6_loss_verify.py",
+      "code": "C408",
+      "line": 96,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s6_loss_verify.py",
+      "code": "C408",
+      "line": 122,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s6_loss_verify.py",
+      "code": "C408",
+      "line": 135,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s6_loss_verify.py",
+      "code": "C408",
+      "line": 253,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s6_loss_verify.py",
+      "code": "C408",
+      "line": 280,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s6_loss_verify.py",
+      "code": "C408",
+      "line": 325,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s6_pipeline.py",
+      "code": "I001",
+      "line": 20,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s6_pipeline.py",
+      "code": "RUF100",
+      "line": 20,
+      "message": "Unused `noqa` directive (non-enabled: `E402`)"
+    },
+    {
+      "file": "tests/test_s6_pipeline.py",
+      "code": "RUF100",
+      "line": 21,
+      "message": "Unused `noqa` directive (non-enabled: `E402`)"
+    },
+    {
+      "file": "tests/test_s6_pipeline.py",
+      "code": "RUF100",
+      "line": 22,
+      "message": "Unused `noqa` directive (non-enabled: `E402`)"
+    },
+    {
+      "file": "tests/test_s6_pipeline.py",
+      "code": "RUF100",
+      "line": 23,
+      "message": "Unused `noqa` directive (non-enabled: `E402`)"
+    },
+    {
+      "file": "tests/test_s6_pipeline.py",
+      "code": "RUF100",
+      "line": 24,
+      "message": "Unused `noqa` directive (non-enabled: `E402`)"
+    },
+    {
+      "file": "tests/test_s6_pipeline.py",
+      "code": "RUF100",
+      "line": 25,
+      "message": "Unused `noqa` directive (non-enabled: `E402`)"
+    },
+    {
+      "file": "tests/test_s6_pipeline.py",
+      "code": "RUF100",
+      "line": 26,
+      "message": "Unused `noqa` directive (non-enabled: `E402`)"
+    },
+    {
+      "file": "tests/test_s6_pipeline.py",
+      "code": "RUF024",
+      "line": 391,
+      "message": "Do not pass mutable objects as values to `dict.fromkeys`"
+    },
+    {
+      "file": "tests/test_s6_pipeline.py",
+      "code": "C408",
+      "line": 542,
+      "message": "Unnecessary `dict()` call (rewrite as a literal)"
+    },
+    {
+      "file": "tests/test_s6_runner.py",
+      "code": "SIM117",
+      "line": 32,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    },
+    {
+      "file": "tests/test_s6_runner.py",
+      "code": "I001",
+      "line": 85,
+      "message": "Import block is un-sorted or un-formatted"
+    },
+    {
+      "file": "tests/test_s6_tail_evidence.py",
+      "code": "SIM117",
+      "line": 500,
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements"
+    }
+  ],
+  "scope_comparison": "file/code/message multiplicity, line-number shifts ignored"
+}

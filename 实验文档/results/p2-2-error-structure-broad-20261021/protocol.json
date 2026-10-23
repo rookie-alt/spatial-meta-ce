@@ -1,0 +1,657 @@
+{
+  "schema": 1,
+  "purpose": "research-read-only-audit",
+  "audit": "p2-2-error-structure",
+  "target_databases_read": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "allowed_targets": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "metric": "log-space error structure over every unique query",
+  "metric_definitions": {
+    "log_true": "log(max(true_cardinality, 1))",
+    "error": "log_pred - log_true (signed)",
+    "bias_med": "median(error): positive means systematically high",
+    "over_pct": "100 * share of rows with error > 0; ~50 means centred",
+    "std": "standard deviation of log_pred",
+    "truth_std": "standard deviation of log_true, for scale",
+    "q50_q95": "exp(percentile(|error|, p)): the multiplier error used in doc 102, so an exact prediction scores 1.0",
+    "log_q50_log_q95": "the same percentiles kept in log space",
+    "corr_truth": "Pearson correlation of log_pred with log_true; None when either side is constant"
+  },
+  "estimators": {
+    "ours_k0": "the frozen checkpoint given on the command line, zero-shot",
+    "price_k0": "the provided PRICE weights, zero-shot",
+    "pg": "raw PostgreSQL estimate (cards[:, 1])"
+  },
+  "checkpoint": {
+    "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/baseline/last.pt",
+    "sha256": "563ec1596b1a34dd3853e05d098634a473a74947aa176367d0d293857499d8a3",
+    "frozen": true,
+    "seed": 42,
+    "method": "erm",
+    "train_databases": [
+      "accidents",
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hepatitis",
+      "hockey",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "validation_databases": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "model_config": {
+      "width": 64,
+      "use_pg": true,
+      "arch": "sum",
+      "layers": 2,
+      "heads": 4
+    },
+    "transform": "price40-group-logfanout-v1"
+  },
+  "price": {
+    "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+    "checkpoint_sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92",
+    "target_maxima": [
+      12,
+      14,
+      8,
+      10
+    ],
+    "source_maxima": [
+      12,
+      12,
+      7,
+      10
+    ],
+    "maxima_rule": "target rows use the evaluate.py recomputation over the three historical target databases [12,14,8,10] (doc 102 2.2); source rows use the 26-source inspection maximum [12,12,7,10] (doc 101 3.1)",
+    "maxima_note": "target and source databases were evaluated under different maxima in doc 102; each database's maxima is recorded in inputs.per_database so a column can never be quoted under the wrong layout",
+    "decoding": "price_log_predictions(): log1p(card)+1 -> log(card)",
+    "adaptation": "none (K=0)"
+  },
+  "inputs": {
+    "per_database": {
+      "accidents": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          3,
+          4,
+          3,
+          7
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+        "ours_source": "predictions export"
+      },
+      "airline": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          12,
+          12,
+          7,
+          7
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+        "ours_source": "predictions export"
+      },
+      "baseball": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          10,
+          12,
+          7,
+          7
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+        "ours_source": "predictions export"
+      },
+      "basketball": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          10,
+          12,
+          7,
+          6
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+        "ours_source": "predictions export"
+      },
+      "carcinogenesis": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          6,
+          10,
+          6,
+          6
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+        "ours_source": "predictions export"
+      },
+      "ccs": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          7,
+          8,
+          5,
+          10
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+        "ours_source": "predictions export"
+      },
+      "chembl": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          11,
+          12,
+          7,
+          10
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "ours_source": "predictions export"
+      },
+      "consumer": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          3,
+          4,
+          3,
+          6
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+        "ours_source": "predictions export"
+      },
+      "credit": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          9,
+          12,
+          7,
+          6
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+        "ours_source": "predictions export"
+      },
+      "employee": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          7,
+          10,
+          6,
+          3
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+        "ours_source": "predictions export"
+      },
+      "financial": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          10,
+          12,
+          7,
+          7
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+        "ours_source": "predictions export"
+      },
+      "fnhk": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          3,
+          4,
+          3,
+          7
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+        "ours_source": "predictions export"
+      },
+      "grants": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          10,
+          12,
+          7,
+          10
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+        "ours_source": "predictions export"
+      },
+      "hepatitis": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          10,
+          12,
+          7,
+          7
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+        "ours_source": "predictions export"
+      },
+      "hockey": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          9,
+          12,
+          7,
+          9
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+        "ours_source": "predictions export"
+      },
+      "legalacts": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          5,
+          6,
+          4,
+          10
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "ours_source": "predictions export"
+      },
+      "movielens": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          10,
+          12,
+          7,
+          7
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+        "ours_source": "predictions export"
+      },
+      "sakila": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+        "ours_source": "predictions export"
+      },
+      "sap": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          5,
+          6,
+          4,
+          10
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+        "ours_source": "predictions export"
+      },
+      "seznam": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          4,
+          6,
+          4,
+          7
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+        "ours_source": "predictions export"
+      },
+      "ssb": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          8,
+          8,
+          5,
+          7
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+        "ours_source": "predictions export"
+      },
+      "talkingdata": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          10,
+          12,
+          7,
+          10
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+        "ours_source": "predictions export"
+      },
+      "telstra": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          5,
+          8,
+          5,
+          5
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+        "ours_source": "predictions export"
+      },
+      "tournament": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          8,
+          12,
+          7,
+          7
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+        "ours_source": "predictions export"
+      },
+      "tpc_h": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          11,
+          12,
+          7,
+          7
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+        "ours_source": "predictions export"
+      },
+      "tubepricing": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          7,
+          10,
+          6,
+          10
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+        "ours_source": "predictions export"
+      },
+      "stats": {
+        "group": "target",
+        "split": "test",
+        "max_counts": [
+          8,
+          12,
+          7,
+          10
+        ],
+        "maxima_used": [
+          12,
+          14,
+          8,
+          10
+        ],
+        "content_hash": "4f1726a2ddcd0f40a964cc6a5620073fa9fd05ad88e4daf8343d84f2e0248b22"
+      },
+      "genome": {
+        "group": "target",
+        "split": "test",
+        "max_counts": [
+          9,
+          10,
+          6,
+          7
+        ],
+        "maxima_used": [
+          12,
+          14,
+          8,
+          10
+        ],
+        "content_hash": "f0f0f8660623fe3694b808916d1ec24b4ff51355723e13343a3d95cd897a07f9"
+      },
+      "ergastf1": {
+        "group": "target",
+        "split": "test",
+        "max_counts": [
+          8,
+          12,
+          7,
+          9
+        ],
+        "maxima_used": [
+          12,
+          14,
+          8,
+          10
+        ],
+        "content_hash": "2a1c15b25326ccc7b4eb3b009c78f8178797ecce7e44d87245519776ac01697a"
+      },
+      "imdb": {
+        "group": "target",
+        "split": "test",
+        "max_counts": [
+          5,
+          8,
+          5,
+          4
+        ],
+        "maxima_used": [
+          12,
+          14,
+          8,
+          10
+        ],
+        "content_hash": "aa0e1628ed7aa637e90ffedfcd27c7a4c6703e98cb46083e6beef05e3d86d333"
+      }
+    },
+    "source_predictions": {
+      "path": "/gly/weilin/spatial-meta-ce-p2-2-source-broad-20261021-code/runs/p2-2-source-broad-20261021/predictions_k0.csv",
+      "sha256": "93adefbb577a9ad7e8089cb4937295103c1f9ba027e953e388a8012a8c11d7b8",
+      "used_for": "our side on every source database; the target databases still run the checkpoint because no export covers a held-out target",
+      "anchors": 1279218
+    }
+  },
+  "subgroup_policy": {
+    "four_plus_min_tables": 4,
+    "minimum_subgroup": 30,
+    "rule": "a subgroup smaller than minimum_subgroup is recorded with its row count and reported=false instead of a percentile computed from too few rows",
+    "pg_ties": "rows where PostgreSQL exactly equals the truth form their own group (pg_equal) and are not forced into either side"
+  },
+  "comparability": {
+    "comparable_to": "doc 102's Q95 columns for the same databases: q50/q95 here use the same error definition and the same query populations",
+    "not_comparable_to": [
+      "episode-granular PRICE figures (docs 14/94), which average 64-query Q95s rather than measuring a population"
+    ]
+  }
+}

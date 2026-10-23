@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-07",
+  "timezone": "Asia/Shanghai",
+  "baseline_commit": "7eb3370",
+  "branch": "feat/s8-numerical-certificate-20261007",
+  "specification": "s8-fp64-spectrum-v1.1",
+  "full_unittest": {
+    "tests": 617,
+    "seconds": 84.862,
+    "passed": true,
+    "exit_code": 0,
+    "sandbox_escalation": true,
+    "log": "full-final-tests.log"
+  },
+  "new_numerical_tests": 20,
+  "new_runner_gate_tests": 2,
+  "existing_probe_tests": 32,
+  "changed_ruff_passed": true,
+  "repository_ruff_passed": false,
+  "repository_ruff_issues": 110,
+  "baseline_repository_ruff_issues": 110,
+  "source_sha256": {
+    "spatial_meta_ce/s8_probe.py": "c3d85f98dc78d70fca4475ae671022ffd1a7a3b9e6d306304a53bac417b481c5",
+    "tests/test_s8_numerical_certificate.py": "7859a66064865b5f1b7d4741fd733dc4cfb7dd0861d7141f0a0d9a91618a5da6",
+    "tests/test_s8_smoke_certificate_gate.py": "bda87eb50f10a66aa77a83513d18689908a4f37f3fc7062baae5d5dcfb7862e3"
+  },
+  "independent_review": "approved_after_cutoff_fix",
+  "original_smoke_status": "failed",
+  "formal_ready": false,
+  "real_P_matrices_reverified": false,
+  "server_access": false,
+  "F0_training_performed": false,
+  "smoke_restarted": false,
+  "GPU_used": false,
+  "graphify_updated": false,
+  "target_evaluation_performed": false,
+  "cutoff_full_P_limitation": "19456-row matrices with discarded directions remain unknown under the frozen envelope",
+  "git_commit_push_status": "not_yet_performed_at_validation",
+  "independent_review_log": "independent-review-final.log",
+  "code_and_markdown_diff_check_passed": true,
+  "raw_log_whitespace_preserved": true,
+  "raw_log_whitespace_note": "Captured unittest subTest progress and Ruff diagnostic patches contain trailing spaces; logs kept verbatim. Code and Markdown diff checks pass."
+}

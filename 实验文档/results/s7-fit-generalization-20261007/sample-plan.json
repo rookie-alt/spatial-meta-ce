@@ -1,0 +1,1342 @@
+{
+  "sample_digest": "ad433d964fe562efacd19c8a03005bfe7df530d96bed0ca3535684854f6f4de8",
+  "episodes": 16000,
+  "presentations": 1621915,
+  "cohorts": [
+    {
+      "database": "accidents",
+      "cohort": "seen",
+      "pool_unique": 37830,
+      "sample_unique": 2048,
+      "manifest_hash": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "selected_identity_digest": "2c6d13ad9a403fbde0f8766d67838b8183714a46cd480ecc67e1fb0b0b99f8ae",
+      "sample_presentations": 3823,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 3248,
+        "[100,1000)": 4549,
+        "[1000,10000)": 6106,
+        "[10000,100000)": 7103,
+        "[100000,inf)": 16824
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 195,
+        "[100,1000)": 232,
+        "[1000,10000)": 333,
+        "[10000,100000)": 361,
+        "[100000,inf)": 927
+      },
+      "pool_four_plus": 0,
+      "sample_four_plus": 0
+    },
+    {
+      "database": "accidents",
+      "cohort": "unseen",
+      "pool_unique": 12170,
+      "sample_unique": 2048,
+      "manifest_hash": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "selected_identity_digest": "7df5df3c7acce991e9a75c88f6dc4cc83989ec88307c0d8cde1c3ceeb02f044d",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 993,
+        "[100,1000)": 1447,
+        "[1000,10000)": 1975,
+        "[10000,100000)": 2315,
+        "[100000,inf)": 5440
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 163,
+        "[100,1000)": 251,
+        "[1000,10000)": 328,
+        "[10000,100000)": 389,
+        "[100000,inf)": 917
+      },
+      "pool_four_plus": 0,
+      "sample_four_plus": 0
+    },
+    {
+      "database": "airline",
+      "cohort": "seen",
+      "pool_unique": 37338,
+      "sample_unique": 2048,
+      "manifest_hash": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "selected_identity_digest": "147654238087e93f251afbcf741e20423989d7309e009fd84ce2a14595c7aed2",
+      "sample_presentations": 3710,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 5094,
+        "[100,1000)": 5301,
+        "[1000,10000)": 6333,
+        "[10000,100000)": 8081,
+        "[100000,inf)": 12529
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 296,
+        "[100,1000)": 267,
+        "[1000,10000)": 367,
+        "[10000,100000)": 448,
+        "[100000,inf)": 670
+      },
+      "pool_four_plus": 23785,
+      "sample_four_plus": 1290
+    },
+    {
+      "database": "airline",
+      "cohort": "unseen",
+      "pool_unique": 12662,
+      "sample_unique": 2048,
+      "manifest_hash": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "selected_identity_digest": "24dbfee07237eef8b842a8e3a9b94035d499a65fdf845d48b1e8e40cca376c3d",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 1753,
+        "[100,1000)": 1882,
+        "[1000,10000)": 2148,
+        "[10000,100000)": 2747,
+        "[100000,inf)": 4132
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 288,
+        "[100,1000)": 309,
+        "[1000,10000)": 330,
+        "[10000,100000)": 457,
+        "[100000,inf)": 664
+      },
+      "pool_four_plus": 8091,
+      "sample_four_plus": 1344
+    },
+    {
+      "database": "baseball",
+      "cohort": "seen",
+      "pool_unique": 38084,
+      "sample_unique": 2048,
+      "manifest_hash": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "selected_identity_digest": "7ed0a88f4f022d487d5149c13b4052d46ab0cb830cdb23208a4cec49d21b4158",
+      "sample_presentations": 3830,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 3564,
+        "[100,1000)": 5655,
+        "[1000,10000)": 7362,
+        "[10000,100000)": 7101,
+        "[100000,inf)": 14402
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 215,
+        "[100,1000)": 300,
+        "[1000,10000)": 365,
+        "[10000,100000)": 365,
+        "[100000,inf)": 803
+      },
+      "pool_four_plus": 22626,
+      "sample_four_plus": 1251
+    },
+    {
+      "database": "baseball",
+      "cohort": "unseen",
+      "pool_unique": 11916,
+      "sample_unique": 2048,
+      "manifest_hash": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "selected_identity_digest": "3794fe2cbe1259bacf70b018e0541ad6d0e9fc69f6afeb3e7e9df5166bdc9616",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 1104,
+        "[100,1000)": 1740,
+        "[1000,10000)": 2278,
+        "[10000,100000)": 2322,
+        "[100000,inf)": 4472
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 202,
+        "[100,1000)": 313,
+        "[1000,10000)": 373,
+        "[10000,100000)": 407,
+        "[100000,inf)": 753
+      },
+      "pool_four_plus": 7020,
+      "sample_four_plus": 1168
+    },
+    {
+      "database": "basketball",
+      "cohort": "seen",
+      "pool_unique": 37832,
+      "sample_unique": 2048,
+      "manifest_hash": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "selected_identity_digest": "1d62fb18430263d0efb9341195f029f7063f727a22f74bea2547d6b2bc4eb8be",
+      "sample_presentations": 3790,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 1895,
+        "[100,1000)": 3559,
+        "[1000,10000)": 5366,
+        "[10000,100000)": 6863,
+        "[100000,inf)": 20149
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 127,
+        "[100,1000)": 181,
+        "[1000,10000)": 302,
+        "[10000,100000)": 370,
+        "[100000,inf)": 1068
+      },
+      "pool_four_plus": 23637,
+      "sample_four_plus": 1252
+    },
+    {
+      "database": "basketball",
+      "cohort": "unseen",
+      "pool_unique": 12168,
+      "sample_unique": 2048,
+      "manifest_hash": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "selected_identity_digest": "f40c474dbcde92e49224099f0e2a092906e4eb21f66a706c6bdfa60e901a04ee",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 578,
+        "[100,1000)": 1134,
+        "[1000,10000)": 1724,
+        "[10000,100000)": 2171,
+        "[100000,inf)": 6561
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 100,
+        "[100,1000)": 185,
+        "[1000,10000)": 275,
+        "[10000,100000)": 371,
+        "[100000,inf)": 1117
+      },
+      "pool_four_plus": 7682,
+      "sample_four_plus": 1277
+    },
+    {
+      "database": "carcinogenesis",
+      "cohort": "seen",
+      "pool_unique": 37147,
+      "sample_unique": 2048,
+      "manifest_hash": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "selected_identity_digest": "a39c8e1942e329b0ad889b53b06507ca971a89a4de308704f8f8809e1bf7c837",
+      "sample_presentations": 3700,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 5534,
+        "[100,1000)": 7268,
+        "[1000,10000)": 9997,
+        "[10000,100000)": 8229,
+        "[100000,inf)": 6119
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 306,
+        "[100,1000)": 384,
+        "[1000,10000)": 544,
+        "[10000,100000)": 460,
+        "[100000,inf)": 354
+      },
+      "pool_four_plus": 12318,
+      "sample_four_plus": 677
+    },
+    {
+      "database": "carcinogenesis",
+      "cohort": "unseen",
+      "pool_unique": 12853,
+      "sample_unique": 2048,
+      "manifest_hash": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "selected_identity_digest": "78a0057402a40c892ed93ebe1d6381ff2f4479989b035f01595d7a10436c93c9",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 1929,
+        "[100,1000)": 2499,
+        "[1000,10000)": 3486,
+        "[10000,100000)": 2847,
+        "[100000,inf)": 2092
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 325,
+        "[100,1000)": 375,
+        "[1000,10000)": 550,
+        "[10000,100000)": 457,
+        "[100000,inf)": 341
+      },
+      "pool_four_plus": 4218,
+      "sample_four_plus": 619
+    },
+    {
+      "database": "ccs",
+      "cohort": "seen",
+      "pool_unique": 37996,
+      "sample_unique": 2048,
+      "manifest_hash": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "selected_identity_digest": "b85c53669ea15834fc09c6b4edd15909ae6d052d3aeca83264d42675fc112f94",
+      "sample_presentations": 3862,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 16048,
+        "[100,1000)": 14083,
+        "[1000,10000)": 4873,
+        "[10000,100000)": 2404,
+        "[100000,inf)": 588
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 876,
+        "[100,1000)": 779,
+        "[1000,10000)": 244,
+        "[10000,100000)": 110,
+        "[100000,inf)": 39
+      },
+      "pool_four_plus": 12464,
+      "sample_four_plus": 637
+    },
+    {
+      "database": "ccs",
+      "cohort": "unseen",
+      "pool_unique": 12004,
+      "sample_unique": 2048,
+      "manifest_hash": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "selected_identity_digest": "ad7fd1dc89f986a98c89b3855365d9902880227d4862d6cc96b0934de637f70e",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 5041,
+        "[100,1000)": 4427,
+        "[1000,10000)": 1583,
+        "[10000,100000)": 779,
+        "[100000,inf)": 174
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 843,
+        "[100,1000)": 757,
+        "[1000,10000)": 284,
+        "[10000,100000)": 128,
+        "[100000,inf)": 36
+      },
+      "pool_four_plus": 3822,
+      "sample_four_plus": 670
+    },
+    {
+      "database": "consumer",
+      "cohort": "seen",
+      "pool_unique": 38262,
+      "sample_unique": 2048,
+      "manifest_hash": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "selected_identity_digest": "f5ebc7be31576d24ddb77e39d3cb090f5b15b2683b3600de3e380efcc11ed465",
+      "sample_presentations": 3953,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 2213,
+        "[100,1000)": 4053,
+        "[1000,10000)": 6781,
+        "[10000,100000)": 10154,
+        "[100000,inf)": 15061
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 107,
+        "[100,1000)": 202,
+        "[1000,10000)": 386,
+        "[10000,100000)": 559,
+        "[100000,inf)": 794
+      },
+      "pool_four_plus": 0,
+      "sample_four_plus": 0
+    },
+    {
+      "database": "consumer",
+      "cohort": "unseen",
+      "pool_unique": 11738,
+      "sample_unique": 2048,
+      "manifest_hash": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "selected_identity_digest": "e6dfc797ca537f3f22744a8e4063a245d51c681f4a09d2674e2c2ff6bab23975",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 661,
+        "[100,1000)": 1218,
+        "[1000,10000)": 1991,
+        "[10000,100000)": 3256,
+        "[100000,inf)": 4612
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 125,
+        "[100,1000)": 236,
+        "[1000,10000)": 345,
+        "[10000,100000)": 560,
+        "[100000,inf)": 782
+      },
+      "pool_four_plus": 0,
+      "sample_four_plus": 0
+    },
+    {
+      "database": "credit",
+      "cohort": "seen",
+      "pool_unique": 38576,
+      "sample_unique": 2048,
+      "manifest_hash": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "selected_identity_digest": "884d86f7f0cd6ef6c165fceff8c8b3d29ed7c65c2a2f61d4f21d65cf15663b0a",
+      "sample_presentations": 3942,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 637,
+        "[100,1000)": 2299,
+        "[1000,10000)": 4105,
+        "[10000,100000)": 7722,
+        "[100000,inf)": 23813
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 32,
+        "[100,1000)": 133,
+        "[1000,10000)": 212,
+        "[10000,100000)": 424,
+        "[100000,inf)": 1247
+      },
+      "pool_four_plus": 27107,
+      "sample_four_plus": 1459
+    },
+    {
+      "database": "credit",
+      "cohort": "unseen",
+      "pool_unique": 11424,
+      "sample_unique": 2048,
+      "manifest_hash": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "selected_identity_digest": "92cd5839c8e6ee87ae92b2e4e7dbd12bddb5201cb7c1b838d9a2c86247115179",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 175,
+        "[100,1000)": 677,
+        "[1000,10000)": 1251,
+        "[10000,100000)": 2298,
+        "[100000,inf)": 7023
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 34,
+        "[100,1000)": 117,
+        "[1000,10000)": 224,
+        "[10000,100000)": 429,
+        "[100000,inf)": 1244
+      },
+      "pool_four_plus": 7988,
+      "sample_four_plus": 1446
+    },
+    {
+      "database": "employee",
+      "cohort": "seen",
+      "pool_unique": 38090,
+      "sample_unique": 2048,
+      "manifest_hash": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "selected_identity_digest": "b297aa7f55bbb2940d336c48d0a4cd20429f12fedd39a0a80e71abf0fe545d45",
+      "sample_presentations": 3786,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 7018,
+        "[100,1000)": 14420,
+        "[1000,10000)": 1574,
+        "[10000,100000)": 2527,
+        "[100000,inf)": 12551
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 350,
+        "[100,1000)": 788,
+        "[1000,10000)": 96,
+        "[10000,100000)": 123,
+        "[100000,inf)": 691
+      },
+      "pool_four_plus": 22287,
+      "sample_four_plus": 1199
+    },
+    {
+      "database": "employee",
+      "cohort": "unseen",
+      "pool_unique": 11910,
+      "sample_unique": 2048,
+      "manifest_hash": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "selected_identity_digest": "a0c3dca222838ef2ae8c0160ed1224bc3bb41ad9e9d8e44533bb71c7a7715c97",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 2220,
+        "[100,1000)": 4452,
+        "[1000,10000)": 487,
+        "[10000,100000)": 850,
+        "[100000,inf)": 3901
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 364,
+        "[100,1000)": 770,
+        "[1000,10000)": 87,
+        "[10000,100000)": 149,
+        "[100000,inf)": 678
+      },
+      "pool_four_plus": 6911,
+      "sample_four_plus": 1205
+    },
+    {
+      "database": "financial",
+      "cohort": "seen",
+      "pool_unique": 37322,
+      "sample_unique": 2048,
+      "manifest_hash": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "selected_identity_digest": "be504e48b9829a46b3186b43b74f34553fa34c94949a6d0275b5eb394f443446",
+      "sample_presentations": 3787,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 2538,
+        "[100,1000)": 5011,
+        "[1000,10000)": 7375,
+        "[10000,100000)": 8707,
+        "[100000,inf)": 13691
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 144,
+        "[100,1000)": 269,
+        "[1000,10000)": 431,
+        "[10000,100000)": 451,
+        "[100000,inf)": 753
+      },
+      "pool_four_plus": 27041,
+      "sample_four_plus": 1497
+    },
+    {
+      "database": "financial",
+      "cohort": "unseen",
+      "pool_unique": 12678,
+      "sample_unique": 2048,
+      "manifest_hash": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "selected_identity_digest": "e44f31d4b7e31d5484a0e0f828455b206b10bca3a6c204a3224fa021401701df",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 820,
+        "[100,1000)": 1740,
+        "[1000,10000)": 2438,
+        "[10000,100000)": 3016,
+        "[100000,inf)": 4664
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 135,
+        "[100,1000)": 275,
+        "[1000,10000)": 391,
+        "[10000,100000)": 496,
+        "[100000,inf)": 751
+      },
+      "pool_four_plus": 9241,
+      "sample_four_plus": 1513
+    },
+    {
+      "database": "fnhk",
+      "cohort": "seen",
+      "pool_unique": 36968,
+      "sample_unique": 2048,
+      "manifest_hash": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "selected_identity_digest": "8c1d178db4d48d025f7ec547ba0625c3d63f509344a8f95c59601263ae4bdfd5",
+      "sample_presentations": 3726,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 4102,
+        "[100,1000)": 4711,
+        "[1000,10000)": 5081,
+        "[10000,100000)": 5463,
+        "[100000,inf)": 17611
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 234,
+        "[100,1000)": 249,
+        "[1000,10000)": 288,
+        "[10000,100000)": 294,
+        "[100000,inf)": 983
+      },
+      "pool_four_plus": 0,
+      "sample_four_plus": 0
+    },
+    {
+      "database": "fnhk",
+      "cohort": "unseen",
+      "pool_unique": 13032,
+      "sample_unique": 2048,
+      "manifest_hash": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "selected_identity_digest": "c693aef9143ca6d5cd84d69ad16fb45593a5b0f4ec9905120d5eb7b6e8c08612",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 1484,
+        "[100,1000)": 1703,
+        "[1000,10000)": 1851,
+        "[10000,100000)": 1889,
+        "[100000,inf)": 6105
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 213,
+        "[100,1000)": 265,
+        "[1000,10000)": 299,
+        "[10000,100000)": 294,
+        "[100000,inf)": 977
+      },
+      "pool_four_plus": 0,
+      "sample_four_plus": 0
+    },
+    {
+      "database": "grants",
+      "cohort": "seen",
+      "pool_unique": 37626,
+      "sample_unique": 2048,
+      "manifest_hash": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "selected_identity_digest": "ece6464f7a482e4473c2d8b0ced93bb7421476c653dd9e018f60b479ad3b78c3",
+      "sample_presentations": 3732,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 4739,
+        "[100,1000)": 5958,
+        "[1000,10000)": 8149,
+        "[10000,100000)": 6469,
+        "[100000,inf)": 12311
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 243,
+        "[100,1000)": 357,
+        "[1000,10000)": 429,
+        "[10000,100000)": 330,
+        "[100000,inf)": 689
+      },
+      "pool_four_plus": 22153,
+      "sample_four_plus": 1201
+    },
+    {
+      "database": "grants",
+      "cohort": "unseen",
+      "pool_unique": 12374,
+      "sample_unique": 2048,
+      "manifest_hash": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "selected_identity_digest": "4115c14b82d641fe6f9823f6349a4290a3ab8d078512a63dba189e95bd8c5685",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 1625,
+        "[100,1000)": 1924,
+        "[1000,10000)": 2656,
+        "[10000,100000)": 2068,
+        "[100000,inf)": 4101
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 284,
+        "[100,1000)": 327,
+        "[1000,10000)": 414,
+        "[10000,100000)": 343,
+        "[100000,inf)": 680
+      },
+      "pool_four_plus": 7235,
+      "sample_four_plus": 1178
+    },
+    {
+      "database": "hepatitis",
+      "cohort": "seen",
+      "pool_unique": 38267,
+      "sample_unique": 2048,
+      "manifest_hash": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "selected_identity_digest": "9a7091cd0b3ab5066b14bfc138776eff8840431a0b149cd1d15446b580549de4",
+      "sample_presentations": 3885,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 17502,
+        "[100,1000)": 17341,
+        "[1000,10000)": 3424,
+        "[10000,100000)": 0,
+        "[100000,inf)": 0
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 955,
+        "[100,1000)": 918,
+        "[1000,10000)": 175,
+        "[10000,100000)": 0,
+        "[100000,inf)": 0
+      },
+      "pool_four_plus": 29504,
+      "sample_four_plus": 1590
+    },
+    {
+      "database": "hepatitis",
+      "cohort": "unseen",
+      "pool_unique": 11733,
+      "sample_unique": 2048,
+      "manifest_hash": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "selected_identity_digest": "c0f21a2699b0916a887bb0d5dacadffc6d778a34d178d25c9733e3278826ad47",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 5455,
+        "[100,1000)": 5297,
+        "[1000,10000)": 981,
+        "[10000,100000)": 0,
+        "[100000,inf)": 0
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 988,
+        "[100,1000)": 885,
+        "[1000,10000)": 175,
+        "[10000,100000)": 0,
+        "[100000,inf)": 0
+      },
+      "pool_four_plus": 9034,
+      "sample_four_plus": 1579
+    },
+    {
+      "database": "hockey",
+      "cohort": "seen",
+      "pool_unique": 37247,
+      "sample_unique": 2048,
+      "manifest_hash": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "selected_identity_digest": "482a287aa23fe23be139dafd4411a31bc0a8031d16d4a02699e03c4586cbca1c",
+      "sample_presentations": 3688,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 13147,
+        "[100,1000)": 12376,
+        "[1000,10000)": 7609,
+        "[10000,100000)": 3240,
+        "[100000,inf)": 875
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 706,
+        "[100,1000)": 691,
+        "[1000,10000)": 425,
+        "[10000,100000)": 171,
+        "[100000,inf)": 55
+      },
+      "pool_four_plus": 17665,
+      "sample_four_plus": 953
+    },
+    {
+      "database": "hockey",
+      "cohort": "unseen",
+      "pool_unique": 12753,
+      "sample_unique": 2048,
+      "manifest_hash": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "selected_identity_digest": "32771783c8b158ac928ff3a886aa62ee05cb44a1375b5cb89faf6bdcee096f1c",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 4469,
+        "[100,1000)": 4325,
+        "[1000,10000)": 2512,
+        "[10000,100000)": 1134,
+        "[100000,inf)": 313
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 726,
+        "[100,1000)": 699,
+        "[1000,10000)": 392,
+        "[10000,100000)": 178,
+        "[100000,inf)": 53
+      },
+      "pool_four_plus": 6023,
+      "sample_four_plus": 983
+    },
+    {
+      "database": "movielens",
+      "cohort": "seen",
+      "pool_unique": 38762,
+      "sample_unique": 2048,
+      "manifest_hash": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "selected_identity_digest": "bbf047bd4ffb24dbb936c4ce18526ce2ab6f0898644ceb24ebb67983ac7067d9",
+      "sample_presentations": 3974,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 3125,
+        "[100,1000)": 5384,
+        "[1000,10000)": 8363,
+        "[10000,100000)": 8648,
+        "[100000,inf)": 13242
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 157,
+        "[100,1000)": 280,
+        "[1000,10000)": 439,
+        "[10000,100000)": 453,
+        "[100000,inf)": 719
+      },
+      "pool_four_plus": 31575,
+      "sample_four_plus": 1648
+    },
+    {
+      "database": "movielens",
+      "cohort": "unseen",
+      "pool_unique": 11238,
+      "sample_unique": 2048,
+      "manifest_hash": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "selected_identity_digest": "c5a4447f1200fa88d01f38b7cf0082ecbfe4f92d53aefbdcfd4969def47ca413",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 853,
+        "[100,1000)": 1573,
+        "[1000,10000)": 2458,
+        "[10000,100000)": 2441,
+        "[100000,inf)": 3913
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 153,
+        "[100,1000)": 296,
+        "[1000,10000)": 455,
+        "[10000,100000)": 451,
+        "[100000,inf)": 693
+      },
+      "pool_four_plus": 9167,
+      "sample_four_plus": 1653
+    },
+    {
+      "database": "sakila",
+      "cohort": "seen",
+      "pool_unique": 38911,
+      "sample_unique": 2048,
+      "manifest_hash": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "selected_identity_digest": "fd958f1f16260fb1f15b5022d0d07f8e41ddee5192ec0c0daeec25c2f2e45abd",
+      "sample_presentations": 3972,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 8167,
+        "[100,1000)": 10926,
+        "[1000,10000)": 10572,
+        "[10000,100000)": 4774,
+        "[100000,inf)": 4472
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 381,
+        "[100,1000)": 595,
+        "[1000,10000)": 575,
+        "[10000,100000)": 256,
+        "[100000,inf)": 241
+      },
+      "pool_four_plus": 27453,
+      "sample_four_plus": 1437
+    },
+    {
+      "database": "sakila",
+      "cohort": "unseen",
+      "pool_unique": 11089,
+      "sample_unique": 2048,
+      "manifest_hash": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "selected_identity_digest": "527d3c3753bf5550531fcc80968d4a9cad743aab989d762935c8075f4df3507c",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 2279,
+        "[100,1000)": 3144,
+        "[1000,10000)": 2926,
+        "[10000,100000)": 1444,
+        "[100000,inf)": 1296
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 394,
+        "[100,1000)": 607,
+        "[1000,10000)": 552,
+        "[10000,100000)": 265,
+        "[100000,inf)": 230
+      },
+      "pool_four_plus": 7842,
+      "sample_four_plus": 1470
+    },
+    {
+      "database": "sap",
+      "cohort": "seen",
+      "pool_unique": 27111,
+      "sample_unique": 2048,
+      "manifest_hash": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "selected_identity_digest": "743f6d5aeb14106cd368076a4f20c1149c3cc7dad2f666ba4b67558043a52783",
+      "sample_presentations": 5283,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 4796,
+        "[100,1000)": 5581,
+        "[1000,10000)": 5857,
+        "[10000,100000)": 5386,
+        "[100000,inf)": 5491
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 380,
+        "[100,1000)": 408,
+        "[1000,10000)": 397,
+        "[10000,100000)": 440,
+        "[100000,inf)": 423
+      },
+      "pool_four_plus": 7072,
+      "sample_four_plus": 533
+    },
+    {
+      "database": "sap",
+      "cohort": "unseen",
+      "pool_unique": 2603,
+      "sample_unique": 2048,
+      "manifest_hash": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "selected_identity_digest": "a96c46679fe6df3a7473812c07d14ef86ae6dd1105f83c652748e28f65c39ef7",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 461,
+        "[100,1000)": 542,
+        "[1000,10000)": 555,
+        "[10000,100000)": 519,
+        "[100000,inf)": 526
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 350,
+        "[100,1000)": 444,
+        "[1000,10000)": 443,
+        "[10000,100000)": 399,
+        "[100000,inf)": 412
+      },
+      "pool_four_plus": 684,
+      "sample_four_plus": 526
+    },
+    {
+      "database": "seznam",
+      "cohort": "seen",
+      "pool_unique": 38270,
+      "sample_unique": 2048,
+      "manifest_hash": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "selected_identity_digest": "a736276162d4eab17873fd45b4d274854637a163337eab17238e84c2896e16bc",
+      "sample_presentations": 3867,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 5632,
+        "[100,1000)": 7115,
+        "[1000,10000)": 8568,
+        "[10000,100000)": 6930,
+        "[100000,inf)": 10025
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 304,
+        "[100,1000)": 392,
+        "[1000,10000)": 468,
+        "[10000,100000)": 369,
+        "[100000,inf)": 515
+      },
+      "pool_four_plus": 9450,
+      "sample_four_plus": 491
+    },
+    {
+      "database": "seznam",
+      "cohort": "unseen",
+      "pool_unique": 11730,
+      "sample_unique": 2048,
+      "manifest_hash": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "selected_identity_digest": "200de702102c54ce54f604029d7bbec19a772aa4a72dbe2f723a69d1d7413bb3",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 1714,
+        "[100,1000)": 2132,
+        "[1000,10000)": 2597,
+        "[10000,100000)": 2137,
+        "[100000,inf)": 3150
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 304,
+        "[100,1000)": 381,
+        "[1000,10000)": 489,
+        "[10000,100000)": 361,
+        "[100000,inf)": 513
+      },
+      "pool_four_plus": 2934,
+      "sample_four_plus": 516
+    },
+    {
+      "database": "ssb",
+      "cohort": "seen",
+      "pool_unique": 37279,
+      "sample_unique": 2048,
+      "manifest_hash": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "selected_identity_digest": "7eabc360e078a304298254e0ce0dcbe79612edb2185db90514753b8c712d6bf7",
+      "sample_presentations": 3667,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 2137,
+        "[100,1000)": 3970,
+        "[1000,10000)": 6594,
+        "[10000,100000)": 9286,
+        "[100000,inf)": 15292
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 111,
+        "[100,1000)": 211,
+        "[1000,10000)": 366,
+        "[10000,100000)": 507,
+        "[100000,inf)": 853
+      },
+      "pool_four_plus": 13800,
+      "sample_four_plus": 754
+    },
+    {
+      "database": "ssb",
+      "cohort": "unseen",
+      "pool_unique": 12721,
+      "sample_unique": 2048,
+      "manifest_hash": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "selected_identity_digest": "f48eaa1bcfd8bf021e72ba20b2a5d600eb8c70ca03fa2d4c15ec0ce9d2bb0211",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 747,
+        "[100,1000)": 1371,
+        "[1000,10000)": 2266,
+        "[10000,100000)": 3096,
+        "[100000,inf)": 5241
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 115,
+        "[100,1000)": 246,
+        "[1000,10000)": 359,
+        "[10000,100000)": 470,
+        "[100000,inf)": 858
+      },
+      "pool_four_plus": 4719,
+      "sample_four_plus": 766
+    },
+    {
+      "database": "talkingdata",
+      "cohort": "seen",
+      "pool_unique": 38242,
+      "sample_unique": 2048,
+      "manifest_hash": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "selected_identity_digest": "48192a4cf0825dc0c307e98bc67e51581742bedc15e39b3bb8f67c9f7f49cad1",
+      "sample_presentations": 3909,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 1841,
+        "[100,1000)": 4308,
+        "[1000,10000)": 6820,
+        "[10000,100000)": 7664,
+        "[100000,inf)": 17609
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 90,
+        "[100,1000)": 224,
+        "[1000,10000)": 364,
+        "[10000,100000)": 405,
+        "[100000,inf)": 965
+      },
+      "pool_four_plus": 25131,
+      "sample_four_plus": 1330
+    },
+    {
+      "database": "talkingdata",
+      "cohort": "unseen",
+      "pool_unique": 11758,
+      "sample_unique": 2048,
+      "manifest_hash": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "selected_identity_digest": "435897c04c91459b2e3911e41b63ce3240845a8ec67c5331d14bef81d0ac517e",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 576,
+        "[100,1000)": 1373,
+        "[1000,10000)": 2084,
+        "[10000,100000)": 2316,
+        "[100000,inf)": 5409
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 114,
+        "[100,1000)": 252,
+        "[1000,10000)": 350,
+        "[10000,100000)": 407,
+        "[100000,inf)": 925
+      },
+      "pool_four_plus": 7638,
+      "sample_four_plus": 1309
+    },
+    {
+      "database": "tournament",
+      "cohort": "seen",
+      "pool_unique": 37006,
+      "sample_unique": 2048,
+      "manifest_hash": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "selected_identity_digest": "d363963a310dcbc77901bde5309aa06b85a85cb0960c261d455c6ce31aeaf4f8",
+      "sample_presentations": 3682,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 4344,
+        "[100,1000)": 6359,
+        "[1000,10000)": 7266,
+        "[10000,100000)": 6303,
+        "[100000,inf)": 12734
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 216,
+        "[100,1000)": 348,
+        "[1000,10000)": 396,
+        "[10000,100000)": 365,
+        "[100000,inf)": 723
+      },
+      "pool_four_plus": 23598,
+      "sample_four_plus": 1323
+    },
+    {
+      "database": "tournament",
+      "cohort": "unseen",
+      "pool_unique": 12994,
+      "sample_unique": 2048,
+      "manifest_hash": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "selected_identity_digest": "d524d1d58f620e96808f96f97ac260c9ddab36bde0d136cd250107df1f18f16a",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 1555,
+        "[100,1000)": 2242,
+        "[1000,10000)": 2521,
+        "[10000,100000)": 2175,
+        "[100000,inf)": 4501
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 253,
+        "[100,1000)": 368,
+        "[1000,10000)": 401,
+        "[10000,100000)": 341,
+        "[100000,inf)": 685
+      },
+      "pool_four_plus": 8268,
+      "sample_four_plus": 1317
+    },
+    {
+      "database": "tpc_h",
+      "cohort": "seen",
+      "pool_unique": 36980,
+      "sample_unique": 2048,
+      "manifest_hash": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "selected_identity_digest": "bf80410da6d0e6f326b676e055572c8a0adee5b5a265bdfcaf50d43c297736f9",
+      "sample_presentations": 3754,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 1384,
+        "[100,1000)": 2919,
+        "[1000,10000)": 5168,
+        "[10000,100000)": 7696,
+        "[100000,inf)": 19813
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 79,
+        "[100,1000)": 151,
+        "[1000,10000)": 275,
+        "[10000,100000)": 417,
+        "[100000,inf)": 1126
+      },
+      "pool_four_plus": 24967,
+      "sample_four_plus": 1371
+    },
+    {
+      "database": "tpc_h",
+      "cohort": "unseen",
+      "pool_unique": 13020,
+      "sample_unique": 2048,
+      "manifest_hash": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "selected_identity_digest": "abc47d9f1b68041e796b8112382513588e2171d842f505f9f6273fd5706741de",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 472,
+        "[100,1000)": 1028,
+        "[1000,10000)": 1834,
+        "[10000,100000)": 2738,
+        "[100000,inf)": 6948
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 69,
+        "[100,1000)": 171,
+        "[1000,10000)": 284,
+        "[10000,100000)": 423,
+        "[100000,inf)": 1101
+      },
+      "pool_four_plus": 8850,
+      "sample_four_plus": 1376
+    },
+    {
+      "database": "tubepricing",
+      "cohort": "seen",
+      "pool_unique": 37752,
+      "sample_unique": 2048,
+      "manifest_hash": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "selected_identity_digest": "750f6d48a09e981ec1ce80ecc7249ca609fb764822405b5fa55ca0fe02b84387",
+      "sample_presentations": 3845,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 11696,
+        "[100,1000)": 10491,
+        "[1000,10000)": 9569,
+        "[10000,100000)": 5412,
+        "[100000,inf)": 584
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 662,
+        "[100,1000)": 566,
+        "[1000,10000)": 510,
+        "[10000,100000)": 276,
+        "[100000,inf)": 34
+      },
+      "pool_four_plus": 19342,
+      "sample_four_plus": 1043
+    },
+    {
+      "database": "tubepricing",
+      "cohort": "unseen",
+      "pool_unique": 12248,
+      "sample_unique": 2048,
+      "manifest_hash": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "selected_identity_digest": "45741d7ebd1d1d2e139e5079207d8fe45a1133c37c79a85d120a5f0b1892ed7f",
+      "sample_presentations": 0,
+      "pool_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 3819,
+        "[100,1000)": 3389,
+        "[1000,10000)": 3141,
+        "[10000,100000)": 1721,
+        "[100000,inf)": 178
+      },
+      "sample_cardinality_counts": {
+        "[0,1)": 0,
+        "[1,10)": 0,
+        "[10,100)": 667,
+        "[100,1000)": 580,
+        "[1000,10000)": 506,
+        "[10000,100000)": 266,
+        "[100000,inf)": 29
+      },
+      "pool_four_plus": 6387,
+      "sample_four_plus": 1066
+    }
+  ],
+  "selected_rows_sha256": "8b4d94989a8fbfa7cfc4cc21051fefe5cc1d76c3cff6f63492e48205d1b2169d"
+}

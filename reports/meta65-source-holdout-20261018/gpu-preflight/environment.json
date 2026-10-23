@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "mode": "gpu_preflight",
+  "python": "3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]",
+  "platform": "Linux-3.10.0-1160.el7.x86_64-x86_64-with-glibc2.31",
+  "numpy": "1.26.1",
+  "torch": "2.1.0+cu121",
+  "cuda": "12.1",
+  "CUDA_VISIBLE_DEVICES": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7",
+  "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+  "threads": 1,
+  "deterministic_algorithms": true,
+  "tf32": false,
+  "training": true,
+  "target_read": false
+}

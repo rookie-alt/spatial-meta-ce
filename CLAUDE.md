@@ -66,6 +66,9 @@ python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic
 - token 计数是 UTF-8/4 估算，**不是模型 tokenizer 实测**，报告里不能写成实测值。
 - 输出落在 `graphify-out/`（约 14 MB，生成物，不提交）。预览用 `.claude/launch.json` 里的 `experiment-graph` 配置（`http.server 8777` 服务该目录）。
 - 对应测试：`tests/test_experiment_graph.py`、`tests/test_graph_build.py`。
+- **默认不运行 graphify**，不把图谱查询、语义提取或重建作为问答、修改、实验收尾或提交的前置步骤；日常直接核对协议、代码、结果 JSON/CSV 和 Git。
+- 用户明确要求图谱时才使用；确需跨文档关系梳理或论文集中整理时，先说明价值、范围与耗时并获用户确认，再重建。保留工具与已有产物，不卸载、不自动更新。
+- 使用已有索引前检查来源覆盖和 SHA256；过期或缺失就回到原始来源，不为回答问题擅自重建。重建时先刷新变化文档的语义，再整体重建，不用 `graphify --update`。详见 [按需图谱规则](memory/spatial-meta-ce-graphify.md)。
 
 ## 常见坑
 
@@ -74,3 +77,21 @@ python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic
 - 已适应 checkpoint 不能回到 `evaluate` 当独立元初始化反复适应（跨 episode 污染）。
 - `run_experiments.py` 默认只打印不执行，加 `--execute --device cuda` 才真跑。
 - 同一命令重试到第 3 次仍失败就停下汇报，不要循环重试。
+
+## graphify
+
+This project has a graphify knowledge graph at `graphify-out/`. **Two producers write the same filenames** (`graph.json`, `graph.html`, `GRAPH_REPORT.md`, `analysis.json`) — the later run wins:
+
+- **Evidence index** (sha256-bound, what you want for experiment/results questions): `experiment_graph.json`, `manifest.json`, `semantic.json` — built by `scripts/build_experiment_graph.py`
+- **graphify entity graph** (EXTRACTED/INFERRED edges, community structure): `graph.json` + `analysis.json` — built by `/graphify`
+
+Rules:
+
+- Graphify is optional and off by default: no mandatory graph reads, queries, semantic extraction or rebuilds for routine work. Read primary files directly.
+- Use it only at the user's request or after they confirm a justified need, scope and cost. Existing graph files are not authorization to run it.
+- When a rebuild is authorized, re-extract changed Markdown semantics and rebuild the evidence index with
+  `python3 scripts/build_experiment_graph.py --root . --out graphify-out --semantic graphify-out/semantic.json`
+  Stale source hashes must fail closed; never relabel stale semantics by updating hashes alone.
+- **Do NOT use `graphify --update` for the evidence index**: incremental only adds and leaves obsolete evidence behind. The script itself says "rebuild rather than graphify --update to remove obsolete evidence."
+- `graphify update .` is AST-only and rebuilds the *entity* graph; running it overwrites `graph.json` from the evidence index. Run it only when you actually want the entity graph back.
+- Detail, measured costs and known pitfalls: local memory `spatial-meta-ce-graphify` (not in git).

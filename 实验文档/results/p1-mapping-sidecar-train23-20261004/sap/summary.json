@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 29714,
+  "duplicate_rows": 20286,
+  "changed_rows": 44173,
+  "changed_unique_queries": 26246,
+  "unchanged_rows": 5827,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 5827,
+  "changed_fraction": 0.88346,
+  "sql_flags": {
+    "multiple_filters": 24618
+  },
+  "database": "sap",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 260.85095586115494
+}

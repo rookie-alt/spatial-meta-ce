@@ -1,0 +1,20 @@
+test_v2_roundtrip_binds_policy_version_and_acceptance_hash (test_s8_checkpoint_v2.CheckpointV2Tests.test_v2_roundtrip_binds_policy_version_and_acceptance_hash) ... ERROR
+
+======================================================================
+ERROR: test_v2_roundtrip_binds_policy_version_and_acceptance_hash (test_s8_checkpoint_v2.CheckpointV2Tests.test_v2_roundtrip_binds_policy_version_and_acceptance_hash)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_checkpoint_v2.py", line 27, in test_v2_roundtrip_binds_policy_version_and_acceptance_hash
+    sha = runner.checkpoint_write(path, model, optimizer, bindings,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/run_s8_smoke.py", line 260, in checkpoint_write
+    'bindings_sha256': signature(bindings), 'next_step': 2,
+                       ^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_state.py", line 111, in signature
+    raise ValueError(f'S8 frozen {key} mismatch')
+ValueError: S8 frozen schema mismatch
+
+----------------------------------------------------------------------
+Ran 1 test in 0.866s
+
+FAILED (errors=1)

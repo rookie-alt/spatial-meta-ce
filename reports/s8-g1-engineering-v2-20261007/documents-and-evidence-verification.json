@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-07",
+  "markdown_relative_links_checked": 259,
+  "missing_links": [],
+  "old_failed_SHA_files_checked": 65,
+  "old_scientific_protocols_24_26_27_30_unchanged": true,
+  "approved_protocol34_sha256": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+  "unrelated_model_train_data_preflight_contract_Fraction_unchanged": true,
+  "latest_674_sources_and_tests_SHA_match": true,
+  "real_P_checked": false,
+  "G1_original_failed_unchanged": true,
+  "S2_fix_files_in_G1_commit": false
+}

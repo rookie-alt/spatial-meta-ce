@@ -1,0 +1,21 @@
+test_meta65_completion (unittest.loader._FailedTest.test_meta65_completion) ... ERROR
+
+======================================================================
+ERROR: test_meta65_completion (unittest.loader._FailedTest.test_meta65_completion)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_meta65_completion
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/Users/williamlin/.codex/worktrees/meta65-source-screen-20261009/spatial-meta-ce/tests/test_meta65_completion.py", line 7, in <module>
+    from scripts import complete_meta65_endpoint as completion
+ImportError: cannot import name 'complete_meta65_endpoint' from 'scripts' (unknown location)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

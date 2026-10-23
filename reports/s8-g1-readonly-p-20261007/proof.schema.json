@@ -1,0 +1,565 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:spatial-meta-ce:s8-readonly-P-proof-v1",
+  "title": "Read-only saved-P engineering proof; never G1 retrospective success",
+  "type": "object",
+  "required": [
+    "schema",
+    "status",
+    "stage",
+    "evidence_kind",
+    "formal_ready",
+    "original_G1_status",
+    "features",
+    "F0_updates",
+    "Adam_updates",
+    "H_read",
+    "target_read",
+    "checkpoint_read",
+    "GPU_used",
+    "real_smoke_executed",
+    "can_retroactively_pass_original_G1",
+    "input_sha256_before",
+    "input_sha256_after",
+    "opened_input_paths"
+  ],
+  "properties": {
+    "schema": {
+      "const": 1
+    },
+    "status": {
+      "enum": [
+        "not_run",
+        "failed",
+        "verified_readonly_P_engineering"
+      ]
+    },
+    "evidence_kind": {
+      "enum": [
+        "real_saved_P",
+        "synthetic_fixture"
+      ]
+    },
+    "formal_ready": {
+      "const": false
+    },
+    "original_G1_status": {
+      "const": "failed"
+    },
+    "features": {
+      "type": "object",
+      "required": [
+        "h",
+        "x"
+      ],
+      "properties": {
+        "h": {
+          "type": "object",
+          "required": [
+            "small_P_zero_reference",
+            "full_P_resource"
+          ],
+          "properties": {
+            "small_P_zero_reference": {
+              "type": "object",
+              "required": [
+                "status",
+                "engineering_verified",
+                "rank_stability",
+                "strict_certificate",
+                "full_linear_optimality_verified"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "not_run",
+                    "verified",
+                    "failed"
+                  ]
+                },
+                "engineering_verified": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "rank_stability": {
+                  "enum": [
+                    "stable",
+                    "unknown",
+                    "not_run"
+                  ]
+                },
+                "strict_certificate": {
+                  "type": "object",
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "status": {
+                      "const": "unknown"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "full_linear_optimality_verified": {
+                  "const": false
+                }
+              },
+              "not": {
+                "required": [
+                  "theta"
+                ]
+              },
+              "additionalProperties": true,
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "status": {
+                        "const": "not_run"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "engineering_verified": {
+                        "type": "null"
+                      },
+                      "rank_stability": {
+                        "const": "not_run"
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "status": {
+                        "const": "verified"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "certificate",
+                      "coefficients_discarded",
+                      "not_used_for_predictions_or_selection",
+                      "rows",
+                      "columns",
+                      "matrix_bytes",
+                      "seconds",
+                      "normalizer_source"
+                    ],
+                    "properties": {
+                      "engineering_verified": {
+                        "const": true
+                      },
+                      "coefficients_discarded": {
+                        "const": true
+                      },
+                      "not_used_for_predictions_or_selection": {
+                        "const": true
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "full_P_resource": {
+              "type": "object",
+              "required": [
+                "status",
+                "engineering_verified",
+                "rank_stability",
+                "strict_certificate",
+                "full_linear_optimality_verified"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "not_run",
+                    "verified",
+                    "failed"
+                  ]
+                },
+                "engineering_verified": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "rank_stability": {
+                  "enum": [
+                    "stable",
+                    "unknown",
+                    "not_run"
+                  ]
+                },
+                "strict_certificate": {
+                  "type": "object",
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "status": {
+                      "const": "unknown"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "full_linear_optimality_verified": {
+                  "const": false
+                }
+              },
+              "not": {
+                "required": [
+                  "theta"
+                ]
+              },
+              "additionalProperties": true,
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "status": {
+                        "const": "not_run"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "engineering_verified": {
+                        "type": "null"
+                      },
+                      "rank_stability": {
+                        "const": "not_run"
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "status": {
+                        "const": "verified"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "certificate",
+                      "coefficients_discarded",
+                      "not_used_for_predictions_or_selection",
+                      "rows",
+                      "columns",
+                      "matrix_bytes",
+                      "seconds",
+                      "normalizer_source"
+                    ],
+                    "properties": {
+                      "engineering_verified": {
+                        "const": true
+                      },
+                      "coefficients_discarded": {
+                        "const": true
+                      },
+                      "not_used_for_predictions_or_selection": {
+                        "const": true
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "x": {
+          "type": "object",
+          "required": [
+            "small_P_zero_reference",
+            "full_P_resource"
+          ],
+          "properties": {
+            "small_P_zero_reference": {
+              "type": "object",
+              "required": [
+                "status",
+                "engineering_verified",
+                "rank_stability",
+                "strict_certificate",
+                "full_linear_optimality_verified"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "not_run",
+                    "verified",
+                    "failed"
+                  ]
+                },
+                "engineering_verified": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "rank_stability": {
+                  "enum": [
+                    "stable",
+                    "unknown",
+                    "not_run"
+                  ]
+                },
+                "strict_certificate": {
+                  "type": "object",
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "status": {
+                      "const": "unknown"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "full_linear_optimality_verified": {
+                  "const": false
+                }
+              },
+              "not": {
+                "required": [
+                  "theta"
+                ]
+              },
+              "additionalProperties": true,
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "status": {
+                        "const": "not_run"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "engineering_verified": {
+                        "type": "null"
+                      },
+                      "rank_stability": {
+                        "const": "not_run"
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "status": {
+                        "const": "verified"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "certificate",
+                      "coefficients_discarded",
+                      "not_used_for_predictions_or_selection",
+                      "rows",
+                      "columns",
+                      "matrix_bytes",
+                      "seconds",
+                      "normalizer_source"
+                    ],
+                    "properties": {
+                      "engineering_verified": {
+                        "const": true
+                      },
+                      "coefficients_discarded": {
+                        "const": true
+                      },
+                      "not_used_for_predictions_or_selection": {
+                        "const": true
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "full_P_resource": {
+              "type": "object",
+              "required": [
+                "status",
+                "engineering_verified",
+                "rank_stability",
+                "strict_certificate",
+                "full_linear_optimality_verified"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "not_run",
+                    "verified",
+                    "failed"
+                  ]
+                },
+                "engineering_verified": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "rank_stability": {
+                  "enum": [
+                    "stable",
+                    "unknown",
+                    "not_run"
+                  ]
+                },
+                "strict_certificate": {
+                  "type": "object",
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "status": {
+                      "const": "unknown"
+                    }
+                  },
+                  "additionalProperties": true
+                },
+                "full_linear_optimality_verified": {
+                  "const": false
+                }
+              },
+              "not": {
+                "required": [
+                  "theta"
+                ]
+              },
+              "additionalProperties": true,
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "status": {
+                        "const": "not_run"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "engineering_verified": {
+                        "type": "null"
+                      },
+                      "rank_stability": {
+                        "const": "not_run"
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "status": {
+                        "const": "verified"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "certificate",
+                      "coefficients_discarded",
+                      "not_used_for_predictions_or_selection",
+                      "rows",
+                      "columns",
+                      "matrix_bytes",
+                      "seconds",
+                      "normalizer_source"
+                    ],
+                    "properties": {
+                      "engineering_verified": {
+                        "const": true
+                      },
+                      "coefficients_discarded": {
+                        "const": true
+                      },
+                      "not_used_for_predictions_or_selection": {
+                        "const": true
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "F0_updates": {
+      "const": 0
+    },
+    "Adam_updates": {
+      "const": 0
+    },
+    "H_read": {
+      "const": false
+    },
+    "target_read": {
+      "const": false
+    },
+    "checkpoint_read": {
+      "const": false
+    },
+    "GPU_used": {
+      "const": false
+    },
+    "real_smoke_executed": {
+      "const": false
+    },
+    "can_retroactively_pass_original_G1": {
+      "const": false
+    },
+    "stage": {
+      "type": "string"
+    },
+    "input_sha256_before": {
+      "type": "object"
+    },
+    "input_sha256_after": {
+      "type": "object"
+    },
+    "opened_input_paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "verified_readonly_P_engineering"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "original_inputs_unchanged"
+        ],
+        "properties": {
+          "original_inputs_unchanged": {
+            "const": true
+          }
+        }
+      }
+    }
+  ]
+}

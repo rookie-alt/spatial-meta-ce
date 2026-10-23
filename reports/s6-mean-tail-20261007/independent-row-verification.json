@@ -1,0 +1,697 @@
+{
+  "passed": true,
+  "purpose": "independent-read-only-row-and-source-audit",
+  "completed_at": "2026-10-07T04:50:09.318500+00:00",
+  "numpy": "1.26.1",
+  "row_recomputations": [
+    {
+      "arm": "A_mean",
+      "endpoint": "initial_endpoint",
+      "rows": 149504,
+      "macro_four_plus_q95": 138.61294508296308,
+      "macro_all_table_q95": 59.67854551064622,
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.276338099711196,
+            "q95": 146.06149895140888
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.052631376824029,
+            "q95": 354.83883684030513
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.5120373730198928,
+            "q95": 25.999999950478994
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 3.350356023474374,
+            "q95": 49.999998626759044
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.3896105131596053,
+            "q95": 6.974137630050751
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.900566915867772,
+            "q95": 10.99999978182504
+          }
+        }
+      },
+      "sha256": "e1e5889ddf9da2d864c40cbcf75a5e56704dc2982a7b6fe19ad0d7cd1cdd3372"
+    },
+    {
+      "arm": "A_mean",
+      "endpoint": "endpoint",
+      "rows": 149504,
+      "macro_four_plus_q95": 44.14432045246672,
+      "macro_all_table_q95": 28.646382235745516,
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.588865595105742,
+            "q95": 68.23347862000948
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.491483791748339,
+            "q95": 104.81765453770367
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.935083665807848,
+            "q95": 9.712128769340556
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.6627645396507873,
+            "q95": 15.67468149584954
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5798467735976232,
+            "q95": 7.993539317886522
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 2.0055033128447373,
+            "q95": 11.940625323846943
+          }
+        }
+      },
+      "sha256": "93acc77dc6ac316d8903a674517de5e0795f02b5b0d106cb9a95d98f7c242376"
+    },
+    {
+      "arm": "B_mean_tail10",
+      "endpoint": "initial_endpoint",
+      "rows": 149504,
+      "macro_four_plus_q95": 138.61294508296308,
+      "macro_all_table_q95": 59.67854551064622,
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.276338099711196,
+            "q95": 146.06149895140888
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.052631376824029,
+            "q95": 354.83883684030513
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.5120373730198928,
+            "q95": 25.999999950478994
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 3.350356023474374,
+            "q95": 49.999998626759044
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.3896105131596053,
+            "q95": 6.974137630050751
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.900566915867772,
+            "q95": 10.99999978182504
+          }
+        }
+      },
+      "sha256": "e1e5889ddf9da2d864c40cbcf75a5e56704dc2982a7b6fe19ad0d7cd1cdd3372"
+    },
+    {
+      "arm": "B_mean_tail10",
+      "endpoint": "endpoint",
+      "rows": 149504,
+      "macro_four_plus_q95": 39.98662687913146,
+      "macro_all_table_q95": 26.03272937794293,
+      "per_database": {
+        "chembl": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 2.578124683974308,
+            "q95": 59.939351945891076
+          },
+          "four_plus_tables": {
+            "queries": 33947,
+            "q50": 3.484342126558014,
+            "q95": 93.95684501292695
+          }
+        },
+        "legalacts": {
+          "all_tables": {
+            "queries": 49504,
+            "q50": 1.9184224637421738,
+            "q95": 10.638888713653934
+          },
+          "four_plus_tables": {
+            "queries": 9178,
+            "q50": 2.6632475084490284,
+            "q95": 18.13603152035917
+          }
+        },
+        "telstra": {
+          "all_tables": {
+            "queries": 50000,
+            "q50": 1.5341315864113771,
+            "q95": 7.519947474283784
+          },
+          "four_plus_tables": {
+            "queries": 20311,
+            "q50": 1.7134672223604694,
+            "q95": 7.8670041041082595
+          }
+        }
+      },
+      "sha256": "84fb90733951869e6ac5befa8766c783f4efb9830e907b4a64fa900b0ab7c80c"
+    }
+  ],
+  "paired_raw_identity": true,
+  "historical_a_reproduced": true,
+  "decision": "no_candidate",
+  "primary_passed": false,
+  "guardrails": {
+    "q50": true,
+    "q95": false
+  },
+  "relative_improvement": 0.09418411090532353,
+  "a_macro_four_plus_q95": 44.14432045246672,
+  "b_macro_four_plus_q95": 39.98662687913146,
+  "loss_evidence": {
+    "A_mean": {
+      "mode": "mean",
+      "snapshot_rows": 16,
+      "per_database": {
+        "accidents": {
+          "episodes": 694,
+          "presentations": 70526,
+          "coefficient_sum": 173.50000097695738,
+          "low_mass": 173.50000097695738,
+          "high_mass": 0.0,
+          "under_mass": 96.763542648172,
+          "over_mass": 76.73645832878537,
+          "exact_mass": 0.0
+        },
+        "airline": {
+          "episodes": 682,
+          "presentations": 68843,
+          "coefficient_sum": 170.5000010188669,
+          "low_mass": 62.030582861974835,
+          "high_mass": 108.46941815689206,
+          "under_mass": 97.21922242548317,
+          "over_mass": 73.28077859338373,
+          "exact_mass": 0.0
+        },
+        "baseball": {
+          "episodes": 711,
+          "presentations": 71319,
+          "coefficient_sum": 177.75000119861215,
+          "low_mass": 72.0645324587822,
+          "high_mass": 105.68546873982996,
+          "under_mass": 101.43381702946499,
+          "over_mass": 76.31618416914716,
+          "exact_mass": 0.0
+        },
+        "basketball": {
+          "episodes": 705,
+          "presentations": 70820,
+          "coefficient_sum": 176.2500011944212,
+          "low_mass": 65.98263568733819,
+          "high_mass": 110.26736550708301,
+          "under_mass": 97.59198094136082,
+          "over_mass": 78.65802025306039,
+          "exact_mass": 0.0
+        },
+        "carcinogenesis": {
+          "episodes": 665,
+          "presentations": 67320,
+          "coefficient_sum": 166.2500009648502,
+          "low_mass": 111.13105039787479,
+          "high_mass": 55.1189505669754,
+          "under_mass": 81.78618093044497,
+          "over_mass": 84.46382003440522,
+          "exact_mass": 0.0
+        },
+        "ccs": {
+          "episodes": 714,
+          "presentations": 71146,
+          "coefficient_sum": 178.50000122515485,
+          "low_mass": 119.84259167034179,
+          "high_mass": 58.65740955481306,
+          "under_mass": 104.54045134573244,
+          "over_mass": 73.95954987942241,
+          "exact_mass": 0.0
+        },
+        "consumer": {
+          "episodes": 722,
+          "presentations": 72623,
+          "coefficient_sum": 180.5000012149103,
+          "low_mass": 180.5000012149103,
+          "high_mass": 0.0,
+          "under_mass": 96.00055880495347,
+          "over_mass": 84.49944240995683,
+          "exact_mass": 0.0
+        },
+        "credit": {
+          "episodes": 720,
+          "presentations": 74035,
+          "coefficient_sum": 180.00000093039125,
+          "low_mass": 53.83597823372111,
+          "high_mass": 126.16402269667014,
+          "under_mass": 97.27474933420308,
+          "over_mass": 82.72525159618817,
+          "exact_mass": 0.0
+        },
+        "employee": {
+          "episodes": 700,
+          "presentations": 71250,
+          "coefficient_sum": 175.00000098114833,
+          "low_mass": 72.63005995936692,
+          "high_mass": 102.36994102178141,
+          "under_mass": 100.73067089822143,
+          "over_mass": 74.2693300829269,
+          "exact_mass": 0.0
+        },
+        "financial": {
+          "episodes": 697,
+          "presentations": 68748,
+          "coefficient_sum": 174.25000137649477,
+          "low_mass": 48.145683453418314,
+          "high_mass": 126.10431792307645,
+          "under_mass": 83.24507741536945,
+          "over_mass": 91.00492396112531,
+          "exact_mass": 0.0
+        },
+        "fnhk": {
+          "episodes": 659,
+          "presentations": 67461,
+          "coefficient_sum": 164.75000087963417,
+          "low_mass": 164.75000087963417,
+          "high_mass": 0.0,
+          "under_mass": 80.95899028843269,
+          "over_mass": 83.79101059120148,
+          "exact_mass": 0.0
+        },
+        "grants": {
+          "episodes": 684,
+          "presentations": 69826,
+          "coefficient_sum": 171.0000009359792,
+          "low_mass": 69.79699567332864,
+          "high_mass": 101.20300526265055,
+          "under_mass": 85.94336591940373,
+          "over_mass": 85.05663501657546,
+          "exact_mass": 0.0
+        },
+        "hepatitis": {
+          "episodes": 714,
+          "presentations": 72521,
+          "coefficient_sum": 178.50000110222027,
+          "low_mass": 40.75185838108882,
+          "high_mass": 137.74814272113144,
+          "under_mass": 95.15492074377835,
+          "over_mass": 83.33832360152155,
+          "exact_mass": 0.006756756920367479
+        },
+        "hockey": {
+          "episodes": 661,
+          "presentations": 68184,
+          "coefficient_sum": 165.25000079115853,
+          "low_mass": 86.90261617512442,
+          "high_mass": 78.3473846160341,
+          "under_mass": 83.80330188455991,
+          "over_mass": 81.44669890659861,
+          "exact_mass": 0.0
+        },
+        "movielens": {
+          "episodes": 715,
+          "presentations": 74125,
+          "coefficient_sum": 178.75000083865598,
+          "low_mass": 33.02948388806544,
+          "high_mass": 145.72051695059054,
+          "under_mass": 93.10321128531359,
+          "over_mass": 85.64678955334239,
+          "exact_mass": 0.0
+        },
+        "sakila": {
+          "episodes": 727,
+          "presentations": 75168,
+          "coefficient_sum": 181.7500008274801,
+          "low_mass": 53.50476394011639,
+          "high_mass": 128.24523688736372,
+          "under_mass": 101.04224041639827,
+          "over_mass": 80.70623602089472,
+          "exact_mass": 0.0015243901871144772
+        },
+        "sap": {
+          "episodes": 691,
+          "presentations": 70569,
+          "coefficient_sum": 172.75000103982165,
+          "low_mass": 127.4891189164482,
+          "high_mass": 45.26088212337345,
+          "under_mass": 96.76806332636625,
+          "over_mass": 75.98193771345541,
+          "exact_mass": 0.0
+        },
+        "seznam": {
+          "episodes": 724,
+          "presentations": 72611,
+          "coefficient_sum": 181.00000121584162,
+          "low_mass": 136.25164404511452,
+          "high_mass": 44.748357170727104,
+          "under_mass": 95.13205597456545,
+          "over_mass": 85.86794524127617,
+          "exact_mass": 0.0
+        },
+        "ssb": {
+          "episodes": 677,
+          "presentations": 68183,
+          "coefficient_sum": 169.2500010947697,
+          "low_mass": 106.60589032969438,
+          "high_mass": 62.64411076507531,
+          "under_mass": 87.2320707552135,
+          "over_mass": 82.01793033955619,
+          "exact_mass": 0.0
+        },
+        "talkingdata": {
+          "episodes": 716,
+          "presentations": 72144,
+          "coefficient_sum": 179.00000111432746,
+          "low_mass": 61.283328391145915,
+          "high_mass": 117.71667272318155,
+          "under_mass": 87.42388355429284,
+          "over_mass": 91.57611756003462,
+          "exact_mass": 0.0
+        },
+        "tournament": {
+          "episodes": 661,
+          "presentations": 66989,
+          "coefficient_sum": 165.25000098533928,
+          "low_mass": 59.796760719968006,
+          "high_mass": 105.45324026537128,
+          "under_mass": 83.16138611943461,
+          "over_mass": 82.08861486590467,
+          "exact_mass": 0.0
+        },
+        "tpc_h": {
+          "episodes": 657,
+          "presentations": 67358,
+          "coefficient_sum": 164.25000088987872,
+          "low_mass": 53.64295644266531,
+          "high_mass": 110.60704444721341,
+          "under_mass": 85.72219099034555,
+          "over_mass": 78.5170909599401,
+          "exact_mass": 0.010718939593061805
+        },
+        "tubepricing": {
+          "episodes": 704,
+          "presentations": 70146,
+          "coefficient_sum": 176.00000121071935,
+          "low_mass": 85.995395491831,
+          "high_mass": 90.00460571888834,
+          "under_mass": 75.74548717774451,
+          "over_mass": 100.25451403297484,
+          "exact_mass": 0.0
+        }
+      },
+      "audit_sha256": "9fc3f1c4e74d2c99f546103afc4d5b0c150513079a77c82360a06c885f7bddde"
+    },
+    "B_mean_tail10": {
+      "mode": "mean_tail10",
+      "snapshot_rows": 16,
+      "per_database": {
+        "accidents": {
+          "episodes": 694,
+          "presentations": 70526,
+          "coefficient_sum": 173.50000226288103,
+          "low_mass": 173.50000226288103,
+          "high_mass": 0.0,
+          "under_mass": 91.60134125628974,
+          "over_mass": 81.89866100659128,
+          "exact_mass": 0.0
+        },
+        "airline": {
+          "episodes": 682,
+          "presentations": 68843,
+          "coefficient_sum": 170.50000237487257,
+          "low_mass": 60.73121178522706,
+          "high_mass": 109.7687905896455,
+          "under_mass": 91.2742489327211,
+          "over_mass": 79.22575344215147,
+          "exact_mass": 0.0
+        },
+        "baseball": {
+          "episodes": 711,
+          "presentations": 71319,
+          "coefficient_sum": 177.7500027322676,
+          "low_mass": 50.589616603567265,
+          "high_mass": 127.16038612870034,
+          "under_mass": 113.11150865152013,
+          "over_mass": 64.63849408074748,
+          "exact_mass": 0.0
+        },
+        "basketball": {
+          "episodes": 705,
+          "presentations": 70820,
+          "coefficient_sum": 176.25000265589915,
+          "low_mass": 48.924295578035526,
+          "high_mass": 127.32570707786363,
+          "under_mass": 97.57937700033654,
+          "over_mass": 78.67062565556262,
+          "exact_mass": 0.0
+        },
+        "carcinogenesis": {
+          "episodes": 665,
+          "presentations": 67320,
+          "coefficient_sum": 166.25000222562812,
+          "low_mass": 88.49497267056722,
+          "high_mass": 77.7550295550609,
+          "under_mass": 87.9859202489024,
+          "over_mass": 78.26408197672572,
+          "exact_mass": 0.0
+        },
+        "ccs": {
+          "episodes": 714,
+          "presentations": 71146,
+          "coefficient_sum": 178.50000258965883,
+          "low_mass": 102.43140709027648,
+          "high_mass": 76.06859549938235,
+          "under_mass": 94.52023234334774,
+          "over_mass": 83.97977024631109,
+          "exact_mass": 0.0
+        },
+        "consumer": {
+          "episodes": 722,
+          "presentations": 72623,
+          "coefficient_sum": 180.50000286835711,
+          "low_mass": 180.50000286835711,
+          "high_mass": 0.0,
+          "under_mass": 99.97325557540171,
+          "over_mass": 80.5267472929554,
+          "exact_mass": 0.0
+        },
+        "credit": {
+          "episodes": 720,
+          "presentations": 74035,
+          "coefficient_sum": 180.00000248022843,
+          "low_mass": 43.49445132864639,
+          "high_mass": 136.50555115158204,
+          "under_mass": 99.83274312887806,
+          "over_mass": 80.16725935135037,
+          "exact_mass": 0.0
+        },
+        "employee": {
+          "episodes": 700,
+          "presentations": 71250,
+          "coefficient_sum": 175.00000240514055,
+          "low_mass": 68.40742388332728,
+          "high_mass": 106.59257852181327,
+          "under_mass": 97.1658860478783,
+          "over_mass": 77.83411635726225,
+          "exact_mass": 0.0
+        },
+        "financial": {
+          "episodes": 697,
+          "presentations": 68748,
+          "coefficient_sum": 174.25000287941657,
+          "low_mass": 37.608673070324585,
+          "high_mass": 136.64132980909199,
+          "under_mass": 91.64298097172286,
+          "over_mass": 82.6070219076937,
+          "exact_mass": 0.0
+        },
+        "fnhk": {
+          "episodes": 659,
+          "presentations": 67461,
+          "coefficient_sum": 164.75000225799158,
+          "low_mass": 164.75000225799158,
+          "high_mass": 0.0,
+          "under_mass": 80.77988144825213,
+          "over_mass": 83.97012080973946,
+          "exact_mass": 0.0
+        },
+        "grants": {
+          "episodes": 684,
+          "presentations": 69826,
+          "coefficient_sum": 171.00000235217158,
+          "low_mass": 50.011739343754016,
+          "high_mass": 120.98826300841756,
+          "under_mass": 85.32999188883696,
+          "over_mass": 85.67001046333462,
+          "exact_mass": 0.0
+        },
+        "hepatitis": {
+          "episodes": 714,
+          "presentations": 72521,
+          "coefficient_sum": 178.50000266206916,
+          "low_mass": 33.428406744031236,
+          "high_mass": 145.07159591803793,
+          "under_mass": 95.58369714266155,
+          "over_mass": 82.91292714094743,
+          "exact_mass": 0.0033783784601837397
+        },
+        "hockey": {
+          "episodes": 661,
+          "presentations": 68184,
+          "coefficient_sum": 165.25000221724622,
+          "low_mass": 64.88527796219569,
+          "high_mass": 100.36472425505053,
+          "under_mass": 76.45139255246613,
+          "over_mass": 88.79860966478009,
+          "exact_mass": 0.0
+        },
+        "movielens": {
+          "episodes": 715,
+          "presentations": 74125,
+          "coefficient_sum": 178.75000248255674,
+          "low_mass": 24.222827438730747,
+          "high_mass": 154.527175043826,
+          "under_mass": 75.28736533445772,
+          "over_mass": 103.46263714809902,
+          "exact_mass": 0.0
+        },
+        "sakila": {
+          "episodes": 727,
+          "presentations": 75168,
+          "coefficient_sum": 181.75000230700243,
+          "low_mass": 39.39134407590609,
+          "high_mass": 142.35865823109634,
+          "under_mass": 105.20675318327267,
+          "over_mass": 76.54143752949312,
+          "exact_mass": 0.0018115942366421223
+        },
+        "sap": {
+          "episodes": 691,
+          "presentations": 70569,
+          "coefficient_sum": 172.75000261783134,
+          "low_mass": 121.34662668243982,
+          "high_mass": 51.40337593539152,
+          "under_mass": 86.22825928835664,
+          "over_mass": 86.5217433294747,
+          "exact_mass": 0.0
+        },
+        "seznam": {
+          "episodes": 724,
+          "presentations": 72611,
+          "coefficient_sum": 181.0000027838396,
+          "low_mass": 125.09191819012631,
+          "high_mass": 55.90808459371328,
+          "under_mass": 90.21089675300755,
+          "over_mass": 90.78834383573849,
+          "exact_mass": 0.0007621950935572386
+        },
+        "ssb": {
+          "episodes": 677,
+          "presentations": 68183,
+          "coefficient_sum": 169.2500024252804,
+          "low_mass": 99.56768126355018,
+          "high_mass": 69.68232116173021,
+          "under_mass": 90.86216719716322,
+          "over_mass": 78.38783522811718,
+          "exact_mass": 0.0
+        },
+        "talkingdata": {
+          "episodes": 716,
+          "presentations": 72144,
+          "coefficient_sum": 179.00000261410605,
+          "low_mass": 46.68821860617027,
+          "high_mass": 132.31178400793578,
+          "under_mass": 90.5327538184356,
+          "over_mass": 88.46724879567046,
+          "exact_mass": 0.0
+        },
+        "tournament": {
+          "episodes": 661,
+          "presentations": 66989,
+          "coefficient_sum": 165.25000230688602,
+          "low_mass": 38.4713409767719,
+          "high_mass": 126.77866133011412,
+          "under_mass": 84.13958842132706,
+          "over_mass": 81.11041388555896,
+          "exact_mass": 0.0
+        },
+        "tpc_h": {
+          "episodes": 657,
+          "presentations": 67358,
+          "coefficient_sum": 164.2500023493776,
+          "low_mass": 43.90043522370979,
+          "high_mass": 120.34956712566782,
+          "under_mass": 97.44311671692412,
+          "over_mass": 66.80688563245349,
+          "exact_mass": 0.0
+        },
+        "tubepricing": {
+          "episodes": 704,
+          "presentations": 70146,
+          "coefficient_sum": 176.00000264076516,
+          "low_mass": 68.68352059018798,
+          "high_mass": 107.31648205057718,
+          "under_mass": 68.98540619981941,
+          "over_mass": 107.01459644094575,
+          "exact_mass": 0.0
+        }
+      },
+      "audit_sha256": "2e624cb0df37a803ff522ce3f08a05c307b22f7bae3a1f73bcb727deb1470196"
+    }
+  },
+  "gradient_stats": {
+    "A_mean": {
+      "count": 4000,
+      "total_norm": 6859.445043193176,
+      "max_norm": 12.707417488098145,
+      "clipped_count": 2701
+    },
+    "B_mean_tail10": {
+      "count": 4000,
+      "total_norm": 19000.08489542082,
+      "max_norm": 22.382158279418945,
+      "clipped_count": 3838
+    }
+  },
+  "verified_output_files": 53,
+  "verified_cache_files": 182,
+  "code_and_historical_inputs_unchanged": true,
+  "file_mtime_span_seconds": 1989.6350121498108
+}

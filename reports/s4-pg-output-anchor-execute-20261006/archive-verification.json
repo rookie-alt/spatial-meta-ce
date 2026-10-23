@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "archive_status": "failed_attempt_preserved",
+  "server_run": "/gly/weilin/spatial-meta-ce/runs/s4-pg-output-anchor-20261006",
+  "server_sha256": {
+    "protocol.json": "20eebcad6a950f43cb6645a52db77476de0960f85ab18d48107a27b884af19da",
+    "preflight.json": "36fbdf201a9d72762e634e8de9a2cb99dabcb3a0a6c8e8bb51665a573f3b5ecf",
+    "status.json": "914ad1a006714f50dd85b72b4dd3abb633e3d54dbe9a8ffa7d3483890153b34b",
+    "smoke/status.json": "a5b15a487125a37017c53e21f2e24c047b50c86b227af5375725dc80871987d5",
+    "smoke/runs.json": "5f32e32708ce5ec86ab9767f18fdf1f360f8a4283c164e5d846c533fce5bde6f",
+    "smoke/A_anchor1/result.json": "04a68418d35465c66addca9f03fe2c38e3fcb9caa84ad95225118c65b7b82fb8"
+  },
+  "archive_sha256": {
+    "protocol.json": "20eebcad6a950f43cb6645a52db77476de0960f85ab18d48107a27b884af19da",
+    "preflight.json": "36fbdf201a9d72762e634e8de9a2cb99dabcb3a0a6c8e8bb51665a573f3b5ecf",
+    "status.json": "914ad1a006714f50dd85b72b4dd3abb633e3d54dbe9a8ffa7d3483890153b34b",
+    "smoke/status.json": "a5b15a487125a37017c53e21f2e24c047b50c86b227af5375725dc80871987d5",
+    "smoke/runs.json": "5f32e32708ce5ec86ab9767f18fdf1f360f8a4283c164e5d846c533fce5bde6f",
+    "smoke/A_anchor1/result.json": "04a68418d35465c66addca9f03fe2c38e3fcb9caa84ad95225118c65b7b82fb8"
+  },
+  "bytes_match": true,
+  "formal_training_started": false,
+  "A_gpu_smoke_steps": 2,
+  "B_gpu_smoke_steps": 0,
+  "auto_retry": false
+}

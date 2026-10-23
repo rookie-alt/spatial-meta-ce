@@ -1,0 +1,18 @@
+test_absolute_contract_with_different_child_cwd (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_absolute_contract_with_different_child_cwd) ... skipped 'requires real Linux /proc and inherited pipes'
+test_different_contract_path_rejected_even_with_same_sha (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_different_contract_path_rejected_even_with_same_sha) ... skipped 'requires real Linux /proc and inherited pipes'
+test_each_ticket_binding_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_each_ticket_binding_rejected) ... skipped 'requires real Linux /proc and inherited pipes'
+test_existing_worker_proof_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_existing_worker_proof_rejected) ... skipped 'requires real Linux /proc and inherited pipes'
+test_fake_parent_entrypoint_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_fake_parent_entrypoint_rejected) ... skipped 'requires real Linux /proc and inherited pipes'
+test_pipe_owned_by_different_parent_fd_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_pipe_owned_by_different_parent_fd_rejected) ... skipped 'requires real Linux /proc and inherited pipes'
+test_regular_file_cannot_replace_pipe (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_regular_file_cannot_replace_pipe) ... skipped 'requires real Linux /proc and inherited pipes'
+test_relative_contract_uses_parent_not_child_cwd (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_relative_contract_uses_parent_not_child_cwd) ... skipped 'requires real Linux /proc and inherited pipes'
+test_wrong_child_contract_path_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_wrong_child_contract_path_rejected) ... skipped 'requires real Linux /proc and inherited pipes'
+test_wrong_child_output_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_wrong_child_output_rejected) ... skipped 'requires real Linux /proc and inherited pipes'
+test_wrong_parent_cwd_rejected_with_same_bytes_shadow_contract (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_wrong_parent_cwd_rejected_with_same_bytes_shadow_contract) ... skipped 'requires real Linux /proc and inherited pipes'
+test_wrong_parent_manifest_sha_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_wrong_parent_manifest_sha_rejected) ... skipped 'requires real Linux /proc and inherited pipes'
+test_wrong_parent_output_rejected (test_s8_readonly_handshake_linux.LinuxReadonlyHandshakeTests.test_wrong_parent_output_rejected) ... skipped 'requires real Linux /proc and inherited pipes'
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.000s
+
+OK (skipped=13)

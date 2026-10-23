@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 45013,
+  "changed_unique_queries": 45013,
+  "unchanged_rows": 4987,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 4987,
+  "changed_fraction": 0.90026,
+  "sql_flags": {
+    "multiple_filters": 4889
+  },
+  "database": "tubepricing",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 222.97826197301038
+}

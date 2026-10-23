@@ -1,0 +1,8 @@
+Markdown links: 13 PASS
+Whitespace: PASS /private/tmp/spatial-meta-ce-s7-diagnosis-20261007/spatial_meta_ce/s8_probe.py
+SHA binding: PASS 93abad1c9d4a2ae5ebec83a4b05b0b476d020d415b4df1cb7aa4776d731df154
+Whitespace: PASS /private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_probe.py
+SHA binding: PASS e10d534786083358f0d7658d57697a0f8ec74b29a534946b254854c748491bed
+Whitespace: PASS /private/tmp/spatial-meta-ce-s7-diagnosis-20261007/reports/s8-review-preflight-20261007/probe-review.md
+Current evidence: probe-fullrank-green.log / probe-fullrank-lint.log
+Engineering / synthetic only; no full suite, server, GPU, network, data/model/preflight changes, commit or branch switch.

@@ -1,0 +1,13 @@
+{
+  "purpose": "PID-gate hardware regression, not model training",
+  "updated_at": "2026-10-06T14:18:07.612148+00:00",
+  "gpu_uuid": "GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d",
+  "process_id": 47866,
+  "nvml_process_id": 21350,
+  "nvml_pids": [
+    21350
+  ],
+  "initial_idle_verified": true,
+  "live_own_context_accepted": true,
+  "new_output_available": true
+}

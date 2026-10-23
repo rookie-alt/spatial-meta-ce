@@ -1,0 +1,50 @@
+test_invalid_weights_and_shapes (test_s5_loss.S5LossTests.test_invalid_weights_and_shapes) ... ok
+test_mixed_three_four_tables_loss_and_gradient (test_s5_loss.S5LossTests.test_mixed_three_four_tables_loss_and_gradient) ... ok
+test_uniform_weights_preserve_loss_and_gradient (test_s5_loss.S5LossTests.test_uniform_weights_preserve_loss_and_gradient) ... ok
+test_b_erm_counts_and_episode_normalization (test_s5_loss.S5TrainingTests.test_b_erm_counts_and_episode_normalization) ... {"step": 2, "train_loss": 2.147360175848007, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 1}}
+{"step": 3, "train_loss": 2.126892626285553, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 2}}
+ok
+test_config_rejected_before_training_side_effects (test_s5_loss.S5TrainingTests.test_config_rejected_before_training_side_effects) ... ok
+test_legacy_and_a_keep_original_loss_call (test_s5_loss.S5TrainingTests.test_legacy_and_a_keep_original_loss_call) ... {"step": 2, "train_loss": 2.1521103978157043, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 1}}
+{"step": 3, "train_loss": 2.131400167942047, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 2}}
+{"step": 2, "train_loss": 2.1521103978157043, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 1}}
+{"step": 3, "train_loss": 2.131400167942047, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 2}}
+ok
+test_real_s5_resume_matches_uninterrupted (test_s5_loss.S5TrainingTests.test_real_s5_resume_matches_uninterrupted) ... {"step": 1, "train_loss": 2.146284818649292, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 24, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.143505573272705, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 3, "train_loss": 2.1204333901405334, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 3}}
+{"step": 1, "train_loss": 2.146284818649292, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 24, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.143505573272705, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 3, "train_loss": 2.1204333901405334, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 3}}
+ok
+test_signature_gradient_stats_and_resume (test_s5_loss.S5TrainingTests.test_signature_gradient_stats_and_resume) ... {"step": 2, "train_loss": 2.147360175848007, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 1}}
+{"step": 3, "train_loss": 2.126892626285553, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 2}}
+{"step": 4, "train_loss": 2.215827226638794, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 96, "backward_calls": 16, "optimizer_steps": 3}}
+ok
+test_baseline_failure_stops_before_b (test_s5_runner.S5RunnerTests.test_baseline_failure_stops_before_b) ... ok
+test_expired_budget_never_starts_child (test_s5_runner.S5RunnerTests.test_expired_budget_never_starts_child) ... ok
+test_frozen_plan_only_changes_training_weight (test_s5_runner.S5RunnerTests.test_frozen_plan_only_changes_training_weight) ... ok
+test_matrix_tampering_is_rejected (test_s5_runner.S5RunnerTests.test_matrix_tampering_is_rejected) ... ok
+test_missing_record_hashes_are_rejected (test_s5_runner.S5RunnerTests.test_missing_record_hashes_are_rejected) ... ok
+test_output_verifier_rejects_incomplete_manifest (test_s5_runner.S5RunnerTests.test_output_verifier_rejects_incomplete_manifest) ... ok
+test_protocol_tampering_is_rejected (test_s5_runner.S5RunnerTests.test_protocol_tampering_is_rejected) ... ok
+test_source_evidence_is_checked_before_run (test_s5_runner.S5RunnerTests.test_source_evidence_is_checked_before_run) ... ok
+test_source_plan_rejects_target_and_cache_redirection (test_s5_runner.S5RunnerTests.test_source_plan_rejects_target_and_cache_redirection) ... ok
+test_worker_requires_supervisor_before_any_preflight (test_s5_runner.S5RunnerTests.test_worker_requires_supervisor_before_any_preflight) ... ok
+test_formal_fixture_cannot_approximate_frozen_digest (test_s5_weight_evidence.AdditionalGuardrails.test_formal_fixture_cannot_approximate_frozen_digest) ... ok
+test_q50_guardrail_independent_of_q95 (test_s5_weight_evidence.AdditionalGuardrails.test_q50_guardrail_independent_of_q95) ... ok
+test_independent_small_replay (test_s5_weight_evidence.Flow.test_independent_small_replay) ... ok
+test_no_effective_intervention_and_invalid (test_s5_weight_evidence.Flow.test_no_effective_intervention_and_invalid) ... ok
+test_bad_arm_config_sha_and_evidence (test_s5_weight_evidence.Gates.test_bad_arm_config_sha_and_evidence) ... ok
+test_baseline (test_s5_weight_evidence.Gates.test_baseline) ... ok
+test_counts_gradients_and_rows_fail_closed (test_s5_weight_evidence.Gates.test_counts_gradients_and_rows_fail_closed) ... ok
+test_pair_scale_and_initial_endpoint (test_s5_weight_evidence.Gates.test_pair_scale_and_initial_endpoint) ... ok
+test_threshold_boundaries_and_mandatory (test_s5_weight_evidence.Gates.test_threshold_boundaries_and_mandatory) ... ok
+test_valid_formal_and_smoke (test_s5_weight_evidence.Gates.test_valid_formal_and_smoke) ... ok
+test_independent_roundoff_tolerance (test_s5_weight_evidence.RoundoffAndRawRows.test_independent_roundoff_tolerance) ... ok
+test_real_smoke_rows_and_duplicate_raw_pool (test_s5_weight_evidence.RoundoffAndRawRows.test_real_smoke_rows_and_duplicate_raw_pool) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 7.161s
+
+OK

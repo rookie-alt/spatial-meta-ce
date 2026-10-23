@@ -1,0 +1,16 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 48254,
+  "changed_unique_queries": 48254,
+  "unchanged_rows": 1746,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 1746,
+  "changed_fraction": 0.96508,
+  "sql_flags": {},
+  "database": "hepatitis",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 286.0660339228343
+}

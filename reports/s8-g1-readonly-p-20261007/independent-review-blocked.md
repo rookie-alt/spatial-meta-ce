@@ -1,0 +1,13 @@
+# 第一次独立实际diff复审：BLOCK
+
+日期2026-10-07；独立代理Dalton，基准HEAD41ccc17。代理只读，未写文件、未联网/server/读真实P/H/checkpoint、未运行真实smoke/训练。
+
+当时入口SHA：83c70a5b4fc45bcc4bd3fe31aa596773b883106152557ddf62247ff311c74130；测试SHA：eb9ea61dded410197b9b52bfbfd285d0d234ffd22a69325f4508caceb91af52b；freeze工具SHA：2de5578a8baa648a21335a650eff24710d1f9cd98dfc577ec372ce4cb96f3ebd。这个snapshot已被后续修补替代，不是最终源码批准。
+
+- P1：完整内部worker可伪造env父PID，绕过固定output和父监督。原direct worker负例缺contract，仅因argparse拒绝，未覆盖完整参数。
+- P1：no_symlink后按绝对路径open存在父目录TOCTOU；输出同样有竞态。
+- P2：成功proof遗漏resource_only/use/reference_kind/尺寸/linalg/normalizer及完整数值证据约束，父未应用schema。
+- P2：首次contract读取任意路径，可能先读真实数组/旧checkpoint才拒绝JSON。
+- 读取时冻结材料仍旧snapshot；主代理已经在其读取之后更新，并将在所有修补完成后再次冻结。不能把该时间差伪装为最终hash一致。
+
+代理认可backend检查位于saved-P读取之前，但不以43项GREEN关闭以上阻断。主代理已为入口/目录竞态实际记录14测4FAIL→GREEN；proof负例在修补前写入，首次运行因OpenMP SHM exit134，未算作有效RED。后续对完整字段的负例已进入GREEN，仍需最终独立批准与完整回归。

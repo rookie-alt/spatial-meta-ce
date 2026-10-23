@@ -1,0 +1,10 @@
+test_approved_resource_unknown_continues_without_resource_coefficients (test_s8_smoke_v2.SmokeV2Tests.test_approved_resource_unknown_continues_without_resource_coefficients) ... ok
+test_failed_independent_verification_never_marks_completed (test_s8_smoke_v2.SmokeV2Tests.test_failed_independent_verification_never_marks_completed) ... ok
+test_plan_declares_smoke_only_policy_without_execution (test_s8_smoke_v2.SmokeV2Tests.test_plan_declares_smoke_only_policy_without_execution) ... ok
+test_resource_engineering_false_is_failed_not_scientific_unknown (test_s8_smoke_v2.SmokeV2Tests.test_resource_engineering_false_is_failed_not_scientific_unknown) ... ok
+test_small_panel_old_pass_false_still_stops_even_if_engineering_true (test_s8_smoke_v2.SmokeV2Tests.test_small_panel_old_pass_false_still_stops_even_if_engineering_true) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.779s
+
+OK

@@ -1,0 +1,14 @@
+test_linux_suite_TERM_handler_unwinds_owned_process_cleanup (test_s8_readonly_p.MockHandshakeTests.test_linux_suite_TERM_handler_unwinds_owned_process_cleanup) ... FAIL
+
+======================================================================
+FAIL: test_linux_suite_TERM_handler_unwinds_owned_process_cleanup (test_s8_readonly_p.MockHandshakeTests.test_linux_suite_TERM_handler_unwinds_owned_process_cleanup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 651, in test_linux_suite_TERM_handler_unwinds_owned_process_cleanup
+    self.assertEqual(len(handlers), 1, 'RED: suite has no TERM cleanup bridge')
+AssertionError: 0 != 1 : RED: suite has no TERM cleanup bridge
+
+----------------------------------------------------------------------
+Ran 1 test in 0.005s
+
+FAILED (failures=1)

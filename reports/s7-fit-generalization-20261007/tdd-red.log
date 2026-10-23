@@ -1,0 +1,21 @@
+test_s7_diagnosis (unittest.loader._FailedTest.test_s7_diagnosis) ... ERROR
+
+======================================================================
+ERROR: test_s7_diagnosis (unittest.loader._FailedTest.test_s7_diagnosis)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_s7_diagnosis
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/unittest/loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 8, in <module>
+    from scripts import s7_source_diagnosis as core
+ImportError: cannot import name 's7_source_diagnosis' from 'scripts' (unknown location)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

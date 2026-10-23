@@ -1,0 +1,15 @@
+{
+  "attempt": 1,
+  "frozen_command": "cd /gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-code-20261007 && timeout --signal=TERM --kill-after=1s 899s env PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=4 OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 NUMEXPR_NUM_THREADS=4 VECLIB_MAXIMUM_THREADS=4 /gly/weilin/PRICE-master/venv/bin/python -B scripts/verify_s8_readonly_p.py --contract reports/s8-g1-readonly-p-20261007/execution-contract.json --contract-sha256 5d1ea6f4c9cd0f061f3db9ad5d9d7a88485485a88a169c213ddd7a25ed7e8650 --output /gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-proof-20261007 --execute",
+  "ssh_argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "myserver"
+  ],
+  "outer_exit_record_only_suffix": "; code=$?; printf outer exit marker; exit $code",
+  "contract_unmodified": true,
+  "retry_allowed": false
+}

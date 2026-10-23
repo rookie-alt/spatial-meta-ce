@@ -1,0 +1,1 @@
+{"target_summary_files": 14, "episode_records_verified": 1260, "per_initialization_rows": 252, "target_aggregate_rows": 108, "source_files_hash_verified": 36, "support_alignment": "passed", "p0_geometric_metric": "passed", "p1_arithmetic_metric": "passed", "paired_reference": "pg", "source_results_modified": false}

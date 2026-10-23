@@ -1,0 +1,211 @@
+{
+  "database": "consumer",
+  "role": "train",
+  "workload_rows": 50000,
+  "source_feature_rows": 50000,
+  "cache_rows": 50000,
+  "unique_queries": 50000,
+  "source_feature_fields": [
+    "data_features",
+    "n_fanouts",
+    "n_filter_cols",
+    "n_join_cols",
+    "n_tables",
+    "pg_est_cards",
+    "true_cards"
+  ],
+  "cache_manifest_fields": [
+    "content_hash",
+    "inspection",
+    "provenance",
+    "rows",
+    "schema",
+    "transform",
+    "unique_queries"
+  ],
+  "cache_row_fields": [
+    "exact_hash",
+    "id",
+    "query_hash",
+    "source_line"
+  ],
+  "cache_regenerated": false,
+  "input_hashes": {
+    "workload": "d017b13d5e5709ea1617afd0c637e8ae432c652c1ffcf265623d1242b2176f3b",
+    "source_features": "6214901cc165f81b982836e0a6c947da0494cbc1f4423e3dd6ca430b6650fc9e",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "cc8c93dcefaa7c223a4ce5a042a0d31db6f764f15706c241ae89e788c5b1be26",
+    "statistics/fanout40.pkl": "244794846388dbf9970e6d631b8c5587a895b7cafa737c3be4ee761e315577c6",
+    "statistics/histogram40.pkl": "57cd47dbd45ff1cfda1e12244873fe0b91463beaa4846326a469f254f148b971",
+    "statistics/size.pkl": "e1414c98c4fbfe188ddd6de87851c9f277da8bcf2e15d53cedd63dd153903d14",
+    "statistics/summary40.pkl": "9f4661e3190f7042b190f81969308fe4cda68a655b3ad65cc6ccaa18e007fa49"
+  },
+  "provenance_errors": [],
+  "inputs_unchanged": true,
+  "recreate_all_features": true,
+  "totals": {
+    "recreated_rows": 50000,
+    "checked_rows": 50000,
+    "rows_with_errors": 0,
+    "mapping_recoverable": 50000,
+    "sql_mapping_recoverable": 50000,
+    "rows_with_risk_flags": 16923
+  },
+  "sql_flags": {
+    "multiple_filters": 16923
+  },
+  "by_tables": {
+    "2": {
+      "rows": 27453,
+      "mapping_recoverable": 27453,
+      "sql_mapping_recoverable": 27453,
+      "errors": {}
+    },
+    "3": {
+      "rows": 22547,
+      "mapping_recoverable": 22547,
+      "sql_mapping_recoverable": 22547,
+      "errors": {}
+    }
+  },
+  "by_predicate": {
+    "EQ": {
+      "rows": 50000,
+      "mapping_recoverable": 50000,
+      "sql_mapping_recoverable": 50000,
+      "errors": {}
+    },
+    "GTE": {
+      "rows": 27548,
+      "mapping_recoverable": 27548,
+      "sql_mapping_recoverable": 27548,
+      "errors": {}
+    },
+    "LT": {
+      "rows": 39367,
+      "mapping_recoverable": 39367,
+      "sql_mapping_recoverable": 39367,
+      "errors": {}
+    }
+  },
+  "by_flag": {
+    "no_risk_flag": {
+      "rows": 33077,
+      "mapping_recoverable": 33077,
+      "sql_mapping_recoverable": 33077,
+      "errors": {}
+    },
+    "multiple_filters": {
+      "rows": 16923,
+      "mapping_recoverable": 16923,
+      "sql_mapping_recoverable": 16923,
+      "errors": {}
+    }
+  },
+  "first_failures": [],
+  "mapping_examples": [
+    {
+      "query_hash": "17694246d041fada885330be3c77dc9d9e4bb8ae2f58e13d2bbfbcf5f7549cb6",
+      "source_line": 1,
+      "tables": [
+        "csm_hhm",
+        "csm_hh"
+      ],
+      "table_names": [
+        "household_members",
+        "households"
+      ],
+      "join_columns": [
+        "csm_hhm.household_id",
+        "csm_hh.id"
+      ],
+      "filter_columns": [
+        "csm_hh.year",
+        "csm_hh.income_rank_2",
+        "csm_hh.income_rank_3",
+        "csm_hh.income_rank_4"
+      ],
+      "join_column_tables": [
+        0,
+        1
+      ],
+      "filter_column_tables": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "fanout_join_columns": [
+        0,
+        1
+      ],
+      "counts": [
+        2,
+        2,
+        2,
+        4
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ",
+        "GTE",
+        "LT"
+      ],
+      "mapping_recoverable": true
+    },
+    {
+      "query_hash": "7cdfa538e8f9e6d452b5a1cd4eb1c5eac08e4dee95fdc87ed21e12b0e30efc7f",
+      "source_line": 2,
+      "tables": [
+        "csm_ex",
+        "csm_hhm",
+        "csm_hh"
+      ],
+      "table_names": [
+        "expenditures",
+        "household_members",
+        "households"
+      ],
+      "join_columns": [
+        "csm_ex.household_id",
+        "csm_hhm.household_id",
+        "csm_hh.id"
+      ],
+      "filter_columns": [
+        "csm_ex.month",
+        "csm_hhm.work_status"
+      ],
+      "join_column_tables": [
+        0,
+        1,
+        2
+      ],
+      "filter_column_tables": [
+        0,
+        1
+      ],
+      "fanout_join_columns": [
+        0,
+        1,
+        1,
+        2
+      ],
+      "counts": [
+        3,
+        4,
+        3,
+        2
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ"
+      ],
+      "mapping_recoverable": true
+    }
+  ],
+  "seconds": 645.1406208579428,
+  "stored_alignment_passed": true,
+  "alignment_passed": true,
+  "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+  "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+}

@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "base_revision": "28077f308936bfe3e22c139992c5a1aa28f8c2ba",
+  "branch": "audit/s7-certification-closeout-20261007",
+  "historical_files_checked": 333,
+  "historical_files_changed": [],
+  "local_markdown_links_checked": 241,
+  "missing_local_links": [],
+  "full_tests": 463,
+  "s7_tests": 24,
+  "changed_files_ruff_passed": true,
+  "full_repository_ruff_passed": false,
+  "existing_ruff_issues": 110,
+  "server_recheck_passed": true,
+  "verifier_sha256": "4164197a0c052ec4cf4525b24b71993cac8718a1f765955a0c4e33519e93751d",
+  "server_historical_hashes": 210,
+  "new_training": false,
+  "new_inference": false,
+  "target_data_read": false,
+  "server_deployment": false,
+  "coverage_remeasured": false,
+  "residual_nonblocking_limits": [
+    "sparse cohort unconditional prediction checks",
+    "independent per-role exposure reconstruction"
+  ]
+}

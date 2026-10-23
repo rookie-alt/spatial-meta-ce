@@ -1,0 +1,26 @@
+{
+  "state-green-initial.log": {
+    "raw_sha256": "71dc2bda1b5e02ea5392217966769b1059bbb9c4883bad6d75b09d14a3458f60",
+    "display_sha256": "5ac11830c3e9769a1849189217fe29fd0f8b72afcc77924a9fe728914709407f",
+    "raw_gzip": "state-green-initial.log.gz",
+    "normalization": "trailing whitespace only; exact original retained as gzip"
+  },
+  "full-ruff.log": {
+    "raw_sha256": "6a9e972102c95d9fa25e306701856c6292bc2950f67db92c5bdb36933d54806d",
+    "display_sha256": "0967b3bc2a02c26028960e7855a605480b44e56f277df36ade072163c3407147",
+    "raw_gzip": "full-ruff.log.gz",
+    "normalization": "trailing whitespace only; exact original retained as gzip"
+  },
+  "independent-red-bindings.txt": {
+    "raw_sha256": "8e6076d461ea42008cd81c8b55d0800ac6b359db357662f33e533063f4ef5ad2",
+    "display_sha256": "64711b4c8775673aa99cc55792ed3c4304538805afdc2878ba14adc4fd06c8b4",
+    "raw_gzip": "independent-red-bindings.txt.gz",
+    "normalization": "trailing whitespace only; exact original retained as gzip"
+  },
+  "independent-red-sampling.txt": {
+    "raw_sha256": "7bee1532da56331a5867545e42f186bd83164ac1f71e201581a4adc3ec037c48",
+    "display_sha256": "96719a6c76c37d548e47eeee730d6be099602bcbb0fe0e9b5a42920c70d8940f",
+    "raw_gzip": "independent-red-sampling.txt.gz",
+    "normalization": "trailing whitespace only; exact original retained as gzip"
+  }
+}

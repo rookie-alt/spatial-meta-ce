@@ -1,0 +1,29 @@
+{
+  "python": "/opt/anaconda3/bin/python",
+  "python_version": "3.11.7 (main, Dec 15 2023, 12:09:04) [Clang 14.0.6 ]",
+  "platform": "macOS-27.0.1-x86_64-i386-64bit",
+  "numpy": "1.26.4",
+  "torch": "2.3.0",
+  "torch_threads": 4,
+  "threadpools": [
+    {
+      "filepath": "/opt/anaconda3/lib/libopenblasp-r0.3.21.dylib",
+      "prefix": "libopenblas",
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "version": "0.3.21",
+      "num_threads": 4,
+      "threading_layer": "pthreads",
+      "architecture": "Nehalem"
+    },
+    {
+      "filepath": "/opt/anaconda3/lib/libomp.dylib",
+      "prefix": "libomp",
+      "user_api": "openmp",
+      "internal_api": "openmp",
+      "version": null,
+      "num_threads": 4
+    }
+  ],
+  "purpose": "local_unittest_runtime_not_formal_runtime"
+}

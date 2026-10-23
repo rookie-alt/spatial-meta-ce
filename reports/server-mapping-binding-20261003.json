@@ -1,0 +1,41 @@
+{
+  "scope": "source-only full sidecar binding; no target reads",
+  "results": [
+    {
+      "database": "chembl",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "seconds": 6.747288681799546,
+      "max_rss_kib": 457652,
+      "provenance": {
+        "manifest_hash": "8b49de041fca6528681c70985acfb23041339c5501ff223ad1c631a169f02035",
+        "jsonl_hash": "6c1b8c8af8be55a27387b38c64982ac67c33c1c8569e8b3e082233c409b6b019",
+        "mode": "mapping"
+      }
+    },
+    {
+      "database": "legalacts",
+      "rows": 50000,
+      "unique_queries": 49504,
+      "seconds": 4.3155611210968345,
+      "max_rss_kib": 457652,
+      "provenance": {
+        "manifest_hash": "e29bccf8f8ffe4d62decb46c19da0d7d641bc3e7d1f2185b8d3f835ac7685665",
+        "jsonl_hash": "8eb67b4b12cb565a9ab71b65107cf5c08899d8db6c63317f4e17811eacf02df1",
+        "mode": "mapping"
+      }
+    },
+    {
+      "database": "telstra",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "seconds": 5.320521732792258,
+      "max_rss_kib": 457652,
+      "provenance": {
+        "manifest_hash": "16bdf4e83c58804f2ddea9bf5771b36c55ace11da0dce1c574c6742e3982d7ba",
+        "jsonl_hash": "09fae9ed0d39929daa1246c8333cf984f0fbe17554a33b155fa8462ff75125a5",
+        "mode": "mapping"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-code/scripts/meta65_joint_runner.py",
+    "--worker",
+    "--execute",
+    "--config",
+    "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-code/configs/meta65_joint_control.json",
+    "--out",
+    "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-runs/formal-gpu6-20261011T101117Z/matrix",
+    "--mode",
+    "formal",
+    "--approval",
+    "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-runs/formal-gpu6-20261011T101117Z/approval.json"
+  ],
+  "elapsed": 44.81220413418487,
+  "failure": "child_exit",
+  "mode": "formal",
+  "output": "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-runs/formal-gpu6-20261011T101117Z/matrix",
+  "outputbytes": 150734020,
+  "peak_rss_bytes": 1317855232,
+  "peak_vram_bytes": 0,
+  "pgid": 42238,
+  "phase": "evaluation",
+  "pid": 42238,
+  "received_signals": [],
+  "returncode": 1,
+  "schema": 1,
+  "signals": [],
+  "status": "failed",
+  "supervisor_json": "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-runs/formal-gpu6-20261011T101117Z/matrix.supervisor.json"
+}

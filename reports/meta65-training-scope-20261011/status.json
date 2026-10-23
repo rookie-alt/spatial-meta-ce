@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "experiment": "meta65-training-scope-20261011",
+  "date": "2026-10-11",
+  "branch": "feat/meta65-training-scope-20261011",
+  "status": "blocked_no_idle_gpu6",
+  "phase": "formal_v2_preflight_blocked",
+  "execution_code_commit": "42bd9c89ff82a1f00d87bc690eea80724dcfd12d",
+  "gate_fix": {
+    "reason": "verify_launch_binding could never certify real preflight artifacts: the gate read conventions the runner/supervisor never write",
+    "defects": [
+      {"check": "_inventory log path", "gate_expected": "<output>.log", "producer_actual": "<output>.supervisor.log (artifact_paths)"},
+      {"check": "_supervisor sidecar budget", "gate_expected": "formal limits total_seconds=14400", "producer_actual": "mode limits total_seconds=900 (limits_for)"},
+      {"check": "_training checkpoint path", "gate_expected": "<output>/last.pt", "producer_actual": "<output>/<arm>/last.pt (train_arm records \"last.pt\")"}
+    ],
+    "touched": ["scripts/meta65_scope_launch.py", "tests/test_meta65_scope_launch.py", "scripts/meta65_scope_build_binding.py"],
+    "untouched": ["runner", "supervisor", "contract", "protocol", "v1 preflight outputs", "PRICE", "cache", "retained"],
+    "local_regression": {
+      "tests": 1096,
+      "skipped": 16,
+      "status": "passed",
+      "notes": [
+        "single-thread BLAS env (OMP/MKL/OPENBLAS/VECLIB=1) required by test_s8_smoke_runner",
+        "sandboxed runs flake on os.killpg inside test_meta65_joint_supervisor; authoritative run is outside the sandbox"
+      ]
+    },
+    "deployed_files": {
+      "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-code/scripts/meta65_scope_launch.py": "1a8be6bfa55ca07ec44b3e87b3cf90a0ca4d8006be119b419fb6f575a8ac23cb",
+      "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-code/scripts/meta65_scope_build_binding.py": "480ef16fffda7d99a614f621f833553dd7013d3d79ef4f480f978a48d9472301"
+    }
+  },
+  "preflight_v1_preserved": true,
+  "cpu_preflight": {
+    "status": "preflight_completed",
+    "output": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/cpu-preflight-20261011-v2",
+    "supervisor_returncode": 0,
+    "micro_cells": 12,
+    "formal_result": false,
+    "independent_verification": "preflight_verified",
+    "reproduction_status": "not_applicable",
+    "decision_provisional": "preflight_not_candidate",
+    "elapsed_seconds": 324.5622748839669,
+    "peak_rss_bytes": 1960542208,
+    "external_vram_sample_bytes": 0,
+    "worker_peak_vram_max_bytes": 0,
+    "output_bytes": 159606922
+  },
+  "gpu_preflight": {
+    "status": "preflight_completed",
+    "output": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/gpu-preflight-20261011-v2",
+    "supervisor_returncode": 0,
+    "micro_cells": 12,
+    "formal_result": false,
+    "independent_verification": "preflight_verified",
+    "reproduction_status": "not_applicable",
+    "decision_provisional": "preflight_not_candidate",
+    "elapsed_seconds": 174.67825635429472,
+    "peak_rss_bytes": 2544926720,
+    "external_vram_sample_bytes": 0,
+    "worker_peak_vram_max_bytes": 83886080,
+    "output_bytes": 159612468
+  },
+  "gpu6_snapshot_before_gpu_preflight": {
+    "uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+    "memory_used_mib": 1,
+    "utilization_percent": 0,
+    "note": "One-shot nvidia-smi query before the single gpu_preflight launch; not continuous monitoring."
+  },
+  "re_freeze_20261012": {
+    "reason": "measured R training RSS is asymptotic (~3.97 GiB training-side at 4000 steps) plus 0.6-0.7 GiB preparation payload; the frozen 4 GiB cap was a planning miss (probe report: memory-probe-20261012R.json, progress section 72)",
+    "approved_by_user": "12GiB re-freeze",
+    "changes": ["scripts/meta65_scope_contract.py FROZEN.limits.rss_bytes 12GiB + check_cell_peaks",
+                "configs/meta65_scope.json limits.rss_bytes 12884901888",
+                "scripts/meta65_scope_supervisor.py limits_for derived from contract (was hardcoded 4GiB)",
+                "scripts/meta65_scope_runner.py cell peaks checked against scope contract (joint check was bound to old 4GiB)"],
+    "training_math_unchanged": true,
+    "local_regression": {"tests": 1097, "skipped": 16, "status": "passed"},
+    "new_preflights": {
+      "cpu": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/cpu-preflight-20261012",
+      "gpu": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/gpu-preflight-20261012",
+      "both": "preflight_completed / preflight_verified / 12 micro cells"
+    }
+  },
+  "launch_binding": {
+    "created": true,
+    "path": "reports/meta65-training-scope-20261011/launch-binding.json",
+    "sha256": "c4c299e6ce1e2f782976aa2e87a9343a33bcc9b37ee8f5c37cc9bedc99e8dfcc",
+    "launch_ready": true,
+    "execution_authorized": false,
+    "formal_executed": false,
+    "code_files": 32,
+    "input_files": 264,
+    "preflight_raw_files_per_mode": 53,
+    "verify_launch_binding": {
+      "server_isolated_root": "passed",
+      "local": "cross-check only: code/config/protocol/data-config SHA match the checkout; full verify is bound to server paths and the server runtime"
+    }
+  },
+  "formal_attempt_20261012": {
+    "executed": true,
+    "approval_file": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/formal-gpu6-20261011T181021Z.approval.json",
+    "approval_sha256": "0e1db4afcbbcfced3fff7ca0720d87a270aa3a2996351ab602e3b81bf606b4ae",
+    "approval_consumed": true,
+    "output": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/formal-gpu6-20261011T181021Z",
+    "gpu6_before_launch": {"memory_used_mib": 1, "utilization_percent": 0},
+    "frozen_inputs_reverify": "passed (264 inputs)",
+    "result": "failed",
+    "failure": "rss_limit",
+    "elapsed_seconds": 313.81360415602103,
+    "peak_rss_bytes": 4298600448,
+    "rss_limit_bytes": 4294967296,
+    "returncode": -15,
+    "cleanup_verified": true,
+    "phase_at_failure": "training",
+    "r_steps_reached": "approximately 500-600 of 4000 (last monitor line step 500)",
+    "training_health_at_failure": {"train_loss": "0.39-0.83", "validation_macro_log_q95": "2.95-3.02",
+      "count_chain_consistent": true},
+    "reproduction_gate_executed": false,
+    "t_started": false,
+    "cells_completed": 0,
+    "cells_required": 60,
+    "r_head3_reproduction_anchors_completed": 0,
+    "r_head3_reproduction_anchors_required": 15,
+    "formal_result": false,
+    "controlled_statistical_conclusion": null
+  },
+  "gpu6_blocked_snapshot": {
+    "uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+    "memory_used_mib": 11454,
+    "utilization_percent": 79,
+    "note": "One-shot nvidia-smi query at the execution gate; foreign workload, not this project. No approval created, no supervisor started. The user chose to wait for their own re-check instruction; no polling or queueing."
+  },
+  "next_step": "Execution is confirmed for execution commit 42bd9c89ff82a1f00d87bc690eea80724dcfd12d and binding SHA c4c299e6ce1e2f782976aa2e87a9343a33bcc9b37ee8f5c37cc9bedc99e8dfcc, but GPU6 was busy at the gate. Wait for the user's explicit re-check instruction; then re-check GPU6 idle, revalidate frozen inputs, create a fresh one-shot approval beside a new output directory, and run the two-arm formal once (R first with the 15 K20 old-B reproduction gate, stop as reproduction_blocked on failure before T)."
+}

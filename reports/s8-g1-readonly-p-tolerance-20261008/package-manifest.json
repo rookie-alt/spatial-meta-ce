@@ -1,0 +1,92 @@
+{
+  "status": "new_tolerance_package_prepared_not_real_P_executed",
+  "revision": "readonly-P-tolerance-20261008",
+  "archive": "/private/tmp/s8-g1-readonly-p-tolerance-package-20261008.tar.gz",
+  "archive_sha256": "e9fe330f0f90eae9d98d8f9d0cf6164b1c7bd3eb54d4cb34a6450570f237e1cd",
+  "archive_bytes": 44238,
+  "contract_relative_path": "reports/s8-g1-readonly-p-tolerance-20261008/execution-contract.json",
+  "execution_contract_sha256": "b85c41f0b04fb394c391f6143008e4d4e5bca907b7c6a1fb35d9c03105f6290e",
+  "files_sha256": {
+    "scripts/verify_s8_readonly_p.py": "85e0ccda9719040276d44993d87f29b8b1c643d818662450daef759b7074c5f3",
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/s8_probe.py": "36d4eb6c9a61b9280e3c29705ee23e436bbb4ac81ffde6f30e02415c7f251281",
+    "实验文档/27-S8G1运行器与真实smoke协议.md": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+    "实验文档/34-S8G1工程验收v2批准协议.md": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+    "reports/s8-g1-readonly-p-20261007/proof.schema.json": "8b375ff815463436736bb55fa32984fbd2f8d3ec7dabb55e455d65c7810665cb",
+    "tests/test_s8_readonly_p.py": "9730b3c009955441b1942bb52464d3cebc047a0753fbf259c068acca8aee9707",
+    "tests/test_s8_retained_tolerance.py": "74c4eaee07340516a3f444088139233cd182b653c79e8ba5f819f5731b21107a",
+    "reports/s8-g1-readonly-p-tolerance-20261008/execution-contract.json": "b85c41f0b04fb394c391f6143008e4d4e5bca907b7c6a1fb35d9c03105f6290e"
+  },
+  "source_sha256": {
+    "scripts/verify_s8_readonly_p.py": "85e0ccda9719040276d44993d87f29b8b1c643d818662450daef759b7074c5f3",
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/s8_probe.py": "36d4eb6c9a61b9280e3c29705ee23e436bbb4ac81ffde6f30e02415c7f251281",
+    "实验文档/27-S8G1运行器与真实smoke协议.md": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+    "实验文档/34-S8G1工程验收v2批准协议.md": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+    "reports/s8-g1-readonly-p-20261007/proof.schema.json": "8b375ff815463436736bb55fa32984fbd2f8d3ec7dabb55e455d65c7810665cb"
+  },
+  "test_sha256": {
+    "tests/test_s8_readonly_p.py": "9730b3c009955441b1942bb52464d3cebc047a0753fbf259c068acca8aee9707",
+    "tests/test_s8_retained_tolerance.py": "74c4eaee07340516a3f444088139233cd182b653c79e8ba5f819f5731b21107a"
+  },
+  "input_files_sha_preserved": {
+    "P-h.npy": {
+      "sha256": "62fa49d49f75b19c28df0794f6f6635c2a3573e89b4bd84289d8625f16d05c0b",
+      "shape": [
+        19456,
+        64
+      ],
+      "dtype": "float32"
+    },
+    "P-x.npy": {
+      "sha256": "2ec050cfb3ca6a19dabd8cdac9961aa2c32e21e50311ae74f01d8c24eef7f7a3",
+      "shape": [
+        19456,
+        774
+      ],
+      "dtype": "float32"
+    },
+    "P-label.npy": {
+      "sha256": "700b783c465168ea920beec345c5140c6eb5fafd5b02054cafa0c06236d8b4b6",
+      "shape": [
+        19456
+      ],
+      "dtype": "float32"
+    },
+    "P-pg_log.npy": {
+      "sha256": "ae9d4d4e3cafa79fd3878080ba5464b4f57b60a78f5d552773d58033fbf5cbc3",
+      "shape": [
+        19456
+      ],
+      "dtype": "float32"
+    },
+    "status.json": {
+      "sha256": "45870e69134db4e2f6238c8c918eb0f230f0529ea793c7a096a123851d21274c"
+    },
+    "contract.json": {
+      "sha256": "19a7bbe126e74c0074e1c127833826bab2a681ac82247c60d8bbef82008f8897"
+    },
+    "panels.json": {
+      "sha256": "92dbd360840f0ebbfdc87af2524104627655ec5f89a6363a67c4b0357069aa8a"
+    },
+    "preflight.json": {
+      "sha256": "2abc016bc03ebeb8e7824c3f2440bd8a26ed73b25704a71f136d247255b8d429"
+    }
+  },
+  "prior_packages": {
+    "handshake_v2": "128d1b3c164812152e43bf13e712149db897a9e347903d7ff0cd5c462b456fb2",
+    "diagnostic": "ea075b85475481ae16ecac9290503620e00685b741c1422ff0339dcc34f84949"
+  },
+  "new_server_package_if_separately_approved": "/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-tolerance-code-20261008",
+  "new_server_proof_if_separately_approved": "/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-tolerance-proof-20261008",
+  "rcond_changed": false,
+  "rank_definition_changed": false,
+  "LS_changed": false,
+  "scientific_gate_changed": false,
+  "strict_certificate": "unknown",
+  "formal_ready": false,
+  "original_G1_status": "failed",
+  "real_P_read": false,
+  "B_smoke": false,
+  "formal_training": false
+}

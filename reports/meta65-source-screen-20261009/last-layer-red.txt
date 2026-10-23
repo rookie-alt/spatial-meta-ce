@@ -1,0 +1,59 @@
+test_last_episode_restarts_and_query_labels_do_not_affect_support_update (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_episode_restarts_and_query_labels_do_not_affect_support_update) ... ERROR
+test_last_evaluation_trajectory_matches_independent_adaptation (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_evaluation_trajectory_matches_independent_adaptation) ... ERROR
+test_last_inner_loop_keeps_encoder_outer_gradient (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_inner_loop_keeps_encoder_outer_gradient) ... ERROR
+test_last_scope_requires_linear_output_head (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_scope_requires_linear_output_head) ... ok
+test_last_updates_only_final_linear_without_mutating_model (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_updates_only_final_linear_without_mutating_model) ... ERROR
+test_sum_parameter_counts (test_last_layer_adaptation.LastLayerAdaptationTests.test_sum_parameter_counts) ... ok
+test_unknown_scope_rejected (test_last_layer_adaptation.LastLayerAdaptationTests.test_unknown_scope_rejected) ... ok
+
+======================================================================
+ERROR: test_last_episode_restarts_and_query_labels_do_not_affect_support_update (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_episode_restarts_and_query_labels_do_not_affect_support_update)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/gly/weilin/spatial-meta-ce-meta65-20261009/tests/test_last_layer_adaptation.py", line 49, in test_last_episode_restarts_and_query_labels_do_not_affect_support_update
+    first = adapt(self.model, self.support, 0.01, 3, 'last', training=False)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/spatial-meta-ce-meta65-20261009/spatial_meta_ce/meta.py", line 35, in adapt
+    raise ValueError('Invalid adaptation configuration')
+ValueError: Invalid adaptation configuration
+
+======================================================================
+ERROR: test_last_evaluation_trajectory_matches_independent_adaptation (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_evaluation_trajectory_matches_independent_adaptation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/gly/weilin/spatial-meta-ce-meta65-20261009/tests/test_last_layer_adaptation.py", line 42, in test_last_evaluation_trajectory_matches_independent_adaptation
+    trajectory = adapt_trajectory(self.model, self.support, 0.01, [0, 1, 3], scope='last')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/spatial-meta-ce-meta65-20261009/spatial_meta_ce/meta.py", line 61, in adapt_trajectory
+    raise ValueError('Invalid adaptation configuration')
+ValueError: Invalid adaptation configuration
+
+======================================================================
+ERROR: test_last_inner_loop_keeps_encoder_outer_gradient (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_inner_loop_keeps_encoder_outer_gradient)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/gly/weilin/spatial-meta-ce-meta65-20261009/tests/test_last_layer_adaptation.py", line 57, in test_last_inner_loop_keeps_encoder_outer_gradient
+    objective = meta_loss(self.model, self.support, self.query, 0.01, 3, 'last')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/spatial-meta-ce-meta65-20261009/spatial_meta_ce/meta.py", line 84, in meta_loss
+    params = adapt(model, support, lr, steps, scope, loss)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/spatial-meta-ce-meta65-20261009/spatial_meta_ce/meta.py", line 35, in adapt
+    raise ValueError('Invalid adaptation configuration')
+ValueError: Invalid adaptation configuration
+
+======================================================================
+ERROR: test_last_updates_only_final_linear_without_mutating_model (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_updates_only_final_linear_without_mutating_model)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/gly/weilin/spatial-meta-ce-meta65-20261009/tests/test_last_layer_adaptation.py", line 33, in test_last_updates_only_final_linear_without_mutating_model
+    params = adapt(self.model, self.support, lr=0.01, steps=3, scope='last')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/spatial-meta-ce-meta65-20261009/spatial_meta_ce/meta.py", line 35, in adapt
+    raise ValueError('Invalid adaptation configuration')
+ValueError: Invalid adaptation configuration
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.256s
+
+FAILED (errors=4)

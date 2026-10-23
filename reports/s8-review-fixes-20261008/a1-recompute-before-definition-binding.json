@@ -1,0 +1,9 @@
+{
+  "case_count": 9,
+  "passed": true,
+  "source_bindings_current": true,
+  "log_json_byte_identical": true,
+  "json_sha256": "67d75736d2934cfc41a9309d3132beb0c1fb6d6c8d902537dc62f08674b0b387",
+  "log_sha256": "67d75736d2934cfc41a9309d3132beb0c1fb6d6c8d902537dc62f08674b0b387",
+  "purpose": "synthetic_independent_recompute_not_source_experiment"
+}

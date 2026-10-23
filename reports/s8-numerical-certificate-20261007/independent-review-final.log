@@ -1,0 +1,44 @@
+environment /opt/anaconda3/bin/python 1.26.4
+initial_review_log_sha256 4f3ddb5e05d40fb5e0e353fd38d758c242257306e8e792b255ea956ccb5e1fbc
+test_backend_reconstruction_and_orthogonality_failure (test_s8_numerical_certificate.NumericalCertificateTests.test_backend_reconstruction_and_orthogonality_failure) ... ok
+test_bad_vector_shapes_or_finite_values_are_rejected (test_s8_numerical_certificate.NumericalCertificateTests.test_bad_vector_shapes_or_finite_values_are_rejected) ... ok
+test_caller_own_cutoff_interval_overlap_is_unknown (test_s8_numerical_certificate.NumericalCertificateTests.test_caller_own_cutoff_interval_overlap_is_unknown) ... ok
+test_cross_algorithm_rank_disagreement_is_unknown_not_success (test_s8_numerical_certificate.NumericalCertificateTests.test_cross_algorithm_rank_disagreement_is_unknown_not_success) ... ok
+test_cutoff_sides_and_ambiguous_boundary (test_s8_numerical_certificate.NumericalCertificateTests.test_cutoff_sides_and_ambiguous_boundary) ... ok
+test_empty_or_nonfinite_backend_spectrum_is_rejected (test_s8_numerical_certificate.NumericalCertificateTests.test_empty_or_nonfinite_backend_spectrum_is_rejected) ... ok
+test_envelope_underflow_is_not_an_absolute_tolerance_floor (test_s8_numerical_certificate.NumericalCertificateTests.test_envelope_underflow_is_not_an_absolute_tolerance_floor) ... ok
+test_fake_main_spectrum_rank_prediction_and_objective_rejected (test_s8_numerical_certificate.NumericalCertificateTests.test_fake_main_spectrum_rank_prediction_and_objective_rejected) ... ok
+test_full_p_dimension_with_null_direction_stays_unknown (test_s8_numerical_certificate.NumericalCertificateTests.test_full_p_dimension_with_null_direction_stays_unknown) ... ok
+test_nullspace_coefficients_need_not_match (test_s8_numerical_certificate.NumericalCertificateTests.test_nullspace_coefficients_need_not_match) ... ok
+test_orthogonality_rms_envelope_is_separate_from_reconstruction (test_s8_numerical_certificate.NumericalCertificateTests.test_orthogonality_rms_envelope_is_separate_from_reconstruction) ... ok
+test_reference_own_cutoff_interval_overlap_is_unknown (test_s8_numerical_certificate.NumericalCertificateTests.test_reference_own_cutoff_interval_overlap_is_unknown) ... ok
+test_reference_tail_uses_same_bound (test_s8_numerical_certificate.NumericalCertificateTests.test_reference_tail_uses_same_bound) ... ok
+test_retained_projection_catches_two_matching_forged_solvers (test_s8_numerical_certificate.NumericalCertificateTests.test_retained_projection_catches_two_matching_forged_solvers) ... ok
+test_roundoff_tail_is_checked_not_ignored (test_s8_numerical_certificate.NumericalCertificateTests.test_roundoff_tail_is_checked_not_ignored) ... ok
+test_scale_covariant_not_fixed_atol (test_s8_numerical_certificate.NumericalCertificateTests.test_scale_covariant_not_fixed_atol) ... ok
+test_tiny_nonzero_standardization_is_not_zero_column (test_s8_numerical_certificate.NumericalCertificateTests.test_tiny_nonzero_standardization_is_not_zero_column) ... ok
+test_zero_backend_spectrum_cannot_authenticate_nonzero_design (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_backend_spectrum_cannot_authenticate_nonzero_design) ... ok
+test_zero_matrix_has_exact_stable_rank_zero (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_matrix_has_exact_stable_rank_zero) ... ok
+test_zero_redundant_and_constant_columns (test_s8_numerical_certificate.NumericalCertificateTests.test_zero_redundant_and_constant_columns) ... ok
+test_full_p_certificate_refusal_stops_before_nomination_or_holdout (test_s8_smoke_certificate_gate.SmokeCertificateGateTests.test_full_p_certificate_refusal_stops_before_nomination_or_holdout) ... ok
+test_small_panel_certificate_refusal_leaves_failed_without_probe_artifacts (test_s8_smoke_certificate_gate.SmokeCertificateGateTests.test_small_panel_certificate_refusal_leaves_failed_without_probe_artifacts) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.091s
+
+OK
+--- independent original / symmetric adversarial reproduction ---
+keep caller {"pass": false, "rank_stability": "unknown", "spectrum_pass": true, "reference_spectrum_pass": true, "spectrum_error_bound": 4.440892098500628e-16, "rank_cutoff_interval": [9.999999999999996e-13, 1.0000000000000004e-12], "rank_cutoff_intervals": {"svd": [9.999999999999996e-13, 1.0000000000000004e-12], "reported_ls": [1.0000000000000004e-12, 1.0000000000000014e-12], "reference_ls": [9.999999999999996e-13, 1.0000000000000004e-12]}, "rank_interval_margin": -8.881784197003272e-16}
+keep reference {"pass": false, "rank_stability": "unknown", "spectrum_pass": true, "reference_spectrum_pass": true, "spectrum_error_bound": 4.440892098500628e-16, "rank_cutoff_interval": [9.999999999999996e-13, 1.0000000000000004e-12], "rank_cutoff_intervals": {"svd": [9.999999999999996e-13, 1.0000000000000004e-12], "reported_ls": [9.999999999999996e-13, 1.0000000000000004e-12], "reference_ls": [1.0000000000000004e-12, 1.0000000000000014e-12]}, "rank_interval_margin": -8.881784197003272e-16}
+discard caller {"pass": false, "rank_stability": "unknown", "spectrum_pass": true, "reference_spectrum_pass": true, "spectrum_error_bound": 4.440892098500628e-16, "rank_cutoff_interval": [9.999999999999996e-13, 1.0000000000000004e-12], "rank_cutoff_intervals": {"svd": [9.999999999999996e-13, 1.0000000000000004e-12], "reported_ls": [9.999999999999986e-13, 9.999999999999996e-13], "reference_ls": [9.999999999999996e-13, 1.0000000000000004e-12]}, "rank_interval_margin": -8.077935669463161e-28}
+discard reference {"pass": false, "rank_stability": "unknown", "spectrum_pass": true, "reference_spectrum_pass": true, "spectrum_error_bound": 4.440892098500628e-16, "rank_cutoff_interval": [9.999999999999996e-13, 1.0000000000000004e-12], "rank_cutoff_intervals": {"svd": [9.999999999999996e-13, 1.0000000000000004e-12], "reported_ls": [9.999999999999996e-13, 1.0000000000000004e-12], "reference_ls": [9.999999999999986e-13, 9.999999999999996e-13]}, "rank_interval_margin": -8.077935669463161e-28}
+factorization count {'svd': 1, 'lstsq': 1, 'reported': 2}
+unchanged baseline definitions outside certify_pair ['0', '1', '2', '3', '4', '5', '6', '_reject_numeric_failure', '_array64', 'standardize_fit', 'standardize_apply', 'residual_targets', '_problem', '_diagnostics', '_rank_and_singular', 'solve_ls', '_updates', 'solve_adam', '_finite_scalar', '_matches']
+historical evidence SHA and baseline equality 65
+reviewed input SHA256
+spatial_meta_ce/s8_probe.py c3d85f98dc78d70fca4475ae671022ffd1a7a3b9e6d306304a53bac417b481c5
+tests/test_s8_numerical_certificate.py 7859a66064865b5f1b7d4741fd733dc4cfb7dd0861d7141f0a0d9a91618a5da6
+tests/test_s8_smoke_certificate_gate.py bda87eb50f10a66aa77a83513d18689908a4f37f3fc7062baae5d5dcfb7862e3
+实验文档/30-S8数值谱认证规格与本地修订.md ec23338c75a4719b3e397c594dacee9e2fa35c3419166d2e205e6238331a2ef6
+first_review_log_preserved True
+independent_review_pass True

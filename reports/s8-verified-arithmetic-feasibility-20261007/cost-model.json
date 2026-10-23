@@ -1,0 +1,36 @@
+{
+  "purpose": "symbolic_count_only_not_benchmark",
+  "cases": [
+    {
+      "rows": 19456,
+      "columns": 65,
+      "rational_dot_terms_residual": 82201600,
+      "rational_dot_terms_U_Gram": 82201600,
+      "rational_dot_terms_V_Gram": 274625,
+      "total_rational_dot_terms": 164677825,
+      "norm_square_terms_additional": 1273090,
+      "input_float_conversions_at_least": 2533570,
+      "operation_bit_cost": "variable; exact-rational numerator/denominator growth not bounded by scalar term count",
+      "full_P_runtime_or_peak_bound": null,
+      "local_small_test_time_not_extrapolated": true,
+      "current_residual_repeated_U_times_S_extra_rational_multiplications": 82201600,
+      "current_implementation_input_type": "float->exact binary64; non-dyadic Fraction->exact rational matrix, not rounded binary64"
+    },
+    {
+      "rows": 19456,
+      "columns": 775,
+      "rational_dot_terms_residual": 11685760000,
+      "rational_dot_terms_U_Gram": 11685760000,
+      "rational_dot_terms_V_Gram": 465484375,
+      "total_rational_dot_terms": 23837004375,
+      "norm_square_terms_additional": 16279650,
+      "input_float_conversions_at_least": 30758200,
+      "operation_bit_cost": "variable; exact-rational numerator/denominator growth not bounded by scalar term count",
+      "full_P_runtime_or_peak_bound": null,
+      "local_small_test_time_not_extrapolated": true,
+      "current_residual_repeated_U_times_S_extra_rational_multiplications": 11685760000,
+      "current_implementation_input_type": "float->exact binary64; non-dyadic Fraction->exact rational matrix, not rounded binary64"
+    }
+  ],
+  "candidate_cost_acceptable_verified": false
+}

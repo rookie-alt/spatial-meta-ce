@@ -1,0 +1,5 @@
+group,unique_queries,b_under,b_over,b_worse_fraction,a_q95,b_q95,status
+persistent,392,306,86,0.7346938775510204,68.03432928568306,77.89177955200871,descriptive
+entered,67,39,28,,,,below_min_cell_n
+left,67,45,22,,,,below_min_cell_n
+neither,8652,4824,3828,0.529704114655571,10.099662500258386,11.25083614096829,descriptive

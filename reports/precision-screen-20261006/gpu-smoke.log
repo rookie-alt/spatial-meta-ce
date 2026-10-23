@@ -1,0 +1,8 @@
+{"step": 1, "train_loss": 0.6263839229941368, "validation_macro_log_q95": 1.4387821149422404, "counts": {"support_presentations": 0, "query_presentations": 52, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 0.4294893841724843, "validation_macro_log_q95": 1.4359811098966675, "counts": {"support_presentations": 0, "query_presentations": 104, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.262041062116623, "validation_macro_log_q95": 1.4387821149422404, "counts": {"support_presentations": 0, "query_presentations": 52, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 1.3055015853606164, "validation_macro_log_q95": 1.4360373687340495, "counts": {"support_presentations": 0, "query_presentations": 104, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 0.6263839229941368, "validation_macro_log_q95": 1.439094324071574, "counts": {"support_presentations": 0, "query_presentations": 52, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 0.4295579658355564, "validation_macro_log_q95": 1.436093746780721, "counts": {"support_presentations": 0, "query_presentations": 104, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.262041062116623, "validation_macro_log_q95": 1.439094324071574, "counts": {"support_presentations": 0, "query_presentations": 52, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 1.3055877718143165, "validation_macro_log_q95": 1.436192165970174, "counts": {"support_presentations": 0, "query_presentations": 104, "backward_calls": 8, "optimizer_steps": 2}}

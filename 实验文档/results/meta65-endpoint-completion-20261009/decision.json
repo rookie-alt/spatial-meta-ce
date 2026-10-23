@@ -1,0 +1,544 @@
+{
+  "schema": 1,
+  "experiment": "meta65-source-screen-20261009",
+  "status": "no_candidate",
+  "selected_arm": null,
+  "candidates": [],
+  "metric": "75-cell arithmetic macro standard unique-query four_plus_q95",
+  "thresholds": {
+    "min_improvement": 0.1,
+    "max_regression": 0.1
+  },
+  "arms": {
+    "A_all5_head3": {
+      "macro_four_plus_q95": 44.49797889568323,
+      "macro_all_q95": 27.6412515416902,
+      "macro_mean_log_q95": 3.1426745841885455,
+      "macro_all_mean_log_q95": 2.840111568588129,
+      "groups": [
+        {
+          "database": "chembl",
+          "k": 5,
+          "mean_all_q50": 2.3554476179597605,
+          "mean_all_q95": 63.53392044535185,
+          "mean_four_plus_q50": 3.117001867819878,
+          "mean_four_plus_q95": 103.19966584256524,
+          "std_all_q95": 6.543079061002142,
+          "std_four_plus_q95": 16.637945627305687
+        },
+        {
+          "database": "chembl",
+          "k": 10,
+          "mean_all_q50": 2.2889613714030266,
+          "mean_all_q95": 62.685643264922916,
+          "mean_four_plus_q50": 2.9783629683984882,
+          "mean_four_plus_q95": 105.13211667824092,
+          "std_all_q95": 3.3868670425986127,
+          "std_four_plus_q95": 7.679754736485101
+        },
+        {
+          "database": "chembl",
+          "k": 20,
+          "mean_all_q50": 2.2787253559948812,
+          "mean_all_q95": 65.46687139802758,
+          "mean_four_plus_q50": 2.9563095645373814,
+          "mean_four_plus_q95": 111.57290901616796,
+          "std_all_q95": 5.0131914713630135,
+          "std_four_plus_q95": 11.384060106176703
+        },
+        {
+          "database": "chembl",
+          "k": 50,
+          "mean_all_q50": 2.2811412759374003,
+          "mean_all_q95": 66.7985554742413,
+          "mean_four_plus_q50": 2.9594896819203607,
+          "mean_four_plus_q95": 114.91027000086618,
+          "std_all_q95": 4.912916137354718,
+          "std_four_plus_q95": 10.54002559446872
+        },
+        {
+          "database": "chembl",
+          "k": 100,
+          "mean_all_q50": 2.284119417008077,
+          "mean_all_q95": 65.76813906574327,
+          "mean_four_plus_q50": 2.9588073899777316,
+          "mean_four_plus_q95": 112.38615567550123,
+          "std_all_q95": 5.094765235666717,
+          "std_four_plus_q95": 9.828390976964368
+        },
+        {
+          "database": "legalacts",
+          "k": 5,
+          "mean_all_q50": 1.873268954549312,
+          "mean_all_q95": 12.412492955750327,
+          "mean_four_plus_q50": 2.630289802125496,
+          "mean_four_plus_q95": 21.340385002704757,
+          "std_all_q95": 2.294195456368146,
+          "std_four_plus_q95": 5.81950497217917
+        },
+        {
+          "database": "legalacts",
+          "k": 10,
+          "mean_all_q50": 1.8399871414088529,
+          "mean_all_q95": 10.632823495051372,
+          "mean_four_plus_q50": 2.5881723939295265,
+          "mean_four_plus_q95": 17.022535914792645,
+          "std_all_q95": 0.31852245608111457,
+          "std_four_plus_q95": 1.1417739771086144
+        },
+        {
+          "database": "legalacts",
+          "k": 20,
+          "mean_all_q50": 1.8130076049155992,
+          "mean_all_q95": 10.511887076255885,
+          "mean_four_plus_q50": 2.58099900364681,
+          "mean_four_plus_q95": 16.388837835916384,
+          "std_all_q95": 0.5575417051741479,
+          "std_four_plus_q95": 1.8009427321407145
+        },
+        {
+          "database": "legalacts",
+          "k": 50,
+          "mean_all_q50": 1.8094385979758694,
+          "mean_all_q95": 10.393890025351372,
+          "mean_four_plus_q50": 2.5704296455077666,
+          "mean_four_plus_q95": 16.057138572979277,
+          "std_all_q95": 0.14868930112720577,
+          "std_four_plus_q95": 0.7619306763083429
+        },
+        {
+          "database": "legalacts",
+          "k": 100,
+          "mean_all_q50": 1.8091929823018336,
+          "mean_all_q95": 10.39704575008618,
+          "mean_four_plus_q50": 2.577527629489589,
+          "mean_four_plus_q95": 16.00990097057607,
+          "std_all_q95": 0.18309757890207487,
+          "std_four_plus_q95": 0.9170064800579758
+        },
+        {
+          "database": "telstra",
+          "k": 5,
+          "mean_all_q50": 1.5277466159712907,
+          "mean_all_q95": 7.4120872857627536,
+          "mean_four_plus_q50": 1.836484119102352,
+          "mean_four_plus_q95": 6.94748067610964,
+          "std_all_q95": 1.0259619033925884,
+          "std_four_plus_q95": 0.8385457173035946
+        },
+        {
+          "database": "telstra",
+          "k": 10,
+          "mean_all_q50": 1.5335045782106396,
+          "mean_all_q95": 7.611346670262963,
+          "mean_four_plus_q50": 1.840124530154205,
+          "mean_four_plus_q95": 6.997004817946783,
+          "std_all_q95": 1.0606245540020165,
+          "std_four_plus_q95": 0.8991394339192474
+        },
+        {
+          "database": "telstra",
+          "k": 20,
+          "mean_all_q50": 1.519915177102451,
+          "mean_all_q95": 7.261641922094692,
+          "mean_four_plus_q50": 1.8082460570267824,
+          "mean_four_plus_q95": 6.7104214974675545,
+          "std_all_q95": 0.4765388143227902,
+          "std_four_plus_q95": 0.23604353060622932
+        },
+        {
+          "database": "telstra",
+          "k": 50,
+          "mean_all_q50": 1.512777769753726,
+          "mean_all_q95": 6.9178712874446315,
+          "mean_four_plus_q50": 1.807131345231633,
+          "mean_four_plus_q95": 6.421660570809516,
+          "std_all_q95": 0.3096308519910647,
+          "std_four_plus_q95": 0.13374569542771506
+        },
+        {
+          "database": "telstra",
+          "k": 100,
+          "mean_all_q50": 1.50494037302384,
+          "mean_all_q95": 6.814557009005876,
+          "mean_four_plus_q50": 1.7935061473691927,
+          "mean_four_plus_q95": 6.373200362604383,
+          "std_all_q95": 0.2289273414170958,
+          "std_four_plus_q95": 0.0652503581973889
+        }
+      ]
+    },
+    "B_head3_head3": {
+      "macro_four_plus_q95": 39.000403352286426,
+      "macro_all_q95": 26.70770356013436,
+      "macro_mean_log_q95": 3.121384093282162,
+      "macro_all_mean_log_q95": 2.838795990758217,
+      "groups": [
+        {
+          "database": "chembl",
+          "k": 5,
+          "mean_all_q50": 2.670821686895418,
+          "mean_all_q95": 64.07016348021664,
+          "mean_four_plus_q50": 3.7623510933075517,
+          "mean_four_plus_q95": 94.7938407945386,
+          "std_all_q95": 6.326788544278395,
+          "std_four_plus_q95": 11.219163093806488
+        },
+        {
+          "database": "chembl",
+          "k": 10,
+          "mean_all_q50": 2.5838321677924942,
+          "mean_all_q95": 60.88691424919862,
+          "mean_four_plus_q50": 3.576127209560004,
+          "mean_four_plus_q95": 90.44267771868704,
+          "std_all_q95": 0.6057939733787177,
+          "std_four_plus_q95": 2.6154015850042556
+        },
+        {
+          "database": "chembl",
+          "k": 20,
+          "mean_all_q50": 2.4747080300511093,
+          "mean_all_q95": 61.08652297689482,
+          "mean_four_plus_q50": 3.339692461689264,
+          "mean_four_plus_q95": 89.97655961070991,
+          "std_all_q95": 0.7624624801464083,
+          "std_four_plus_q95": 2.855225285009522
+        },
+        {
+          "database": "chembl",
+          "k": 50,
+          "mean_all_q50": 2.453909179226084,
+          "mean_all_q95": 61.527495824844166,
+          "mean_four_plus_q50": 3.2767130208770325,
+          "mean_four_plus_q95": 92.87129987153699,
+          "std_all_q95": 1.4392526071292413,
+          "std_four_plus_q95": 4.958840505623718
+        },
+        {
+          "database": "chembl",
+          "k": 100,
+          "mean_all_q50": 2.450210954455352,
+          "mean_all_q95": 61.31726583658781,
+          "mean_four_plus_q50": 3.2799857505571692,
+          "mean_four_plus_q95": 92.26693435272793,
+          "std_all_q95": 1.063374300202699,
+          "std_four_plus_q95": 4.710075822228207
+        },
+        {
+          "database": "legalacts",
+          "k": 5,
+          "mean_all_q50": 1.8731915058921793,
+          "mean_all_q95": 12.36702215078611,
+          "mean_four_plus_q50": 2.7478257356629667,
+          "mean_four_plus_q95": 22.79681716881198,
+          "std_all_q95": 2.9228019193105053,
+          "std_four_plus_q95": 8.563860374035912
+        },
+        {
+          "database": "legalacts",
+          "k": 10,
+          "mean_all_q50": 1.8111241341888644,
+          "mean_all_q95": 10.341124451355281,
+          "mean_four_plus_q50": 2.6342461965527812,
+          "mean_four_plus_q95": 16.907067716091085,
+          "std_all_q95": 0.30613376161018463,
+          "std_four_plus_q95": 1.501961212365824
+        },
+        {
+          "database": "legalacts",
+          "k": 20,
+          "mean_all_q50": 1.7714070071037278,
+          "mean_all_q95": 10.226068198587484,
+          "mean_four_plus_q50": 2.6298401061747816,
+          "mean_four_plus_q95": 16.201093101464373,
+          "std_all_q95": 0.5080608522882057,
+          "std_four_plus_q95": 2.0131639391394365
+        },
+        {
+          "database": "legalacts",
+          "k": 50,
+          "mean_all_q50": 1.7699940611641423,
+          "mean_all_q95": 10.112061699328905,
+          "mean_four_plus_q50": 2.5988489891096536,
+          "mean_four_plus_q95": 15.846768939613856,
+          "std_all_q95": 0.09038138341610544,
+          "std_four_plus_q95": 0.6087785916820642
+        },
+        {
+          "database": "legalacts",
+          "k": 100,
+          "mean_all_q50": 1.7674925208225978,
+          "mean_all_q95": 10.136218614590708,
+          "mean_four_plus_q50": 2.6004323276346675,
+          "mean_four_plus_q95": 15.693471437036072,
+          "std_all_q95": 0.0845060857589757,
+          "std_four_plus_q95": 0.6115445152280831
+        },
+        {
+          "database": "telstra",
+          "k": 5,
+          "mean_all_q50": 1.5008629061693521,
+          "mean_all_q95": 8.163587217600574,
+          "mean_four_plus_q50": 1.7747904025886487,
+          "mean_four_plus_q95": 7.909820790767486,
+          "std_all_q95": 1.4410973153357036,
+          "std_four_plus_q95": 0.6790190280000161
+        },
+        {
+          "database": "telstra",
+          "k": 10,
+          "mean_all_q50": 1.4951389451087365,
+          "mean_all_q95": 8.146317074673478,
+          "mean_four_plus_q50": 1.7666634501792722,
+          "mean_four_plus_q95": 7.67484229610925,
+          "std_all_q95": 1.2520514516851473,
+          "std_four_plus_q95": 0.6987489557622161
+        },
+        {
+          "database": "telstra",
+          "k": 20,
+          "mean_all_q50": 1.4707780277443638,
+          "mean_all_q95": 7.569779080275119,
+          "mean_four_plus_q50": 1.721451548846471,
+          "mean_four_plus_q95": 7.232257621094712,
+          "std_all_q95": 0.32099674176298526,
+          "std_four_plus_q95": 0.40565721219691436
+        },
+        {
+          "database": "telstra",
+          "k": 50,
+          "mean_all_q50": 1.4641211299423256,
+          "mean_all_q95": 7.360798415091547,
+          "mean_four_plus_q50": 1.7181705709207358,
+          "mean_four_plus_q95": 7.076085462242366,
+          "std_all_q95": 0.21686713968823773,
+          "std_four_plus_q95": 0.23836772483474167
+        },
+        {
+          "database": "telstra",
+          "k": 100,
+          "mean_all_q50": 1.459884187641198,
+          "mean_all_q95": 7.3042141319841205,
+          "mean_four_plus_q50": 1.704916087994962,
+          "mean_four_plus_q95": 7.316513402864729,
+          "std_all_q95": 0.18325192114452446,
+          "std_four_plus_q95": 0.3251888273354282
+        }
+      ],
+      "relative_improvement": 0.12354663469738236,
+      "improvement_gate": true,
+      "regressions": [
+        {
+          "database": "telstra",
+          "k": 5,
+          "metric": "all_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 5,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 50,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 100,
+          "metric": "four_plus_q95"
+        }
+      ],
+      "eligible": false
+    },
+    "C_last3_last3": {
+      "macro_four_plus_q95": 39.01038305004801,
+      "macro_all_q95": 26.342702985183273,
+      "macro_mean_log_q95": 3.1264204592460825,
+      "macro_all_mean_log_q95": 2.7902174025912236,
+      "groups": [
+        {
+          "database": "chembl",
+          "k": 5,
+          "mean_all_q50": 2.723515827466933,
+          "mean_all_q95": 63.81501638006953,
+          "mean_four_plus_q50": 3.911742478463934,
+          "mean_four_plus_q95": 97.92826289237183,
+          "std_all_q95": 3.1865966302281175,
+          "std_four_plus_q95": 7.4210009174006215
+        },
+        {
+          "database": "chembl",
+          "k": 10,
+          "mean_all_q50": 2.7103033684388635,
+          "mean_all_q95": 62.2796353532146,
+          "mean_four_plus_q50": 3.8521617149103036,
+          "mean_four_plus_q95": 94.3705766287728,
+          "std_all_q95": 0.7587916683908336,
+          "std_four_plus_q95": 2.0059453526536344
+        },
+        {
+          "database": "chembl",
+          "k": 20,
+          "mean_all_q50": 2.6983832928018257,
+          "mean_all_q95": 61.75522709851062,
+          "mean_four_plus_q50": 3.8182741317261444,
+          "mean_four_plus_q95": 92.78539596356374,
+          "std_all_q95": 0.555313899548893,
+          "std_four_plus_q95": 1.445422005612237
+        },
+        {
+          "database": "chembl",
+          "k": 50,
+          "mean_all_q50": 2.687881613843146,
+          "mean_all_q95": 61.33393314293384,
+          "mean_four_plus_q50": 3.7808772846981378,
+          "mean_four_plus_q95": 91.67649424045263,
+          "std_all_q95": 0.25388965427504384,
+          "std_four_plus_q95": 0.5369028494024302
+        },
+        {
+          "database": "chembl",
+          "k": 100,
+          "mean_all_q50": 2.69103370059444,
+          "mean_all_q95": 61.43670488412215,
+          "mean_four_plus_q50": 3.7918152158126146,
+          "mean_four_plus_q95": 91.96513055638677,
+          "std_all_q95": 0.29408596784522234,
+          "std_four_plus_q95": 0.8427718923826364
+        },
+        {
+          "database": "legalacts",
+          "k": 5,
+          "mean_all_q50": 1.8836440790298306,
+          "mean_all_q95": 9.857763464279898,
+          "mean_four_plus_q50": 2.7640855899952963,
+          "mean_four_plus_q95": 14.670894982485112,
+          "std_all_q95": 0.05499573997566442,
+          "std_four_plus_q95": 0.1094609184521884
+        },
+        {
+          "database": "legalacts",
+          "k": 10,
+          "mean_all_q50": 1.8547467364133758,
+          "mean_all_q95": 9.819180844339988,
+          "mean_four_plus_q50": 2.7840912311577855,
+          "mean_four_plus_q95": 14.620207782942373,
+          "std_all_q95": 0.023362866145764907,
+          "std_four_plus_q95": 0.054666943593905976
+        },
+        {
+          "database": "legalacts",
+          "k": 20,
+          "mean_all_q50": 1.8375956166517748,
+          "mean_all_q95": 9.835666248737665,
+          "mean_four_plus_q50": 2.7824791485959297,
+          "mean_four_plus_q95": 14.663432115136867,
+          "std_all_q95": 0.021097301502625676,
+          "std_four_plus_q95": 0.07121763741034297
+        },
+        {
+          "database": "legalacts",
+          "k": 50,
+          "mean_all_q50": 1.8386925010294277,
+          "mean_all_q95": 9.82061089567224,
+          "mean_four_plus_q50": 2.785243727905202,
+          "mean_four_plus_q95": 14.676297292754128,
+          "std_all_q95": 0.012782977589623764,
+          "std_four_plus_q95": 0.07095074971514276
+        },
+        {
+          "database": "legalacts",
+          "k": 100,
+          "mean_all_q50": 1.8365872446126985,
+          "mean_all_q95": 9.816334686493919,
+          "mean_four_plus_q50": 2.7845329789881084,
+          "mean_four_plus_q95": 14.661777356889141,
+          "std_all_q95": 0.005411878257313529,
+          "std_four_plus_q95": 0.032207245854299925
+        },
+        {
+          "database": "telstra",
+          "k": 5,
+          "mean_all_q50": 1.4967331867518294,
+          "mean_all_q95": 7.11396994953123,
+          "mean_four_plus_q50": 1.7962286784589403,
+          "mean_four_plus_q95": 8.705053625355138,
+          "std_all_q95": 0.08099456393762663,
+          "std_four_plus_q95": 0.46936273920334337
+        },
+        {
+          "database": "telstra",
+          "k": 10,
+          "mean_all_q50": 1.4943176832636222,
+          "mean_all_q95": 7.082361536281868,
+          "mean_four_plus_q50": 1.788538384019048,
+          "mean_four_plus_q95": 8.58169382509033,
+          "std_all_q95": 0.06171268880192931,
+          "std_four_plus_q95": 0.3754948581943989
+        },
+        {
+          "database": "telstra",
+          "k": 20,
+          "mean_all_q50": 1.4941135967619552,
+          "mean_all_q95": 7.0719662765329145,
+          "mean_four_plus_q50": 1.7930316106716575,
+          "mean_four_plus_q95": 8.638898368528597,
+          "std_all_q95": 0.03319930615741806,
+          "std_four_plus_q95": 0.18924502819107386
+        },
+        {
+          "database": "telstra",
+          "k": 50,
+          "mean_all_q50": 1.4923252982417972,
+          "mean_all_q95": 7.045782714628085,
+          "mean_four_plus_q50": 1.7869693577691752,
+          "mean_four_plus_q95": 8.563078239437573,
+          "std_all_q95": 0.019572365111462285,
+          "std_four_plus_q95": 0.1272905860464318
+        },
+        {
+          "database": "telstra",
+          "k": 100,
+          "mean_all_q50": 1.493946506749894,
+          "mean_all_q95": 7.0563913024005185,
+          "mean_four_plus_q50": 1.791058356529269,
+          "mean_four_plus_q95": 8.648551880553203,
+          "std_all_q95": 0.0187316813288974,
+          "std_four_plus_q95": 0.0824297987880441
+        }
+      ],
+      "relative_improvement": 0.1233223616402851,
+      "improvement_gate": true,
+      "regressions": [
+        {
+          "database": "telstra",
+          "k": 5,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 10,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 20,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 50,
+          "metric": "four_plus_q95"
+        },
+        {
+          "database": "telstra",
+          "k": 100,
+          "metric": "four_plus_q95"
+        }
+      ],
+      "eligible": false
+    }
+  },
+  "scope": "source-only single-seed engineering screen; not target generalization or significance"
+}

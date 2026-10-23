@@ -1,0 +1,1580 @@
+test_SHA_selection_does_not_read_labels (test_s8_independent.IndependentSmokeTests.test_SHA_selection_does_not_read_labels) ... ok
+test_empty_and_small_cells_have_no_metrics (test_s8_independent.IndependentSmokeTests.test_empty_and_small_cells_have_no_metrics) ... ok
+test_endpoint_denominator_and_values (test_s8_independent.IndependentSmokeTests.test_endpoint_denominator_and_values) ... ok
+test_episode_counters_are_global_one_based (test_s8_independent.IndependentSmokeTests.test_episode_counters_are_global_one_based) ... ok
+test_episode_exact_replay_and_no_leakage (test_s8_independent.IndependentSmokeTests.test_episode_exact_replay_and_no_leakage) ... ok
+test_large_integer_source_value_is_not_rounded_into_match (test_s8_independent.IndependentSmokeTests.test_large_integer_source_value_is_not_rounded_into_match) ... ok
+test_metrics_complete_unique_and_independently_recomputed (test_s8_independent.IndependentSmokeTests.test_metrics_complete_unique_and_independently_recomputed) ... ok
+test_metrics_top_level_purpose_never_research (test_s8_independent.IndependentSmokeTests.test_metrics_top_level_purpose_never_research) ... ok
+test_minimum_cell_n_200_boundary (test_s8_independent.IndependentSmokeTests.test_minimum_cell_n_200_boundary) ... ok
+test_no_production_imports_or_percentile_reuse (test_s8_independent.IndependentSmokeTests.test_no_production_imports_or_percentile_reuse) ... ok
+test_nomination_and_events_bound_and_ordered (test_s8_independent.IndependentSmokeTests.test_nomination_and_events_bound_and_ordered) ... ok
+test_nonfinite_and_overflow_even_below_200 (test_s8_independent.IndependentSmokeTests.test_nonfinite_and_overflow_even_below_200) ... ok
+test_panel_sha_order_is_not_trusted (test_s8_independent.IndependentSmokeTests.test_panel_sha_order_is_not_trusted) ... ok
+test_pool_at_least_1224_is_not_mocked (test_s8_independent.IndependentSmokeTests.test_pool_at_least_1224_is_not_mocked) ... ok
+test_raw_sampling_order_differs_from_panel_sha_order (test_s8_independent.IndependentSmokeTests.test_raw_sampling_order_differs_from_panel_sha_order) ... ok
+test_required_artifacts_and_malformed_json_raise (test_s8_independent.IndependentSmokeTests.test_required_artifacts_and_malformed_json_raise) ... ok
+test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) ... ok
+test_runner_H_nomination_hash_and_metrics_purpose (test_s8_independent.IndependentSmokeTests.test_runner_H_nomination_hash_and_metrics_purpose) ... ok
+test_smoke_binding_and_split_mutations (test_s8_independent.IndependentSmokeTests.test_smoke_binding_and_split_mutations) ... ok
+test_sorted_linear_interpolation_known_values (test_s8_independent.IndependentSmokeTests.test_sorted_linear_interpolation_known_values) ... ok
+test_source_cache_invalid_or_extra (test_s8_independent.IndependentSmokeTests.test_source_cache_invalid_or_extra) ... ok
+test_valid_complete_smoke_and_limits (test_s8_independent.IndependentSmokeTests.test_valid_complete_smoke_and_limits) ... ok
+test_verifier_does_not_modify_artifacts (test_s8_independent.IndependentSmokeTests.test_verifier_does_not_modify_artifacts) ... ok
+test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) ... 
+  test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='profiles', change='missing_group') ... FAIL
+  test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='profiles', change='missing_h') ... FAIL
+  test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='profiles', change='extra') ... FAIL
+  test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='profiles', change='certificate') ... FAIL
+  test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='resource_profile', change='missing_group') ... FAIL
+  test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='resource_profile', change='missing_h') ... FAIL
+  test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='resource_profile', change='extra') ... FAIL
+  test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='resource_profile', change='certificate') ... FAIL
+test_each_stage_certificate_must_equal_combined (test_s8_independent_v2.IndependentV2Tests.test_each_stage_certificate_must_equal_combined) ... 
+  test_each_stage_certificate_must_equal_combined (test_s8_independent_v2.IndependentV2Tests.test_each_stage_certificate_must_equal_combined) (feature='h', stage='probe') ... FAIL
+  test_each_stage_certificate_must_equal_combined (test_s8_independent_v2.IndependentV2Tests.test_each_stage_certificate_must_equal_combined) (feature='h', stage='resource') ... FAIL
+  test_each_stage_certificate_must_equal_combined (test_s8_independent_v2.IndependentV2Tests.test_each_stage_certificate_must_equal_combined) (feature='x', stage='probe') ... FAIL
+  test_each_stage_certificate_must_equal_combined (test_s8_independent_v2.IndependentV2Tests.test_each_stage_certificate_must_equal_combined) (feature='x', stage='resource') ... FAIL
+test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) ... 
+  test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='profiles', value=False) ... FAIL
+  test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='profiles', value=1) ... FAIL
+  test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='profiles', value='true') ... FAIL
+  test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='profiles', value=None) ... FAIL
+  test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='resource_profile', value=False) ... FAIL
+  test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='resource_profile', value=1) ... FAIL
+  test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='resource_profile', value='true') ... FAIL
+  test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='resource_profile', value=None) ... FAIL
+test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) ... 
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='metadata_pass', value=False) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='metadata_pass', value=1) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='metadata_pass', value='true') ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='metadata_pass', value=None) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='normal_residual_pass', value=False) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='normal_residual_pass', value=1) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='normal_residual_pass', value='true') ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='normal_residual_pass', value=None) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='objective_pass', value=False) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='objective_pass', value=1) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='objective_pass', value='true') ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='objective_pass', value=None) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_objective_pass', value=False) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_objective_pass', value=1) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_objective_pass', value='true') ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_objective_pass', value=None) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_prediction_pass', value=False) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_prediction_pass', value=1) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_prediction_pass', value='true') ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_prediction_pass', value=None) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_spectrum_pass', value=False) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_spectrum_pass', value=1) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_spectrum_pass', value='true') ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_spectrum_pass', value=None) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='svd_backend_pass', value=False) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='svd_backend_pass', value=1) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='svd_backend_pass', value='true') ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='svd_backend_pass', value=None) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='retained_subspace_pass', value=False) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='retained_subspace_pass', value=1) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='retained_subspace_pass', value='true') ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='retained_subspace_pass', value=None) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_retained_subspace_pass', value=False) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_retained_subspace_pass', value=1) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_retained_subspace_pass', value='true') ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_retained_subspace_pass', value=None) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='observed_rank_agreement', value=False) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='observed_rank_agreement', value=1) ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='observed_rank_agreement', value='true') ... FAIL
+  test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='observed_rank_agreement', value=None) ... FAIL
+test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) ... 
+  test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='pass', value=True) ... FAIL
+  test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='solver_verified', value=True) ... FAIL
+  test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='pass', value=0) ... FAIL
+  test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='solver_verified', value=0) ... FAIL
+  test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='rank_stability', value='verified') ... FAIL
+  test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='rank_stability', value=None) ... FAIL
+test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) ... 
+  test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='rank_limited') ... FAIL
+  test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='numerical_rank_limited') ... FAIL
+  test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='fullrank_numeric_solver') ... FAIL
+  test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='rank_limited') ... FAIL
+  test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='full_linear_optimality_verified') ... FAIL
+  test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='full_linear_optimality') ... FAIL
+test_missing_artifacts_rejected (test_s8_independent_v2.IndependentV2Tests.test_missing_artifacts_rejected) ... 
+  test_missing_artifacts_rejected (test_s8_independent_v2.IndependentV2Tests.test_missing_artifacts_rejected) (name='probe-smoke.json') ... FAIL
+  test_missing_artifacts_rejected (test_s8_independent_v2.IndependentV2Tests.test_missing_artifacts_rejected) (name='h-probe-certificate.json') ... FAIL
+  test_missing_artifacts_rejected (test_s8_independent_v2.IndependentV2Tests.test_missing_artifacts_rejected) (name='h-resource-certificate.json') ... FAIL
+  test_missing_artifacts_rejected (test_s8_independent_v2.IndependentV2Tests.test_missing_artifacts_rejected) (name='x-probe-certificate.json') ... FAIL
+  test_missing_artifacts_rejected (test_s8_independent_v2.IndependentV2Tests.test_missing_artifacts_rejected) (name='x-resource-certificate.json') ... FAIL
+test_no_production_probe_import_or_math_proof_claim (test_s8_independent_v2.IndependentV2Tests.test_no_production_probe_import_or_math_proof_claim) ... ok
+test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) ... 
+  test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (value=None) ... FAIL
+  test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (value=[]) ... FAIL
+  test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (value={}) ... FAIL
+  test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (value={'reported_ls': 64, 'svd': 64}) ... FAIL
+  test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (value={'reported_ls': 63, 'svd': 64, 'reference_ls': 64}) ... FAIL
+  test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (rank=True) ... FAIL
+  test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (rank=64.0) ... FAIL
+  test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (rank='64') ... FAIL
+  test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (rank=-1) ... FAIL
+  test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (rank=66) ... FAIL
+test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) ... 
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='profiles', key='fit_rows') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='profiles', key='parameters') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='profiles', key='adam_updates') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='profiles', key='adam_updates') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='rows') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='columns') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='matrix_bytes') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='linalg_calls') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='linalg_calls') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='resource_only') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='not_used_for_predictions_or_selection') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='rank') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='rank') ... FAIL
+  test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='full_linear_optimality_verified') ... FAIL
+test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) ... FAIL
+test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) ... 
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value=-1) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value=nan) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value=inf) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value=True) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value='0.1') ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value=None) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value=-1) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value=nan) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value=inf) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value=True) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value='0.1') ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value=None) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value=-1) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value=nan) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value=inf) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value=True) ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value='0.1') ... FAIL
+  test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value=None) ... FAIL
+test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) ... FAIL
+test_small_probe_old_gate_cannot_be_replaced_by_engineering (test_s8_independent_v2.IndependentV2Tests.test_small_probe_old_gate_cannot_be_replaced_by_engineering) ... 
+  test_small_probe_old_gate_cannot_be_replaced_by_engineering (test_s8_independent_v2.IndependentV2Tests.test_small_probe_old_gate_cannot_be_replaced_by_engineering) (feature='h') ... FAIL
+  test_small_probe_old_gate_cannot_be_replaced_by_engineering (test_s8_independent_v2.IndependentV2Tests.test_small_probe_old_gate_cannot_be_replaced_by_engineering) (feature='x') ... FAIL
+test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) ... 
+  test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (key='schema') ... FAIL
+  test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (key='schema') ... FAIL
+  test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (key='numerical_acceptance_policy') ... FAIL
+  test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (key='acceptance_protocol_sha256') ... FAIL
+  test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (key='acceptance_protocol_sha256') ... FAIL
+  test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (missing='schema') ... FAIL
+  test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (missing='numerical_acceptance_policy') ... FAIL
+  test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (missing='acceptance_protocol_sha256') ... FAIL
+test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) ... 
+  test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value=None) ... FAIL
+  test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value={}) ... FAIL
+  test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value={'status': 'verified', 'scopes': ['true_rank', 'rigorous_retained_subspace', 'strict_linear_optimality'], 'reason': 'no_verified_arithmetic_certificate'}) ... FAIL
+  test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value={'status': 'unknown', 'scopes': ['true_rank', 'rigorous_retained_subspace'], 'reason': 'no_verified_arithmetic_certificate'}) ... FAIL
+  test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value={'status': 'unknown', 'scopes': ['true_rank', 'rigorous_retained_subspace', 'strict_linear_optimality', 'other'], 'reason': 'no_verified_arithmetic_certificate'}) ... FAIL
+  test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value={'status': 'unknown', 'scopes': ['true_rank', 'rigorous_retained_subspace', 'strict_linear_optimality'], 'reason': 'engineering_verified'}) ... FAIL
+test_v1_rejects_either_v2_binding_key (test_s8_independent_v2.IndependentV2Tests.test_v1_rejects_either_v2_binding_key) ... 
+  test_v1_rejects_either_v2_binding_key (test_s8_independent_v2.IndependentV2Tests.test_v1_rejects_either_v2_binding_key) (key='numerical_acceptance_policy') ... FAIL
+  test_v1_rejects_either_v2_binding_key (test_s8_independent_v2.IndependentV2Tests.test_v1_rejects_either_v2_binding_key) (key='acceptance_protocol_sha256') ... FAIL
+test_v1_still_accepts_original_evidence_without_numeric_artifacts (test_s8_independent_v2.IndependentV2Tests.test_v1_still_accepts_original_evidence_without_numeric_artifacts) ... ok
+test_v2_binding_contract (test_s8_independent_v2.IndependentV2Tests.test_v2_binding_contract) ... ERROR
+test_v2_stable_resource_and_fullrank_records_accept (test_s8_independent_v2.IndependentV2Tests.test_v2_stable_resource_and_fullrank_records_accept) ... ERROR
+test_v2_unknown_resource_accepts_without_summary_and_preserves_limits (test_s8_independent_v2.IndependentV2Tests.test_v2_unknown_resource_accepts_without_summary_and_preserves_limits) ... ERROR
+
+======================================================================
+ERROR: test_v2_binding_contract (test_s8_independent_v2.IndependentV2Tests.test_v2_binding_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 207, in test_v2_binding_contract
+    ORIGINAL_BINDINGS(self.bindings)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 131, in _bindings
+    raise ValueError(f"smoke binding mismatch: {key}")
+ValueError: smoke binding mismatch: schema
+
+======================================================================
+ERROR: test_v2_stable_resource_and_fullrank_records_accept (test_s8_independent_v2.IndependentV2Tests.test_v2_stable_resource_and_fullrank_records_accept)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 170, in test_v2_stable_resource_and_fullrank_records_accept
+    self.assertIs(self.verify()["engineering_verified"], True)
+                  ^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 127, in verify
+    return verifier.verify_smoke(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 452, in verify_smoke
+    _bindings(bindings)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 131, in _bindings
+    raise ValueError(f"smoke binding mismatch: {key}")
+ValueError: smoke binding mismatch: schema
+
+======================================================================
+ERROR: test_v2_unknown_resource_accepts_without_summary_and_preserves_limits (test_s8_independent_v2.IndependentV2Tests.test_v2_unknown_resource_accepts_without_summary_and_preserves_limits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 152, in test_v2_unknown_resource_accepts_without_summary_and_preserves_limits
+    result = self.verify()
+             ^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 127, in verify
+    return verifier.verify_smoke(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 452, in verify_smoke
+    _bindings(bindings)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s8_independent_verify.py", line 131, in _bindings
+    raise ValueError(f"smoke binding mismatch: {key}")
+ValueError: smoke binding mismatch: schema
+
+======================================================================
+FAIL: test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='profiles', change='missing_group')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 355, in test_both_profile_sets_and_certificates_required
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='profiles', change='missing_h')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 355, in test_both_profile_sets_and_certificates_required
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='profiles', change='extra')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 355, in test_both_profile_sets_and_certificates_required
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='profiles', change='certificate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 355, in test_both_profile_sets_and_certificates_required
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='resource_profile', change='missing_group')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 355, in test_both_profile_sets_and_certificates_required
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='resource_profile', change='missing_h')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 355, in test_both_profile_sets_and_certificates_required
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='resource_profile', change='extra')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 355, in test_both_profile_sets_and_certificates_required
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_both_profile_sets_and_certificates_required (test_s8_independent_v2.IndependentV2Tests.test_both_profile_sets_and_certificates_required) (group='resource_profile', change='certificate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 355, in test_both_profile_sets_and_certificates_required
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_each_stage_certificate_must_equal_combined (test_s8_independent_v2.IndependentV2Tests.test_each_stage_certificate_must_equal_combined) (feature='h', stage='probe')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 251, in test_each_stage_certificate_must_equal_combined
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_each_stage_certificate_must_equal_combined (test_s8_independent_v2.IndependentV2Tests.test_each_stage_certificate_must_equal_combined) (feature='h', stage='resource')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 251, in test_each_stage_certificate_must_equal_combined
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_each_stage_certificate_must_equal_combined (test_s8_independent_v2.IndependentV2Tests.test_each_stage_certificate_must_equal_combined) (feature='x', stage='probe')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 251, in test_each_stage_certificate_must_equal_combined
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_each_stage_certificate_must_equal_combined (test_s8_independent_v2.IndependentV2Tests.test_each_stage_certificate_must_equal_combined) (feature='x', stage='resource')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 251, in test_each_stage_certificate_must_equal_combined
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='profiles', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 276, in test_engineering_boolean_cannot_be_false_missing_or_truthy
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='profiles', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 276, in test_engineering_boolean_cannot_be_false_missing_or_truthy
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='profiles', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 276, in test_engineering_boolean_cannot_be_false_missing_or_truthy
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='profiles', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 276, in test_engineering_boolean_cannot_be_false_missing_or_truthy
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='resource_profile', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 276, in test_engineering_boolean_cannot_be_false_missing_or_truthy
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='resource_profile', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 276, in test_engineering_boolean_cannot_be_false_missing_or_truthy
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='resource_profile', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 276, in test_engineering_boolean_cannot_be_false_missing_or_truthy
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_engineering_boolean_cannot_be_false_missing_or_truthy (test_s8_independent_v2.IndependentV2Tests.test_engineering_boolean_cannot_be_false_missing_or_truthy) (group='resource_profile', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 276, in test_engineering_boolean_cannot_be_false_missing_or_truthy
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='metadata_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='metadata_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='metadata_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='metadata_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='normal_residual_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='normal_residual_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='normal_residual_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='normal_residual_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='objective_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='objective_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='objective_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='objective_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_objective_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_objective_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_objective_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_objective_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_prediction_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_prediction_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_prediction_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_prediction_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_spectrum_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_spectrum_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_spectrum_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_spectrum_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='svd_backend_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='svd_backend_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='svd_backend_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='svd_backend_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='retained_subspace_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='retained_subspace_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='retained_subspace_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='retained_subspace_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_retained_subspace_pass', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_retained_subspace_pass', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_retained_subspace_pass', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='reference_retained_subspace_pass', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='observed_rank_agreement', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='observed_rank_agreement', value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='observed_rank_agreement', value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hard_flags_must_be_present_and_strictly_true (test_s8_independent_v2.IndependentV2Tests.test_hard_flags_must_be_present_and_strictly_true) (flag='observed_rank_agreement', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 264, in test_hard_flags_must_be_present_and_strictly_true
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='pass', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 302, in test_legacy_pass_solver_and_rank_stability_consistency
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='solver_verified', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 302, in test_legacy_pass_solver_and_rank_stability_consistency
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='pass', value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 302, in test_legacy_pass_solver_and_rank_stability_consistency
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='solver_verified', value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 302, in test_legacy_pass_solver_and_rank_stability_consistency
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='rank_stability', value='verified')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 302, in test_legacy_pass_solver_and_rank_stability_consistency
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_pass_solver_and_rank_stability_consistency (test_s8_independent_v2.IndependentV2Tests.test_legacy_pass_solver_and_rank_stability_consistency) (key='rank_stability', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 302, in test_legacy_pass_solver_and_rank_stability_consistency
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='rank_limited')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 321, in test_legacy_rank_and_scientific_flags_remain_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='numerical_rank_limited')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 321, in test_legacy_rank_and_scientific_flags_remain_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='fullrank_numeric_solver')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 321, in test_legacy_rank_and_scientific_flags_remain_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='rank_limited')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 321, in test_legacy_rank_and_scientific_flags_remain_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='full_linear_optimality_verified')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 321, in test_legacy_rank_and_scientific_flags_remain_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legacy_rank_and_scientific_flags_remain_consistent (test_s8_independent_v2.IndependentV2Tests.test_legacy_rank_and_scientific_flags_remain_consistent) (key='full_linear_optimality')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 321, in test_legacy_rank_and_scientific_flags_remain_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_artifacts_rejected (test_s8_independent_v2.IndependentV2Tests.test_missing_artifacts_rejected) (name='probe-smoke.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 238, in test_missing_artifacts_rejected
+    with self.assertRaises((ValueError, FileNotFoundError)):
+AssertionError: (<class 'ValueError'>, <class 'FileNotFoundError'>) not raised
+
+======================================================================
+FAIL: test_missing_artifacts_rejected (test_s8_independent_v2.IndependentV2Tests.test_missing_artifacts_rejected) (name='h-probe-certificate.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 238, in test_missing_artifacts_rejected
+    with self.assertRaises((ValueError, FileNotFoundError)):
+AssertionError: (<class 'ValueError'>, <class 'FileNotFoundError'>) not raised
+
+======================================================================
+FAIL: test_missing_artifacts_rejected (test_s8_independent_v2.IndependentV2Tests.test_missing_artifacts_rejected) (name='h-resource-certificate.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 238, in test_missing_artifacts_rejected
+    with self.assertRaises((ValueError, FileNotFoundError)):
+AssertionError: (<class 'ValueError'>, <class 'FileNotFoundError'>) not raised
+
+======================================================================
+FAIL: test_missing_artifacts_rejected (test_s8_independent_v2.IndependentV2Tests.test_missing_artifacts_rejected) (name='x-probe-certificate.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 238, in test_missing_artifacts_rejected
+    with self.assertRaises((ValueError, FileNotFoundError)):
+AssertionError: (<class 'ValueError'>, <class 'FileNotFoundError'>) not raised
+
+======================================================================
+FAIL: test_missing_artifacts_rejected (test_s8_independent_v2.IndependentV2Tests.test_missing_artifacts_rejected) (name='x-resource-certificate.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 238, in test_missing_artifacts_rejected
+    with self.assertRaises((ValueError, FileNotFoundError)):
+AssertionError: (<class 'ValueError'>, <class 'FileNotFoundError'>) not raised
+
+======================================================================
+FAIL: test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 284, in test_observed_ranks_must_be_integer_equal_and_bounded
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (value=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 284, in test_observed_ranks_must_be_integer_equal_and_bounded
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (value={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 284, in test_observed_ranks_must_be_integer_equal_and_bounded
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (value={'reported_ls': 64, 'svd': 64})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 284, in test_observed_ranks_must_be_integer_equal_and_bounded
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (value={'reported_ls': 63, 'svd': 64, 'reference_ls': 64})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 284, in test_observed_ranks_must_be_integer_equal_and_bounded
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (rank=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 291, in test_observed_ranks_must_be_integer_equal_and_bounded
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (rank=64.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 291, in test_observed_ranks_must_be_integer_equal_and_bounded
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (rank='64')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 291, in test_observed_ranks_must_be_integer_equal_and_bounded
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (rank=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 291, in test_observed_ranks_must_be_integer_equal_and_bounded
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_observed_ranks_must_be_integer_equal_and_bounded (test_s8_independent_v2.IndependentV2Tests.test_observed_ranks_must_be_integer_equal_and_bounded) (rank=66)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 291, in test_observed_ranks_must_be_integer_equal_and_bounded
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='profiles', key='fit_rows')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='profiles', key='parameters')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='profiles', key='adam_updates')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='profiles', key='adam_updates')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='rows')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='columns')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='matrix_bytes')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='linalg_calls')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='linalg_calls')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='resource_only')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='not_used_for_predictions_or_selection')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='rank')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='rank')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope) (group='resource_profile', key='full_linear_optimality_verified')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 374, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_profile_shapes_updates_counts_and_resource_scope (test_s8_independent_v2.IndependentV2Tests.test_profile_shapes_updates_counts_and_resource_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 377, in test_profile_shapes_updates_counts_and_resource_scope
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value='0.1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='standardization_seconds', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value='0.1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='solver_certification_seconds', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value='0.1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent) (key='seconds', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 389, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_resource_times_finite_nonnegative_and_total_consistent (test_s8_independent_v2.IndependentV2Tests.test_resource_times_finite_nonnegative_and_total_consistent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 392, in test_resource_times_finite_nonnegative_and_total_consistent
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_small_probe_old_gate_cannot_be_replaced_by_engineering (test_s8_independent_v2.IndependentV2Tests.test_small_probe_old_gate_cannot_be_replaced_by_engineering) (feature='h')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 309, in test_small_probe_old_gate_cannot_be_replaced_by_engineering
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_small_probe_old_gate_cannot_be_replaced_by_engineering (test_s8_independent_v2.IndependentV2Tests.test_small_probe_old_gate_cannot_be_replaced_by_engineering) (feature='x')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 309, in test_small_probe_old_gate_cannot_be_replaced_by_engineering
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (key='schema')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 220, in test_source_binding_requires_exact_schema_policy_and_sha
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (key='schema')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 220, in test_source_binding_requires_exact_schema_policy_and_sha
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (key='numerical_acceptance_policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 220, in test_source_binding_requires_exact_schema_policy_and_sha
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (key='acceptance_protocol_sha256')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 220, in test_source_binding_requires_exact_schema_policy_and_sha
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (key='acceptance_protocol_sha256')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 220, in test_source_binding_requires_exact_schema_policy_and_sha
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (missing='schema')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 225, in test_source_binding_requires_exact_schema_policy_and_sha
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (missing='numerical_acceptance_policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 225, in test_source_binding_requires_exact_schema_policy_and_sha
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_source_binding_requires_exact_schema_policy_and_sha (test_s8_independent_v2.IndependentV2Tests.test_source_binding_requires_exact_schema_policy_and_sha) (missing='acceptance_protocol_sha256')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 225, in test_source_binding_requires_exact_schema_policy_and_sha
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 334, in test_strict_unknown_scope_and_reason_cannot_be_forged
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 334, in test_strict_unknown_scope_and_reason_cannot_be_forged
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value={'status': 'verified', 'scopes': ['true_rank', 'rigorous_retained_subspace', 'strict_linear_optimality'], 'reason': 'no_verified_arithmetic_certificate'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 334, in test_strict_unknown_scope_and_reason_cannot_be_forged
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value={'status': 'unknown', 'scopes': ['true_rank', 'rigorous_retained_subspace'], 'reason': 'no_verified_arithmetic_certificate'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 334, in test_strict_unknown_scope_and_reason_cannot_be_forged
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value={'status': 'unknown', 'scopes': ['true_rank', 'rigorous_retained_subspace', 'strict_linear_optimality', 'other'], 'reason': 'no_verified_arithmetic_certificate'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 334, in test_strict_unknown_scope_and_reason_cannot_be_forged
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_strict_unknown_scope_and_reason_cannot_be_forged (test_s8_independent_v2.IndependentV2Tests.test_strict_unknown_scope_and_reason_cannot_be_forged) (value={'status': 'unknown', 'scopes': ['true_rank', 'rigorous_retained_subspace', 'strict_linear_optimality'], 'reason': 'engineering_verified'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 334, in test_strict_unknown_scope_and_reason_cannot_be_forged
+    self.reject_record()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 145, in reject_record
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_v1_rejects_either_v2_binding_key (test_s8_independent_v2.IndependentV2Tests.test_v1_rejects_either_v2_binding_key) (key='numerical_acceptance_policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 183, in test_v1_rejects_either_v2_binding_key
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_v1_rejects_either_v2_binding_key (test_s8_independent_v2.IndependentV2Tests.test_v1_rejects_either_v2_binding_key) (key='acceptance_protocol_sha256')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent_v2.py", line 183, in test_v1_rejects_either_v2_binding_key
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 42 tests in 114.461s
+
+FAILED (failures=139, errors=3)

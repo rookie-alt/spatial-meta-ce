@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "status": "failed",
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen/scripts/run_meta65_screen.py",
+    "--config",
+    "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen/configs/meta65_screen.json",
+    "--data-config",
+    "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen/configs/meta65_server_data.json",
+    "--out",
+    "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen/runs/meta65-source-screen-20261009",
+    "--device",
+    "cuda",
+    "--execute"
+  ],
+  "output": "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen/runs/meta65-source-screen-20261009",
+  "timeout_seconds": 7200,
+  "grace_seconds": 5,
+  "pid": 8950,
+  "process_group": 8950,
+  "returncode": -15,
+  "exit_code": 124,
+  "timed_out": true,
+  "decision_valid": false,
+  "signals_sent": [
+    15
+  ],
+  "failure_reason": "timeout",
+  "child_status_before_failure": "running",
+  "elapsed_seconds": 7200.221068050945
+}

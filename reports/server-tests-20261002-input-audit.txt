@@ -1,0 +1,101 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+test_batch_composition_invariance (test_arch.ArchTests.test_batch_composition_invariance) ... ok
+test_checkpoint_roundtrip (test_arch.ArchTests.test_checkpoint_roundtrip) ... ok
+test_initial_prediction_is_pg (test_arch.ArchTests.test_initial_prediction_is_pg) ... ok
+test_mask_hides_large_padding (test_arch.ArchTests.test_mask_hides_large_padding) ... ok
+test_meta_gradient_reaches_all_parameters (test_arch.ArchTests.test_meta_gradient_reaches_all_parameters) ... ok
+test_pair_embedding_is_order_sensitive (test_arch.ArchTests.test_pair_embedding_is_order_sensitive) ... ok
+test_permutation_invariance (test_arch.ArchTests.test_permutation_invariance) ... ok
+test_set_config_unchanged (test_arch.ArchTests.test_set_config_unchanged) ... ok
+test_unknown_arch (test_arch.ArchTests.test_unknown_arch) ... ok
+test_adaptation_and_outer_update_change_predictor (test_core.CoreTests.test_adaptation_and_outer_update_change_predictor) ... ok
+test_bad_values_rejected (test_core.CoreTests.test_bad_values_rejected) ... ok
+test_checkpoint_roundtrip_strict (test_core.CoreTests.test_checkpoint_roundtrip_strict) ... ok
+test_fomaml_scalar_gradient_and_isolation (test_core.CoreTests.test_fomaml_scalar_gradient_and_isolation) ... ok
+test_head_only_and_zero_step (test_core.CoreTests.test_head_only_and_zero_step) ... ok
+test_initial_pg_and_empty_groups (test_core.CoreTests.test_initial_pg_and_empty_groups) ... ok
+test_mask_hides_large_padding (test_core.CoreTests.test_mask_hides_large_padding) ... ok
+test_metrics_standard_and_shifted (test_core.CoreTests.test_metrics_standard_and_shifted) ... ok
+test_negative_predictions_keep_gradient (test_core.CoreTests.test_negative_predictions_keep_gradient) ... ok
+test_no_pg_ablation (test_core.CoreTests.test_no_pg_ablation) ... ok
+test_padding_and_permutation_invariance (test_core.CoreTests.test_padding_and_permutation_invariance) ... ok
+test_parameter_count (test_core.CoreTests.test_parameter_count) ... ok
+test_query_labels_do_not_change_adaptation (test_core.CoreTests.test_query_labels_do_not_change_adaptation) ... ok
+test_trajectory_matches_adapt (test_core.CoreTests.test_trajectory_matches_adapt) ... ok
+test_cache_manifest_tamper_rejected (test_data.DataTests.test_cache_manifest_tamper_rejected) ... ok
+test_cache_roundtrip_and_dedup (test_data.DataTests.test_cache_roundtrip_and_dedup) ... ok
+test_canonical_preserves_literals (test_data.DataTests.test_canonical_preserves_literals) ... ok
+test_database_overlap_rejected (test_data.DataTests.test_database_overlap_rejected) ... ok
+test_disjoint_reproducible_episode (test_data.DataTests.test_disjoint_reproducible_episode) ... ok
+test_misaligned_labels_fail (test_data.DataTests.test_misaligned_labels_fail) ... ok
+test_nonfinite_cache_rejected (test_data.DataTests.test_nonfinite_cache_rejected) ... ok
+test_cache_and_source_corruption_are_reported (test_input_audit.InputAuditIntegrationTests.test_cache_and_source_corruption_are_reported) ... ok
+test_cli_reports_source_failure_and_rejects_overwrite (test_input_audit.InputAuditIntegrationTests.test_cli_reports_source_failure_and_rejects_overwrite) ... ok
+test_every_row_recreation_mismatch_is_counted (test_input_audit.InputAuditIntegrationTests.test_every_row_recreation_mismatch_is_counted) ... ok
+test_full_recreation_preserves_repeated_rows_and_inputs (test_input_audit.InputAuditIntegrationTests.test_full_recreation_preserves_repeated_rows_and_inputs) ... ok
+test_mapping_denominator_is_independent_of_recreation_failure (test_input_audit.InputAuditIntegrationTests.test_mapping_denominator_is_independent_of_recreation_failure) ... ok
+test_partial_audit_cannot_claim_full_alignment (test_input_audit.InputAuditIntegrationTests.test_partial_audit_cannot_claim_full_alignment) ... ok
+test_recreation_failure_does_not_drop_rows (test_input_audit.InputAuditIntegrationTests.test_recreation_failure_does_not_drop_rows) ... ok
+test_complex_predicate_types_are_reported (test_input_audit.InputAuditTests.test_complex_predicate_types_are_reported) ... ok
+test_constant_equal_column_is_not_a_valid_join (test_input_audit.InputAuditTests.test_constant_equal_column_is_not_a_valid_join) ... ok
+test_feature_comparison_checks_shape_values_and_empty_groups (test_input_audit.InputAuditTests.test_feature_comparison_checks_shape_values_and_empty_groups) ... ok
+test_join_filter_overlap_is_reported_without_inventing_filter_token (test_input_audit.InputAuditTests.test_join_filter_overlap_is_reported_without_inventing_filter_token) ... ok
+test_literal_left_and_multiple_filters_are_visible (test_input_audit.InputAuditTests.test_literal_left_and_multiple_filters_are_visible) ... ok
+test_negated_and_unsupported_filters_are_flagged (test_input_audit.InputAuditTests.test_negated_and_unsupported_filters_are_flagged) ... ok
+test_non_equi_and_nested_query_are_not_certified (test_input_audit.InputAuditTests.test_non_equi_and_nested_query_are_not_certified) ... ok
+test_on_join_and_missing_where_are_reported (test_input_audit.InputAuditTests.test_on_join_and_missing_where_are_reported) ... ok
+test_repeated_join_column_uses_same_histogram_token (test_input_audit.InputAuditTests.test_repeated_join_column_uses_same_histogram_token) ... ok
+test_reverse_join_flips_fanout_histogram_indices (test_input_audit.InputAuditTests.test_reverse_join_flips_fanout_histogram_indices) ... ok
+test_self_join_aliases_are_local_and_tree_is_connected (test_input_audit.InputAuditTests.test_self_join_aliases_are_local_and_tree_is_connected) ... ok
+test_target_or_unknown_database_is_rejected (test_input_audit.InputAuditTests.test_target_or_unknown_database_is_rejected) ... ok
+test_token_order_and_fanout_direction (test_input_audit.InputAuditTests.test_token_order_and_fanout_direction) ... ok
+test_unqualified_columns_are_not_positionally_guessed (test_input_audit.InputAuditTests.test_unqualified_columns_are_not_positionally_guessed) ... ok
+test_adapted_checkpoint_cannot_be_reused_as_meta_initialization (test_integrity.IntegrityTests.test_adapted_checkpoint_cannot_be_reused_as_meta_initialization) ... {"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+ok
+test_baseline_forward_padding_matches_original (test_integrity.IntegrityTests.test_baseline_forward_padding_matches_original) ... ok
+test_cli_help (test_integrity.IntegrityTests.test_cli_help) ... ok
+test_price_output_transform (test_integrity.IntegrityTests.test_price_output_transform) ... ok
+test_price_validation_decodes_legacy_log_scale (test_integrity.IntegrityTests.test_price_validation_decodes_legacy_log_scale) ... ok
+test_resume_rejects_changed_hyperparameters (test_integrity.IntegrityTests.test_resume_rejects_changed_hyperparameters) ... n_features: 8!
+{"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+ok
+test_support_is_nested_and_excludes_test_hashes (test_integrity.IntegrityTests.test_support_is_nested_and_excludes_test_hashes) ... ok
+test_validation_plan_is_fixed_and_uses_all_shots (test_integrity.IntegrityTests.test_validation_plan_is_fixed_and_uses_all_shots) ... ok
+test_evaluation_reports_unique_and_paired_metrics (test_paired.PairedProtocolTests.test_evaluation_reports_unique_and_paired_metrics) ... {"database": "t", "run": 0, "k": 0, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+ok
+test_paired_manifest_is_shared_across_methods (test_paired.PairedProtocolTests.test_paired_manifest_is_shared_across_methods) ... {"database": "t", "run": 0, "k": 0, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 0, "k": 5, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 1, "k": 0, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 1, "k": 5, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 0, "k": 0, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 0, "k": 5, "q50": 14.58523117065914, "q95": 18.812476137070515, "unique_q95": 18.812476137070515}
+{"database": "t", "run": 1, "k": 0, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"database": "t", "run": 1, "k": 5, "q50": 14.58523117065914, "q95": 18.812476137070515, "unique_q95": 18.812476137070515}
+ok
+test_complete_tiny_evaluation (test_protocol.ProtocolTests.test_complete_tiny_evaluation) ... {"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+{"database": "t", "run": 0, "k": 0, "q50": 14.637452250667394, "q95": 18.879832479250652, "unique_q95": 18.879832479250652}
+{"database": "t", "run": 0, "k": 5, "q50": 14.442243963984282, "q95": 18.62804687557972, "unique_q95": 18.62804687557972}
+{"database": "t", "run": 1, "k": 0, "q50": 14.637452250667394, "q95": 18.879832479250652, "unique_q95": 18.879832479250652}
+{"database": "t", "run": 1, "k": 5, "q50": 14.442243963984282, "q95": 18.62804687557972, "unique_q95": 18.62804687557972}
+ok
+test_erm_runs (test_protocol.ProtocolTests.test_erm_runs) ... {"step": 1, "train_loss": 2.1423349380493164, "validation_macro_log_q95": 2.6883070518076844, "counts": {"support_presentations": 0, "query_presentations": 9, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.1124517917633057, "validation_macro_log_q95": 2.6841183950007386, "counts": {"support_presentations": 0, "query_presentations": 18, "backward_calls": 2, "optimizer_steps": 2}}
+ok
+test_resume_matches_uninterrupted (test_protocol.ProtocolTests.test_resume_matches_uninterrupted) ... {"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+ok
+test_validation_only_selection (test_protocol.ProtocolTests.test_validation_only_selection) ... ok
+
+----------------------------------------------------------------------
+Ran 65 tests in 4.924s
+
+OK

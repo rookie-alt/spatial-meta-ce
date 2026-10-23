@@ -1,0 +1,284 @@
+test_access_guard_rejects_h_target_checkpoint_and_writes (test_s8_readonly_p.ReadOnlyPTests.test_access_guard_rejects_h_target_checkpoint_and_writes) ... FAIL
+test_contract_budget_cannot_be_relaxed (test_s8_readonly_p.ReadOnlyPTests.test_contract_budget_cannot_be_relaxed) ... FAIL
+test_default_cli_is_plan_only_no_saved_p_reads (test_s8_readonly_p.ReadOnlyPTests.test_default_cli_is_plan_only_no_saved_p_reads) ... FAIL
+test_direct_worker_cli_denied (test_s8_readonly_p.ReadOnlyPTests.test_direct_worker_cli_denied) ... FAIL
+test_dtype_mismatch_not_silently_converted (test_s8_readonly_p.ReadOnlyPTests.test_dtype_mismatch_not_silently_converted) ... FAIL
+test_duplicate_panel_positions_rejected (test_s8_readonly_p.ReadOnlyPTests.test_duplicate_panel_positions_rejected) ... FAIL
+test_engineering_failure_preserved_stops_before_x (test_s8_readonly_p.ReadOnlyPTests.test_engineering_failure_preserved_stops_before_x) ... FAIL
+test_h_target_checkpoint_extra_files_rejected (test_s8_readonly_p.ReadOnlyPTests.test_h_target_checkpoint_extra_files_rejected) ... FAIL
+test_identity_mismatch_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_identity_mismatch_fails_closed) ... FAIL
+test_non_readonly_entrypoint_rejected_before_input_io (test_s8_readonly_p.ReadOnlyPTests.test_non_readonly_entrypoint_rejected_before_input_io) ... FAIL
+test_nonfinite_input_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_nonfinite_input_fails_closed) ... FAIL
+test_old_failed_output_and_existing_output_rejected (test_s8_readonly_p.ReadOnlyPTests.test_old_failed_output_and_existing_output_rejected) ... FAIL
+test_output_schema_not_run_not_false_success (test_s8_readonly_p.ReadOnlyPTests.test_output_schema_not_run_not_false_success) ... FAIL
+test_real_contract_cannot_use_synthetic_shapes (test_s8_readonly_p.ReadOnlyPTests.test_real_contract_cannot_use_synthetic_shapes) ... FAIL
+test_resource_unknown_rank_allowed_only_when_engineering_true (test_s8_readonly_p.ReadOnlyPTests.test_resource_unknown_rank_allowed_only_when_engineering_true) ... FAIL
+test_sha_mismatch_fails_and_keeps_new_failure (test_s8_readonly_p.ReadOnlyPTests.test_sha_mismatch_fails_and_keeps_new_failure) ... FAIL
+test_shape_mismatch_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_shape_mismatch_fails_closed) ... FAIL
+test_source_binding_mismatch_rejected (test_s8_readonly_p.ReadOnlyPTests.test_source_binding_mismatch_rejected) ... FAIL
+test_source_changed_during_solve_failure (test_s8_readonly_p.ReadOnlyPTests.test_source_changed_during_solve_failure) ... FAIL
+test_source_sha_mismatch_prevents_import (test_s8_readonly_p.ReadOnlyPTests.test_source_sha_mismatch_prevents_import) ... FAIL
+test_symlink_input_rejected (test_s8_readonly_p.ReadOnlyPTests.test_symlink_input_rejected) ... FAIL
+test_synthetic_success_is_not_real_p_or_g1 (test_s8_readonly_p.ReadOnlyPTests.test_synthetic_success_is_not_real_p_or_g1) ... FAIL
+test_target_database_identity_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_target_database_identity_fails_closed) ... FAIL
+test_training_calls_absent (test_s8_readonly_p.ReadOnlyPTests.test_training_calls_absent) ... FAIL
+test_abnormal_exit_records_failure (test_s8_readonly_p.SupervisorTests.test_abnormal_exit_records_failure) ... FAIL
+test_address_space_exceeded_stops (test_s8_readonly_p.SupervisorTests.test_address_space_exceeded_stops) ... FAIL
+test_missing_resource_observation_fails_closed (test_s8_readonly_p.SupervisorTests.test_missing_resource_observation_fails_closed) ... FAIL
+test_rss_exceeded_stops_and_labels_sample_not_hard_cap (test_s8_readonly_p.SupervisorTests.test_rss_exceeded_stops_and_labels_sample_not_hard_cap) ... FAIL
+test_signal_exit_records_signal (test_s8_readonly_p.SupervisorTests.test_signal_exit_records_signal) ... FAIL
+test_success_without_worker_proof_is_failure (test_s8_readonly_p.SupervisorTests.test_success_without_worker_proof_is_failure) ... FAIL
+test_timeout_kills_and_records_no_retry (test_s8_readonly_p.SupervisorTests.test_timeout_kills_and_records_no_retry) ... FAIL
+
+======================================================================
+FAIL: test_access_guard_rejects_h_target_checkpoint_and_writes (test_s8_readonly_p.ReadOnlyPTests.test_access_guard_rejects_h_target_checkpoint_and_writes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_contract_budget_cannot_be_relaxed (test_s8_readonly_p.ReadOnlyPTests.test_contract_budget_cannot_be_relaxed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_default_cli_is_plan_only_no_saved_p_reads (test_s8_readonly_p.ReadOnlyPTests.test_default_cli_is_plan_only_no_saved_p_reads)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_direct_worker_cli_denied (test_s8_readonly_p.ReadOnlyPTests.test_direct_worker_cli_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_dtype_mismatch_not_silently_converted (test_s8_readonly_p.ReadOnlyPTests.test_dtype_mismatch_not_silently_converted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_duplicate_panel_positions_rejected (test_s8_readonly_p.ReadOnlyPTests.test_duplicate_panel_positions_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_engineering_failure_preserved_stops_before_x (test_s8_readonly_p.ReadOnlyPTests.test_engineering_failure_preserved_stops_before_x)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_h_target_checkpoint_extra_files_rejected (test_s8_readonly_p.ReadOnlyPTests.test_h_target_checkpoint_extra_files_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_identity_mismatch_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_identity_mismatch_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_non_readonly_entrypoint_rejected_before_input_io (test_s8_readonly_p.ReadOnlyPTests.test_non_readonly_entrypoint_rejected_before_input_io)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_nonfinite_input_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_nonfinite_input_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_old_failed_output_and_existing_output_rejected (test_s8_readonly_p.ReadOnlyPTests.test_old_failed_output_and_existing_output_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_output_schema_not_run_not_false_success (test_s8_readonly_p.ReadOnlyPTests.test_output_schema_not_run_not_false_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_real_contract_cannot_use_synthetic_shapes (test_s8_readonly_p.ReadOnlyPTests.test_real_contract_cannot_use_synthetic_shapes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_resource_unknown_rank_allowed_only_when_engineering_true (test_s8_readonly_p.ReadOnlyPTests.test_resource_unknown_rank_allowed_only_when_engineering_true)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_sha_mismatch_fails_and_keeps_new_failure (test_s8_readonly_p.ReadOnlyPTests.test_sha_mismatch_fails_and_keeps_new_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_shape_mismatch_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_shape_mismatch_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_source_binding_mismatch_rejected (test_s8_readonly_p.ReadOnlyPTests.test_source_binding_mismatch_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_source_changed_during_solve_failure (test_s8_readonly_p.ReadOnlyPTests.test_source_changed_during_solve_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_source_sha_mismatch_prevents_import (test_s8_readonly_p.ReadOnlyPTests.test_source_sha_mismatch_prevents_import)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_symlink_input_rejected (test_s8_readonly_p.ReadOnlyPTests.test_symlink_input_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_synthetic_success_is_not_real_p_or_g1 (test_s8_readonly_p.ReadOnlyPTests.test_synthetic_success_is_not_real_p_or_g1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_target_database_identity_fails_closed (test_s8_readonly_p.ReadOnlyPTests.test_target_database_identity_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_training_calls_absent (test_s8_readonly_p.ReadOnlyPTests.test_training_calls_absent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 25, in setUp
+    self.assertIsNotNone(ro, 'RED: independent read-only P entrypoint is missing')
+AssertionError: unexpectedly None : RED: independent read-only P entrypoint is missing
+
+======================================================================
+FAIL: test_abnormal_exit_records_failure (test_s8_readonly_p.SupervisorTests.test_abnormal_exit_records_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 268, in setUp
+    self.assertIsNotNone(ro, 'RED: read-only supervisor is missing')
+AssertionError: unexpectedly None : RED: read-only supervisor is missing
+
+======================================================================
+FAIL: test_address_space_exceeded_stops (test_s8_readonly_p.SupervisorTests.test_address_space_exceeded_stops)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 268, in setUp
+    self.assertIsNotNone(ro, 'RED: read-only supervisor is missing')
+AssertionError: unexpectedly None : RED: read-only supervisor is missing
+
+======================================================================
+FAIL: test_missing_resource_observation_fails_closed (test_s8_readonly_p.SupervisorTests.test_missing_resource_observation_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 268, in setUp
+    self.assertIsNotNone(ro, 'RED: read-only supervisor is missing')
+AssertionError: unexpectedly None : RED: read-only supervisor is missing
+
+======================================================================
+FAIL: test_rss_exceeded_stops_and_labels_sample_not_hard_cap (test_s8_readonly_p.SupervisorTests.test_rss_exceeded_stops_and_labels_sample_not_hard_cap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 268, in setUp
+    self.assertIsNotNone(ro, 'RED: read-only supervisor is missing')
+AssertionError: unexpectedly None : RED: read-only supervisor is missing
+
+======================================================================
+FAIL: test_signal_exit_records_signal (test_s8_readonly_p.SupervisorTests.test_signal_exit_records_signal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 268, in setUp
+    self.assertIsNotNone(ro, 'RED: read-only supervisor is missing')
+AssertionError: unexpectedly None : RED: read-only supervisor is missing
+
+======================================================================
+FAIL: test_success_without_worker_proof_is_failure (test_s8_readonly_p.SupervisorTests.test_success_without_worker_proof_is_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 268, in setUp
+    self.assertIsNotNone(ro, 'RED: read-only supervisor is missing')
+AssertionError: unexpectedly None : RED: read-only supervisor is missing
+
+======================================================================
+FAIL: test_timeout_kills_and_records_no_retry (test_s8_readonly_p.SupervisorTests.test_timeout_kills_and_records_no_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 268, in setUp
+    self.assertIsNotNone(ro, 'RED: read-only supervisor is missing')
+AssertionError: unexpectedly None : RED: read-only supervisor is missing
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.004s
+
+FAILED (failures=31)

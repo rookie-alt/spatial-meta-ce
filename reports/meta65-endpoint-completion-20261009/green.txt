@@ -1,0 +1,18 @@
+test_combined_matrix_has_explicit_origin_and_exact_counts (test_meta65_completion.CompletionTests.test_combined_matrix_has_explicit_origin_and_exact_counts) ... ok
+test_exact_checkpoint_plan_and_budget_contract (test_meta65_completion.CompletionTests.test_exact_checkpoint_plan_and_budget_contract) ... ok
+test_failure_removes_normal_candidate_path_without_deleting_evidence (test_meta65_completion.CompletionTests.test_failure_removes_normal_candidate_path_without_deleting_evidence) ... ok
+test_main_dry_run_never_evaluates_or_supervises (test_meta65_completion.CompletionTests.test_main_dry_run_never_evaluates_or_supervises) ... ok
+test_retained_hash_mismatch_rejected (test_meta65_completion.CompletionTests.test_retained_hash_mismatch_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.004s
+
+OK
+{
+  "purpose": "dry-run-not-execution",
+  "mode": "endpoint_completion_only",
+  "C_cells": 75,
+  "combined_cells": 225,
+  "timeout_seconds": 3000,
+  "new_training_updates": 0
+}

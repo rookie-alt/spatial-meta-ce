@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-08",
+  "timezone": "Asia/Shanghai",
+  "authorization_source": "human_user_message_in_current_chat",
+  "approval_exact_quote": "批准执行A阶段真实P只读核验。",
+  "allowed": [
+    "local_preparation_closeout_and_commits",
+    "myserver_connection",
+    "new_isolated_package_deployment",
+    "existing_readonly_venv_runtime_resource_check",
+    "single_frozen_readonly_saved_P_check",
+    "new_proof_and_log_recovery"
+  ],
+  "not_allowed": [
+    "Gitee_push",
+    "merge_main",
+    "B_smoke",
+    "fresh_F0",
+    "Adam",
+    "training",
+    "GPU_tasks",
+    "H_or_target_or_old_checkpoint_access",
+    "old_evidence_overwrite",
+    "retry_or_resume",
+    "frozen_contract_or_threshold_changes"
+  ],
+  "frozen_archive_sha256": "39ee9efcdaecd0cb5e71aa6d03009b5a78aa5b1cf8dfa8cf763ad2153282d23c",
+  "frozen_contract_sha256": "5d1ea6f4c9cd0f061f3db9ad5d9d7a88485485a88a169c213ddd7a25ed7e8650",
+  "frozen_contract_historical_not_authorized_list_preserved": true,
+  "eight_old_run_filenames": [
+    "P-h.npy",
+    "P-x.npy",
+    "P-label.npy",
+    "P-pg_log.npy",
+    "status.json",
+    "contract.json",
+    "panels.json",
+    "preflight.json"
+  ],
+  "attempt_limit": 1,
+  "wall_seconds": 900,
+  "threads": 4,
+  "CUDA_VISIBLE_DEVICES": "",
+  "address_space_bytes": 12884901888,
+  "rss_sampled_stop_bytes": 12884901888,
+  "local_preparation_commit_before_server_required": true,
+  "status": "authorized_not_yet_connected_or_executed"
+}

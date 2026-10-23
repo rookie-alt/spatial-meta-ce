@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "status": "failed",
+  "stage": "parent_observed_worker_exit",
+  "purpose": "readonly_saved_P_resource_engineering_not_G1",
+  "evidence_kind": "real_saved_P",
+  "formal_ready": false,
+  "original_G1_status": "failed",
+  "can_retroactively_pass_original_G1": false,
+  "real_smoke_executed": false,
+  "F0_updates": 0,
+  "Adam_updates": 0,
+  "H_read": false,
+  "target_read": false,
+  "checkpoint_read": false,
+  "GPU_used": false,
+  "features": {
+    "h": {
+      "small_P_zero_reference": {
+        "status": "not_run",
+        "engineering_verified": null,
+        "rank_stability": "not_run",
+        "strict_certificate": {
+          "status": "unknown"
+        },
+        "full_linear_optimality_verified": false
+      },
+      "full_P_resource": {
+        "status": "not_run",
+        "engineering_verified": null,
+        "rank_stability": "not_run",
+        "strict_certificate": {
+          "status": "unknown"
+        },
+        "full_linear_optimality_verified": false
+      }
+    },
+    "x": {
+      "small_P_zero_reference": {
+        "status": "not_run",
+        "engineering_verified": null,
+        "rank_stability": "not_run",
+        "strict_certificate": {
+          "status": "unknown"
+        },
+        "full_linear_optimality_verified": false
+      },
+      "full_P_resource": {
+        "status": "not_run",
+        "engineering_verified": null,
+        "rank_stability": "not_run",
+        "strict_certificate": {
+          "status": "unknown"
+        },
+        "full_linear_optimality_verified": false
+      }
+    }
+  },
+  "input_sha256_before": {},
+  "input_sha256_after": {},
+  "opened_input_paths": [],
+  "original_inputs_unchanged": false,
+  "partial_records_recovered": false,
+  "partial_record_scope": "stored_worker_records_only_no_source_finalization",
+  "supervisor": {
+    "attempts": 1,
+    "failure_reason": "child_exit",
+    "returncode": 2,
+    "signal": null,
+    "sampled_peak_rss_bytes": 20320256,
+    "sampled_peak_address_space_bytes": 107446272,
+    "rss_measurement": "sampled_not_hard_cap",
+    "poll_seconds": 0.05,
+    "RLIMIT_AS_bytes": 12884901888,
+    "wall_limit_seconds": 900,
+    "seconds": 0.15128966281190515
+  },
+  "execution_contract_sha256": "5d1ea6f4c9cd0f061f3db9ad5d9d7a88485485a88a169c213ddd7a25ed7e8650"
+}

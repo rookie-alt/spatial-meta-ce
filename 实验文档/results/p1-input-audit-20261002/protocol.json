@@ -1,0 +1,44 @@
+{
+  "audit": "p1-input-audit-20261002",
+  "branch": "audit/p1-input-mapping-20261002",
+  "source_only": true,
+  "source_split": "pretrain",
+  "databases": {
+    "train": ["accidents", "airline", "baseball", "basketball", "carcinogenesis", "ccs", "consumer", "credit", "employee", "financial", "fnhk", "grants", "hepatitis", "hockey", "movielens", "sakila", "sap", "seznam", "ssb", "talkingdata", "tournament", "tpc_h", "tubepricing"],
+    "validation": ["chembl", "legalacts", "telstra"]
+  },
+  "excluded_databases": ["imdb", "stats", "genome", "ergastf1"],
+  "expected_rows": 1300000,
+  "parallel_cpu_processes": 6,
+  "gpu_usage": false,
+  "checks": [
+    "Recompute each workload canonical query hash with sqlglot 18.17.0 and compare id, query_hash, exact_hash, source_line against the cache",
+    "Compare workload true/PG against source feature float32 labels and cache float64 cards",
+    "Compare SQL-derived counts and source feature counts against all cache group offsets",
+    "Compare all source feature values against cached values",
+    "Recreate every SQL feature in memory with the unchanged vendor extractor; compare all four feature groups and counts against source features and cache",
+    "Verify provenance hashes and input size/mtime snapshots",
+    "Report rows with errors by database, table count, predicate type and semantic-risk flag; preserve repeated SQL rows in the audit denominator",
+    "Recover table-local join-column, filter-column and directional fanout mappings without introducing global database identities"
+  ],
+  "interpretation": {
+    "alignment_passed": "No provenance, identity, label, count or feature discrepancies; full recreation must cover every source row",
+    "mapping_recoverable": "Existing numerical tokens can be mapped back to SQL-local tables and join endpoints; this does not certify the extractor handled predicate semantics correctly",
+    "semantic_risks": "Record join_on, non_equi_join, or, in, between, like, is, neq, not, subquery, self_join, literal_left, malformed_legacy_join, unqualified_column, unknown_column_table, not_join_tree, join_filter_overlap, multiple_filters and non_predicate_column separately. SQL structure recovery, numerically aligned recovery and risk-row totals have independent denominators; table-count buckets are exclusive and predicate/risk buckets overlap.",
+    "failure": "Report the failed rows/databases; do not filter rows, rebuild caches or train on an unverified subset"
+  },
+  "write_boundary": "Only standalone audit reports, logs and PID files; PRICE-master and existing caches remain read-only",
+  "post_audit": "Decide mapping sidecar feasibility before any implementation. No automatic cache rebuild, model training or target evaluation.",
+  "tests": {
+    "red": "New audit tests failed with ModuleNotFoundError before script implementation",
+    "green": "65-test full server regression passed, including all 21 audit unit/integration tests",
+    "audit_cases": ["token ordering", "directional fanout", "repeated join column", "join/filter overlap", "missing WHERE/ON", "complex predicates", "subquery", "disconnected graph", "aliases/self join", "constant-left EQ", "source-only selection", "feature shapes/values", "duplicate row preservation", "full memory-only reconstruction", "CLI failure reporting", "output overwrite rejection"],
+    "coverage_status": "pytest/coverage are not installed; stdlib trace recorded 257 of 288 executable lines covered (89.2%), excluding import/function definition lines loaded before tracing. This is not pytest-cov. See coverage.json."
+  },
+  "pilot": {"database": "chembl", "rows": 200, "seconds": 3.0460243579000235, "mapping_recoverable": 200, "recreate_failures": 0, "multiple_filters": 50, "purpose": "Timing and smoke only; not the full audit result"},
+  "input_sha256": {
+    "scripts/audit_input_mapping.py": "58802d3a93fe8a0517f1a7423559aa50db95c3ef89537dc98a0363ccc61b13fe",
+    "tests/test_input_audit.py": "e6cbf557e3cf09a185ba3c6175a732e00871c83e8b617d6326fbd755020fbfe2",
+    "实验文档/results/p1-input-audit-20261002/launch.sh": "336d5c3e1c1499289aa4d66216d635716ae441119a49ca91c1f3ae55ff532e4a"
+  }
+}

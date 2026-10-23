@@ -1,0 +1,6 @@
+test_v2_roundtrip_binds_policy_version_and_acceptance_hash (test_s8_checkpoint_v2.CheckpointV2Tests.test_v2_roundtrip_binds_policy_version_and_acceptance_hash) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.862s
+
+OK

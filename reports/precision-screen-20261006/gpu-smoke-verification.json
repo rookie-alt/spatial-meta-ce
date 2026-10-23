@@ -1,0 +1,81 @@
+{
+  "status": {
+    "status": "completed",
+    "arms": {
+      "A_w64_smooth": "completed",
+      "B_w64_mse": "completed",
+      "C_w128_smooth": "completed",
+      "D_w128_mse": "completed"
+    },
+    "updated_at": "2026-10-05T18:12:43.875198+00:00",
+    "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+    "smoke": true,
+    "seconds": 161.46215458097868
+  },
+  "sources": 26,
+  "rows": 1300000,
+  "runs": [
+    {
+      "arm": "A_w64_smooth",
+      "steps": 2,
+      "sampling": "7fc8f7cf9e6343d485e43c0558611309c2d3a176272cbf2809fa3f9e457cb4a8",
+      "validation_plan_hash": "4497740c177f4f09f784ac8961662471eea9657c1024a4ca7a0e139770104d86",
+      "init": "41e594b03ef19c56c3f236237da850929f2ec5c919702b44402dd9b2864d284a",
+      "parameters": 132545,
+      "checks": {
+        "roundtrip_exact": true,
+        "optimizer_changed_weights": true,
+        "cpu_device_max_abs_difference": 0.0,
+        "checkpoint_steps": 2
+      }
+    },
+    {
+      "arm": "B_w64_mse",
+      "steps": 2,
+      "sampling": "7fc8f7cf9e6343d485e43c0558611309c2d3a176272cbf2809fa3f9e457cb4a8",
+      "validation_plan_hash": "4497740c177f4f09f784ac8961662471eea9657c1024a4ca7a0e139770104d86",
+      "init": "41e594b03ef19c56c3f236237da850929f2ec5c919702b44402dd9b2864d284a",
+      "parameters": 132545,
+      "checks": {
+        "roundtrip_exact": true,
+        "optimizer_changed_weights": true,
+        "cpu_device_max_abs_difference": 0.0,
+        "checkpoint_steps": 2
+      }
+    },
+    {
+      "arm": "C_w128_smooth",
+      "steps": 2,
+      "sampling": "7fc8f7cf9e6343d485e43c0558611309c2d3a176272cbf2809fa3f9e457cb4a8",
+      "validation_plan_hash": "4497740c177f4f09f784ac8961662471eea9657c1024a4ca7a0e139770104d86",
+      "init": "e1476a35f21f44afec6dcabab6c388a92a8b4ec5ae1e3a4eb4876cd5478b4f99",
+      "parameters": 288641,
+      "checks": {
+        "roundtrip_exact": true,
+        "optimizer_changed_weights": true,
+        "cpu_device_max_abs_difference": 0.0,
+        "checkpoint_steps": 2
+      }
+    },
+    {
+      "arm": "D_w128_mse",
+      "steps": 2,
+      "sampling": "7fc8f7cf9e6343d485e43c0558611309c2d3a176272cbf2809fa3f9e457cb4a8",
+      "validation_plan_hash": "4497740c177f4f09f784ac8961662471eea9657c1024a4ca7a0e139770104d86",
+      "init": "e1476a35f21f44afec6dcabab6c388a92a8b4ec5ae1e3a4eb4876cd5478b4f99",
+      "parameters": 288641,
+      "checks": {
+        "roundtrip_exact": true,
+        "optimizer_changed_weights": true,
+        "cpu_device_max_abs_difference": 0.0,
+        "checkpoint_steps": 2
+      }
+    }
+  ],
+  "code_sha256": {
+    "scripts/run_precision_screen.py": "c0b91dda7e214abd6b98eb1fbe6afb74b5e70dcf1631615358db1016dccefa62",
+    "scripts/precision_screen_evidence.py": "b5af3c14866e8ff81838792a7f38db5f50bab62035e605910f530f660030da95",
+    "configs/precision_screen.json": "cd401ea8b361c6e8b003ddae24c5a743b9768b04efe52db1503f7346f5ad5112",
+    "tests/test_precision_screen.py": "51f4605b5317bbb887616f8fc743a507e34185dda5a4d20cebf4d57212465b2b"
+  }
+}

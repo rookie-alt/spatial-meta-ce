@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "status": "completed",
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/spatial-meta-ce-meta65-completion-20261009-code/scripts/complete_meta65_endpoint.py",
+    "--config",
+    "/gly/weilin/spatial-meta-ce-meta65-completion-20261009-code/configs/meta65_completion.json",
+    "--out",
+    "/gly/weilin/spatial-meta-ce-meta65-completion-20261009-code/runs/meta65-endpoint-completion-20261009",
+    "--device",
+    "cuda",
+    "--execute",
+    "--worker"
+  ],
+  "output": "/gly/weilin/spatial-meta-ce-meta65-completion-20261009-code/runs/meta65-endpoint-completion-20261009",
+  "timeout_seconds": 3000,
+  "grace_seconds": 5,
+  "pid": 19370,
+  "process_group": 19370,
+  "returncode": 0,
+  "exit_code": 0,
+  "timed_out": false,
+  "decision_valid": true,
+  "signals_sent": [],
+  "elapsed_seconds": 1162.7866571031045
+}

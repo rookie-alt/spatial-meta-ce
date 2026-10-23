@@ -1,0 +1,234 @@
+{
+  "schema": 1,
+  "purpose": "research-read-only-audit",
+  "audit": "p2-2-error-structure",
+  "target_databases_read": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "allowed_targets": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "metric": "log-space error structure over every unique query",
+  "metric_definitions": {
+    "log_true": "log(max(true_cardinality, 1))",
+    "error": "log_pred - log_true (signed)",
+    "bias_med": "median(error): positive means systematically high",
+    "over_pct": "100 * share of rows with error > 0; ~50 means centred",
+    "std": "standard deviation of log_pred",
+    "truth_std": "standard deviation of log_true, for scale",
+    "q50_q95": "exp(percentile(|error|, p)): the multiplier error used in doc 102, so an exact prediction scores 1.0",
+    "log_q50_log_q95": "the same percentiles kept in log space",
+    "corr_truth": "Pearson correlation of log_pred with log_true; None when either side is constant"
+  },
+  "estimators": {
+    "ours_k0": "the frozen checkpoint given on the command line, zero-shot",
+    "price_k0": "the provided PRICE weights, zero-shot",
+    "pg": "raw PostgreSQL estimate (cards[:, 1])"
+  },
+  "checkpoint": {
+    "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/baseline/last.pt",
+    "sha256": "563ec1596b1a34dd3853e05d098634a473a74947aa176367d0d293857499d8a3",
+    "frozen": true,
+    "seed": 42,
+    "method": "erm",
+    "train_databases": [
+      "accidents",
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hepatitis",
+      "hockey",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "validation_databases": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "model_config": {
+      "width": 64,
+      "use_pg": true,
+      "arch": "sum",
+      "layers": 2,
+      "heads": 4
+    },
+    "transform": "price40-group-logfanout-v1"
+  },
+  "price": {
+    "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+    "checkpoint_sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92",
+    "target_maxima": [
+      12,
+      14,
+      8,
+      10
+    ],
+    "source_maxima": [
+      12,
+      12,
+      7,
+      10
+    ],
+    "maxima_rule": "target rows use the evaluate.py recomputation over the three historical target databases [12,14,8,10] (doc 102 2.2); source rows use the 26-source inspection maximum [12,12,7,10] (doc 101 3.1); the two groups were measured under different layouts in doc 102 and stay separated here",
+    "maxima_note": "target and source databases were evaluated under different maxima in doc 102; each database's maxima is recorded in inputs.per_database so a column can never be quoted under the wrong layout",
+    "decoding": "price_log_predictions(): log1p(card)+1 -> log(card)",
+    "adaptation": "none (K=0)"
+  },
+  "inputs": {
+    "per_database": {
+      "stats": {
+        "group": "target",
+        "split": "test",
+        "max_counts": [
+          8,
+          12,
+          7,
+          10
+        ],
+        "maxima_used": [
+          12,
+          14,
+          8,
+          10
+        ],
+        "content_hash": "4f1726a2ddcd0f40a964cc6a5620073fa9fd05ad88e4daf8343d84f2e0248b22"
+      },
+      "genome": {
+        "group": "target",
+        "split": "test",
+        "max_counts": [
+          9,
+          10,
+          6,
+          7
+        ],
+        "maxima_used": [
+          12,
+          14,
+          8,
+          10
+        ],
+        "content_hash": "f0f0f8660623fe3694b808916d1ec24b4ff51355723e13343a3d95cd897a07f9"
+      },
+      "ergastf1": {
+        "group": "target",
+        "split": "test",
+        "max_counts": [
+          8,
+          12,
+          7,
+          9
+        ],
+        "maxima_used": [
+          12,
+          14,
+          8,
+          10
+        ],
+        "content_hash": "2a1c15b25326ccc7b4eb3b009c78f8178797ecce7e44d87245519776ac01697a"
+      },
+      "imdb": {
+        "group": "target",
+        "split": "test",
+        "max_counts": [
+          5,
+          8,
+          5,
+          4
+        ],
+        "maxima_used": [
+          12,
+          14,
+          8,
+          10
+        ],
+        "content_hash": "aa0e1628ed7aa637e90ffedfcd27c7a4c6703e98cb46083e6beef05e3d86d333"
+      },
+      "chembl": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          11,
+          12,
+          7,
+          10
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061"
+      },
+      "legalacts": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          5,
+          6,
+          4,
+          10
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6"
+      },
+      "telstra": {
+        "group": "source",
+        "split": "pretrain",
+        "max_counts": [
+          5,
+          8,
+          5,
+          5
+        ],
+        "maxima_used": [
+          12,
+          12,
+          7,
+          10
+        ],
+        "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+      }
+    }
+  },
+  "subgroup_policy": {
+    "four_plus_min_tables": 4,
+    "minimum_subgroup": 30,
+    "rule": "a subgroup smaller than minimum_subgroup is recorded with its row count and reported=false instead of a percentile computed from too few rows",
+    "pg_ties": "rows where PostgreSQL exactly equals the truth form their own group (pg_equal) and are not forced into either side"
+  },
+  "comparability": {
+    "comparable_to": "doc 102's Q95 columns for the same databases: q50/q95 here use the same error definition and the same query populations",
+    "not_comparable_to": [
+      "episode-granular PRICE figures (docs 14/94), which average 64-query Q95s rather than measuring a population"
+    ]
+  }
+}

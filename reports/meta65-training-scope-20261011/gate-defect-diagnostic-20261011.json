@@ -1,0 +1,223 @@
+{
+  "root": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-code",
+  "gpu_uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+  "draft_binding": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-code/reports/meta65-training-scope-20261011-draft/launch-binding.draft.json",
+  "draft_binding_sha256": "e13275e65aea9e577c5b210eaa03d5d234f3dd436fcd6ff41914dd05671b8e31",
+  "input_key_count": 264,
+  "code_key_count": 32,
+  "cpu_preflight_raw_files": 53,
+  "cpu_preflight_diagnosis": {
+    "mode": "cpu_preflight",
+    "output": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/cpu-preflight-20261011",
+    "names": {
+      "inventory_log_expected": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/cpu-preflight-20261011.log",
+      "inventory_log_exists": false,
+      "inventory_name_count": 53,
+      "run_log_actual": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/cpu-preflight-20261011.supervisor.log",
+      "run_log_exists": true,
+      "sidecar_expected": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/cpu-preflight-20261011.supervisor.json",
+      "sidecar_matches_actual": true,
+      "required_missing": []
+    },
+    "preflight_code_matches_binding": true,
+    "preflight_inputs_match_binding": true,
+    "preflight_input_key_count": 264,
+    "binding_input_key_count": 264,
+    "status": {
+      "status": "preflight_completed",
+      "mode": "cpu_preflight",
+      "cells": 12,
+      "micro_cells": 12,
+      "formal_result": false,
+      "failure": null
+    },
+    "verification": {
+      "status": "preflight_verified",
+      "mode": "cpu_preflight",
+      "cells_verified": 12,
+      "all_metrics_verified": true,
+      "engineering_verified": true,
+      "reproduction_verified": false,
+      "summary": null
+    },
+    "supervisor": {
+      "status": "preflight_completed",
+      "mode": "cpu_preflight",
+      "returncode": 0,
+      "failure": null,
+      "cleanup_verified": true,
+      "test_only": false,
+      "formal_result": false,
+      "gpu_uuid": null,
+      "elapsed": 139.85008260887116,
+      "peak_rss_bytes": 1978982400,
+      "peak_vram_bytes": 0,
+      "outputbytes": 159606920
+    },
+    "supervisor_budget": {
+      "output_bytes": 1073741824.0,
+      "poll_seconds": 1.0,
+      "rss_bytes": 4294967296.0,
+      "total_seconds": 900.0,
+      "vram_bytes": 8589934592.0
+    },
+    "environment": {
+      "python": "3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]",
+      "executable": "/gly/weilin/PRICE-master/venv/bin/python",
+      "platform": "Linux-3.10.0-1160.el7.x86_64-x86_64-with-glibc2.31",
+      "numpy": "1.26.1",
+      "torch": "2.1.0+cu121",
+      "cuda": "12.1",
+      "CUDA_VISIBLE_DEVICES": "",
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "threads": 1,
+      "precision": "FP32 model/FP64 true",
+      "deterministic_algorithms": true,
+      "tf32": false,
+      "mode": "cpu_preflight"
+    },
+    "runtime_versions": {
+      "python": "3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]",
+      "numpy": "1.26.1",
+      "torch": "2.1.0+cu121",
+      "cuda": "12.1"
+    },
+    "training_records": [
+      {
+        "arm": "R_head3",
+        "last_step": 2,
+        "optimizer_steps": 2,
+        "checkpoint": "last.pt",
+        "checkpoint_sha256": "be08f1fc97cc5309ff45eaac6d0ba2be07b789e788a49a1d0ab4ed4e21c448ff",
+        "config_steps": 2
+      },
+      {
+        "arm": "T_all3",
+        "last_step": 2,
+        "optimizer_steps": 2,
+        "checkpoint": "last.pt",
+        "checkpoint_sha256": "d72f4fee550614780618f8c54c7536c256b7af2e1e14d9501d04dffb21a6e9d3",
+        "config_steps": 2
+      }
+    ],
+    "independent_verify": {
+      "status": "preflight_verified",
+      "mode": "cpu_preflight",
+      "formal_result": false,
+      "engineering_verified": true,
+      "reproduction_verified": false,
+      "cells_verified": 12,
+      "all_metrics_verified": true,
+      "summary": null
+    }
+  },
+  "gpu_preflight_raw_files": 53,
+  "gpu_preflight_diagnosis": {
+    "mode": "gpu_preflight",
+    "output": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/gpu-preflight-20261011",
+    "names": {
+      "inventory_log_expected": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/gpu-preflight-20261011.log",
+      "inventory_log_exists": false,
+      "inventory_name_count": 53,
+      "run_log_actual": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/gpu-preflight-20261011.supervisor.log",
+      "run_log_exists": true,
+      "sidecar_expected": "/gly/weilin/spatial-meta-ce-meta65-scope-20261011-runs/gpu-preflight-20261011.supervisor.json",
+      "sidecar_matches_actual": true,
+      "required_missing": []
+    },
+    "preflight_code_matches_binding": true,
+    "preflight_inputs_match_binding": true,
+    "preflight_input_key_count": 264,
+    "binding_input_key_count": 264,
+    "status": {
+      "status": "preflight_completed",
+      "mode": "gpu_preflight",
+      "cells": 12,
+      "micro_cells": 12,
+      "formal_result": false,
+      "failure": null
+    },
+    "verification": {
+      "status": "preflight_verified",
+      "mode": "gpu_preflight",
+      "cells_verified": 12,
+      "all_metrics_verified": true,
+      "engineering_verified": true,
+      "reproduction_verified": false,
+      "summary": null
+    },
+    "supervisor": {
+      "status": "preflight_completed",
+      "mode": "gpu_preflight",
+      "returncode": 0,
+      "failure": null,
+      "cleanup_verified": true,
+      "test_only": false,
+      "formal_result": false,
+      "gpu_uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+      "elapsed": 115.42782384995371,
+      "peak_rss_bytes": 2538917888,
+      "peak_vram_bytes": 0,
+      "outputbytes": 159612462
+    },
+    "supervisor_budget": {
+      "output_bytes": 1073741824.0,
+      "poll_seconds": 1.0,
+      "rss_bytes": 4294967296.0,
+      "total_seconds": 900.0,
+      "vram_bytes": 8589934592.0
+    },
+    "environment": {
+      "python": "3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]",
+      "executable": "/gly/weilin/PRICE-master/venv/bin/python",
+      "platform": "Linux-3.10.0-1160.el7.x86_64-x86_64-with-glibc2.31",
+      "numpy": "1.26.1",
+      "torch": "2.1.0+cu121",
+      "cuda": "12.1",
+      "CUDA_VISIBLE_DEVICES": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "threads": 1,
+      "precision": "FP32 model/FP64 true",
+      "deterministic_algorithms": true,
+      "tf32": false,
+      "mode": "gpu_preflight"
+    },
+    "runtime_versions": {
+      "python": "3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]",
+      "numpy": "1.26.1",
+      "torch": "2.1.0+cu121",
+      "cuda": "12.1"
+    },
+    "training_records": [
+      {
+        "arm": "R_head3",
+        "last_step": 2,
+        "optimizer_steps": 2,
+        "checkpoint": "last.pt",
+        "checkpoint_sha256": "75d627e346ca49e8158891a905f96b5c469875f91138d143d804aae7e35ea429",
+        "config_steps": 2
+      },
+      {
+        "arm": "T_all3",
+        "last_step": 2,
+        "optimizer_steps": 2,
+        "checkpoint": "last.pt",
+        "checkpoint_sha256": "835bf2d8dbd66ddb43c38bfd13e9fc87cc4cc8e24ff90bdb56ed7be484ada948",
+        "config_steps": 2
+      }
+    ],
+    "independent_verify": {
+      "status": "preflight_verified",
+      "mode": "gpu_preflight",
+      "formal_result": false,
+      "engineering_verified": true,
+      "reproduction_verified": false,
+      "cells_verified": 12,
+      "all_metrics_verified": true,
+      "summary": null
+    }
+  },
+  "verify_launch_binding": "failed",
+  "verify_error": "ValueError: Preflight raw manifest must cover every artifact and sidecar exactly",
+  "verify_traceback": "Traceback (most recent call last):\n  File \"/tmp/meta65_scope_binding_diag.py\", line 155, in main\n    verified = launch.verify_launch_binding(draft, root=ROOT, config_path=CONFIG)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/gly/weilin/spatial-meta-ce-meta65-scope-20261011-code/scripts/meta65_scope_launch.py\", line 262, in verify_launch_binding\n    _preflight(preflights[mode], mode, binding)\n  File \"/gly/weilin/spatial-meta-ce-meta65-scope-20261011-code/scripts/meta65_scope_launch.py\", line 197, in _preflight\n    _inventory(output, supervisor, entry[\"raw_sha256\"])\n  File \"/gly/weilin/spatial-meta-ce-meta65-scope-20261011-code/scripts/meta65_scope_launch.py\", line 103, in _inventory\n    raise ValueError(\"Preflight raw manifest must cover every artifact and sidecar exactly\")\nValueError: Preflight raw manifest must cover every artifact and sidecar exactly\n"
+}

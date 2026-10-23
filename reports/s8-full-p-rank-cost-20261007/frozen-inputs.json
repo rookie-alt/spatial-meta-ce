@@ -1,0 +1,12 @@
+{
+  "baseline_commit": "8d39deaa03e26e1c5fc523576d0671861a4353eb",
+  "branch": "feat/s8-numerical-certificate-20261007",
+  "sha256": {
+    "spatial_meta_ce/s8_probe.py": "c3d85f98dc78d70fca4475ae671022ffd1a7a3b9e6d306304a53bac417b481c5",
+    "scripts/run_s8_smoke.py": "482c079454603488a650961ae23528b936ecb720472bd8faf2ea13fd5eaab900",
+    "实验文档/30-S8数值谱认证规格与本地修订.md": "34ebd88cf3d96c1efa215cfc46c78fd67c08e2ac4a0ec45e5523db06704841b3",
+    "reports/s8-numerical-certificate-20261007/final-verification.json": "232254765f07a82dd5e8a90ba829a5111e8a759cc9126adeed52b658bcbb9170"
+  },
+  "server_access": false,
+  "real_P_read": false
+}

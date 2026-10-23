@@ -1,0 +1,30 @@
+{
+  "experiment": "p0-fixed-budget-20261001",
+  "hypothesis": "Increasing completed training length reduces multi-table source-validation tail error under otherwise unchanged ERM-sum settings.",
+  "training_seed": 42,
+  "budgets": [4000, 20000],
+  "expected_presentations": {"4000": 1616000, "20000": 8080000},
+  "expected_presentations_formula": "steps * meta_batch * (mean(support_sizes) + query_size); actual checkpoint counts take precedence",
+  "baseline_changes": {"steps": [4000, 20000], "patience": [10, 201]},
+  "continuation": "Start from seed42 initialization; finish 4000 steps; copy last.pt, best.pt, config.json, history.json, validation_manifest.json into budget-4000; resume last.pt with model, Adam, RNG, counters and history restored; finish cumulative 20000 steps and archive budget-20000.",
+  "training_validation_seed": 1729,
+  "comparison_plan_seed": 2718,
+  "comparison_episodes": 75,
+  "comparison_query_size": 64,
+  "source_validation_databases": ["chembl", "legalacts", "telstra"],
+  "excluded_target_databases": ["imdb", "stats", "genome", "ergastf1"],
+  "primary_comparison": {"short": "budget-4000/last.pt", "long": "budget-20000/last.pt"},
+  "primary_metric": "Zero-shot unique-query Q95 by database and table-count bucket >=4 on the fixed source query plan. Per database, geometrically average long/short ratios across its >=4 buckets; geometrically average the three database ratios with equal database weights.",
+  "decision": {
+    "strong_positive": "Primary macro ratio <=0.2 and every database ratio <=1.0: support a large benefit from longer training; confirm with additional seeds and FOMAML before claiming a main cause.",
+    "partial_improvement": "Primary macro ratio <1.0 without meeting strong_positive: record the magnitude and database disagreements; no causal exclusion.",
+    "no_overall_improvement": "Primary macro ratio >=1.0: no overall benefit at this budget under current model, optimizer and sampling; does not prove missing join information is the cause."
+  },
+  "secondary_metrics": ["All individual >=4-table bucket ratios and counts", "Adapted macro mean log-Q95 and by-K results", "Same-plan comparisons of short/long best.pt and original early-stopped baseline best.pt"],
+  "completion_gates": ["Terminal checkpoint next_step must equal each requested budget", "Short training history and validation manifest must exactly match the prefix of the long run", "Recorded Adam and RNG state must be restored by the existing resume implementation", "Training counts must strictly increase and agree with optimizer steps", "Source-code and evaluation configuration hashes must still match the preflight snapshot"],
+  "target_evaluation": "No automatic target evaluation in this run. Freeze the source-validation conclusion first.",
+  "limitations": ["One training seed", "Presentation counts include repeated queries", "8.08 million expected presentations is not PRICE-scale training", "Source comparison query plan does not cover the entire validation databases", "Budget endpoints are primary; best.pt alone cannot establish completed training exposure"],
+  "gpu": 6,
+  "branch": "experiment/p0-fixed-budget-20261001",
+  "baseline_code_commit": "06e77c0"
+}

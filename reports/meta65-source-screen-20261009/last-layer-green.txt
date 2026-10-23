@@ -1,0 +1,12 @@
+test_last_episode_restarts_and_query_labels_do_not_affect_support_update (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_episode_restarts_and_query_labels_do_not_affect_support_update) ... ok
+test_last_evaluation_trajectory_matches_independent_adaptation (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_evaluation_trajectory_matches_independent_adaptation) ... ok
+test_last_inner_loop_keeps_encoder_outer_gradient (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_inner_loop_keeps_encoder_outer_gradient) ... ok
+test_last_scope_requires_linear_output_head (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_scope_requires_linear_output_head) ... ok
+test_last_updates_only_final_linear_without_mutating_model (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_updates_only_final_linear_without_mutating_model) ... ok
+test_sum_parameter_counts (test_last_layer_adaptation.LastLayerAdaptationTests.test_sum_parameter_counts) ... ok
+test_unknown_scope_rejected (test_last_layer_adaptation.LastLayerAdaptationTests.test_unknown_scope_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.744s
+
+OK

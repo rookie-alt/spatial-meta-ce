@@ -1,0 +1,15 @@
+episodes=75 dbs=['chembl', 'legalacts', 'telstra'] K=[5, 10, 20, 50, 100] runs=5
+runs/formal-fomaml-20260925-seed42/best.pt: 157.9s
+runs/formal-fomaml-20260925-seed43/best.pt: 155.7s
+runs/formal-fomaml-20260927-seed44/best.pt: 157.6s
+{"inner_steps": 5, "inner_lr": 0.001, "scope": "all", "fallback": false, "macro_log_q95": 2.6554368400183903, "per_db": {"chembl": 4.110050769360716, "legalacts": 2.35122750511968, "telstra": 1.5050322455747764}}
+{"inner_steps": 5, "inner_lr": 0.001, "scope": "head", "fallback": false, "macro_log_q95": 2.6557107317981044, "per_db": {"chembl": 4.110754161632689, "legalacts": 2.3521845126516907, "telstra": 1.5041935211099364}}
+{"inner_steps": 1, "inner_lr": 0.003, "scope": "head", "fallback": false, "macro_log_q95": 2.6570402564264355, "per_db": {"chembl": 4.110376049176208, "legalacts": 2.362526872531752, "telstra": 1.4982178475713461}}
+{"inner_steps": 1, "inner_lr": 0.003, "scope": "all", "fallback": false, "macro_log_q95": 2.6576577126073535, "per_db": {"chembl": 4.108929881656723, "legalacts": 2.364646444548938, "telstra": 1.4993968116163998}}
+{"inner_steps": 3, "inner_lr": 0.001, "scope": "all", "fallback": false, "macro_log_q95": 2.659736892191745, "per_db": {"chembl": 4.123106831821151, "legalacts": 2.3540865794445476, "telstra": 1.5020172653095338}}
+{"inner_steps": 3, "inner_lr": 0.001, "scope": "head", "fallback": false, "macro_log_q95": 2.6598246510886425, "per_db": {"chembl": 4.124130161502332, "legalacts": 2.3537734437208533, "telstra": 1.5015703480427434}}
+{"inner_steps": 10, "inner_lr": 0.0003, "scope": "head", "fallback": false, "macro_log_q95": 2.6604723611229475, "per_db": {"chembl": 4.1261286136266415, "legalacts": 2.3531257209059597, "telstra": 1.5021627488362408}}
+{"inner_steps": 10, "inner_lr": 0.0003, "scope": "all", "fallback": false, "macro_log_q95": 2.660510585038053, "per_db": {"chembl": 4.125675269611358, "legalacts": 2.353254131411186, "telstra": 1.5026023540916127}}
+{"inner_steps": 3, "inner_lr": 0.003, "scope": "head", "fallback": false, "macro_log_q95": 2.6675397348269048, "per_db": {"chembl": 4.108146679286131, "legalacts": 2.375484212912866, "telstra": 1.5189883122817194}}
+{"inner_steps": 3, "inner_lr": 0.003, "scope": "all", "fallback": false, "macro_log_q95": 2.6683984992062686, "per_db": {"chembl": 4.109830244369694, "legalacts": 2.3753310250457034, "telstra": 1.5200342282034092}}
+zero-shot=2.7034 current=2.6554 CHOSEN=5 steps lr=0.001 scope=all fallback=False score=2.6554 -> runs/adapt-search-3seed-20260927

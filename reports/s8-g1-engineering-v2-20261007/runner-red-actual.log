@@ -1,0 +1,31 @@
+test_approved_resource_unknown_continues_without_resource_coefficients (test_s8_smoke_v2.SmokeV2Tests.test_approved_resource_unknown_continues_without_resource_coefficients) ... ERROR
+test_plan_declares_smoke_only_policy_without_execution (test_s8_smoke_v2.SmokeV2Tests.test_plan_declares_smoke_only_policy_without_execution) ... ERROR
+test_resource_engineering_false_is_failed_not_scientific_unknown (test_s8_smoke_v2.SmokeV2Tests.test_resource_engineering_false_is_failed_not_scientific_unknown) ... ok
+test_small_panel_old_pass_false_still_stops_even_if_engineering_true (test_s8_smoke_v2.SmokeV2Tests.test_small_panel_old_pass_false_still_stops_even_if_engineering_true) ... ok
+
+======================================================================
+ERROR: test_approved_resource_unknown_continues_without_resource_coefficients (test_s8_smoke_v2.SmokeV2Tests.test_approved_resource_unknown_continues_without_resource_coefficients)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_v2.py", line 163, in test_approved_resource_unknown_continues_without_resource_coefficients
+    self.run_mocked()
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_v2.py", line 131, in run_mocked
+    summary = runner.execute(root, output)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/run_s8_smoke.py", line 495, in execute
+    raise ValueError('Resource-profile fixed-cutoff solver numerical failure')
+ValueError: Resource-profile fixed-cutoff solver numerical failure
+
+======================================================================
+ERROR: test_plan_declares_smoke_only_policy_without_execution (test_s8_smoke_v2.SmokeV2Tests.test_plan_declares_smoke_only_policy_without_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_smoke_v2.py", line 174, in test_plan_declares_smoke_only_policy_without_execution
+    self.assertEqual(plan['numerical_acceptance_policy'], POLICY)
+                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'numerical_acceptance_policy'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.101s
+
+FAILED (errors=2)

@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="560" viewBox="0 0 768 560" role="img" aria-labelledby="title desc">
+<title id="title">genome: unique-query Q95 (lower is better)</title><desc id="desc">All K=0,5,10,20,50,100. Categorical K axis; logarithmic Q95 axis. Solid caps: sample SD of three training-seed means. Dashed caps: PRICE support SD across five repeats of one checkpoint; not seed SD. PG: no SD.</desc>
+<rect width="100%" height="100%" fill="white"/>
+<g font-family="sans-serif" font-size="14" fill="#222">
+<text x="70" y="30" font-size="20">genome: unique-query Q95 (lower is better)</text>
+<line x1="75.00" y1="420.00" x2="550.00" y2="420.00" stroke="#dddddd" stroke-width="1.6"/>
+<text x="67.00" y="424.00" text-anchor="end">26.6</text>
+<line x1="75.00" y1="352.00" x2="550.00" y2="352.00" stroke="#dddddd" stroke-width="1.6"/>
+<text x="67.00" y="356.00" text-anchor="end">64.9</text>
+<line x1="75.00" y1="284.00" x2="550.00" y2="284.00" stroke="#dddddd" stroke-width="1.6"/>
+<text x="67.00" y="288.00" text-anchor="end">158.2</text>
+<line x1="75.00" y1="216.00" x2="550.00" y2="216.00" stroke="#dddddd" stroke-width="1.6"/>
+<text x="67.00" y="220.00" text-anchor="end">385.4</text>
+<line x1="75.00" y1="148.00" x2="550.00" y2="148.00" stroke="#dddddd" stroke-width="1.6"/>
+<text x="67.00" y="152.00" text-anchor="end">939.2</text>
+<line x1="75.00" y1="80.00" x2="550.00" y2="80.00" stroke="#dddddd" stroke-width="1.6"/>
+<text x="67.00" y="84.00" text-anchor="end">2288.8</text>
+<text x="75.00" y="60.00" >Q95 (log scale)</text>
+<line x1="75.00" y1="420.00" x2="550.00" y2="420.00" stroke="#333333" stroke-width="1.6"/>
+<text x="90.00" y="448.00" text-anchor="middle">0</text>
+<text x="178.00" y="448.00" text-anchor="middle">5</text>
+<text x="266.00" y="448.00" text-anchor="middle">10</text>
+<text x="354.00" y="448.00" text-anchor="middle">20</text>
+<text x="442.00" y="448.00" text-anchor="middle">50</text>
+<text x="530.00" y="448.00" text-anchor="middle">100</text>
+<text x="310.00" y="477.00" text-anchor="middle">Support size K (categorical spacing)</text>
+<polyline points="90.00,258.71 178.00,281.75 266.00,292.70 354.00,299.11 442.00,299.63 530.00,295.56" fill="none" stroke="#0072b2" stroke-width="2.5"/>
+<line x1="90.00" y1="285.63" x2="90.00" y2="238.84" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="86.00" y1="285.63" x2="94.00" y2="285.63" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="86.00" y1="238.84" x2="94.00" y2="238.84" stroke="#0072b2" stroke-width="1.6"/>
+<circle cx="90.00" cy="258.71" r="4" fill="#0072b2"><title>K=0; mean=220.299552; SD=65.46971896296648; training_seed_sample_sd</title></circle>
+<line x1="178.00" y1="303.83" x2="178.00" y2="264.64" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="174.00" y1="303.83" x2="182.00" y2="303.83" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="174.00" y1="264.64" x2="182.00" y2="264.64" stroke="#0072b2" stroke-width="1.6"/>
+<circle cx="178.00" cy="281.75" r="4" fill="#0072b2"><title>K=5; mean=162.905354; SD=40.92220829408321; training_seed_sample_sd</title></circle>
+<line x1="266.00" y1="321.07" x2="266.00" y2="272.07" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="262.00" y1="321.07" x2="270.00" y2="321.07" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="262.00" y1="272.07" x2="270.00" y2="272.07" stroke="#0072b2" stroke-width="1.6"/>
+<circle cx="266.00" cy="292.70" r="4" fill="#0072b2"><title>K=10; mean=141.124708; SD=43.79043447035754; training_seed_sample_sd</title></circle>
+<line x1="354.00" y1="328.92" x2="354.00" y2="277.73" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="350.00" y1="328.92" x2="358.00" y2="328.92" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="350.00" y1="277.73" x2="358.00" y2="277.73" stroke="#0072b2" stroke-width="1.6"/>
+<circle cx="354.00" cy="299.11" r="4" fill="#0072b2"><title>K=20; mean=129.761328; SD=41.94296341100569; training_seed_sample_sd</title></circle>
+<line x1="442.00" y1="324.94" x2="442.00" y2="280.65" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="438.00" y1="324.94" x2="446.00" y2="324.94" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="438.00" y1="280.65" x2="446.00" y2="280.65" stroke="#0072b2" stroke-width="1.6"/>
+<circle cx="442.00" cy="299.63" r="4" fill="#0072b2"><title>K=50; mean=128.889331; SD=36.37641746227113; training_seed_sample_sd</title></circle>
+<line x1="530.00" y1="318.15" x2="530.00" y2="278.15" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="526.00" y1="318.15" x2="534.00" y2="318.15" stroke="#0072b2" stroke-width="1.6"/>
+<line x1="526.00" y1="278.15" x2="534.00" y2="278.15" stroke="#0072b2" stroke-width="1.6"/>
+<circle cx="530.00" cy="295.56" r="4" fill="#0072b2"><title>K=100; mean=135.941668; SD=34.81390222251666; training_seed_sample_sd</title></circle>
+<line x1="575.00" y1="100.00" x2="599.00" y2="100.00" stroke="#0072b2" stroke-width="1.6"/>
+<text x="604.00" y="105.00" font-size="12">FOMAML-sum</text>
+<text x="575.00" y="125.00" font-size="11">training seed SD</text>
+<polyline points="90.00,255.53 178.00,287.85 266.00,298.02 354.00,318.62 442.00,322.95 530.00,314.76" fill="none" stroke="#d55e00" stroke-width="2.5"/>
+<line x1="90.00" y1="262.73" x2="90.00" y2="248.96" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="86.00" y1="262.73" x2="94.00" y2="262.73" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="86.00" y1="248.96" x2="94.00" y2="248.96" stroke="#d55e00" stroke-width="1.6"/>
+<circle cx="90.00" cy="255.53" r="4" fill="#d55e00"><title>K=0; mean=229.642405; SD=20.6538258050541; training_seed_sample_sd</title></circle>
+<line x1="178.00" y1="292.01" x2="178.00" y2="283.90" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="174.00" y1="292.01" x2="182.00" y2="292.01" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="174.00" y1="283.90" x2="182.00" y2="283.90" stroke="#d55e00" stroke-width="1.6"/>
+<circle cx="178.00" cy="287.85" r="4" fill="#d55e00"><title>K=5; mean=150.392047; SD=7.9794033117064; training_seed_sample_sd</title></circle>
+<line x1="266.00" y1="303.22" x2="266.00" y2="293.16" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="262.00" y1="303.22" x2="270.00" y2="303.22" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="262.00" y1="293.16" x2="270.00" y2="293.16" stroke="#d55e00" stroke-width="1.6"/>
+<circle cx="266.00" cy="298.02" r="4" fill="#d55e00"><title>K=10; mean=131.629381; SD=8.661782778162134; training_seed_sample_sd</title></circle>
+<line x1="354.00" y1="326.90" x2="354.00" y2="311.14" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="350.00" y1="326.90" x2="358.00" y2="326.90" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="350.00" y1="311.14" x2="358.00" y2="311.14" stroke="#d55e00" stroke-width="1.6"/>
+<circle cx="354.00" cy="318.62" r="4" fill="#d55e00"><title>K=20; mean=100.506460; SD=10.338956461645266; training_seed_sample_sd</title></circle>
+<line x1="442.00" y1="334.29" x2="442.00" y2="313.08" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="438.00" y1="334.29" x2="446.00" y2="334.29" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="438.00" y1="313.08" x2="446.00" y2="313.08" stroke="#d55e00" stroke-width="1.6"/>
+<circle cx="442.00" cy="322.95" r="4" fill="#d55e00"><title>K=50; mean=94.956615; SD=13.107307017592733; training_seed_sample_sd</title></circle>
+<line x1="530.00" y1="324.37" x2="530.00" y2="306.23" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="526.00" y1="324.37" x2="534.00" y2="324.37" stroke="#d55e00" stroke-width="1.6"/>
+<line x1="526.00" y1="306.23" x2="534.00" y2="306.23" stroke="#d55e00" stroke-width="1.6"/>
+<circle cx="530.00" cy="314.76" r="4" fill="#d55e00"><title>K=100; mean=105.711394; SD=12.494873945726052; training_seed_sample_sd</title></circle>
+<line x1="575.00" y1="158.00" x2="599.00" y2="158.00" stroke="#d55e00" stroke-width="1.6"/>
+<text x="604.00" y="163.00" font-size="12">ERM-sum</text>
+<text x="575.00" y="183.00" font-size="11">training seed SD</text>
+<polyline points="90.00,407.59 178.00,384.52 266.00,383.50 354.00,387.54 442.00,391.97 530.00,390.80" fill="none" stroke="#009e73" stroke-width="2.5"/>
+<line x1="90.00" y1="407.59" x2="90.00" y2="407.59" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="86.00" y1="407.59" x2="94.00" y2="407.59" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="86.00" y1="407.59" x2="94.00" y2="407.59" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<circle cx="90.00" cy="407.59" r="4" fill="#009e73"><title>K=0; mean=31.336163; SD=0.0; support_sd_single_checkpoint</title></circle>
+<line x1="178.00" y1="396.58" x2="178.00" y2="374.10" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="174.00" y1="396.58" x2="182.00" y2="396.58" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="174.00" y1="374.10" x2="182.00" y2="374.10" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<circle cx="178.00" cy="384.52" r="4" fill="#009e73"><title>K=5; mean=42.395115; SD=6.198052196552337; support_sd_single_checkpoint</title></circle>
+<line x1="266.00" y1="395.92" x2="266.00" y2="372.82" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="262.00" y1="395.92" x2="270.00" y2="395.92" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="262.00" y1="372.82" x2="270.00" y2="372.82" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<circle cx="266.00" cy="383.50" r="4" fill="#009e73"><title>K=10; mean=42.963352; SD=6.449142707711818; support_sd_single_checkpoint</title></circle>
+<line x1="354.00" y1="393.96" x2="354.00" y2="381.61" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="350.00" y1="393.96" x2="358.00" y2="393.96" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="350.00" y1="381.61" x2="358.00" y2="381.61" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<circle cx="354.00" cy="387.54" r="4" fill="#009e73"><title>K=20; mean=40.751173; SD=3.289966663396316; support_sd_single_checkpoint</title></circle>
+<line x1="442.00" y1="396.50" x2="442.00" y2="387.70" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="438.00" y1="396.50" x2="446.00" y2="396.50" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="438.00" y1="387.70" x2="446.00" y2="387.70" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<circle cx="442.00" cy="391.97" r="4" fill="#009e73"><title>K=50; mean=38.451029; SD=2.2125795915295208; support_sd_single_checkpoint</title></circle>
+<line x1="530.00" y1="394.32" x2="530.00" y2="387.42" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="526.00" y1="394.32" x2="534.00" y2="394.32" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="526.00" y1="387.42" x2="534.00" y2="387.42" stroke="#009e73" stroke-width="1.6" stroke-dasharray="5 4"/>
+<circle cx="530.00" cy="390.80" r="4" fill="#009e73"><title>K=100; mean=39.047218; SD=1.7633653762611272; support_sd_single_checkpoint</title></circle>
+<line x1="575.00" y1="216.00" x2="599.00" y2="216.00" stroke="#009e73" stroke-width="1.6"/>
+<text x="604.00" y="221.00" font-size="12">PRICE</text>
+<text x="575.00" y="241.00" font-size="11">support SD</text>
+<polyline points="90.00,93.92 178.00,93.92 266.00,93.92 354.00,93.92 442.00,93.92 530.00,93.92" fill="none" stroke="#666666" stroke-width="2.5"/>
+<circle cx="90.00" cy="93.92" r="4" fill="#666666"><title>K=0; mean=1907.320610; SD=None; none_fixed_pg</title></circle>
+<circle cx="178.00" cy="93.92" r="4" fill="#666666"><title>K=5; mean=1907.320610; SD=None; none_fixed_pg</title></circle>
+<circle cx="266.00" cy="93.92" r="4" fill="#666666"><title>K=10; mean=1907.320610; SD=None; none_fixed_pg</title></circle>
+<circle cx="354.00" cy="93.92" r="4" fill="#666666"><title>K=20; mean=1907.320610; SD=None; none_fixed_pg</title></circle>
+<circle cx="442.00" cy="93.92" r="4" fill="#666666"><title>K=50; mean=1907.320610; SD=None; none_fixed_pg</title></circle>
+<circle cx="530.00" cy="93.92" r="4" fill="#666666"><title>K=100; mean=1907.320610; SD=None; none_fixed_pg</title></circle>
+<line x1="575.00" y1="274.00" x2="599.00" y2="274.00" stroke="#666666" stroke-width="1.6"/>
+<text x="604.00" y="279.00" font-size="12">PG</text>
+<text x="575.00" y="299.00" font-size="11">no SD</text>
+<text x="75.00" y="511.00" font-size="13">Solid caps: mean ± training seed SD (n=3); dashed caps: PRICE support SD (n=5).</text>
+<text x="75.00" y="535.00" font-size="13">PG is fixed. SD is descriptive, not a confidence interval or significance test.</text>
+</g></svg>

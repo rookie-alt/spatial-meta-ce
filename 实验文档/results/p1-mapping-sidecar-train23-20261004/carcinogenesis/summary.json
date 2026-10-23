@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 43150,
+  "changed_unique_queries": 43150,
+  "unchanged_rows": 6850,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 6850,
+  "changed_fraction": 0.863,
+  "sql_flags": {
+    "multiple_filters": 9671
+  },
+  "database": "carcinogenesis",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 197.99805186293088
+}

@@ -1,0 +1,24 @@
+test_actual_training_capture_and_independent_23_source_replay (test_s6_pipeline.CPUIntegration.test_actual_training_capture_and_independent_23_source_replay) ... ok
+test_cli_dry_busy_execute_and_absolute_deadline (test_s6_pipeline.LifecycleTests.test_cli_dry_busy_execute_and_absolute_deadline) ... ok
+test_expired_budget_does_not_launch_worker (test_s6_pipeline.LifecycleTests.test_expired_budget_does_not_launch_worker) ... ok
+test_preflight_checks_runtime_and_all_26_source_bindings (test_s6_pipeline.LifecycleTests.test_preflight_checks_runtime_and_all_26_source_bindings) ... ok
+test_supervisor_success_timeout_nonzero_and_cleanup (test_s6_pipeline.LifecycleTests.test_supervisor_success_timeout_nonzero_and_cleanup) ... ok
+test_worker_ownership_deadline_success_and_failure (test_s6_pipeline.LifecycleTests.test_worker_ownership_deadline_success_and_failure) ... ok
+test_checkpoint_and_rehashed_file_drift_rejected (test_s6_pipeline.PipelineTests.test_checkpoint_and_rehashed_file_drift_rejected) ... ok
+test_execute_success_and_baseline_failure_never_starts_b (test_s6_pipeline.PipelineTests.test_execute_success_and_baseline_failure_never_starts_b) ... ok
+test_full_content_and_manifest_authenticate_real_decision (test_s6_pipeline.PipelineTests.test_full_content_and_manifest_authenticate_real_decision) ... ok
+test_rehashed_decision_endpoint_and_loss_authentication_rejected (test_s6_pipeline.PipelineTests.test_rehashed_decision_endpoint_and_loss_authentication_rejected) ... ok
+test_rehashed_disk_checkpoint_next_step_zero_rejected (test_s6_pipeline.PipelineTests.test_rehashed_disk_checkpoint_next_step_zero_rejected) ... FAIL
+
+======================================================================
+FAIL: test_rehashed_disk_checkpoint_next_step_zero_rejected (test_s6_pipeline.PipelineTests.test_rehashed_disk_checkpoint_next_step_zero_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/tests/test_s6_pipeline.py", line 359, in test_rehashed_disk_checkpoint_next_step_zero_rejected
+    with self.assertRaisesRegex(ValueError, "checkpoint"):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 11 tests in 1.658s
+
+FAILED (failures=1)

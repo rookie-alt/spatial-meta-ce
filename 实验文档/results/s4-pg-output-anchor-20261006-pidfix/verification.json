@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "passed": true,
+      "formal": true,
+      "arm": "A_anchor1"
+    },
+    {
+      "passed": true,
+      "status": "reproduced",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "passed": true,
+      "formal": true,
+      "arm": "B_anchor0"
+    },
+    {
+      "passed": true,
+      "formal": true,
+      "arms": [
+        "A_anchor1",
+        "B_anchor0"
+      ]
+    }
+  ]
+}

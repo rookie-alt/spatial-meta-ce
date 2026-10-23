@@ -1,0 +1,11 @@
+PairwiseMetricTests (unittest.loader._FailedTest.PairwiseMetricTests) ... ERROR
+
+======================================================================
+ERROR: PairwiseMetricTests (unittest.loader._FailedTest.PairwiseMetricTests)
+----------------------------------------------------------------------
+AttributeError: module 'test_paired_metrics' has no attribute 'PairwiseMetricTests'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

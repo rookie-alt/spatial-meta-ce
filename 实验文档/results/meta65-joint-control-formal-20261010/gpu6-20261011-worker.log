@@ -1,0 +1,48 @@
+Traceback (most recent call last):
+  File "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-code/scripts/meta65_joint_runner.py", line 830, in <module>
+    main()
+  File "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-code/scripts/meta65_joint_runner.py", line 807, in main
+    worker(output, args.mode, config_path)
+  File "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-code/scripts/meta65_joint_runner.py", line 736, in worker
+    pred, true, record = evaluate_cell(checkpoint_path, stores[db], query,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-code/scripts/meta65_joint_runner.py", line 640, in evaluate_cell
+    values = forward(model, params, batch).detach().cpu().numpy().astype(np.float64)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-code/spatial_meta_ce/meta.py", line 30, in forward
+    return functional_call(model, params, (batch,), strict=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/_functorch/functional_call.py", line 143, in functional_call
+    return nn.utils.stateless._functional_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/nn/utils/stateless.py", line 264, in _functional_call
+    return module(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-code/spatial_meta_ce/model.py", line 142, in forward
+    return anchor + self.head(x).squeeze(-1)
+                    ^^^^^^^^^^^^
+  File "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/nn/modules/container.py", line 215, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#cublasApi_reproducibility

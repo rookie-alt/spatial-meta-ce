@@ -1,0 +1,936 @@
+{
+  "schema": 1,
+  "purpose": "research-read-only-audit",
+  "audit": "p2-2-direction-signal",
+  "target_databases_read": [],
+  "evidence_level": "single_checkpoint_single_split",
+  "needs_evidence": true,
+  "inputs": {
+    "predictions": {
+      "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/predictions.csv",
+      "sha256": "325a2160729acb9b3b278a934e51bb396b8fc2f973f1ce6c20597fca2962c88a",
+      "rows": 2392064
+    },
+    "caches": {
+      "chembl": {
+        "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/chembl",
+        "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+        "queries": 50000
+      },
+      "legalacts": {
+        "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/legalacts",
+        "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+        "queries": 50000
+      },
+      "telstra": {
+        "path": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/gracious-goldwasser-4e3082/runs/p0-3-audit-20261020/cache/telstra",
+        "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+        "queries": 50000
+      }
+    }
+  },
+  "databases": {
+    "chembl": {
+      "queries": 50000,
+      "ties_excluded": 0,
+      "direction_balance": {
+        "raise": 24457,
+        "lower": 25543,
+        "raise_fraction": 0.48914,
+        "majority_accuracy": 0.51086
+      },
+      "baselines": {
+        "pg_minus_anchor": {
+          "auc": 0.680148308877959,
+          "accuracy": 0.64814
+        },
+        "raw_pg_direction_agreement": 0.79256
+      },
+      "in_database": {
+        "hgb": {
+          "auc_pooled_oof": 0.916678280278819,
+          "auc_ci95": [
+            0.9143251982051798,
+            0.9190911177739983
+          ],
+          "fold_aucs": [
+            0.9160396218014287,
+            0.9147222392804476,
+            0.918900763217099,
+            0.9100259655204099,
+            0.923900455094306
+          ],
+          "fold_auc_mean": 0.9167178089827382,
+          "folds": 5,
+          "accuracy": 0.8318
+        },
+        "logistic": {
+          "auc_pooled_oof": 0.8265967843764426,
+          "auc_ci95": [
+            0.8227187126374113,
+            0.8302433603069588
+          ],
+          "fold_aucs": [
+            0.8251643323576204,
+            0.8220763667173686,
+            0.8302079154993983,
+            0.8157022893413197,
+            0.8407579642504801
+          ],
+          "fold_auc_mean": 0.8267817736332373,
+          "folds": 5,
+          "accuracy": 0.76036
+        }
+      },
+      "table_buckets": {
+        "hgb": {
+          "1": {
+            "queries": 0,
+            "auc": null,
+            "raise_fraction": null
+          },
+          "2-3": {
+            "queries": 16053,
+            "auc": 0.9119934744076016,
+            "raise_fraction": 0.5186569488569115
+          },
+          "4-5": {
+            "queries": 25221,
+            "auc": 0.9199473829580681,
+            "raise_fraction": 0.4885214702034019
+          },
+          "6+": {
+            "queries": 8726,
+            "auc": 0.9145756050733691,
+            "raise_fraction": 0.4366261746504699
+          }
+        },
+        "logistic": {
+          "1": {
+            "queries": 0,
+            "auc": null,
+            "raise_fraction": null
+          },
+          "2-3": {
+            "queries": 16053,
+            "auc": 0.8197361523358622,
+            "raise_fraction": 0.5186569488569115
+          },
+          "4-5": {
+            "queries": 25221,
+            "auc": 0.8438223327035395,
+            "raise_fraction": 0.4885214702034019
+          },
+          "6+": {
+            "queries": 8726,
+            "auc": 0.7925175494234905,
+            "raise_fraction": 0.4366261746504699
+          }
+        }
+      },
+      "feature_importance": {
+        "permutation_top": [
+          {
+            "feature": "join_hist_bin5",
+            "importance_mean": 0.04388843758006744,
+            "importance_std": 0.0012408637842445723
+          },
+          {
+            "feature": "table_avi_min",
+            "importance_mean": 0.008940117332110456,
+            "importance_std": 0.00013393410979566453
+          },
+          {
+            "feature": "join_hist_bin18",
+            "importance_mean": 0.00860417733010499,
+            "importance_std": 0.0005741502353106196
+          },
+          {
+            "feature": "table_avi_mean",
+            "importance_mean": 0.007680270612383004,
+            "importance_std": 0.00020445631155667325
+          },
+          {
+            "feature": "filter_hist_max",
+            "importance_mean": 0.007103164126680291,
+            "importance_std": 0.000378081934373878
+          },
+          {
+            "feature": "filter_width_min",
+            "importance_mean": 0.006920601525459258,
+            "importance_std": 0.00024136566864941747
+          },
+          {
+            "feature": "table_minsel_min",
+            "importance_mean": 0.006810411550417617,
+            "importance_std": 0.00010476322261894133
+          },
+          {
+            "feature": "join_hist_bin1",
+            "importance_mean": 0.006804647890262916,
+            "importance_std": 0.00042066562167989547
+          },
+          {
+            "feature": "pg_log",
+            "importance_mean": 0.006559405484859042,
+            "importance_std": 0.0005545064610240989
+          },
+          {
+            "feature": "filter_sel_min",
+            "importance_mean": 0.006377870202693388,
+            "importance_std": 0.00029142590673488867
+          },
+          {
+            "feature": "join_hist_bin32",
+            "importance_mean": 0.005685910780782177,
+            "importance_std": 0.0002689487302922919
+          },
+          {
+            "feature": "filter_hist_logmean",
+            "importance_mean": 0.005429708081820195,
+            "importance_std": 0.00019040723801898402
+          },
+          {
+            "feature": "table_logsize_std",
+            "importance_mean": 0.0053395374865521,
+            "importance_std": 0.0005795205679795479
+          },
+          {
+            "feature": "join_hist_bin21",
+            "importance_mean": 0.005337409468508987,
+            "importance_std": 0.00041596251302666203
+          },
+          {
+            "feature": "table_avi_sumlog",
+            "importance_mean": 0.005222403101532214,
+            "importance_std": 3.420306545434232e-05
+          }
+        ],
+        "group_ablation_auc": {
+          "all": 0.916678280278819,
+          "without_counts": 0.9158301553687686,
+          "without_pg": 0.9157467448191411,
+          "without_table": 0.9116456685019394,
+          "without_filter": 0.908666115672864,
+          "without_join_hist": 0.9050979987837494,
+          "without_fanout": 0.9163457329968454
+        }
+      },
+      "near_duplicate_grouped_cv": {
+        "hgb": {
+          "groups": 28287,
+          "auc_pooled_oof": 0.9054852886910164,
+          "auc_ci95": [
+            0.9028859132147712,
+            0.9081611577497279
+          ],
+          "fold_aucs": [
+            0.8931745672405303,
+            0.9065589586393157,
+            0.9167874774477913,
+            0.9085798878176397,
+            0.9029277826854798
+          ],
+          "fold_auc_mean": 0.9056057347661515,
+          "folds": 5,
+          "accuracy": 0.81576
+        }
+      },
+      "support_curve": [
+        {
+          "labelled_queries": 50,
+          "repeats": 3,
+          "auc_mean": 0.5,
+          "auc_min": 0.5,
+          "auc_max": 0.5
+        },
+        {
+          "labelled_queries": 200,
+          "repeats": 3,
+          "auc_mean": 0.7952713129513537,
+          "auc_min": 0.7816704838924711,
+          "auc_max": 0.812276480076725
+        },
+        {
+          "labelled_queries": 1000,
+          "repeats": 3,
+          "auc_mean": 0.8471154199830617,
+          "auc_min": 0.8398367614641544,
+          "auc_max": 0.8526286202769732
+        },
+        {
+          "labelled_queries": 5000,
+          "repeats": 3,
+          "auc_mean": 0.8801337844925349,
+          "auc_min": 0.8795556248689714,
+          "auc_max": 0.8812422163003667
+        }
+      ],
+      "correction": {
+        "k20": {
+          "model": "hgb",
+          "runs": 5,
+          "runs_dropped_incomplete": [],
+          "runs_with_worsened": 5,
+          "anchor_log_q95": 4.222935333131506,
+          "adapted_worsened_fraction": 0.43651999999999996,
+          "adapted_log_q95": 4.237404858541481,
+          "forced_worsened_fraction": 0.22245600000000004,
+          "forced_log_q95": 3.764930351046233,
+          "forced_recovered_of_worsened": 0.6143027736996378,
+          "forced_newly_worsened": 2760.2,
+          "gate_worsened_fraction": 0.13476000000000002,
+          "gate_log_q95": 3.9191379969264686,
+          "gate_recovered_of_worsened": 0.6859201291894873,
+          "oracle_worsened_fraction": 0.089232,
+          "oracle_log_q95": 3.6728084340426834
+        },
+        "k100": {
+          "model": "hgb",
+          "runs": 5,
+          "runs_dropped_incomplete": [],
+          "runs_with_worsened": 5,
+          "anchor_log_q95": 4.222935333131506,
+          "adapted_worsened_fraction": 0.407376,
+          "adapted_log_q95": 4.123237063214105,
+          "forced_worsened_fraction": 0.20173999999999997,
+          "forced_log_q95": 3.9227469242302404,
+          "forced_recovered_of_worsened": 0.6453209464217462,
+          "forced_newly_worsened": 2932.4,
+          "gate_worsened_fraction": 0.12410000000000002,
+          "gate_log_q95": 4.0007826967118865,
+          "gate_recovered_of_worsened": 0.6927539874709027,
+          "oracle_worsened_fraction": 0.057067999999999994,
+          "oracle_log_q95": 3.8894412994675633
+        }
+      }
+    },
+    "legalacts": {
+      "queries": 49504,
+      "ties_excluded": 0,
+      "direction_balance": {
+        "raise": 31665,
+        "lower": 17839,
+        "raise_fraction": 0.6396452811893988,
+        "majority_accuracy": 0.6396452811893988
+      },
+      "baselines": {
+        "pg_minus_anchor": {
+          "auc": 0.6707583834909412,
+          "accuracy": 0.6220709437621202
+        },
+        "raw_pg_direction_agreement": 0.7664229153199742
+      },
+      "in_database": {
+        "hgb": {
+          "auc_pooled_oof": 0.9553414978919071,
+          "auc_ci95": [
+            0.9538186993141856,
+            0.9568492286063938
+          ],
+          "fold_aucs": [
+            0.9554424580603855,
+            0.9593006277710188,
+            0.9549009026517192,
+            0.9555098890645575,
+            0.9516664818821917
+          ],
+          "fold_auc_mean": 0.9553640718859745,
+          "folds": 5,
+          "accuracy": 0.8778078539107951
+        },
+        "logistic": {
+          "auc_pooled_oof": 0.7698027713131119,
+          "auc_ci95": [
+            0.7657125562407304,
+            0.7736566882403304
+          ],
+          "fold_aucs": [
+            0.7745245888450211,
+            0.7729321358260999,
+            0.7686489491121822,
+            0.7683123191628977,
+            0.7646902773482349
+          ],
+          "fold_auc_mean": 0.7698216540588871,
+          "folds": 5,
+          "accuracy": 0.6863485778926955
+        }
+      },
+      "table_buckets": {
+        "hgb": {
+          "1": {
+            "queries": 0,
+            "auc": null,
+            "raise_fraction": null
+          },
+          "2-3": {
+            "queries": 40326,
+            "auc": 0.9592443817773032,
+            "raise_fraction": 0.664385260129941
+          },
+          "4-5": {
+            "queries": 9178,
+            "auc": 0.9344932481308631,
+            "raise_fraction": 0.5309435606886032
+          },
+          "6+": {
+            "queries": 0,
+            "auc": null,
+            "raise_fraction": null
+          }
+        },
+        "logistic": {
+          "1": {
+            "queries": 0,
+            "auc": null,
+            "raise_fraction": null
+          },
+          "2-3": {
+            "queries": 40326,
+            "auc": 0.8087352096616275,
+            "raise_fraction": 0.664385260129941
+          },
+          "4-5": {
+            "queries": 9178,
+            "auc": 0.5881935422209607,
+            "raise_fraction": 0.5309435606886032
+          },
+          "6+": {
+            "queries": 0,
+            "auc": null,
+            "raise_fraction": null
+          }
+        }
+      },
+      "feature_importance": {
+        "permutation_top": [
+          {
+            "feature": "filter_hist_logmean",
+            "importance_mean": 0.10847454117500743,
+            "importance_std": 0.0030961394027959406
+          },
+          {
+            "feature": "fanout_frac_one",
+            "importance_mean": 0.09488784568027908,
+            "importance_std": 0.0036905293790256864
+          },
+          {
+            "feature": "join_hist_bin1",
+            "importance_mean": 0.025366297285618494,
+            "importance_std": 0.0008115296674960225
+          },
+          {
+            "feature": "filter_hist_max",
+            "importance_mean": 0.024475084000265396,
+            "importance_std": 0.0010736306804209539
+          },
+          {
+            "feature": "table_minsel_min",
+            "importance_mean": 0.024142930595438816,
+            "importance_std": 0.0002516525248329386
+          },
+          {
+            "feature": "pg_log",
+            "importance_mean": 0.019212055229933484,
+            "importance_std": 0.0004712244637431255
+          },
+          {
+            "feature": "filter_width_min",
+            "importance_mean": 0.01575798911038769,
+            "importance_std": 0.00013181588247571663
+          },
+          {
+            "feature": "filter_sel_max",
+            "importance_mean": 0.013810494475303692,
+            "importance_std": 0.00013206727827951386
+          },
+          {
+            "feature": "table_avi_min",
+            "importance_mean": 0.009248291144674107,
+            "importance_std": 0.000794060333205878
+          },
+          {
+            "feature": "filter_width_mean",
+            "importance_mean": 0.008191275565784953,
+            "importance_std": 0.000903132518593743
+          },
+          {
+            "feature": "join_hist_bin18",
+            "importance_mean": 0.007263091246558402,
+            "importance_std": 0.00028582374442823297
+          },
+          {
+            "feature": "table_minsel_sumlog",
+            "importance_mean": 0.00600747038861212,
+            "importance_std": 0.0007973471203620533
+          },
+          {
+            "feature": "filter_width_max",
+            "importance_mean": 0.005265847023666319,
+            "importance_std": 0.0006567135829957511
+          },
+          {
+            "feature": "filter_sel_min",
+            "importance_mean": 0.005149631155903315,
+            "importance_std": 0.00019667032878045712
+          },
+          {
+            "feature": "join_hist_bin20",
+            "importance_mean": 0.004673909993057501,
+            "importance_std": 0.0002203715008337368
+          }
+        ],
+        "group_ablation_auc": {
+          "all": 0.9553414978919071,
+          "without_counts": 0.9553169082475305,
+          "without_pg": 0.9549543906797211,
+          "without_table": 0.954328109786513,
+          "without_filter": 0.9327649425528638,
+          "without_join_hist": 0.9509537077638669,
+          "without_fanout": 0.9555901754970354
+        }
+      },
+      "near_duplicate_grouped_cv": {
+        "hgb": {
+          "groups": 14813,
+          "auc_pooled_oof": 0.9447192884525233,
+          "auc_ci95": [
+            0.9429102275197849,
+            0.9465312605288825
+          ],
+          "fold_aucs": [
+            0.9502824978964893,
+            0.93800066660938,
+            0.9474088754151262,
+            0.9358683184737279,
+            0.9489223103370584
+          ],
+          "fold_auc_mean": 0.9440965337463563,
+          "folds": 5,
+          "accuracy": 0.8623949579831933
+        }
+      },
+      "support_curve": [
+        {
+          "labelled_queries": 50,
+          "repeats": 3,
+          "auc_mean": 0.5,
+          "auc_min": 0.5,
+          "auc_max": 0.5
+        },
+        {
+          "labelled_queries": 200,
+          "repeats": 3,
+          "auc_mean": 0.7482942686688091,
+          "auc_min": 0.7283157426912839,
+          "auc_max": 0.7616935480955193
+        },
+        {
+          "labelled_queries": 1000,
+          "repeats": 3,
+          "auc_mean": 0.8460910615750675,
+          "auc_min": 0.8414116785515516,
+          "auc_max": 0.8489252764759303
+        },
+        {
+          "labelled_queries": 5000,
+          "repeats": 3,
+          "auc_mean": 0.9048311743211174,
+          "auc_min": 0.9022004184248672,
+          "auc_max": 0.9067631159098266
+        }
+      ],
+      "correction": {
+        "k20": {
+          "model": "hgb",
+          "runs": 5,
+          "runs_dropped_incomplete": [],
+          "runs_with_worsened": 5,
+          "anchor_log_q95": 2.2733754711134266,
+          "adapted_worsened_fraction": 0.4920733678086619,
+          "adapted_log_q95": 2.332084169794432,
+          "forced_worsened_fraction": 0.3288340336134454,
+          "forced_log_q95": 2.054248178392428,
+          "forced_recovered_of_worsened": 0.41445544267143763,
+          "forced_newly_worsened": 1856.6,
+          "gate_worsened_fraction": 0.1895038784744667,
+          "gate_log_q95": 2.1393776365907438,
+          "gate_recovered_of_worsened": 0.6195223425257502,
+          "oracle_worsened_fraction": 0.23986344537815124,
+          "oracle_log_q95": 1.8835621670698024
+        },
+        "k100": {
+          "model": "hgb",
+          "runs": 5,
+          "runs_dropped_incomplete": [],
+          "runs_with_worsened": 5,
+          "anchor_log_q95": 2.2733754711134266,
+          "adapted_worsened_fraction": 0.4727698771816419,
+          "adapted_log_q95": 2.2842663859555845,
+          "forced_worsened_fraction": 0.30244020685197154,
+          "forced_log_q95": 2.111987143595798,
+          "forced_recovered_of_worsened": 0.4510528432620945,
+          "forced_newly_worsened": 2060.6,
+          "gate_worsened_fraction": 0.17751696832579186,
+          "gate_log_q95": 2.1845204014027155,
+          "gate_recovered_of_worsened": 0.6264637370288919,
+          "oracle_worsened_fraction": 0.20563994828700713,
+          "oracle_log_q95": 2.0271792409422895
+        }
+      }
+    },
+    "telstra": {
+      "queries": 50000,
+      "ties_excluded": 0,
+      "direction_balance": {
+        "raise": 21268,
+        "lower": 28732,
+        "raise_fraction": 0.42536,
+        "majority_accuracy": 0.57464
+      },
+      "baselines": {
+        "pg_minus_anchor": {
+          "auc": 0.7899295287174064,
+          "accuracy": 0.7495
+        },
+        "raw_pg_direction_agreement": 0.65486
+      },
+      "in_database": {
+        "hgb": {
+          "auc_pooled_oof": 0.9770586044487157,
+          "auc_ci95": [
+            0.9760662514499779,
+            0.9780165421549534
+          ],
+          "fold_aucs": [
+            0.9778076700220668,
+            0.9776652356193105,
+            0.9780573367072851,
+            0.9759938929750176,
+            0.9758626218386877
+          ],
+          "fold_auc_mean": 0.9770773514324734,
+          "folds": 5,
+          "accuracy": 0.91326
+        },
+        "logistic": {
+          "auc_pooled_oof": 0.8143486809649798,
+          "auc_ci95": [
+            0.8105236321289503,
+            0.8182058401237196
+          ],
+          "fold_aucs": [
+            0.8159763032456543,
+            0.8166675855329282,
+            0.819314440841195,
+            0.8086305572889552,
+            0.8119220067871002
+          ],
+          "fold_auc_mean": 0.8145021787391666,
+          "folds": 5,
+          "accuracy": 0.7529
+        }
+      },
+      "table_buckets": {
+        "hgb": {
+          "1": {
+            "queries": 0,
+            "auc": null,
+            "raise_fraction": null
+          },
+          "2-3": {
+            "queries": 29689,
+            "auc": 0.9871215211471162,
+            "raise_fraction": 0.5411095018356967
+          },
+          "4-5": {
+            "queries": 20311,
+            "auc": 0.9449733651961754,
+            "raise_fraction": 0.2561666092265275
+          },
+          "6+": {
+            "queries": 0,
+            "auc": null,
+            "raise_fraction": null
+          }
+        },
+        "logistic": {
+          "1": {
+            "queries": 0,
+            "auc": null,
+            "raise_fraction": null
+          },
+          "2-3": {
+            "queries": 29689,
+            "auc": 0.8192223418368456,
+            "raise_fraction": 0.5411095018356967
+          },
+          "4-5": {
+            "queries": 20311,
+            "auc": 0.7324143226874009,
+            "raise_fraction": 0.2561666092265275
+          },
+          "6+": {
+            "queries": 0,
+            "auc": null,
+            "raise_fraction": null
+          }
+        }
+      },
+      "feature_importance": {
+        "permutation_top": [
+          {
+            "feature": "table_avi_min",
+            "importance_mean": 0.04111086938093974,
+            "importance_std": 0.0006870316779625462
+          },
+          {
+            "feature": "filter_hist_nonzero",
+            "importance_mean": 0.02933766239050876,
+            "importance_std": 0.0007786260069298205
+          },
+          {
+            "feature": "filter_sel_std",
+            "importance_mean": 0.024779552976016417,
+            "importance_std": 0.0005414983989115974
+          },
+          {
+            "feature": "table_logsize_mean",
+            "importance_mean": 0.019075743936476264,
+            "importance_std": 0.0007685421627860624
+          },
+          {
+            "feature": "pg_log",
+            "importance_mean": 0.019032510634631777,
+            "importance_std": 0.0005406631859540865
+          },
+          {
+            "feature": "filter_sel_min",
+            "importance_mean": 0.016279095289416956,
+            "importance_std": 0.0003868784443380991
+          },
+          {
+            "feature": "table_avi_mean",
+            "importance_mean": 0.012978444030520842,
+            "importance_std": 0.0003600310241360114
+          },
+          {
+            "feature": "filter_sel_mean",
+            "importance_mean": 0.010090197779442792,
+            "importance_std": 0.00045774042913462323
+          },
+          {
+            "feature": "table_avi_sumlog",
+            "importance_mean": 0.00968588317401405,
+            "importance_std": 0.00030575064562816587
+          },
+          {
+            "feature": "filter_width_min",
+            "importance_mean": 0.008690044381029197,
+            "importance_std": 0.0003623878492600541
+          },
+          {
+            "feature": "filter_sel_max",
+            "importance_mean": 0.007848827495179641,
+            "importance_std": 0.00027390241307678867
+          },
+          {
+            "feature": "filter_width_mean",
+            "importance_mean": 0.004177333016184022,
+            "importance_std": 0.00019916200325944048
+          },
+          {
+            "feature": "table_avi_std",
+            "importance_mean": 0.003513324029576085,
+            "importance_std": 0.00023176701202906502
+          },
+          {
+            "feature": "filter_hist_logmean",
+            "importance_mean": 0.0031264712663912433,
+            "importance_std": 4.521940872788985e-05
+          },
+          {
+            "feature": "n_join_cols",
+            "importance_mean": 0.0030649746175784123,
+            "importance_std": 0.00018521183916217338
+          }
+        ],
+        "group_ablation_auc": {
+          "all": 0.9770586044487157,
+          "without_counts": 0.9770063029346635,
+          "without_pg": 0.9758791701227778,
+          "without_table": 0.9755425904058835,
+          "without_filter": 0.9673323401325999,
+          "without_join_hist": 0.9764790084305851,
+          "without_fanout": 0.9770795463284193
+        }
+      },
+      "near_duplicate_grouped_cv": {
+        "hgb": {
+          "groups": 3654,
+          "auc_pooled_oof": 0.9284220077138645,
+          "auc_ci95": [
+            0.9261978494729691,
+            0.930619492491449
+          ],
+          "fold_aucs": [
+            0.9143335730337591,
+            0.8738585017680462,
+            0.9611954198546362,
+            0.9489730534882991,
+            0.930507125842108
+          ],
+          "fold_auc_mean": 0.9257735347973698,
+          "folds": 5,
+          "accuracy": 0.84262
+        }
+      },
+      "support_curve": [
+        {
+          "labelled_queries": 50,
+          "repeats": 3,
+          "auc_mean": 0.5,
+          "auc_min": 0.5,
+          "auc_max": 0.5
+        },
+        {
+          "labelled_queries": 200,
+          "repeats": 3,
+          "auc_mean": 0.7653740309687543,
+          "auc_min": 0.7583416830462143,
+          "auc_max": 0.77618691854391
+        },
+        {
+          "labelled_queries": 1000,
+          "repeats": 3,
+          "auc_mean": 0.8287680799044224,
+          "auc_min": 0.7931540673087941,
+          "auc_max": 0.8516552624694854
+        },
+        {
+          "labelled_queries": 5000,
+          "repeats": 3,
+          "auc_mean": 0.8729001876562271,
+          "auc_min": 0.8559196260846759,
+          "auc_max": 0.8892039720245538
+        }
+      ],
+      "correction": {
+        "k20": {
+          "model": "hgb",
+          "runs": 5,
+          "runs_dropped_incomplete": [],
+          "runs_with_worsened": 5,
+          "anchor_log_q95": 2.078633629317176,
+          "adapted_worsened_fraction": 0.400692,
+          "adapted_log_q95": 1.8136149752136994,
+          "forced_worsened_fraction": 0.187664,
+          "forced_log_q95": 1.7712068449530125,
+          "forced_recovered_of_worsened": 0.5997248427852734,
+          "forced_newly_worsened": 1348.4,
+          "gate_worsened_fraction": 0.12096,
+          "gate_log_q95": 1.7675638828282296,
+          "gate_recovered_of_worsened": 0.697008810338783,
+          "oracle_worsened_fraction": 0.12458,
+          "oracle_log_q95": 1.722123471640479
+        },
+        "k100": {
+          "model": "hgb",
+          "runs": 5,
+          "runs_dropped_incomplete": [],
+          "runs_with_worsened": 5,
+          "anchor_log_q95": 2.078633629317176,
+          "adapted_worsened_fraction": 0.383568,
+          "adapted_log_q95": 1.7394823569527553,
+          "forced_worsened_fraction": 0.192568,
+          "forced_log_q95": 1.736652826452417,
+          "forced_recovered_of_worsened": 0.5672794365946304,
+          "forced_newly_worsened": 1296.4,
+          "gate_worsened_fraction": 0.127304,
+          "gate_log_q95": 1.720862595022694,
+          "gate_recovered_of_worsened": 0.6681227844641867,
+          "oracle_worsened_fraction": 0.12898400000000002,
+          "oracle_log_q95": 1.6858018225912161
+        }
+      }
+    }
+  },
+  "leave_one_database_out": {
+    "chembl": {
+      "hgb": {
+        "auc": 0.5412298385226537,
+        "auc_ci95": [
+          0.536774122442936,
+          0.5458814787397007
+        ],
+        "accuracy": 0.54302,
+        "majority_accuracy": 0.51086
+      },
+      "logistic": {
+        "auc": 0.38882063019838936,
+        "auc_ci95": [
+          0.3838500600527225,
+          0.39346817294154285
+        ],
+        "accuracy": 0.4272,
+        "majority_accuracy": 0.51086
+      }
+    },
+    "legalacts": {
+      "hgb": {
+        "auc": 0.5962125902041849,
+        "auc_ci95": [
+          0.5910722367957071,
+          0.6012412228313887
+        ],
+        "accuracy": 0.6358274078862314,
+        "majority_accuracy": 0.6396452811893988
+      },
+      "logistic": {
+        "auc": 0.5713259616978492,
+        "auc_ci95": [
+          0.5663959274386456,
+          0.5760624597343615
+        ],
+        "accuracy": 0.4683661926308985,
+        "majority_accuracy": 0.6396452811893988
+      }
+    },
+    "telstra": {
+      "hgb": {
+        "auc": 0.3821814953656146,
+        "auc_ci95": [
+          0.37711940110814096,
+          0.38686841730974564
+        ],
+        "accuracy": 0.44504,
+        "majority_accuracy": 0.57464
+      },
+      "logistic": {
+        "auc": 0.662627834980986,
+        "auc_ci95": [
+          0.6578338511580083,
+          0.6672876149000195
+        ],
+        "accuracy": 0.58202,
+        "majority_accuracy": 0.57464
+      }
+    }
+  },
+  "verdict": {
+    "significant_in_database": {
+      "chembl": true,
+      "legalacts": true,
+      "telstra": true
+    },
+    "transfers_across_databases": {
+      "chembl": false,
+      "legalacts": true,
+      "telstra": false
+    },
+    "any_database_has_signal": true,
+    "all_databases_transfer": false,
+    "status": "needs_evidence"
+  }
+}

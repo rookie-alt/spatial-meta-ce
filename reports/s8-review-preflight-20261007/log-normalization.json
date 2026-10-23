@@ -1,0 +1,14 @@
+{
+  "probe-boundary-red.log": {
+    "raw_sha256": "4e6a8148db2df114a2f6a571b47f46eef41c15a9324f845275805fd781aba6a9",
+    "display_sha256": "2925ebf77934af1d59aaee6ec7a5b88f9b46e0b399d8f15f91df44ef3fbd934a",
+    "raw_gzip": "probe-boundary-red.log.gz",
+    "normalization": "trailing whitespace only; exact bytes retained in gzip"
+  },
+  "full-ruff.log": {
+    "raw_sha256": "6a9e972102c95d9fa25e306701856c6292bc2950f67db92c5bdb36933d54806d",
+    "display_sha256": "0967b3bc2a02c26028960e7855a605480b44e56f277df36ade072163c3407147",
+    "raw_gzip": "full-ruff.log.gz",
+    "normalization": "trailing whitespace only; exact bytes retained in gzip"
+  }
+}

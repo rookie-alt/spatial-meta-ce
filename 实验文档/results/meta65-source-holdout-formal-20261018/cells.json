@@ -1,0 +1,2407 @@
+{
+  "schema": 1,
+  "experiment": "meta65-source-holdout-20261018",
+  "mode": "formal",
+  "cells": [
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "chembl",
+      "run": 0,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "2be5a85b529407cede248763208c88ae1f3a17f67c85f9cc7c96ad3a93348fed",
+      "support_digest": "4e1017c7b1d497b2edf439c31aea27af75610b197250a22bdd284c6053a3baf3",
+      "prediction_file": "predictions/R_head3-none-chembl-run0.npz",
+      "prediction_sha256": "1f8c83a0e9a5ccbb463b46b0e1a2e4c408f5b0805ffe7910234b6c3289a7ef93",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 2.4469141574412063,
+          "q95": 68.53653682628838
+        },
+        "4+": {
+          "count": 33879,
+          "status": "ok",
+          "q50": 3.2388507953933154,
+          "q95": 109.72162824810458
+        },
+        "low4": {
+          "count": 2450,
+          "status": "ok",
+          "q50": 9.580545801942588,
+          "q95": 383.7303680470007
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "chembl",
+      "run": 0,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "2be5a85b529407cede248763208c88ae1f3a17f67c85f9cc7c96ad3a93348fed",
+      "support_digest": "4e1017c7b1d497b2edf439c31aea27af75610b197250a22bdd284c6053a3baf3",
+      "prediction_file": "predictions/R_head3-head3-chembl-run0.npz",
+      "prediction_sha256": "72dc65e34ad7f3335178224804b97e32f8e3e1af4f8993d06f8ecfe43eb878ed",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 2.553182132793881,
+          "q95": 63.586326602283954
+        },
+        "4+": {
+          "count": 33879,
+          "status": "ok",
+          "q50": 3.479998928520853,
+          "q95": 90.86739995865508
+        },
+        "low4": {
+          "count": 2450,
+          "status": "ok",
+          "q50": 20.17239210432749,
+          "q95": 738.4914537152122
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "chembl",
+      "run": 1,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "23cca2dd5e487a30b1e4ea8dc6af969520b71e28dee41ebfd23cdf62b6959689",
+      "support_digest": "b5e5053ee09aef94a164639becd672e09494844507d1220585b5f8121a10b281",
+      "prediction_file": "predictions/R_head3-none-chembl-run1.npz",
+      "prediction_sha256": "c9a50ff08f76fb7f074ee8af78eb0401dd45ba74ddc85c97cefa8214a4337468",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 2.446229099060175,
+          "q95": 68.36505886633365
+        },
+        "4+": {
+          "count": 33884,
+          "status": "ok",
+          "q50": 3.2400606198146775,
+          "q95": 109.49336919848844
+        },
+        "low4": {
+          "count": 2454,
+          "status": "ok",
+          "q50": 9.574474639399604,
+          "q95": 383.0857208665438
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "chembl",
+      "run": 1,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "23cca2dd5e487a30b1e4ea8dc6af969520b71e28dee41ebfd23cdf62b6959689",
+      "support_digest": "b5e5053ee09aef94a164639becd672e09494844507d1220585b5f8121a10b281",
+      "prediction_file": "predictions/R_head3-head3-chembl-run1.npz",
+      "prediction_sha256": "2f41efd30c1c699246cc835707a250eed8f8a14d76c2df4b4192ffc123e6ec06",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 2.4320734146514518,
+          "q95": 65.06332617491485
+        },
+        "4+": {
+          "count": 33884,
+          "status": "ok",
+          "q50": 3.2586140394890735,
+          "q95": 98.07252561025919
+        },
+        "low4": {
+          "count": 2454,
+          "status": "ok",
+          "q50": 11.247400730733267,
+          "q95": 506.5708563934697
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "chembl",
+      "run": 2,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "a42e12330ecfe5434de2bbf70340326a8b3c6f81d21f1f460e37852afad3ba09",
+      "support_digest": "c2e22f83a4f25358c6bfad66afbe7bb60a8bcad86b3ef8389a474dd1ecebb458",
+      "prediction_file": "predictions/R_head3-none-chembl-run2.npz",
+      "prediction_sha256": "ed7c5861c7be138ee4154d4737c22aaa6699cc66218ec2516e0d8b018540ed9d",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 2.447023957593239,
+          "q95": 68.42591131311892
+        },
+        "4+": {
+          "count": 33888,
+          "status": "ok",
+          "q50": 3.237240192799264,
+          "q95": 109.59114927807235
+        },
+        "low4": {
+          "count": 2446,
+          "status": "ok",
+          "q50": 9.552963567257926,
+          "q95": 381.4593652696892
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "chembl",
+      "run": 2,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "a42e12330ecfe5434de2bbf70340326a8b3c6f81d21f1f460e37852afad3ba09",
+      "support_digest": "c2e22f83a4f25358c6bfad66afbe7bb60a8bcad86b3ef8389a474dd1ecebb458",
+      "prediction_file": "predictions/R_head3-head3-chembl-run2.npz",
+      "prediction_sha256": "ba0e5f261f72b3977ca0945ff88377204d1710a4eef1903447eb37c2dce696c6",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 2.5099255327379266,
+          "q95": 64.4854166595856
+        },
+        "4+": {
+          "count": 33888,
+          "status": "ok",
+          "q50": 3.408927615077997,
+          "q95": 92.05211062024351
+        },
+        "low4": {
+          "count": 2446,
+          "status": "ok",
+          "q50": 12.846859866431352,
+          "q95": 593.5774244653688
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "chembl",
+      "run": 3,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "744c73ab9ab66856e56e72b06015ad2f3a82618682eca8c9c4222bb1f7662f8b",
+      "support_digest": "f1521e6aa7e34e06f4c07244574456c0635ac1ad80d3ff5c48d7720bde325408",
+      "prediction_file": "predictions/R_head3-none-chembl-run3.npz",
+      "prediction_sha256": "3cbd0787cadbeafb232dd8cde49bfeaf05238865778f8cca131d61ea04421d28",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 2.4467499569389624,
+          "q95": 68.42591131311892
+        },
+        "4+": {
+          "count": 33871,
+          "status": "ok",
+          "q50": 3.2388507953933154,
+          "q95": 109.57202812138391
+        },
+        "low4": {
+          "count": 2448,
+          "status": "ok",
+          "q50": 9.580545801942588,
+          "q95": 384.05269163723057
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "chembl",
+      "run": 3,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "744c73ab9ab66856e56e72b06015ad2f3a82618682eca8c9c4222bb1f7662f8b",
+      "support_digest": "f1521e6aa7e34e06f4c07244574456c0635ac1ad80d3ff5c48d7720bde325408",
+      "prediction_file": "predictions/R_head3-head3-chembl-run3.npz",
+      "prediction_sha256": "73205b62757daef0f92d94f5a00d8907add25be190ccf54ebc720c62ad0d39ea",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 2.5439899466495652,
+          "q95": 64.5372852671112
+        },
+        "4+": {
+          "count": 33871,
+          "status": "ok",
+          "q50": 3.4684358952134184,
+          "q95": 91.10056406127504
+        },
+        "low4": {
+          "count": 2448,
+          "status": "ok",
+          "q50": 24.514589235811037,
+          "q95": 719.0047028256963
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "chembl",
+      "run": 4,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "ac554b0d3a43ac7739490fd8f31e1557e3242fabe3887eecc5c7dbd0c05185c8",
+      "support_digest": "4c58816785de762a25936014f7776fd2dfcc14a9999bf66f49f2220e03d0d311",
+      "prediction_file": "predictions/R_head3-none-chembl-run4.npz",
+      "prediction_sha256": "d07d6b7a00f20b5d4d6ee9c109cc16f05c0953fa86b439dba573ea61d0a8e83d",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 2.4471295307090872,
+          "q95": 68.2965678732202
+        },
+        "4+": {
+          "count": 33883,
+          "status": "ok",
+          "q50": 3.2398169392206033,
+          "q95": 109.36045899575382
+        },
+        "low4": {
+          "count": 2455,
+          "status": "ok",
+          "q50": 9.568681218097286,
+          "q95": 382.9245590714288
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "chembl",
+      "run": 4,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "ac554b0d3a43ac7739490fd8f31e1557e3242fabe3887eecc5c7dbd0c05185c8",
+      "support_digest": "4c58816785de762a25936014f7776fd2dfcc14a9999bf66f49f2220e03d0d311",
+      "prediction_file": "predictions/R_head3-head3-chembl-run4.npz",
+      "prediction_sha256": "bc403c12912dac9c23ccd4cacc6fd768af8911e66aeef76708edeb99dfedcd17",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 2.5556703898446322,
+          "q95": 61.75978576058852
+        },
+        "4+": {
+          "count": 33883,
+          "status": "ok",
+          "q50": 3.4600624728506766,
+          "q95": 88.90968700546749
+        },
+        "low4": {
+          "count": 2455,
+          "status": "ok",
+          "q50": 14.468447083730078,
+          "q95": 695.8640518473632
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "legalacts",
+      "run": 0,
+      "k20": 20,
+      "query_count": 49404,
+      "query_digest": "b7daf89d5c2d66051f4312d0590c1c6a92354f5c451f283d49de5b333f64922c",
+      "support_digest": "4a179006be9201c71ef2292368d4ffe0fb12f08b5712e920a3e8accaab27902b",
+      "prediction_file": "predictions/R_head3-none-legalacts-run0.npz",
+      "prediction_sha256": "8a3161a8cc4d0496ca8e1abb09de8d0c269333d96a3cabd4081f267a34802398",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49404,
+          "status": "ok",
+          "q50": 1.7684933400156986,
+          "q95": 10.06409034141269
+        },
+        "4+": {
+          "count": 9152,
+          "status": "ok",
+          "q50": 2.683854694813076,
+          "q95": 15.295658447418344
+        },
+        "low4": {
+          "count": 3004,
+          "status": "ok",
+          "q50": 3.0038470793100784,
+          "q95": 14.59435166767652
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "legalacts",
+      "run": 0,
+      "k20": 20,
+      "query_count": 49404,
+      "query_digest": "b7daf89d5c2d66051f4312d0590c1c6a92354f5c451f283d49de5b333f64922c",
+      "support_digest": "4a179006be9201c71ef2292368d4ffe0fb12f08b5712e920a3e8accaab27902b",
+      "prediction_file": "predictions/R_head3-head3-legalacts-run0.npz",
+      "prediction_sha256": "15027f63dcce6e27178c563b047e149156cb4550daf8a39baefc5ea98ddb45cf",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49404,
+          "status": "ok",
+          "q50": 1.7783897359201515,
+          "q95": 10.710634096112617
+        },
+        "4+": {
+          "count": 9152,
+          "status": "ok",
+          "q50": 2.5848771638941934,
+          "q95": 16.945142712822836
+        },
+        "low4": {
+          "count": 3004,
+          "status": "ok",
+          "q50": 2.4082206328587983,
+          "q95": 12.57554012548677
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "legalacts",
+      "run": 1,
+      "k20": 20,
+      "query_count": 49404,
+      "query_digest": "8c75d52b01bbfea505e5b9f31fee523f4d6b40d2fdd8c1866d9037f84642a0c4",
+      "support_digest": "9216a9ae199013d3778be0041ef5368c616ce74b17ff093ff665539f354b3b07",
+      "prediction_file": "predictions/R_head3-none-legalacts-run1.npz",
+      "prediction_sha256": "a85f82aace73e5aa8027029d47a92c3a5803629688c38e9f62c767e635a5d237",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49404,
+          "status": "ok",
+          "q50": 1.7681572216175392,
+          "q95": 10.061237802290966
+        },
+        "4+": {
+          "count": 9161,
+          "status": "ok",
+          "q50": 2.679032821805546,
+          "q95": 15.320768433193615
+        },
+        "low4": {
+          "count": 3011,
+          "status": "ok",
+          "q50": 2.9986411312531143,
+          "q95": 14.59435166767652
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "legalacts",
+      "run": 1,
+      "k20": 20,
+      "query_count": 49404,
+      "query_digest": "8c75d52b01bbfea505e5b9f31fee523f4d6b40d2fdd8c1866d9037f84642a0c4",
+      "support_digest": "9216a9ae199013d3778be0041ef5368c616ce74b17ff093ff665539f354b3b07",
+      "prediction_file": "predictions/R_head3-head3-legalacts-run1.npz",
+      "prediction_sha256": "00dde319c97e297018ba61ed13cb23754b35aff33e8dba9070068e9ab2096cc7",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49404,
+          "status": "ok",
+          "q50": 1.7107991619025849,
+          "q95": 9.898213984505135
+        },
+        "4+": {
+          "count": 9161,
+          "status": "ok",
+          "q50": 2.754362544969993,
+          "q95": 15.101892440631826
+        },
+        "low4": {
+          "count": 3011,
+          "status": "ok",
+          "q50": 3.9409233744369088,
+          "q95": 19.18600610951229
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "legalacts",
+      "run": 2,
+      "k20": 20,
+      "query_count": 49404,
+      "query_digest": "efefcaff13fa6a339039b0fad1bd2fa639f849c116d54c31b64f674015981944",
+      "support_digest": "0eed86b9d38f602e3e83916060c455952bcec9d49463f6b53ced2ac27149f83a",
+      "prediction_file": "predictions/R_head3-none-legalacts-run2.npz",
+      "prediction_sha256": "386c84b070136ff2b93826978a8addff3395be90ffbb67827f1fcc666e3e259e",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49404,
+          "status": "ok",
+          "q50": 1.7683644397711253,
+          "q95": 10.061237802290966
+        },
+        "4+": {
+          "count": 9163,
+          "status": "ok",
+          "q50": 2.679032821805546,
+          "q95": 15.285203709781527
+        },
+        "low4": {
+          "count": 3012,
+          "status": "ok",
+          "q50": 2.9939052788228646,
+          "q95": 14.59435166767652
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "legalacts",
+      "run": 2,
+      "k20": 20,
+      "query_count": 49404,
+      "query_digest": "efefcaff13fa6a339039b0fad1bd2fa639f849c116d54c31b64f674015981944",
+      "support_digest": "0eed86b9d38f602e3e83916060c455952bcec9d49463f6b53ced2ac27149f83a",
+      "prediction_file": "predictions/R_head3-head3-legalacts-run2.npz",
+      "prediction_sha256": "0e870a550e194da01b30cbc74fae110bf3bb18380b995d0540996cb2ff2e8f2d",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49404,
+          "status": "ok",
+          "q50": 1.729669291855571,
+          "q95": 9.897139917517348
+        },
+        "4+": {
+          "count": 9163,
+          "status": "ok",
+          "q50": 2.7779122468262707,
+          "q95": 15.140961724264058
+        },
+        "low4": {
+          "count": 3012,
+          "status": "ok",
+          "q50": 3.9688430170869973,
+          "q95": 19.094835395920832
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "legalacts",
+      "run": 3,
+      "k20": 20,
+      "query_count": 49404,
+      "query_digest": "2bf4917c2f9822b0bff43353d8210219f6be90111ba6ae6722025d72acf93489",
+      "support_digest": "49161d22e865e976be3e33cc695d0b33345c558ec90ac30e88b7c7be0dd8042e",
+      "prediction_file": "predictions/R_head3-none-legalacts-run3.npz",
+      "prediction_sha256": "6a5813b55269e3153ec3267e1ea7e49b443f58e8ca8d416ee82cf178f5221ce0",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49404,
+          "status": "ok",
+          "q50": 1.7683377733420151,
+          "q95": 10.062748304580223
+        },
+        "4+": {
+          "count": 9161,
+          "status": "ok",
+          "q50": 2.679032821805546,
+          "q95": 15.344356065331725
+        },
+        "low4": {
+          "count": 3013,
+          "status": "ok",
+          "q50": 2.9986411312531143,
+          "q95": 14.59435166767652
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "legalacts",
+      "run": 3,
+      "k20": 20,
+      "query_count": 49404,
+      "query_digest": "2bf4917c2f9822b0bff43353d8210219f6be90111ba6ae6722025d72acf93489",
+      "support_digest": "49161d22e865e976be3e33cc695d0b33345c558ec90ac30e88b7c7be0dd8042e",
+      "prediction_file": "predictions/R_head3-head3-legalacts-run3.npz",
+      "prediction_sha256": "e8ee8670205eb9871dff501aa0f51056ed6b5b76d544463e0d4bdb1fb624ccdc",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49404,
+          "status": "ok",
+          "q50": 1.706362692968573,
+          "q95": 9.88422761197645
+        },
+        "4+": {
+          "count": 9161,
+          "status": "ok",
+          "q50": 2.7384928575099474,
+          "q95": 15.347627218628192
+        },
+        "low4": {
+          "count": 3013,
+          "status": "ok",
+          "q50": 3.9552580342187205,
+          "q95": 20.12450708226277
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "legalacts",
+      "run": 4,
+      "k20": 20,
+      "query_count": 49404,
+      "query_digest": "4364c4591aa5aa1c388fdb11741671aef6a43e0b12bd59d395e4499c9ce8691f",
+      "support_digest": "fcb9cb81e94234c679ef55869ab5aa3560b791b389f1580b450977dc0178f380",
+      "prediction_file": "predictions/R_head3-none-legalacts-run4.npz",
+      "prediction_sha256": "a2ffd5b587b7024441b026dd3dbfac949a40714b1212eaaef897c3b8024c8db2",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49404,
+          "status": "ok",
+          "q50": 1.7684617236642592,
+          "q95": 10.06409034141269
+        },
+        "4+": {
+          "count": 9159,
+          "status": "ok",
+          "q50": 2.679032821805546,
+          "q95": 15.299213768887528
+        },
+        "low4": {
+          "count": 3008,
+          "status": "ok",
+          "q50": 2.9915592393055617,
+          "q95": 14.581642731395924
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "legalacts",
+      "run": 4,
+      "k20": 20,
+      "query_count": 49404,
+      "query_digest": "4364c4591aa5aa1c388fdb11741671aef6a43e0b12bd59d395e4499c9ce8691f",
+      "support_digest": "fcb9cb81e94234c679ef55869ab5aa3560b791b389f1580b450977dc0178f380",
+      "prediction_file": "predictions/R_head3-head3-legalacts-run4.npz",
+      "prediction_sha256": "d67e2cb6ce6c64298a4edf73439c1c0c71b3e03da572d2430f90ce7c7ea70195",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49404,
+          "status": "ok",
+          "q50": 1.7241870572655633,
+          "q95": 10.156609637753302
+        },
+        "4+": {
+          "count": 9159,
+          "status": "ok",
+          "q50": 2.6163687471626598,
+          "q95": 15.251932122434981
+        },
+        "low4": {
+          "count": 3008,
+          "status": "ok",
+          "q50": 2.9296038245230154,
+          "q95": 16.623332237744748
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "telstra",
+      "run": 0,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "cfae746194795e52c534c34a47542b6a942c4e8adb6befa6628f68e6e51a4e1d",
+      "support_digest": "9de714aa8ff57ecaa42dcb295c82c7fb280c033d40c9e10fa876c862a9da24ad",
+      "prediction_file": "predictions/R_head3-none-telstra-run0.npz",
+      "prediction_sha256": "9cc96c11a261030b9ff343a21e62fdc6e9cf4a9cf56980a42d6c9c195c82cd58",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.4635072965313367,
+          "q95": 6.701772687091081
+        },
+        "4+": {
+          "count": 20272,
+          "status": "ok",
+          "q50": 1.7230353356718546,
+          "q95": 7.187595357250475
+        },
+        "low4": {
+          "count": 5519,
+          "status": "ok",
+          "q50": 2.0626763403091766,
+          "q95": 10.238885661524836
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "telstra",
+      "run": 0,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "cfae746194795e52c534c34a47542b6a942c4e8adb6befa6628f68e6e51a4e1d",
+      "support_digest": "9de714aa8ff57ecaa42dcb295c82c7fb280c033d40c9e10fa876c862a9da24ad",
+      "prediction_file": "predictions/R_head3-head3-telstra-run0.npz",
+      "prediction_sha256": "6315c7cfd55f5c724a0d4776d261e89a0f00b427ee860b37744db4a616208534",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.4954480455503991,
+          "q95": 7.191263772678737
+        },
+        "4+": {
+          "count": 20272,
+          "status": "ok",
+          "q50": 1.809439697060626,
+          "q95": 6.915380512506289
+        },
+        "low4": {
+          "count": 5519,
+          "status": "ok",
+          "q50": 1.8412966619005444,
+          "q95": 7.893890584836641
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "telstra",
+      "run": 1,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "e81fc5d441d83b38d35140b6b138af10a806b41dbbd1a0e36c828d9a0c4e99fa",
+      "support_digest": "143c8097f35e3d0dc9bacf1752039d6c4796fc6d98914239535b3a165600886c",
+      "prediction_file": "predictions/R_head3-none-telstra-run1.npz",
+      "prediction_sha256": "e514a814fc37dcbf4dbe8abdb6cfb7916bb38b96791d12e93628c33013a28210",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.463324522067286,
+          "q95": 6.707248640892514
+        },
+        "4+": {
+          "count": 20259,
+          "status": "ok",
+          "q50": 1.723847096012151,
+          "q95": 7.203765427948576
+        },
+        "low4": {
+          "count": 5512,
+          "status": "ok",
+          "q50": 2.070459784069499,
+          "q95": 10.239392646628552
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "telstra",
+      "run": 1,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "e81fc5d441d83b38d35140b6b138af10a806b41dbbd1a0e36c828d9a0c4e99fa",
+      "support_digest": "143c8097f35e3d0dc9bacf1752039d6c4796fc6d98914239535b3a165600886c",
+      "prediction_file": "predictions/R_head3-head3-telstra-run1.npz",
+      "prediction_sha256": "6f82a352045ea96cbd7730884e9d6856b15cf9ea67d87c7a5db2cdd50df4854e",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.4667511489701603,
+          "q95": 6.689438599467134
+        },
+        "4+": {
+          "count": 20259,
+          "status": "ok",
+          "q50": 1.7053648595604578,
+          "q95": 7.754897695857505
+        },
+        "low4": {
+          "count": 5512,
+          "status": "ok",
+          "q50": 2.190599109625579,
+          "q95": 11.628283505578842
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "telstra",
+      "run": 2,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "c6ded9fa3376b734fe2bfdfedcf7a55c1f03b6198727583bec196f65403a3b48",
+      "support_digest": "75bc6dd6e386b8036b1af2ce139aa534adde94e609b8be1084b472f9a0411b81",
+      "prediction_file": "predictions/R_head3-none-telstra-run2.npz",
+      "prediction_sha256": "c9c59cb31df58bf0fabd2effdffc7c86e81ede0a9c3d93022e178ca42567b6a6",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.4635072965313367,
+          "q95": 6.70361686099113
+        },
+        "4+": {
+          "count": 20270,
+          "status": "ok",
+          "q50": 1.723420592798069,
+          "q95": 7.188222066496183
+        },
+        "low4": {
+          "count": 5522,
+          "status": "ok",
+          "q50": 2.0680035093211293,
+          "q95": 10.238430582721556
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "telstra",
+      "run": 2,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "c6ded9fa3376b734fe2bfdfedcf7a55c1f03b6198727583bec196f65403a3b48",
+      "support_digest": "75bc6dd6e386b8036b1af2ce139aa534adde94e609b8be1084b472f9a0411b81",
+      "prediction_file": "predictions/R_head3-head3-telstra-run2.npz",
+      "prediction_sha256": "6969f2a73a56a7800adb298126cf5c197dab35859121325e6e1d0e38c710cc1c",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.4595029570588196,
+          "q95": 6.617301061159807
+        },
+        "4+": {
+          "count": 20270,
+          "status": "ok",
+          "q50": 1.726584314276899,
+          "q95": 6.9971382495248795
+        },
+        "low4": {
+          "count": 5522,
+          "status": "ok",
+          "q50": 2.004732894669913,
+          "q95": 9.884775511672354
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "telstra",
+      "run": 3,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "a16fa52245b477783b2ed53d3f8f9af3ead2593e6687117642dac26998eebd9e",
+      "support_digest": "4a853c4538d80fbbe2e33e6f13d8bbdb406b033b9e8e0b679c9766b19366dda1",
+      "prediction_file": "predictions/R_head3-none-telstra-run3.npz",
+      "prediction_sha256": "27e50bc507f0332c3991a677dcc9f58435c38ce5c1492aa31603868a8721c76a",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.4632883251703066,
+          "q95": 6.692430705155351
+        },
+        "4+": {
+          "count": 20272,
+          "status": "ok",
+          "q50": 1.7231005877122962,
+          "q95": 7.182703166349867
+        },
+        "low4": {
+          "count": 5515,
+          "status": "ok",
+          "q50": 2.070111174980804,
+          "q95": 10.234397645807004
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "telstra",
+      "run": 3,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "a16fa52245b477783b2ed53d3f8f9af3ead2593e6687117642dac26998eebd9e",
+      "support_digest": "4a853c4538d80fbbe2e33e6f13d8bbdb406b033b9e8e0b679c9766b19366dda1",
+      "prediction_file": "predictions/R_head3-head3-telstra-run3.npz",
+      "prediction_sha256": "973941a713d740dfccf4d9e293ebbff3f716632d96d62672f633a9d786611b0b",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.4564622986903732,
+          "q95": 6.4237407188822795
+        },
+        "4+": {
+          "count": 20272,
+          "status": "ok",
+          "q50": 1.709061286248193,
+          "q95": 7.29226609204273
+        },
+        "low4": {
+          "count": 5515,
+          "status": "ok",
+          "q50": 2.1744697141041676,
+          "q95": 10.966728826557022
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "telstra",
+      "run": 4,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "41ec979a20fd0553bc0b185a7c5e061ebcb8e394280b37985e69af5a6c593955",
+      "support_digest": "1166f13a31a2b686f6ec815cb257e576a2943d9d7bd311cf1c480818d310e97a",
+      "prediction_file": "predictions/R_head3-none-telstra-run4.npz",
+      "prediction_sha256": "e832f4607f84858e3ea98ec0e41a003974bb7f7971735fdfbe17743e6527bd47",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.4635949270466795,
+          "q95": 6.707708191727044
+        },
+        "4+": {
+          "count": 20277,
+          "status": "ok",
+          "q50": 1.72313799116169,
+          "q95": 7.193557068478779
+        },
+        "low4": {
+          "count": 5517,
+          "status": "ok",
+          "q50": 2.070111174980804,
+          "q95": 10.239030514411613
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "telstra",
+      "run": 4,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "41ec979a20fd0553bc0b185a7c5e061ebcb8e394280b37985e69af5a6c593955",
+      "support_digest": "1166f13a31a2b686f6ec815cb257e576a2943d9d7bd311cf1c480818d310e97a",
+      "prediction_file": "predictions/R_head3-head3-telstra-run4.npz",
+      "prediction_sha256": "25624c839b45ef6fb6242d69abd9679989e5edff0baca4dee6b7fa2deb6ebecd",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.4764531754991077,
+          "q95": 6.876602233412464
+        },
+        "4+": {
+          "count": 20277,
+          "status": "ok",
+          "q50": 1.7389311386187893,
+          "q95": 6.893088431322898
+        },
+        "low4": {
+          "count": 5517,
+          "status": "ok",
+          "q50": 1.8877713057261305,
+          "q95": 8.871317478086434
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "hepatitis",
+      "run": 0,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "3f58a040215542dabf144c4017ee8cf325c34975e3192ca5eaa3c1e0a744100b",
+      "support_digest": "a69974ac5d81b6ac6aba6cec146570069fef2373b029f679304f5afe5b932651",
+      "prediction_file": "predictions/R_head3-none-hepatitis-run0.npz",
+      "prediction_sha256": "0742feea7380109216b10ac79597fdf81de378bb95443b1d51e9a268833024a7",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.715113736645808,
+          "q95": 5.281714996739541
+        },
+        "4+": {
+          "count": 38454,
+          "status": "ok",
+          "q50": 1.8663828671180709,
+          "q95": 5.641088756371514
+        },
+        "low4": {
+          "count": 17422,
+          "status": "ok",
+          "q50": 1.7037160614957756,
+          "q95": 5.150370194338692
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "hepatitis",
+      "run": 0,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "3f58a040215542dabf144c4017ee8cf325c34975e3192ca5eaa3c1e0a744100b",
+      "support_digest": "a69974ac5d81b6ac6aba6cec146570069fef2373b029f679304f5afe5b932651",
+      "prediction_file": "predictions/R_head3-head3-hepatitis-run0.npz",
+      "prediction_sha256": "d8428b493ce4c193520cfb103f44568b5aaa46e0e0f9a2109b9baa0222e75510",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.5971903014875246,
+          "q95": 4.785460967379907
+        },
+        "4+": {
+          "count": 38454,
+          "status": "ok",
+          "q50": 1.6900335559909752,
+          "q95": 5.049384102771968
+        },
+        "low4": {
+          "count": 17422,
+          "status": "ok",
+          "q50": 1.8400765720346988,
+          "q95": 6.4627659851290495
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "hepatitis",
+      "run": 1,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "4d63d51988969261700a4eaabdd3da140bfd5adbc7d757faaf2d2e5c8fff54de",
+      "support_digest": "7f78226df46767c986c9ee5aa0225ea96bf9261b01a62ff28455ab15547261ee",
+      "prediction_file": "predictions/R_head3-none-hepatitis-run1.npz",
+      "prediction_sha256": "9f310e7657ad0ebd064317b36f02eee9009caddf9ed61c5f6044f4b2685122c9",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.715154811155587,
+          "q95": 5.282016245798331
+        },
+        "4+": {
+          "count": 38459,
+          "status": "ok",
+          "q50": 1.8663107815714974,
+          "q95": 5.641321505672385
+        },
+        "low4": {
+          "count": 17426,
+          "status": "ok",
+          "q50": 1.7028188523428445,
+          "q95": 5.152656882632797
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "hepatitis",
+      "run": 1,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "4d63d51988969261700a4eaabdd3da140bfd5adbc7d757faaf2d2e5c8fff54de",
+      "support_digest": "7f78226df46767c986c9ee5aa0225ea96bf9261b01a62ff28455ab15547261ee",
+      "prediction_file": "predictions/R_head3-head3-hepatitis-run1.npz",
+      "prediction_sha256": "e8a8b5f638e051b6bf0814a6eeabcf665d99d70e26d2d5d733c4a15580198088",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.6376681381950295,
+          "q95": 5.085884446738657
+        },
+        "4+": {
+          "count": 38459,
+          "status": "ok",
+          "q50": 1.7492037768747826,
+          "q95": 5.38756248096054
+        },
+        "low4": {
+          "count": 17426,
+          "status": "ok",
+          "q50": 1.902855849754994,
+          "q95": 6.998252676928086
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "hepatitis",
+      "run": 2,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "d4c3830316df83e41dbc03374fbc29345ee3f0cbacb4bd55697f6e0d1fa133c1",
+      "support_digest": "40243fbcc5cb9f83796c6691b42d72835ddca768291d8ea428b76f206767ce43",
+      "prediction_file": "predictions/R_head3-none-hepatitis-run2.npz",
+      "prediction_sha256": "9c422ac0e44b6a36b5edcff85ae800c95e88e3c9864af7da9a325e77adc3b0b8",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.7154642075496382,
+          "q95": 5.281714996739541
+        },
+        "4+": {
+          "count": 38461,
+          "status": "ok",
+          "q50": 1.86656002685907,
+          "q95": 5.641216319152094
+        },
+        "low4": {
+          "count": 17421,
+          "status": "ok",
+          "q50": 1.7047494074725518,
+          "q95": 5.156523783578486
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "hepatitis",
+      "run": 2,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "d4c3830316df83e41dbc03374fbc29345ee3f0cbacb4bd55697f6e0d1fa133c1",
+      "support_digest": "40243fbcc5cb9f83796c6691b42d72835ddca768291d8ea428b76f206767ce43",
+      "prediction_file": "predictions/R_head3-head3-hepatitis-run2.npz",
+      "prediction_sha256": "61bf2670899ad39eaf9484a10e77c4a43c50c51155c3aa47e18f49e12e0769f8",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.5988494052447142,
+          "q95": 5.326110433800553
+        },
+        "4+": {
+          "count": 38461,
+          "status": "ok",
+          "q50": 1.691849924022565,
+          "q95": 5.7127113629432476
+        },
+        "low4": {
+          "count": 17421,
+          "status": "ok",
+          "q50": 2.059620858253937,
+          "q95": 8.191530874129507
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "hepatitis",
+      "run": 3,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "eeec326c20fdcb9d47f181929f7f532fda62736704e215a37828a8d2b11adb4f",
+      "support_digest": "c59907a04d020f2abc58af640ddf68962ed64187a8c1bce752d820bd02db04d2",
+      "prediction_file": "predictions/R_head3-none-hepatitis-run3.npz",
+      "prediction_sha256": "7ef4d3ddd6bb3feeff493a1dfbe834c87abdc023d198ce620ec50e2063d51296",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.7152573274261063,
+          "q95": 5.282016245798331
+        },
+        "4+": {
+          "count": 38462,
+          "status": "ok",
+          "q50": 1.8663361633253555,
+          "q95": 5.64221559109487
+        },
+        "low4": {
+          "count": 17434,
+          "status": "ok",
+          "q50": 1.7037160614957756,
+          "q95": 5.154336253102934
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "hepatitis",
+      "run": 3,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "eeec326c20fdcb9d47f181929f7f532fda62736704e215a37828a8d2b11adb4f",
+      "support_digest": "c59907a04d020f2abc58af640ddf68962ed64187a8c1bce752d820bd02db04d2",
+      "prediction_file": "predictions/R_head3-head3-hepatitis-run3.npz",
+      "prediction_sha256": "f044d82b0c91551e3e5f7681ad3cfa741376d3301f2cc0e43297fe8bbd7bdd0a",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.6351971580219538,
+          "q95": 4.795432707811361
+        },
+        "4+": {
+          "count": 38462,
+          "status": "ok",
+          "q50": 1.738895136753095,
+          "q95": 5.038300442410094
+        },
+        "low4": {
+          "count": 17434,
+          "status": "ok",
+          "q50": 1.7374349999556737,
+          "q95": 5.591327903300966
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "hepatitis",
+      "run": 4,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "3b6400d96a335eef7e533a1b611ee8e748679840e8179e47fd39f845bddc60c4",
+      "support_digest": "2a3c18196996d98502b70041991fad8fba514e5e9dea389250dc6f6f44fd7305",
+      "prediction_file": "predictions/R_head3-none-hepatitis-run4.npz",
+      "prediction_sha256": "5776804b111162c4bbe9ee875ecae0042eab685790b297af60c6e261f9847c59",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.7150416076283084,
+          "q95": 5.280645499279392
+        },
+        "4+": {
+          "count": 38458,
+          "status": "ok",
+          "q50": 1.8663361633253555,
+          "q95": 5.640629138938829
+        },
+        "low4": {
+          "count": 17433,
+          "status": "ok",
+          "q50": 1.7037491146795594,
+          "q95": 5.150796188406494
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "hepatitis",
+      "run": 4,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "3b6400d96a335eef7e533a1b611ee8e748679840e8179e47fd39f845bddc60c4",
+      "support_digest": "2a3c18196996d98502b70041991fad8fba514e5e9dea389250dc6f6f44fd7305",
+      "prediction_file": "predictions/R_head3-head3-hepatitis-run4.npz",
+      "prediction_sha256": "2ac6995efa6aa9be2db1177c82b59c728ce9276d3e2fd2dd376fc8a4d3d9f4ef",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 1.6158710432769587,
+          "q95": 4.696401083290807
+        },
+        "4+": {
+          "count": 38458,
+          "status": "ok",
+          "q50": 1.7124355839010887,
+          "q95": 4.940730232803294
+        },
+        "low4": {
+          "count": 17433,
+          "status": "ok",
+          "q50": 1.736557497666437,
+          "q95": 5.664021909336208
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "sakila",
+      "run": 0,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "940dcd0f197b1c501e7acd28b3b4a5a6e6e08391710914ca6eec9787e6dd7136",
+      "support_digest": "8256d63ddb49b6b8a892f21f8cdd6ac25247943a61cd6683297c739b870c8bc2",
+      "prediction_file": "predictions/R_head3-none-sakila-run0.npz",
+      "prediction_sha256": "417bfdcffb00d19302d2d632a5509ed41270802a5a68cc1c9560cd1141541dfb",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 6.98437753111347,
+          "q95": 109.77508482028152
+        },
+        "4+": {
+          "count": 35229,
+          "status": "ok",
+          "q50": 12.593716057718721,
+          "q95": 140.5552751152754
+        },
+        "low4": {
+          "count": 7812,
+          "status": "ok",
+          "q50": 3.7837565579476498,
+          "q95": 18.00147489333267
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "sakila",
+      "run": 0,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "940dcd0f197b1c501e7acd28b3b4a5a6e6e08391710914ca6eec9787e6dd7136",
+      "support_digest": "8256d63ddb49b6b8a892f21f8cdd6ac25247943a61cd6683297c739b870c8bc2",
+      "prediction_file": "predictions/R_head3-head3-sakila-run0.npz",
+      "prediction_sha256": "b0fe38e52e5ed35c0e79443209f13601609dc6f99a83f5e2d07e5d5c2addc9eb",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 2.9981327793204384,
+          "q95": 37.201528056251114
+        },
+        "4+": {
+          "count": 35229,
+          "status": "ok",
+          "q50": 4.9348979975023335,
+          "q95": 46.344924061291884
+        },
+        "low4": {
+          "count": 7812,
+          "status": "ok",
+          "q50": 1.7997050610630287,
+          "q95": 5.112875536559007
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "sakila",
+      "run": 1,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "82731730def058bb5c480f1dc936354c32f30cd89bc7b575a028ba328a17f831",
+      "support_digest": "24635f56b5514a4dc2007aa3194c33b1c2d4f8d24e946e2b1c87c2ca1c89a86e",
+      "prediction_file": "predictions/R_head3-none-sakila-run1.npz",
+      "prediction_sha256": "6170f65b1c6bae0b88fe8e4556593d7e36a6a8a67113e346ec2343b66b4cb6a3",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 6.983730329919302,
+          "q95": 109.7011334116558
+        },
+        "4+": {
+          "count": 35226,
+          "status": "ok",
+          "q50": 12.594555994469198,
+          "q95": 140.6183593800236
+        },
+        "low4": {
+          "count": 7809,
+          "status": "ok",
+          "q50": 3.7786186475682597,
+          "q95": 17.929120260460344
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "sakila",
+      "run": 1,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "82731730def058bb5c480f1dc936354c32f30cd89bc7b575a028ba328a17f831",
+      "support_digest": "24635f56b5514a4dc2007aa3194c33b1c2d4f8d24e946e2b1c87c2ca1c89a86e",
+      "prediction_file": "predictions/R_head3-head3-sakila-run1.npz",
+      "prediction_sha256": "5639231256fb8cfff36ed3cd38bf2974123dc94683e9bdb85e51afb94f8b3def",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 3.0412985963135726,
+          "q95": 42.201129458145886
+        },
+        "4+": {
+          "count": 35226,
+          "status": "ok",
+          "q50": 5.024596774107334,
+          "q95": 53.22812721470605
+        },
+        "low4": {
+          "count": 7809,
+          "status": "ok",
+          "q50": 1.7729061297564463,
+          "q95": 5.0898473622324625
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "sakila",
+      "run": 2,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "5849bc302447223c0d4cfeb4b247600c6611f709b9730d5233e7c0ab5d7d9026",
+      "support_digest": "13038cf74a3b9bc08aae5d56acbc7643697ab11af68dc0d7fee3e6fc4e2fb58b",
+      "prediction_file": "predictions/R_head3-none-sakila-run2.npz",
+      "prediction_sha256": "47faab668807113ffde0a554172c776c58ebadf5ea04e0cdb4628eb5a71ef2d4",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 6.9713049127912905,
+          "q95": 109.67615847289295
+        },
+        "4+": {
+          "count": 35220,
+          "status": "ok",
+          "q50": 12.58554196202674,
+          "q95": 140.3237750864793
+        },
+        "low4": {
+          "count": 7815,
+          "status": "ok",
+          "q50": 3.7838903546449587,
+          "q95": 18.015699748412118
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "sakila",
+      "run": 2,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "5849bc302447223c0d4cfeb4b247600c6611f709b9730d5233e7c0ab5d7d9026",
+      "support_digest": "13038cf74a3b9bc08aae5d56acbc7643697ab11af68dc0d7fee3e6fc4e2fb58b",
+      "prediction_file": "predictions/R_head3-head3-sakila-run2.npz",
+      "prediction_sha256": "061ddda0ac4e31c1091d0f97aa56279c18162ee90ab4d4adf375e406ac2cc01e",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 3.2298536020733897,
+          "q95": 37.66152216774592
+        },
+        "4+": {
+          "count": 35220,
+          "status": "ok",
+          "q50": 5.360485285990395,
+          "q95": 46.42345505498034
+        },
+        "low4": {
+          "count": 7815,
+          "status": "ok",
+          "q50": 1.9381296160014332,
+          "q95": 5.83001796386444
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "sakila",
+      "run": 3,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "2405833885b011aedd81f1eb49933c5046208930722288742551e74f5b1e72e9",
+      "support_digest": "e698f9e8ae680cc52a7568668bbcae3900ff1a694ccc20e23cd5618dba710116",
+      "prediction_file": "predictions/R_head3-none-sakila-run3.npz",
+      "prediction_sha256": "5ee22a23b9ad224ef9cf713336a8c3cd503ef3aedd89348e15da0af9ddc630b2",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 6.9863761737000445,
+          "q95": 109.67615847289295
+        },
+        "4+": {
+          "count": 35222,
+          "status": "ok",
+          "q50": 12.594555994469198,
+          "q95": 140.2562754407289
+        },
+        "low4": {
+          "count": 7814,
+          "status": "ok",
+          "q50": 3.785092717780805,
+          "q95": 18.017770116357603
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "sakila",
+      "run": 3,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "2405833885b011aedd81f1eb49933c5046208930722288742551e74f5b1e72e9",
+      "support_digest": "e698f9e8ae680cc52a7568668bbcae3900ff1a694ccc20e23cd5618dba710116",
+      "prediction_file": "predictions/R_head3-head3-sakila-run3.npz",
+      "prediction_sha256": "a14d7f13554eefec40d7f932c601faaf7a9a8d62290f625f53e21d2d46e1b639",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 3.7355762798774834,
+          "q95": 52.20817896950209
+        },
+        "4+": {
+          "count": 35222,
+          "status": "ok",
+          "q50": 6.457076576581946,
+          "q95": 65.50494503035219
+        },
+        "low4": {
+          "count": 7814,
+          "status": "ok",
+          "q50": 2.083728410234706,
+          "q95": 6.8815586958346175
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "none",
+      "database": "sakila",
+      "run": 4,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "52a3a135a26f8ddeae7ec23fca817620cdf49c68109fb3aef748f13286279b9a",
+      "support_digest": "9aff962f0f8307031d1da065fcd825de4e8985c4d651a7d660dbbac06fa51060",
+      "prediction_file": "predictions/R_head3-none-sakila-run4.npz",
+      "prediction_sha256": "c1998b729401246122ab7b5935fd0336556b39b700fa5d66dbe48bc332c0751b",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 6.972482976116405,
+          "q95": 109.7884950687842
+        },
+        "4+": {
+          "count": 35222,
+          "status": "ok",
+          "q50": 12.585832002486736,
+          "q95": 140.80339129865862
+        },
+        "low4": {
+          "count": 7816,
+          "status": "ok",
+          "q50": 3.7837565579476498,
+          "q95": 18.000819385184816
+        }
+      },
+      "selected_parameter_names": [],
+      "selected_parameter_count": 0,
+      "changed_parameter_names": [],
+      "changed_parameter_count": 0,
+      "steps": 0
+    },
+    {
+      "schema": 1,
+      "mode": "formal",
+      "arm": "R_head3",
+      "operator": "head3",
+      "database": "sakila",
+      "run": 4,
+      "k20": 20,
+      "query_count": 49900,
+      "query_digest": "52a3a135a26f8ddeae7ec23fca817620cdf49c68109fb3aef748f13286279b9a",
+      "support_digest": "9aff962f0f8307031d1da065fcd825de4e8985c4d651a7d660dbbac06fa51060",
+      "prediction_file": "predictions/R_head3-head3-sakila-run4.npz",
+      "prediction_sha256": "d48d7d2648cf23253afbc6af2e744846173a77405d328e18a700e6b218181aaf",
+      "state_before": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "state_after": "8c848396c994ced3560ca56118a98430c108e979974d9268e2abff377db21175",
+      "metrics": {
+        "all": {
+          "count": 49900,
+          "status": "ok",
+          "q50": 3.05447812144455,
+          "q95": 39.99725415887733
+        },
+        "4+": {
+          "count": 35222,
+          "status": "ok",
+          "q50": 5.079211142591294,
+          "q95": 50.12572467013305
+        },
+        "low4": {
+          "count": 7816,
+          "status": "ok",
+          "q50": 1.8011536748125208,
+          "q95": 5.201781356421138
+        }
+      },
+      "selected_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "selected_parameter_count": 107521,
+      "changed_parameter_names": [
+        "head.0.weight",
+        "head.0.bias",
+        "head.2.weight",
+        "head.2.bias",
+        "head.4.weight",
+        "head.4.bias"
+      ],
+      "changed_parameter_count": 107521,
+      "steps": 3
+    }
+  ]
+}

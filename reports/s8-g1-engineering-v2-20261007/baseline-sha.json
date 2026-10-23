@@ -1,0 +1,10 @@
+{
+  "spatial_meta_ce/s8_probe.py": "c3d85f98dc78d70fca4475ae671022ffd1a7a3b9e6d306304a53bac417b481c5",
+  "spatial_meta_ce/s8_state.py": "4afe46d43d94e5e608b49e3b3f2e3593cd4bdf127b95a422f964e25b99d843f7",
+  "scripts/run_s8_smoke.py": "482c079454603488a650961ae23528b936ecb720472bd8faf2ea13fd5eaab900",
+  "scripts/s8_independent_verify.py": "466999a9839efd48bdc0f5670b7c049d5d1a7693efc4921df7cb9c115d4af8c0",
+  "实验文档/24-S8源侧受控机制检验协议草案.md": "bff361147fa86385cf479a866eb7384ed2b1d214e86740fde68cd118cf60af2b",
+  "实验文档/26-S8方案审查与G1工程预检.md": "383b8be0882300df969b88314a3d5d5b58ded5c0f171504a6b0b8a39dec03100",
+  "实验文档/27-S8G1运行器与真实smoke协议.md": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+  "实验文档/30-S8数值谱认证规格与本地修订.md": "34ebd88cf3d96c1efa215cfc46c78fd67c08e2ac4a0ec45e5523db06704841b3"
+}

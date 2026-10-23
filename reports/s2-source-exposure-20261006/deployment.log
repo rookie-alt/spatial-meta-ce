@@ -1,0 +1,21 @@
+{
+  "configs/data.json": "identical_kept",
+  "configs/precision_screen.json": "identical_kept",
+  "实验文档/16-S2源训练曝光与残差监督分布诊断方案.md": "created",
+  "实验文档/results/precision-screen-20261006/summary.json": "identical_kept",
+  "实验文档/results/precision-screen-20261006/status.json": "identical_kept",
+  "实验文档/results/precision-screen-20261006/preflight.json": "identical_kept",
+  "实验文档/results/precision-screen-20261006/verification.json": "created",
+  "实验文档/results/s1-source-diagnosis-20261006-verified/summary.json": "created",
+  "实验文档/results/s1-source-diagnosis-20261006-verified/verification.json": "created",
+  "实验文档/results/s1-source-diagnosis-20261006-verified/strata.csv": "created",
+  "scripts/run_s1_diagnosis.py": "identical_kept",
+  "scripts/run_s2_diagnosis.py": "created",
+  "scripts/s2_source_replay.py": "created",
+  "scripts/s2_exposure_stats.py": "created",
+  "scripts/s2_verify.py": "created",
+  "tests/test_s2_exposure_stats.py": "created",
+  "tests/test_s2_verify.py": "created",
+  "tests/test_s2_source_replay.py": "created",
+  "tests/test_s2_runner.py": "created"
+}

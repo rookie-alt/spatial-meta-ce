@@ -1,0 +1,247 @@
+{
+  "date": "2026-10-08",
+  "status": "diagnostic_only_completed_explaining_x_small_retained_subspace_failure",
+  "single_diagnostic_attempt": 1,
+  "retried_or_resumed": false,
+  "diagnostic_archive_sha256": "ea075b85475481ae16ecac9290503620e00685b741c1422ff0339dcc34f84949",
+  "diagnostic_contract_sha256": "5b350dc533697adbe1bad226542c56b2cdd4c8a8737fcc0c2456f6d7a6bfc1c7",
+  "entry_sha256": "7dc783034d4ce5e48469605296adb253c737b6e866dbdeca34c04591e042bae7",
+  "allowed_inputs_read": [
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-h.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-label.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-pg_log.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/P-x.npy",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/contract.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/panels.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/preflight.json",
+    "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007/status.json"
+  ],
+  "input_sha_before_after_match": true,
+  "deployed_code_unchanged_after_attempt": true,
+  "returncodes": {
+    "ssh_and_outer": 1,
+    "parent_checker": 1,
+    "child": 1,
+    "signal": null
+  },
+  "wall_seconds": 3.473519364139065,
+  "worker_ru_maxrss_bytes": 538783744,
+  "sampled_peak_rss_bytes": 538783744,
+  "RLIMIT_AS_bytes": [
+    12884901888,
+    12884901888
+  ],
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "panels": {
+    "h": {
+      "small_P_zero_reference": "verified",
+      "full_P_resource": "verified"
+    },
+    "x": {
+      "small_P_zero_reference": "failed",
+      "full_P_resource": "not_run"
+    }
+  },
+  "x_small_retained_diagnostic": {
+    "gate_effect": "diagnostic_only_no_gate_change",
+    "shape": [
+      1216,
+      775
+    ],
+    "dtype": "float64",
+    "rank": 586,
+    "cutoff": 3.406858220935685e-10,
+    "rtol": 1e-12,
+    "atol": 1e-12,
+    "numpy": "1.26.1",
+    "projection_kind": "left_retained_U_projection",
+    "formula": "U_r @ (U_r.T @ target)",
+    "reported": {
+      "residual_l2_norm": 2.1955430818421994e-07,
+      "residual_linfinity_norm": 7.49297310864705e-08,
+      "max_abs_residual": 7.49297310864705e-08,
+      "threshold_at_max": 1.7812471482339885e-12,
+      "ratio_to_threshold": 42065.88129039776,
+      "max_row_index": 750,
+      "top_singular_directions": [
+        {
+          "u_direction_index": 2,
+          "singular_value": 248.85524039393624,
+          "residual_coordinate": -5.131313616575017e-08,
+          "projection_coordinate": -0.8104919644814771,
+          "threshold": 1.810491964481477e-12,
+          "ratio": 28342.095503553475
+        },
+        {
+          "u_direction_index": 4,
+          "singular_value": 201.1758919394738,
+          "residual_coordinate": -4.097359393689742e-08,
+          "projection_coordinate": -0.3195940705977772,
+          "threshold": 1.3195940705977773e-12,
+          "ratio": 31050.150080119976
+        },
+        {
+          "u_direction_index": 11,
+          "singular_value": 124.05934244759916,
+          "residual_coordinate": -3.7308369127293283e-08,
+          "projection_coordinate": 1.022998331213504,
+          "threshold": 2.022998331213504e-12,
+          "ratio": 18442.11562197073
+        },
+        {
+          "u_direction_index": 3,
+          "singular_value": 236.2288337449313,
+          "residual_coordinate": -3.176990971596361e-08,
+          "projection_coordinate": 1.8108643027700686,
+          "threshold": 2.8108643027700688e-12,
+          "ratio": 11302.541244931246
+        },
+        {
+          "u_direction_index": 7,
+          "singular_value": 153.2987989729534,
+          "residual_coordinate": -3.076125807216408e-08,
+          "projection_coordinate": -0.10170728114256489,
+          "threshold": 1.1017072811425649e-12,
+          "ratio": 27921.443924979798
+        },
+        {
+          "u_direction_index": 41,
+          "singular_value": 44.97324235858864,
+          "residual_coordinate": 3.055902921741045e-08,
+          "projection_coordinate": -0.0545693005577165,
+          "threshold": 1.0545693005577164e-12,
+          "ratio": 28977.734513273892
+        },
+        {
+          "u_direction_index": 10,
+          "singular_value": 128.72240490354818,
+          "residual_coordinate": -2.9478355400429305e-08,
+          "projection_coordinate": -0.25907397509575136,
+          "threshold": 1.2590739750957513e-12,
+          "ratio": 23412.72711810877
+        },
+        {
+          "u_direction_index": 62,
+          "singular_value": 28.487869448036726,
+          "residual_coordinate": -2.861805518495774e-08,
+          "projection_coordinate": -0.7978041298391899,
+          "threshold": 1.7978041298391898e-12,
+          "ratio": 15918.338772265237
+        }
+      ]
+    },
+    "reference": {
+      "residual_l2_norm": 2.1955430818421994e-07,
+      "residual_linfinity_norm": 7.49297310864705e-08,
+      "max_abs_residual": 7.49297310864705e-08,
+      "threshold_at_max": 1.7812471482339885e-12,
+      "ratio_to_threshold": 42065.88129039776,
+      "max_row_index": 750,
+      "top_singular_directions": [
+        {
+          "u_direction_index": 2,
+          "singular_value": 248.85524039393624,
+          "residual_coordinate": -5.131313616575017e-08,
+          "projection_coordinate": -0.8104919644814771,
+          "threshold": 1.810491964481477e-12,
+          "ratio": 28342.095503553475
+        },
+        {
+          "u_direction_index": 4,
+          "singular_value": 201.1758919394738,
+          "residual_coordinate": -4.097359393689742e-08,
+          "projection_coordinate": -0.3195940705977772,
+          "threshold": 1.3195940705977773e-12,
+          "ratio": 31050.150080119976
+        },
+        {
+          "u_direction_index": 11,
+          "singular_value": 124.05934244759916,
+          "residual_coordinate": -3.7308369127293283e-08,
+          "projection_coordinate": 1.022998331213504,
+          "threshold": 2.022998331213504e-12,
+          "ratio": 18442.11562197073
+        },
+        {
+          "u_direction_index": 3,
+          "singular_value": 236.2288337449313,
+          "residual_coordinate": -3.176990971596361e-08,
+          "projection_coordinate": 1.8108643027700686,
+          "threshold": 2.8108643027700688e-12,
+          "ratio": 11302.541244931246
+        },
+        {
+          "u_direction_index": 7,
+          "singular_value": 153.2987989729534,
+          "residual_coordinate": -3.076125807216408e-08,
+          "projection_coordinate": -0.10170728114256489,
+          "threshold": 1.1017072811425649e-12,
+          "ratio": 27921.443924979798
+        },
+        {
+          "u_direction_index": 41,
+          "singular_value": 44.97324235858864,
+          "residual_coordinate": 3.055902921741045e-08,
+          "projection_coordinate": -0.0545693005577165,
+          "threshold": 1.0545693005577164e-12,
+          "ratio": 28977.734513273892
+        },
+        {
+          "u_direction_index": 10,
+          "singular_value": 128.72240490354818,
+          "residual_coordinate": -2.9478355400429305e-08,
+          "projection_coordinate": -0.25907397509575136,
+          "threshold": 1.2590739750957513e-12,
+          "ratio": 23412.72711810877
+        },
+        {
+          "u_direction_index": 62,
+          "singular_value": 28.487869448036726,
+          "residual_coordinate": -2.861805518495774e-08,
+          "projection_coordinate": -0.7978041298391899,
+          "threshold": 1.7978041298391898e-12,
+          "ratio": 15918.338772265237
+        }
+      ]
+    }
+  },
+  "x_small_retained_flags": {
+    "retained_subspace_pass": false,
+    "reference_retained_subspace_pass": false,
+    "reference_pass": false,
+    "reference_prediction_pass": true,
+    "engineering_verified": false,
+    "observed_ranks": {
+      "svd": 586,
+      "reported_ls": 586,
+      "reference_ls": 586
+    },
+    "rank_stability": "stable",
+    "rank_cutoff_interval": [
+      3.4068582209347655e-10,
+      3.406858220936605e-10
+    ],
+    "spectrum_error_bound": 9.198729770474115e-11
+  },
+  "linalg_calls_failure_row": 5,
+  "original_G1_status": "failed",
+  "formal_ready": false,
+  "strict_certificate": "unknown",
+  "A_reclassified_as_passed": false,
+  "B_or_training_started": false,
+  "independent_numeric_recompute": false,
+  "record_integrity_review": "pending_independent_review",
+  "raw_log_sha256": {
+    "execution.stdout.log": "499b8c51054bb279d9e89d369a7fad5f094821e19ae69482a68ce2bc794e516a",
+    "execution.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "execution-transport.json": "563bc1465a39a5b16adc07af9e5dccab4708a7c7ecba2007499e50c9af623977",
+    "runtime-preflight.stdout.json": "db3d6c0b4e6ac7e19f7a0ec6f57c6f4f992ee86b452b1fce5c56d309b09ab2c3",
+    "post-attempt-inventory.stdout.json": "51f16d5a14deaf354aa3c8c9150723a3369535ad9e74e1eeea236fa54cc07844"
+  }
+}

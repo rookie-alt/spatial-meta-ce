@@ -1,0 +1,12 @@
+{
+  "verified_at": "2026-10-01T16:04:36.264589+08:00",
+  "launcher_pid": 79697,
+  "training_processes": [
+    "79702 79697 /gly/weilin/PRICE-master/venv/bin/python -B -u -m spatial_meta_ce.cli train --config configs/erm_sum_fixed_budget.json --steps 4000 --device cuda --output /gly/weilin/spatial-meta-ce/runs/p0-fixed-budget-seed42-20261001/training"
+  ],
+  "gpu": 6,
+  "run_directory": "/gly/weilin/spatial-meta-ce/runs/p0-fixed-budget-seed42-20261001",
+  "launch_log": "/gly/weilin/spatial-meta-ce/runs/p0-fixed-budget-seed42-20261001.launch.log",
+  "launcher_command": "nohup bash \u5b9e\u9a8c\u6587\u6863/results/p0-fixed-budget-20261001/launch.sh",
+  "status": "running short-budget time=2026-10-01T16:03:28+08:00\n"
+}

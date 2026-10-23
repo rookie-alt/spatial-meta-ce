@@ -1,0 +1,244 @@
+{
+  "database": "baseball",
+  "role": "train",
+  "workload_rows": 50000,
+  "source_feature_rows": 50000,
+  "cache_rows": 50000,
+  "unique_queries": 50000,
+  "source_feature_fields": [
+    "data_features",
+    "n_fanouts",
+    "n_filter_cols",
+    "n_join_cols",
+    "n_tables",
+    "pg_est_cards",
+    "true_cards"
+  ],
+  "cache_manifest_fields": [
+    "content_hash",
+    "inspection",
+    "provenance",
+    "rows",
+    "schema",
+    "transform",
+    "unique_queries"
+  ],
+  "cache_row_fields": [
+    "exact_hash",
+    "id",
+    "query_hash",
+    "source_line"
+  ],
+  "cache_regenerated": false,
+  "input_hashes": {
+    "workload": "ebac72bca5d7e0fbf237b725bc9097e7e73fdec921398941972b83583b851837",
+    "source_features": "739873f345c26b656449ba1377e15a0f16516808e4fbc3d5a31ed420afe61ded",
+    "extractor": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "statistics/abbrev_col_type.pkl": "18e374ea5920c9f08e377bab331012281b7dcd4423cd9abaaa10dc9f41368af4",
+    "statistics/fanout40.pkl": "d601b229995f276b76cc1eee63aa5bac79d0ba274a8a9c2b247915b0c529fd8c",
+    "statistics/histogram40.pkl": "3835e42561caf763a09b5f53d19032832d8a46750906768593e29a65ab63ee54",
+    "statistics/size.pkl": "c1c554c564a5834aa379aaee3d8e07e125f70fa770dae5da632d9cdcffc5443e",
+    "statistics/summary40.pkl": "ca2447f344474f83a94951e74cc9556c36c11c31715fb2ed9bf2511eee2093b7"
+  },
+  "provenance_errors": [],
+  "inputs_unchanged": true,
+  "recreate_all_features": true,
+  "totals": {
+    "recreated_rows": 50000,
+    "checked_rows": 50000,
+    "rows_with_errors": 0,
+    "mapping_recoverable": 50000,
+    "sql_mapping_recoverable": 50000,
+    "rows_with_risk_flags": 10135
+  },
+  "sql_flags": {
+    "multiple_filters": 10135
+  },
+  "by_tables": {
+    "4": {
+      "rows": 18216,
+      "mapping_recoverable": 18216,
+      "sql_mapping_recoverable": 18216,
+      "errors": {}
+    },
+    "3": {
+      "rows": 13281,
+      "mapping_recoverable": 13281,
+      "sql_mapping_recoverable": 13281,
+      "errors": {}
+    },
+    "6": {
+      "rows": 2257,
+      "mapping_recoverable": 2257,
+      "sql_mapping_recoverable": 2257,
+      "errors": {}
+    },
+    "5": {
+      "rows": 8703,
+      "mapping_recoverable": 8703,
+      "sql_mapping_recoverable": 8703,
+      "errors": {}
+    },
+    "2": {
+      "rows": 7073,
+      "mapping_recoverable": 7073,
+      "sql_mapping_recoverable": 7073,
+      "errors": {}
+    },
+    "7": {
+      "rows": 470,
+      "mapping_recoverable": 470,
+      "sql_mapping_recoverable": 470,
+      "errors": {}
+    }
+  },
+  "by_predicate": {
+    "EQ": {
+      "rows": 50000,
+      "mapping_recoverable": 50000,
+      "sql_mapping_recoverable": 50000,
+      "errors": {}
+    },
+    "GTE": {
+      "rows": 18334,
+      "mapping_recoverable": 18334,
+      "sql_mapping_recoverable": 18334,
+      "errors": {}
+    },
+    "LT": {
+      "rows": 26219,
+      "mapping_recoverable": 26219,
+      "sql_mapping_recoverable": 26219,
+      "errors": {}
+    }
+  },
+  "by_flag": {
+    "no_risk_flag": {
+      "rows": 39865,
+      "mapping_recoverable": 39865,
+      "sql_mapping_recoverable": 39865,
+      "errors": {}
+    },
+    "multiple_filters": {
+      "rows": 10135,
+      "mapping_recoverable": 10135,
+      "sql_mapping_recoverable": 10135,
+      "errors": {}
+    }
+  },
+  "first_failures": [],
+  "mapping_examples": [
+    {
+      "query_hash": "d1a9b722eef204720f84a3ad785e7261d225c371c5dd46ed7e2e087f5c2e67b2",
+      "source_line": 1,
+      "tables": [
+        "bb_bat",
+        "bb_pit",
+        "bb_asp",
+        "bb_btp"
+      ],
+      "table_names": [
+        "batting",
+        "pitching",
+        "awardsshareplayers",
+        "battingpost"
+      ],
+      "join_columns": [
+        "bb_bat.playerid",
+        "bb_pit.playerid",
+        "bb_asp.playerid",
+        "bb_btp.playerid"
+      ],
+      "filter_columns": [
+        "bb_bat.gidp",
+        "bb_pit.era",
+        "bb_pit.stint",
+        "bb_pit.yearid"
+      ],
+      "join_column_tables": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "filter_column_tables": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "fanout_join_columns": [
+        1,
+        2,
+        0,
+        3,
+        0,
+        2
+      ],
+      "counts": [
+        4,
+        6,
+        4,
+        4
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ",
+        "GTE"
+      ],
+      "mapping_recoverable": true
+    },
+    {
+      "query_hash": "04c2e60e60a00fff45253744a27fb20f185b627e28ec7672af9635c625fe78b6",
+      "source_line": 2,
+      "tables": [
+        "bb_fld",
+        "bb_ptp",
+        "bb_fp"
+      ],
+      "table_names": [
+        "fielding",
+        "pitchingpost",
+        "fieldingpost"
+      ],
+      "join_columns": [
+        "bb_fld.playerid",
+        "bb_ptp.playerid",
+        "bb_fp.playerid"
+      ],
+      "filter_columns": [
+        "bb_fp.lgid"
+      ],
+      "join_column_tables": [
+        0,
+        1,
+        2
+      ],
+      "filter_column_tables": [
+        2
+      ],
+      "fanout_join_columns": [
+        0,
+        1,
+        0,
+        2
+      ],
+      "counts": [
+        3,
+        4,
+        3,
+        1
+      ],
+      "flags": [],
+      "predicate_types": [
+        "EQ"
+      ],
+      "mapping_recoverable": true
+    }
+  ],
+  "seconds": 581.5855168139096,
+  "stored_alignment_passed": true,
+  "alignment_passed": true,
+  "bucket_denominators": "by_tables is exclusive; predicate and risk buckets overlap",
+  "mapping_interpretation": "SQL structure recovery and numerically aligned recovery are separate; neither certifies predicate semantics"
+}

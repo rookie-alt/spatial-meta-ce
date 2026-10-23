@@ -1,0 +1,121 @@
+{
+  "scope": "archived_retained_record_arithmetic_only_not_real_P_rerun",
+  "original_top_status": "failed",
+  "original_G1_status": "failed",
+  "formal_ready": false,
+  "strict_certificate": "unknown",
+  "can_retroactively_pass_original_G1": false,
+  "passed": true,
+  "rows": [
+    {
+      "feature": "h",
+      "stage": "small_P_zero_reference",
+      "source": "reports/s8-g1-readonly-p-retained-kappa-20261008/real-proof/h-small_P_zero_reference.json",
+      "source_sha256": "cf6331fab4dd22d8c764ccedc663a0d2f36446bf76032f32f7ddd61b40f4f573",
+      "aggregate_single_consistent": true,
+      "sides": [
+        {
+          "side": "reported",
+          "record_formula_passed": true,
+          "recomputed_tolerance": 5.875197410583497e-12,
+          "stored_tolerance": 5.875197410583496e-12,
+          "stored_residual": 2.5757174171303632e-14
+        },
+        {
+          "side": "reference",
+          "record_formula_passed": true,
+          "recomputed_tolerance": 5.875197410583497e-12,
+          "stored_tolerance": 5.875197410583496e-12,
+          "stored_residual": 2.5757174171303632e-14
+        }
+      ],
+      "actual_residual_independently_certified": false
+    },
+    {
+      "feature": "h",
+      "stage": "full_P_resource",
+      "source": "reports/s8-g1-readonly-p-retained-kappa-20261008/real-proof/h-full_P_resource.json",
+      "source_sha256": "09e288421dd33ea449e63649ae7268dfbc7be012b0722462a2b6d7635e4d624c",
+      "aggregate_single_consistent": true,
+      "sides": [
+        {
+          "side": "reported",
+          "record_formula_passed": true,
+          "recomputed_tolerance": 5.645113035741307e-12,
+          "stored_tolerance": 5.645113035741307e-12,
+          "stored_residual": 1.2567724638756772e-13
+        },
+        {
+          "side": "reference",
+          "record_formula_passed": true,
+          "recomputed_tolerance": 5.645113035741307e-12,
+          "stored_tolerance": 5.645113035741307e-12,
+          "stored_residual": 1.2567724638756772e-13
+        }
+      ],
+      "actual_residual_independently_certified": false
+    },
+    {
+      "feature": "x",
+      "stage": "small_P_zero_reference",
+      "source": "reports/s8-g1-readonly-p-retained-kappa-20261008/real-proof/x-small_P_zero_reference.json",
+      "source_sha256": "d4c3019c44ac3e76dc139a98673c3d764f3bdb43685a78e71c44cacf5ff4595b",
+      "aggregate_single_consistent": true,
+      "sides": [
+        {
+          "side": "reported",
+          "record_formula_passed": true,
+          "recomputed_tolerance": 4.111024054089396e-05,
+          "stored_tolerance": 4.111024054089396e-05,
+          "stored_residual": 7.49297310864705e-08
+        },
+        {
+          "side": "reference",
+          "record_formula_passed": true,
+          "recomputed_tolerance": 4.111024054089396e-05,
+          "stored_tolerance": 4.111024054089396e-05,
+          "stored_residual": 7.49297310864705e-08
+        }
+      ],
+      "actual_residual_independently_certified": false
+    },
+    {
+      "feature": "x",
+      "stage": "full_P_resource",
+      "source": "reports/s8-g1-readonly-p-retained-kappa-20261008/real-proof/x-full_P_resource.json",
+      "source_sha256": "cdc7be173c424dafcc7c3040f68c14f9ad95bb7d47d1c9d965a08f48cfa9fe1e",
+      "aggregate_single_consistent": true,
+      "sides": [
+        {
+          "side": "reported",
+          "record_formula_passed": true,
+          "recomputed_tolerance": 3.718962275025065e-05,
+          "stored_tolerance": 3.718962275025065e-05,
+          "stored_residual": 3.7733121516225765e-08
+        },
+        {
+          "side": "reference",
+          "record_formula_passed": true,
+          "recomputed_tolerance": 3.718962275025065e-05,
+          "stored_tolerance": 3.718962275025065e-05,
+          "stored_residual": 3.7733121516225765e-08
+        }
+      ],
+      "actual_residual_independently_certified": false
+    }
+  ],
+  "bindings": {
+    "proof.json": "362ba68816d9a301a0acb8d56c07a61075087a8ef62d88abb24af43a4e9d4d0c",
+    "worker-proof.json": "6641a96fda1b466b75fb1b1864e2b99ef1528287a57cf0fcfd8bc5ea398dc6f1",
+    "supervisor.json": "3c83dca28fea98f0c4c9d5bf4942e1adcbedb4bf0ad4da3d86aadb8f24f7d884"
+  },
+  "uncertified": [
+    "actual_singular_extrema",
+    "actual_projection_and_target_scales",
+    "actual_retained_residuals",
+    "true_rank",
+    "strict_linear_optimality"
+  ],
+  "opened_numeric_arrays": [],
+  "real_P_rerun": false
+}

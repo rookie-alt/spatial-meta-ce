@@ -1,0 +1,41 @@
+UP018 [*] Unnecessary `float` call (rewrite as a literal)
+  --> reports/s8-verified-arithmetic-feasibility-20261007/test_arithmetic.py:40:15
+   |
+39 |     def test_cutoff_equality_unknown_and_wrong_rank(self):
+40 |         rho = float(1e-12)
+   |               ^^^^^^^^^^^^
+41 |         result = v.certify_rank([[1., 0.], [0., rho]], [[1., 0.], [0., 1.]],
+42 |                                [1., rho], [[1., 0.], [0., 1.]], 1)
+   |
+help: Replace with float literal
+   |
+39 |     def test_cutoff_equality_unknown_and_wrong_rank(self):
+   -         rho = float(1e-12)
+40 +         rho = 1e-12
+41 |         result = v.certify_rank([[1., 0.], [0., rho]], [[1., 0.], [0., 1.]],
+   |
+
+TRY004 Prefer `TypeError` exception for invalid type
+  --> reports/s8-verified-arithmetic-feasibility-20261007/verified_arithmetic.py:28:9
+   |
+26 | def exact(value):
+27 |     if isinstance(value, bool) or not isinstance(value, (Real, F)):
+28 |         raise ValueError('finite real scalar required')
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+29 |     if isinstance(value, (F, int)):
+30 |         return F(value)
+   |
+
+TRY004 Prefer `TypeError` exception for invalid type
+  --> reports/s8-verified-arithmetic-feasibility-20261007/verified_arithmetic.py:88:9
+   |
+86 |         raise ValueError('spectrum sign/order invalid')
+87 |     if isinstance(reported_rank, bool) or not isinstance(reported_rank, int):
+88 |         raise ValueError('integer rank required')
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+89 |     if not 0 <= reported_rank <= k:
+90 |         raise ValueError('rank range invalid')
+   |
+
+Found 3 errors.
+[*] 1 fixable with the `--fix` option.

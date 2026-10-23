@@ -1,0 +1,7 @@
+{
+  "failure": "child_exit",
+  "formal_result": false,
+  "mode": "formal",
+  "status": "failed",
+  "supervisor_record": "/gly/weilin/spatial-meta-ce-meta65-formal-safety-20261010-runs/formal-gpu6-20261011T101117Z/matrix.supervisor.json"
+}

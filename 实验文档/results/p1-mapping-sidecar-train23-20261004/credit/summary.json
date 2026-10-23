@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 47759,
+  "changed_unique_queries": 47759,
+  "unchanged_rows": 2241,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 2241,
+  "changed_fraction": 0.95518,
+  "sql_flags": {
+    "multiple_filters": 19789
+  },
+  "database": "credit",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 265.71692119399086
+}

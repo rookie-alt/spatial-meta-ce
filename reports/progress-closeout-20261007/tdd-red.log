@@ -1,0 +1,432 @@
+test_archive_rejects_aliases_without_modifying_raw_evidence (test_s7_diagnosis.ArchiveOverviewTests.test_archive_rejects_aliases_without_modifying_raw_evidence) ...
+  test_archive_rejects_aliases_without_modifying_raw_evidence (test_s7_diagnosis.ArchiveOverviewTests.test_archive_rejects_aliases_without_modifying_raw_evidence) (link_kind='symlink') ... FAIL
+  test_archive_rejects_aliases_without_modifying_raw_evidence (test_s7_diagnosis.ArchiveOverviewTests.test_archive_rejects_aliases_without_modifying_raw_evidence) (link_kind='hardlink') ... FAIL
+test_descriptive_overview_and_cohort_completeness (test_s7_diagnosis.ArchiveOverviewTests.test_descriptive_overview_and_cohort_completeness) ... ok
+test_empty_and_sparse_cohorts_have_no_invented_median (test_s7_diagnosis.ArchiveOverviewTests.test_empty_and_sparse_cohorts_have_no_invented_median) ... ERROR
+test_endpoint_loader_identity_values_and_missing_rows (test_s7_diagnosis.IndependentS7Tests.test_endpoint_loader_identity_values_and_missing_rows) ... ok
+test_independent_pair_rejects_tampered_statistics (test_s7_diagnosis.IndependentS7Tests.test_independent_pair_rejects_tampered_statistics) ... ok
+test_manual_percentile_and_metric_reference (test_s7_diagnosis.IndependentS7Tests.test_manual_percentile_and_metric_reference) ... ok
+test_composition_small_tail_counts_no_percentile (test_s7_diagnosis.S7Tests.test_composition_small_tail_counts_no_percentile) ... ok
+test_empty_cell_counts_no_missing_queries (test_s7_diagnosis.S7Tests.test_empty_cell_counts_no_missing_queries) ... ok
+test_json_roundtrip_and_nan_forbidden (test_s7_diagnosis.S7Tests.test_json_roundtrip_and_nan_forbidden) ... ok
+test_legalacts_all_and_four_plus_denominators (test_s7_diagnosis.S7Tests.test_legalacts_all_and_four_plus_denominators) ... ok
+test_nonfinite_negative_shape_and_overflow_rejected (test_s7_diagnosis.S7Tests.test_nonfinite_negative_shape_and_overflow_rejected) ... ok
+test_pair_identity_and_duplicate_rejected (test_s7_diagnosis.S7Tests.test_pair_identity_and_duplicate_rejected) ... ok
+test_q95_boundary_neighborhood_tie_invariant (test_s7_diagnosis.S7Tests.test_q95_boundary_neighborhood_tie_invariant) ... ok
+test_sampling_empty_full_and_target_guard (test_s7_diagnosis.S7Tests.test_sampling_empty_full_and_target_guard) ... ok
+test_sampling_identity_only_order_invariant (test_s7_diagnosis.S7Tests.test_sampling_identity_only_order_invariant) ... ok
+test_seen_membership_from_both_roles (test_s7_diagnosis.S7Tests.test_seen_membership_from_both_roles) ... ok
+test_sparse_group_only_counts (test_s7_diagnosis.S7Tests.test_sparse_group_only_counts) ... ok
+test_standard_q_floor_and_raw_error_are_separate (test_s7_diagnosis.S7Tests.test_standard_q_floor_and_raw_error_are_separate) ... ok
+test_tail_masks_partition_and_ties_not_forced_five_percent (test_s7_diagnosis.S7Tests.test_tail_masks_partition_and_ties_not_forced_five_percent) ... ok
+test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) ...
+  test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='sample-plan.json', mutation=0) ... FAIL
+  test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='sample-plan.json', mutation=1) ... FAIL
+  test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='sample-plan.json', mutation=2) ... ERROR
+  test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='generalization.json', mutation=0) ... ERROR
+  test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='generalization.json', mutation=1) ... ERROR
+  test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='generalization.json', mutation=2) ... ERROR
+  test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='generalization.json', mutation=3) ... ERROR
+test_full_independent_verification_and_tampering (test_s7_diagnosis.S7VerificationIntegrationTests.test_full_independent_verification_and_tampering) ... ok
+test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) ...
+  test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=0) ... FAIL
+  test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=1) ... FAIL
+  test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=2) ... FAIL
+  test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=3) ... FAIL
+  test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=4) ... FAIL
+  test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=5) ... FAIL
+test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) ...
+  test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='pool_cardinality_counts') ... FAIL
+  test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='sample_cardinality_counts') ... FAIL
+  test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='pool_four_plus') ... FAIL
+  test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='sample_four_plus') ... FAIL
+  test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='sample_presentations') ... FAIL
+  test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='selected_identity_digest') ... FAIL
+  test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='manifest_hash') ... FAIL
+  test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='selected_rows_sha256') ... FAIL
+  test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='sample_digest') ... FAIL
+  test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='episodes') ... FAIL
+  test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='presentations') ... FAIL
+test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) ...
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='A_mean', mutation=2) ... FAIL
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='A_mean', mutation=3) ... FAIL
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='A_mean', mutation=4) ... FAIL
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='A_mean', mutation=5) ... ERROR
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='A_mean', mutation=6) ... FAIL
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=0) ... FAIL
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=1) ... FAIL
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=2) ... FAIL
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=3) ... FAIL
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=4) ... FAIL
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=5) ... ERROR
+  test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=6) ... FAIL
+
+======================================================================
+ERROR: test_empty_and_sparse_cohorts_have_no_invented_median (test_s7_diagnosis.ArchiveOverviewTests.test_empty_and_sparse_cohorts_have_no_invented_median)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 524, in test_empty_and_sparse_cohorts_have_no_invented_median
+    result = overview(rows, ["accidents"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_archive_report.py", line 54, in overview
+    "median_within_database_q95_unseen_div_seen": statistics.median(
+                                                  ^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/statistics.py", line 565, in median
+    raise StatisticsError("no median for empty data")
+statistics.StatisticsError: no median for empty data
+
+======================================================================
+ERROR: test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='sample-plan.json', mutation=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 380, in test_cohort_sets_must_be_complete_unique_and_source_only
+    verify(root, root, hist, caches, states)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 181, in verify
+    c = caches[db]
+        ~~~~~~^^^^
+KeyError: 'imdb'
+
+======================================================================
+ERROR: test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='generalization.json', mutation=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 380, in test_cohort_sets_must_be_complete_unique_and_source_only
+    verify(root, root, hist, caches, states)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 181, in verify
+    c = caches[db]
+        ~~~~~~^^^^
+KeyError: 'imdb'
+
+======================================================================
+ERROR: test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='generalization.json', mutation=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 380, in test_cohort_sets_must_be_complete_unique_and_source_only
+    verify(root, root, hist, caches, states)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 181, in verify
+    c = caches[db]
+        ~~~~~~^^^^
+KeyError: 'imdb'
+
+======================================================================
+ERROR: test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='generalization.json', mutation=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 380, in test_cohort_sets_must_be_complete_unique_and_source_only
+    verify(root, root, hist, caches, states)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 181, in verify
+    c = caches[db]
+        ~~~~~~^^^^
+KeyError: 'imdb'
+
+======================================================================
+ERROR: test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='generalization.json', mutation=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 380, in test_cohort_sets_must_be_complete_unique_and_source_only
+    verify(root, root, hist, caches, states)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 181, in verify
+    c = caches[db]
+        ~~~~~~^^^^
+KeyError: 'imdb'
+
+======================================================================
+ERROR: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='A_mean', mutation=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 410, in test_validation_endpoint_cache_binding_and_complete_identities
+    verify(root, root, hist, caches, states)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 236, in verify
+    data = arrays(rows)
+           ^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 103, in arrays
+    return {
+           ^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 104, in <dictcomp>
+    key: np.array([r[key] for r in rows], dtype=np.float64)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 104, in <listcomp>
+    key: np.array([r[key] for r in rows], dtype=np.float64)
+                   ~^^^^^
+KeyError: 'A'
+
+======================================================================
+ERROR: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 410, in test_validation_endpoint_cache_binding_and_complete_identities
+    verify(root, root, hist, caches, states)
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 236, in verify
+    data = arrays(rows)
+           ^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 103, in arrays
+    return {
+           ^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 104, in <dictcomp>
+    key: np.array([r[key] for r in rows], dtype=np.float64)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/scripts/s7_independent_verify.py", line 104, in <listcomp>
+    key: np.array([r[key] for r in rows], dtype=np.float64)
+                   ~^^^^^
+KeyError: 'B'
+
+======================================================================
+FAIL: test_archive_rejects_aliases_without_modifying_raw_evidence (test_s7_diagnosis.ArchiveOverviewTests.test_archive_rejects_aliases_without_modifying_raw_evidence) (link_kind='symlink')
+----------------------------------------------------------------------
+statistics.StatisticsError: no median for empty data
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 572, in test_archive_rejects_aliases_without_modifying_raw_evidence
+    with self.assertRaisesRegex(ValueError, "alias|link"):
+AssertionError: "alias|link" does not match "no median for empty data"
+
+======================================================================
+FAIL: test_archive_rejects_aliases_without_modifying_raw_evidence (test_s7_diagnosis.ArchiveOverviewTests.test_archive_rejects_aliases_without_modifying_raw_evidence) (link_kind='hardlink')
+----------------------------------------------------------------------
+statistics.StatisticsError: no median for empty data
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 572, in test_archive_rejects_aliases_without_modifying_raw_evidence
+    with self.assertRaisesRegex(ValueError, "alias|link"):
+AssertionError: "alias|link" does not match "no median for empty data"
+
+======================================================================
+FAIL: test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='sample-plan.json', mutation=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 379, in test_cohort_sets_must_be_complete_unique_and_source_only
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_cohort_sets_must_be_complete_unique_and_source_only (test_s7_diagnosis.S7VerificationIntegrationTests.test_cohort_sets_must_be_complete_unique_and_source_only) (file='sample-plan.json', mutation=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 379, in test_cohort_sets_must_be_complete_unique_and_source_only
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 436, in test_legalacts_report_sets_thresholds_and_composition_are_bound
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 436, in test_legalacts_report_sets_thresholds_and_composition_are_bound
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 436, in test_legalacts_report_sets_thresholds_and_composition_are_bound
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 436, in test_legalacts_report_sets_thresholds_and_composition_are_bound
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 436, in test_legalacts_report_sets_thresholds_and_composition_are_bound
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_legalacts_report_sets_thresholds_and_composition_are_bound (test_s7_diagnosis.S7VerificationIntegrationTests.test_legalacts_report_sets_thresholds_and_composition_are_bound) (mutation=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 436, in test_legalacts_report_sets_thresholds_and_composition_are_bound
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='pool_cardinality_counts')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 459, in test_sample_plan_composition_exposure_and_bindings_are_verified
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='sample_cardinality_counts')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 459, in test_sample_plan_composition_exposure_and_bindings_are_verified
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='pool_four_plus')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 459, in test_sample_plan_composition_exposure_and_bindings_are_verified
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='sample_four_plus')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 459, in test_sample_plan_composition_exposure_and_bindings_are_verified
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='sample_presentations')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 459, in test_sample_plan_composition_exposure_and_bindings_are_verified
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='selected_identity_digest')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 459, in test_sample_plan_composition_exposure_and_bindings_are_verified
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='manifest_hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 459, in test_sample_plan_composition_exposure_and_bindings_are_verified
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='selected_rows_sha256')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 468, in test_sample_plan_composition_exposure_and_bindings_are_verified
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='sample_digest')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 468, in test_sample_plan_composition_exposure_and_bindings_are_verified
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='episodes')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 468, in test_sample_plan_composition_exposure_and_bindings_are_verified
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_sample_plan_composition_exposure_and_bindings_are_verified (test_s7_diagnosis.S7VerificationIntegrationTests.test_sample_plan_composition_exposure_and_bindings_are_verified) (field='presentations')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 468, in test_sample_plan_composition_exposure_and_bindings_are_verified
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='A_mean', mutation=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 409, in test_validation_endpoint_cache_binding_and_complete_identities
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='A_mean', mutation=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 409, in test_validation_endpoint_cache_binding_and_complete_identities
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='A_mean', mutation=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 409, in test_validation_endpoint_cache_binding_and_complete_identities
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='A_mean', mutation=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 409, in test_validation_endpoint_cache_binding_and_complete_identities
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 409, in test_validation_endpoint_cache_binding_and_complete_identities
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 409, in test_validation_endpoint_cache_binding_and_complete_identities
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 409, in test_validation_endpoint_cache_binding_and_complete_identities
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 409, in test_validation_endpoint_cache_binding_and_complete_identities
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=4)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 409, in test_validation_endpoint_cache_binding_and_complete_identities
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_validation_endpoint_cache_binding_and_complete_identities (test_s7_diagnosis.S7VerificationIntegrationTests.test_validation_endpoint_cache_binding_and_complete_identities) (arm='B_mean_tail10', mutation=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s7_diagnosis.py", line 409, in test_validation_endpoint_cache_binding_and_complete_identities
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 24 tests in 2.480s
+
+FAILED (failures=31, errors=8)

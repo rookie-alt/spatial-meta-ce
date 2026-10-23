@@ -1,0 +1,28 @@
+{
+  "threadpools": [
+    {
+      "filepath": "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so",
+      "num_threads": 4,
+      "counter_symbol": "openblas_get_num_threads64_"
+    },
+    {
+      "filepath": "/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/torch/lib/libgomp-a34b3233.so.1",
+      "num_threads": 4,
+      "counter_symbol": "omp_get_max_threads"
+    }
+  ],
+  "RLIMIT_AS": [
+    12884901888,
+    12884901888
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "numpy": "1.26.1",
+  "torch": "2.1.0+cu121",
+  "backend_scope": "historical_version_family_origin_not_old_library_byte_attestation"
+}

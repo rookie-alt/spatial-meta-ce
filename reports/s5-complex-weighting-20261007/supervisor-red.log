@@ -1,0 +1,29 @@
+test_checkpoint_signature_counts_and_gradient_errors (test_s5_supervisor.SupervisorContentTests.test_checkpoint_signature_counts_and_gradient_errors) ... ok
+test_protocol_mass_summary_result_and_decision_errors (test_s5_supervisor.SupervisorContentTests.test_protocol_mass_summary_result_and_decision_errors) ... ok
+test_rehashed_false_decision_rejected_by_output_gate (test_s5_supervisor.SupervisorContentTests.test_rehashed_false_decision_rejected_by_output_gate) ... FAIL
+test_rehashed_false_endpoint_rejected_by_output_gate (test_s5_supervisor.SupervisorContentTests.test_rehashed_false_endpoint_rejected_by_output_gate) ... FAIL
+test_rows_are_recomputed_not_worker_passed (test_s5_supervisor.SupervisorContentTests.test_rows_are_recomputed_not_worker_passed) ... ok
+test_source_and_code_changes_are_rejected (test_s5_supervisor.SupervisorContentTests.test_source_and_code_changes_are_rejected) ... ok
+test_valid_content_recomputes_flow_and_real_decision (test_s5_supervisor.SupervisorContentTests.test_valid_content_recomputes_flow_and_real_decision) ... ok
+test_reads_all_23_pretrain_stores_before_independent_replay (test_s5_supervisor.TrainingFlowReadTests.test_reads_all_23_pretrain_stores_before_independent_replay) ... ok
+
+======================================================================
+FAIL: test_rehashed_false_decision_rejected_by_output_gate (test_s5_supervisor.SupervisorContentTests.test_rehashed_false_decision_rejected_by_output_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/tests/test_s5_supervisor.py", line 222, in test_rehashed_false_decision_rejected_by_output_gate
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_rehashed_false_endpoint_rejected_by_output_gate (test_s5_supervisor.SupervisorContentTests.test_rehashed_false_endpoint_rejected_by_output_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/distracted-wilbur-94b98b/tests/test_s5_supervisor.py", line 233, in test_rehashed_false_endpoint_rejected_by_output_gate
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.640s
+
+FAILED (failures=2)

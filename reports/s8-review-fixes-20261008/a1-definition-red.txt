@@ -1,0 +1,19 @@
+test_generated_report_defines_current_operand_scale_roundoff_ties (test_paired.PairedProtocolTests.test_generated_report_defines_current_operand_scale_roundoff_ties) ... {"database": "synthetic", "run": 0, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+FAIL
+
+======================================================================
+FAIL: test_generated_report_defines_current_operand_scale_roundoff_ties (test_paired.PairedProtocolTests.test_generated_report_defines_current_operand_scale_roundoff_ties)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s8-review-fixes-20261008/tests/test_paired.py", line 110, in test_generated_report_defines_current_operand_scale_roundoff_ties
+    self.assertEqual(definitions['fraction_ties'],
+AssertionError: 'log-Q isclose(rtol=4*float64.eps, atol=0)[30 chars]tion' != 'abs(log(Q_reference)-log(Q_model)) <= 4*f[111 chars]tion'
+- log-Q isclose(rtol=4*float64.eps, atol=0); ties counted in neither fraction
++ abs(log(Q_reference)-log(Q_model)) <= 4*float64.eps*max(abs(clamped_log_model), abs(clamped_log_reference), abs(log_true)); ties counted in neither fraction
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.011s
+
+FAILED (failures=1)

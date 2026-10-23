@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-08",
+  "diagnostic_package_members_match": true,
+  "recovered_proof_files_match_server_inventory": 15,
+  "protected_88_files_unchanged": true,
+  "new40_local_links_checked": [],
+  "all_exist": true,
+  "gate_or_threshold_changed": false,
+  "A_reclassified_as_passed": false,
+  "independent_numeric_recompute": false
+}

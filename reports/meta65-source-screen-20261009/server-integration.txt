@@ -1,0 +1,21 @@
+test_meta65_screen (unittest.loader._FailedTest.test_meta65_screen) ... ERROR
+
+======================================================================
+ERROR: test_meta65_screen (unittest.loader._FailedTest.test_meta65_screen)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_meta65_screen
+Traceback (most recent call last):
+  File "/gly/miniconda3/lib/python3.11/unittest/loader.py", line 407, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/miniconda3/lib/python3.11/unittest/loader.py", line 350, in _get_module_from_name
+    __import__(name)
+  File "/gly/weilin/spatial-meta-ce-meta65-20261009/tests/test_meta65_screen.py", line 14, in <module>
+    from scripts import run_meta65_screen as screen
+ImportError: cannot import name 'run_meta65_screen' from 'scripts' (unknown location)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

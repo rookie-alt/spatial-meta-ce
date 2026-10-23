@@ -1,0 +1,8 @@
+SYNTHETIC ONLY — fullrank weak-direction forgery, not mechanism evidence
+reference theta: [99999999999.99997, 1.5700924586837747e-16]
+reference rank: 2
+reference objective: 1.232595164407831e-31
+forged certificate: {'pass': False, 'solver_verified': False, 'rank_limited': False, 'numerical_rank_limited': False, 'fullrank_numeric_solver': False, 'full_linear_optimality_verified': False, 'full_linear_optimality': False, 'reference_objective': 1.232595164407831e-31, 'reference_objective_pass': False, 'reference_prediction_pass': False, 'reference_pass': False, 'certification_linalg_calls': 2, 'normalized_normal_residual': 9.999999999999998e-12, 'normal_residual_pass': True, 'objective_pass': True, 'metadata_pass': True, 'objective_ls': 1.0, 'objective_adam': 1.0}
+actual certificate: {'pass': True, 'solver_verified': True, 'rank_limited': False, 'numerical_rank_limited': False, 'fullrank_numeric_solver': True, 'full_linear_optimality_verified': False, 'full_linear_optimality': False, 'reference_objective': 1.232595164407831e-31, 'reference_objective_pass': True, 'reference_prediction_pass': True, 'reference_pass': True, 'certification_linalg_calls': 2, 'normalized_normal_residual': 1.1102230246251563e-16, 'normal_residual_pass': True, 'objective_pass': True, 'metadata_pass': True, 'objective_ls': 1.232595164407831e-31, 'objective_adam': 1.0}
+Standard solve_ls + ONE certify_pair: 2 lstsq + 1 SVD = 3 linalg calls
+This log calls certify_pair twice to contrast forged vs actual; it is NOT a production cost measurement.

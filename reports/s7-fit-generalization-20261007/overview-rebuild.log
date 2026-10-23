@@ -1,0 +1,76 @@
+{
+  "purpose": "posthoc-descriptive-ratios-not-formal-endpoint-or-selection",
+  "within_database_ratios": [
+    {
+      "bucket": "all",
+      "arm": "A",
+      "database_count": 23,
+      "median_within_database_q95_unseen_div_seen": 0.9782108317392001
+    },
+    {
+      "bucket": "all",
+      "arm": "B",
+      "database_count": 23,
+      "median_within_database_q95_unseen_div_seen": 0.9942243149270841
+    },
+    {
+      "bucket": "four_plus",
+      "arm": "A",
+      "database_count": 20,
+      "median_within_database_q95_unseen_div_seen": 1.0025386929914848
+    },
+    {
+      "bucket": "four_plus",
+      "arm": "B",
+      "database_count": 20,
+      "median_within_database_q95_unseen_div_seen": 0.9864687059319501
+    }
+  ],
+  "b_vs_a_direction_counts": [
+    {
+      "bucket": "all",
+      "cohort": "seen",
+      "database_count": 23,
+      "improved_databases": 14,
+      "worse_databases": 9,
+      "median_relative_q95_change_b_vs_a": -0.0020198622094179663
+    },
+    {
+      "bucket": "all",
+      "cohort": "unseen",
+      "database_count": 23,
+      "improved_databases": 16,
+      "worse_databases": 7,
+      "median_relative_q95_change_b_vs_a": -0.03105053441852923
+    },
+    {
+      "bucket": "four_plus",
+      "cohort": "seen",
+      "database_count": 20,
+      "improved_databases": 11,
+      "worse_databases": 9,
+      "median_relative_q95_change_b_vs_a": -0.009791647270163795
+    },
+    {
+      "bucket": "four_plus",
+      "cohort": "unseen",
+      "database_count": 20,
+      "improved_databases": 13,
+      "worse_databases": 7,
+      "median_relative_q95_change_b_vs_a": -0.05639004566346312
+    }
+  ],
+  "warning": "Sample sizes/composition vary; ratios are descriptive, not tests of significance or causality.",
+  "source_sha256": {
+    "status.json": "ae2a26d3ecdedc9a4c28fb920122c0a013fe17343e21cfe48eda5a158be61328",
+    "summary.json": "3fcdd07b49fb5cac304cf1b1ce06c06520395d19d7755ec172ef0c1ca5e8a0c0",
+    "protocol.json": "1b2b4f540f5cbb527100ff6d734af4a0f6ce8a663aa80d2fb0ffb660b6c1ca94",
+    "verification.json": "2c40e863edef7c25e399940f74bf6d4eaf9a112b1aba3a1960b3553c3a42386a",
+    "legalacts.json": "0f4908908afe2c5df53c6a30d550d54bd2d7ef6620fe73e0ee3bf6bb0861b04d",
+    "generalization.json": "f0094380e4ba7cff2b6e7e2cf02f9545698981813682ad9c4fe8b2e0e9f9e38a",
+    "sample-plan.json": "0dd4e21b77327f3a4377b2fac00191ba5148feec4684ebad42dc2bcf0b7aa35e"
+  },
+  "seen_pool_unique": 858898,
+  "unseen_pool_unique": 270816,
+  "inference_queries": 94208
+}

@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-08",
+  "branch": "feat/s8-g1-engineering-v2-20261007",
+  "preparation_HEAD": "1f411db7b91115d8b9aa1a91fc05446e0b1daa1f",
+  "real_P_evidence_commit": "ec784f0a31d23e1aee2d86c3d9763e1f9667cf29",
+  "worktree_clean_after_real_P_evidence_commit": true,
+  "pushed_this_task": false,
+  "merged_main": false,
+  "real_P_read": true,
+  "single_real_P_entrypoint_attempts": 1,
+  "A_v2_outcome": "failed_at_x_small_retained_subspace_checks",
+  "B_smoke_started": false,
+  "formal_S8_started": false
+}

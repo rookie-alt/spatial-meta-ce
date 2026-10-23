@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "entrypoint": "scripts/verify_s8_readonly_p.py",
+  "evidence_kind": "real_saved_P",
+  "purpose": "readonly_saved_P_resource_engineering_not_G1",
+  "input_root": "/gly/weilin/spatial-meta-ce/runs/s8-g1-smoke-20261007",
+  "expected_output_root": "/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-kappa-proof-20261008",
+  "expected_package_root": "/gly/weilin/spatial-meta-ce/runs/s8-g1-readonly-p-kappa-code-20261008",
+  "expected_runtime": {
+    "numpy": "1.26.1",
+    "torch": "2.1.0+cu121",
+    "blas_family": "openblas64",
+    "openmp_family": "libgomp",
+    "interpreter_prefix": "/gly/weilin/PRICE-master/venv"
+  },
+  "files": {
+    "P-h.npy": {
+      "sha256": "62fa49d49f75b19c28df0794f6f6635c2a3573e89b4bd84289d8625f16d05c0b",
+      "shape": [
+        19456,
+        64
+      ],
+      "dtype": "float32"
+    },
+    "P-x.npy": {
+      "sha256": "2ec050cfb3ca6a19dabd8cdac9961aa2c32e21e50311ae74f01d8c24eef7f7a3",
+      "shape": [
+        19456,
+        774
+      ],
+      "dtype": "float32"
+    },
+    "P-label.npy": {
+      "sha256": "700b783c465168ea920beec345c5140c6eb5fafd5b02054cafa0c06236d8b4b6",
+      "shape": [
+        19456
+      ],
+      "dtype": "float32"
+    },
+    "P-pg_log.npy": {
+      "sha256": "ae9d4d4e3cafa79fd3878080ba5464b4f57b60a78f5d552773d58033fbf5cbc3",
+      "shape": [
+        19456
+      ],
+      "dtype": "float32"
+    },
+    "status.json": {
+      "sha256": "45870e69134db4e2f6238c8c918eb0f230f0529ea793c7a096a123851d21274c"
+    },
+    "contract.json": {
+      "sha256": "19a7bbe126e74c0074e1c127833826bab2a681ac82247c60d8bbef82008f8897"
+    },
+    "panels.json": {
+      "sha256": "92dbd360840f0ebbfdc87af2524104627655ec5f89a6363a67c4b0357069aa8a"
+    },
+    "preflight.json": {
+      "sha256": "2abc016bc03ebeb8e7824c3f2440bd8a26ed73b25704a71f136d247255b8d429"
+    }
+  },
+  "panel": {
+    "train_databases": [
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "financial",
+      "fnhk",
+      "hepatitis",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "rows_per_database": 1024,
+    "small_rows_per_database": 64,
+    "panel_identity_digest": "07656938be67b52d5d417028414f0045765397e3025623be67ff8316f014983d",
+    "source_binding_sha256": "6a0a121dce6d84a167f0bb672f2ee80b1de6f61099b654426975e5b15d9e8fe0",
+    "original_protocol_sha256": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+    "identity_scope": "historical_sha_bound_panel_attestation"
+  },
+  "normalizer_scope": "P_only_recomputed_per_panel",
+  "numerical_policy": "s8-g1-resource-engineering-v2",
+  "budget": {
+    "threads": 4,
+    "wall_seconds": 900,
+    "address_space_bytes": 12884901888,
+    "rss_stop_bytes": 12884901888,
+    "cuda_visible_devices": "",
+    "attempts": 1
+  },
+  "source_sha256": {
+    "scripts/verify_s8_readonly_p.py": "bba63497b9da593827f1f20c60a7766aacc30d470561b9334280396d929f61bf",
+    "spatial_meta_ce/__init__.py": "21e38374a0bde55bcfa0fbe1d6c890cd4b3cefb9d5606f00d10a141683f332bd",
+    "spatial_meta_ce/s8_probe.py": "7c7847ce1122f0cf265541781812f4ed8cff2f671c9dc42c8e2abda71e48cfad",
+    "实验文档/27-S8G1运行器与真实smoke协议.md": "4dc59409929a09f9bc75b5179205c06a9a46c2dc30740695c14671372de41a0f",
+    "实验文档/34-S8G1工程验收v2批准协议.md": "6b6ef2dddaa79f02673122ae4104000ec94a41f7984737af127759eceb326076",
+    "reports/s8-g1-readonly-p-20261007/proof.schema.json": "8b375ff815463436736bb55fa32984fbd2f8d3ec7dabb55e455d65c7810665cb"
+  },
+  "identity_limitations": [
+    "no_fresh_query_hash_row_mapping_validation",
+    "no_historical_normalizer_authentication",
+    "no_source_SQL_or_selectivity_validation"
+  ],
+  "historical_evidence_sha256": {
+    "reports/s8-g1-smoke-20261007/solver-diagnosis.json": "2a973dd205b2a71b1748c8775b4057be7ca0bf92e05b67b346f87e6699759a68",
+    "reports/s8-g1-smoke-20261007/server-controller.json": "4d59f2f2eeb7a6a019147522d94eae71b3e767a7574ded4907c66c0e8e94e0cb",
+    "reports/s8-g1-smoke-20261007/partial-stage-verification.json": "ed7af352e72f90e434b7e7818a78f1faa8e2db58312065655dfdbb8b4d05461d",
+    "reports/s8-g1-smoke-20261007/deployment-manifest.json": "ab8991f4c8297e4fc74dbd2fc0dbeaa5cc09c38d1a5c80dfb4c63984a3ccc9e9",
+    "reports/s8-g1-smoke-20261007/thread-backend-precheck.json": "cece4fdf25f6acc72906b4e32c96f522465232e60fdc5c39493ec63fbd5c861f"
+  },
+  "scientific_status": {
+    "original_G1": "failed",
+    "formal_ready": false,
+    "strict_certificate": "unknown"
+  },
+  "not_authorized": [
+    "real_P_diagnostic_execution",
+    "B_smoke",
+    "formal_training",
+    "gate_or_threshold_changes"
+  ],
+  "prepared_on": "2026-10-08",
+  "revision": "retained-kappa-real-condition-number-20261008",
+  "contract_relative_path": "reports/s8-g1-readonly-p-retained-kappa-20261008/execution-contract.json",
+  "handshake_path_policy": "authenticated_parent_cwd_frozen_path_and_SHA_pipe_ticket",
+  "execution_authorization": "new_real_P_execution_not_authorized",
+  "historical_failed_A_evidence_sha256": {
+    "实验文档/37-S8G1A单次只读核验握手失败记录.md": "a81973cb50aa6320b61c9af1569a5cb7597dee144870e5c81a87af8af652ff66",
+    "reports/s8-g1-readonly-p-execution-20261008/real-proof/proof.json": "99d088474e0d35a3f5fb3510bc0f09c6cf1d27ae08dd56545a4baf212925a6da",
+    "reports/s8-g1-readonly-p-execution-20261008/independent-record-review.md": "99dc5fee60ca2e0a576bc2ce675748b7b9718c968ccaaf928aba0c4092da47cf"
+  },
+  "diagnostic_only": true,
+  "diagnostic_purpose": "explain_x_small_1216_retained_subspace_failure",
+  "diagnostic_gate_effect": "record_only_no_gate_change",
+  "prior_failed_A_evidence_sha256": {
+    "reports/s8-g1-readonly-p-handshake-v2-real-20261008/real-proof/proof.json": "1719d7472ea0cfcceb9a10e463846f07228f52885dc9c8705ec23b40e81cb5a3",
+    "reports/s8-g1-readonly-p-handshake-v2-real-20261008/real-proof/x-small_P_zero_reference.json": "db2efe4d43d301467089693d96e94f70e3a28b5bb43453d8b63e8abb3c5cf49f",
+    "reports/s8-g1-readonly-p-handshake-v2-real-20261008/independent-record-review.md": "b139c7082f430161a2f5d3bda52f263166946b665190931655706a21698e9ecc"
+  },
+  "real_P_execution_not_authorized": true,
+  "retained_projection_bound": "max(engineering_floor, 8*eps*(sigma_1/sigma_r)*scale)",
+  "retained_projection_scope": "engineering_numerical_consistency_only_not_scientific",
+  "prior_packages": {
+    "handshake_v2": "128d1b3c164812152e43bf13e712149db897a9e347903d7ff0cd5c462b456fb2",
+    "diagnostic": "ea075b85475481ae16ecac9290503620e00685b741c1422ff0339dcc34f84949",
+    "tolerance": "e9fe330f0f90eae9d98d8f9d0cf6164b1c7bd3eb54d4cb34a6450570f237e1cd"
+  },
+  "input_files_sha_preserved": {
+    "P-h.npy": {
+      "sha256": "62fa49d49f75b19c28df0794f6f6635c2a3573e89b4bd84289d8625f16d05c0b",
+      "shape": [
+        19456,
+        64
+      ],
+      "dtype": "float32"
+    },
+    "P-x.npy": {
+      "sha256": "2ec050cfb3ca6a19dabd8cdac9961aa2c32e21e50311ae74f01d8c24eef7f7a3",
+      "shape": [
+        19456,
+        774
+      ],
+      "dtype": "float32"
+    },
+    "P-label.npy": {
+      "sha256": "700b783c465168ea920beec345c5140c6eb5fafd5b02054cafa0c06236d8b4b6",
+      "shape": [
+        19456
+      ],
+      "dtype": "float32"
+    },
+    "P-pg_log.npy": {
+      "sha256": "ae9d4d4e3cafa79fd3878080ba5464b4f57b60a78f5d552773d58033fbf5cbc3",
+      "shape": [
+        19456
+      ],
+      "dtype": "float32"
+    },
+    "status.json": {
+      "sha256": "45870e69134db4e2f6238c8c918eb0f230f0529ea793c7a096a123851d21274c"
+    },
+    "contract.json": {
+      "sha256": "19a7bbe126e74c0074e1c127833826bab2a681ac82247c60d8bbef82008f8897"
+    },
+    "panels.json": {
+      "sha256": "92dbd360840f0ebbfdc87af2524104627655ec5f89a6363a67c4b0357069aa8a"
+    },
+    "preflight.json": {
+      "sha256": "2abc016bc03ebeb8e7824c3f2440bd8a26ed73b25704a71f136d247255b8d429"
+    }
+  },
+  "retained_projection_kappa": "real_retained_condition_number_sigma_1_over_sigma_r"
+}

@@ -1,0 +1,43 @@
+{
+  "budget": {
+    "output_bytes": 1073741824.0,
+    "poll_seconds": 1.0,
+    "rss_bytes": 12884901888.0,
+    "total_seconds": 900.0,
+    "vram_bytes": 8589934592.0
+  },
+  "cleanup_verified": true,
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-code/scripts/meta65_scope_runner.py",
+    "--worker",
+    "--execute",
+    "--config",
+    "/gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-code/configs/meta65_scope.json",
+    "--data-config",
+    "/gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-code/configs/meta65_server_data.json",
+    "--out",
+    "/gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-runs/cpu-preflight-20261017",
+    "--mode",
+    "cpu_preflight"
+  ],
+  "elapsed": 543.7221979559399,
+  "failure": null,
+  "formal_result": false,
+  "gpu_uuid": null,
+  "mode": "cpu_preflight",
+  "output": "/gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-runs/cpu-preflight-20261017",
+  "outputbytes": 159607431,
+  "peak_rss_bytes": 1957085184,
+  "peak_vram_bytes": 0,
+  "pgid": 73934,
+  "pid": 73934,
+  "received_signals": [],
+  "returncode": 0,
+  "schema": 1,
+  "signals": [],
+  "status": "preflight_completed",
+  "supervisor_json": "/gly/weilin/spatial-meta-ce-meta65-scope-safety-20261017-runs/cpu-preflight-20261017.supervisor.json",
+  "test_only": false
+}

@@ -1,0 +1,10 @@
+test_complete_consistent_records_preserve_strict_unknown (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_complete_consistent_records_preserve_strict_unknown) ... ok
+test_malformed_or_nonfinite_numbers_and_intervals_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_malformed_or_nonfinite_numbers_and_intervals_rejected) ... ok
+test_missing_existing_diagnostic_fields_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_missing_existing_diagnostic_fields_is_rejected) ... ok
+test_true_flags_cannot_contradict_recorded_numeric_gates (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_true_flags_cannot_contradict_recorded_numeric_gates) ... ok
+test_wrong_stage_shape_dtype_or_scope_is_rejected (test_s8_numeric_record_integrity_v2.NumericRecordIntegrityTests.test_wrong_stage_shape_dtype_or_scope_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.046s
+
+OK

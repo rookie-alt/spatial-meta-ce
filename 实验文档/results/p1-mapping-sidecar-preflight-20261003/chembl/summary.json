@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 47405,
+  "changed_unique_queries": 47405,
+  "unchanged_rows": 2595,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 2595,
+  "changed_fraction": 0.9481,
+  "sql_flags": {
+    "multiple_filters": 12673
+  },
+  "database": "chembl",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 298.1049041659571
+}

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "experiment": "meta65-source-holdout-20261018",
+  "status": "preflight_verified",
+  "mode": "cpu_preflight",
+  "formal_result": false,
+  "cells_verified": 10,
+  "all_metrics_verified": true,
+  "engineering_verified": true,
+  "selection_performed": false,
+  "target_read": false,
+  "metric": "per-run standard unique-query Q50/Q95; groups never pooled"
+}

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "experiment": "meta65-source-screen-20261009",
+  "status": "failed",
+  "arms": {
+    "A_all5_head3": "completed",
+    "B_head3_head3": "completed",
+    "C_last3_last3": "failed"
+  },
+  "elapsed_seconds": 5617.299410341075,
+  "updated_at": "2026-10-09T13:13:33.479491+00:00",
+  "active_arm": "C_last3_last3",
+  "failure_reason": "supervisor_timeout",
+  "decision_valid": false,
+  "supervisor_record": "/gly/weilin/spatial-meta-ce-meta65-20261009-frozen/runs/meta65-source-screen-20261009.supervisor.json"
+}

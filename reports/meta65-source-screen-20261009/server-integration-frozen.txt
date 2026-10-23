@@ -1,0 +1,56 @@
+test_actual_config_and_protocol_hash (test_meta65_screen.FrozenConfigTests.test_actual_config_and_protocol_hash) ... ok
+test_data_allows_only_roots_to_change (test_meta65_screen.FrozenConfigTests.test_data_allows_only_roots_to_change) ... ok
+test_dry_run_needs_no_dependencies_cache_or_output (test_meta65_screen.FrozenConfigTests.test_dry_run_needs_no_dependencies_cache_or_output) ... ok
+test_duplicate_json_keys_rejected (test_meta65_screen.FrozenConfigTests.test_duplicate_json_keys_rejected) ... ok
+test_every_frozen_field_and_unknown_fields_are_rejected (test_meta65_screen.FrozenConfigTests.test_every_frozen_field_and_unknown_fields_are_rejected) ... ok
+test_protocol_bytes_not_only_config_are_authenticated (test_meta65_screen.FrozenConfigTests.test_protocol_bytes_not_only_config_are_authenticated) ... ok
+test_arithmetic_macro_not_geometric_pooled_or_log_quantile (test_meta65_screen.GateTests.test_arithmetic_macro_not_geometric_pooled_or_log_quantile) ... ok
+test_exact_improvement_boundary_and_no_candidate (test_meta65_screen.GateTests.test_exact_improvement_boundary_and_no_candidate) ... ok
+test_incomplete_nonfinite_duplicate_and_unpaired_rows_fail (test_meta65_screen.GateTests.test_incomplete_nonfinite_duplicate_and_unpaired_rows_fail) ... ok
+test_regression_gate_is_per_database_k_and_both_metrics (test_meta65_screen.GateTests.test_regression_gate_is_per_database_k_and_both_metrics) ... ok
+test_tie_break_prefers_last_layer (test_meta65_screen.GateTests.test_tie_break_prefers_last_layer) ... ok
+test_endpoint_uses_fresh_weights_and_standard_metrics (test_meta65_screen.InstanceSmokeTests.test_endpoint_uses_fresh_weights_and_standard_metrics) ... ok
+test_postcheck_and_final_deadline_failure_never_publish_decision (test_meta65_screen.InstanceSmokeTests.test_postcheck_and_final_deadline_failure_never_publish_decision) ... ok
+test_real_feature_store_duplicate_conflicts_rejected (test_meta65_screen.InstanceSmokeTests.test_real_feature_store_duplicate_conflicts_rejected) ... ok
+test_source_rehashed_after_training_failure_without_retry (test_meta65_screen.InstanceSmokeTests.test_source_rehashed_after_training_failure_without_retry) ... ok
+test_input_pairing_not_backward_cost_equality (test_meta65_screen.PairingTests.test_input_pairing_not_backward_cost_equality) ... ok
+test_existing_output_even_empty_rejected (test_meta65_screen.SafetyAndFailureTests.test_existing_output_even_empty_rejected) ... ok
+test_failure_is_recorded_once_and_retained (test_meta65_screen.SafetyAndFailureTests.test_failure_is_recorded_once_and_retained) ... ok
+test_symlink_and_protected_paths_rejected (test_meta65_screen.SafetyAndFailureTests.test_symlink_and_protected_paths_rejected) ... ok
+test_total_deadline_not_per_arm (test_meta65_screen.SafetyAndFailureTests.test_total_deadline_not_per_arm) ... ok
+test_target_and_duplicate_hash_and_small_pool_rejected (test_meta65_screen.SupportPlanTests.test_target_and_duplicate_hash_and_small_pool_rejected) ... ok
+test_unique_nested_shared_query_and_reproducible (test_meta65_screen.SupportPlanTests.test_unique_nested_shared_query_and_reproducible) ... ok
+test_cli_does_not_bypass_runner_config_gate (test_meta65_supervised.CliTests.test_cli_does_not_bypass_runner_config_gate) ... ok
+test_cli_rejects_short_budget_even_if_loader_is_mocked (test_meta65_supervised.CliTests.test_cli_rejects_short_budget_even_if_loader_is_mocked) ... ok
+test_cli_uses_only_fixed_runner_and_frozen_deadline (test_meta65_supervised.CliTests.test_cli_uses_only_fixed_runner_and_frozen_deadline) ... ok
+test_no_short_budget_or_arbitrary_child_cli_flags (test_meta65_supervised.CliTests.test_no_short_budget_or_arbitrary_child_cli_flags) ... ok
+test_completed_decision_is_also_invalidated_on_nonzero_exit (test_meta65_supervised.SupervisedTests.test_completed_decision_is_also_invalidated_on_nonzero_exit) ... ok
+test_existing_output_and_companions_are_rejected_before_spawn (test_meta65_supervised.SupervisedTests.test_existing_output_and_companions_are_rejected_before_spawn) ... ok
+test_exit_zero_records_completed_without_precreating_runner_output (test_meta65_supervised.SupervisedTests.test_exit_zero_records_completed_without_precreating_runner_output) ... ok
+test_failed_child_invalidates_decision_and_updates_existing_status (test_meta65_supervised.SupervisedTests.test_failed_child_invalidates_decision_and_updates_existing_status) ... ok
+test_ignoring_term_forces_kill_without_killing_unrelated_process (test_meta65_supervised.SupervisedTests.test_ignoring_term_forces_kill_without_killing_unrelated_process) ... ok
+test_invalid_helper_limits_are_rejected (test_meta65_supervised.SupervisedTests.test_invalid_helper_limits_are_rejected) ... ok
+test_nonzero_is_failed_and_preserves_exit_code (test_meta65_supervised.SupervisedTests.test_nonzero_is_failed_and_preserves_exit_code) ... ok
+test_spawn_failure_leaves_failed_record_not_running (test_meta65_supervised.SupervisedTests.test_spawn_failure_leaves_failed_record_not_running) ... ok
+test_spawned_descendant_is_terminated_with_child_group (test_meta65_supervised.SupervisedTests.test_spawned_descendant_is_terminated_with_child_group) ... ok
+test_start_new_session_and_direct_argument_vector (test_meta65_supervised.SupervisedTests.test_start_new_session_and_direct_argument_vector) ... ok
+test_symlink_ancestor_and_price_cache_outputs_are_rejected (test_meta65_supervised.SupervisedTests.test_symlink_ancestor_and_price_cache_outputs_are_rejected) ... ok
+test_symlink_companion_is_rejected (test_meta65_supervised.SupervisedTests.test_symlink_companion_is_rejected) ... ok
+test_timeout_terms_owned_group_and_returns_124 (test_meta65_supervised.SupervisedTests.test_timeout_terms_owned_group_and_returns_124) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 3.083s
+
+OK
+test_last_episode_restarts_and_query_labels_do_not_affect_support_update (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_episode_restarts_and_query_labels_do_not_affect_support_update) ... ok
+test_last_evaluation_trajectory_matches_independent_adaptation (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_evaluation_trajectory_matches_independent_adaptation) ... ok
+test_last_inner_loop_keeps_encoder_outer_gradient (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_inner_loop_keeps_encoder_outer_gradient) ... ok
+test_last_scope_requires_linear_output_head (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_scope_requires_linear_output_head) ... ok
+test_last_updates_only_final_linear_without_mutating_model (test_last_layer_adaptation.LastLayerAdaptationTests.test_last_updates_only_final_linear_without_mutating_model) ... ok
+test_sum_parameter_counts (test_last_layer_adaptation.LastLayerAdaptationTests.test_sum_parameter_counts) ... ok
+test_unknown_scope_rejected (test_last_layer_adaptation.LastLayerAdaptationTests.test_unknown_scope_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.104s
+
+OK

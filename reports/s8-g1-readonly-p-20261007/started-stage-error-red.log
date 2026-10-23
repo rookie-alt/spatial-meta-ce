@@ -1,0 +1,17 @@
+test_solver_exception_marks_started_stage_failed_not_not_run (test_s8_readonly_p.ReadOnlyPTests.test_solver_exception_marks_started_stage_failed_not_not_run) ... FAIL
+
+======================================================================
+FAIL: test_solver_exception_marks_started_stage_failed_not_not_run (test_s8_readonly_p.ReadOnlyPTests.test_solver_exception_marks_started_stage_failed_not_not_run)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_readonly_p.py", line 210, in test_solver_exception_marks_started_stage_failed_not_not_run
+    self.assertEqual(row['status'], 'failed')
+AssertionError: 'not_run' != 'failed'
+- not_run
++ failed
+
+
+----------------------------------------------------------------------
+Ran 1 test in 1.308s
+
+FAILED (failures=1)

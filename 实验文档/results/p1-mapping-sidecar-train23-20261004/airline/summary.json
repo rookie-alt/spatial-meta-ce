@@ -1,0 +1,18 @@
+{
+  "rows": 50000,
+  "unique_queries": 50000,
+  "duplicate_rows": 0,
+  "changed_rows": 47002,
+  "changed_unique_queries": 47002,
+  "unchanged_rows": 2998,
+  "unchangeable_rows": 0,
+  "random_unchanged_rows": 2998,
+  "changed_fraction": 0.94004,
+  "sql_flags": {
+    "multiple_filters": 13477
+  },
+  "database": "airline",
+  "roundtrip_passed": true,
+  "inputs_unchanged": true,
+  "seconds": 266.12162801390514
+}

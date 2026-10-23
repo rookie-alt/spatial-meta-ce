@@ -1,0 +1,96 @@
+test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) ...
+  test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='threads') ... FAIL
+  test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='batch_size') ... FAIL
+  test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='probe_fit_per_database') ... FAIL
+  test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='probe_adam_steps') ... FAIL
+  test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='database') ... FAIL
+  test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='hash') ... FAIL
+
+======================================================================
+FAIL: test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='threads')
+----------------------------------------------------------------------
+ValueError: smoke split mismatch: train
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 161, in test_resource_bindings_and_H_event_metadata
+    self.reject('resource|binding')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 131, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "resource|binding" does not match "smoke split mismatch: train"
+
+======================================================================
+FAIL: test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='batch_size')
+----------------------------------------------------------------------
+ValueError: smoke split mismatch: train
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 161, in test_resource_bindings_and_H_event_metadata
+    self.reject('resource|binding')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 131, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "resource|binding" does not match "smoke split mismatch: train"
+
+======================================================================
+FAIL: test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='probe_fit_per_database')
+----------------------------------------------------------------------
+ValueError: smoke split mismatch: train
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 161, in test_resource_bindings_and_H_event_metadata
+    self.reject('resource|binding')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 131, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "resource|binding" does not match "smoke split mismatch: train"
+
+======================================================================
+FAIL: test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='probe_adam_steps')
+----------------------------------------------------------------------
+ValueError: smoke split mismatch: train
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 161, in test_resource_bindings_and_H_event_metadata
+    self.reject('resource|binding')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 131, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "resource|binding" does not match "smoke split mismatch: train"
+
+======================================================================
+FAIL: test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='database')
+----------------------------------------------------------------------
+ValueError: smoke split mismatch: train
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 168, in test_resource_bindings_and_H_event_metadata
+    self.reject('event')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 131, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "event" does not match "smoke split mismatch: train"
+
+======================================================================
+FAIL: test_resource_bindings_and_H_event_metadata (test_s8_independent.IndependentSmokeTests.test_resource_bindings_and_H_event_metadata) (key='hash')
+----------------------------------------------------------------------
+ValueError: smoke split mismatch: train
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 168, in test_resource_bindings_and_H_event_metadata
+    self.reject('event')
+  File "/private/tmp/spatial-meta-ce-s7-diagnosis-20261007/tests/test_s8_independent.py", line 131, in reject
+    with self.assertRaisesRegex(ValueError, pattern or '.'):
+AssertionError: "event" does not match "smoke split mismatch: train"
+
+----------------------------------------------------------------------
+Ran 1 test in 1.078s
+
+FAILED (failures=6)

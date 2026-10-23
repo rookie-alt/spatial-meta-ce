@@ -1,0 +1,2116 @@
+{
+  "schema": 1,
+  "purpose": "source-validation-only adaptation strategy selection (our model)",
+  "selection_rule": "minimum macro log-Q95 averaged over checkpoints; ties (<1e-4): fewer steps, head before all, smaller lr, fallback off",
+  "grid": {
+    "inner_steps": [
+      0,
+      1,
+      3,
+      5,
+      10
+    ],
+    "inner_lr": [
+      0.0001,
+      0.0003,
+      0.001,
+      0.003,
+      0.01
+    ],
+    "scope": [
+      "head",
+      "all"
+    ],
+    "fallback": [
+      false,
+      true
+    ]
+  },
+  "fallback_rule": "2-fold split of support; keep adapted params only if summed held-out support loss < unadapted; otherwise zero-shot",
+  "validation_databases": [
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "target_databases_NOT_read": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "checkpoints": [
+    "runs/formal-fomaml-20260925-seed42/best.pt",
+    "runs/formal-fomaml-20260925-seed43/best.pt",
+    "runs/formal-fomaml-20260927-seed44/best.pt"
+  ],
+  "plan_seed": 2718,
+  "fold_seed": 31,
+  "support_sizes": [
+    5,
+    10,
+    20,
+    50,
+    100
+  ],
+  "runs": 5,
+  "episodes": 75,
+  "device": "cuda",
+  "zero_shot": {
+    "inner_steps": 0,
+    "inner_lr": null,
+    "scope": null,
+    "fallback": false,
+    "macro_log_q95": 2.703415265468175,
+    "per_checkpoint": {
+      "runs/formal-fomaml-20260925-seed42/best.pt": 2.7205585495619653,
+      "runs/formal-fomaml-20260925-seed43/best.pt": 2.682023661950497,
+      "runs/formal-fomaml-20260927-seed44/best.pt": 2.7076635848920634
+    },
+    "per_db": {
+      "chembl": 4.189767239593249,
+      "legalacts": 2.3849851298793556,
+      "telstra": 1.5354934269319214
+    },
+    "per_k": {
+      "5": 2.4807857387790464,
+      "10": 2.720691183384358,
+      "20": 2.6472869619415005,
+      "50": 2.6830452480550453,
+      "100": 2.985267195180927
+    }
+  },
+  "current_default": {
+    "inner_steps": 5,
+    "inner_lr": 0.001,
+    "scope": "all",
+    "fallback": false,
+    "macro_log_q95": 2.6554368400183903,
+    "per_checkpoint": {
+      "runs/formal-fomaml-20260925-seed42/best.pt": 2.6624642880049265,
+      "runs/formal-fomaml-20260925-seed43/best.pt": 2.662041029060926,
+      "runs/formal-fomaml-20260927-seed44/best.pt": 2.641805202989318
+    },
+    "per_db": {
+      "chembl": 4.110050769360716,
+      "legalacts": 2.35122750511968,
+      "telstra": 1.5050322455747764
+    },
+    "per_k": {
+      "5": 2.4745696263648274,
+      "10": 2.6333083018192514,
+      "20": 2.6689140656875425,
+      "50": 2.6076094455128893,
+      "100": 2.8927827607074437
+    }
+  },
+  "chosen": {
+    "inner_steps": 5,
+    "inner_lr": 0.001,
+    "scope": "all",
+    "fallback": false,
+    "macro_log_q95": 2.6554368400183903,
+    "per_checkpoint": {
+      "runs/formal-fomaml-20260925-seed42/best.pt": 2.6624642880049265,
+      "runs/formal-fomaml-20260925-seed43/best.pt": 2.662041029060926,
+      "runs/formal-fomaml-20260927-seed44/best.pt": 2.641805202989318
+    },
+    "per_db": {
+      "chembl": 4.110050769360716,
+      "legalacts": 2.35122750511968,
+      "telstra": 1.5050322455747764
+    },
+    "per_k": {
+      "5": 2.4745696263648274,
+      "10": 2.6333083018192514,
+      "20": 2.6689140656875425,
+      "50": 2.6076094455128893,
+      "100": 2.8927827607074437
+    }
+  },
+  "trials": [
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.001,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.6554368400183903,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6624642880049265,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.662041029060926,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.641805202989318
+      },
+      "per_db": {
+        "chembl": 4.110050769360716,
+        "legalacts": 2.35122750511968,
+        "telstra": 1.5050322455747764
+      },
+      "per_k": {
+        "5": 2.4745696263648274,
+        "10": 2.6333083018192514,
+        "20": 2.6689140656875425,
+        "50": 2.6076094455128893,
+        "100": 2.8927827607074437
+      }
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.001,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.6557107317981044,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.662706044283194,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6618451293918604,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6425810217192596
+      },
+      "per_db": {
+        "chembl": 4.110754161632689,
+        "legalacts": 2.3521845126516907,
+        "telstra": 1.5041935211099364
+      },
+      "per_k": {
+        "5": 2.474554953436992,
+        "10": 2.63272402670368,
+        "20": 2.668463565009778,
+        "50": 2.607793587708963,
+        "100": 2.8950175261311126
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.003,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.6570402564264355,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.663095772724954,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6578065858434536,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6502184107108984
+      },
+      "per_db": {
+        "chembl": 4.110376049176208,
+        "legalacts": 2.362526872531752,
+        "telstra": 1.4982178475713461
+      },
+      "per_k": {
+        "5": 2.5053442964316823,
+        "10": 2.6214901681915626,
+        "20": 2.6523134948536007,
+        "50": 2.598940712589971,
+        "100": 2.9071126100653615
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.003,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.6576577126073535,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6625846497565107,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.661261177098653,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6491273109668962
+      },
+      "per_db": {
+        "chembl": 4.108929881656723,
+        "legalacts": 2.364646444548938,
+        "telstra": 1.4993968116163998
+      },
+      "per_k": {
+        "5": 2.5093167592098586,
+        "10": 2.6227778368269665,
+        "20": 2.655266000562797,
+        "50": 2.596758916124354,
+        "100": 2.9041690503127913
+      }
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.001,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.659736892191745,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.663352517786706,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6561907158084,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6596674429801284
+      },
+      "per_db": {
+        "chembl": 4.123106831821151,
+        "legalacts": 2.3540865794445476,
+        "telstra": 1.5020172653095338
+      },
+      "per_k": {
+        "5": 2.4708894008021898,
+        "10": 2.6444503017165837,
+        "20": 2.6493223808104833,
+        "50": 2.614208934888838,
+        "100": 2.919813442740628
+      }
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.001,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.6598246510886425,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.66383039185316,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6555355172260144,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.660108044186754
+      },
+      "per_db": {
+        "chembl": 4.124130161502332,
+        "legalacts": 2.3537734437208533,
+        "telstra": 1.5015703480427434
+      },
+      "per_k": {
+        "5": 2.4704911303276473,
+        "10": 2.6455641628128816,
+        "20": 2.647082865168389,
+        "50": 2.61438522476514,
+        "100": 2.921599872369158
+      }
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.0003,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.6604723611229475,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6648414703719268,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6545560882001498,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6620195247967664
+      },
+      "per_db": {
+        "chembl": 4.1261286136266415,
+        "legalacts": 2.3531257209059597,
+        "telstra": 1.5021627488362408
+      },
+      "per_k": {
+        "5": 2.4684836829612604,
+        "10": 2.648429803623826,
+        "20": 2.6452608227973538,
+        "50": 2.6149305760997588,
+        "100": 2.925256920132536
+      }
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.0003,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.660510585038053,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6644526148793575,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6553930703901445,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6616860698446567
+      },
+      "per_db": {
+        "chembl": 4.125675269611358,
+        "legalacts": 2.353254131411186,
+        "telstra": 1.5026023540916127
+      },
+      "per_k": {
+        "5": 2.468786887340514,
+        "10": 2.647689512404785,
+        "20": 2.647623238883185,
+        "50": 2.614789252692268,
+        "100": 2.9236640338695112
+      }
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.003,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.6675397348269048,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6770444284933834,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.67701211109287,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6485626648944613
+      },
+      "per_db": {
+        "chembl": 4.108146679286131,
+        "legalacts": 2.375484212912866,
+        "telstra": 1.5189883122817194
+      },
+      "per_k": {
+        "5": 2.4925153540508873,
+        "10": 2.6831410827537785,
+        "20": 2.698364605631447,
+        "50": 2.608603712870416,
+        "100": 2.855073918827996
+      }
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.003,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.6683984992062686,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6768271926432714,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.679615863958985,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6487524410165495
+      },
+      "per_db": {
+        "chembl": 4.109830244369694,
+        "legalacts": 2.3753310250457034,
+        "telstra": 1.5200342282034092
+      },
+      "per_k": {
+        "5": 2.497693294812314,
+        "10": 2.6864417087871106,
+        "20": 2.6973996472009873,
+        "50": 2.6068245098911644,
+        "100": 2.853633335339769
+      }
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.001,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.66839966431672,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.677152278468961,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.675877709644116,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.652169004837083
+      },
+      "per_db": {
+        "chembl": 4.110445189939037,
+        "legalacts": 2.3733857296023237,
+        "telstra": 1.5213680734088013
+      },
+      "per_k": {
+        "5": 2.4767620008562807,
+        "10": 2.6990658016463343,
+        "20": 2.6975034658112915,
+        "50": 2.6122878078956817,
+        "100": 2.856379245374014
+      }
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.001,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.6686585963871767,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.677718205717247,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6761688218235418,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.652088761620741
+      },
+      "per_db": {
+        "chembl": 4.111702588803899,
+        "legalacts": 2.3740920696919185,
+        "telstra": 1.520181130665712
+      },
+      "per_k": {
+        "5": 2.4770421045854287,
+        "10": 2.6963511087347927,
+        "20": 2.698921228606508,
+        "50": 2.6128399559745152,
+        "100": 2.858138584034639
+      }
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.0003,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.6728457862146278,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.680696722522742,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.660743563683874,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6770970724372667
+      },
+      "per_db": {
+        "chembl": 4.150336016256338,
+        "legalacts": 2.360738741763626,
+        "telstra": 1.5074626006239178
+      },
+      "per_k": {
+        "5": 2.471795617354398,
+        "10": 2.6759204253339366,
+        "20": 2.630546008574972,
+        "50": 2.634803814832352,
+        "100": 2.9511630649774783
+      }
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.0003,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.6733886073086155,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6813141468342394,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.661002948824131,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6778487262674764
+      },
+      "per_db": {
+        "chembl": 4.151255497817775,
+        "legalacts": 2.361266580453258,
+        "telstra": 1.5076437436548145
+      },
+      "per_k": {
+        "5": 2.472290261563016,
+        "10": 2.676609610264526,
+        "20": 2.630156346786507,
+        "50": 2.635685620252274,
+        "100": 2.9522011976767555
+      }
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.0003,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.675539498033243,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.666209210729608,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6808344955512466,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6795747878188743
+      },
+      "per_db": {
+        "chembl": 4.149675624239389,
+        "legalacts": 2.3530051078397296,
+        "telstra": 1.52393776202061
+      },
+      "per_k": {
+        "5": 2.4798921109098573,
+        "10": 2.6601163780585844,
+        "20": 2.6542386618382117,
+        "50": 2.6406621212349863,
+        "100": 2.942788218124575
+      },
+      "accept_rate": 0.49777777777777776
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.0003,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.6755863499502515,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.666674182647752,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6803699525867666,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6797149146162353
+      },
+      "per_db": {
+        "chembl": 4.150312193886384,
+        "legalacts": 2.3530591006705865,
+        "telstra": 1.523387755293782
+      },
+      "per_k": {
+        "5": 2.4787720442500714,
+        "10": 2.6608844162784364,
+        "20": 2.6534728682194224,
+        "50": 2.6406464229610096,
+        "100": 2.9441559980423166
+      },
+      "accept_rate": 0.5022222222222222
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.001,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.676620764423492,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.666010975470369,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6844928076062495,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.679358510193858
+      },
+      "per_db": {
+        "chembl": 4.151379491501684,
+        "legalacts": 2.353892804336991,
+        "telstra": 1.5245899974318007
+      },
+      "per_k": {
+        "5": 2.483542249757824,
+        "10": 2.66039861042245,
+        "20": 2.65650315351243,
+        "50": 2.641934211416819,
+        "100": 2.940725597007936
+      },
+      "accept_rate": 0.49777777777777776
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.001,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.676711675107743,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6666214252234983,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6839329785217996,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.679580621577932
+      },
+      "per_db": {
+        "chembl": 4.152397816134273,
+        "legalacts": 2.353810550151267,
+        "telstra": 1.523926659037691
+      },
+      "per_k": {
+        "5": 2.482117662307366,
+        "10": 2.6615325896548456,
+        "20": 2.6558538003791226,
+        "50": 2.6418839252297532,
+        "100": 2.9421703979676295
+      },
+      "accept_rate": 0.5022222222222222
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.001,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.6777055534449663,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6844924622048354,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6653523561198957,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6832718420101673
+      },
+      "per_db": {
+        "chembl": 4.157018163693282,
+        "legalacts": 2.364937094509715,
+        "telstra": 1.511161402131901
+      },
+      "per_k": {
+        "5": 2.46901274983467,
+        "10": 2.683719107036653,
+        "20": 2.630858294881965,
+        "50": 2.644794109187401,
+        "100": 2.9601435062841417
+      }
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.001,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.6783996328691226,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6683811302761233,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.692526324164894,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6742914441663506
+      },
+      "per_db": {
+        "chembl": 4.154009254351042,
+        "legalacts": 2.350301697202968,
+        "telstra": 1.5308879470533592
+      },
+      "per_k": {
+        "5": 2.4967609081506055,
+        "10": 2.6524837027356303,
+        "20": 2.6760591151506334,
+        "50": 2.641273371756121,
+        "100": 2.9254210665526235
+      },
+      "accept_rate": 0.48
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.001,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.678442212376025,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.685505947639075,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6660526582024557,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6837680312865446
+      },
+      "per_db": {
+        "chembl": 4.157889650504516,
+        "legalacts": 2.365845524832028,
+        "telstra": 1.511591461791531
+      },
+      "per_k": {
+        "5": 2.469785239216125,
+        "10": 2.6848333210139,
+        "20": 2.63087948368561,
+        "50": 2.6457511693125406,
+        "100": 2.96096184865195
+      }
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.001,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.678490694902123,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.669189056453818,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.69216545030676,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.67411757794579
+      },
+      "per_db": {
+        "chembl": 4.153502696886441,
+        "legalacts": 2.350304577031603,
+        "telstra": 1.5316648107883237
+      },
+      "per_k": {
+        "5": 2.4991793235340283,
+        "10": 2.652126036703303,
+        "20": 2.6765878970944845,
+        "50": 2.6410155766341865,
+        "100": 2.9235446405446104
+      },
+      "accept_rate": 0.47555555555555556
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.0003,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.680471917261564,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.681984449244813,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6746985110497135,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6847327914901657
+      },
+      "per_db": {
+        "chembl": 4.157799007950894,
+        "legalacts": 2.36363763532816,
+        "telstra": 1.519979108505638
+      },
+      "per_k": {
+        "5": 2.47361053964916,
+        "10": 2.6774398468663803,
+        "20": 2.6391460347605524,
+        "50": 2.6513945107953316,
+        "100": 2.9607686542363973
+      },
+      "accept_rate": 0.5244444444444445
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.0003,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.6806129717926033,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.682240216739597,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6740240100637083,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.685574688574504
+      },
+      "per_db": {
+        "chembl": 4.157746559274887,
+        "legalacts": 2.364112221964332,
+        "telstra": 1.5199801341385903
+      },
+      "per_k": {
+        "5": 2.471570782717192,
+        "10": 2.6767981014050224,
+        "20": 2.640239144739122,
+        "50": 2.6520100498162935,
+        "100": 2.9624467802853864
+      },
+      "accept_rate": 0.5377777777777778
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.0001,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.680674728610754,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.688351771001927,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.667922767683203,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.685749647147133
+      },
+      "per_db": {
+        "chembl": 4.161794699767907,
+        "legalacts": 2.3665858617450426,
+        "telstra": 1.513643624319313
+      },
+      "per_k": {
+        "5": 2.4692235789520756,
+        "10": 2.688886581892577,
+        "20": 2.63293785396573,
+        "50": 2.650071484962992,
+        "100": 2.962254143280398
+      }
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.0001,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.6811472881884018,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.689057917777878,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6682633276426158,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.686120619144712
+      },
+      "per_db": {
+        "chembl": 4.162228425442855,
+        "legalacts": 2.3673394168839486,
+        "telstra": 1.5138740222384017
+      },
+      "per_k": {
+        "5": 2.4695651549906583,
+        "10": 2.689435877106065,
+        "20": 2.632916017208071,
+        "50": 2.65087061344242,
+        "100": 2.962948778194796
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.003,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.6814612654034655,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.67396056555724,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.690883776346208,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6795394543069495
+      },
+      "per_db": {
+        "chembl": 4.151609040703261,
+        "legalacts": 2.361299581843769,
+        "telstra": 1.5314751736633672
+      },
+      "per_k": {
+        "5": 2.5098845514845562,
+        "10": 2.663706548210456,
+        "20": 2.662914396108002,
+        "50": 2.6358431318029387,
+        "100": 2.934957699411376
+      },
+      "accept_rate": 0.48
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.003,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.681692576494265,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6738932741347083,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6917647099327966,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.679419745415289
+      },
+      "per_db": {
+        "chembl": 4.149645846369973,
+        "legalacts": 2.363169361898271,
+        "telstra": 1.53226252121455
+      },
+      "per_k": {
+        "5": 2.5137067214996978,
+        "10": 2.663578019167749,
+        "20": 2.6639315082718364,
+        "50": 2.634456339143179,
+        "100": 2.93279029438886
+      },
+      "accept_rate": 0.47555555555555556
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.0003,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.681758463638783,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6895867885398195,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6689468597012787,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.686741742675251
+      },
+      "per_db": {
+        "chembl": 4.163027527043213,
+        "legalacts": 2.367696892755957,
+        "telstra": 1.514550971117178
+      },
+      "per_k": {
+        "5": 2.46851577586171,
+        "10": 2.690497980218603,
+        "20": 2.6335606173345494,
+        "50": 2.652282582608338,
+        "100": 2.9639353621707136
+      }
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.0003,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.6822875639176975,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6904221342390633,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.669279488617035,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.687161068896995
+      },
+      "per_db": {
+        "chembl": 4.1636577506651875,
+        "legalacts": 2.3684637857790642,
+        "telstra": 1.5147411553088421
+      },
+      "per_k": {
+        "5": 2.468981640731994,
+        "10": 2.691045200660633,
+        "20": 2.6336863570443727,
+        "50": 2.6531772241831058,
+        "100": 2.964547396968382
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.001,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.683681592870533,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6866621406612254,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6747993391967557,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.689583298753618
+      },
+      "per_db": {
+        "chembl": 4.1615849395531335,
+        "legalacts": 2.368444512430406,
+        "telstra": 1.5210153266280593
+      },
+      "per_k": {
+        "5": 2.4678486065825793,
+        "10": 2.6845858724085336,
+        "20": 2.6408196144375187,
+        "50": 2.6579229481748916,
+        "100": 2.9672309227491427
+      },
+      "accept_rate": 0.5377777777777778
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.003,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.6840326697080683,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6884256659243664,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.700493518593133,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.663178824606704
+      },
+      "per_db": {
+        "chembl": 4.130459772811546,
+        "legalacts": 2.3934375404216164,
+        "telstra": 1.5282006958910412
+      },
+      "per_k": {
+        "5": 2.500989682899643,
+        "10": 2.7274891210269767,
+        "20": 2.737759002480125,
+        "50": 2.614210833839416,
+        "100": 2.8397147082941787
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.001,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.684176041863646,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6872910811543376,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6748003246306857,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.690436719805915
+      },
+      "per_db": {
+        "chembl": 4.1626050235512135,
+        "legalacts": 2.369176356827755,
+        "telstra": 1.5207467452119694
+      },
+      "per_k": {
+        "5": 2.467709059445215,
+        "10": 2.6858343212546676,
+        "20": 2.6418508974599484,
+        "50": 2.6576417144965814,
+        "100": 2.9678442166618186
+      },
+      "accept_rate": 0.5511111111111111
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.003,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.6852405277616467,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.688318792094824,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.7029057414919317,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6644970496981837
+      },
+      "per_db": {
+        "chembl": 4.131701245678133,
+        "legalacts": 2.39590906918765,
+        "telstra": 1.5281112684191587
+      },
+      "per_k": {
+        "5": 2.511682151034572,
+        "10": 2.727249580736203,
+        "20": 2.737747609322417,
+        "50": 2.611301139529031,
+        "100": 2.8382221581860114
+      }
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.0001,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.6862658766519476,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.690407030498722,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6761813419400564,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6922092575170637
+      },
+      "per_db": {
+        "chembl": 4.1656679027176144,
+        "legalacts": 2.370278240770395,
+        "telstra": 1.5228514864678322
+      },
+      "per_k": {
+        "5": 2.469298085502269,
+        "10": 2.6886625195212823,
+        "20": 2.6429417104079627,
+        "50": 2.660877827486578,
+        "100": 2.9695492403416446
+      },
+      "accept_rate": 0.5422222222222223
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.0001,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.686597808337994,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.690752236885497,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.676463031742862,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.692578156385624
+      },
+      "per_db": {
+        "chembl": 4.166292398859683,
+        "legalacts": 2.370530009267683,
+        "telstra": 1.5229710168866157
+      },
+      "per_k": {
+        "5": 2.4687147051192313,
+        "10": 2.6894192518791558,
+        "20": 2.643323313913839,
+        "50": 2.661457967441463,
+        "100": 2.970073803336284
+      },
+      "accept_rate": 0.5466666666666666
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.0003,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.6871356702231495,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6918633804277174,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.676620971826218,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6929226584155126
+      },
+      "per_db": {
+        "chembl": 4.166518571111637,
+        "legalacts": 2.371427142188414,
+        "telstra": 1.5234612973693962
+      },
+      "per_k": {
+        "5": 2.468130190771591,
+        "10": 2.6906870707539383,
+        "20": 2.643665152114726,
+        "50": 2.6624059353756575,
+        "100": 2.970790002099833
+      },
+      "accept_rate": 0.5422222222222223
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.0003,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.6874595432358994,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6923280930174864,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6767102522953174,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6933402843948953
+      },
+      "per_db": {
+        "chembl": 4.167284496519047,
+        "legalacts": 2.3716693638317317,
+        "telstra": 1.523424769356921
+      },
+      "per_k": {
+        "5": 2.4677267312816826,
+        "10": 2.6922581689605107,
+        "20": 2.644033297686541,
+        "50": 2.6630687577975936,
+        "100": 2.9702107604531722
+      },
+      "accept_rate": 0.5555555555555556
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.0001,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.6904253019468833,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7010214309741687,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6742469584246535,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.696007516441827
+      },
+      "per_db": {
+        "chembl": 4.174048626071781,
+        "legalacts": 2.374720376599166,
+        "telstra": 1.5225069031697007
+      },
+      "per_k": {
+        "5": 2.46943476564459,
+        "10": 2.7024639620121413,
+        "20": 2.6389035929378317,
+        "50": 2.6681681349102564,
+        "100": 2.973156054229596
+      }
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.0001,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.690766728399123,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.70163854122655,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.674363896981738,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6962977469890816
+      },
+      "per_db": {
+        "chembl": 4.174419277918763,
+        "legalacts": 2.375118471889032,
+        "telstra": 1.5227624353895737
+      },
+      "per_k": {
+        "5": 2.4696884411018543,
+        "10": 2.7029219535062143,
+        "20": 2.6389968399588484,
+        "50": 2.6687264283058285,
+        "100": 2.973499979122869
+      }
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.001,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.6925005836804625,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.693229361007764,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.70030996640032,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6839624236333037
+      },
+      "per_db": {
+        "chembl": 4.16205249615131,
+        "legalacts": 2.367363080754824,
+        "telstra": 1.5480861741352534
+      },
+      "per_k": {
+        "5": 2.50658954258674,
+        "10": 2.6979744876002085,
+        "20": 2.6954546075817754,
+        "50": 2.6553998983236218,
+        "100": 2.9070843823099657
+      },
+      "accept_rate": 0.4311111111111111
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.0001,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.6931437064699186,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.703390509593889,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6759824546068995,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7000581552089677
+      },
+      "per_db": {
+        "chembl": 4.1737050741055,
+        "legalacts": 2.377425429799562,
+        "telstra": 1.5283006155046939
+      },
+      "per_k": {
+        "5": 2.4686113835514067,
+        "10": 2.7038067485489012,
+        "20": 2.645842854376435,
+        "50": 2.6711550495197525,
+        "100": 2.976302496353098
+      },
+      "accept_rate": 0.56
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.0001,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.6934756826612927,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.703635616993969,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.676509570489195,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7002818605007155
+      },
+      "per_db": {
+        "chembl": 4.174598217025098,
+        "legalacts": 2.377408414409622,
+        "telstra": 1.5284204165491582
+      },
+      "per_k": {
+        "5": 2.4690044499055315,
+        "10": 2.704252137236883,
+        "20": 2.64587231258134,
+        "50": 2.6716981031997484,
+        "100": 2.9765514103829616
+      },
+      "accept_rate": 0.5688888888888889
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.001,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.6936244722821736,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6937150508293195,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.703363508998437,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6837948570187637
+      },
+      "per_db": {
+        "chembl": 4.160570119739796,
+        "legalacts": 2.36659835334839,
+        "telstra": 1.5537049437583348
+      },
+      "per_k": {
+        "5": 2.5135111798782437,
+        "10": 2.699599839360002,
+        "20": 2.6963933804720783,
+        "50": 2.6532532875851644,
+        "100": 2.905364674115378
+      },
+      "accept_rate": 0.4311111111111111
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.0003,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.6955236823885453,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.709121902441034,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6770902774219407,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7003588673026617
+      },
+      "per_db": {
+        "chembl": 4.180534687266069,
+        "legalacts": 2.3791163946051888,
+        "telstra": 1.5269199652943775
+      },
+      "per_k": {
+        "5": 2.474271094012048,
+        "10": 2.708897559012048,
+        "20": 2.642224159184745,
+        "50": 2.674657550250588,
+        "100": 2.9775680494832986
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.0003,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.6957788341901847,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7095823278179263,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6772280838374987,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.700526090915129
+      },
+      "per_db": {
+        "chembl": 4.180774611379026,
+        "legalacts": 2.3794322663207352,
+        "telstra": 1.5271296248707935
+      },
+      "per_k": {
+        "5": 2.4745366623743896,
+        "10": 2.709232525724576,
+        "20": 2.642324165977025,
+        "50": 2.6749557125519696,
+        "100": 2.9778451043229635
+      }
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.0001,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.6958221403932527,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7094957880725947,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.677438944600635,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.70053168850653
+      },
+      "per_db": {
+        "chembl": 4.180949022868735,
+        "legalacts": 2.3793090519169464,
+        "telstra": 1.5272083463940782
+      },
+      "per_k": {
+        "5": 2.4746559710615474,
+        "10": 2.709364170662303,
+        "20": 2.642422914184118,
+        "50": 2.674966404830514,
+        "100": 2.9777012412277846
+      }
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.0001,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.696055278625304,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7099319246362144,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.677545705386469,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7006882058532296
+      },
+      "per_db": {
+        "chembl": 4.181158186500587,
+        "legalacts": 2.37960660370782,
+        "telstra": 1.5274010456675058
+      },
+      "per_k": {
+        "5": 2.47489571890015,
+        "10": 2.709653414519369,
+        "20": 2.6425153654916267,
+        "50": 2.675243571197091,
+        "100": 2.977968323018286
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.0003,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.6971218920985507,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.710651029286741,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.677660874606785,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.703053772402125
+      },
+      "per_db": {
+        "chembl": 4.179708252429461,
+        "legalacts": 2.3809161047366496,
+        "telstra": 1.5307413191295396
+      },
+      "per_k": {
+        "5": 2.473661027309418,
+        "10": 2.7094308536640415,
+        "20": 2.6466355240008244,
+        "50": 2.6765318072071236,
+        "100": 2.9793502483113437
+      },
+      "accept_rate": 0.56
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.0003,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.697330774821424,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7108129542847066,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6780069781765086,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.703172392003057
+      },
+      "per_db": {
+        "chembl": 4.180229350467872,
+        "legalacts": 2.3809039994306604,
+        "telstra": 1.5308589745657375
+      },
+      "per_k": {
+        "5": 2.4738621385149324,
+        "10": 2.7097503692631864,
+        "20": 2.6466637615026043,
+        "50": 2.6768179595699477,
+        "100": 2.97955964525645
+      },
+      "accept_rate": 0.5688888888888889
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.0001,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.6973558279315273,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.710999820568123,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6779177550490862,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7031499081773727
+      },
+      "per_db": {
+        "chembl": 4.180063848018144,
+        "legalacts": 2.3810834556646387,
+        "telstra": 1.5309201801117986
+      },
+      "per_k": {
+        "5": 2.474040190468683,
+        "10": 2.7097963827244054,
+        "20": 2.6467239500079893,
+        "50": 2.6767997602850757,
+        "100": 2.9794188561714843
+      },
+      "accept_rate": 0.56
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.003,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.697507406758892,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.6981365414956056,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.709746844214397,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6846388345666736
+      },
+      "per_db": {
+        "chembl": 4.167868076941785,
+        "legalacts": 2.3677430962583803,
+        "telstra": 1.556911047076511
+      },
+      "per_k": {
+        "5": 2.5308446199200185,
+        "10": 2.701820520569232,
+        "20": 2.6967756741882325,
+        "50": 2.6522935885407373,
+        "100": 2.90580263057624
+      },
+      "accept_rate": 0.4222222222222222
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.0001,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.697543873400407,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7111379111786276,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6782322276259207,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.703261481396672
+      },
+      "per_db": {
+        "chembl": 4.18054953422184,
+        "legalacts": 2.381055150928819,
+        "telstra": 1.53102693505056
+      },
+      "per_k": {
+        "5": 2.474205753199143,
+        "10": 2.7100743960067573,
+        "20": 2.6467496298082347,
+        "50": 2.6770665904115205,
+        "100": 2.9796229975763784
+      },
+      "accept_rate": 0.5688888888888889
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.003,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.6977607133712453,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.698971194742893,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.709842955485793,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.684467989885049
+      },
+      "per_db": {
+        "chembl": 4.16712164593807,
+        "legalacts": 2.3686738721146514,
+        "telstra": 1.5574866220610135
+      },
+      "per_k": {
+        "5": 2.5302484196458397,
+        "10": 2.703997083835507,
+        "20": 2.698585569999783,
+        "50": 2.6519445387554854,
+        "100": 2.9040279546196093
+      },
+      "accept_rate": 0.4222222222222222
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.003,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.6983554181016793,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.703311063284648,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.709417701231965,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.682337489788426
+      },
+      "per_db": {
+        "chembl": 4.155669534629394,
+        "legalacts": 2.370951997515544,
+        "telstra": 1.5684447221601001
+      },
+      "per_k": {
+        "5": 2.534334892703842,
+        "10": 2.724433400401196,
+        "20": 2.678561674370568,
+        "50": 2.6576514450136695,
+        "100": 2.8967956780191217
+      },
+      "accept_rate": 0.38222222222222224
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.003,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.6988182321792813,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.703216372695866,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.710478823919814,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6827594999221644
+      },
+      "per_db": {
+        "chembl": 4.158821296594573,
+        "legalacts": 2.3695088403302824,
+        "telstra": 1.5681245596129896
+      },
+      "per_k": {
+        "5": 2.5329670845706023,
+        "10": 2.725115103400826,
+        "20": 2.678310393374034,
+        "50": 2.6594778588136814,
+        "100": 2.8982207207372634
+      },
+      "accept_rate": 0.37777777777777777
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.0001,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.700964282633698,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7171422076192897,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.680332117667938,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7054185226138663
+      },
+      "per_db": {
+        "chembl": 4.186845250685283,
+        "legalacts": 2.3835504361774285,
+        "telstra": 1.5324971610383815
+      },
+      "per_k": {
+        "5": 2.4787465302934204,
+        "10": 2.7169248558345376,
+        "20": 2.6457930912859706,
+        "50": 2.680817935366173,
+        "100": 2.982539000388387
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.0001,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.701010559944811,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.717237207727372,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.680326793463175,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.705467678643886
+      },
+      "per_db": {
+        "chembl": 4.186869241316388,
+        "legalacts": 2.3835930166230366,
+        "telstra": 1.5325694218950097
+      },
+      "per_k": {
+        "5": 2.4787004916657964,
+        "10": 2.717026451024373,
+        "20": 2.645814895194849,
+        "50": 2.6808921354665425,
+        "100": 2.9826188263724944
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.0001,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.701405763732186,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.71758320771814,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6805267541717934,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7061073293066262
+      },
+      "per_db": {
+        "chembl": 4.1864546686006285,
+        "legalacts": 2.3841583245581153,
+        "telstra": 1.533604298037816
+      },
+      "per_k": {
+        "5": 2.479034036608864,
+        "10": 2.7164090483648518,
+        "20": 2.6471904897890397,
+        "50": 2.6814464936310114,
+        "100": 2.9829487502671643
+      },
+      "accept_rate": 0.5777777777777777
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.0001,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.70142201995862,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.717583834600057,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6805396133573303,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7061426119184726
+      },
+      "per_db": {
+        "chembl": 4.186530018090476,
+        "legalacts": 2.3840915724422302,
+        "telstra": 1.5336444693431543
+      },
+      "per_k": {
+        "5": 2.478842326613594,
+        "10": 2.7165354194836087,
+        "20": 2.6471938000985564,
+        "50": 2.681516537035909,
+        "100": 2.9830220165614323
+      },
+      "accept_rate": 0.5822222222222222
+    },
+    {
+      "inner_steps": 0,
+      "inner_lr": null,
+      "scope": null,
+      "fallback": false,
+      "macro_log_q95": 2.703415265468175,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7205585495619653,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.682023661950497,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7076635848920634
+      },
+      "per_db": {
+        "chembl": 4.189767239593249,
+        "legalacts": 2.3849851298793556,
+        "telstra": 1.5354934269319214
+      },
+      "per_k": {
+        "5": 2.4807857387790464,
+        "10": 2.720691183384358,
+        "20": 2.6472869619415005,
+        "50": 2.6830452480550453,
+        "100": 2.985267195180927
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.01,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.7037917225010513,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.721585424610635,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6961628769268966,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6936268659656224
+      },
+      "per_db": {
+        "chembl": 4.196533522686999,
+        "legalacts": 2.372358730952993,
+        "telstra": 1.5424829138631622
+      },
+      "per_k": {
+        "5": 2.5005994826593994,
+        "10": 2.7155811757066237,
+        "20": 2.674829491731789,
+        "50": 2.6804965188770113,
+        "100": 2.9474519435304343
+      },
+      "accept_rate": 0.2088888888888889
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.01,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.703807809694137,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7232301196932642,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6943474942112404,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.6938458151779057
+      },
+      "per_db": {
+        "chembl": 4.1961153354583365,
+        "legalacts": 2.3716373690321695,
+        "telstra": 1.5436707245919046
+      },
+      "per_k": {
+        "5": 2.501935475039293,
+        "10": 2.7199431085217336,
+        "20": 2.670312930512471,
+        "50": 2.6805315824186735,
+        "100": 2.9463159519785127
+      },
+      "accept_rate": 0.2
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.003,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.708521356377574,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7104393407545015,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.7006977294903676,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.714426998887851
+      },
+      "per_db": {
+        "chembl": 4.1607464339395746,
+        "legalacts": 2.3899827377995524,
+        "telstra": 1.5748348973935926
+      },
+      "per_k": {
+        "5": 2.511876624001636,
+        "10": 2.780167192385007,
+        "20": 2.6697444738555376,
+        "50": 2.6796852254524466,
+        "100": 2.901133266193239
+      },
+      "accept_rate": 0.35555555555555557
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.003,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.7092687388455032,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7104364831715357,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.706862995683149,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7105067376818246
+      },
+      "per_db": {
+        "chembl": 4.153511489342277,
+        "legalacts": 2.40054549608267,
+        "telstra": 1.5737492311115617
+      },
+      "per_k": {
+        "5": 2.522356504715667,
+        "10": 2.7756703436985686,
+        "20": 2.669441982402579,
+        "50": 2.6804913552490954,
+        "100": 2.8983835081616065
+      },
+      "accept_rate": 0.3466666666666667
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.003,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.7103710624580493,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7208808958404815,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.7046075390400297,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7056247524936365
+      },
+      "per_db": {
+        "chembl": 4.152903499881975,
+        "legalacts": 2.43489108487215,
+        "telstra": 1.5433186026200223
+      },
+      "per_k": {
+        "5": 2.5396417653391374,
+        "10": 2.8023146927568052,
+        "20": 2.7689029521145416,
+        "50": 2.616520674057489,
+        "100": 2.8244752280222727
+      }
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.003,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.711700135610099,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7226782778277365,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.7078590948666963,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.704563034135864
+      },
+      "per_db": {
+        "chembl": 4.15736303049425,
+        "legalacts": 2.433851628100535,
+        "telstra": 1.5438857482355126
+      },
+      "per_k": {
+        "5": 2.5310471917472563,
+        "10": 2.808544066155553,
+        "20": 2.773671528454267,
+        "50": 2.619376183604635,
+        "100": 2.8258617080887842
+      }
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.01,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.718988488567618,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7457538210756574,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.7021117636983463,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.709099880928851
+      },
+      "per_db": {
+        "chembl": 4.1534735807719425,
+        "legalacts": 2.418174846524201,
+        "telstra": 1.5853170384067117
+      },
+      "per_k": {
+        "5": 2.514432659065974,
+        "10": 2.820967440766095,
+        "20": 2.6819303757682675,
+        "50": 2.6402057973839588,
+        "100": 2.9374061698537957
+      },
+      "accept_rate": 0.24444444444444444
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.01,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.7207035929994756,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7280475487619626,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.7080648301035795,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7259984001328843
+      },
+      "per_db": {
+        "chembl": 4.18060394179358,
+        "legalacts": 2.428523923995351,
+        "telstra": 1.5529829132094959
+      },
+      "per_k": {
+        "5": 2.5527142270955205,
+        "10": 2.711200371956946,
+        "20": 2.6667078272088265,
+        "50": 2.6878639074527384,
+        "100": 2.985031631283346
+      },
+      "accept_rate": 0.3111111111111111
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.01,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.7221897839621563,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7496845222322484,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.6982314258213083,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.718653403832913
+      },
+      "per_db": {
+        "chembl": 4.165163920830879,
+        "legalacts": 2.4103508038843824,
+        "telstra": 1.591054627171209
+      },
+      "per_k": {
+        "5": 2.5258796913151005,
+        "10": 2.8011724500441155,
+        "20": 2.6854872622822956,
+        "50": 2.6618860397385555,
+        "100": 2.936523476430717
+      },
+      "accept_rate": 0.24444444444444444
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.01,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.729070821437585,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7379348461147672,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.7106271491810845,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7386504690169047
+      },
+      "per_db": {
+        "chembl": 4.2121271500625825,
+        "legalacts": 2.413245326539121,
+        "telstra": 1.5618399877110534
+      },
+      "per_k": {
+        "5": 2.5903164290395124,
+        "10": 2.7071706095479664,
+        "20": 2.674623487908757,
+        "50": 2.6886492498908554,
+        "100": 2.9845943308008365
+      },
+      "accept_rate": 0.3333333333333333
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.01,
+      "scope": "all",
+      "fallback": true,
+      "macro_log_q95": 2.730506912643522,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7144478325785517,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.7511183625983118,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7259545427537026
+      },
+      "per_db": {
+        "chembl": 4.1485739914589566,
+        "legalacts": 2.421855566213179,
+        "telstra": 1.62109118025843
+      },
+      "per_k": {
+        "5": 2.521589955483249,
+        "10": 2.8143159604511903,
+        "20": 2.686740265488542,
+        "50": 2.6813560718646277,
+        "100": 2.9485323099300014
+      },
+      "accept_rate": 0.3022222222222222
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.01,
+      "scope": "head",
+      "fallback": true,
+      "macro_log_q95": 2.7371919004876974,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7325473859244265,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.7395739627325355,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7394543528061295
+      },
+      "per_db": {
+        "chembl": 4.138536874041348,
+        "legalacts": 2.442313430481842,
+        "telstra": 1.6307253969399018
+      },
+      "per_k": {
+        "5": 2.5186171506192534,
+        "10": 2.8352068914047637,
+        "20": 2.6874600655931835,
+        "50": 2.695530200959428,
+        "100": 2.9491451938618574
+      },
+      "accept_rate": 0.29777777777777775
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.01,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.7696563205056624,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7565813101960215,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.746438523495136,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.80594912782583
+      },
+      "per_db": {
+        "chembl": 4.23589928793809,
+        "legalacts": 2.4661362596820067,
+        "telstra": 1.6069334138968911
+      },
+      "per_k": {
+        "5": 2.735061185933406,
+        "10": 2.754003785837632,
+        "20": 2.7669129318781525,
+        "50": 2.645347444506864,
+        "100": 2.946956254372259
+      }
+    },
+    {
+      "inner_steps": 10,
+      "inner_lr": 0.01,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.7758449764382163,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.7506059369680544,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.788126491366423,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.7888025009801702
+      },
+      "per_db": {
+        "chembl": 4.2168250665568925,
+        "legalacts": 2.4937020351417867,
+        "telstra": 1.6170078276159694
+      },
+      "per_k": {
+        "5": 2.7904006927769998,
+        "10": 2.7656066175856333,
+        "20": 2.7339467222912104,
+        "50": 2.6429883234210436,
+        "100": 2.946282526116193
+      }
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.01,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.8421437881183156,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.8015310176980965,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.9059591649297194,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.818941181727131
+      },
+      "per_db": {
+        "chembl": 4.28218995397088,
+        "legalacts": 2.569349674285365,
+        "telstra": 1.674891736098702
+      },
+      "per_k": {
+        "5": 2.7337271289661182,
+        "10": 3.006429283995815,
+        "20": 2.8154910798160255,
+        "50": 2.6744929886272244,
+        "100": 2.9805784591863937
+      }
+    },
+    {
+      "inner_steps": 5,
+      "inner_lr": 0.01,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.846180138375349,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.792549442476958,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 2.9050977213711096,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.8408932512779796
+      },
+      "per_db": {
+        "chembl": 4.310797235371724,
+        "legalacts": 2.5508751346630962,
+        "telstra": 1.6768680450912268
+      },
+      "per_k": {
+        "5": 2.720290631709494,
+        "10": 3.0172069418513816,
+        "20": 2.817556150050491,
+        "50": 2.689637620975766,
+        "100": 2.986209347289612
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.01,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.9462137523327185,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.9354397884745396,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 3.044437165933814,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.8587643025898006
+      },
+      "per_db": {
+        "chembl": 4.637114502777712,
+        "legalacts": 2.5396476922222657,
+        "telstra": 1.6618790619981751
+      },
+      "per_k": {
+        "5": 3.000167922204432,
+        "10": 3.24762658412,
+        "20": 2.835263530834659,
+        "50": 2.7543582951317194,
+        "100": 2.8936524293727808
+      }
+    },
+    {
+      "inner_steps": 1,
+      "inner_lr": 0.01,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 2.9673189449001627,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.9609421307121715,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 3.0708579131440783,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.870156790844239
+      },
+      "per_db": {
+        "chembl": 4.675018435017077,
+        "legalacts": 2.555122817494481,
+        "telstra": 1.6718155821889304
+      },
+      "per_k": {
+        "5": 3.0421054083076196,
+        "10": 3.283250079696417,
+        "20": 2.8486271925392486,
+        "50": 2.7644747140956465,
+        "100": 2.898137329861884
+      }
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.01,
+      "scope": "head",
+      "fallback": false,
+      "macro_log_q95": 2.970706515113657,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.853658424892622,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 3.214161081508149,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.8443000389402013
+      },
+      "per_db": {
+        "chembl": 4.53277455361061,
+        "legalacts": 2.562870534744059,
+        "telstra": 1.8164744569863032
+      },
+      "per_k": {
+        "5": 2.8573393107145852,
+        "10": 3.2008803716551357,
+        "20": 3.014598846259914,
+        "50": 2.780220651499481,
+        "100": 3.0004933954391726
+      }
+    },
+    {
+      "inner_steps": 3,
+      "inner_lr": 0.01,
+      "scope": "all",
+      "fallback": false,
+      "macro_log_q95": 3.000290960070316,
+      "per_checkpoint": {
+        "runs/formal-fomaml-20260925-seed42/best.pt": 2.876402672115794,
+        "runs/formal-fomaml-20260925-seed43/best.pt": 3.2673825490021304,
+        "runs/formal-fomaml-20260927-seed44/best.pt": 2.857087659093023
+      },
+      "per_db": {
+        "chembl": 4.577108177210971,
+        "legalacts": 2.5767799206205906,
+        "telstra": 1.8469847823793866
+      },
+      "per_k": {
+        "5": 2.88282691552499,
+        "10": 3.245269264375817,
+        "20": 3.034742602705399,
+        "50": 2.8206953102851466,
+        "100": 3.0179207074602257
+      }
+    }
+  ]
+}
