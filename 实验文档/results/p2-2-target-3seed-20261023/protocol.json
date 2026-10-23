@@ -1,0 +1,247 @@
+{
+  "schema": 1,
+  "purpose": "research-read-only-audit",
+  "audit": "p2-2-target-3seed",
+  "target_databases_read": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "allowed_targets": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "metric": "unique-query population Q95 (single pass, NOT episode mean)",
+  "metric_definitions": {
+    "population": "every unique query_hash of the derived cache, one pass, no support sampling and no episode structure",
+    "q_error": "exp(abs(max(log_prediction, 0) - log(max(true_cardinality, 1))))",
+    "q50": "percentile(q_error, 50) over the population",
+    "q95": "percentile(q_error, 95) over the population",
+    "log_q95": "percentile(abs(max(log_prediction, 0) - log(max(true_cardinality, 1))), 95) over the population",
+    "price_shifted_q*": "exp(abs(logaddexp(max(log_prediction, 0), 0) - log1p(true_cardinality)))"
+  },
+  "estimators": {
+    "ours_k0": "the frozen checkpoint given on the command line, zero-shot (no support, no adaptation, no selection)",
+    "price_k0": "the provided PRICE weights, zero-shot, no adaptation",
+    "pg": "raw PostgreSQL estimate in the cache (cards[:, 1])"
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "checkpoints": {
+    "42": {
+      "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/baseline/last.pt",
+      "sha256": "563ec1596b1a34dd3853e05d098634a473a74947aa176367d0d293857499d8a3",
+      "seed": 42,
+      "method": "erm",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "transform": "price40-group-logfanout-v1"
+    },
+    "43": {
+      "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/seed43/baseline/last.pt",
+      "sha256": "5617f7ddf875a024b9330bc82bc6126c0ab19806972a6e42d710d92617b7ad15",
+      "seed": 43,
+      "method": "erm",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "transform": "price40-group-logfanout-v1"
+    },
+    "44": {
+      "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/seed44/baseline/last.pt",
+      "sha256": "2546821e395ddfcfe6294757347fbb21acdc01da7fa4ec2498639571bbbec093",
+      "seed": 44,
+      "method": "erm",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "transform": "price40-group-logfanout-v1"
+    }
+  },
+  "price": {
+    "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+    "checkpoint_sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92",
+    "parameters": 10709330,
+    "maxima": [
+      12,
+      14,
+      8,
+      10
+    ],
+    "maxima_rule": "evaluate.py rule recomputed over the three historical target rows: elementwise max of inspection.max_counts over test targets {stats,genome,ergastf1} x splits {test,finetune} = [12,14,8,10]; imdb itself is NOT folded in, so the three existing target rows keep their historical layout (doc 101 3.1)",
+    "per_database_max_counts": {
+      "stats": [
+        8,
+        12,
+        7,
+        10
+      ],
+      "genome": [
+        9,
+        10,
+        6,
+        7
+      ],
+      "ergastf1": [
+        8,
+        12,
+        7,
+        9
+      ],
+      "imdb": [
+        5,
+        8,
+        5,
+        4
+      ]
+    },
+    "decoding": "price_log_predictions(): native output is log1p(card)+1, decoded to log(card)",
+    "adaptation": "none (K=0, no support, no inner steps)"
+  },
+  "inputs": {
+    "split": "test",
+    "caches": {
+      "stats": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/test/stats",
+        "content_hash": "4f1726a2ddcd0f40a964cc6a5620073fa9fd05ad88e4daf8343d84f2e0248b22",
+        "unique_queries": 2603
+      },
+      "genome": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/test/genome",
+        "content_hash": "f0f0f8660623fe3694b808916d1ec24b4ff51355723e13343a3d95cd897a07f9",
+        "unique_queries": 1699
+      },
+      "ergastf1": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/test/ergastf1",
+        "content_hash": "2a1c15b25326ccc7b4eb3b009c78f8178797ecce7e44d87245519776ac01697a",
+        "unique_queries": 1258
+      },
+      "imdb": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/test/imdb",
+        "content_hash": "aa0e1628ed7aa637e90ffedfcd27c7a4c6703e98cb46083e6beef05e3d86d333",
+        "unique_queries": 521
+      }
+    }
+  },
+  "comparability": {
+    "training_config": "the three checkpoints differ only in the seed field; every other training hyper-parameter (method, steps, meta_batch, query_size, outer_lr, validate_every, validation_runs, validation_seed, patience, min_delta, loss, model arch) is byte identical, verified against the three config.json files on the server",
+    "price_and_pg_fixed_across_seeds": true,
+    "fixed_estimator_check": "PRICE (one provided checkpoint) and PostgreSQL (a fixed estimate) produce bitwise identical Q95 on all four databases in all three runs; the aggregator refuses to publish otherwise",
+    "aggregation": "mean and sample SD (ddof=1) over the three seeds, never a best-of-seeds value; the per-seed win/loss count against PRICE and PG is reported alongside"
+  },
+  "limitations": [
+    "three seeds is the project's seed coverage; it bounds the seed spread, it does not make any single database's Q95 a stable point estimate",
+    "genome's seed spread is large relative to the other three databases; the per-seed values are reported rather than hidden behind a mean",
+    "PRICE contributes one provided checkpoint, so its column has no seed spread and is not a training-matched comparison",
+    "the IMDB row is a K=0 supplement, not a fourth complete few-shot target acceptance (no finetune split exists for IMDB)"
+  ]
+}
