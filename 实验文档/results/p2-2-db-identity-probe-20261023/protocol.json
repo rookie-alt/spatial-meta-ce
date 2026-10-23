@@ -1,0 +1,61 @@
+{
+ "cache_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+ "split": "pretrain",
+ "checkpoint": {
+  "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/baseline/last.pt",
+  "seed": 42,
+  "method": "erm",
+  "train_databases": [
+   "accidents",
+   "airline",
+   "baseball",
+   "basketball",
+   "carcinogenesis",
+   "ccs",
+   "consumer",
+   "credit",
+   "employee",
+   "financial",
+   "fnhk",
+   "grants",
+   "hepatitis",
+   "hockey",
+   "movielens",
+   "sakila",
+   "sap",
+   "seznam",
+   "ssb",
+   "talkingdata",
+   "tournament",
+   "tpc_h",
+   "tubepricing"
+  ],
+  "validation_databases": [
+   "chembl",
+   "legalacts",
+   "telstra"
+  ],
+  "model_config": {
+   "width": 64,
+   "use_pg": true,
+   "arch": "sum",
+   "layers": 2,
+   "heads": 4
+  },
+  "transform": "price40-group-logfanout-v1",
+  "frozen": true,
+  "selection": "none (passed explicitly; this script never chooses)"
+ },
+ "probe": {
+  "feature": "SetEstimator._head_input (pooled vector entering the output MLP)",
+  "classifier": "multinomial logistic regression, numpy, full batch",
+  "epochs": 400,
+  "learning_rate": 0.5,
+  "l2": 0.001,
+  "standardisation": "fit on the training fold only",
+  "k_way_protocol": "5-fold over queries, folds are random",
+  "negative_control": "database labels permuted, same k-way probe; expect 1/k",
+  "lodo_centroid_ratio": "standardise on the training databases, then compare the held-out centroid distance to the nearest trained centroid against the mean within-database spread"
+ },
+ "seconds": 336.1
+}
