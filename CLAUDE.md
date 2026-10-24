@@ -32,6 +32,7 @@
 - Claude Code 建的 worktree 在 `.claude/worktrees/<name>`，是独立检出；在 worktree 内**只用该目录的绝对路径**操作，不要 `cd` 回主仓库。
 - 提交信息用 `feat:` / `fix:` / `docs:` / `test:` / `chore:` 前缀，正文写清验证方式。
 - 提交前自查：`git status` 确认只含本次改动；`graphify-out/`、`.claude/`、`__pycache__` 不入库。
+- 较大改动在实现及本轮验证完成后、最终交付或提交/推送前，必须启动至少 1 个未参与本轮实现的独立只读子 agent 审查；先读[项目委派约定](memory/spatial-meta-ce-agent-delegation.md)，按其中的[完成后独立审查门槛](memory/spatial-meta-ce-agent-delegation.md#完成后独立审查门槛)执行。自查或测试通过不能替代独立审查。
 - 会话结束前更新实验进度记录，供下次接手。
 
 ## 验证命令
