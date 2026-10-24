@@ -178,7 +178,7 @@ footer p{max-width:none}
     <p class="subtitle">当前进度与对照结果：漂移场景下我们赢的是拟合，不是迁移</p>
     <dl class="factgrid">
       <div class="fact"><dt>日期</dt><dd>2026-10-22</dd></div>
-      <div class="fact"><dt>数据分支</dt><dd><code>claude/peaceful-kare-5bb350</code></dd></div>
+      <div class="fact"><dt>数据分支</dt><dd><code>main</code></dd></div>
       <div class="fact"><dt>提交</dt><dd><code>cd13f39</code></dd></div>
       <div class="fact"><dt>证据等级</dt><dd>single seed · 冻结 checkpoint · 全量 population</dd></div>
     </dl>
@@ -321,7 +321,7 @@ PRICE 列四库四分位也全部吻合，Q50 最大差 0.40%、Q90 最大差 0.
 <div class="tablewrap"><table>
 <caption><b>同一张表（all-rows 口径，Q95，越小越好）</b>　除最后一行外全部是论文 Table 2 的发表值；
 最后一行是本次实测的我们。列序与论文 Table 2 一致（imdb, stats, ergastf1, genome）。
-绿色表示该方法在该库上优于我们，红色表示我们优于它。</caption>
+绿色表示我们在该库上优于该方法，红色表示该方法优于我们。</caption>
 <thead><tr><th>方法</th><th>imdb</th><th>stats</th><th>ergastf1</th><th>genome</th></tr></thead>
 <tbody><tr><td>PG</td><td class="win">49.44</td><td class="lose">73.35</td><td class="win">27.47</td><td class="win">383.09</td></tr><tr><td>ALECE</td><td class="lose">19.07</td><td class="lose">16.44</td><td class="lose">8.43</td><td class="lose">1.58</td></tr><tr><td>MSCN</td><td class="win">104.20</td><td class="win">1609.45</td><td class="win">999.52</td><td class="lose">47.45</td></tr><tr><td>DeepDB</td><td class="lose">5.03</td><td class="win">132.63</td><td>—</td><td>—</td></tr><tr><td>NeuroCard</td><td class="lose">14.25</td><td class="win">228.41</td><td>—</td><td class="lose">26.75</td></tr><tr><td>FactorJoin</td><td class="win">1027.19</td><td class="win">666.59</td><td>—</td><td>—</td></tr><tr><td>PRICE (Pretrained)</td><td class="lose">15.45</td><td class="lose">35.55</td><td class="lose">14.57</td><td class="lose">15.67</td></tr><tr><td>PRICE (Finetuned)</td><td class="lose">5.36</td><td class="lose">7.07</td><td class="lose">7.37</td><td class="lose">1.35</td></tr><tr class="summary"><td>我们（ERM-sum, K=0, 本次实测）</td><td class="tie"><b>21.33</b></td><td class="tie"><b>74.15</b></td><td class="tie"><b>22.26</b></td><td class="tie"><b>60.16</b></td></tr></tbody></table></div>
 <div class="tablewrap"><table>
@@ -427,13 +427,23 @@ arXiv 2406.01027）。论文的 'Visual Genome' 即本项目的 'genome'。
   <li><span class="tag no">不可写</span><span>“四目标库完整验收”——IMDB 只有 K=0，没有 few-shot 行。</span></li>
   <li><span class="tag no">不可写</span><span>把源库的 4+ 桶值与 102 号的桶值混排——两份证据文件的 Q95
   定义不同（倍数空间 vs 对数空间），IMDB 4+ 桶的 PG 列相差 2.68%。</span></li>
-  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 0.904，属于打平而非胜负。</span></li>
+  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 的 PG/我们为 0.904，
+  本次实测 Q95 比 PG 高 10.7%，不能称为打平；这不是显著性检验结论。</span></li>
   <li><span class="tag no">不可写</span><span>“我们优于 CardOOD / GRASP / AHCE”——它们的指标口径与我们恒等，
   但留出方式不是整库零样本，没有可比对象；也不把已撤回的 2502.14350 当作证据引用。</span></li>
 </ul>
-<p class="small muted">其它限定：所有 ours 侧数字为<b>单 seed（42）</b>，标记
+<p class="small muted">其它限定：除下述三 seed 复核补充外，本次 K=0 population 表的 ours 侧数字为<b>单 seed（42）</b>，标记
 <code>needs_evidence</code>；94 号实测 seed 间标准差 6.28pp，大于本表多数效应量；
 推理耗时不等于数据库端到端加速；本页只测精度。</p>
+
+<p class="note"><b>三 seed 复核（2026-10-23）：</b>固定 seed 42/43/44 的 checkpoint，
+在四个目标库上按 K=0、全量唯一查询 Q95 复核：
+<b>12/12 个 seed×库组合均落后 PRICE</b>，与本报告单 seed 结论同向；
+对 PG 为 9/12 个组合领先，stats 三个 seed 均落后 PG。
+这是独立补充，<b>不替换前面的单 seed 表格</b>，不外推到源库或 K&gt;0；
+仅三个 seed、单一 PRICE checkpoint，也不构成显著性检验。
+来源提交 <code>e1bd4004b1225e3eb853ffdba51c26f4293c8b61</code>，
+<code>实验文档/results/p2-2-target-3seed-20261023/summary.json</code>；sha256 <code>b832423d7521f29ab47c50a795f2bb5be478006da0e60c8362912b3880d8d0ff</code>。</p>
 
 </section>
 

@@ -32,6 +32,9 @@ PAPER_ORDER = ("imdb", "stats", "ergastf1", "genome")
 # so it has no few-shot arm and no K>0 row anywhere in the record.
 DOC14_DBS = ("stats", "genome", "ergastf1")
 SEED_NOISE = 0.0628  # doc 94 6.1b: measured seed-to-seed SD, source-side arm
+THREE_SEED_COMMIT = "e1bd4004b1225e3eb853ffdba51c26f4293c8b61"
+THREE_SEED_SHA256 = "b832423d7521f29ab47c50a795f2bb5be478006da0e60c8362912b3880d8d0ff"
+THREE_SEED_PATH = "实验文档/results/p2-2-target-3seed-20261023/summary.json"
 
 # repo-relative evidence paths -> local names inside the evidence directory
 EVIDENCE = {
@@ -952,6 +955,43 @@ def q95_definition_gap(facts: dict) -> float:
     return abs(doc102 - doc103) / doc102 * 100
 
 
+def build_three_seed_note(summary: dict, digest: str) -> str:
+    """Report the separate K=0 replication without changing single-seed tables."""
+    seeds = summary["seeds"]
+    if seeds != [42, 43, 44] or set(summary["databases"]) != set(TARGET_DBS):
+        raise ValueError("unexpected three-seed target population")
+    rows = [
+        tuple(
+            summary["databases"][db][model]["per_seed_q95"][str(seed)]
+            for model in ("ours_k0", "price_k0", "pg")
+        )
+        for db in TARGET_DBS
+        for seed in seeds
+    ]
+    if any(not math.isfinite(v) or v < 1 for row in rows for v in row):
+        raise ValueError("invalid three-seed Q95")
+    losses_price = sum(ours > price for ours, price, _ in rows)
+    wins_pg = sum(ours < pg for ours, _, pg in rows)
+    headline = summary["headline"]
+    if (
+        headline["total_seed_database_pairs"] != len(rows)
+        or headline["seed_database_pairs_beating_price"] != 0
+        or headline["seed_database_pairs_beating_pg"] != wins_pg
+        or losses_price != len(rows)
+    ):
+        raise ValueError("three-seed headline does not match per-seed Q95")
+    return f"""
+<p class="note"><b>三 seed 复核（2026-10-23）：</b>固定 seed 42/43/44 的 checkpoint，
+在四个目标库上按 K=0、全量唯一查询 Q95 复核：
+<b>{losses_price}/{len(rows)} 个 seed×库组合均落后 PRICE</b>，与本报告单 seed 结论同向；
+对 PG 为 {wins_pg}/{len(rows)} 个组合领先，stats 三个 seed 均落后 PG。
+这是独立补充，<b>不替换前面的单 seed 表格</b>，不外推到源库或 K&gt;0；
+仅三个 seed、单一 PRICE checkpoint，也不构成显著性检验。
+来源提交 <code>{THREE_SEED_COMMIT}</code>，
+<code>{THREE_SEED_PATH}</code>；sha256 <code>{digest}</code>。</p>
+"""
+
+
 def build_limits_block(facts: dict) -> str:
     s = facts["source_stats"]
     noise = facts["noise_band_sources"]
@@ -972,11 +1012,12 @@ def build_limits_block(facts: dict) -> str:
   <li><span class="tag no">不可写</span><span>“四目标库完整验收”——IMDB 只有 K=0，没有 few-shot 行。</span></li>
   <li><span class="tag no">不可写</span><span>把源库的 4+ 桶值与 102 号的桶值混排——两份证据文件的 Q95
   定义不同（倍数空间 vs 对数空间），IMDB 4+ 桶的 PG 列相差 {bucket_gap:.2f}%。</span></li>
-  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 {stats_ratio:.3f}，属于打平而非胜负。</span></li>
+  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 的 PG/我们为 {stats_ratio:.3f}，
+  本次实测 Q95 比 PG 高 {(1 / stats_ratio - 1) * 100:.1f}%，不能称为打平；这不是显著性检验结论。</span></li>
   <li><span class="tag no">不可写</span><span>“我们优于 CardOOD / GRASP / AHCE”——它们的指标口径与我们恒等，
   但留出方式不是整库零样本，没有可比对象；也不把已撤回的 2502.14350 当作证据引用。</span></li>
 </ul>
-<p class="small muted">其它限定：所有 ours 侧数字为<b>单 seed（42）</b>，标记
+<p class="small muted">其它限定：除下述三 seed 复核补充外，本次 K=0 population 表的 ours 侧数字为<b>单 seed（42）</b>，标记
 <code>needs_evidence</code>；94 号实测 seed 间标准差 6.28pp，大于本表多数效应量；
 推理耗时不等于数据库端到端加速；本页只测精度。</p>
 """
@@ -1603,7 +1644,7 @@ PRICE 列四库四分位也全部吻合，{price_spread}
 <div class="tablewrap"><table>
 <caption><b>同一张表（all-rows 口径，Q95，越小越好）</b>　除最后一行外全部是论文 Table 2 的发表值；
 最后一行是本次实测的我们。列序与论文 Table 2 一致（imdb, stats, ergastf1, genome）。
-绿色表示该方法在该库上优于我们，红色表示我们优于它。</caption>
+绿色表示我们在该库上优于该方法，红色表示该方法优于我们。</caption>
 <thead><tr><th>方法</th><th>imdb</th><th>stats</th><th>ergastf1</th><th>genome</th></tr></thead>
 <tbody>{"".join(rows)}</tbody></table></div>
 <div class="tablewrap"><table>
@@ -1656,6 +1697,14 @@ def main() -> int:
             fetch_evidence(args.lit_branch, repo_root, evidence_dir, LIT_EVIDENCE)
         )
         facts = build_facts(evidence_dir)
+        three_seed_path = repo_root / THREE_SEED_PATH
+        three_seed_bytes = three_seed_path.read_bytes()
+        three_seed_digest = hashlib.sha256(three_seed_bytes).hexdigest()
+        if three_seed_digest != THREE_SEED_SHA256:
+            raise ValueError("three-seed evidence differs from the pinned source")
+        three_seed_note = build_three_seed_note(
+            json.loads(three_seed_bytes), three_seed_digest
+        )
 
         target_block = (
             '<p class="lede">这四个库 PRICE 与我们都没有训练过，是本项目唯一一组对等的'
@@ -1724,7 +1773,7 @@ def main() -> int:
             "ERROR_BLOCK": error_block,
             "FEWSHOT_BLOCK": fewshot_block,
             "ADVANTAGES_BLOCK": build_advantages_block(facts),
-            "LIMITS_BLOCK": build_limits_block(facts),
+            "LIMITS_BLOCK": build_limits_block(facts) + three_seed_note,
             "EVIDENCE_BLOCK": build_evidence_block(facts, digests),
             "LITERATURE_BLOCK": (
                 build_literature_block(facts) + build_related_work_block(facts)
