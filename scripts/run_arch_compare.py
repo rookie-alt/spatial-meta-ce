@@ -75,7 +75,7 @@ def arch_config(arch: str, seed: int) -> dict:
     return {**config, "seed": seed, "steps": STEPS, "patience": STEPS}
 
 
-def matrix(output_root: Path) -> list[dict]:
+def matrix(output_root: Path, seeds: tuple[int, ...] = SEEDS) -> list[dict]:
     """Seed-major so one seed's four arms train back to back."""
     return [
         {
@@ -84,7 +84,7 @@ def matrix(output_root: Path) -> list[dict]:
             "output": str(output_root / f"{arch}-seed{seed}"),
             "checkpoint": str(output_root / f"{arch}-seed{seed}" / "last.pt"),
         }
-        for seed in SEEDS
+        for seed in seeds
         for arch in ARCHS
     ]
 
@@ -150,13 +150,25 @@ def main() -> int:
         default=[],
         help="cells like sum-42 whose last.pt already exists",
     )
+    parser.add_argument(
+        "--seeds",
+        nargs="+",
+        type=int,
+        default=list(SEEDS),
+        help="seeds to run in this shard (default: all six)",
+    )
     args = parser.parse_args()
 
-    plan = matrix(args.output)
+    seeds = tuple(args.seeds)
+    unknown = [x for x in seeds if x not in SEEDS]
+    if unknown:
+        raise SystemExit(f"seeds outside the frozen set {SEEDS}: {unknown}")
+    plan = matrix(args.output, seeds)
     print(
         json.dumps(
             {
                 "cells": len(plan),
+                "seeds": list(seeds),
                 "steps": STEPS,
                 "checkpoint_kind": "last",
                 "device": args.device,
