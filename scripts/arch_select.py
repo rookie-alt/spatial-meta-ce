@@ -29,6 +29,38 @@ from spatial_meta_ce.metrics import q_values, summarize
 from spatial_meta_ce.train import validation_plan
 
 TARGETS = {'imdb', 'stats', 'genome', 'ergastf1'}
+FOUR_PLUS_MIN_TABLES = 4
+
+
+def four_plus_bucket(rows):
+    """Q95 over every query with >= FOUR_PLUS_MIN_TABLES tables, pooled.
+
+    Returns None when the bucket is empty instead of 0 or a crash: an empty
+    bucket means "not reported", and folding it in as a zero would read like a
+    perfect estimate.
+    """
+    selected = [r for r in rows if r['n_tables'] >= FOUR_PLUS_MIN_TABLES]
+    if not selected:
+        return None
+    q = q_values([r['log_pred'] for r in selected],
+                 [r['true'] for r in selected])[0]
+    return {'queries': len(selected), 'reported': True,
+            'q50': float(np.percentile(q, 50)),
+            'q95': float(np.percentile(q, 95))}
+
+
+def macro_four_plus(per_database):
+    """Equal-weight arithmetic mean across databases that reported a 4+ bucket.
+
+    Returns None when no database has a 4+ query at all: the bucket is then
+    undefined for this evaluation, which is a "not reported" state rather than
+    an error. Raising here would abort a whole comparison over a database set
+    that simply has no wide queries.
+    """
+    reported = [v['q95'] for v in per_database.values() if v is not None]
+    if not reported:
+        return None
+    return float(np.mean(reported))
 
 
 def checkpoint_pool(state: dict, data_config: dict) -> StorePool:
@@ -64,6 +96,7 @@ def evaluate_checkpoint(model, config, pool, episodes, device):
     model.eval()
     per_ep = []
     zero = defaultdict(lambda: ([], []))
+    adapted_rows = defaultdict(list)
     seen = set()
     for ep in episodes:
         if ep['db'] in TARGETS:
@@ -85,6 +118,9 @@ def evaluate_checkpoint(model, config, pool, episodes, device):
                        'log_q95': summarize(pred, true)['log_q95']})
         n_tables = query['masks'][2].sum(1).cpu().numpy()
         for i, qi in enumerate(ep['query']):
+            adapted_rows[ep['db']].append(
+                {'n_tables': int(n_tables[i]), 'log_pred': float(pred[i]),
+                 'true': float(true[i])})
             key = (ep['db'], int(qi))
             if key in seen:
                 continue
@@ -97,12 +133,24 @@ def evaluate_checkpoint(model, config, pool, episodes, device):
     for r in per_ep:
         by_k[r['k']].append(r['log_q95'])
     buckets = {}
+    zero_rows = defaultdict(list)
     for (db, n), (lp, t) in sorted(zero.items()):
         q = q_values(np.array(lp), np.array(t))[0]
         buckets.setdefault(db, {})[n] = {'count': len(q), 'q50': float(np.percentile(q, 50)),
                                          'q95': float(np.percentile(q, 95))}
+        for log_pred, truth in zip(lp, t):
+            zero_rows[db].append({'n_tables': n, 'log_pred': log_pred, 'true': truth})
+    zero_four_plus = {db: four_plus_bucket(rows)
+                      for db, rows in sorted(zero_rows.items())}
+    adapted_four_plus = {db: four_plus_bucket(rows)
+                         for db, rows in sorted(adapted_rows.items())}
     return {'macro_log_q95': macro, 'by_k': {k: float(np.mean(v)) for k, v in sorted(by_k.items())},
-            'zero_shot_by_tables': buckets}
+            'zero_shot_by_tables': buckets,
+            'four_plus_q95': {
+                'zero_shot': {'per_database': zero_four_plus,
+                              'macro': macro_four_plus(zero_four_plus)},
+                'adapted': {'per_database': adapted_four_plus,
+                            'macro': macro_four_plus(adapted_four_plus)}}}
 
 
 def main():
