@@ -1,0 +1,810 @@
+{
+  "schema": 1,
+  "purpose": "research-read-only-audit",
+  "audit": "p2-2-target-3seed",
+  "target_databases_read": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "metric": "unique-query population Q95 (single pass, NOT episode mean)",
+  "evidence_level": "three_seed_frozen_checkpoints_full_population",
+  "needs_evidence": false,
+  "needs_evidence_reason": "the three seeds share a byte-identical training configuration and differ only in the seed; the remaining limits are the small seed count and the single provided PRICE checkpoint",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "checkpoints": {
+    "42": {
+      "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/baseline/last.pt",
+      "sha256": "563ec1596b1a34dd3853e05d098634a473a74947aa176367d0d293857499d8a3",
+      "seed": 42,
+      "method": "erm",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "transform": "price40-group-logfanout-v1"
+    },
+    "43": {
+      "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/seed43/baseline/last.pt",
+      "sha256": "5617f7ddf875a024b9330bc82bc6126c0ab19806972a6e42d710d92617b7ad15",
+      "seed": 43,
+      "method": "erm",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "transform": "price40-group-logfanout-v1"
+    },
+    "44": {
+      "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/seed44/baseline/last.pt",
+      "sha256": "2546821e395ddfcfe6294757347fbb21acdc01da7fa4ec2498639571bbbec093",
+      "seed": 44,
+      "method": "erm",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "transform": "price40-group-logfanout-v1"
+    }
+  },
+  "price": {
+    "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+    "checkpoint_sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92",
+    "parameters": 10709330,
+    "maxima": [
+      12,
+      14,
+      8,
+      10
+    ],
+    "maxima_rule": "evaluate.py rule recomputed over the three historical target rows: elementwise max of inspection.max_counts over test targets {stats,genome,ergastf1} x splits {test,finetune} = [12,14,8,10]; imdb itself is NOT folded in, so the three existing target rows keep their historical layout (doc 101 3.1)",
+    "per_database_max_counts": {
+      "stats": [
+        8,
+        12,
+        7,
+        10
+      ],
+      "genome": [
+        9,
+        10,
+        6,
+        7
+      ],
+      "ergastf1": [
+        8,
+        12,
+        7,
+        9
+      ],
+      "imdb": [
+        5,
+        8,
+        5,
+        4
+      ]
+    },
+    "decoding": "price_log_predictions(): native output is log1p(card)+1, decoded to log(card)",
+    "adaptation": "none (K=0, no support, no inner steps)"
+  },
+  "inputs": {
+    "split": "test",
+    "caches": {
+      "stats": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/test/stats",
+        "content_hash": "4f1726a2ddcd0f40a964cc6a5620073fa9fd05ad88e4daf8343d84f2e0248b22",
+        "unique_queries": 2603
+      },
+      "genome": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/test/genome",
+        "content_hash": "f0f0f8660623fe3694b808916d1ec24b4ff51355723e13343a3d95cd897a07f9",
+        "unique_queries": 1699
+      },
+      "ergastf1": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/test/ergastf1",
+        "content_hash": "2a1c15b25326ccc7b4eb3b009c78f8178797ecce7e44d87245519776ac01697a",
+        "unique_queries": 1258
+      },
+      "imdb": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/test/imdb",
+        "content_hash": "aa0e1628ed7aa637e90ffedfcd27c7a4c6703e98cb46083e6beef05e3d86d333",
+        "unique_queries": 521
+      }
+    }
+  },
+  "databases": {
+    "stats": {
+      "n": 2603,
+      "ours_k0": {
+        "q95": {
+          "mean": 81.06533931463939,
+          "std": 2.4442726309400933,
+          "min": 78.91386439864759,
+          "max": 83.72311199941008,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.935698140424823,
+          "std": 0.02126631077233388,
+          "min": 1.9210865722465447,
+          "max": 1.9600958094420247,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 83.72311199941008,
+          "43": 80.5590415458605,
+          "44": 78.91386439864759
+        },
+        "per_seed_q50": {
+          "42": 1.9210865722465447,
+          "43": 1.9259120395859,
+          "44": 1.9600958094420247
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 39.520592438960115,
+          "std": 0.0,
+          "min": 39.520592438960115,
+          "max": 39.520592438960115,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.9537982430926426,
+          "std": 0.0,
+          "min": 1.9537982430926426,
+          "max": 1.9537982430926426,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 39.520592438960115,
+          "43": 39.520592438960115,
+          "44": 39.520592438960115
+        },
+        "per_seed_q50": {
+          "42": 1.9537982430926426,
+          "43": 1.9537982430926426,
+          "44": 1.9537982430926426
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 75.65001568267913,
+          "std": 0.0,
+          "min": 75.65001568267913,
+          "max": 75.65001568267913,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.9838989479238796,
+          "std": 0.0,
+          "min": 1.9838989479238796,
+          "max": 1.9838989479238796,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 75.65001568267913,
+          "43": 75.65001568267913,
+          "44": 75.65001568267913
+        },
+        "per_seed_q50": {
+          "42": 1.9838989479238796,
+          "43": 1.9838989479238796,
+          "44": 1.9838989479238796
+        }
+      },
+      "per_seed_q95_ratio_price_over_ours": {
+        "42": 0.47203921945995725,
+        "43": 0.4905792283596362,
+        "44": 0.5008067053884819
+      },
+      "per_seed_q95_ratio_pg_over_ours": {
+        "42": 0.9035738624146241,
+        "43": 0.9390630056045693,
+        "44": 0.9586403638848486
+      },
+      "seeds_beating_price_on_q95": 0,
+      "seeds_beating_pg_on_q95": 0,
+      "median_q95_ratio_price_over_ours": 0.4905792283596362,
+      "median_q95_ratio_pg_over_ours": 0.9390630056045693
+    },
+    "genome": {
+      "n": 1699,
+      "ours_k0": {
+        "q95": {
+          "mean": 192.01494543351706,
+          "std": 122.70168358751683,
+          "min": 81.28314135525898,
+          "max": 323.9285700344036,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.282951101221128,
+          "std": 0.13995770774576516,
+          "min": 1.1512998621089645,
+          "max": 1.4299501362999225,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 170.83312491088864,
+          "43": 323.9285700344036,
+          "44": 81.28314135525898
+        },
+        "per_seed_q50": {
+          "42": 1.2676033052544977,
+          "43": 1.1512998621089645,
+          "44": 1.4299501362999225
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 31.33616583353631,
+          "std": 0.0,
+          "min": 31.33616583353631,
+          "max": 31.33616583353631,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.8938071789459994,
+          "std": 2.7194799110210365e-16,
+          "min": 1.8938071789459996,
+          "max": 1.8938071789459996,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 31.33616583353631,
+          "43": 31.33616583353631,
+          "44": 31.33616583353631
+        },
+        "per_seed_q50": {
+          "42": 1.8938071789459996,
+          "43": 1.8938071789459996,
+          "44": 1.8938071789459996
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 1907.320652173913,
+          "std": 0.0,
+          "min": 1907.320652173913,
+          "max": 1907.320652173913,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.1943544332745388,
+          "std": 0.0,
+          "min": 1.1943544332745388,
+          "max": 1.1943544332745388,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 1907.320652173913,
+          "43": 1907.320652173913,
+          "44": 1907.320652173913
+        },
+        "per_seed_q50": {
+          "42": 1.1943544332745388,
+          "43": 1.1943544332745388,
+          "44": 1.1943544332745388
+        }
+      },
+      "per_seed_q95_ratio_price_over_ours": {
+        "42": 0.1834314384278935,
+        "43": 0.09673788832583732,
+        "44": 0.3855186365962082
+      },
+      "per_seed_q95_ratio_pg_over_ours": {
+        "42": 11.164817439058291,
+        "43": 5.888090241534859,
+        "44": 23.465144436749927
+      },
+      "seeds_beating_price_on_q95": 0,
+      "seeds_beating_pg_on_q95": 3,
+      "median_q95_ratio_price_over_ours": 0.1834314384278935,
+      "median_q95_ratio_pg_over_ours": 11.164817439058291
+    },
+    "ergastf1": {
+      "n": 1258,
+      "ours_k0": {
+        "q95": {
+          "mean": 23.443582936208013,
+          "std": 1.5396807773219219,
+          "min": 22.281284619224163,
+          "max": 25.18981314887901,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.6050514625048093,
+          "std": 0.04729021217329342,
+          "min": 1.5726169246266495,
+          "max": 1.6593129784711045,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 22.281284619224163,
+          "43": 22.859651040520866,
+          "44": 25.18981314887901
+        },
+        "per_seed_q50": {
+          "42": 1.6593129784711045,
+          "43": 1.5726169246266495,
+          "44": 1.5832244844166743
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 15.292854470718373,
+          "std": 0.0,
+          "min": 15.292854470718373,
+          "max": 15.292854470718373,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.4658351839794366,
+          "std": 0.0,
+          "min": 1.4658351839794366,
+          "max": 1.4658351839794366,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 15.292854470718373,
+          "43": 15.292854470718373,
+          "44": 15.292854470718373
+        },
+        "per_seed_q50": {
+          "42": 1.4658351839794366,
+          "43": 1.4658351839794366,
+          "44": 1.4658351839794366
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 27.609005752236286,
+          "std": 0.0,
+          "min": 27.609005752236286,
+          "max": 27.609005752236286,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.5399160879155946,
+          "std": 0.0,
+          "min": 1.5399160879155946,
+          "max": 1.5399160879155946,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 27.609005752236286,
+          "43": 27.609005752236286,
+          "44": 27.609005752236286
+        },
+        "per_seed_q50": {
+          "42": 1.5399160879155946,
+          "43": 1.5399160879155946,
+          "44": 1.5399160879155946
+        }
+      },
+      "per_seed_q95_ratio_price_over_ours": {
+        "42": 0.6863542534492731,
+        "43": 0.6689889729117194,
+        "44": 0.6071047204809826
+      },
+      "per_seed_q95_ratio_pg_over_ours": {
+        "42": 1.2391119373976938,
+        "43": 1.2077614703433899,
+        "44": 1.0960385291093329
+      },
+      "seeds_beating_price_on_q95": 0,
+      "seeds_beating_pg_on_q95": 3,
+      "median_q95_ratio_price_over_ours": 0.6689889729117194,
+      "median_q95_ratio_pg_over_ours": 1.2077614703433899
+    },
+    "imdb": {
+      "n": 521,
+      "ours_k0": {
+        "q95": {
+          "mean": 33.12955182059044,
+          "std": 1.7919476705285207,
+          "min": 31.84483558914404,
+          "max": 35.176617951313986,
+          "n": 3
+        },
+        "q50": {
+          "mean": 2.0124590417498562,
+          "std": 0.029432038186169233,
+          "min": 1.9798499571178771,
+          "max": 2.037053974369712,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 32.367201921313296,
+          "43": 35.176617951313986,
+          "44": 31.84483558914404
+        },
+        "per_seed_q50": {
+          "42": 2.037053974369712,
+          "43": 2.0204731937619806,
+          "44": 1.9798499571178771
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 21.025178154201523,
+          "std": 0.0,
+          "min": 21.025178154201523,
+          "max": 21.025178154201523,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.8626085114085298,
+          "std": 0.0,
+          "min": 1.8626085114085298,
+          "max": 1.8626085114085298,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 21.025178154201523,
+          "43": 21.025178154201523,
+          "44": 21.025178154201523
+        },
+        "per_seed_q50": {
+          "42": 1.8626085114085298,
+          "43": 1.8626085114085298,
+          "44": 1.8626085114085298
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 87.10975609756095,
+          "std": 1.7404671430534633e-14,
+          "min": 87.10975609756096,
+          "max": 87.10975609756096,
+          "n": 3
+        },
+        "q50": {
+          "mean": 2.2777777777777786,
+          "std": 0.0,
+          "min": 2.2777777777777786,
+          "max": 2.2777777777777786,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 87.10975609756096,
+          "43": 87.10975609756096,
+          "44": 87.10975609756096
+        },
+        "per_seed_q50": {
+          "42": 2.2777777777777786,
+          "43": 2.2777777777777786,
+          "44": 2.2777777777777786
+        }
+      },
+      "per_seed_q95_ratio_price_over_ours": {
+        "42": 0.6495828155092014,
+        "43": 0.5977032295515535,
+        "44": 0.6602382384843916
+      },
+      "per_seed_q95_ratio_pg_over_ours": {
+        "42": 2.6912970824395095,
+        "43": 2.4763539297076473,
+        "44": 2.7354437379245518
+      },
+      "seeds_beating_price_on_q95": 0,
+      "seeds_beating_pg_on_q95": 3,
+      "median_q95_ratio_price_over_ours": 0.6495828155092014,
+      "median_q95_ratio_pg_over_ours": 2.6912970824395095
+    }
+  },
+  "bucket_4plus": {
+    "stats": {
+      "n": 906,
+      "ours_k0": {
+        "q95": {
+          "mean": 271.26247677526953,
+          "std": 35.82989361089987,
+          "min": 230.61521977188687,
+          "max": 298.2667975872026,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 298.2667975872026,
+          "43": 284.90541296671915,
+          "44": 230.61521977188687
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 141.7560761280571,
+          "std": 0.0,
+          "min": 141.7560761280571,
+          "max": 141.7560761280571,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 141.7560761280571,
+          "43": 141.7560761280571,
+          "44": 141.7560761280571
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 230.05715998496598,
+          "std": 0.0,
+          "min": 230.05715998496598,
+          "max": 230.05715998496598,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 230.05715998496598,
+          "43": 230.05715998496598,
+          "44": 230.05715998496598
+        }
+      }
+    },
+    "genome": {
+      "n": 544,
+      "ours_k0": {
+        "q95": {
+          "mean": 1278.206117026553,
+          "std": 1189.3422200944294,
+          "min": 282.7566876694832,
+          "max": 2595.2874339813247,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 956.5742294288516,
+          "43": 2595.2874339813247,
+          "44": 282.7566876694832
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 64.03089673949823,
+          "std": 0.0,
+          "min": 64.03089673949823,
+          "max": 64.03089673949823,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 64.03089673949823,
+          "43": 64.03089673949823,
+          "44": 64.03089673949823
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 9986.27777777777,
+          "std": 0.0,
+          "min": 9986.27777777777,
+          "max": 9986.27777777777,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 9986.27777777777,
+          "43": 9986.27777777777,
+          "44": 9986.27777777777
+        }
+      }
+    },
+    "ergastf1": {
+      "n": 258,
+      "ours_k0": {
+        "q95": {
+          "mean": 93.78899644734396,
+          "std": 14.912840767916041,
+          "min": 77.84872583113251,
+          "max": 107.4003771215615,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 77.84872583113251,
+          "43": 96.11788638933788,
+          "44": 107.4003771215615
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 58.22408875108716,
+          "std": 0.0,
+          "min": 58.22408875108716,
+          "max": 58.22408875108716,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 58.22408875108716,
+          "43": 58.22408875108716,
+          "44": 58.22408875108716
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 107.29673625022347,
+          "std": 0.0,
+          "min": 107.29673625022347,
+          "max": 107.29673625022347,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 107.29673625022347,
+          "43": 107.29673625022347,
+          "44": 107.29673625022347
+        }
+      }
+    },
+    "imdb": {
+      "n": 118,
+      "ours_k0": {
+        "q95": {
+          "mean": 440.4932330061544,
+          "std": 82.68153656833672,
+          "min": 361.71577730468283,
+          "max": 526.591926005702,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 526.591926005702,
+          "43": 433.1719957080782,
+          "44": 361.71577730468283
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 88.90998140560941,
+          "std": 0.0,
+          "min": 88.90998140560941,
+          "max": 88.90998140560941,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 88.90998140560941,
+          "43": 88.90998140560941,
+          "44": 88.90998140560941
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 1174.910739450328,
+          "std": 0.0,
+          "min": 1174.910739450328,
+          "max": 1174.910739450328,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 1174.910739450328,
+          "43": 1174.910739450328,
+          "44": 1174.910739450328
+        }
+      }
+    }
+  },
+  "headline": {
+    "databases": [
+      "stats",
+      "genome",
+      "ergastf1",
+      "imdb"
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "median_q95_ratio_price_over_ours": {
+      "value": 0.5700810219344188,
+      "min": 0.1834314384278935,
+      "max": 0.6689889729117194
+    },
+    "median_q95_ratio_pg_over_ours": {
+      "value": 1.9495292763914498,
+      "min": 0.9390630056045693,
+      "max": 11.164817439058291
+    },
+    "every_seed_loses_to_price_on_q95": true,
+    "total_seed_database_pairs": 12,
+    "seed_database_pairs_beating_price": 0,
+    "seed_database_pairs_beating_pg": 9
+  }
+}
