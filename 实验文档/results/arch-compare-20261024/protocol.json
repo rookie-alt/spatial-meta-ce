@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "rule": "|mean paired delta| < paired delta SD -> inconclusive; no ranking emitted",
+  "min_pairs_for_verdict": 2,
+  "architecture_set": [
+    "set",
+    "sum",
+    "attn",
+    "attn_pair"
+  ],
+  "aggregation": "per-seed paired delta; mean and sample SD (ddof=1)",
+  "no_significance_test": "n is small and the SD rests on few observations; a p-value would overstate what this data supports",
+  "inputs": [
+    "select-seed42.json",
+    "select-seed43.json",
+    "select-seed44.json",
+    "select-seed45.json",
+    "select-seed46.json",
+    "select-seed47.json"
+  ]
+}
