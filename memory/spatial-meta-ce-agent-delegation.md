@@ -168,6 +168,6 @@ ruff check scripts tests spatial_meta_ce
 
 本记录参考的本地 ECC 文件为 `rules/common/agents.md`、`skills/team-agent-orchestration/SKILL.md` 与 `skills/parallel-execution-optimizer/SKILL.md`。采用独立任务并行、依赖任务顺序、清晰负责人和验收门槛、委派后回收整合、避免重叠写入等原则，不复制会突破项目限制的技能指令。
 
-2026-10-16 的完成后审查规则另参考本地 ECC 2.2.3 的 `agents/code-reviewer.md`、`skills/verification-loop/SKILL.md` 与 `source-command-review-pr` 技能：采用实际 diff 与上下文审查、证据支持的发现、按严重性汇总、验证和剩余风险显式记录；不照搬全套角色、其他语言的命令、模型设置或自动外部操作。`agent-self-evaluation` 属于主代理自评，不视为独立审查；本规则不依赖安装 ECC，有实际子代理接口即可执行。
+2026-10-16 的完成后审查规则另参考本地 ECC 2.2.3 的 `agents/code-reviewer.md`、`skills/verification-loop/SKILL.md` 与 `commands/review-pr.md`：采用实际 diff 与上下文审查、证据支持的发现、按严重性汇总、验证和剩余风险显式记录；不照搬全套角色、其他语言的命令、模型设置或自动外部操作。`agent-self-evaluation` 属于主代理自评，不视为独立审查；本规则不依赖安装 ECC，有实际子代理接口即可执行。
 
 读取链为 [AGENTS.md](../AGENTS.md) → [项目记忆索引](MEMORY.md) → 本文件；[CLAUDE.md](../CLAUDE.md) 也指向本文件。两个入口只保留强制门槛摘要，完整约定以本文件为准。本约定不会自动修改其他 worktree 或全局配置，也不安装后台 hook；由读取项目指令的代理执行，不能声称已建立工具级强制拦截。
