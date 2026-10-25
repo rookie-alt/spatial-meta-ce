@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "purpose": "inference-latency-model-forward-only",
+  "unit": "milliseconds per forward pass",
+  "includes_feature_extraction": false,
+  "includes_label_acquisition": false,
+  "includes_plan_generation": false,
+  "includes_database_execution": false,
+  "claim_boundary": "One encoded sample, one forward pass. Excludes SQL parsing, feature extraction, labels, plan generation and execution. Not a database speedup measurement; inference time is not end-to-end acceleration.",
+  "databases": {
+    "imdb": {
+      "samples": 766,
+      "models": {
+        "ours": {
+          "population": {
+            "p50": 0.8948140311986208,
+            "p90": 0.9068420622497797,
+            "p95": 0.9099052986130118,
+            "p99": 0.9495238540694108,
+            "mean": 0.896687684306031,
+            "min": 0.8678841404616833,
+            "max": 1.1303178034722805,
+            "n": 746
+          },
+          "population_repeat": {
+            "p50": 0.917807687073946,
+            "p90": 0.9410460479557514,
+            "p95": 0.9581530466675758,
+            "p99": 1.2775355717167256,
+            "mean": 0.933617016365477,
+            "min": 0.8694371208548546,
+            "max": 6.660737097263336,
+            "n": 746
+          },
+          "stability_relative_delta": 0.025696575012938448,
+          "stability_ok": true,
+          "single_row_repeated": {
+            "p50": 0.9148111566901207,
+            "p90": 0.9383543394505978,
+            "p95": 0.9465976851060987,
+            "p99": 1.0887865955010059,
+            "mean": 0.9190411260351539,
+            "min": 0.8838432841002941,
+            "max": 1.113284844905138,
+            "n": 100
+          },
+          "throughput": {
+            "batch_size": 128,
+            "batches": 6,
+            "rows": 766,
+            "repeats": 3,
+            "rows_per_second": 55051.71800103834,
+            "aggregation": "best of repeats (least-squares-free: a throughput ceiling)"
+          }
+        }
+      }
+    },
+    "stats": {
+      "samples": 2749,
+      "models": {
+        "ours": {
+          "population": {
+            "p50": 0.8973586373031139,
+            "p90": 0.9331159293651581,
+            "p95": 1.0339519008994102,
+            "p99": 1.5574316866695879,
+            "mean": 0.9248666763892647,
+            "min": 0.847384799271822,
+            "max": 4.7222888097167015,
+            "n": 2729
+          },
+          "population_repeat": {
+            "p50": 0.8943132124841213,
+            "p90": 0.9137239307165146,
+            "p95": 0.939253531396389,
+            "p99": 1.3484160229563709,
+            "mean": 0.9155110783667497,
+            "min": 0.8579036220908165,
+            "max": 4.35737194493413,
+            "n": 2729
+          },
+          "stability_relative_delta": 0.003393765538542331,
+          "stability_ok": true,
+          "single_row_repeated": {
+            "p50": 0.8753924630582333,
+            "p90": 0.8928022813051939,
+            "p95": 0.9105012519285083,
+            "p99": 0.9163706842809916,
+            "mean": 0.878169541247189,
+            "min": 0.8563408628106117,
+            "max": 0.9238878265023232,
+            "n": 100
+          },
+          "throughput": {
+            "batch_size": 128,
+            "batches": 22,
+            "rows": 2749,
+            "repeats": 3,
+            "rows_per_second": 45311.43656726674,
+            "aggregation": "best of repeats (least-squares-free: a throughput ceiling)"
+          }
+        }
+      }
+    },
+    "genome": {
+      "samples": 2302,
+      "models": {
+        "ours": {
+          "population": {
+            "p50": 0.8929301984608173,
+            "p90": 0.9200978092849255,
+            "p95": 0.9353851201012731,
+            "p99": 1.1154520278796576,
+            "mean": 0.9035676826725368,
+            "min": 0.8615721017122269,
+            "max": 5.052879918366671,
+            "n": 2282
+          },
+          "population_repeat": {
+            "p50": 0.8871543686836958,
+            "p90": 0.9145147632807493,
+            "p95": 0.9341593831777572,
+            "p99": 1.065573636442423,
+            "mean": 0.8944663564828824,
+            "min": 0.8581248112022877,
+            "max": 1.7458661459386349,
+            "n": 2282
+          },
+          "stability_relative_delta": 0.006468400091157845,
+          "stability_ok": true,
+          "single_row_repeated": {
+            "p50": 0.8861119858920574,
+            "p90": 0.8952768985182047,
+            "p95": 0.898494990542531,
+            "p99": 0.9401385579258207,
+            "mean": 0.8881638711318374,
+            "min": 0.8728629909455776,
+            "max": 1.0025668889284134,
+            "n": 100
+          },
+          "throughput": {
+            "batch_size": 128,
+            "batches": 18,
+            "rows": 2302,
+            "repeats": 3,
+            "rows_per_second": 49622.71791493791,
+            "aggregation": "best of repeats (least-squares-free: a throughput ceiling)"
+          }
+        }
+      }
+    },
+    "ergastf1": {
+      "samples": 1422,
+      "models": {
+        "ours": {
+          "population": {
+            "p50": 0.8866484276950359,
+            "p90": 0.9040820877999067,
+            "p95": 0.9173461468890309,
+            "p99": 1.025075945071876,
+            "mean": 0.8919088694050419,
+            "min": 0.861631240695715,
+            "max": 1.920775044709444,
+            "n": 1402
+          },
+          "population_repeat": {
+            "p50": 0.8853711187839508,
+            "p90": 0.9256197605282069,
+            "p95": 1.9161307020112872,
+            "p99": 1.9709533685818315,
+            "mean": 0.9562199448398746,
+            "min": 0.8602188900113106,
+            "max": 2.8901593759655952,
+            "n": 1402
+          },
+          "stability_relative_delta": 0.0014406035934735352,
+          "stability_ok": true,
+          "single_row_repeated": {
+            "p50": 0.8873152546584606,
+            "p90": 0.8921508677303791,
+            "p95": 0.8955561555922031,
+            "p99": 0.9095704974606634,
+            "mean": 0.8877605991438031,
+            "min": 0.8749570697546005,
+            "max": 0.9380960837006569,
+            "n": 100
+          },
+          "throughput": {
+            "batch_size": 128,
+            "batches": 12,
+            "rows": 1422,
+            "repeats": 3,
+            "rows_per_second": 45842.27402865196,
+            "aggregation": "best of repeats (least-squares-free: a throughput ceiling)"
+          }
+        }
+      }
+    }
+  },
+  "stability_breaches": []
+}

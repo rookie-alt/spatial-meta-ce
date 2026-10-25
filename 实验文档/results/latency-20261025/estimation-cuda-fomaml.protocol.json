@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "script": "measure_estimation_latency.py",
+  "script_sha256": "bc3ce7e76acd36a03ee924f7928a4a865dae713762e4cd3157b9782e2e354614",
+  "checkpoint": "/gly/weilin/spatial-meta-ce/runs/formal-fomaml-20260925-seed42/best.pt",
+  "checkpoint_sha256": "fe0b982adac5add70b1c9333b38800fba7ef6ad52743b6dd29e4a5f5effc8bea",
+  "checkpoint_metadata": {
+    "method": "fomaml",
+    "train_databases": [
+      "accidents",
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hepatitis",
+      "hockey",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "validation_databases": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "model_config": {
+      "width": 64,
+      "use_pg": true
+    }
+  },
+  "databases_read": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "allowed_targets": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "split": "test",
+  "threads": 1,
+  "device": "cuda:0",
+  "verification_sample": 20,
+  "warmup_subqueries": 5,
+  "limit_queries": 0,
+  "extraction_shared_between_arms": "one extraction pass; its cost is attributed to both arms because both consume the same PRICE feature groups",
+  "single_table_policy": "PRICE's benchmark/e2e.py substitutes true cardinality for single-table subqueries; those are counted, never timed as model work",
+  "price": {
+    "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+    "checkpoint_sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92",
+    "maxima": "per-database inspection.max_counts (PRICE's own padding)"
+  }
+}

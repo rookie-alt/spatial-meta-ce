@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "script": "measure_inference_latency.py",
+  "script_sha256": "1908a3e94a4b7d6cbd5a4eddd57a6e0e91e572ae02bffa99f57ba9d3348ba84d",
+  "checkpoint": "/gly/weilin/spatial-meta-ce/runs/formal-erm-seed42-20260926/best.pt",
+  "checkpoint_sha256": "de42523ff2b1074f263cf4dffec8fced063a28942debc8d0b87433f25d8050ec",
+  "checkpoint_metadata": {
+    "method": "erm",
+    "train_databases": [
+      "accidents",
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hepatitis",
+      "hockey",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "validation_databases": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "model_config": {
+      "width": 64,
+      "use_pg": true
+    }
+  },
+  "databases_read": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "allowed_targets": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "caches": {
+    "imdb": {
+      "content_hash": "aa0e1628ed7aa637e90ffedfcd27c7a4c6703e98cb46083e6beef05e3d86d333",
+      "samples": 766,
+      "test": [
+        5,
+        8,
+        5,
+        4
+      ]
+    },
+    "stats": {
+      "content_hash": "4f1726a2ddcd0f40a964cc6a5620073fa9fd05ad88e4daf8343d84f2e0248b22",
+      "samples": 2749,
+      "test": [
+        8,
+        12,
+        7,
+        10
+      ]
+    },
+    "genome": {
+      "content_hash": "f0f0f8660623fe3694b808916d1ec24b4ff51355723e13343a3d95cd897a07f9",
+      "samples": 2302,
+      "test": [
+        9,
+        10,
+        6,
+        7
+      ]
+    },
+    "ergastf1": {
+      "content_hash": "2a1c15b25326ccc7b4eb3b009c78f8178797ecce7e44d87245519776ac01697a",
+      "samples": 1422,
+      "test": [
+        8,
+        12,
+        7,
+        9
+      ]
+    }
+  },
+  "sampling": {
+    "population": "every test-cache row once, first --warmup rows untimed",
+    "single_row_repeated": "row 0 repeated 100 times",
+    "throughput": "batch 128 over all rows, 3 repeats",
+    "warmup": 20
+  },
+  "stability_check": {
+    "rule": "two independent population passes in one process",
+    "tolerance_relative_delta": 0.05,
+    "action": "recorded per database; a breach is reported, never silently averaged"
+  },
+  "threads": 1,
+  "device": "cuda:0",
+  "environment": {
+    "platform": "Linux-3.10.0-1160.el7.x86_64-x86_64-with-glibc2.31",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 96,
+    "python": "3.11.4",
+    "torch": "2.1.0+cu121",
+    "numpy": "1.26.1",
+    "torch_threads": 1,
+    "requested_threads": 1,
+    "env_threads": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": null,
+      "CUDA_VISIBLE_DEVICES": "0"
+    },
+    "device": "cuda:0",
+    "load_average": [
+      4.65,
+      5.01,
+      5.03
+    ],
+    "gpu_name": "NVIDIA GeForce RTX 3090",
+    "gpu_capability": [
+      8,
+      6
+    ],
+    "cuda_version": "12.1",
+    "cudnn_version": 8902
+  },
+  "price": null
+}

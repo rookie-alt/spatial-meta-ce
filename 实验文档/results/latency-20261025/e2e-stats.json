@@ -1,0 +1,2231 @@
+{
+  "schema": 1,
+  "purpose": "postgres-e2e-with-injected-cardinalities",
+  "database": "stats",
+  "includes_feature_extraction": false,
+  "includes_plan_generation": true,
+  "includes_database_execution": true,
+  "claim_boundary": "Execution of the unchanged SQL on PostgreSQL 13.23 with pg_hint_plan Rows() injection. The mechanism differs from PilotScope's push_card on PostgreSQL 13.1, so absolute times are not comparable with PRICE's published E2E figures; ratios within this report are.",
+  "population": {
+    "queries_total": 146,
+    "one_block": 146,
+    "unsupported_multi_block": 0,
+    "uninjectable_missing_estimate": 36,
+    "sampled": 20,
+    "sample_seed": 2026,
+    "unsupported_queries": [],
+    "uninjectable_queries": [
+      {
+        "query": 28,
+        "lines": [
+          233
+        ]
+      },
+      {
+        "query": 33,
+        "lines": [
+          313
+        ]
+      },
+      {
+        "query": 46,
+        "lines": [
+          539,
+          540,
+          542,
+          544
+        ]
+      },
+      {
+        "query": 47,
+        "lines": [
+          574,
+          575,
+          576
+        ]
+      },
+      {
+        "query": 48,
+        "lines": [
+          605,
+          607
+        ]
+      },
+      {
+        "query": 49,
+        "lines": [
+          638,
+          639,
+          640
+        ]
+      },
+      {
+        "query": 50,
+        "lines": [
+          671
+        ]
+      },
+      {
+        "query": 51,
+        "lines": [
+          703
+        ]
+      },
+      {
+        "query": 53,
+        "lines": [
+          749,
+          750
+        ]
+      },
+      {
+        "query": 54,
+        "lines": [
+          771,
+          772
+        ]
+      },
+      {
+        "query": 58,
+        "lines": [
+          913,
+          921
+        ]
+      },
+      {
+        "query": 60,
+        "lines": [
+          999,
+          1006,
+          1007,
+          1009
+        ]
+      },
+      {
+        "query": 61,
+        "lines": [
+          1042,
+          1043,
+          1044,
+          1047,
+          1048,
+          1049,
+          1050,
+          1051,
+          1052
+        ]
+      },
+      {
+        "query": 63,
+        "lines": [
+          1129,
+          1130,
+          1133,
+          1134,
+          1136,
+          1137,
+          1138
+        ]
+      },
+      {
+        "query": 64,
+        "lines": [
+          1172,
+          1173,
+          1176,
+          1177,
+          1179,
+          1180,
+          1181
+        ]
+      },
+      {
+        "query": 66,
+        "lines": [
+          1258,
+          1259,
+          1262,
+          1263,
+          1265,
+          1266,
+          1267
+        ]
+      },
+      {
+        "query": 69,
+        "lines": [
+          1407,
+          1411,
+          1412,
+          1413,
+          1414
+        ]
+      },
+      {
+        "query": 71,
+        "lines": [
+          1502,
+          1503,
+          1506,
+          1507,
+          1508,
+          1511,
+          1512
+        ]
+      },
+      {
+        "query": 73,
+        "lines": [
+          1594,
+          1601,
+          1602,
+          1604
+        ]
+      },
+      {
+        "query": 74,
+        "lines": [
+          1637,
+          1644,
+          1645,
+          1647
+        ]
+      },
+      {
+        "query": 75,
+        "lines": [
+          1680,
+          1687,
+          1688,
+          1690
+        ]
+      },
+      {
+        "query": 76,
+        "lines": [
+          1723,
+          1730,
+          1731,
+          1733
+        ]
+      },
+      {
+        "query": 77,
+        "lines": [
+          1766,
+          1773,
+          1774,
+          1776
+        ]
+      },
+      {
+        "query": 78,
+        "lines": [
+          1809,
+          1816,
+          1817,
+          1819
+        ]
+      },
+      {
+        "query": 96,
+        "lines": [
+          1991
+        ]
+      },
+      {
+        "query": 106,
+        "lines": [
+          2142
+        ]
+      },
+      {
+        "query": 107,
+        "lines": [
+          2158
+        ]
+      },
+      {
+        "query": 119,
+        "lines": [
+          2408
+        ]
+      },
+      {
+        "query": 130,
+        "lines": [
+          2652,
+          2653,
+          2655,
+          2657
+        ]
+      },
+      {
+        "query": 133,
+        "lines": [
+          2748,
+          2749,
+          2752,
+          2753
+        ]
+      },
+      {
+        "query": 134,
+        "lines": [
+          2780,
+          2781,
+          2784,
+          2785
+        ]
+      },
+      {
+        "query": 135,
+        "lines": [
+          2816
+        ]
+      },
+      {
+        "query": 136,
+        "lines": [
+          2839,
+          2840
+        ]
+      },
+      {
+        "query": 139,
+        "lines": [
+          2965,
+          2966,
+          2973,
+          2974,
+          2976,
+          2977,
+          2983,
+          2984,
+          2985,
+          2986,
+          2989,
+          2990
+        ]
+      },
+      {
+        "query": 142,
+        "lines": [
+          3214,
+          3215,
+          3225,
+          3226,
+          3233,
+          3234,
+          3235,
+          3238,
+          3239,
+          3240
+        ]
+      },
+      {
+        "query": 144,
+        "lines": [
+          3332
+        ]
+      }
+    ]
+  },
+  "runs": 3,
+  "discarded_cold_runs": 1,
+  "statement_timeout_ms": 120000,
+  "arm_failures": [
+    {
+      "query": 121,
+      "arm": "pg_native",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    },
+    {
+      "query": 121,
+      "arm": "true_card",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    },
+    {
+      "query": 121,
+      "arm": "ours",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    },
+    {
+      "query": 121,
+      "arm": "price",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    }
+  ],
+  "single_table_policy": "no hint; PostgreSQL's own scan estimate (PRICE convention)",
+  "server": {
+    "version": "PostgreSQL 13.23 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0, 64-bit",
+    "hint_session_preload": "pg_hint_plan",
+    "hint_enabled": "on",
+    "parallel_workers_per_gather": "0"
+  },
+  "ratios_to_pg_native": {
+    "true_card": {
+      "median": 0.9745671652803759,
+      "mean": 0.911952142286264,
+      "p90": 1.2193103532183502,
+      "better_than_pg": 10,
+      "worse_than_pg": 7,
+      "n": 19
+    },
+    "ours": {
+      "median": 0.979537196615,
+      "mean": 0.9956203747288064,
+      "p90": 1.1296405586549514,
+      "better_than_pg": 10,
+      "worse_than_pg": 6,
+      "n": 19
+    },
+    "price": {
+      "median": 0.959754282070546,
+      "mean": 0.9796391720829574,
+      "p90": 1.202127662891805,
+      "better_than_pg": 12,
+      "worse_than_pg": 6,
+      "n": 19
+    }
+  },
+  "ratio_subset": "the same queries for every arm: all four arms produced an execution time; the count is ratios_to_pg_native[*].n",
+  "injection_checks": {
+    "true_card": {
+      "verified": 19,
+      "unverified": 0,
+      "not_checked": 1
+    },
+    "ours": {
+      "verified": 19,
+      "unverified": 0,
+      "not_checked": 1
+    },
+    "price": {
+      "verified": 19,
+      "unverified": 0,
+      "not_checked": 1
+    }
+  },
+  "median_q_error": {
+    "pg_native": {
+      "median": 11.944134375568774,
+      "n": 19
+    },
+    "true_card": {
+      "median": 1.0,
+      "n": 19
+    },
+    "ours": {
+      "median": 9.410961231821249,
+      "n": 19
+    },
+    "price": {
+      "median": 6.575207057323391,
+      "n": 19
+    }
+  },
+  "results": [
+    {
+      "query": 15,
+      "aliases": [
+        "st_b",
+        "st_c",
+        "st_u"
+      ],
+      "true_card": 245567.0,
+      "hinted_prefixes": [
+        "st_b st_c",
+        "st_b st_u",
+        "st_c st_u",
+        "st_b st_c st_u"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 336.74,
+          "runs_ms": [
+            378.186,
+            295.294
+          ],
+          "total_cost": 86309.08,
+          "join_rows": 10640631.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 43.330866932446135
+        },
+        "true_card": {
+          "execution_ms": 248.418,
+          "runs_ms": [
+            252.794,
+            244.042
+          ],
+          "total_cost": 25685.83,
+          "join_rows": 245567.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 245567.0,
+          "hint": "/*+ Rows(st_b st_c #10234398) Rows(st_b st_u #55035) Rows(st_c st_u #45485) Rows(st_b st_c st_u #245567) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 264.2845,
+          "runs_ms": [
+            287.557,
+            241.012
+          ],
+          "total_cost": 78328.1,
+          "join_rows": 10220050.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 10220050.0,
+          "hint": "/*+ Rows(st_b st_c #12037110) Rows(st_b st_u #66401) Rows(st_c st_u #109861) Rows(st_b st_c st_u #10220050) */",
+          "injection_verified": true,
+          "q_error": 41.61817345164456
+        },
+        "price": {
+          "execution_ms": 270.169,
+          "runs_ms": [
+            305.124,
+            235.214
+          ],
+          "total_cost": 43358.05,
+          "join_rows": 4351211.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 4351210.916775794,
+          "hint": "/*+ Rows(st_b st_c #15618739) Rows(st_b st_u #42247) Rows(st_c st_u #62698) Rows(st_b st_c st_u #4351211) */",
+          "injection_verified": true,
+          "q_error": 17.71903798148774
+        }
+      }
+    },
+    {
+      "query": 42,
+      "aliases": [
+        "st_b",
+        "st_ph",
+        "st_p",
+        "st_u"
+      ],
+      "true_card": 7661811.0,
+      "hinted_prefixes": [
+        "st_b st_ph",
+        "st_b st_p",
+        "st_b st_u",
+        "st_ph st_p",
+        "st_ph st_u",
+        "st_p st_u",
+        "st_b st_ph st_p",
+        "st_b st_ph st_u",
+        "st_b st_p st_u",
+        "st_ph st_p st_u",
+        "st_b st_ph st_p st_u"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 4091.5215,
+          "runs_ms": [
+            3998.665,
+            4184.378
+          ],
+          "total_cost": 1370093.12,
+          "join_rows": 82347224.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 10.74774932453959
+        },
+        "true_card": {
+          "execution_ms": 4119.6915,
+          "runs_ms": [
+            4119.641,
+            4119.742
+          ],
+          "total_cost": 188751.57,
+          "join_rows": 7661811.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 7661811.0,
+          "hint": "/*+ Rows(st_b st_ph #452527) Rows(st_b st_p #3728285) Rows(st_b st_u #68676) Rows(st_ph st_p #916826) Rows(st_ph st_u #38775) Rows(st_p st_u #60142) Rows(st_b st_ph st_p #58846511) Rows(st_b st_ph st_u #264252) Rows(st_b st_p st_u #550289) Rows(st_ph st_p st_u #404170) Rows(st_b st_ph st_p st_u #7661811) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 4007.7974999999997,
+          "runs_ms": [
+            4006.602,
+            4008.993
+          ],
+          "total_cost": 1299425.91,
+          "join_rows": 81125488.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 81125488.0,
+          "hint": "/*+ Rows(st_b st_ph #2096979) Rows(st_b st_p #3225618) Rows(st_b st_u #72676) Rows(st_ph st_p #7204514) Rows(st_ph st_u #38308) Rows(st_p st_u #84167) Rows(st_b st_ph st_p #84742112) Rows(st_b st_ph st_u #1945684) Rows(st_b st_p st_u #2989543) Rows(st_ph st_p st_u #6777024) Rows(st_b st_ph st_p st_u #81125488) */",
+          "injection_verified": true,
+          "q_error": 10.588291462684214
+        },
+        "price": {
+          "execution_ms": 4174.8565,
+          "runs_ms": [
+            4094.536,
+            4255.177
+          ],
+          "total_cost": 2121640.86,
+          "join_rows": 255135548.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 255135548.03451666,
+          "hint": "/*+ Rows(st_b st_ph #3488423) Rows(st_b st_p #5049082) Rows(st_b st_u #83519) Rows(st_ph st_p #11774181) Rows(st_ph st_u #49522) Rows(st_p st_u #102194) Rows(st_b st_ph st_p #243181940) Rows(st_b st_ph st_u #2639306) Rows(st_b st_p st_u #4765172) Rows(st_ph st_p st_u #8837616) Rows(st_b st_ph st_p st_u #255135548) */",
+          "injection_verified": true,
+          "q_error": 33.29963999372994
+        }
+      }
+    },
+    {
+      "query": 88,
+      "aliases": [
+        "st_ph",
+        "st_p",
+        "st_u"
+      ],
+      "true_card": 1356723.0,
+      "hinted_prefixes": [
+        "st_ph st_p",
+        "st_ph st_u",
+        "st_p st_u",
+        "st_ph st_p st_u"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 465.505,
+          "runs_ms": [
+            406.1,
+            524.91
+          ],
+          "total_cost": 236892.02,
+          "join_rows": 50338574.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 37.103059356994756
+        },
+        "true_card": {
+          "execution_ms": 468.4485,
+          "runs_ms": [
+            500.677,
+            436.22
+          ],
+          "total_cost": 67100.48,
+          "join_rows": 1356723.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 1356723.0,
+          "hint": "/*+ Rows(st_ph st_p #54725800) Rows(st_ph st_u #145895) Rows(st_p st_u #49174) Rows(st_ph st_p st_u #1356723) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 498.284,
+          "runs_ms": [
+            459.433,
+            537.135
+          ],
+          "total_cost": 210896.43,
+          "join_rows": 45903140.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 45903140.0,
+          "hint": "/*+ Rows(st_ph st_p #52466944) Rows(st_ph st_u #253104) Rows(st_p st_u #75952) Rows(st_ph st_p st_u #45903140) */",
+          "injection_verified": true,
+          "q_error": 33.833833435417546
+        },
+        "price": {
+          "execution_ms": 452.17,
+          "runs_ms": [
+            442.61,
+            461.73
+          ],
+          "total_cost": 65571.69,
+          "join_rows": 7926824.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 7926824.263225614,
+          "hint": "/*+ Rows(st_ph st_p #82316633) Rows(st_ph st_u #105731) Rows(st_p st_u #34349) Rows(st_ph st_p st_u #7926824) */",
+          "injection_verified": true,
+          "q_error": 5.842625207945911
+        }
+      }
+    },
+    {
+      "query": 89,
+      "aliases": [
+        "st_ph",
+        "st_p",
+        "st_u"
+      ],
+      "true_card": 582617.0,
+      "hinted_prefixes": [
+        "st_ph st_p",
+        "st_ph st_u",
+        "st_p st_u",
+        "st_ph st_p st_u"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 365.7915,
+          "runs_ms": [
+            336.328,
+            395.255
+          ],
+          "total_cost": 35122.54,
+          "join_rows": 5674508.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 9.739688337278178
+        },
+        "true_card": {
+          "execution_ms": 462.275,
+          "runs_ms": [
+            526.797,
+            397.753
+          ],
+          "total_cost": 21253.8,
+          "join_rows": 582617.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 582617.0,
+          "hint": "/*+ Rows(st_ph st_p #1008487) Rows(st_ph st_u #205970) Rows(st_p st_u #10205) Rows(st_ph st_p st_u #582617) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 377.944,
+          "runs_ms": [
+            404.163,
+            351.725
+          ],
+          "total_cost": 33625.62,
+          "join_rows": 5482986.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 5482986.5,
+          "hint": "/*+ Rows(st_ph st_p #6088126) Rows(st_ph st_u #247663) Rows(st_p st_u #10281) Rows(st_ph st_p st_u #5482986) */",
+          "injection_verified": true,
+          "q_error": 9.410961231821249
+        },
+        "price": {
+          "execution_ms": 419.029,
+          "runs_ms": [
+            415.481,
+            422.577
+          ],
+          "total_cost": 40583.85,
+          "join_rows": 6083691.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 6083691.326929866,
+          "hint": "/*+ Rows(st_ph st_p #9048972) Rows(st_ph st_u #255261) Rows(st_p st_u #13711) Rows(st_ph st_p st_u #6083691) */",
+          "injection_verified": true,
+          "q_error": 10.442007356462307
+        }
+      }
+    },
+    {
+      "query": 109,
+      "aliases": [
+        "st_c",
+        "st_ph",
+        "st_pl",
+        "st_p",
+        "st_v"
+      ],
+      "true_card": 1104151.0,
+      "hinted_prefixes": [
+        "st_c st_ph",
+        "st_c st_pl",
+        "st_c st_p",
+        "st_c st_v",
+        "st_ph st_pl",
+        "st_ph st_p",
+        "st_ph st_v",
+        "st_pl st_p",
+        "st_pl st_v",
+        "st_p st_v",
+        "st_c st_ph st_pl",
+        "st_c st_ph st_p",
+        "st_c st_ph st_v",
+        "st_c st_pl st_p",
+        "st_c st_pl st_v",
+        "st_c st_p st_v",
+        "st_ph st_pl st_p",
+        "st_ph st_pl st_v",
+        "st_ph st_p st_v",
+        "st_pl st_p st_v",
+        "st_c st_ph st_pl st_p",
+        "st_c st_ph st_pl st_v",
+        "st_c st_ph st_p st_v",
+        "st_c st_pl st_p st_v",
+        "st_ph st_pl st_p st_v",
+        "st_c st_ph st_pl st_p st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 474.728,
+          "runs_ms": [
+            470.363,
+            479.093
+          ],
+          "total_cost": 30643.4,
+          "join_rows": 1391191.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2599644432690817
+        },
+        "true_card": {
+          "execution_ms": 618.807,
+          "runs_ms": [
+            625.114,
+            612.5
+          ],
+          "total_cost": 37894.93,
+          "join_rows": 1104151.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 1104151.0,
+          "hint": "/*+ Rows(st_c st_ph #529790) Rows(st_c st_pl #23304) Rows(st_c st_p #134887) Rows(st_c st_v #591108) Rows(st_ph st_pl #59832) Rows(st_ph st_p #303187) Rows(st_ph st_v #1331347) Rows(st_pl st_p #10423) Rows(st_pl st_v #60440) Rows(st_p st_v #328064) Rows(st_c st_ph st_pl #145541) Rows(st_c st_ph st_p #529790) Rows(st_c st_ph st_v #2793122) Rows(st_c st_pl st_p #23304) Rows(st_c st_pl st_v #146248) Rows(st_c st_p st_v #591108) Rows(st_ph st_pl st_p #59832) Rows(st_ph st_pl st_v #427169) Rows(st_ph st_p st_v #1331347) Rows(st_pl st_p st_v #60440) Rows(st_c st_ph st_pl st_p #145541) Rows(st_c st_ph st_pl st_v #1104151) Rows(st_c st_ph st_p st_v #2793122) Rows(st_c st_pl st_p st_v #146248) Rows(st_ph st_pl st_p st_v #427169) Rows(st_c st_ph st_pl st_p st_v #1104151) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 489.12850000000003,
+          "runs_ms": [
+            463.129,
+            515.128
+          ],
+          "total_cost": 37626.82,
+          "join_rows": 2424000.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 2424000.0,
+          "hint": "/*+ Rows(st_c st_ph #615193) Rows(st_c st_pl #36857) Rows(st_c st_p #133147) Rows(st_c st_v #1042324) Rows(st_ph st_pl #48098) Rows(st_ph st_p #297140) Rows(st_ph st_v #1497560) Rows(st_pl st_p #10284) Rows(st_pl st_v #80929) Rows(st_p st_v #322163) Rows(st_c st_ph st_pl #186764) Rows(st_c st_ph st_p #665287) Rows(st_c st_ph st_v #5310163) Rows(st_c st_pl st_p #40512) Rows(st_c st_pl st_v #310556) Rows(st_c st_p st_v #1117178) Rows(st_ph st_pl st_p #50886) Rows(st_ph st_pl st_v #254351) Rows(st_ph st_p st_v #1620961) Rows(st_pl st_p st_v #88596) Rows(st_c st_ph st_pl st_p #224730) Rows(st_c st_ph st_pl st_v #1789558) Rows(st_c st_ph st_p st_v #6552626) Rows(st_c st_pl st_p st_v #392180) Rows(st_ph st_pl st_p st_v #323023) Rows(st_c st_ph st_pl st_p st_v #2424000) */",
+          "injection_verified": true,
+          "q_error": 2.1953519038609755
+        },
+        "price": {
+          "execution_ms": 517.9655,
+          "runs_ms": [
+            494.836,
+            541.095
+          ],
+          "total_cost": 43977.87,
+          "join_rows": 2833975.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 2833974.589680405,
+          "hint": "/*+ Rows(st_c st_ph #696091) Rows(st_c st_pl #39496) Rows(st_c st_p #159545) Rows(st_c st_v #1127469) Rows(st_ph st_pl #55698) Rows(st_ph st_p #268308) Rows(st_ph st_v #1642047) Rows(st_pl st_p #11700) Rows(st_pl st_v #90056) Rows(st_p st_v #297746) Rows(st_c st_ph st_pl #243815) Rows(st_c st_ph st_p #883762) Rows(st_c st_ph st_v #6014087) Rows(st_c st_pl st_p #51423) Rows(st_c st_pl st_v #399551) Rows(st_c st_p st_v #1371729) Rows(st_ph st_pl st_p #72915) Rows(st_ph st_pl st_v #350458) Rows(st_ph st_p st_v #842440) Rows(st_pl st_p st_v #100753) Rows(st_c st_ph st_pl st_p #317276) Rows(st_c st_ph st_pl st_v #2043280) Rows(st_c st_ph st_p st_v #6213487) Rows(st_c st_pl st_p st_v #436016) Rows(st_ph st_pl st_p st_v #443380) Rows(st_c st_ph st_pl st_p st_v #2833975) */",
+          "injection_verified": true,
+          "q_error": 2.5666552853731055
+        }
+      }
+    },
+    {
+      "query": 13,
+      "aliases": [
+        "st_c",
+        "st_u",
+        "st_v"
+      ],
+      "true_card": 200.0,
+      "hinted_prefixes": [
+        "st_c st_u",
+        "st_c st_v",
+        "st_u st_v",
+        "st_c st_u st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 41.502,
+          "runs_ms": [
+            49.718,
+            33.286
+          ],
+          "total_cost": 3217.14,
+          "join_rows": 41389.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 206.945
+        },
+        "true_card": {
+          "execution_ms": 33.983,
+          "runs_ms": [
+            34.413,
+            33.553
+          ],
+          "total_cost": 2981.31,
+          "join_rows": 200.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 200.0,
+          "hint": "/*+ Rows(st_c st_u #20126) Rows(st_c st_v #447953) Rows(st_u st_v #40) Rows(st_c st_u st_v #200) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 32.816,
+          "runs_ms": [
+            33.108,
+            32.524
+          ],
+          "total_cost": 3154.27,
+          "join_rows": 27182.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 27181.732421875,
+          "hint": "/*+ Rows(st_c st_u #112258) Rows(st_c st_v #43778) Rows(st_u st_v #121) Rows(st_c st_u st_v #27182) */",
+          "injection_verified": true,
+          "q_error": 135.91
+        },
+        "price": {
+          "execution_ms": 34.619,
+          "runs_ms": [
+            35.112,
+            34.126
+          ],
+          "total_cost": 3241.06,
+          "join_rows": 24906.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 24906.34774212026,
+          "hint": "/*+ Rows(st_c st_u #58798) Rows(st_c st_v #77498) Rows(st_u st_v #192) Rows(st_c st_u st_v #24906) */",
+          "injection_verified": true,
+          "q_error": 124.53
+        }
+      }
+    },
+    {
+      "query": 29,
+      "aliases": [
+        "st_b",
+        "st_p",
+        "st_u",
+        "st_v"
+      ],
+      "true_card": 232039659.0,
+      "hinted_prefixes": [
+        "st_b st_p",
+        "st_b st_u",
+        "st_b st_v",
+        "st_p st_u",
+        "st_p st_v",
+        "st_u st_v",
+        "st_b st_p st_u",
+        "st_b st_p st_v",
+        "st_b st_u st_v",
+        "st_p st_u st_v",
+        "st_b st_p st_u st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 35292.03,
+          "runs_ms": [
+            35597.67,
+            34986.39
+          ],
+          "total_cost": 68455.44,
+          "join_rows": 12508876.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 18.550000735477752
+        },
+        "true_card": {
+          "execution_ms": 36161.5665,
+          "runs_ms": [
+            36207.856,
+            36115.277
+          ],
+          "total_cost": 619765.24,
+          "join_rows": 232039659.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 232039659.0,
+          "hint": "/*+ Rows(st_b st_p #1486002) Rows(st_b st_u #79851) Rows(st_b st_v #1056687) Rows(st_p st_u #37048) Rows(st_p st_v #1187068) Rows(st_u st_v #34789) Rows(st_b st_p st_u #1486002) Rows(st_b st_p st_v #232039659) Rows(st_b st_u st_v #1056687) Rows(st_p st_u st_v #1187068) Rows(st_b st_p st_u st_v #232039659) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 35290.562999999995,
+          "runs_ms": [
+            35567.757,
+            35013.369
+          ],
+          "total_cost": 59641.22,
+          "join_rows": 9841638.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 9841638.0,
+          "hint": "/*+ Rows(st_b st_p #1228861) Rows(st_b st_u #78784) Rows(st_b st_v #692872) Rows(st_p st_u #32894) Rows(st_p st_v #783080) Rows(st_u st_v #30230) Rows(st_b st_p st_u #1177895) Rows(st_b st_p st_v #10220694) Rows(st_b st_u st_v #655784) Rows(st_p st_u st_v #715085) Rows(st_b st_p st_u st_v #9841638) */",
+          "injection_verified": true,
+          "q_error": 23.57734139378018
+        },
+        "price": {
+          "execution_ms": 52769.663,
+          "runs_ms": [
+            52844.723,
+            52694.603
+          ],
+          "total_cost": 146875.52,
+          "join_rows": 46726253.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 46726252.678353675,
+          "hint": "/*+ Rows(st_b st_p #1715723) Rows(st_b st_u #76726) Rows(st_b st_v #908281) Rows(st_p st_u #23657) Rows(st_p st_v #1009798) Rows(st_u st_v #20357) Rows(st_b st_p st_u #1421694) Rows(st_b st_p st_v #42975197) Rows(st_b st_u st_v #82088) Rows(st_p st_u st_v #940653) Rows(st_b st_p st_u st_v #46726253) */",
+          "injection_verified": true,
+          "q_error": 4.9659376496548955
+        }
+      }
+    },
+    {
+      "query": 101,
+      "aliases": [
+        "st_b",
+        "st_p",
+        "st_u",
+        "st_v"
+      ],
+      "true_card": 2809424.0,
+      "hinted_prefixes": [
+        "st_b st_p",
+        "st_b st_u",
+        "st_p st_u",
+        "st_p st_v",
+        "st_b st_p st_u",
+        "st_b st_p st_v",
+        "st_p st_u st_v",
+        "st_b st_p st_u st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1979.9125,
+          "runs_ms": [
+            1878.897,
+            2080.928
+          ],
+          "total_cost": 93723.12,
+          "join_rows": 5210645.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 1.8547022450153483
+        },
+        "true_card": {
+          "execution_ms": 967.22,
+          "runs_ms": [
+            908.755,
+            1025.685
+          ],
+          "total_cost": 62145.25,
+          "join_rows": 2809424.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 2809424.0,
+          "hint": "/*+ Rows(st_b st_p #443526) Rows(st_b st_u #79593) Rows(st_p st_u #41935) Rows(st_p st_v #143872) Rows(st_b st_p st_u #443526) Rows(st_b st_p st_v #2809424) Rows(st_p st_u st_v #140884) Rows(st_b st_p st_u st_v #2809424) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 1802.675,
+          "runs_ms": [
+            1726.577,
+            1878.773
+          ],
+          "total_cost": 93904.76,
+          "join_rows": 5306038.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 5306038.0,
+          "hint": "/*+ Rows(st_b st_p #1483250) Rows(st_b st_u #79587) Rows(st_p st_u #41102) Rows(st_p st_v #148504) Rows(st_b st_p st_u #1453459) Rows(st_b st_p st_v #5207346) Rows(st_p st_u st_v #148702) Rows(st_b st_p st_u st_v #5306038) */",
+          "injection_verified": true,
+          "q_error": 1.8886568919465343
+        },
+        "price": {
+          "execution_ms": 1900.2295,
+          "runs_ms": [
+            1960.639,
+            1839.82
+          ],
+          "total_cost": 110618.62,
+          "join_rows": 5745999.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 5745998.5190200675,
+          "hint": "/*+ Rows(st_b st_p #2308833) Rows(st_b st_u #90691) Rows(st_p st_u #51108) Rows(st_p st_v #174655) Rows(st_b st_p st_u #2259392) Rows(st_b st_p st_v #6983107) Rows(st_p st_u st_v #181808) Rows(st_b st_p st_u st_v #5745999) */",
+          "injection_verified": true,
+          "q_error": 2.045258743429258
+        }
+      }
+    },
+    {
+      "query": 104,
+      "aliases": [
+        "st_c",
+        "st_ph",
+        "st_u",
+        "st_v"
+      ],
+      "true_card": 183537163.0,
+      "hinted_prefixes": [
+        "st_c st_ph",
+        "st_c st_u",
+        "st_c st_v",
+        "st_ph st_u",
+        "st_ph st_v",
+        "st_u st_v",
+        "st_c st_ph st_u",
+        "st_c st_ph st_v",
+        "st_c st_u st_v",
+        "st_ph st_u st_v",
+        "st_c st_ph st_u st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 66918.277,
+          "runs_ms": [
+            66011.862,
+            67824.692
+          ],
+          "total_cost": 32508365.87,
+          "join_rows": 11954683032.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 65.13494507921537
+        },
+        "true_card": {
+          "execution_ms": 38283.051999999996,
+          "runs_ms": [
+            38194.948,
+            38371.156
+          ],
+          "total_cost": 1616218.96,
+          "join_rows": 183537163.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 183537163.0,
+          "hint": "/*+ Rows(st_c st_ph #166885001) Rows(st_c st_u #80882) Rows(st_c st_v #7472486) Rows(st_ph st_u #194813) Rows(st_ph st_v #14111005) Rows(st_u st_v #29904) Rows(st_c st_ph st_u #5645148) Rows(st_c st_ph st_v #37978810501) Rows(st_c st_u st_v #949319) Rows(st_ph st_u st_v #1861587) Rows(st_c st_ph st_u st_v #183537163) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 66840.4615,
+          "runs_ms": [
+            66892.056,
+            66788.867
+          ],
+          "total_cost": 29003170.19,
+          "join_rows": 10669309952.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 10669309952.0,
+          "hint": "/*+ Rows(st_c st_ph #198999376) Rows(st_c st_u #125642) Rows(st_c st_v #7593665) Rows(st_ph st_u #292615) Rows(st_ph st_v #11443774) Rows(st_u st_v #29129) Rows(st_c st_ph st_u #187875600) Rows(st_c st_ph st_v #11400416256) Rows(st_c st_u st_v #6924114) Rows(st_ph st_u st_v #10757261) Rows(st_c st_ph st_u st_v #10669309952) */",
+          "injection_verified": true,
+          "q_error": 58.131605488529864
+        },
+        "price": {
+          "execution_ms": 66366.891,
+          "runs_ms": [
+            66326.443,
+            66407.339
+          ],
+          "total_cost": 36853209.89,
+          "join_rows": 12988728677.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 12988728677.30857,
+          "hint": "/*+ Rows(st_c st_ph #288469705) Rows(st_c st_u #137096) Rows(st_c st_v #8375222) Rows(st_ph st_u #300581) Rows(st_ph st_v #12831094) Rows(st_u st_v #44457) Rows(st_c st_ph st_u #177542817) Rows(st_c st_ph st_v #25552638693) Rows(st_c st_u st_v #8580575) Rows(st_ph st_u st_v #15075588) Rows(st_c st_ph st_u st_v #12988728677) */",
+          "injection_verified": true,
+          "q_error": 70.76893019753172
+        }
+      }
+    },
+    {
+      "query": 95,
+      "aliases": [
+        "st_c",
+        "st_ph",
+        "st_p",
+        "st_v"
+      ],
+      "true_card": 2016238.0,
+      "hinted_prefixes": [
+        "st_c st_ph",
+        "st_c st_p",
+        "st_c st_v",
+        "st_ph st_p",
+        "st_ph st_v",
+        "st_p st_v",
+        "st_c st_ph st_p",
+        "st_c st_ph st_v",
+        "st_c st_p st_v",
+        "st_ph st_p st_v",
+        "st_c st_ph st_p st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1092.9215,
+          "runs_ms": [
+            1116.285,
+            1069.558
+          ],
+          "total_cost": 68295.83,
+          "join_rows": 3955352.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.9617485634136447
+        },
+        "true_card": {
+          "execution_ms": 1020.9035,
+          "runs_ms": [
+            1079.672,
+            962.135
+          ],
+          "total_cost": 62363.93,
+          "join_rows": 2016238.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 2016238.0,
+          "hint": "/*+ Rows(st_c st_ph #520457) Rows(st_c st_p #133397) Rows(st_c st_v #456127) Rows(st_ph st_p #300288) Rows(st_ph st_v #985080) Rows(st_p st_v #262116) Rows(st_c st_ph st_p #520457) Rows(st_c st_ph st_v #2016238) Rows(st_c st_p st_v #456127) Rows(st_ph st_p st_v #985080) Rows(st_c st_ph st_p st_v #2016238) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 855.769,
+          "runs_ms": [
+            859.479,
+            852.059
+          ],
+          "total_cost": 72259.8,
+          "join_rows": 5086442.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 5086441.5,
+          "hint": "/*+ Rows(st_c st_ph #607987) Rows(st_c st_p #133059) Rows(st_c st_v #815306) Rows(st_ph st_p #297063) Rows(st_ph st_v #1174586) Rows(st_p st_v #251669) Rows(st_c st_ph st_p #668089) Rows(st_c st_ph st_v #4107836) Rows(st_c st_p st_v #866792) Rows(st_ph st_p st_v #1255253) Rows(st_c st_ph st_p st_v #5086442) */",
+          "injection_verified": true,
+          "q_error": 2.5227388830088513
+        },
+        "price": {
+          "execution_ms": 948.9214999999999,
+          "runs_ms": [
+            904.684,
+            993.159
+          ],
+          "total_cost": 73723.82,
+          "join_rows": 4099522.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 4099522.485535049,
+          "hint": "/*+ Rows(st_c st_ph #662762) Rows(st_c st_p #154969) Rows(st_c st_v #917420) Rows(st_ph st_p #343109) Rows(st_ph st_v #1334986) Rows(st_p st_v #276388) Rows(st_c st_ph st_p #744890) Rows(st_c st_ph st_v #4243206) Rows(st_c st_p st_v #997422) Rows(st_ph st_p st_v #1379714) Rows(st_c st_ph st_p st_v #4099522) */",
+          "injection_verified": true,
+          "q_error": 2.0332530187408433
+        }
+      }
+    },
+    {
+      "query": 70,
+      "aliases": [
+        "st_b",
+        "st_c",
+        "st_ph",
+        "st_pl",
+        "st_p",
+        "st_v"
+      ],
+      "true_card": 58623592.0,
+      "hinted_prefixes": [
+        "st_b st_c",
+        "st_c st_ph",
+        "st_c st_pl",
+        "st_c st_p",
+        "st_c st_v",
+        "st_ph st_pl",
+        "st_ph st_p",
+        "st_ph st_v",
+        "st_pl st_p",
+        "st_pl st_v",
+        "st_p st_v",
+        "st_b st_c st_ph",
+        "st_b st_c st_pl",
+        "st_b st_c st_p",
+        "st_b st_c st_v",
+        "st_c st_ph st_pl",
+        "st_c st_ph st_p",
+        "st_c st_ph st_v",
+        "st_c st_pl st_p",
+        "st_c st_pl st_v",
+        "st_c st_p st_v",
+        "st_ph st_pl st_p",
+        "st_ph st_pl st_v",
+        "st_ph st_p st_v",
+        "st_pl st_p st_v",
+        "st_b st_c st_ph st_pl",
+        "st_b st_c st_ph st_p",
+        "st_b st_c st_ph st_v",
+        "st_b st_c st_pl st_p",
+        "st_b st_c st_pl st_v",
+        "st_b st_c st_p st_v",
+        "st_c st_ph st_pl st_p",
+        "st_c st_ph st_pl st_v",
+        "st_c st_ph st_p st_v",
+        "st_c st_pl st_p st_v",
+        "st_ph st_pl st_p st_v",
+        "st_b st_c st_ph st_pl st_p",
+        "st_b st_c st_ph st_pl st_v",
+        "st_b st_c st_ph st_p st_v",
+        "st_b st_c st_pl st_p st_v",
+        "st_c st_ph st_pl st_p st_v",
+        "st_b st_c st_ph st_pl st_p st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 13410.3985,
+          "runs_ms": [
+            13454.333,
+            13366.464
+          ],
+          "total_cost": 51933.7,
+          "join_rows": 4855295.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 12.074156565152066
+        },
+        "true_card": {
+          "execution_ms": 10316.824499999999,
+          "runs_ms": [
+            10478.625,
+            10155.024
+          ],
+          "total_cost": 212580.91,
+          "join_rows": 58623592.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 58623592.0,
+          "hint": "/*+ Rows(st_b st_c #15900001) Rows(st_c st_ph #174305) Rows(st_c st_pl #33326) Rows(st_c st_p #174305) Rows(st_c st_v #97054) Rows(st_ph st_pl #11102) Rows(st_ph st_p #91976) Rows(st_ph st_v #33691) Rows(st_pl st_p #11102) Rows(st_pl st_v #130148) Rows(st_p st_v #33691) Rows(st_b st_c st_ph #15900001) Rows(st_b st_c st_pl #3814706) Rows(st_b st_c st_p #15900001) Rows(st_b st_c st_v #9387994) Rows(st_c st_ph st_pl #33326) Rows(st_c st_ph st_p #174305) Rows(st_c st_ph st_v #97054) Rows(st_c st_pl st_p #33326) Rows(st_c st_pl st_v #520705) Rows(st_c st_p st_v #97054) Rows(st_ph st_pl st_p #11102) Rows(st_ph st_pl st_v #130148) Rows(st_ph st_p st_v #33691) Rows(st_pl st_p st_v #130148) Rows(st_b st_c st_ph st_pl #3814706) Rows(st_b st_c st_ph st_p #15900001) Rows(st_b st_c st_ph st_v #9387994) Rows(st_b st_c st_pl st_p #3814706) Rows(st_b st_c st_pl st_v #58623592) Rows(st_b st_c st_p st_v #9387994) Rows(st_c st_ph st_pl st_p #33326) Rows(st_c st_ph st_pl st_v #520705) Rows(st_c st_ph st_p st_v #97054) Rows(st_c st_pl st_p st_v #520705) Rows(st_ph st_pl st_p st_v #130148) Rows(st_b st_c st_ph st_pl st_p #3814706) Rows(st_b st_c st_ph st_pl st_v #58623592) Rows(st_b st_c st_ph st_p st_v #9387994) Rows(st_b st_c st_pl st_p st_v #58623592) Rows(st_c st_ph st_pl st_p st_v #520705) Rows(st_b st_c st_ph st_pl st_p st_v #58623592) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 13061.052,
+          "runs_ms": [
+            13671.882,
+            12450.222
+          ],
+          "total_cost": 79738.79,
+          "join_rows": 7265987.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 7265987.0,
+          "hint": "/*+ Rows(st_b st_c #15437482) Rows(st_c st_ph #236572) Rows(st_c st_pl #51021) Rows(st_c st_p #172849) Rows(st_c st_v #127701) Rows(st_ph st_pl #15149) Rows(st_ph st_p #88735) Rows(st_ph st_v #43461) Rows(st_pl st_p #10972) Rows(st_pl st_v #21162) Rows(st_p st_v #30804) Rows(st_b st_c st_ph #21404962) Rows(st_b st_c st_pl #4387133) Rows(st_b st_c st_p #15153858) Rows(st_b st_c st_v #11762914) Rows(st_c st_ph st_pl #73409) Rows(st_c st_ph st_p #255265) Rows(st_c st_ph st_v #189405) Rows(st_c st_pl st_p #56503) Rows(st_c st_pl st_v #36681) Rows(st_c st_p st_v #134002) Rows(st_ph st_pl st_p #15609) Rows(st_ph st_pl st_v #7253) Rows(st_ph st_p st_v #44162) Rows(st_pl st_p st_v #21876) Rows(st_b st_c st_ph st_pl #6300492) Rows(st_b st_c st_ph st_p #21875692) Rows(st_b st_c st_ph st_v #16869792) Rows(st_b st_c st_pl st_p #4486676) Rows(st_b st_c st_pl st_v #3264982) Rows(st_b st_c st_p st_v #11938448) Rows(st_c st_ph st_pl st_p #90007) Rows(st_c st_ph st_pl st_v #63995) Rows(st_c st_ph st_p st_v #231123) Rows(st_c st_pl st_p st_v #50272) Rows(st_ph st_pl st_p st_v #9794) Rows(st_b st_c st_ph st_pl st_p #7465976) Rows(st_b st_c st_ph st_pl st_v #5402322) Rows(st_b st_c st_ph st_p st_v #19575870) Rows(st_b st_c st_pl st_p st_v #3933381) Rows(st_c st_ph st_pl st_p st_v #100971) Rows(st_b st_c st_ph st_pl st_p st_v #7265987) */",
+          "injection_verified": true,
+          "q_error": 8.06822142676556
+        },
+        "price": {
+          "execution_ms": 12422.340499999998,
+          "runs_ms": [
+            12486.817,
+            12357.864
+          ],
+          "total_cost": 82173.1,
+          "join_rows": 6553118.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 6553118.386449881,
+          "hint": "/*+ Rows(st_b st_c #22328006) Rows(st_c st_ph #308927) Rows(st_c st_pl #51463) Rows(st_c st_p #192771) Rows(st_c st_v #179935) Rows(st_ph st_pl #21545) Rows(st_ph st_p #113621) Rows(st_ph st_v #71383) Rows(st_pl st_p #12698) Rows(st_pl st_v #41897) Rows(st_p st_v #39365) Rows(st_b st_c st_ph #26885139) Rows(st_b st_c st_pl #4467014) Rows(st_b st_c st_p #11841544) Rows(st_b st_c st_v #25119236) Rows(st_c st_ph st_pl #108452) Rows(st_c st_ph st_p #326109) Rows(st_c st_ph st_v #279271) Rows(st_c st_pl st_p #66508) Rows(st_c st_pl st_v #55571) Rows(st_c st_p st_v #164314) Rows(st_ph st_pl st_p #23533) Rows(st_ph st_pl st_v #14250) Rows(st_ph st_p st_v #53479) Rows(st_pl st_p st_v #20847) Rows(st_b st_c st_ph st_pl #7251303) Rows(st_b st_c st_ph st_p #17997162) Rows(st_b st_c st_ph st_v #22379212) Rows(st_b st_c st_pl st_p #4005772) Rows(st_b st_c st_pl st_v #4985815) Rows(st_b st_c st_p st_v #10891872) Rows(st_c st_ph st_pl st_p #125096) Rows(st_c st_ph st_pl st_v #101399) Rows(st_c st_ph st_p st_v #272470) Rows(st_c st_pl st_p st_v #54293) Rows(st_ph st_pl st_p st_v #16422) Rows(st_b st_c st_ph st_pl st_p #6587280) Rows(st_b st_c st_ph st_pl st_v #6138392) Rows(st_b st_c st_ph st_p st_v #15828941) Rows(st_b st_c st_pl st_p st_v #3424430) Rows(st_c st_ph st_pl st_p st_v #110402) Rows(st_b st_c st_ph st_pl st_p st_v #6553118) */",
+          "injection_verified": true,
+          "q_error": 8.94590819210031
+        }
+      }
+    },
+    {
+      "query": 128,
+      "aliases": [
+        "st_c",
+        "st_ph",
+        "st_pl",
+        "st_p",
+        "st_v"
+      ],
+      "true_card": 914210.0,
+      "hinted_prefixes": [
+        "st_c st_ph",
+        "st_c st_pl",
+        "st_c st_p",
+        "st_c st_v",
+        "st_ph st_pl",
+        "st_ph st_p",
+        "st_ph st_v",
+        "st_pl st_p",
+        "st_pl st_v",
+        "st_p st_v",
+        "st_c st_ph st_pl",
+        "st_c st_ph st_p",
+        "st_c st_ph st_v",
+        "st_c st_pl st_p",
+        "st_c st_pl st_v",
+        "st_c st_p st_v",
+        "st_ph st_pl st_p",
+        "st_ph st_pl st_v",
+        "st_ph st_p st_v",
+        "st_pl st_p st_v",
+        "st_c st_ph st_pl st_p",
+        "st_c st_ph st_pl st_v",
+        "st_c st_ph st_p st_v",
+        "st_c st_pl st_p st_v",
+        "st_ph st_pl st_p st_v",
+        "st_c st_ph st_pl st_p st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 384.769,
+          "runs_ms": [
+            384.14,
+            385.398
+          ],
+          "total_cost": 15916.94,
+          "join_rows": 318960.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 2.8662214697767747
+        },
+        "true_card": {
+          "execution_ms": 464.8765,
+          "runs_ms": [
+            485.367,
+            444.386
+          ],
+          "total_cost": 34151.13,
+          "join_rows": 914210.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 914210.0,
+          "hint": "/*+ Rows(st_c st_ph #701334) Rows(st_c st_pl #35173) Rows(st_c st_p #87913) Rows(st_c st_v #681443) Rows(st_ph st_pl #63615) Rows(st_ph st_p #212264) Rows(st_ph st_v #989610) Rows(st_pl st_p #10666) Rows(st_pl st_v #45487) Rows(st_p st_v #97099) Rows(st_c st_ph st_pl #219124) Rows(st_c st_ph st_p #502222) Rows(st_c st_ph st_v #3134682) Rows(st_c st_pl st_p #33535) Rows(st_c st_pl st_v #180486) Rows(st_c st_p st_v #248888) Rows(st_ph st_pl st_p #60577) Rows(st_ph st_pl st_v #306302) Rows(st_ph st_p st_v #564227) Rows(st_pl st_p st_v #35452) Rows(st_c st_ph st_pl st_p #207359) Rows(st_c st_ph st_pl st_v #1336950) Rows(st_c st_ph st_p st_v #1624890) Rows(st_c st_pl st_p st_v #131280) Rows(st_ph st_pl st_p st_v #226973) Rows(st_c st_ph st_pl st_p st_v #914210) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 492.486,
+          "runs_ms": [
+            492.244,
+            492.728
+          ],
+          "total_cost": 19338.03,
+          "join_rows": 518489.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 518488.5625,
+          "hint": "/*+ Rows(st_c st_ph #797984) Rows(st_c st_pl #51027) Rows(st_c st_p #35061) Rows(st_c st_v #1063709) Rows(st_ph st_pl #50833) Rows(st_ph st_p #60884) Rows(st_ph st_v #1175712) Rows(st_pl st_p #2110) Rows(st_pl st_v #66855) Rows(st_p st_v #51565) Rows(st_c st_ph st_pl #261202) Rows(st_c st_ph st_p #170996) Rows(st_c st_ph st_v #5390696) Rows(st_c st_pl st_p #10991) Rows(st_c st_pl st_v #329975) Rows(st_c st_p st_v #223981) Rows(st_ph st_pl st_p #10483) Rows(st_ph st_pl st_v #204005) Rows(st_ph st_p st_v #247991) Rows(st_pl st_p st_v #13865) Rows(st_c st_ph st_pl st_p #61701) Rows(st_c st_ph st_pl st_v #1883555) Rows(st_c st_ph st_p st_v #1314724) Rows(st_c st_pl st_p st_v #82993) Rows(st_ph st_pl st_p st_v #54283) Rows(st_c st_ph st_pl st_p st_v #518489) */",
+          "injection_verified": true,
+          "q_error": 1.7632196632908317
+        },
+        "price": {
+          "execution_ms": 366.696,
+          "runs_ms": [
+            365.812,
+            367.58
+          ],
+          "total_cost": 21106.53,
+          "join_rows": 661969.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 661968.7125235149,
+          "hint": "/*+ Rows(st_c st_ph #880337) Rows(st_c st_pl #55714) Rows(st_c st_p #44275) Rows(st_c st_v #1172362) Rows(st_ph st_pl #44633) Rows(st_ph st_p #77096) Rows(st_ph st_v #1368935) Rows(st_pl st_p #2260) Rows(st_pl st_v #72555) Rows(st_p st_v #69165) Rows(st_c st_ph st_pl #341042) Rows(st_c st_ph st_p #205206) Rows(st_c st_ph st_v #5658512) Rows(st_c st_pl st_p #12999) Rows(st_c st_pl st_v #423121) Rows(st_c st_p st_v #281743) Rows(st_ph st_pl st_p #15063) Rows(st_ph st_pl st_v #301198) Rows(st_ph st_p st_v #309662) Rows(st_pl st_p st_v #15894) Rows(st_c st_ph st_pl st_p #86268) Rows(st_c st_ph st_pl st_v #2174355) Rows(st_c st_ph st_p st_v #1291883) Rows(st_c st_pl st_p st_v #100894) Rows(st_ph st_pl st_p st_v #71676) Rows(st_c st_ph st_pl st_p st_v #661969) */",
+          "injection_verified": true,
+          "q_error": 1.3810465444756477
+        }
+      }
+    },
+    {
+      "query": 98,
+      "aliases": [
+        "st_c",
+        "st_p",
+        "st_u",
+        "st_v"
+      ],
+      "true_card": 1490297.0,
+      "hinted_prefixes": [
+        "st_c st_p",
+        "st_c st_u",
+        "st_c st_v",
+        "st_p st_u",
+        "st_p st_v",
+        "st_u st_v",
+        "st_c st_p st_u",
+        "st_c st_p st_v",
+        "st_c st_u st_v",
+        "st_p st_u st_v",
+        "st_c st_p st_u st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1258.2305000000001,
+          "runs_ms": [
+            1257.632,
+            1258.829
+          ],
+          "total_cost": 3077158.08,
+          "join_rows": 1117101539.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 749.5831629534247
+        },
+        "true_card": {
+          "execution_ms": 1197.9885,
+          "runs_ms": [
+            1185.193,
+            1210.784
+          ],
+          "total_cost": 66010.98,
+          "join_rows": 1490297.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 1490297.0,
+          "hint": "/*+ Rows(st_c st_p #1458221) Rows(st_c st_u #47188) Rows(st_c st_v #7491903) Rows(st_p st_u #32854) Rows(st_p st_v #373777) Rows(st_u st_v #18280) Rows(st_c st_p st_u #224804) Rows(st_c st_p st_v #100572053) Rows(st_c st_u st_v #113650) Rows(st_p st_u st_v #53869) Rows(st_c st_p st_u st_v #1490297) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 1223.7685000000001,
+          "runs_ms": [
+            1245.709,
+            1201.828
+          ],
+          "total_cost": 2526046.63,
+          "join_rows": 916249600.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 916249600.0,
+          "hint": "/*+ Rows(st_c st_p #18730944) Rows(st_c st_u #113185) Rows(st_c st_v #7646132) Rows(st_p st_u #34551) Rows(st_p st_v #902820) Rows(st_u st_v #24424) Rows(st_c st_p st_u #16766725) Rows(st_c st_p st_v #1057360192) Rows(st_c st_u st_v #6207150) Rows(st_p st_u st_v #756873) Rows(st_c st_p st_u st_v #916249600) */",
+          "injection_verified": true,
+          "q_error": 614.8100680602591
+        },
+        "price": {
+          "execution_ms": 1153.289,
+          "runs_ms": [
+            1136.768,
+            1169.81
+          ],
+          "total_cost": 3522417.71,
+          "join_rows": 1241188057.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1241188057.281431,
+          "hint": "/*+ Rows(st_c st_p #29148162) Rows(st_c st_u #97877) Rows(st_c st_v #8211320) Rows(st_p st_u #39050) Rows(st_p st_v #1518851) Rows(st_u st_v #36045) Rows(st_c st_p st_u #15822753) Rows(st_c st_p st_v #2838756893) Rows(st_c st_u st_v #7118813) Rows(st_p st_u st_v #1746635) Rows(st_c st_p st_u st_v #1241188057) */",
+          "injection_verified": true,
+          "q_error": 832.8461085273607
+        }
+      }
+    },
+    {
+      "query": 94,
+      "aliases": [
+        "st_c",
+        "st_ph",
+        "st_p",
+        "st_v"
+      ],
+      "true_card": 4254157.0,
+      "hinted_prefixes": [
+        "st_c st_ph",
+        "st_c st_p",
+        "st_c st_v",
+        "st_ph st_p",
+        "st_ph st_v",
+        "st_p st_v",
+        "st_c st_ph st_p",
+        "st_c st_ph st_v",
+        "st_c st_p st_v",
+        "st_ph st_p st_v",
+        "st_c st_ph st_p st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1457.472,
+          "runs_ms": [
+            1352.413,
+            1562.531
+          ],
+          "total_cost": 88112.59,
+          "join_rows": 6506450.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.5294334459212484
+        },
+        "true_card": {
+          "execution_ms": 1194.4875,
+          "runs_ms": [
+            1187.215,
+            1201.76
+          ],
+          "total_cost": 78688.05,
+          "join_rows": 4254157.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 4254157.0,
+          "hint": "/*+ Rows(st_c st_ph #704085) Rows(st_c st_p #174305) Rows(st_c st_v #864796) Rows(st_ph st_p #303187) Rows(st_ph st_v #1330735) Rows(st_p st_v #327888) Rows(st_c st_ph st_p #704085) Rows(st_c st_ph st_v #4254157) Rows(st_c st_p st_v #864796) Rows(st_ph st_p st_v #1330735) Rows(st_c st_ph st_p st_v #4254157) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 1321.981,
+          "runs_ms": [
+            1261.921,
+            1382.041
+          ],
+          "total_cost": 93755.69,
+          "join_rows": 8828898.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 8828898.0,
+          "hint": "/*+ Rows(st_c st_ph #796032) Rows(st_c st_p #172470) Rows(st_c st_v #1356115) Rows(st_ph st_p #297140) Rows(st_ph st_v #1505166) Rows(st_p st_v #324489) Rows(st_c st_ph st_p #867361) Rows(st_c st_ph st_v #7019242) Rows(st_c st_p st_v #1485844) Rows(st_ph st_p st_v #1656138) Rows(st_c st_ph st_p st_v #8828898) */",
+          "injection_verified": true,
+          "q_error": 2.075357820597594
+        },
+        "price": {
+          "execution_ms": 1182.141,
+          "runs_ms": [
+            1239.823,
+            1124.459
+          ],
+          "total_cost": 89214.67,
+          "join_rows": 7135438.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 7135438.004612184,
+          "hint": "/*+ Rows(st_c st_ph #721181) Rows(st_c st_p #153492) Rows(st_c st_v #1457648) Rows(st_ph st_p #268308) Rows(st_ph st_v #1657720) Rows(st_p st_v #356331) Rows(st_c st_ph st_p #448222) Rows(st_c st_ph st_v #7161466) Rows(st_c st_p st_v #1611166) Rows(st_ph st_p st_v #1780974) Rows(st_c st_ph st_p st_v #7135438) */",
+          "injection_verified": true,
+          "q_error": 1.6772860051944487
+        }
+      }
+    },
+    {
+      "query": 141,
+      "aliases": [
+        "st_b",
+        "st_c",
+        "st_ph",
+        "st_pl",
+        "st_p",
+        "st_u",
+        "st_v"
+      ],
+      "true_card": 299574955.0,
+      "hinted_prefixes": [
+        "st_b st_c",
+        "st_b st_u",
+        "st_c st_ph",
+        "st_c st_pl",
+        "st_c st_p",
+        "st_c st_u",
+        "st_c st_v",
+        "st_ph st_pl",
+        "st_ph st_p",
+        "st_ph st_v",
+        "st_pl st_p",
+        "st_pl st_v",
+        "st_p st_v",
+        "st_b st_c st_ph",
+        "st_b st_c st_pl",
+        "st_b st_c st_p",
+        "st_b st_c st_u",
+        "st_b st_c st_v",
+        "st_c st_ph st_pl",
+        "st_c st_ph st_p",
+        "st_c st_ph st_u",
+        "st_c st_ph st_v",
+        "st_c st_pl st_p",
+        "st_c st_pl st_u",
+        "st_c st_pl st_v",
+        "st_c st_p st_u",
+        "st_c st_p st_v",
+        "st_c st_u st_v",
+        "st_ph st_pl st_p",
+        "st_ph st_pl st_v",
+        "st_ph st_p st_v",
+        "st_pl st_p st_v",
+        "st_b st_c st_ph st_pl",
+        "st_b st_c st_ph st_p",
+        "st_b st_c st_ph st_u",
+        "st_b st_c st_ph st_v",
+        "st_b st_c st_pl st_p",
+        "st_b st_c st_pl st_u",
+        "st_b st_c st_pl st_v",
+        "st_b st_c st_p st_u",
+        "st_b st_c st_p st_v",
+        "st_b st_c st_u st_v",
+        "st_c st_ph st_pl st_p",
+        "st_c st_ph st_pl st_u",
+        "st_c st_ph st_pl st_v",
+        "st_c st_ph st_p st_u",
+        "st_c st_ph st_p st_v",
+        "st_c st_ph st_u st_v",
+        "st_c st_pl st_p st_u",
+        "st_c st_pl st_p st_v",
+        "st_c st_pl st_u st_v",
+        "st_c st_p st_u st_v",
+        "st_ph st_pl st_p st_v",
+        "st_b st_c st_ph st_pl st_p",
+        "st_b st_c st_ph st_pl st_u",
+        "st_b st_c st_ph st_pl st_v",
+        "st_b st_c st_ph st_p st_u",
+        "st_b st_c st_ph st_p st_v",
+        "st_b st_c st_ph st_u st_v",
+        "st_b st_c st_pl st_p st_u",
+        "st_b st_c st_pl st_p st_v",
+        "st_b st_c st_pl st_u st_v",
+        "st_b st_c st_p st_u st_v",
+        "st_c st_ph st_pl st_p st_u",
+        "st_c st_ph st_pl st_p st_v",
+        "st_c st_ph st_pl st_u st_v",
+        "st_c st_ph st_p st_u st_v",
+        "st_c st_pl st_p st_u st_v",
+        "st_b st_c st_ph st_pl st_p st_u",
+        "st_b st_c st_ph st_pl st_p st_v",
+        "st_b st_c st_ph st_pl st_u st_v",
+        "st_b st_c st_ph st_p st_u st_v",
+        "st_b st_c st_pl st_p st_u st_v",
+        "st_c st_ph st_pl st_p st_u st_v",
+        "st_b st_c st_ph st_pl st_p st_u st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 65005.468,
+          "runs_ms": [
+            64683.65,
+            65327.286
+          ],
+          "total_cost": 201875.44,
+          "join_rows": 25081345.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 11.944134375568774
+        },
+        "true_card": {
+          "execution_ms": 69883.9605,
+          "runs_ms": [
+            70356.945,
+            69410.976
+          ],
+          "total_cost": 1090275.63,
+          "join_rows": 299574955.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 299574955.0,
+          "hint": "/*+ Rows(st_b st_c #10225026) Rows(st_b st_u #79851) Rows(st_c st_ph #527835) Rows(st_c st_pl #19912) Rows(st_c st_p #64406) Rows(st_c st_u #132451) Rows(st_c st_v #585989) Rows(st_ph st_pl #69462) Rows(st_ph st_p #215985) Rows(st_ph st_v #1326566) Rows(st_pl st_p #10683) Rows(st_pl st_v #303416) Rows(st_p st_v #152614) Rows(st_b st_c st_ph #43970699) Rows(st_b st_c st_pl #1827833) Rows(st_b st_c st_p #5543342) Rows(st_b st_c st_u #10225026) Rows(st_b st_c st_v #46537849) Rows(st_c st_ph st_pl #136431) Rows(st_c st_ph st_p #361425) Rows(st_c st_ph st_u #518370) Rows(st_c st_ph st_v #2763952) Rows(st_c st_pl st_p #18316) Rows(st_c st_pl st_u #19469) Rows(st_c st_pl st_v #520276) Rows(st_c st_p st_u #63198) Rows(st_c st_p st_v #253217) Rows(st_c st_u st_v #574721) Rows(st_ph st_pl st_p #68389) Rows(st_ph st_pl st_v #2368493) Rows(st_ph st_p st_v #928622) Rows(st_pl st_p st_v #300737) Rows(st_b st_c st_ph st_pl #12304064) Rows(st_b st_c st_ph st_p #31274384) Rows(st_b st_c st_ph st_u #43970699) Rows(st_b st_c st_ph st_v #226229172) Rows(st_b st_c st_pl st_p #1706513) Rows(st_b st_c st_pl st_u #1827833) Rows(st_b st_c st_pl st_v #44869387) Rows(st_b st_c st_p st_u #5543342) Rows(st_b st_c st_p st_v #21200677) Rows(st_b st_c st_u st_v #46537849) Rows(st_c st_ph st_pl st_p #121625) Rows(st_c st_ph st_pl st_u #133378) Rows(st_c st_ph st_pl st_v #4030299) Rows(st_c st_ph st_p st_u #354404) Rows(st_c st_ph st_p st_v #1677253) Rows(st_c st_ph st_u st_v #2704307) Rows(st_c st_pl st_p st_u #17903) Rows(st_c st_pl st_p st_v #488680) Rows(st_c st_pl st_u st_v #504508) Rows(st_c st_p st_u st_v #246477) Rows(st_ph st_pl st_p st_v #2342248) Rows(st_b st_c st_ph st_pl st_p #11214638) Rows(st_b st_c st_ph st_pl st_u #12304064) Rows(st_b st_c st_ph st_pl st_v #319981016) Rows(st_b st_c st_ph st_p st_u #31274384) Rows(st_b st_c st_ph st_p st_v #139632376) Rows(st_b st_c st_ph st_u st_v #226229172) Rows(st_b st_c st_pl st_p st_u #1706513) Rows(st_b st_c st_pl st_p st_v #42793812) Rows(st_b st_c st_pl st_u st_v #44869387) Rows(st_b st_c st_p st_u st_v #21200677) Rows(st_c st_ph st_pl st_p st_u #118785) Rows(st_c st_ph st_pl st_p st_v #3701478) Rows(st_c st_ph st_pl st_u st_v #3923087) Rows(st_c st_ph st_p st_u st_v #1633686) Rows(st_c st_pl st_p st_u st_v #473164) Rows(st_b st_c st_ph st_pl st_p st_u #11214638) Rows(st_b st_c st_ph st_pl st_p st_v #299574955) Rows(st_b st_c st_ph st_pl st_u st_v #319981016) Rows(st_b st_c st_ph st_p st_u st_v #139632376) Rows(st_b st_c st_pl st_p st_u st_v #42793812) Rows(st_c st_ph st_pl st_p st_u st_v #3596066) Rows(st_b st_c st_ph st_pl st_p st_u st_v #299574955) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 70990.0405,
+          "runs_ms": [
+            71068.546,
+            70911.535
+          ],
+          "total_cost": 331196.55,
+          "join_rows": 49316812.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 49316812.0,
+          "hint": "/*+ Rows(st_b st_c #11939450) Rows(st_b st_u #78784) Rows(st_c st_ph #613982) Rows(st_c st_pl #38693) Rows(st_c st_p #27240) Rows(st_c st_u #127930) Rows(st_c st_v #1033092) Rows(st_ph st_pl #50546) Rows(st_ph st_p #62068) Rows(st_ph st_v #1496012) Rows(st_pl st_p #2127) Rows(st_pl st_v #219593) Rows(st_p st_v #66400) Rows(st_b st_c st_ph #55391624) Rows(st_b st_c st_pl #3338188) Rows(st_b st_c st_p #2394670) Rows(st_b st_c st_u #11666499) Rows(st_b st_c st_v #93215080) Rows(st_c st_ph st_pl #195799) Rows(st_c st_ph st_p #132627) Rows(st_c st_ph st_u #631366) Rows(st_c st_ph st_v #5317152) Rows(st_c st_pl st_p #8295) Rows(st_c st_pl st_u #37676) Rows(st_c st_pl st_v #324607) Rows(st_c st_p st_u #25650) Rows(st_c st_p st_v #221183) Rows(st_c st_u st_v #1062078) Rows(st_ph st_pl st_p #10449) Rows(st_ph st_pl st_v #267237) Rows(st_ph st_p st_v #321731) Rows(st_pl st_p st_v #46201) Rows(st_b st_c st_ph st_pl #16244078) Rows(st_b st_c st_ph st_p #11459676) Rows(st_b st_c st_ph st_u #56868096) Rows(st_b st_c st_ph st_v #459433696) Rows(st_b st_c st_pl st_p #675506) Rows(st_b st_c st_pl st_u #3380048) Rows(st_b st_c st_pl st_v #27407714) Rows(st_b st_c st_p st_u #2368939) Rows(st_b st_c st_p st_v #19282228) Rows(st_b st_c st_u st_v #95310096) Rows(st_c st_ph st_pl st_p #46489) Rows(st_c st_ph st_pl st_u #207614) Rows(st_c st_ph st_pl st_v #1863366) Rows(st_c st_ph st_p st_u #144116) Rows(st_c st_ph st_p st_v #1308760) Rows(st_c st_ph st_u st_v #5887302) Rows(st_c st_pl st_p st_u #9299) Rows(st_c st_pl st_p st_v #81466) Rows(st_c st_pl st_u st_v #361081) Rows(st_c st_p st_u st_v #240996) Rows(st_ph st_pl st_p st_v #69906) Rows(st_b st_c st_ph st_pl st_p #3803202) Rows(st_b st_c st_ph st_pl st_u #19119296) Rows(st_b st_c st_ph st_pl st_v #154544896) Rows(st_b st_c st_ph st_p st_u #13235317) Rows(st_b st_c st_ph st_p st_v #107669760) Rows(st_b st_c st_ph st_u st_v #524547648) Rows(st_b st_c st_pl st_p st_u #784854) Rows(st_b st_c st_pl st_p st_v #6502612) Rows(st_b st_c st_pl st_u st_v #31978452) Rows(st_b st_c st_p st_u st_v #21937488) Rows(st_c st_ph st_pl st_p st_u #58510) Rows(st_c st_ph st_pl st_p st_v #510839) Rows(st_c st_ph st_pl st_u st_v #2146290) Rows(st_c st_ph st_p st_u st_v #1486645) Rows(st_c st_pl st_p st_u st_v #95156) Rows(st_b st_c st_ph st_pl st_p st_u #4768592) Rows(st_b st_c st_ph st_pl st_p st_v #39328092) Rows(st_b st_c st_ph st_pl st_u st_v #191721456) Rows(st_b st_c st_ph st_p st_u st_v #133132032) Rows(st_b st_c st_pl st_p st_u st_v #7922276) Rows(st_c st_ph st_pl st_p st_u st_v #605242) Rows(st_b st_c st_ph st_pl st_p st_u st_v #49316812) */",
+          "injection_verified": true,
+          "q_error": 6.074499604718975
+        },
+        "price": {
+          "execution_ms": 70778.25899999999,
+          "runs_ms": [
+            70252.067,
+            71304.451
+          ],
+          "total_cost": 325644.73,
+          "join_rows": 45561296.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 45561296.18217342,
+          "hint": "/*+ Rows(st_b st_c #15595638) Rows(st_b st_u #76726) Rows(st_c st_ph #667926) Rows(st_c st_pl #43663) Rows(st_c st_p #34372) Rows(st_c st_u #148001) Rows(st_c st_v #1118412) Rows(st_ph st_pl #57599) Rows(st_ph st_p #75174) Rows(st_ph st_v #1639116) Rows(st_pl st_p #2594) Rows(st_pl st_v #301855) Rows(st_p st_v #80510) Rows(st_b st_c st_ph #51809417) Rows(st_b st_c st_pl #4303020) Rows(st_b st_c st_p #2196562) Rows(st_b st_c st_u #14475034) Rows(st_b st_c st_v #135136512) Rows(st_c st_ph st_pl #215180) Rows(st_c st_ph st_p #156216) Rows(st_c st_ph st_u #683175) Rows(st_c st_ph st_v #5082048) Rows(st_c st_pl st_p #11053) Rows(st_c st_pl st_u #49815) Rows(st_c st_pl st_v #360676) Rows(st_c st_p st_u #33638) Rows(st_c st_p st_v #257884) Rows(st_c st_u st_v #1200221) Rows(st_ph st_pl st_p #14717) Rows(st_ph st_pl st_v #309761) Rows(st_ph st_p st_v #352848) Rows(st_pl st_p st_v #45619) Rows(st_b st_c st_ph st_pl #13663787) Rows(st_b st_c st_ph st_p #8320815) Rows(st_b st_c st_ph st_u #43878092) Rows(st_b st_c st_ph st_v #394233434) Rows(st_b st_c st_pl st_p #665380) Rows(st_b st_c st_pl st_u #3699684) Rows(st_b st_c st_pl st_v #31827362) Rows(st_b st_c st_p st_u #2014361) Rows(st_b st_c st_p st_v #16052073) Rows(st_b st_c st_u st_v #131171554) Rows(st_c st_ph st_pl st_p #60100) Rows(st_c st_ph st_pl st_u #232934) Rows(st_c st_ph st_pl st_v #1452855) Rows(st_c st_ph st_p st_u #170775) Rows(st_c st_ph st_p st_v #1144650) Rows(st_c st_ph st_u st_v #4542954) Rows(st_c st_pl st_p st_u #14160) Rows(st_c st_pl st_p st_v #88886) Rows(st_c st_pl st_u st_v #388405) Rows(st_c st_p st_u st_v #277594) Rows(st_ph st_pl st_p st_v #79148) Rows(st_b st_c st_ph st_pl st_p #3198617) Rows(st_b st_c st_ph st_pl st_u #13656935) Rows(st_b st_c st_ph st_pl st_v #86600436) Rows(st_b st_c st_ph st_p st_u #9450720) Rows(st_b st_c st_ph st_p st_v #59399336) Rows(st_b st_c st_ph st_u st_v #382038559) Rows(st_b st_c st_pl st_p st_u #825339) Rows(st_b st_c st_pl st_p st_v #5066069) Rows(st_b st_c st_pl st_u st_v #33412287) Rows(st_b st_c st_p st_u st_v #18327743) Rows(st_c st_ph st_pl st_p st_u #82951) Rows(st_c st_ph st_pl st_p st_v #503587) Rows(st_c st_ph st_pl st_u st_v #1882284) Rows(st_c st_ph st_p st_u st_v #1416615) Rows(st_c st_pl st_p st_u st_v #134630) Rows(st_b st_c st_ph st_pl st_p st_u #4712496) Rows(st_b st_c st_ph st_pl st_p st_v #26749898) Rows(st_b st_c st_ph st_pl st_u st_v #125369293) Rows(st_b st_c st_ph st_p st_u st_v #81836031) Rows(st_b st_c st_pl st_p st_u st_v #7728002) Rows(st_c st_ph st_pl st_p st_u st_v #820373) Rows(st_b st_c st_ph st_pl st_p st_u st_v #45561296) */",
+          "injection_verified": true,
+          "q_error": 6.575207057323391
+        }
+      }
+    },
+    {
+      "query": 121,
+      "aliases": [
+        "st_b",
+        "st_ph",
+        "st_p",
+        "st_u"
+      ],
+      "true_card": 11206879551.0,
+      "hinted_prefixes": [
+        "st_b st_ph",
+        "st_b st_p",
+        "st_b st_u",
+        "st_ph st_p",
+        "st_ph st_u",
+        "st_p st_u",
+        "st_b st_ph st_p",
+        "st_b st_ph st_u",
+        "st_b st_p st_u",
+        "st_ph st_p st_u",
+        "st_b st_ph st_p st_u"
+      ],
+      "arms": {
+        "pg_native": {
+          "error": "ERROR:  canceling statement due to statement timeout"
+        },
+        "true_card": {
+          "error": "ERROR:  canceling statement due to statement timeout",
+          "injected": 11206879551.0,
+          "hint": "/*+ Rows(st_b st_ph #16203910) Rows(st_b st_p #3115494) Rows(st_b st_u #79851) Rows(st_ph st_p #47376444) Rows(st_ph st_u #279018) Rows(st_p st_u #47100) Rows(st_b st_ph st_p #11206879551) Rows(st_b st_ph st_u #16203910) Rows(st_b st_p st_u #3115494) Rows(st_ph st_p st_u #47376444) Rows(st_b st_ph st_p st_u #11206879551) */",
+          "injection_verified": null
+        },
+        "ours": {
+          "error": "ERROR:  canceling statement due to statement timeout",
+          "injected": 314815488.0,
+          "hint": "/*+ Rows(st_b st_ph #15193161) Rows(st_b st_p #1643126) Rows(st_b st_u #78784) Rows(st_ph st_p #26665184) Rows(st_ph st_u #294223) Rows(st_p st_u #45127) Rows(st_b st_ph st_p #313822080) Rows(st_b st_ph st_u #14827546) Rows(st_b st_p st_u #1588168) Rows(st_ph st_p st_u #25865052) Rows(st_b st_ph st_p st_u #314815488) */",
+          "injection_verified": null
+        },
+        "price": {
+          "error": "ERROR:  canceling statement due to statement timeout",
+          "injected": 808000073.0487704,
+          "hint": "/*+ Rows(st_b st_ph #22472974) Rows(st_b st_p #2551860) Rows(st_b st_u #76726) Rows(st_ph st_p #39894195) Rows(st_ph st_u #318316) Rows(st_p st_u #56206) Rows(st_b st_ph st_p #798230242) Rows(st_b st_ph st_u #15765576) Rows(st_b st_p st_u #2634000) Rows(st_ph st_p st_u #28535686) Rows(st_b st_ph st_p st_u #808000073) */",
+          "injection_verified": null
+        }
+      }
+    },
+    {
+      "query": 127,
+      "aliases": [
+        "st_c",
+        "st_ph",
+        "st_pl",
+        "st_p",
+        "st_v"
+      ],
+      "true_card": 454094.0,
+      "hinted_prefixes": [
+        "st_c st_ph",
+        "st_c st_pl",
+        "st_c st_p",
+        "st_c st_v",
+        "st_ph st_pl",
+        "st_ph st_p",
+        "st_ph st_v",
+        "st_pl st_p",
+        "st_pl st_v",
+        "st_p st_v",
+        "st_c st_ph st_pl",
+        "st_c st_ph st_p",
+        "st_c st_ph st_v",
+        "st_c st_pl st_p",
+        "st_c st_pl st_v",
+        "st_c st_p st_v",
+        "st_ph st_pl st_p",
+        "st_ph st_pl st_v",
+        "st_ph st_p st_v",
+        "st_pl st_p st_v",
+        "st_c st_ph st_pl st_p",
+        "st_c st_ph st_pl st_v",
+        "st_c st_ph st_p st_v",
+        "st_c st_pl st_p st_v",
+        "st_ph st_pl st_p st_v",
+        "st_c st_ph st_pl st_p st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 325.2685,
+          "runs_ms": [
+            286.552,
+            363.985
+          ],
+          "total_cost": 13132.54,
+          "join_rows": 190098.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 2.388736335995118
+        },
+        "true_card": {
+          "execution_ms": 316.996,
+          "runs_ms": [
+            304.453,
+            329.539
+          ],
+          "total_cost": 28095.26,
+          "join_rows": 454094.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 454094.0,
+          "hint": "/*+ Rows(st_c st_ph #691045) Rows(st_c st_pl #31580) Rows(st_c st_p #25695) Rows(st_c st_v #847176) Rows(st_ph st_pl #55293) Rows(st_ph st_p #61284) Rows(st_ph st_v #1228382) Rows(st_pl st_p #3167) Rows(st_pl st_v #66311) Rows(st_p st_v #56627) Rows(st_c st_ph st_pl #194687) Rows(st_c st_ph st_p #160411) Rows(st_c st_ph st_v #3918357) Rows(st_c st_pl st_p #10594) Rows(st_c st_pl st_v #262343) Rows(st_c st_p st_v #147586) Rows(st_ph st_pl st_p #19015) Rows(st_ph st_pl st_v #403975) Rows(st_ph st_p st_v #334037) Rows(st_pl st_p st_v #18097) Rows(st_c st_ph st_pl st_p #69251) Rows(st_c st_ph st_pl st_v #1730990) Rows(st_c st_ph st_p st_v #988335) Rows(st_c st_pl st_p st_v #65948) Rows(st_ph st_pl st_p st_v #114676) Rows(st_c st_ph st_pl st_p st_v #454094) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 299.41999999999996,
+          "runs_ms": [
+            325.479,
+            273.361
+          ],
+          "total_cost": 15212.99,
+          "join_rows": 329122.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 329121.9375,
+          "hint": "/*+ Rows(st_c st_ph #779795) Rows(st_c st_pl #44603) Rows(st_c st_p #19824) Rows(st_c st_v #1346092) Rows(st_ph st_pl #44338) Rows(st_ph st_p #33906) Rows(st_ph st_v #1475996) Rows(st_pl st_p #1069) Rows(st_pl st_v #75892) Rows(st_p st_v #37347) Rows(st_c st_ph st_pl #219726) Rows(st_c st_ph st_p #95259) Rows(st_c st_ph st_v #6843766) Rows(st_c st_pl st_p #5466) Rows(st_c st_pl st_v #372481) Rows(st_c st_p st_v #163146) Rows(st_ph st_pl st_p #5231) Rows(st_ph st_pl st_v #231289) Rows(st_ph st_p st_v #179233) Rows(st_pl st_p st_v #9039) Rows(st_c st_ph st_pl st_p #30278) Rows(st_c st_ph st_pl st_v #2098338) Rows(st_c st_ph st_p st_v #954467) Rows(st_c st_pl st_p st_v #53696) Rows(st_ph st_pl st_p st_v #34975) Rows(st_c st_ph st_pl st_p st_v #329122) */",
+          "injection_verified": true,
+          "q_error": 1.3797132978044615
+        },
+        "price": {
+          "execution_ms": 313.298,
+          "runs_ms": [
+            278.285,
+            348.311
+          ],
+          "total_cost": 16588.82,
+          "join_rows": 370130.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 370129.67739648925,
+          "hint": "/*+ Rows(st_c st_ph #853825) Rows(st_c st_pl #44207) Rows(st_c st_p #24286) Rows(st_c st_v #1435736) Rows(st_ph st_pl #47174) Rows(st_ph st_p #41285) Rows(st_ph st_v #1622999) Rows(st_pl st_p #1093) Rows(st_pl st_v #77568) Rows(st_p st_v #45936) Rows(st_c st_ph st_pl #258400) Rows(st_c st_ph st_p #104376) Rows(st_c st_ph st_v #6459969) Rows(st_c st_pl st_p #6023) Rows(st_c st_pl st_v #424814) Rows(st_c st_p st_v #176509) Rows(st_ph st_pl st_p #6846) Rows(st_ph st_pl st_v #286221) Rows(st_ph st_p st_v #186602) Rows(st_pl st_p st_v #9136) Rows(st_c st_ph st_pl st_p #38669) Rows(st_c st_ph st_pl st_v #2002468) Rows(st_c st_ph st_p st_v #791362) Rows(st_c st_pl st_p st_v #54596) Rows(st_ph st_pl st_p st_v #37257) Rows(st_c st_ph st_pl st_p st_v #370130) */",
+          "injection_verified": true,
+          "q_error": 1.2268500256666577
+        }
+      }
+    },
+    {
+      "query": 126,
+      "aliases": [
+        "st_c",
+        "st_ph",
+        "st_pl",
+        "st_p",
+        "st_v"
+      ],
+      "true_card": 490921.0,
+      "hinted_prefixes": [
+        "st_c st_ph",
+        "st_c st_pl",
+        "st_c st_p",
+        "st_c st_v",
+        "st_ph st_pl",
+        "st_ph st_p",
+        "st_ph st_v",
+        "st_pl st_p",
+        "st_pl st_v",
+        "st_p st_v",
+        "st_c st_ph st_pl",
+        "st_c st_ph st_p",
+        "st_c st_ph st_v",
+        "st_c st_pl st_p",
+        "st_c st_pl st_v",
+        "st_c st_p st_v",
+        "st_ph st_pl st_p",
+        "st_ph st_pl st_v",
+        "st_ph st_p st_v",
+        "st_pl st_p st_v",
+        "st_c st_ph st_pl st_p",
+        "st_c st_ph st_pl st_v",
+        "st_c st_ph st_p st_v",
+        "st_c st_pl st_p st_v",
+        "st_ph st_pl st_p st_v",
+        "st_c st_ph st_pl st_p st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 322.0985,
+          "runs_ms": [
+            302.612,
+            341.585
+          ],
+          "total_cost": 11731.14,
+          "join_rows": 137654.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 3.566340244380839
+        },
+        "true_card": {
+          "execution_ms": 329.0285,
+          "runs_ms": [
+            353.341,
+            304.716
+          ],
+          "total_cost": 26097.01,
+          "join_rows": 490921.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 490921.0,
+          "hint": "/*+ Rows(st_c st_ph #529790) Rows(st_c st_pl #21077) Rows(st_c st_p #22210) Rows(st_c st_v #468748) Rows(st_ph st_pl #52130) Rows(st_ph st_p #74548) Rows(st_ph st_v #989610) Rows(st_pl st_p #3711) Rows(st_pl st_v #35692) Rows(st_p st_v #66189) Rows(st_c st_ph st_pl #130766) Rows(st_c st_ph st_p #142432) Rows(st_c st_ph st_v #2082832) Rows(st_c st_pl st_p #8938) Rows(st_c st_pl st_v #87697) Rows(st_c st_p st_v #124001) Rows(st_ph st_pl st_p #23304) Rows(st_ph st_pl st_v #243903) Rows(st_ph st_p st_v #415486) Rows(st_pl st_p st_v #25523) Rows(st_c st_ph st_pl st_p #61110) Rows(st_c st_ph st_pl st_v #640157) Rows(st_c st_ph st_p st_v #878864) Rows(st_c st_pl st_p st_v #63711) Rows(st_ph st_pl st_p st_v #184562) Rows(st_c st_ph st_pl st_p st_v #490921) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 456.845,
+          "runs_ms": [
+            488.744,
+            424.946
+          ],
+          "total_cost": 13071.32,
+          "join_rows": 216474.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 216474.234375,
+          "hint": "/*+ Rows(st_c st_ph #615193) Rows(st_c st_pl #32648) Rows(st_c st_p #17418) Rows(st_c st_v #819673) Rows(st_ph st_pl #42654) Rows(st_ph st_p #39464) Rows(st_ph st_v #1175712) Rows(st_pl st_p #1140) Rows(st_pl st_v #56529) Rows(st_p st_v #33340) Rows(st_c st_ph st_pl #161904) Rows(st_c st_ph st_p #84798) Rows(st_c st_ph st_v #4117009) Rows(st_c st_pl st_p #4498) Rows(st_c st_pl st_v #211697) Rows(st_c st_p st_v #111064) Rows(st_ph st_pl st_p #5651) Rows(st_ph st_pl st_v #173321) Rows(st_ph st_p st_v #159748) Rows(st_pl st_p st_v #7535) Rows(st_c st_ph st_pl st_p #25249) Rows(st_c st_ph st_pl st_v #1207325) Rows(st_c st_ph st_p st_v #647016) Rows(st_c st_pl st_p st_v #34599) Rows(st_ph st_pl st_p st_v #29479) Rows(st_c st_ph st_pl st_p st_v #216474) */",
+          "injection_verified": true,
+          "q_error": 2.2678058334950157
+        },
+        "price": {
+          "execution_ms": 460.11,
+          "runs_ms": [
+            524.929,
+            395.291
+          ],
+          "total_cost": 17681.71,
+          "join_rows": 421442.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 421442.0174983845,
+          "hint": "/*+ Rows(st_c st_ph #696091) Rows(st_c st_pl #33295) Rows(st_c st_p #24750) Rows(st_c st_v #919517) Rows(st_ph st_pl #46758) Rows(st_ph st_p #54824) Rows(st_ph st_v #1368935) Rows(st_pl st_p #1453) Rows(st_pl st_v #61020) Rows(st_p st_v #48342) Rows(st_c st_ph st_pl #207145) Rows(st_c st_ph st_p #113759) Rows(st_c st_ph st_v #4685223) Rows(st_c st_pl st_p #6870) Rows(st_c st_pl st_v #275644) Rows(st_c st_p st_v #157352) Rows(st_ph st_pl st_p #10023) Rows(st_ph st_pl st_v #240094) Rows(st_ph st_p st_v #215735) Rows(st_pl st_p st_v #10131) Rows(st_c st_ph st_pl st_p #47543) Rows(st_c st_ph st_pl st_v #1456776) Rows(st_c st_ph st_p st_v #779258) Rows(st_c st_pl st_p st_v #53251) Rows(st_ph st_pl st_p st_v #47819) Rows(st_c st_ph st_pl st_p st_v #421442) */",
+          "injection_verified": true,
+          "q_error": 1.1648601705572772
+        }
+      }
+    },
+    {
+      "query": 86,
+      "aliases": [
+        "st_b",
+        "st_c",
+        "st_u"
+      ],
+      "true_card": 758411.0,
+      "hinted_prefixes": [
+        "st_b st_c",
+        "st_b st_u",
+        "st_c st_u",
+        "st_b st_c st_u"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 378.12199999999996,
+          "runs_ms": [
+            304.053,
+            452.191
+          ],
+          "total_cost": 109857.94,
+          "join_rows": 14236679.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 18.7717200831739
+        },
+        "true_card": {
+          "execution_ms": 406.7325,
+          "runs_ms": [
+            394.141,
+            419.324
+          ],
+          "total_cost": 37790.2,
+          "join_rows": 758411.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 758411.0,
+          "hint": "/*+ Rows(st_b st_c #15796144) Rows(st_b st_u #68130) Rows(st_c st_u #73909) Rows(st_b st_c st_u #758411) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 381.33050000000003,
+          "runs_ms": [
+            402.117,
+            360.544
+          ],
+          "total_cost": 98974.97,
+          "join_rows": 13534770.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 13534770.0,
+          "hint": "/*+ Rows(st_b st_c #15432713) Rows(st_b st_u #65556) Rows(st_c st_u #145851) Rows(st_b st_c st_u #13534770) */",
+          "injection_verified": true,
+          "q_error": 17.846220584880758
+        },
+        "price": {
+          "execution_ms": 355.63649999999996,
+          "runs_ms": [
+            349.457,
+            361.816
+          ],
+          "total_cost": 56028.6,
+          "join_rows": 5743917.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 5743916.567666436,
+          "hint": "/*+ Rows(st_b st_c #22169889) Rows(st_b st_u #43791) Rows(st_c st_u #88115) Rows(st_b st_c st_u #5743917) */",
+          "injection_verified": true,
+          "q_error": 7.5736203720673885
+        }
+      }
+    },
+    {
+      "query": 124,
+      "aliases": [
+        "st_b",
+        "st_ph",
+        "st_u",
+        "st_v"
+      ],
+      "true_card": 56205.0,
+      "hinted_prefixes": [
+        "st_b st_ph",
+        "st_b st_u",
+        "st_b st_v",
+        "st_ph st_u",
+        "st_ph st_v",
+        "st_u st_v",
+        "st_b st_ph st_u",
+        "st_b st_ph st_v",
+        "st_b st_u st_v",
+        "st_ph st_u st_v",
+        "st_b st_ph st_u st_v"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 449.585,
+          "runs_ms": [
+            444.556,
+            454.614
+          ],
+          "total_cost": 95221.87,
+          "join_rows": 16986493.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 302.2238768792812
+        },
+        "true_card": {
+          "execution_ms": 123.519,
+          "runs_ms": [
+            124.947,
+            122.091
+          ],
+          "total_cost": 14941.73,
+          "join_rows": 56205.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 56205.0,
+          "hint": "/*+ Rows(st_b st_ph #449327) Rows(st_b st_u #38533) Rows(st_b st_v #1046838) Rows(st_ph st_u #21676) Rows(st_ph st_v #373623) Rows(st_u st_v #10430) Rows(st_b st_ph st_u #52993) Rows(st_b st_ph st_v #22564579) Rows(st_b st_u st_v #23386) Rows(st_ph st_u st_v #11332) Rows(st_b st_ph st_u st_v #56205) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 432.716,
+          "runs_ms": [
+            379.727,
+            485.705
+          ],
+          "total_cost": 80720.63,
+          "join_rows": 12823559.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 12823559.0,
+          "hint": "/*+ Rows(st_b st_ph #2106652) Rows(st_b st_u #56544) Rows(st_b st_v #697993) Rows(st_ph st_u #29918) Rows(st_ph st_v #1591174) Rows(st_u st_v #21021) Rows(st_b st_ph st_u #1562846) Rows(st_b st_ph st_v #18313662) Rows(st_b st_u st_v #471906) Rows(st_ph st_u st_v #1109104) Rows(st_b st_ph st_u st_v #12823559) */",
+          "injection_verified": true,
+          "q_error": 228.15690774842096
+        },
+        "price": {
+          "execution_ms": 182.22050000000002,
+          "runs_ms": [
+            189.354,
+            175.087
+          ],
+          "total_cost": 67369.6,
+          "join_rows": 5454280.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 5454280.159988234,
+          "hint": "/*+ Rows(st_b st_ph #3440417) Rows(st_b st_u #27533) Rows(st_b st_v #948515) Rows(st_ph st_u #11893) Rows(st_ph st_v #2004633) Rows(st_u st_v #16718) Rows(st_b st_ph st_u #248487) Rows(st_b st_ph st_v #70748115) Rows(st_b st_u st_v #312866) Rows(st_ph st_u st_v #276180) Rows(st_b st_ph st_u st_v #5454280) */",
+          "injection_verified": true,
+          "q_error": 97.04261186727159
+        }
+      }
+    }
+  ]
+}

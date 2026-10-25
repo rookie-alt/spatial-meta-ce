@@ -43,7 +43,7 @@ S7 = f'{RESULTS}/s7-fit-generalization-20261007'
 # Scientific direct inputs pinned at the drafting baseline. AGENTS and live
 # 00/23/99 progress documents are deliberately not authenticated inputs.
 INPUT_SHA256 = {
-    'docs/protocol.md': '4a3068e40b79e0a25e36002ef8ad1380051d655bc2795d32d13f5856a063779b',
+    'docs/protocol.md': '93cbaf2b20a31e60b68e20e9165e560cddc4e2cae61d577cdf191085c8ade363',
     '实验文档/14-离线实验统一对照与论文结论.md': '63c1dbe1ea9f1389155a23b93aacb38d39f4f018918cb8ce41368cb53c6703aa',
     '实验文档/18-S4PG输出锚定单因素训练对照方案.md': 'd63c4f503f55eb87b59896e54f0379768e8829c8d48f2bad0a3f6224b53e0be3',
     '实验文档/19-S5复杂查询损失加权单因素精度提升方案.md': '4ac019d51b384aba7fc616bbdadc536439a33e633596f011f4d78b48011a1d56',

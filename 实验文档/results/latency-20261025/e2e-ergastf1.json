@@ -1,0 +1,1839 @@
+{
+  "schema": 1,
+  "purpose": "postgres-e2e-with-injected-cardinalities",
+  "database": "ergastf1",
+  "includes_feature_extraction": false,
+  "includes_plan_generation": true,
+  "includes_database_execution": true,
+  "claim_boundary": "Execution of the unchanged SQL on PostgreSQL 13.23 with pg_hint_plan Rows() injection. The mechanism differs from PilotScope's push_card on PostgreSQL 13.1, so absolute times are not comparable with PRICE's published E2E figures; ratios within this report are.",
+  "population": {
+    "queries_total": 148,
+    "one_block": 148,
+    "unsupported_multi_block": 0,
+    "uninjectable_missing_estimate": 20,
+    "sampled": 20,
+    "sample_seed": 2026,
+    "unsupported_queries": [],
+    "uninjectable_queries": [
+      {
+        "query": 4,
+        "lines": [
+          104
+        ]
+      },
+      {
+        "query": 14,
+        "lines": [
+          222
+        ]
+      },
+      {
+        "query": 24,
+        "lines": [
+          332
+        ]
+      },
+      {
+        "query": 28,
+        "lines": [
+          386,
+          387,
+          390
+        ]
+      },
+      {
+        "query": 30,
+        "lines": [
+          414
+        ]
+      },
+      {
+        "query": 32,
+        "lines": [
+          464,
+          468,
+          470,
+          471
+        ]
+      },
+      {
+        "query": 34,
+        "lines": [
+          506,
+          507,
+          508,
+          510,
+          511
+        ]
+      },
+      {
+        "query": 41,
+        "lines": [
+          627
+        ]
+      },
+      {
+        "query": 46,
+        "lines": [
+          700
+        ]
+      },
+      {
+        "query": 54,
+        "lines": [
+          792,
+          794,
+          795
+        ]
+      },
+      {
+        "query": 56,
+        "lines": [
+          835
+        ]
+      },
+      {
+        "query": 57,
+        "lines": [
+          859
+        ]
+      },
+      {
+        "query": 72,
+        "lines": [
+          1000
+        ]
+      },
+      {
+        "query": 81,
+        "lines": [
+          1111
+        ]
+      },
+      {
+        "query": 97,
+        "lines": [
+          1290
+        ]
+      },
+      {
+        "query": 105,
+        "lines": [
+          1360
+        ]
+      },
+      {
+        "query": 109,
+        "lines": [
+          1429
+        ]
+      },
+      {
+        "query": 120,
+        "lines": [
+          1579
+        ]
+      },
+      {
+        "query": 127,
+        "lines": [
+          1663
+        ]
+      },
+      {
+        "query": 146,
+        "lines": [
+          1945,
+          1950,
+          1951
+        ]
+      }
+    ]
+  },
+  "runs": 3,
+  "discarded_cold_runs": 1,
+  "statement_timeout_ms": 120000,
+  "arm_failures": [
+    {
+      "query": 37,
+      "arm": "pg_native",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    },
+    {
+      "query": 37,
+      "arm": "true_card",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    },
+    {
+      "query": 37,
+      "arm": "ours",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    },
+    {
+      "query": 37,
+      "arm": "price",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    }
+  ],
+  "single_table_policy": "no hint; PostgreSQL's own scan estimate (PRICE convention)",
+  "server": {
+    "version": "PostgreSQL 13.23 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0, 64-bit",
+    "hint_session_preload": "pg_hint_plan",
+    "hint_enabled": "on",
+    "parallel_workers_per_gather": "0"
+  },
+  "ratios_to_pg_native": {
+    "true_card": {
+      "median": 1.0046516257696922,
+      "mean": 1.0116250418385413,
+      "p90": 1.1146303191968834,
+      "better_than_pg": 5,
+      "worse_than_pg": 9,
+      "n": 19
+    },
+    "ours": {
+      "median": 1.003782201903393,
+      "mean": 1.0122021068718074,
+      "p90": 1.094607156424548,
+      "better_than_pg": 6,
+      "worse_than_pg": 9,
+      "n": 19
+    },
+    "price": {
+      "median": 1.0030556772619459,
+      "mean": 1.0483948560661096,
+      "p90": 1.182282019626559,
+      "better_than_pg": 6,
+      "worse_than_pg": 7,
+      "n": 19
+    }
+  },
+  "ratio_subset": "the same queries for every arm: all four arms produced an execution time; the count is ratios_to_pg_native[*].n",
+  "injection_checks": {
+    "true_card": {
+      "verified": 19,
+      "unverified": 0,
+      "not_checked": 1
+    },
+    "ours": {
+      "verified": 19,
+      "unverified": 0,
+      "not_checked": 1
+    },
+    "price": {
+      "verified": 19,
+      "unverified": 0,
+      "not_checked": 1
+    }
+  },
+  "median_q_error": {
+    "pg_native": {
+      "median": 2.739646007440854,
+      "n": 19
+    },
+    "true_card": {
+      "median": 1.0,
+      "n": 19
+    },
+    "ours": {
+      "median": 2.8495803988901836,
+      "n": 19
+    },
+    "price": {
+      "median": 1.4161765860237594,
+      "n": 19
+    }
+  },
+  "results": [
+    {
+      "query": 37,
+      "aliases": [
+        "erg_lap",
+        "erg_qua",
+        "erg_tar"
+      ],
+      "true_card": 895530300.0,
+      "hinted_prefixes": [
+        "erg_lap erg_qua",
+        "erg_lap erg_tar",
+        "erg_qua erg_tar",
+        "erg_lap erg_qua erg_tar"
+      ],
+      "arms": {
+        "pg_native": {
+          "error": "ERROR:  canceling statement due to statement timeout"
+        },
+        "true_card": {
+          "error": "ERROR:  canceling statement due to statement timeout",
+          "injected": 895530300.0,
+          "hint": "/*+ Rows(erg_lap erg_qua #3772272) Rows(erg_lap erg_tar #68132235) Rows(erg_qua erg_tar #76000) Rows(erg_lap erg_qua erg_tar #895530300) */",
+          "injection_verified": null
+        },
+        "ours": {
+          "error": "ERROR:  canceling statement due to statement timeout",
+          "injected": 383184288.0,
+          "hint": "/*+ Rows(erg_lap erg_qua #2217491) Rows(erg_lap erg_tar #60970892) Rows(erg_qua erg_tar #45824) Rows(erg_lap erg_qua erg_tar #383184288) */",
+          "injection_verified": null
+        },
+        "price": {
+          "error": "ERROR:  canceling statement due to statement timeout",
+          "injected": 762320472.3931944,
+          "hint": "/*+ Rows(erg_lap erg_qua #3208495) Rows(erg_lap erg_tar #94771167) Rows(erg_qua erg_tar #70225) Rows(erg_lap erg_qua erg_tar #762320472) */",
+          "injection_verified": null
+        }
+      }
+    },
+    {
+      "query": 95,
+      "aliases": [
+        "erg_drivsta",
+        "erg_res",
+        "erg_lap"
+      ],
+      "true_card": 162522281.0,
+      "hinted_prefixes": [
+        "erg_drivsta erg_res",
+        "erg_drivsta erg_lap",
+        "erg_res erg_lap",
+        "erg_drivsta erg_res erg_lap"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 24302.239,
+          "runs_ms": [
+            24036.01,
+            24568.468
+          ],
+          "total_cost": 533917.82,
+          "join_rows": 33312208.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 4.878760393186786
+        },
+        "true_card": {
+          "execution_ms": 24561.631,
+          "runs_ms": [
+            24490.285,
+            24632.977
+          ],
+          "total_cost": 785190.28,
+          "join_rows": 162522281.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 162522281.0,
+          "hint": "/*+ Rows(erg_drivsta erg_res #13322) Rows(erg_drivsta erg_lap #41871444) Rows(erg_res erg_lap #1480438) Rows(erg_drivsta erg_res erg_lap #162522281) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 25168.136,
+          "runs_ms": [
+            25547.647,
+            24788.625
+          ],
+          "total_cost": 508457.38,
+          "join_rows": 30881754.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 30881754.0,
+          "hint": "/*+ Rows(erg_drivsta erg_res #15221) Rows(erg_drivsta erg_lap #47392160) Rows(erg_res erg_lap #434707) Rows(erg_drivsta erg_res erg_lap #30881754) */",
+          "injection_verified": true,
+          "q_error": 5.262728308761218
+        },
+        "price": {
+          "execution_ms": 24153.774,
+          "runs_ms": [
+            24217.633,
+            24089.915
+          ],
+          "total_cost": 735354.91,
+          "join_rows": 51312093.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 51312093.4819633,
+          "hint": "/*+ Rows(erg_drivsta erg_res #21561) Rows(erg_drivsta erg_lap #71820031) Rows(erg_res erg_lap #621422) Rows(erg_drivsta erg_res erg_lap #51312093) */",
+          "injection_verified": true,
+          "q_error": 3.1673290154038347
+        }
+      }
+    },
+    {
+      "query": 31,
+      "aliases": [
+        "erg_lap",
+        "erg_res",
+        "erg_drivsta"
+      ],
+      "true_card": 54495878.0,
+      "hinted_prefixes": [
+        "erg_lap erg_res",
+        "erg_lap erg_drivsta",
+        "erg_res erg_drivsta",
+        "erg_lap erg_res erg_drivsta"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 11055.457999999999,
+          "runs_ms": [
+            11076.158,
+            11034.758
+          ],
+          "total_cost": 73389.91,
+          "join_rows": 6470319.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 8.422440686463835
+        },
+        "true_card": {
+          "execution_ms": 12303.970000000001,
+          "runs_ms": [
+            12223.911,
+            12384.029
+          ],
+          "total_cost": 325169.99,
+          "join_rows": 54495878.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 54495878.0,
+          "hint": "/*+ Rows(erg_lap erg_res #222155) Rows(erg_lap erg_drivsta #68135823) Rows(erg_res erg_drivsta #4364) Rows(erg_lap erg_res erg_drivsta #54495878) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 11057.127,
+          "runs_ms": [
+            11238.6,
+            10875.654
+          ],
+          "total_cost": 65629.8,
+          "join_rows": 6076879.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 6076879.0,
+          "hint": "/*+ Rows(erg_lap erg_res #36082) Rows(erg_lap erg_drivsta #61607640) Rows(erg_res erg_drivsta #1607) Rows(erg_lap erg_res erg_drivsta #6076879) */",
+          "injection_verified": true,
+          "q_error": 8.967741171084697
+        },
+        "price": {
+          "execution_ms": 11117.864,
+          "runs_ms": [
+            11357.087,
+            10878.641
+          ],
+          "total_cost": 104100.51,
+          "join_rows": 13288562.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 13288562.311841426,
+          "hint": "/*+ Rows(erg_lap erg_res #51418) Rows(erg_lap erg_drivsta #92907996) Rows(erg_res erg_drivsta #2339) Rows(erg_lap erg_res erg_drivsta #13288562) */",
+          "injection_verified": true,
+          "q_error": 4.100961262776213
+        }
+      }
+    },
+    {
+      "query": 69,
+      "aliases": [
+        "erg_res",
+        "erg_tar",
+        "erg_lap"
+      ],
+      "true_card": 7307339.0,
+      "hinted_prefixes": [
+        "erg_res erg_tar",
+        "erg_tar erg_lap",
+        "erg_res erg_tar erg_lap"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1165.0515,
+          "runs_ms": [
+            1153.393,
+            1176.71
+          ],
+          "total_cost": 352705.32,
+          "join_rows": 22849315.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 3.1268995457854083
+        },
+        "true_card": {
+          "execution_ms": 1306.5175,
+          "runs_ms": [
+            1329.142,
+            1283.893
+          ],
+          "total_cost": 589702.19,
+          "join_rows": 7307339.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 7307339.0,
+          "hint": "/*+ Rows(erg_res erg_tar #21564) Rows(erg_tar erg_lap #68135823) Rows(erg_res erg_tar erg_lap #7307339) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 1264.9505,
+          "runs_ms": [
+            1328.869,
+            1201.032
+          ],
+          "total_cost": 315605.59,
+          "join_rows": 21197066.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 21197066.0,
+          "hint": "/*+ Rows(erg_res erg_tar #9707) Rows(erg_tar erg_lap #61714780) Rows(erg_res erg_tar erg_lap #21197066) */",
+          "injection_verified": true,
+          "q_error": 2.900791382471786
+        },
+        "price": {
+          "execution_ms": 1324.0245,
+          "runs_ms": [
+            1321.309,
+            1326.74
+          ],
+          "total_cost": 366569.44,
+          "join_rows": 13311622.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 13311621.740117757,
+          "hint": "/*+ Rows(erg_res erg_tar #12415) Rows(erg_tar erg_lap #93069751) Rows(erg_res erg_tar erg_lap #13311622) */",
+          "injection_verified": true,
+          "q_error": 1.8216784523066467
+        }
+      }
+    },
+    {
+      "query": 125,
+      "aliases": [
+        "erg_lap",
+        "erg_drivsta",
+        "erg_qua"
+      ],
+      "true_card": 3580318.0,
+      "hinted_prefixes": [
+        "erg_lap erg_drivsta",
+        "erg_lap erg_qua",
+        "erg_drivsta erg_qua",
+        "erg_lap erg_drivsta erg_qua"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 897.3625,
+          "runs_ms": [
+            970.467,
+            824.258
+          ],
+          "total_cost": 56416.5,
+          "join_rows": 5212018.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "q_error": 1.4557416408263177
+        },
+        "true_card": {
+          "execution_ms": 917.7249999999999,
+          "runs_ms": [
+            918.929,
+            916.521
+          ],
+          "total_cost": 45910.97,
+          "join_rows": 3580318.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 3580318.0,
+          "hint": "/*+ Rows(erg_lap erg_drivsta #267629) Rows(erg_lap erg_qua #401405) Rows(erg_drivsta erg_qua #67622) Rows(erg_lap erg_drivsta erg_qua #3580318) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 866.8005,
+          "runs_ms": [
+            912.043,
+            821.558
+          ],
+          "total_cost": 55092.39,
+          "join_rows": 5506541.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 5506541.0,
+          "hint": "/*+ Rows(erg_lap erg_drivsta #263414) Rows(erg_lap erg_qua #455430) Rows(erg_drivsta erg_qua #79880) Rows(erg_lap erg_drivsta erg_qua #5506541) */",
+          "injection_verified": true,
+          "q_error": 1.538003328195987
+        },
+        "price": {
+          "execution_ms": 937.9075,
+          "runs_ms": [
+            868.196,
+            1007.619
+          ],
+          "total_cost": 52587.47,
+          "join_rows": 3490925.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 3490925.1896425043,
+          "hint": "/*+ Rows(erg_lap erg_drivsta #235786) Rows(erg_lap erg_qua #444344) Rows(erg_drivsta erg_qua #86995) Rows(erg_lap erg_drivsta erg_qua #3490925) */",
+          "injection_verified": true,
+          "q_error": 1.0256072530919456
+        }
+      }
+    },
+    {
+      "query": 144,
+      "aliases": [
+        "erg_drivsta",
+        "erg_lap",
+        "erg_tar"
+      ],
+      "true_card": 968282.0,
+      "hinted_prefixes": [
+        "erg_drivsta erg_lap",
+        "erg_drivsta erg_tar",
+        "erg_lap erg_tar",
+        "erg_drivsta erg_lap erg_tar"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 211.517,
+          "runs_ms": [
+            197.249,
+            225.785
+          ],
+          "total_cost": 35310.52,
+          "join_rows": 1502368.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.551581047669997
+        },
+        "true_card": {
+          "execution_ms": 353.573,
+          "runs_ms": [
+            390.627,
+            316.519
+          ],
+          "total_cost": 29526.63,
+          "join_rows": 968282.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 968282.0,
+          "hint": "/*+ Rows(erg_drivsta erg_lap #41091) Rows(erg_drivsta erg_tar #200690) Rows(erg_lap erg_tar #158244) Rows(erg_drivsta erg_lap erg_tar #968282) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 212.317,
+          "runs_ms": [
+            198.397,
+            226.237
+          ],
+          "total_cost": 32076.75,
+          "join_rows": 1473703.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1473703.25,
+          "hint": "/*+ Rows(erg_drivsta erg_lap #34066) Rows(erg_drivsta erg_tar #182222) Rows(erg_lap erg_tar #199275) Rows(erg_drivsta erg_lap erg_tar #1473703) */",
+          "injection_verified": true,
+          "q_error": 1.521977068663881
+        },
+        "price": {
+          "execution_ms": 288.8485,
+          "runs_ms": [
+            292.369,
+            285.328
+          ],
+          "total_cost": 32180.13,
+          "join_rows": 1050195.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 1050195.2905156927,
+          "hint": "/*+ Rows(erg_drivsta erg_lap #39862) Rows(erg_drivsta erg_tar #223932) Rows(erg_lap erg_tar #187931) Rows(erg_drivsta erg_lap erg_tar #1050195) */",
+          "injection_verified": true,
+          "q_error": 1.0845962230011506
+        }
+      }
+    },
+    {
+      "query": 131,
+      "aliases": [
+        "erg_con",
+        "erg_res",
+        "erg_sta",
+        "erg_lap"
+      ],
+      "true_card": 1119522.0,
+      "hinted_prefixes": [
+        "erg_con erg_res",
+        "erg_res erg_sta",
+        "erg_res erg_lap",
+        "erg_con erg_res erg_sta",
+        "erg_con erg_res erg_lap",
+        "erg_res erg_sta erg_lap",
+        "erg_con erg_res erg_sta erg_lap"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 361.38,
+          "runs_ms": [
+            345.614,
+            377.146
+          ],
+          "total_cost": 37853.14,
+          "join_rows": 1616469.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "q_error": 1.4438921253892285
+        },
+        "true_card": {
+          "execution_ms": 401.381,
+          "runs_ms": [
+            371.977,
+            430.785
+          ],
+          "total_cost": 38802.37,
+          "join_rows": 1119522.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 1119522.0,
+          "hint": "/*+ Rows(erg_con erg_res #642) Rows(erg_res erg_sta #642) Rows(erg_res erg_lap #1119522) Rows(erg_con erg_res erg_sta #642) Rows(erg_con erg_res erg_lap #1119522) Rows(erg_res erg_sta erg_lap #1119522) Rows(erg_con erg_res erg_sta erg_lap #1119522) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 408.37750000000005,
+          "runs_ms": [
+            419.345,
+            397.41
+          ],
+          "total_cost": 36715.05,
+          "join_rows": 1526117.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 1526117.25,
+          "hint": "/*+ Rows(erg_con erg_res #559) Rows(erg_res erg_sta #556) Rows(erg_res erg_lap #1389865) Rows(erg_con erg_res erg_sta #567) Rows(erg_con erg_res erg_lap #1500683) Rows(erg_res erg_sta erg_lap #1479862) Rows(erg_con erg_res erg_sta erg_lap #1526117) */",
+          "injection_verified": true,
+          "q_error": 1.363186252704279
+        },
+        "price": {
+          "execution_ms": 803.395,
+          "runs_ms": [
+            820.982,
+            785.808
+          ],
+          "total_cost": 45323.31,
+          "join_rows": 1153470.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1153470.080738449,
+          "hint": "/*+ Rows(erg_con erg_res #828) Rows(erg_res erg_sta #801) Rows(erg_res erg_lap #1947383) Rows(erg_con erg_res erg_sta #848) Rows(erg_con erg_res erg_lap #1348831) Rows(erg_res erg_sta erg_lap #1331176) Rows(erg_con erg_res erg_sta erg_lap #1153470) */",
+          "injection_verified": true,
+          "q_error": 1.0303236559888953
+        }
+      }
+    },
+    {
+      "query": 74,
+      "aliases": [
+        "erg_qua",
+        "erg_consta",
+        "erg_pit"
+      ],
+      "true_card": 11606252.0,
+      "hinted_prefixes": [
+        "erg_qua erg_consta",
+        "erg_qua erg_pit",
+        "erg_qua erg_consta erg_pit"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 2870.0675,
+          "runs_ms": [
+            2832.546,
+            2907.589
+          ],
+          "total_cost": 94994.94,
+          "join_rows": 5201878.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "q_error": 2.231165744371552
+        },
+        "true_card": {
+          "execution_ms": 2694.456,
+          "runs_ms": [
+            2632.784,
+            2756.128
+          ],
+          "total_cost": 116458.98,
+          "join_rows": 11606252.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 11606252.0,
+          "hint": "/*+ Rows(erg_qua erg_consta #159009) Rows(erg_qua erg_pit #74415) Rows(erg_qua erg_consta erg_pit #11606252) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 2712.6655,
+          "runs_ms": [
+            2662.495,
+            2762.836
+          ],
+          "total_cost": 78940.88,
+          "join_rows": 4829190.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 4829189.5,
+          "hint": "/*+ Rows(erg_qua erg_consta #75026) Rows(erg_qua erg_pit #70150) Rows(erg_qua erg_consta erg_pit #4829190) */",
+          "injection_verified": true,
+          "q_error": 2.403353771543468
+        },
+        "price": {
+          "execution_ms": 2878.8375,
+          "runs_ms": [
+            2828.21,
+            2929.465
+          ],
+          "total_cost": 124738.45,
+          "join_rows": 8591990.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 8591989.745956805,
+          "hint": "/*+ Rows(erg_qua erg_consta #118428) Rows(erg_qua erg_pit #99558) Rows(erg_qua erg_consta erg_pit #8591990) */",
+          "injection_verified": true,
+          "q_error": 1.3508223356870759
+        }
+      }
+    },
+    {
+      "query": 0,
+      "aliases": [
+        "erg_pit",
+        "erg_tar",
+        "erg_qua",
+        "erg_con",
+        "erg_drivsta"
+      ],
+      "true_card": 92895123.0,
+      "hinted_prefixes": [
+        "erg_pit erg_tar",
+        "erg_pit erg_qua",
+        "erg_pit erg_drivsta",
+        "erg_tar erg_qua",
+        "erg_tar erg_drivsta",
+        "erg_qua erg_con",
+        "erg_qua erg_drivsta",
+        "erg_pit erg_tar erg_qua",
+        "erg_pit erg_tar erg_drivsta",
+        "erg_pit erg_qua erg_con",
+        "erg_pit erg_qua erg_drivsta",
+        "erg_tar erg_qua erg_con",
+        "erg_tar erg_qua erg_drivsta",
+        "erg_qua erg_con erg_drivsta",
+        "erg_pit erg_tar erg_qua erg_con",
+        "erg_pit erg_tar erg_qua erg_drivsta",
+        "erg_pit erg_qua erg_con erg_drivsta",
+        "erg_tar erg_qua erg_con erg_drivsta",
+        "erg_pit erg_tar erg_qua erg_con erg_drivsta"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 20583.839,
+          "runs_ms": [
+            20545.202,
+            20622.476
+          ],
+          "total_cost": 70357.58,
+          "join_rows": 12556578.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "q_error": 7.398124154526815
+        },
+        "true_card": {
+          "execution_ms": 20654.3275,
+          "runs_ms": [
+            20550.202,
+            20758.453
+          ],
+          "total_cost": 377496.72,
+          "join_rows": 92895123.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 92895123.0,
+          "hint": "/*+ Rows(erg_pit erg_tar #120824) Rows(erg_pit erg_qua #31638) Rows(erg_pit erg_drivsta #578177) Rows(erg_tar erg_qua #6198) Rows(erg_tar erg_drivsta #71276) Rows(erg_qua erg_con #339) Rows(erg_qua erg_drivsta #18989) Rows(erg_pit erg_tar erg_qua #766852) Rows(erg_pit erg_tar erg_drivsta #14977921) Rows(erg_pit erg_qua erg_con #31638) Rows(erg_pit erg_qua erg_drivsta #3315945) Rows(erg_tar erg_qua erg_con #6198) Rows(erg_tar erg_qua erg_drivsta #460287) Rows(erg_qua erg_con erg_drivsta #18989) Rows(erg_pit erg_tar erg_qua erg_con #766852) Rows(erg_pit erg_tar erg_qua erg_drivsta #92895123) Rows(erg_pit erg_qua erg_con erg_drivsta #3315945) Rows(erg_tar erg_qua erg_con erg_drivsta #460287) Rows(erg_pit erg_tar erg_qua erg_con erg_drivsta #92895123) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 20811.129,
+          "runs_ms": [
+            20905.951,
+            20716.307
+          ],
+          "total_cost": 68272.08,
+          "join_rows": 14488322.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 14488322.0,
+          "hint": "/*+ Rows(erg_pit erg_tar #26529) Rows(erg_pit erg_qua #36097) Rows(erg_pit erg_drivsta #464900) Rows(erg_tar erg_qua #1466) Rows(erg_tar erg_drivsta #54870) Rows(erg_qua erg_con #273) Rows(erg_qua erg_drivsta #26049) Rows(erg_pit erg_tar erg_qua #178234) Rows(erg_pit erg_tar erg_drivsta #2287740) Rows(erg_pit erg_qua erg_con #34614) Rows(erg_pit erg_qua erg_drivsta #3099982) Rows(erg_tar erg_qua erg_con #1307) Rows(erg_tar erg_qua erg_drivsta #83526) Rows(erg_qua erg_con erg_drivsta #23835) Rows(erg_pit erg_tar erg_qua erg_con #161854) Rows(erg_pit erg_tar erg_qua erg_drivsta #15667254) Rows(erg_pit erg_qua erg_con erg_drivsta #2886329) Rows(erg_tar erg_qua erg_con erg_drivsta #75502) Rows(erg_pit erg_tar erg_qua erg_con erg_drivsta #14488322) */",
+          "injection_verified": true,
+          "q_error": 6.411724076811655
+        },
+        "price": {
+          "execution_ms": 21138.689,
+          "runs_ms": [
+            21197.1,
+            21080.278
+          ],
+          "total_cost": 214068.64,
+          "join_rows": 64988154.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 64988153.7197215,
+          "hint": "/*+ Rows(erg_pit erg_tar #35925) Rows(erg_pit erg_qua #52210) Rows(erg_pit erg_drivsta #689062) Rows(erg_tar erg_qua #2533) Rows(erg_tar erg_drivsta #70177) Rows(erg_qua erg_con #489) Rows(erg_qua erg_drivsta #42285) Rows(erg_pit erg_tar erg_qua #412096) Rows(erg_pit erg_tar erg_drivsta #5002953) Rows(erg_pit erg_qua erg_con #59246) Rows(erg_pit erg_qua erg_drivsta #6443971) Rows(erg_tar erg_qua erg_con #2815) Rows(erg_tar erg_qua erg_drivsta #158442) Rows(erg_qua erg_con erg_drivsta #52556) Rows(erg_pit erg_tar erg_qua erg_con #345705) Rows(erg_pit erg_tar erg_qua erg_drivsta #52344497) Rows(erg_pit erg_qua erg_con erg_drivsta #8480851) Rows(erg_tar erg_qua erg_con erg_drivsta #123506) Rows(erg_pit erg_tar erg_qua erg_con erg_drivsta #64988154) */",
+          "injection_verified": true,
+          "q_error": 1.4294162440742662
+        }
+      }
+    },
+    {
+      "query": 22,
+      "aliases": [
+        "erg_res",
+        "erg_conres",
+        "erg_sta",
+        "erg_tar"
+      ],
+      "true_card": 8747374.0,
+      "hinted_prefixes": [
+        "erg_res erg_conres",
+        "erg_res erg_sta",
+        "erg_res erg_tar",
+        "erg_res erg_conres erg_sta",
+        "erg_res erg_conres erg_tar",
+        "erg_res erg_sta erg_tar",
+        "erg_res erg_conres erg_sta erg_tar"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1706.243,
+          "runs_ms": [
+            1731.888,
+            1680.598
+          ],
+          "total_cost": 339234.76,
+          "join_rows": 19555633.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 2.235600421337878
+        },
+        "true_card": {
+          "execution_ms": 1712.5245,
+          "runs_ms": [
+            1705.693,
+            1719.356
+          ],
+          "total_cost": 220663.9,
+          "join_rows": 8747374.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 8747374.0,
+          "hint": "/*+ Rows(erg_res erg_conres #404264) Rows(erg_res erg_sta #4910) Rows(erg_res erg_tar #106069) Rows(erg_res erg_conres erg_sta #404264) Rows(erg_res erg_conres erg_tar #8747374) Rows(erg_res erg_sta erg_tar #106069) Rows(erg_res erg_conres erg_sta erg_tar #8747374) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 2043.9245,
+          "runs_ms": [
+            2000.648,
+            2087.201
+          ],
+          "total_cost": 341747.03,
+          "join_rows": 19726660.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 19726660.0,
+          "hint": "/*+ Rows(erg_res erg_conres #586705) Rows(erg_res erg_sta #4880) Rows(erg_res erg_tar #145772) Rows(erg_res erg_conres erg_sta #617215) Rows(erg_res erg_conres erg_tar #19284766) Rows(erg_res erg_sta erg_tar #153884) Rows(erg_res erg_conres erg_sta erg_tar #19726660) */",
+          "injection_verified": true,
+          "q_error": 2.255152231972704
+        },
+        "price": {
+          "execution_ms": 1807.865,
+          "runs_ms": [
+            1912.989,
+            1702.741
+          ],
+          "total_cost": 278916.37,
+          "join_rows": 8977062.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 8977062.06913831,
+          "hint": "/*+ Rows(erg_res erg_conres #818183) Rows(erg_res erg_sta #5574) Rows(erg_res erg_tar #164765) Rows(erg_res erg_conres erg_sta #526558) Rows(erg_res erg_conres erg_tar #12314032) Rows(erg_res erg_sta erg_tar #141559) Rows(erg_res erg_conres erg_sta erg_tar #8977062) */",
+          "injection_verified": true,
+          "q_error": 1.0262579375250218
+        }
+      }
+    },
+    {
+      "query": 35,
+      "aliases": [
+        "erg_con",
+        "erg_qua",
+        "erg_res",
+        "erg_lap"
+      ],
+      "true_card": 91322834.0,
+      "hinted_prefixes": [
+        "erg_con erg_qua",
+        "erg_qua erg_res",
+        "erg_qua erg_lap",
+        "erg_res erg_lap",
+        "erg_con erg_qua erg_res",
+        "erg_con erg_qua erg_lap",
+        "erg_qua erg_res erg_lap",
+        "erg_con erg_qua erg_res erg_lap"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 22384.849000000002,
+          "runs_ms": [
+            22476.411,
+            22293.287
+          ],
+          "total_cost": 321808.82,
+          "join_rows": 33333808.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "q_error": 2.739646007440854
+        },
+        "true_card": {
+          "execution_ms": 22348.739,
+          "runs_ms": [
+            22246.899,
+            22450.579
+          ],
+          "total_cost": 604728.15,
+          "join_rows": 91322834.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 91322834.0,
+          "hint": "/*+ Rows(erg_con erg_qua #771) Rows(erg_qua erg_res #7425) Rows(erg_qua erg_lap #5494118) Rows(erg_res erg_lap #4648857) Rows(erg_con erg_qua erg_res #7425) Rows(erg_con erg_qua erg_lap #5494118) Rows(erg_qua erg_res erg_lap #91322834) Rows(erg_con erg_qua erg_res erg_lap #91322834) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 22201.841,
+          "runs_ms": [
+            22145.605,
+            22258.077
+          ],
+          "total_cost": 262453.7,
+          "join_rows": 32047818.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 32047818.0,
+          "hint": "/*+ Rows(erg_con erg_qua #619) Rows(erg_qua erg_res #3959) Rows(erg_qua erg_lap #5014710) Rows(erg_res erg_lap #2347180) Rows(erg_con erg_qua erg_res #3545) Rows(erg_con erg_qua erg_lap #5186812) Rows(erg_qua erg_res erg_lap #32344176) Rows(erg_con erg_qua erg_res erg_lap #32047818) */",
+          "injection_verified": true,
+          "q_error": 2.8495803988901836
+        },
+        "price": {
+          "execution_ms": 21976.010000000002,
+          "runs_ms": [
+            21980.185,
+            21971.835
+          ],
+          "total_cost": 543767.78,
+          "join_rows": 67138121.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 67138120.69923939,
+          "hint": "/*+ Rows(erg_con erg_qua #1079) Rows(erg_qua erg_res #7334) Rows(erg_qua erg_lap #7755260) Rows(erg_res erg_lap #3316761) Rows(erg_con erg_qua erg_res #9457) Rows(erg_con erg_qua erg_lap #7071475) Rows(erg_qua erg_res erg_lap #65309369) Rows(erg_con erg_qua erg_res erg_lap #67138121) */",
+          "injection_verified": true,
+          "q_error": 1.360223262727296
+        }
+      }
+    },
+    {
+      "query": 87,
+      "aliases": [
+        "erg_drivsta",
+        "erg_qua",
+        "erg_tar"
+      ],
+      "true_card": 47002141.0,
+      "hinted_prefixes": [
+        "erg_drivsta erg_qua",
+        "erg_drivsta erg_tar",
+        "erg_qua erg_tar",
+        "erg_drivsta erg_qua erg_tar"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 10857.780999999999,
+          "runs_ms": [
+            11234.971,
+            10480.591
+          ],
+          "total_cost": 119154.17,
+          "join_rows": 6537314.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "q_error": 7.18982459768645
+        },
+        "true_card": {
+          "execution_ms": 10696.366,
+          "runs_ms": [
+            10972.067,
+            10420.665
+          ],
+          "total_cost": 265038.93,
+          "join_rows": 47002141.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 47002141.0,
+          "hint": "/*+ Rows(erg_drivsta erg_qua #470581) Rows(erg_drivsta erg_tar #276534) Rows(erg_qua erg_tar #755594) Rows(erg_drivsta erg_qua erg_tar #47002141) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 10704.538,
+          "runs_ms": [
+            10747.873,
+            10661.203
+          ],
+          "total_cost": 109936.5,
+          "join_rows": 6205706.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 6205706.0,
+          "hint": "/*+ Rows(erg_drivsta erg_qua #165731) Rows(erg_drivsta erg_tar #180389) Rows(erg_qua erg_tar #388334) Rows(erg_drivsta erg_qua erg_tar #6205706) */",
+          "injection_verified": true,
+          "q_error": 7.5740199422918195
+        },
+        "price": {
+          "execution_ms": 10622.804,
+          "runs_ms": [
+            10757.299,
+            10488.309
+          ],
+          "total_cost": 153253.94,
+          "join_rows": 10274913.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 10274913.407681035,
+          "hint": "/*+ Rows(erg_drivsta erg_qua #266732) Rows(erg_drivsta erg_tar #237827) Rows(erg_qua erg_tar #568846) Rows(erg_drivsta erg_qua erg_tar #10274913) */",
+          "injection_verified": true,
+          "q_error": 4.574456348194871
+        }
+      }
+    },
+    {
+      "query": 29,
+      "aliases": [
+        "erg_drivsta",
+        "erg_pit",
+        "erg_qua"
+      ],
+      "true_card": 85045653.0,
+      "hinted_prefixes": [
+        "erg_drivsta erg_pit",
+        "erg_drivsta erg_qua",
+        "erg_pit erg_qua",
+        "erg_drivsta erg_pit erg_qua"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 13154.603,
+          "runs_ms": [
+            13296.826,
+            13012.38
+          ],
+          "total_cost": 175054.76,
+          "join_rows": 10602825.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 8.021037129255646
+        },
+        "true_card": {
+          "execution_ms": 13422.689,
+          "runs_ms": [
+            13522.842,
+            13322.536
+          ],
+          "total_cost": 354148.86,
+          "join_rows": 85045653.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 85045653.0,
+          "hint": "/*+ Rows(erg_drivsta erg_pit #857960) Rows(erg_drivsta erg_qua #397519) Rows(erg_pit erg_qua #506604) Rows(erg_drivsta erg_pit erg_qua #85045653) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 13342.0355,
+          "runs_ms": [
+            13248.015,
+            13436.056
+          ],
+          "total_cost": 169646.63,
+          "join_rows": 11718284.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 11718284.0,
+          "hint": "/*+ Rows(erg_drivsta erg_pit #824181) Rows(erg_drivsta erg_qua #394040) Rows(erg_pit erg_qua #308374) Rows(erg_drivsta erg_pit erg_qua #11718284) */",
+          "injection_verified": true,
+          "q_error": 7.2575176536086685
+        },
+        "price": {
+          "execution_ms": 12894.645,
+          "runs_ms": [
+            13036.909,
+            12752.381
+          ],
+          "total_cost": 272753.84,
+          "join_rows": 22209037.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 22209037.485137906,
+          "hint": "/*+ Rows(erg_drivsta erg_pit #1133329) Rows(erg_drivsta erg_qua #619293) Rows(erg_pit erg_qua #456958) Rows(erg_drivsta erg_pit erg_qua #22209037) */",
+          "injection_verified": true,
+          "q_error": 3.829326458414203
+        }
+      }
+    },
+    {
+      "query": 134,
+      "aliases": [
+        "erg_lap",
+        "erg_res",
+        "erg_tar"
+      ],
+      "true_card": 687751.0,
+      "hinted_prefixes": [
+        "erg_lap erg_res",
+        "erg_lap erg_tar",
+        "erg_res erg_tar",
+        "erg_lap erg_res erg_tar"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 238.255,
+          "runs_ms": [
+            269.667,
+            206.843
+          ],
+          "total_cost": 16972.65,
+          "join_rows": 457455.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 1.5034287525548962
+        },
+        "true_card": {
+          "execution_ms": 201.2925,
+          "runs_ms": [
+            194.129,
+            208.456
+          ],
+          "total_cost": 17367.19,
+          "join_rows": 687751.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 687751.0,
+          "hint": "/*+ Rows(erg_lap erg_res #2808) Rows(erg_lap erg_tar #85507) Rows(erg_res erg_tar #112111) Rows(erg_lap erg_res erg_tar #687751) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 203.65449999999998,
+          "runs_ms": [
+            209.853,
+            197.456
+          ],
+          "total_cost": 16284.15,
+          "join_rows": 428362.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 428361.53125,
+          "hint": "/*+ Rows(erg_lap erg_res #2537) Rows(erg_lap erg_tar #64193) Rows(erg_res erg_tar #108564) Rows(erg_lap erg_res erg_tar #428362) */",
+          "injection_verified": true,
+          "q_error": 1.6055369057012527
+        },
+        "price": {
+          "execution_ms": 205.498,
+          "runs_ms": [
+            194.947,
+            216.049
+          ],
+          "total_cost": 17810.91,
+          "join_rows": 743368.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 743367.8257829391,
+          "hint": "/*+ Rows(erg_lap erg_res #2998) Rows(erg_lap erg_tar #68430) Rows(erg_res erg_tar #126430) Rows(erg_lap erg_res erg_tar #743368) */",
+          "injection_verified": true,
+          "q_error": 1.0808679303992288
+        }
+      }
+    },
+    {
+      "query": 2,
+      "aliases": [
+        "erg_lap",
+        "erg_qua",
+        "erg_rac",
+        "erg_tar",
+        "erg_consta",
+        "erg_res"
+      ],
+      "true_card": 371026.0,
+      "hinted_prefixes": [
+        "erg_lap erg_qua",
+        "erg_lap erg_tar",
+        "erg_qua erg_rac",
+        "erg_qua erg_tar",
+        "erg_qua erg_consta",
+        "erg_qua erg_res",
+        "erg_rac erg_consta",
+        "erg_rac erg_res",
+        "erg_consta erg_res",
+        "erg_lap erg_qua erg_rac",
+        "erg_lap erg_qua erg_tar",
+        "erg_lap erg_qua erg_consta",
+        "erg_lap erg_qua erg_res",
+        "erg_qua erg_rac erg_tar",
+        "erg_qua erg_rac erg_consta",
+        "erg_qua erg_rac erg_res",
+        "erg_qua erg_tar erg_consta",
+        "erg_qua erg_tar erg_res",
+        "erg_qua erg_consta erg_res",
+        "erg_rac erg_consta erg_res",
+        "erg_lap erg_qua erg_rac erg_tar",
+        "erg_lap erg_qua erg_rac erg_consta",
+        "erg_lap erg_qua erg_rac erg_res",
+        "erg_lap erg_qua erg_tar erg_consta",
+        "erg_lap erg_qua erg_tar erg_res",
+        "erg_lap erg_qua erg_consta erg_res",
+        "erg_qua erg_rac erg_tar erg_consta",
+        "erg_qua erg_rac erg_tar erg_res",
+        "erg_qua erg_rac erg_consta erg_res",
+        "erg_qua erg_tar erg_consta erg_res",
+        "erg_lap erg_qua erg_rac erg_tar erg_consta",
+        "erg_lap erg_qua erg_rac erg_tar erg_res",
+        "erg_lap erg_qua erg_rac erg_consta erg_res",
+        "erg_lap erg_qua erg_tar erg_consta erg_res",
+        "erg_qua erg_rac erg_tar erg_consta erg_res",
+        "erg_lap erg_qua erg_rac erg_tar erg_consta erg_res"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 143.5305,
+          "runs_ms": [
+            143.807,
+            143.254
+          ],
+          "total_cost": 36103.84,
+          "join_rows": 4602002.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 12.40344881490785
+        },
+        "true_card": {
+          "execution_ms": 83.62299999999999,
+          "runs_ms": [
+            83.193,
+            84.053
+          ],
+          "total_cost": 13601.78,
+          "join_rows": 371026.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 371026.0,
+          "hint": "/*+ Rows(erg_lap erg_qua #416291) Rows(erg_lap erg_tar #68116781) Rows(erg_qua erg_rac #16) Rows(erg_qua erg_tar #17654) Rows(erg_qua erg_consta #110) Rows(erg_qua erg_res #234) Rows(erg_rac erg_consta #36) Rows(erg_rac erg_res #45) Rows(erg_consta erg_res #608) Rows(erg_lap erg_qua erg_rac #17106) Rows(erg_lap erg_qua erg_tar #58608838) Rows(erg_lap erg_qua erg_consta #207132) Rows(erg_lap erg_qua erg_res #415218) Rows(erg_qua erg_rac erg_tar #1013) Rows(erg_qua erg_rac erg_consta #10) Rows(erg_qua erg_rac erg_res #16) Rows(erg_qua erg_tar erg_consta #11992) Rows(erg_qua erg_tar erg_res #17112) Rows(erg_qua erg_consta erg_res #106) Rows(erg_rac erg_consta erg_res #32) Rows(erg_lap erg_qua erg_rac erg_tar #998752) Rows(erg_lap erg_qua erg_rac erg_consta #8148) Rows(erg_lap erg_qua erg_rac erg_res #17106) Rows(erg_lap erg_qua erg_tar erg_consta #38444635) Rows(erg_lap erg_qua erg_tar erg_res #58538020) Rows(erg_lap erg_qua erg_consta erg_res #206059) Rows(erg_qua erg_rac erg_tar erg_consta #777) Rows(erg_qua erg_rac erg_tar erg_res #1013) Rows(erg_qua erg_rac erg_consta erg_res #10) Rows(erg_qua erg_tar erg_consta erg_res #11450) Rows(erg_lap erg_qua erg_rac erg_tar erg_consta #371026) Rows(erg_lap erg_qua erg_rac erg_tar erg_res #998752) Rows(erg_lap erg_qua erg_rac erg_consta erg_res #8148) Rows(erg_lap erg_qua erg_tar erg_consta erg_res #38373817) Rows(erg_qua erg_rac erg_tar erg_consta erg_res #777) Rows(erg_lap erg_qua erg_rac erg_tar erg_consta erg_res #371026) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 153.99349999999998,
+          "runs_ms": [
+            142.612,
+            165.375
+          ],
+          "total_cost": 62119.17,
+          "join_rows": 9248891.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 9248891.0,
+          "hint": "/*+ Rows(erg_lap erg_qua #1543090) Rows(erg_lap erg_tar #61102096) Rows(erg_qua erg_rac #20) Rows(erg_qua erg_tar #31842) Rows(erg_qua erg_consta #133) Rows(erg_qua erg_res #118) Rows(erg_rac erg_consta #34) Rows(erg_rac erg_res #35) Rows(erg_consta erg_res #286) Rows(erg_lap erg_qua erg_rac #89929) Rows(erg_lap erg_qua erg_tar #265456912) Rows(erg_lap erg_qua erg_consta #1063084) Rows(erg_lap erg_qua erg_res #929833) Rows(erg_qua erg_rac erg_tar #1853) Rows(erg_qua erg_rac erg_consta #29) Rows(erg_qua erg_rac erg_res #33) Rows(erg_qua erg_tar erg_consta #21901) Rows(erg_qua erg_tar erg_res #19100) Rows(erg_qua erg_consta erg_res #104) Rows(erg_rac erg_consta erg_res #33) Rows(erg_lap erg_qua erg_rac erg_tar #15913703) Rows(erg_lap erg_qua erg_rac erg_consta #68087) Rows(erg_lap erg_qua erg_rac erg_res #60383) Rows(erg_lap erg_qua erg_tar erg_consta #191964048) Rows(erg_lap erg_qua erg_tar erg_res #168404800) Rows(erg_lap erg_qua erg_consta erg_res #679010) Rows(erg_qua erg_rac erg_tar erg_consta #1468) Rows(erg_qua erg_rac erg_tar erg_res #1344) Rows(erg_qua erg_rac erg_consta erg_res #43) Rows(erg_qua erg_tar erg_consta erg_res #14665) Rows(erg_lap erg_qua erg_rac erg_tar erg_consta #12811482) Rows(erg_lap erg_qua erg_rac erg_tar erg_res #11405118) Rows(erg_lap erg_qua erg_rac erg_consta erg_res #48842) Rows(erg_lap erg_qua erg_tar erg_consta erg_res #134081808) Rows(erg_qua erg_rac erg_tar erg_consta erg_res #1138) Rows(erg_lap erg_qua erg_rac erg_tar erg_consta erg_res #9248891) */",
+          "injection_verified": true,
+          "q_error": 24.92787836970994
+        },
+        "price": {
+          "execution_ms": 83.394,
+          "runs_ms": [
+            83.785,
+            83.003
+          ],
+          "total_cost": 21588.38,
+          "join_rows": 956032.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 956032.1496718146,
+          "hint": "/*+ Rows(erg_lap erg_qua #2300433) Rows(erg_lap erg_tar #93835852) Rows(erg_qua erg_rac #21) Rows(erg_qua erg_tar #51171) Rows(erg_qua erg_consta #171) Rows(erg_qua erg_res #154) Rows(erg_rac erg_consta #49) Rows(erg_rac erg_res #41) Rows(erg_consta erg_res #411) Rows(erg_lap erg_qua erg_rac #58957) Rows(erg_lap erg_qua erg_tar #566109896) Rows(erg_lap erg_qua erg_consta #660897) Rows(erg_lap erg_qua erg_res #564226) Rows(erg_qua erg_rac erg_tar #1975) Rows(erg_qua erg_rac erg_consta #16) Rows(erg_qua erg_rac erg_res #16) Rows(erg_qua erg_tar erg_consta #23386) Rows(erg_qua erg_tar erg_res #20064) Rows(erg_qua erg_consta erg_res #100) Rows(erg_rac erg_consta erg_res #35) Rows(erg_lap erg_qua erg_rac erg_tar #8447578) Rows(erg_lap erg_qua erg_rac erg_consta #25541) Rows(erg_lap erg_qua erg_rac erg_res #23824) Rows(erg_lap erg_qua erg_tar erg_consta #108575711) Rows(erg_lap erg_qua erg_tar erg_res #88922695) Rows(erg_lap erg_qua erg_consta erg_res #217801) Rows(erg_qua erg_rac erg_tar erg_consta #1151) Rows(erg_qua erg_rac erg_tar erg_res #1090) Rows(erg_qua erg_rac erg_consta erg_res #15) Rows(erg_qua erg_tar erg_consta erg_res #9847) Rows(erg_lap erg_qua erg_rac erg_tar erg_consta #2568110) Rows(erg_lap erg_qua erg_rac erg_tar erg_res #2327634) Rows(erg_lap erg_qua erg_rac erg_consta erg_res #12405) Rows(erg_lap erg_qua erg_tar erg_consta erg_res #22460718) Rows(erg_qua erg_rac erg_tar erg_consta erg_res #668) Rows(erg_lap erg_qua erg_rac erg_tar erg_consta erg_res #956032) */",
+          "injection_verified": true,
+          "q_error": 2.5767250812611513
+        }
+      }
+    },
+    {
+      "query": 94,
+      "aliases": [
+        "erg_res",
+        "erg_lap",
+        "erg_conres"
+      ],
+      "true_card": 4833914.0,
+      "hinted_prefixes": [
+        "erg_res erg_lap",
+        "erg_res erg_conres",
+        "erg_res erg_lap erg_conres"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1166.861,
+          "runs_ms": [
+            1161.832,
+            1171.89
+          ],
+          "total_cost": 147544.79,
+          "join_rows": 8038072.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "q_error": 1.6628496079988184
+        },
+        "true_card": {
+          "execution_ms": 1281.146,
+          "runs_ms": [
+            1293.301,
+            1268.991
+          ],
+          "total_cost": 62517.84,
+          "join_rows": 4833914.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 4833914.0,
+          "hint": "/*+ Rows(erg_res erg_lap #100054) Rows(erg_res erg_conres #5658) Rows(erg_res erg_lap erg_conres #4833914) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 1170.063,
+          "runs_ms": [
+            1163.84,
+            1176.286
+          ],
+          "total_cost": 139067.8,
+          "join_rows": 8280522.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 8280522.5,
+          "hint": "/*+ Rows(erg_res erg_lap #39842) Rows(erg_res erg_conres #17447) Rows(erg_res erg_lap erg_conres #8280522) */",
+          "injection_verified": true,
+          "q_error": 1.713005651321062
+        },
+        "price": {
+          "execution_ms": 1191.6025,
+          "runs_ms": [
+            1138.08,
+            1245.125
+          ],
+          "total_cost": 129871.59,
+          "join_rows": 4552791.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 4552790.614378994,
+          "hint": "/*+ Rows(erg_res erg_lap #39886) Rows(erg_res erg_conres #17788) Rows(erg_res erg_lap erg_conres #4552791) */",
+          "injection_verified": true,
+          "q_error": 1.0617473984639312
+        }
+      }
+    },
+    {
+      "query": 65,
+      "aliases": [
+        "erg_qua",
+        "erg_pit",
+        "erg_drivsta",
+        "erg_res"
+      ],
+      "true_card": 4484296.0,
+      "hinted_prefixes": [
+        "erg_qua erg_pit",
+        "erg_qua erg_drivsta",
+        "erg_qua erg_res",
+        "erg_pit erg_drivsta",
+        "erg_pit erg_res",
+        "erg_drivsta erg_res",
+        "erg_qua erg_pit erg_drivsta",
+        "erg_qua erg_pit erg_res",
+        "erg_qua erg_drivsta erg_res",
+        "erg_pit erg_drivsta erg_res",
+        "erg_qua erg_pit erg_drivsta erg_res"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1087.1635,
+          "runs_ms": [
+            1040.559,
+            1133.768
+          ],
+          "total_cost": 24068.24,
+          "join_rows": 1829662.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "q_error": 2.4508876502873207
+        },
+        "true_card": {
+          "execution_ms": 1128.308,
+          "runs_ms": [
+            1189.131,
+            1067.485
+          ],
+          "total_cost": 24012.31,
+          "join_rows": 4484296.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 4484296.0,
+          "hint": "/*+ Rows(erg_qua erg_pit #5292) Rows(erg_qua erg_drivsta #12421) Rows(erg_qua erg_res #198) Rows(erg_pit erg_drivsta #261942) Rows(erg_pit erg_res #32750) Rows(erg_drivsta erg_res #26108) Rows(erg_qua erg_pit erg_drivsta #608977) Rows(erg_qua erg_pit erg_res #48794) Rows(erg_qua erg_drivsta erg_res #18680) Rows(erg_pit erg_drivsta erg_res #2371308) Rows(erg_qua erg_pit erg_drivsta erg_res #4484296) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 998.5835,
+          "runs_ms": [
+            997.989,
+            999.178
+          ],
+          "total_cost": 24745.38,
+          "join_rows": 2387521.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 2387521.25,
+          "hint": "/*+ Rows(erg_qua erg_pit #8366) Rows(erg_qua erg_drivsta #4962) Rows(erg_qua erg_res #208) Rows(erg_pit erg_drivsta #385072) Rows(erg_pit erg_res #16626) Rows(erg_drivsta erg_res #26743) Rows(erg_qua erg_pit erg_drivsta #640218) Rows(erg_qua erg_pit erg_res #28189) Rows(erg_qua erg_drivsta erg_res #15740) Rows(erg_pit erg_drivsta erg_res #1184368) Rows(erg_qua erg_pit erg_drivsta erg_res #2387521) */",
+          "injection_verified": true,
+          "q_error": 1.8782226418113181
+        },
+        "price": {
+          "execution_ms": 1092.9865,
+          "runs_ms": [
+            1149.918,
+            1036.055
+          ],
+          "total_cost": 42868.23,
+          "join_rows": 6350555.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 6350555.2360242205,
+          "hint": "/*+ Rows(erg_qua erg_pit #9788) Rows(erg_qua erg_drivsta #7125) Rows(erg_qua erg_res #336) Rows(erg_pit erg_drivsta #541533) Rows(erg_pit erg_res #24682) Rows(erg_drivsta erg_res #34888) Rows(erg_qua erg_pit erg_drivsta #1095566) Rows(erg_qua erg_pit erg_res #45143) Rows(erg_qua erg_drivsta erg_res #39167) Rows(erg_pit erg_drivsta erg_res #2660740) Rows(erg_qua erg_pit erg_drivsta erg_res #6350555) */",
+          "injection_verified": true,
+          "q_error": 1.4161765860237594
+        }
+      }
+    },
+    {
+      "query": 118,
+      "aliases": [
+        "erg_qua",
+        "erg_tar",
+        "erg_lap"
+      ],
+      "true_card": 20167187.0,
+      "hinted_prefixes": [
+        "erg_qua erg_tar",
+        "erg_qua erg_lap",
+        "erg_tar erg_lap",
+        "erg_qua erg_tar erg_lap"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 7052.7615000000005,
+          "runs_ms": [
+            7097.51,
+            7008.013
+          ],
+          "total_cost": 58044.45,
+          "join_rows": 3095026.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 6.515999219392664
+        },
+        "true_card": {
+          "execution_ms": 4589.148,
+          "runs_ms": [
+            4606.424,
+            4571.872
+          ],
+          "total_cost": 117672.05,
+          "join_rows": 20167187.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 20167187.0,
+          "hint": "/*+ Rows(erg_qua erg_tar #1674) Rows(erg_qua erg_lap #124705) Rows(erg_tar erg_lap #38116959) Rows(erg_qua erg_tar erg_lap #20167187) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 6872.731,
+          "runs_ms": [
+            6845.205,
+            6900.257
+          ],
+          "total_cost": 50985.02,
+          "join_rows": 3011861.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 3011861.25,
+          "hint": "/*+ Rows(erg_qua erg_tar #370) Rows(erg_qua erg_lap #96506) Rows(erg_tar erg_lap #11632393) Rows(erg_qua erg_tar erg_lap #3011861) */",
+          "injection_verified": true,
+          "q_error": 6.695922222174263
+        },
+        "price": {
+          "execution_ms": 4666.2665,
+          "runs_ms": [
+            4737.007,
+            4595.526
+          ],
+          "total_cost": 64806.29,
+          "join_rows": 4493711.0,
+          "node_types": [
+            "Merge Join"
+          ],
+          "injected": 4493710.895499142,
+          "hint": "/*+ Rows(erg_qua erg_tar #544) Rows(erg_qua erg_lap #92827) Rows(erg_tar erg_lap #16672043) Rows(erg_qua erg_tar erg_lap #4493711) */",
+          "injection_verified": true,
+          "q_error": 4.487869157584901
+        }
+      }
+    },
+    {
+      "query": 77,
+      "aliases": [
+        "erg_qua",
+        "erg_consta",
+        "erg_conres"
+      ],
+      "true_card": 483430484.0,
+      "hinted_prefixes": [
+        "erg_qua erg_consta",
+        "erg_qua erg_conres",
+        "erg_consta erg_conres",
+        "erg_qua erg_consta erg_conres"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 96432.61,
+          "runs_ms": [
+            96465.094,
+            96400.126
+          ],
+          "total_cost": 2416989.05,
+          "join_rows": 291883826.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 1.656242795721062
+        },
+        "true_card": {
+          "execution_ms": 96667.5275,
+          "runs_ms": [
+            97120.249,
+            96214.806
+          ],
+          "total_cost": 2924015.85,
+          "join_rows": 483430484.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 483430484.0,
+          "hint": "/*+ Rows(erg_qua erg_consta #823944) Rows(erg_qua erg_conres #820877) Rows(erg_consta erg_conres #3589858) Rows(erg_qua erg_consta erg_conres #483430484) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 98064.28099999999,
+          "runs_ms": [
+            98599.574,
+            97528.988
+          ],
+          "total_cost": 2006185.19,
+          "join_rows": 241349312.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 241349312.0,
+          "hint": "/*+ Rows(erg_qua erg_consta #673304) Rows(erg_qua erg_conres #671258) Rows(erg_consta erg_conres #3583311) Rows(erg_qua erg_consta erg_conres #241349312) */",
+          "injection_verified": true,
+          "q_error": 2.003032368287837
+        },
+        "price": {
+          "execution_ms": 95676.40400000001,
+          "runs_ms": [
+            96365.183,
+            94987.625
+          ],
+          "total_cost": 3521383.33,
+          "join_rows": 490496698.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 490496698.2876526,
+          "hint": "/*+ Rows(erg_qua erg_consta #1103274) Rows(erg_qua erg_conres #1098479) Rows(erg_consta erg_conres #4759558) Rows(erg_qua erg_consta erg_conres #490496698) */",
+          "injection_verified": true,
+          "q_error": 1.0146168151034514
+        }
+      }
+    },
+    {
+      "query": 104,
+      "aliases": [
+        "erg_conres",
+        "erg_consta",
+        "erg_res"
+      ],
+      "true_card": 58998143.0,
+      "hinted_prefixes": [
+        "erg_conres erg_consta",
+        "erg_conres erg_res",
+        "erg_consta erg_res",
+        "erg_conres erg_consta erg_res"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 12884.205000000002,
+          "runs_ms": [
+            12909.049,
+            12859.361
+          ],
+          "total_cost": 188696.39,
+          "join_rows": 17858430.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 3.303657880339985
+        },
+        "true_card": {
+          "execution_ms": 12944.1375,
+          "runs_ms": [
+            12729.143,
+            13159.132
+          ],
+          "total_cost": 351758.8,
+          "join_rows": 58998143.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 58998143.0,
+          "hint": "/*+ Rows(erg_conres erg_consta #162034) Rows(erg_conres erg_res #78540) Rows(erg_consta erg_res #2095493) Rows(erg_conres erg_consta erg_res #58998143) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 13195.1855,
+          "runs_ms": [
+            13133.706,
+            13256.665
+          ],
+          "total_cost": 176916.91,
+          "join_rows": 17315594.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 17315594.0,
+          "hint": "/*+ Rows(erg_conres erg_consta #79274) Rows(erg_conres erg_res #51092) Rows(erg_consta erg_res #2272731) Rows(erg_conres erg_consta erg_res #17315594) */",
+          "injection_verified": true,
+          "q_error": 3.407226053001705
+        },
+        "price": {
+          "execution_ms": 12830.3755,
+          "runs_ms": [
+            12835.577,
+            12825.174
+          ],
+          "total_cost": 261906.79,
+          "join_rows": 27058507.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 27058506.91154368,
+          "hint": "/*+ Rows(erg_conres erg_consta #120831) Rows(erg_conres erg_res #74653) Rows(erg_consta erg_res #3120864) Rows(erg_conres erg_consta erg_res #27058507) */",
+          "injection_verified": true,
+          "q_error": 2.1803916601902684
+        }
+      }
+    }
+  ]
+}

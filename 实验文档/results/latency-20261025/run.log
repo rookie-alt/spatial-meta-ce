@@ -1,0 +1,167 @@
+=== L1 cpu-fomaml ===
+{"database": "imdb", "ours_p50": 0.8857119828462601, "ours_p99": 1.9067880930379029, "stability": 0.0289, "stability_ok": true}
+WARNING: stats population passes differ by 0.1684 > 0.05
+{"database": "stats", "ours_p50": 0.8920291438698769, "ours_p99": 2.091997247189283, "stability": 0.1684, "stability_ok": false}
+{"database": "genome", "ours_p50": 0.9036452975124121, "ours_p99": 0.9501623362302795, "stability": 0.0036, "stability_ok": true}
+{"database": "ergastf1", "ours_p50": 0.91141602024436, "ours_p99": 1.055985540151596, "stability": 0.0026, "stability_ok": true}
+wrote out/latency-cpu-fomaml.json
+=== L1 cuda-fomaml ===
+{"database": "imdb", "ours_p50": 1.7993412911891937, "ours_p99": 3.2838759012519874, "stability": 0.0045, "stability_ok": true}
+{"database": "stats", "ours_p50": 1.79007975384593, "ours_p99": 3.508813716471195, "stability": 0.0004, "stability_ok": true}
+{"database": "genome", "ours_p50": 1.8053429666906595, "ours_p99": 3.7040696619078517, "stability": 0.0313, "stability_ok": true}
+{"database": "ergastf1", "ours_p50": 1.8309259321540594, "ours_p99": 2.35843752976507, "stability": 0.0273, "stability_ok": true}
+wrote out/latency-cuda-fomaml.json
+=== L1 cpu-erm ===
+{"database": "imdb", "ours_p50": 0.8948140311986208, "ours_p99": 0.9495238540694108, "stability": 0.0257, "stability_ok": true}
+{"database": "stats", "ours_p50": 0.8973586373031139, "ours_p99": 1.5574316866695879, "stability": 0.0034, "stability_ok": true}
+{"database": "genome", "ours_p50": 0.8929301984608173, "ours_p99": 1.1154520278796576, "stability": 0.0065, "stability_ok": true}
+{"database": "ergastf1", "ours_p50": 0.8866484276950359, "ours_p99": 1.025075945071876, "stability": 0.0014, "stability_ok": true}
+wrote out/latency-cpu-erm.json
+=== L1 cuda-erm ===
+WARNING: imdb population passes differ by 0.0515 > 0.05
+{"database": "imdb", "ours_p50": 1.8324593547731638, "ours_p99": 2.6543956249952316, "stability": 0.0515, "stability_ok": false}
+{"database": "stats", "ours_p50": 1.78172392770648, "ours_p99": 3.7372345104813545, "stability": 0.0093, "stability_ok": true}
+{"database": "genome", "ours_p50": 1.794668147340417, "ours_p99": 3.629582915455103, "stability": 0.0029, "stability_ok": true}
+{"database": "ergastf1", "ours_p50": 1.812431262806058, "ours_p99": 3.36147116031498, "stability": 0.0161, "stability_ok": true}
+wrote out/latency-cuda-erm.json
+=== L2 cpu-fomaml ===
+{"database": "imdb", "queries_measured": 70, "extraction_p50": 40.166845079511404, "ours_total_p50": 50.38918647915125, "verified": 20}
+{"database": "stats", "queries_measured": 146, "extraction_p50": 135.17948845401406, "ours_total_p50": 149.69641854986548, "verified": 20}
+{"database": "genome", "queries_measured": 186, "extraction_p50": 79.06071841716766, "ours_total_p50": 89.83083791099489, "verified": 20}
+{"database": "ergastf1", "queries_measured": 148, "extraction_p50": 32.028677174821496, "ours_total_p50": 38.621973944827914, "verified": 20}
+wrote out/estimation-cpu-fomaml.json
+=== L2 cuda-fomaml ===
+{"database": "imdb", "queries_measured": 70, "extraction_p50": 34.353394294157624, "ours_total_p50": 53.64557378925383, "verified": 20}
+{"database": "stats", "queries_measured": 146, "extraction_p50": 128.86493443511426, "ours_total_p50": 165.81754852086306, "verified": 20}
+{"database": "genome", "queries_measured": 186, "extraction_p50": 73.6359297297895, "ours_total_p50": 95.74260516092181, "verified": 20}
+{"database": "ergastf1", "queries_measured": 148, "extraction_p50": 31.928489450365305, "ours_total_p50": 44.61934603750706, "verified": 20}
+wrote out/estimation-cuda-fomaml.json
+=== L2 cpu-erm ===
+{"database": "imdb", "queries_measured": 70, "extraction_p50": 36.49622667580843, "ours_total_p50": 45.29945575632155, "verified": 20}
+{"database": "stats", "queries_measured": 146, "extraction_p50": 130.31065836548805, "ours_total_p50": 146.32251276634634, "verified": 20}
+{"database": "genome", "queries_measured": 186, "extraction_p50": 73.97114648483694, "ours_total_p50": 87.86234306171536, "verified": 20}
+{"database": "ergastf1", "queries_measured": 148, "extraction_p50": 29.65496643446386, "ours_total_p50": 35.07777350023389, "verified": 20}
+wrote out/estimation-cpu-erm.json
+=== L2 cuda-erm ===
+{"database": "imdb", "queries_measured": 70, "extraction_p50": 34.511651610955596, "ours_total_p50": 57.43072205223143, "verified": 20}
+{"database": "stats", "queries_measured": 146, "extraction_p50": 128.34417168051004, "ours_total_p50": 156.07444662600756, "verified": 20}
+{"database": "genome", "queries_measured": 186, "extraction_p50": 74.64681006968021, "ours_total_p50": 96.08044754713774, "verified": 20}
+{"database": "ergastf1", "queries_measured": 148, "extraction_p50": 31.917884713038802, "ours_total_p50": 43.95671468228102, "verified": 20}
+wrote out/estimation-cuda-erm.json
+=== E2E stats ===
+{"query": 15, "pg_ms": 336.74, "ours_ms": 264.2845, "true_ms": 248.418}
+{"query": 42, "pg_ms": 4091.5215, "ours_ms": 4007.7974999999997, "true_ms": 4119.6915}
+{"query": 88, "pg_ms": 465.505, "ours_ms": 498.284, "true_ms": 468.4485}
+{"query": 89, "pg_ms": 365.7915, "ours_ms": 377.944, "true_ms": 462.275}
+{"query": 109, "pg_ms": 474.728, "ours_ms": 489.12850000000003, "true_ms": 618.807}
+{"query": 13, "pg_ms": 41.502, "ours_ms": 32.816, "true_ms": 33.983}
+{"query": 29, "pg_ms": 35292.03, "ours_ms": 35290.562999999995, "true_ms": 36161.5665}
+{"query": 101, "pg_ms": 1979.9125, "ours_ms": 1802.675, "true_ms": 967.22}
+{"query": 104, "pg_ms": 66918.277, "ours_ms": 66840.4615, "true_ms": 38283.051999999996}
+{"query": 95, "pg_ms": 1092.9215, "ours_ms": 855.769, "true_ms": 1020.9035}
+{"query": 70, "pg_ms": 13410.3985, "ours_ms": 13061.052, "true_ms": 10316.824499999999}
+{"query": 128, "pg_ms": 384.769, "ours_ms": 492.486, "true_ms": 464.8765}
+{"query": 98, "pg_ms": 1258.2305000000001, "ours_ms": 1223.7685000000001, "true_ms": 1197.9885}
+{"query": 94, "pg_ms": 1457.472, "ours_ms": 1321.981, "true_ms": 1194.4875}
+{"query": 141, "pg_ms": 65005.468, "ours_ms": 70990.0405, "true_ms": 69883.9605}
+{"query": 121, "pg_ms": null, "ours_ms": null, "true_ms": null}
+{"query": 127, "pg_ms": 325.2685, "ours_ms": 299.41999999999996, "true_ms": 316.996}
+{"query": 126, "pg_ms": 322.0985, "ours_ms": 456.845, "true_ms": 329.0285}
+{"query": 86, "pg_ms": 378.12199999999996, "ours_ms": 381.33050000000003, "true_ms": 406.7325}
+{"query": 124, "pg_ms": 449.585, "ours_ms": 432.716, "true_ms": 123.519}
+{
+  "true_card": {
+    "median": 0.9745671652803759,
+    "mean": 0.911952142286264,
+    "p90": 1.2193103532183502,
+    "better_than_pg": 10,
+    "worse_than_pg": 7,
+    "n": 19
+  },
+  "ours": {
+    "median": 0.979537196615,
+    "mean": 0.9956203747288064,
+    "p90": 1.1296405586549514,
+    "better_than_pg": 10,
+    "worse_than_pg": 6,
+    "n": 19
+  },
+  "price": {
+    "median": 0.959754282070546,
+    "mean": 0.9796391720829574,
+    "p90": 1.202127662891805,
+    "better_than_pg": 12,
+    "worse_than_pg": 6,
+    "n": 19
+  }
+}
+=== E2E ergastf1 ===
+{"query": 37, "pg_ms": null, "ours_ms": null, "true_ms": null}
+{"query": 95, "pg_ms": 24302.239, "ours_ms": 25168.136, "true_ms": 24561.631}
+{"query": 31, "pg_ms": 11055.457999999999, "ours_ms": 11057.127, "true_ms": 12303.970000000001}
+{"query": 69, "pg_ms": 1165.0515, "ours_ms": 1264.9505, "true_ms": 1306.5175}
+{"query": 125, "pg_ms": 897.3625, "ours_ms": 866.8005, "true_ms": 917.7249999999999}
+{"query": 144, "pg_ms": 211.517, "ours_ms": 212.317, "true_ms": 353.573}
+{"query": 131, "pg_ms": 361.38, "ours_ms": 408.37750000000005, "true_ms": 401.381}
+{"query": 74, "pg_ms": 2870.0675, "ours_ms": 2712.6655, "true_ms": 2694.456}
+{"query": 0, "pg_ms": 20583.839, "ours_ms": 20811.129, "true_ms": 20654.3275}
+{"query": 22, "pg_ms": 1706.243, "ours_ms": 2043.9245, "true_ms": 1712.5245}
+{"query": 35, "pg_ms": 22384.849000000002, "ours_ms": 22201.841, "true_ms": 22348.739}
+{"query": 87, "pg_ms": 10857.780999999999, "ours_ms": 10704.538, "true_ms": 10696.366}
+{"query": 29, "pg_ms": 13154.603, "ours_ms": 13342.0355, "true_ms": 13422.689}
+{"query": 134, "pg_ms": 238.255, "ours_ms": 203.65449999999998, "true_ms": 201.2925}
+{"query": 2, "pg_ms": 143.5305, "ours_ms": 153.99349999999998, "true_ms": 83.62299999999999}
+{"query": 94, "pg_ms": 1166.861, "ours_ms": 1170.063, "true_ms": 1281.146}
+{"query": 65, "pg_ms": 1087.1635, "ours_ms": 998.5835, "true_ms": 1128.308}
+{"query": 118, "pg_ms": 7052.7615000000005, "ours_ms": 6872.731, "true_ms": 4589.148}
+{"query": 77, "pg_ms": 96432.61, "ours_ms": 98064.28099999999, "true_ms": 96667.5275}
+{"query": 104, "pg_ms": 12884.205000000002, "ours_ms": 13195.1855, "true_ms": 12944.1375}
+{
+  "true_card": {
+    "median": 1.0046516257696922,
+    "mean": 1.0116250418385413,
+    "p90": 1.1146303191968834,
+    "better_than_pg": 5,
+    "worse_than_pg": 9,
+    "n": 19
+  },
+  "ours": {
+    "median": 1.003782201903393,
+    "mean": 1.0122021068718074,
+    "p90": 1.094607156424548,
+    "better_than_pg": 6,
+    "worse_than_pg": 9,
+    "n": 19
+  },
+  "price": {
+    "median": 1.0030556772619459,
+    "mean": 1.0483948560661096,
+    "p90": 1.182282019626559,
+    "better_than_pg": 6,
+    "worse_than_pg": 7,
+    "n": 19
+  }
+}
+=== ALL DONE ===
+total 10115
+-rw-r--r--. 1 root root  60627 Oct 26 02:14 e2e-ergastf1.json
+-rw-r--r--. 1 root root  40360 Oct 26 02:14 e2e-ergastf1.partial.jsonl
+-rw-r--r--. 1 root root  81990 Oct 26 01:20 e2e-stats.json
+-rw-r--r--. 1 root root  57357 Oct 26 01:20 e2e-stats.partial.jsonl
+-rw-r--r--. 1 root root 262061 Oct 26 00:30 estimation-cpu-erm.json
+-rw-r--r--. 1 root root   1583 Oct 26 00:30 estimation-cpu-erm.protocol.json
+-rw-r--r--. 1 root root 382168 Oct 26 00:23 estimation-cpu-fomaml.json
+-rw-r--r--. 1 root root   1827 Oct 26 00:23 estimation-cpu-fomaml.protocol.json
+-rw-r--r--. 1 root root 261976 Oct 26 00:32 estimation-cuda-erm.json
+-rw-r--r--. 1 root root   1586 Oct 26 00:32 estimation-cuda-erm.protocol.json
+-rw-r--r--. 1 root root 382077 Oct 26 00:29 estimation-cuda-fomaml.json
+-rw-r--r--. 1 root root   1830 Oct 26 00:29 estimation-cuda-fomaml.protocol.json
+-rw-r--r--. 1 root root   6515 Oct 26 00:16 latency-cpu-erm.json
+-rw-r--r--. 1 root root   2989 Oct 26 00:16 latency-cpu-erm.protocol.json
+-rw-r--r--. 1 root root  13543 Oct 26 00:07 latency-cpu-fomaml.json
+-rw-r--r--. 1 root root   3977 Oct 26 00:07 latency-cpu-fomaml.protocol.json
+-rw-r--r--. 1 root root   6615 Oct 26 00:17 latency-cuda-erm.json
+-rw-r--r--. 1 root root   3143 Oct 26 00:17 latency-cuda-erm.protocol.json
+-rw-r--r--. 1 root root  13430 Oct 26 00:15 latency-cuda-fomaml.json
+-rw-r--r--. 1 root root   4132 Oct 26 00:15 latency-cuda-fomaml.protocol.json
+-rw-r--r--. 1 root root   9173 Oct 26 02:14 run.log
