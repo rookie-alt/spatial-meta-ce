@@ -316,6 +316,13 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--checkpoint", required=True)
     parser.add_argument("--price-checkpoint", required=True)
     parser.add_argument("--sample", type=int, default=20)
+    parser.add_argument(
+        "--arms",
+        nargs="+",
+        default=list(ARMS),
+        help="arms to measure; a subset is allowed for cost probes and is "
+        "recorded in the report",
+    )
     parser.add_argument("--seed", type=int, default=2026)
     parser.add_argument("--runs", type=int, default=3)
     parser.add_argument("--socket", default="/var/run/pgsock")
@@ -329,6 +336,11 @@ def main(argv: list[str]) -> int:
 
     if args.database not in args.allow_database:
         raise SystemExit(f"{args.database} is not in --allow-database")
+    unknown = set(args.arms) - set(ARMS)
+    if unknown:
+        raise SystemExit("Unknown arms: " + ", ".join(sorted(unknown)))
+    if "pg_native" not in args.arms and len(args.arms) > 1:
+        raise SystemExit("Ratios need pg_native in --arms")
     if args.runs < 2:
         raise SystemExit(
             "--runs must be >= 2 (the first pass is the discarded cold run)"
@@ -381,7 +393,7 @@ def main(argv: list[str]) -> int:
             ],
             "arms": {"pg_native": measure_arm(args, sql)},
         }
-        for arm in ("true_card", "ours", "price"):
+        for arm in [a for a in args.arms if a != "pg_native"]:
             entry["arms"][arm] = measure_arm(args, hint(rows, table, arm) + sql)
             injected = table[arm].get(widest["subquery"])
             entry["arms"][arm]["injected"] = injected
@@ -396,7 +408,7 @@ def main(argv: list[str]) -> int:
                 if observed is None or injected is None
                 else abs(observed - injected) <= 0.01 * max(injected, 1.0)
             )
-        for arm in ARMS:
+        for arm in args.arms:
             if "join_rows" in entry["arms"][arm]:
                 entry["arms"][arm]["q_error"] = q_error(
                     entry["arms"][arm]["join_rows"], entry["true_card"]
@@ -406,11 +418,10 @@ def main(argv: list[str]) -> int:
             stream.write(json.dumps(entry, allow_nan=False) + "\n")
         print(
             json.dumps(
-                {
-                    "query": query,
-                    "pg_ms": entry["arms"]["pg_native"].get("execution_ms"),
-                    "ours_ms": entry["arms"]["ours"].get("execution_ms"),
-                    "true_ms": entry["arms"]["true_card"].get("execution_ms"),
+                {"query": query}
+                | {
+                    arm: entry["arms"].get(arm, {}).get("execution_ms")
+                    for arm in args.arms
                 }
             ),
             flush=True,
@@ -423,11 +434,12 @@ def main(argv: list[str]) -> int:
     # One common subset for every arm: a per-arm subset would let the slowest
     # queries drop out of one arm only, so "median ratio" would silently compare
     # different query sets.
-    complete = [entry for entry in results if all(ok(entry, arm) for arm in ARMS)]
+    complete = [entry for entry in results if all(ok(entry, arm) for arm in args.arms)]
 
     def ratio(arm):
         values = [
-            entry["arms"][arm]["execution_ms"] / entry["arms"]["pg_native"]["execution_ms"]
+            entry["arms"][arm]["execution_ms"]
+            / entry["arms"]["pg_native"]["execution_ms"]
             for entry in complete
         ]
         if not values:
@@ -480,7 +492,7 @@ def main(argv: list[str]) -> int:
         "arm_failures": [
             {"query": entry["query"], "arm": arm, "error": entry["arms"][arm]["error"]}
             for entry in results
-            for arm in ARMS
+            for arm in args.arms
             if "error" in entry["arms"].get(arm, {})
         ],
         "single_table_policy": "no hint; PostgreSQL's own scan estimate (PRICE convention)",
@@ -489,16 +501,23 @@ def main(argv: list[str]) -> int:
             # pg_hint_plan is a shared_preload library here, not an extension, so
             # the effective setting is what has to be recorded.
             "hint_session_preload": psql(
-                args, "select current_setting('session_preload_libraries')", args.timeout
+                args,
+                "select current_setting('session_preload_libraries')",
+                args.timeout,
             ).strip(),
             "hint_enabled": psql(
                 args, "select current_setting('pg_hint_plan.enable_hint')", args.timeout
             ).strip(),
             "parallel_workers_per_gather": psql(
-                args, "select current_setting('max_parallel_workers_per_gather')", args.timeout
+                args,
+                "select current_setting('max_parallel_workers_per_gather')",
+                args.timeout,
             ).strip(),
         },
-        "ratios_to_pg_native": {arm: ratio(arm) for arm in ARMS if arm != "pg_native"},
+        "arms_measured": list(args.arms),
+        "ratios_to_pg_native": {
+            arm: ratio(arm) for arm in args.arms if arm != "pg_native"
+        },
         "ratio_subset": (
             "the same queries for every arm: all four arms produced an execution "
             "time; the count is ratios_to_pg_native[*].n"
@@ -521,9 +540,10 @@ def main(argv: list[str]) -> int:
                     if entry["arms"].get(arm, {}).get("injection_verified") is None
                 ),
             }
-            for arm in ("true_card", "ours", "price")
+            for arm in args.arms
+            if arm != "pg_native"
         },
-        "median_q_error": {arm: median_q(arm) for arm in ARMS},
+        "median_q_error": {arm: median_q(arm) for arm in args.arms},
         "results": results,
     }
     Path(args.output).write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")

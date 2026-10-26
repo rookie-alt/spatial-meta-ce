@@ -1,0 +1,2072 @@
+{
+  "schema": 1,
+  "purpose": "postgres-e2e-with-injected-cardinalities",
+  "database": "genome",
+  "includes_feature_extraction": false,
+  "includes_plan_generation": true,
+  "includes_database_execution": true,
+  "claim_boundary": "Execution of the unchanged SQL on PostgreSQL 13.23 with pg_hint_plan Rows() injection. The mechanism differs from PilotScope's push_card on PostgreSQL 13.1, so absolute times are not comparable with PRICE's published E2E figures; ratios within this report are.",
+  "population": {
+    "queries_total": 186,
+    "one_block": 186,
+    "unsupported_multi_block": 0,
+    "uninjectable_missing_estimate": 29,
+    "sampled": 20,
+    "sample_seed": 2026,
+    "unsupported_queries": [],
+    "uninjectable_queries": [
+      {
+        "query": 0,
+        "lines": [
+          24,
+          25,
+          27,
+          28,
+          29,
+          30
+        ]
+      },
+      {
+        "query": 1,
+        "lines": [
+          54,
+          55,
+          57,
+          58,
+          59,
+          60
+        ]
+      },
+      {
+        "query": 6,
+        "lines": [
+          194,
+          195,
+          197,
+          198,
+          199,
+          200
+        ]
+      },
+      {
+        "query": 11,
+        "lines": [
+          290,
+          291,
+          293
+        ]
+      },
+      {
+        "query": 13,
+        "lines": [
+          332,
+          333
+        ]
+      },
+      {
+        "query": 15,
+        "lines": [
+          365,
+          366
+        ]
+      },
+      {
+        "query": 16,
+        "lines": [
+          383,
+          384,
+          386
+        ]
+      },
+      {
+        "query": 17,
+        "lines": [
+          405,
+          406
+        ]
+      },
+      {
+        "query": 18,
+        "lines": [
+          419
+        ]
+      },
+      {
+        "query": 20,
+        "lines": [
+          445
+        ]
+      },
+      {
+        "query": 21,
+        "lines": [
+          458
+        ]
+      },
+      {
+        "query": 22,
+        "lines": [
+          471
+        ]
+      },
+      {
+        "query": 23,
+        "lines": [
+          484
+        ]
+      },
+      {
+        "query": 32,
+        "lines": [
+          600,
+          601,
+          603
+        ]
+      },
+      {
+        "query": 34,
+        "lines": [
+          629
+        ]
+      },
+      {
+        "query": 35,
+        "lines": [
+          642
+        ]
+      },
+      {
+        "query": 37,
+        "lines": [
+          663
+        ]
+      },
+      {
+        "query": 44,
+        "lines": [
+          750,
+          751,
+          753
+        ]
+      },
+      {
+        "query": 46,
+        "lines": [
+          774
+        ]
+      },
+      {
+        "query": 47,
+        "lines": [
+          787
+        ]
+      },
+      {
+        "query": 50,
+        "lines": [
+          825,
+          826,
+          828
+        ]
+      },
+      {
+        "query": 60,
+        "lines": [
+          958,
+          959
+        ]
+      },
+      {
+        "query": 62,
+        "lines": [
+          985
+        ]
+      },
+      {
+        "query": 71,
+        "lines": [
+          1170,
+          1171
+        ]
+      },
+      {
+        "query": 72,
+        "lines": [
+          1190,
+          1191
+        ]
+      },
+      {
+        "query": 73,
+        "lines": [
+          1210,
+          1211
+        ]
+      },
+      {
+        "query": 75,
+        "lines": [
+          1243,
+          1244
+        ]
+      },
+      {
+        "query": 76,
+        "lines": [
+          1268,
+          1269,
+          1271,
+          1272,
+          1273,
+          1274
+        ]
+      },
+      {
+        "query": 77,
+        "lines": [
+          1294
+        ]
+      }
+    ]
+  },
+  "runs": 3,
+  "discarded_cold_runs": 1,
+  "statement_timeout_ms": 300000,
+  "arm_failures": [],
+  "single_table_policy": "no hint; PostgreSQL's own scan estimate (PRICE convention)",
+  "server": {
+    "version": "PostgreSQL 13.23 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0, 64-bit",
+    "hint_session_preload": "pg_hint_plan",
+    "hint_enabled": "on",
+    "parallel_workers_per_gather": "0"
+  },
+  "arms_measured": [
+    "pg_native",
+    "true_card",
+    "ours",
+    "price"
+  ],
+  "ratios_to_pg_native": {
+    "true_card": {
+      "median": 0.9857233537528092,
+      "mean": 0.928694773552411,
+      "p90": 1.0129161340746284,
+      "better_than_pg": 14,
+      "worse_than_pg": 4,
+      "n": 20
+    },
+    "ours": {
+      "median": 0.9965149145173224,
+      "mean": 1.0206744973459494,
+      "p90": 1.124103963623304,
+      "better_than_pg": 5,
+      "worse_than_pg": 6,
+      "n": 20
+    },
+    "price": {
+      "median": 0.9805997983759269,
+      "mean": 0.9284400552995269,
+      "p90": 1.0196855008532755,
+      "better_than_pg": 12,
+      "worse_than_pg": 4,
+      "n": 20
+    }
+  },
+  "ratio_subset": "the same queries for every arm: all four arms produced an execution time; the count is ratios_to_pg_native[*].n",
+  "injection_checks": {
+    "true_card": {
+      "verified": 20,
+      "unverified": 0,
+      "not_checked": 0
+    },
+    "ours": {
+      "verified": 20,
+      "unverified": 0,
+      "not_checked": 0
+    },
+    "price": {
+      "verified": 20,
+      "unverified": 0,
+      "not_checked": 0
+    }
+  },
+  "median_q_error": {
+    "pg_native": {
+      "median": 1.2229824087792744,
+      "n": 20
+    },
+    "true_card": {
+      "median": 1.0,
+      "n": 20
+    },
+    "ours": {
+      "median": 1.3066132204163639,
+      "n": 20
+    },
+    "price": {
+      "median": 5.136214466409028,
+      "n": 20
+    }
+  },
+  "results": [
+    {
+      "query": 51,
+      "aliases": [
+        "gno_io",
+        "gno_ioa",
+        "gno_ir",
+        "gno_pc"
+      ],
+      "true_card": 3164848.0,
+      "hinted_prefixes": [
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ir gno_pc",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ir gno_pc",
+        "gno_ioa gno_ir gno_pc",
+        "gno_io gno_ioa gno_ir gno_pc"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1565.3805,
+          "runs_ms": [
+            1640.673,
+            1490.088
+          ],
+          "total_cost": 61103.64,
+          "join_rows": 406938.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 7.77722404887231
+        },
+        "true_card": {
+          "execution_ms": 966.4095,
+          "runs_ms": [
+            981.2,
+            951.619
+          ],
+          "total_cost": 98136.85,
+          "join_rows": 3164848.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 3164848.0,
+          "hint": "/*+ Rows(gno_io gno_ioa #122801) Rows(gno_io gno_ir #13832792) Rows(gno_ioa gno_ir #58934) Rows(gno_ir gno_pc #763155) Rows(gno_io gno_ioa gno_ir #3164848) Rows(gno_io gno_ir gno_pc #13832792) Rows(gno_ioa gno_ir gno_pc #58934) Rows(gno_io gno_ioa gno_ir gno_pc #3164848) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 2067.2690000000002,
+          "runs_ms": [
+            2049.877,
+            2084.661
+          ],
+          "total_cost": 42971.45,
+          "join_rows": 251421.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 251421.234375,
+          "hint": "/*+ Rows(gno_io gno_ioa #21786) Rows(gno_io gno_ir #10852804) Rows(gno_ioa gno_ir #11514) Rows(gno_ir gno_pc #656347) Rows(gno_io gno_ioa gno_ir #191324) Rows(gno_io gno_ir gno_pc #11876536) Rows(gno_ioa gno_ir gno_pc #15327) Rows(gno_io gno_ioa gno_ir gno_pc #251421) */",
+          "injection_verified": true,
+          "q_error": 12.58784270208137
+        },
+        "price": {
+          "execution_ms": 977.819,
+          "runs_ms": [
+            986.879,
+            968.759
+          ],
+          "total_cost": 93836.12,
+          "join_rows": 3419241.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 3419241.1960861767,
+          "hint": "/*+ Rows(gno_io gno_ioa #87968) Rows(gno_io gno_ir #15980224) Rows(gno_ioa gno_ir #67490) Rows(gno_ir gno_pc #723549) Rows(gno_io gno_ioa gno_ir #2118243) Rows(gno_io gno_ir gno_pc #27920312) Rows(gno_ioa gno_ir gno_pc #104645) Rows(gno_io gno_ioa gno_ir gno_pc #3419241) */",
+          "injection_verified": true,
+          "q_error": 1.080380795538996
+        }
+      }
+    },
+    {
+      "query": 110,
+      "aliases": [
+        "gno_io",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 222007517.0,
+      "hinted_prefixes": [
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 38391.348,
+          "runs_ms": [
+            38519.932,
+            38262.764
+          ],
+          "total_cost": 3070814.46,
+          "join_rows": 181198756.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2252154589847184
+        },
+        "true_card": {
+          "execution_ms": 37925.8305,
+          "runs_ms": [
+            37985.5,
+            37866.161
+          ],
+          "total_cost": 3065746.86,
+          "join_rows": 222007517.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 222007517.0,
+          "hint": "/*+ Rows(gno_io gno_ioa #20400736) Rows(gno_io gno_ir #15450091) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_ioa gno_ir #222007517) Rows(gno_io gno_ioa gno_at #20400736) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_ioa gno_ir gno_at #222007517) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 38411.6925,
+          "runs_ms": [
+            38732.268,
+            38091.117
+          ],
+          "total_cost": 2313453.68,
+          "join_rows": 165432880.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 165432880.0,
+          "hint": "/*+ Rows(gno_io gno_ioa #16729221) Rows(gno_io gno_ir #12198738) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_ioa gno_ir #147067504) Rows(gno_io gno_ioa gno_at #18110420) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_ioa gno_ir gno_at #165432880) */",
+          "injection_verified": true,
+          "q_error": 1.3419793997420586
+        },
+        "price": {
+          "execution_ms": 37597.911,
+          "runs_ms": [
+            37720.454,
+            37475.368
+          ],
+          "total_cost": 3821987.4,
+          "join_rows": 806451175.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 806451174.8677058,
+          "hint": "/*+ Rows(gno_io gno_ioa #26786556) Rows(gno_io gno_ir #17387709) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_ioa gno_ir #454211906) Rows(gno_io gno_ioa gno_at #52448333) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_ioa gno_ir gno_at #806451175) */",
+          "injection_verified": true,
+          "q_error": 3.632539951338675
+        }
+      }
+    },
+    {
+      "query": 157,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 223156454.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 39503.848,
+          "runs_ms": [
+            39828.106,
+            39179.59
+          ],
+          "total_cost": 3095658.73,
+          "join_rows": 182534981.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2225407578178125
+        },
+        "true_card": {
+          "execution_ms": 38656.269499999995,
+          "runs_ms": [
+            38355.219,
+            38957.32
+          ],
+          "total_cost": 3097017.85,
+          "join_rows": 223156454.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 223156454.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1750006) Rows(gno_io gno_ioa #20538143) Rows(gno_io gno_ir #15552154) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_oc gno_ioa #20538143) Rows(gno_io gno_oc gno_ir #15552154) Rows(gno_io gno_ioa gno_ir #223156454) Rows(gno_io gno_ioa gno_at #20538143) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_oc gno_ioa gno_ir #223156454) Rows(gno_io gno_oc gno_ioa gno_at #20538143) Rows(gno_io gno_ioa gno_ir gno_at #223156454) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #223156454) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 39241.6215,
+          "runs_ms": [
+            39069.864,
+            39413.379
+          ],
+          "total_cost": 2689205.12,
+          "join_rows": 172042336.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 172042336.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1711810) Rows(gno_io gno_ioa #16966210) Rows(gno_io gno_ir #12371522) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_oc gno_ioa #20563954) Rows(gno_io gno_oc gno_ir #14761712) Rows(gno_io gno_ioa gno_ir #149807472) Rows(gno_io gno_ioa gno_at #18285320) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_oc gno_ioa gno_ir #177800032) Rows(gno_io gno_oc gno_ioa gno_at #19342898) Rows(gno_io gno_ioa gno_ir gno_at #167882368) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #172042336) */",
+          "injection_verified": true,
+          "q_error": 1.2971019761089504
+        },
+        "price": {
+          "execution_ms": 40156.908500000005,
+          "runs_ms": [
+            40073.595,
+            40240.222
+          ],
+          "total_cost": 4637339.43,
+          "join_rows": 1154582211.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1154582211.3003101,
+          "hint": "/*+ Rows(gno_io gno_oc #1661668) Rows(gno_io gno_ioa #28180543) Rows(gno_io gno_ir #18151121) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_oc gno_ioa #26917875) Rows(gno_io gno_oc gno_ir #19982311) Rows(gno_io gno_ioa gno_ir #431439143) Rows(gno_io gno_ioa gno_at #53335378) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_oc gno_ioa gno_ir #816651778) Rows(gno_io gno_oc gno_ioa gno_at #48953284) Rows(gno_io gno_ioa gno_ir gno_at #797524113) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #1154582211) */",
+          "injection_verified": true,
+          "q_error": 5.173868782661334
+        }
+      }
+    },
+    {
+      "query": 160,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 220937317.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 38956.0445,
+          "runs_ms": [
+            39281.664,
+            38630.425
+          ],
+          "total_cost": 3071780.9,
+          "join_rows": 180957816.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2209327117431612
+        },
+        "true_card": {
+          "execution_ms": 38479.522,
+          "runs_ms": [
+            38105.167,
+            38853.877
+          ],
+          "total_cost": 3072787.4,
+          "join_rows": 220937317.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 220937317.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1733490) Rows(gno_io gno_ioa #20355566) Rows(gno_io gno_ir #15414669) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_oc gno_ioa #20355566) Rows(gno_io gno_oc gno_ir #15414669) Rows(gno_io gno_ioa gno_ir #220937317) Rows(gno_io gno_ioa gno_at #20355566) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_oc gno_ioa gno_ir #220937317) Rows(gno_io gno_oc gno_ioa gno_at #20355566) Rows(gno_io gno_ioa gno_ir gno_at #220937317) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #220937317) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 39441.6515,
+          "runs_ms": [
+            39908.023,
+            38975.28
+          ],
+          "total_cost": 2668789.21,
+          "join_rows": 170241120.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 170241120.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1696186) Rows(gno_io gno_ioa #16811074) Rows(gno_io gno_ir #12258424) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_oc gno_ioa #20385952) Rows(gno_io gno_oc gno_ir #14635050) Rows(gno_io gno_ioa gno_ir #148211360) Rows(gno_io gno_ioa gno_at #18128910) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_oc gno_ioa gno_ir #175967408) Rows(gno_io gno_oc gno_ioa gno_at #19157480) Rows(gno_io gno_ioa gno_ir gno_at #166133904) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #170241120) */",
+          "injection_verified": true,
+          "q_error": 1.2977905514249437
+        },
+        "price": {
+          "execution_ms": 39701.0605,
+          "runs_ms": [
+            39804.909,
+            39597.212
+          ],
+          "total_cost": 4574305.05,
+          "join_rows": 1143566883.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1143566882.985241,
+          "hint": "/*+ Rows(gno_io gno_oc #1615181) Rows(gno_io gno_ioa #26786045) Rows(gno_io gno_ir #17429247) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_oc gno_ioa #26622292) Rows(gno_io gno_oc gno_ir #19754483) Rows(gno_io gno_ioa gno_ir #450231290) Rows(gno_io gno_ioa gno_at #52052983) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_oc gno_ioa gno_ir #817114528) Rows(gno_io gno_oc gno_ioa gno_at #47917066) Rows(gno_io gno_ioa gno_ir gno_at #796595227) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #1143566883) */",
+          "injection_verified": true,
+          "q_error": 5.1759788637245014
+        }
+      }
+    },
+    {
+      "query": 43,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir"
+      ],
+      "true_card": 357363.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_ir"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 421.88199999999995,
+          "runs_ms": [
+            432.09,
+            411.674
+          ],
+          "total_cost": 65535.83,
+          "join_rows": 25229.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 14.164770700384478
+        },
+        "true_card": {
+          "execution_ms": 385.6085,
+          "runs_ms": [
+            383.609,
+            387.608
+          ],
+          "total_cost": 82428.7,
+          "join_rows": 357363.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 357363.0,
+          "hint": "/*+ Rows(gno_io gno_oc #8620) Rows(gno_io gno_ioa #100088) Rows(gno_io gno_ir #12888) Rows(gno_ioa gno_ir #533172) Rows(gno_io gno_oc gno_ioa #100088) Rows(gno_io gno_oc gno_ir #12888) Rows(gno_io gno_ioa gno_ir #357363) Rows(gno_io gno_oc gno_ioa gno_ir #357363) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 465.02750000000003,
+          "runs_ms": [
+            467.86,
+            462.195
+          ],
+          "total_cost": 64393.95,
+          "join_rows": 21644.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 21643.73828125,
+          "hint": "/*+ Rows(gno_io gno_oc #7284) Rows(gno_io gno_ioa #60634) Rows(gno_io gno_ir #1289) Rows(gno_ioa gno_ir #211778) Rows(gno_io gno_oc gno_ioa #83080) Rows(gno_io gno_oc gno_ir #1980) Rows(gno_io gno_ioa gno_ir #15508) Rows(gno_io gno_oc gno_ioa gno_ir #21644) */",
+          "injection_verified": true,
+          "q_error": 16.510949916836076
+        },
+        "price": {
+          "execution_ms": 397.95799999999997,
+          "runs_ms": [
+            394.042,
+            401.874
+          ],
+          "total_cost": 71570.83,
+          "join_rows": 606248.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 606247.566533669,
+          "hint": "/*+ Rows(gno_io gno_oc #7166) Rows(gno_io gno_ioa #164696) Rows(gno_io gno_ir #5301) Rows(gno_ioa gno_ir #862845) Rows(gno_io gno_oc gno_ioa #132535) Rows(gno_io gno_oc gno_ir #5161) Rows(gno_io gno_ioa gno_ir #334474) Rows(gno_io gno_oc gno_ioa gno_ir #606248) */",
+          "injection_verified": true,
+          "q_error": 1.6964487090157627
+        }
+      }
+    },
+    {
+      "query": 86,
+      "aliases": [
+        "gno_io",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 220956757.0,
+      "hinted_prefixes": [
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 40092.588,
+          "runs_ms": [
+            40202.437,
+            39982.739
+          ],
+          "total_cost": 3092102.36,
+          "join_rows": 182607188.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2100112784169264
+        },
+        "true_card": {
+          "execution_ms": 38321.0435,
+          "runs_ms": [
+            37438.787,
+            39203.3
+          ],
+          "total_cost": 3078289.33,
+          "join_rows": 220956757.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 220956757.0,
+          "hint": "/*+ Rows(gno_io gno_ioa #20468797) Rows(gno_io gno_ir #15492870) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_ioa gno_ir #220956757) Rows(gno_io gno_ioa gno_at #20468797) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_ioa gno_ir gno_at #220956757) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 40245.7105,
+          "runs_ms": [
+            40322.125,
+            40169.296
+          ],
+          "total_cost": 2332456.22,
+          "join_rows": 166884064.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 166884064.0,
+          "hint": "/*+ Rows(gno_io gno_ioa #16888754) Rows(gno_io gno_ir #12315067) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_ioa gno_ir #148475904) Rows(gno_io gno_ioa gno_at #18265800) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_ioa gno_ir gno_at #166884064) */",
+          "injection_verified": true,
+          "q_error": 1.324013519948795
+        },
+        "price": {
+          "execution_ms": 38385.885,
+          "runs_ms": [
+            37924.374,
+            38847.396
+          ],
+          "total_cost": 3774102.72,
+          "join_rows": 783197288.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 783197287.7208618,
+          "hint": "/*+ Rows(gno_io gno_ioa #27206463) Rows(gno_io gno_ir #17608851) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_ioa gno_ir #441183777) Rows(gno_io gno_ioa gno_at #53519214) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_ioa gno_ir gno_at #783197288) */",
+          "injection_verified": true,
+          "q_error": 3.5445726966385553
+        }
+      }
+    },
+    {
+      "query": 182,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_pc",
+        "gno_at"
+      ],
+      "true_card": 222007517.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_ir gno_pc",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_io gno_ir gno_pc",
+        "gno_ioa gno_ir gno_pc",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_at",
+        "gno_io gno_oc gno_ir gno_pc",
+        "gno_io gno_ioa gno_ir gno_pc",
+        "gno_io gno_ioa gno_ir gno_at",
+        "gno_ioa gno_ir gno_pc gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_pc",
+        "gno_io gno_oc gno_ioa gno_ir gno_at",
+        "gno_io gno_ioa gno_ir gno_pc gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_pc gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 40047.1845,
+          "runs_ms": [
+            40299.379,
+            39794.99
+          ],
+          "total_cost": 3077494.13,
+          "join_rows": 181198756.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2252154589847184
+        },
+        "true_card": {
+          "execution_ms": 40495.246,
+          "runs_ms": [
+            40135.301,
+            40855.191
+          ],
+          "total_cost": 3104520.81,
+          "join_rows": 222007517.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 222007517.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1735609) Rows(gno_io gno_ioa #20400736) Rows(gno_io gno_ir #15450091) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_ir gno_pc #763159) Rows(gno_io gno_oc gno_ioa #20400736) Rows(gno_io gno_oc gno_ir #15450091) Rows(gno_io gno_ioa gno_ir #222007517) Rows(gno_io gno_ioa gno_at #20400736) Rows(gno_io gno_ir gno_pc #15450091) Rows(gno_ioa gno_ir gno_pc #9874747) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_oc gno_ioa gno_ir #222007517) Rows(gno_io gno_oc gno_ioa gno_at #20400736) Rows(gno_io gno_oc gno_ir gno_pc #15450091) Rows(gno_io gno_ioa gno_ir gno_pc #222007517) Rows(gno_io gno_ioa gno_ir gno_at #222007517) Rows(gno_ioa gno_ir gno_pc gno_at #9874747) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc #222007517) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #222007517) Rows(gno_io gno_ioa gno_ir gno_pc gno_at #222007517) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc gno_at #222007517) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 38774.2305,
+          "runs_ms": [
+            38894.611,
+            38653.85
+          ],
+          "total_cost": 2569595.64,
+          "join_rows": 177927920.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 177927920.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1695887) Rows(gno_io gno_ioa #16729221) Rows(gno_io gno_ir #12198738) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_ir gno_pc #652810) Rows(gno_io gno_oc gno_ioa #20375650) Rows(gno_io gno_oc gno_ir #14627684) Rows(gno_io gno_ioa gno_ir #147067504) Rows(gno_io gno_ioa gno_at #18110420) Rows(gno_io gno_ir gno_pc #13354881) Rows(gno_ioa gno_ir gno_pc #9198032) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_oc gno_ioa gno_ir #175645168) Rows(gno_io gno_oc gno_ioa gno_at #19142578) Rows(gno_io gno_oc gno_ir gno_pc #14046769) Rows(gno_io gno_ioa gno_ir gno_pc #173710784) Rows(gno_io gno_ioa gno_ir gno_at #165432880) Rows(gno_ioa gno_ir gno_pc gno_at #9234120) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc #177175440) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #169673840) Rows(gno_io gno_ioa gno_ir gno_pc gno_at #175967408) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc gno_at #177927920) */",
+          "injection_verified": true,
+          "q_error": 1.2477385055701207
+        },
+        "price": {
+          "execution_ms": 41037.7215,
+          "runs_ms": [
+            41255.657,
+            40819.786
+          ],
+          "total_cost": 3966780.61,
+          "join_rows": 1185009720.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1185009720.3675427,
+          "hint": "/*+ Rows(gno_io gno_oc #1619781) Rows(gno_io gno_ioa #26786556) Rows(gno_io gno_ir #17387709) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_ir gno_pc #699071) Rows(gno_io gno_oc gno_ioa #26318106) Rows(gno_io gno_oc gno_ir #19526422) Rows(gno_io gno_ioa gno_ir #454211906) Rows(gno_io gno_ioa gno_at #52448333) Rows(gno_io gno_ir gno_pc #30167297) Rows(gno_ioa gno_ir gno_pc #4855080) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_oc gno_ioa gno_ir #827885717) Rows(gno_io gno_oc gno_ioa gno_at #47305190) Rows(gno_io gno_oc gno_ir gno_pc #29683796) Rows(gno_io gno_ioa gno_ir gno_pc #858358021) Rows(gno_io gno_ioa gno_ir gno_at #806451175) Rows(gno_ioa gno_ir gno_pc gno_at #3157143) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc #1117728355) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #1144227972) Rows(gno_io gno_ioa gno_ir gno_pc gno_at #1131028898) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc gno_at #1185009720) */",
+          "injection_verified": true,
+          "q_error": 5.3377008851461545
+        }
+      }
+    },
+    {
+      "query": 171,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 222430446.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 39177.757,
+          "runs_ms": [
+            38756.313,
+            39599.201
+          ],
+          "total_cost": 3101935.05,
+          "join_rows": 182949571.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2158019545178382
+        },
+        "true_card": {
+          "execution_ms": 39003.4935,
+          "runs_ms": [
+            38943.895,
+            39063.092
+          ],
+          "total_cost": 3095397.34,
+          "join_rows": 222430446.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 222430446.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1750169) Rows(gno_io gno_ioa #20520403) Rows(gno_io gno_ir #15540574) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_oc gno_ioa #20520403) Rows(gno_io gno_oc gno_ir #15540574) Rows(gno_io gno_ioa gno_ir #222430446) Rows(gno_io gno_ioa gno_at #20520403) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_oc gno_ioa gno_ir #222430446) Rows(gno_io gno_oc gno_ioa gno_at #20520403) Rows(gno_io gno_ioa gno_ir gno_at #222430446) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #222430446) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 38844.88250000001,
+          "runs_ms": [
+            39150.982,
+            38538.783
+          ],
+          "total_cost": 2684651.49,
+          "join_rows": 171269984.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 171269984.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1709218) Rows(gno_io gno_ioa #16874682) Rows(gno_io gno_ir #12304807) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_oc gno_ioa #20525982) Rows(gno_io gno_oc gno_ir #14734905) Rows(gno_io gno_ioa gno_ir #148625216) Rows(gno_io gno_ioa gno_at #18241880) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_oc gno_ioa gno_ir #177201472) Rows(gno_io gno_oc gno_ioa gno_at #19293670) Rows(gno_io gno_ioa gno_ir gno_at #167026720) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #171269984) */",
+          "injection_verified": true,
+          "q_error": 1.2987123651509187
+        },
+        "price": {
+          "execution_ms": 38953.6955,
+          "runs_ms": [
+            39514.381,
+            38393.01
+          ],
+          "total_cost": 4634806.97,
+          "join_rows": 1154681314.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1154681314.1394625,
+          "hint": "/*+ Rows(gno_io gno_oc #1658009) Rows(gno_io gno_ioa #28178823) Rows(gno_io gno_ir #18097746) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_oc gno_ioa #26787578) Rows(gno_io gno_oc gno_ir #19887558) Rows(gno_io gno_ioa gno_ir #431763489) Rows(gno_io gno_ioa gno_at #54027417) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_oc gno_ioa gno_ir #815579269) Rows(gno_io gno_oc gno_ioa gno_at #49044218) Rows(gno_io gno_ioa gno_ir gno_at #793053840) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #1154681314) */",
+          "injection_verified": true,
+          "q_error": 5.19120172064934
+        }
+      }
+    },
+    {
+      "query": 136,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 212223366.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 37405.503500000006,
+          "runs_ms": [
+            37167.16,
+            37643.847
+          ],
+          "total_cost": 2973264.52,
+          "join_rows": 174161618.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2185426871723253
+        },
+        "true_card": {
+          "execution_ms": 37465.957500000004,
+          "runs_ms": [
+            37046.401,
+            37885.514
+          ],
+          "total_cost": 2977400.04,
+          "join_rows": 212223366.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 212223366.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1664559) Rows(gno_io gno_ioa #19538455) Rows(gno_io gno_ir #14815043) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_oc gno_ioa #19538455) Rows(gno_io gno_oc gno_ir #14815043) Rows(gno_io gno_ioa gno_ir #212223366) Rows(gno_io gno_ioa gno_at #19538455) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_oc gno_ioa gno_ir #212223366) Rows(gno_io gno_oc gno_ioa gno_at #19538455) Rows(gno_io gno_ioa gno_ir gno_at #212223366) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #212223366) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 38067.2825,
+          "runs_ms": [
+            37482.61,
+            38651.955
+          ],
+          "total_cost": 2558945.24,
+          "join_rows": 163309168.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 163309168.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1628892) Rows(gno_io gno_ioa #16093092) Rows(gno_io gno_ir #11734902) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_oc gno_ioa #19564112) Rows(gno_io gno_oc gno_ir #14044009) Rows(gno_io gno_ioa gno_ir #141584032) Rows(gno_io gno_ioa gno_at #17389998) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_oc gno_ioa gno_ir #168876016) Rows(gno_io gno_oc gno_ioa gno_at #18374822) Rows(gno_io gno_ioa gno_ir gno_at #159213936) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #163309168) */",
+          "injection_verified": true,
+          "q_error": 1.2995189957737094
+        },
+        "price": {
+          "execution_ms": 36914.5475,
+          "runs_ms": [
+            36878.745,
+            36950.35
+          ],
+          "total_cost": 4407167.92,
+          "join_rows": 1087079726.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1087079725.6324563,
+          "hint": "/*+ Rows(gno_io gno_oc #1575686) Rows(gno_io gno_ioa #26694953) Rows(gno_io gno_ir #17250389) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_oc gno_ioa #25419212) Rows(gno_io gno_oc gno_ir #18870940) Rows(gno_io gno_ioa gno_ir #479204728) Rows(gno_io gno_ioa gno_at #51595128) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_oc gno_ioa gno_ir #816654893) Rows(gno_io gno_oc gno_ioa gno_at #46265544) Rows(gno_io gno_ioa gno_ir gno_at #770666780) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #1087079726) */",
+          "injection_verified": true,
+          "q_error": 5.122337594061156
+        }
+      }
+    },
+    {
+      "query": 175,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 218133343.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 38629.5555,
+          "runs_ms": [
+            38957.857,
+            38301.254
+          ],
+          "total_cost": 3100153.79,
+          "join_rows": 182542736.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.1949713682389422
+        },
+        "true_card": {
+          "execution_ms": 38134.917,
+          "runs_ms": [
+            37773.875,
+            38495.959
+          ],
+          "total_cost": 3081223.34,
+          "join_rows": 218133343.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 218133343.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1743261) Rows(gno_io gno_ioa #20349206) Rows(gno_io gno_ir #15381820) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_oc gno_ioa #20349206) Rows(gno_io gno_oc gno_ir #15381820) Rows(gno_io gno_ioa gno_ir #218133343) Rows(gno_io gno_ioa gno_at #20349206) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_oc gno_ioa gno_ir #218133343) Rows(gno_io gno_oc gno_ioa gno_at #20349206) Rows(gno_io gno_ioa gno_ir gno_at #218133343) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #218133343) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 38400.475000000006,
+          "runs_ms": [
+            38673.4,
+            38127.55
+          ],
+          "total_cost": 2694922.06,
+          "join_rows": 171816064.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 171816064.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1713686) Rows(gno_io gno_ioa #16951330) Rows(gno_io gno_ir #12360319) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_oc gno_ioa #20586874) Rows(gno_io gno_oc gno_ir #14778165) Rows(gno_io gno_ioa gno_ir #149112752) Rows(gno_io gno_ioa gno_at #18303290) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_oc gno_ioa gno_ir #177670192) Rows(gno_io gno_oc gno_ioa gno_at #19332792) Rows(gno_io gno_ioa gno_ir gno_at #167559264) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #171816064) */",
+          "injection_verified": true,
+          "q_error": 1.2695747878382315
+        },
+        "price": {
+          "execution_ms": 38356.2695,
+          "runs_ms": [
+            37891.728,
+            38820.811
+          ],
+          "total_cost": 4585192.21,
+          "join_rows": 1135940842.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1135940842.265063,
+          "hint": "/*+ Rows(gno_io gno_oc #1648661) Rows(gno_io gno_ioa #28267376) Rows(gno_io gno_ir #18232175) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_oc gno_ioa #26687826) Rows(gno_io gno_oc gno_ir #19816146) Rows(gno_io gno_ioa gno_ir #475353112) Rows(gno_io gno_ioa gno_at #53924672) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_oc gno_ioa gno_ir #834092493) Rows(gno_io gno_oc gno_ioa gno_at #48926307) Rows(gno_io gno_ioa gno_ir gno_at #790331252) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #1135940842) */",
+          "injection_verified": true,
+          "q_error": 5.20755252900516
+        }
+      }
+    },
+    {
+      "query": 169,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 223089459.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 40017.5245,
+          "runs_ms": [
+            40533.024,
+            39502.025
+          ],
+          "total_cost": 3107623.66,
+          "join_rows": 183325288.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2169049967618215
+        },
+        "true_card": {
+          "execution_ms": 40768.264500000005,
+          "runs_ms": [
+            42069.599,
+            39466.93
+          ],
+          "total_cost": 3097452.87,
+          "join_rows": 223089459.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 223089459.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1750522) Rows(gno_io gno_ioa #20537712) Rows(gno_io gno_ir #15554033) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_oc gno_ioa #20537712) Rows(gno_io gno_oc gno_ir #15554033) Rows(gno_io gno_ioa gno_ir #223089459) Rows(gno_io gno_ioa gno_at #20537712) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_oc gno_ioa gno_ir #223089459) Rows(gno_io gno_oc gno_ioa gno_at #20537712) Rows(gno_io gno_ioa gno_ir gno_at #223089459) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #223089459) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 39898.323000000004,
+          "runs_ms": [
+            39803.832,
+            39992.814
+          ],
+          "total_cost": 2694912.09,
+          "join_rows": 172445760.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 172445760.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1716415) Rows(gno_io gno_ioa #16993252) Rows(gno_io gno_ir #12391265) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_oc gno_ioa #20608716) Rows(gno_io gno_oc gno_ir #14793873) Rows(gno_io gno_ioa gno_ir #150033376) Rows(gno_io gno_ioa gno_at #18324458) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_oc gno_ioa gno_ir #178252320) Rows(gno_io gno_oc gno_ioa gno_at #19388810) Rows(gno_io gno_ioa gno_ir gno_at #168249088) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #172445760) */",
+          "injection_verified": true,
+          "q_error": 1.2936790037632702
+        },
+        "price": {
+          "execution_ms": 39213.311,
+          "runs_ms": [
+            39769.23,
+            38657.392
+          ],
+          "total_cost": 4638661.15,
+          "join_rows": 1156960822.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1156960821.9634569,
+          "hint": "/*+ Rows(gno_io gno_oc #1655578) Rows(gno_io gno_ioa #28591256) Rows(gno_io gno_ir #18357131) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_oc gno_ioa #27029002) Rows(gno_io gno_oc gno_ir #20069590) Rows(gno_io gno_ioa gno_ir #405530000) Rows(gno_io gno_ioa gno_at #54217464) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_oc gno_ioa gno_ir #791429428) Rows(gno_io gno_oc gno_ioa gno_at #49800117) Rows(gno_io gno_ioa gno_ir gno_at #774474455) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #1156960822) */",
+          "injection_verified": true,
+          "q_error": 5.186084663910544
+        }
+      }
+    },
+    {
+      "query": 154,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 222325372.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 39694.592,
+          "runs_ms": [
+            39830.469,
+            39558.715
+          ],
+          "total_cost": 3090051.62,
+          "join_rows": 182164612.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2204641151707336
+        },
+        "true_card": {
+          "execution_ms": 39050.832500000004,
+          "runs_ms": [
+            39062.362,
+            39039.303
+          ],
+          "total_cost": 3082716.45,
+          "join_rows": 222325372.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 222325372.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1739185) Rows(gno_io gno_ioa #20434065) Rows(gno_io gno_ir #15475935) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_oc gno_ioa #20434065) Rows(gno_io gno_oc gno_ir #15475935) Rows(gno_io gno_ioa gno_ir #222325372) Rows(gno_io gno_ioa gno_at #20434065) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_oc gno_ioa gno_ir #222325372) Rows(gno_io gno_oc gno_ioa gno_at #20434065) Rows(gno_io gno_ioa gno_ir gno_at #222325372) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #222325372) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 39174.1765,
+          "runs_ms": [
+            39436.645,
+            38911.708
+          ],
+          "total_cost": 2673042.34,
+          "join_rows": 170163216.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 170163216.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1700534) Rows(gno_io gno_ioa #16751189) Rows(gno_io gno_ir #12214756) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_oc gno_ioa #20420472) Rows(gno_io gno_oc gno_ir #14659524) Rows(gno_io gno_ioa gno_ir #147371056) Rows(gno_io gno_ioa gno_at #18144440) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_oc gno_ioa gno_ir #176187376) Rows(gno_io gno_oc gno_ioa gno_at #19191052) Rows(gno_io gno_ioa gno_ir gno_at #165861616) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #170163216) */",
+          "injection_verified": true,
+          "q_error": 1.3065419026871237
+        },
+        "price": {
+          "execution_ms": 38952.1495,
+          "runs_ms": [
+            38752.673,
+            39151.626
+          ],
+          "total_cost": 4580295.52,
+          "join_rows": 1149953700.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1149953699.7693555,
+          "hint": "/*+ Rows(gno_io gno_oc #1612937) Rows(gno_io gno_ioa #27331186) Rows(gno_io gno_ir #17634933) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_oc gno_ioa #26404991) Rows(gno_io gno_oc gno_ir #19595631) Rows(gno_io gno_ioa gno_ir #431400468) Rows(gno_io gno_ioa gno_at #53303546) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_oc gno_ioa gno_ir #804409518) Rows(gno_io gno_oc gno_ioa gno_at #48087637) Rows(gno_io gno_ioa gno_ir gno_at #784249651) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #1149953700) */",
+          "injection_verified": true,
+          "q_error": 5.172390760691047
+        }
+      }
+    },
+    {
+      "query": 179,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 219645163.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 38728.894499999995,
+          "runs_ms": [
+            38903.971,
+            38553.818
+          ],
+          "total_cost": 3093921.15,
+          "join_rows": 182420217.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2040615158351664
+        },
+        "true_card": {
+          "execution_ms": 39203.9735,
+          "runs_ms": [
+            38883.631,
+            39524.316
+          ],
+          "total_cost": 3076496.5,
+          "join_rows": 219645163.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 219645163.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1739605) Rows(gno_io gno_ioa #20370237) Rows(gno_io gno_ir #15413537) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_oc gno_ioa #20370237) Rows(gno_io gno_oc gno_ir #15413537) Rows(gno_io gno_ioa gno_ir #219645163) Rows(gno_io gno_ioa gno_at #20370237) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_oc gno_ioa gno_ir #219645163) Rows(gno_io gno_oc gno_ioa gno_at #20370237) Rows(gno_io gno_ioa gno_ir gno_at #219645163) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #219645163) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 38574.3105,
+          "runs_ms": [
+            38861.299,
+            38287.322
+          ],
+          "total_cost": 2676499.21,
+          "join_rows": 170246640.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 170246640.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1703725) Rows(gno_io gno_ioa #16805754) Rows(gno_io gno_ir #12253726) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_oc gno_ioa #20487378) Rows(gno_io gno_oc gno_ir #14707863) Rows(gno_io gno_ioa gno_ir #147419120) Rows(gno_io gno_ioa gno_at #18213580) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_oc gno_ioa gno_ir #176323872) Rows(gno_io gno_oc gno_ioa gno_at #19228424) Rows(gno_io gno_ioa gno_ir gno_at #165960976) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #170246640) */",
+          "injection_verified": true,
+          "q_error": 1.2901585781663591
+        },
+        "price": {
+          "execution_ms": 38417.4215,
+          "runs_ms": [
+            38716.75,
+            38118.093
+          ],
+          "total_cost": 4556387.93,
+          "join_rows": 1149578696.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1149578695.9198303,
+          "hint": "/*+ Rows(gno_io gno_oc #1582812) Rows(gno_io gno_ioa #26212302) Rows(gno_io gno_ir #17100581) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_oc gno_ioa #26228055) Rows(gno_io gno_oc gno_ir #19455230) Rows(gno_io gno_ioa gno_ir #456338536) Rows(gno_io gno_ioa gno_at #52374457) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_oc gno_ioa gno_ir #818840073) Rows(gno_io gno_oc gno_ioa gno_at #47114743) Rows(gno_io gno_ioa gno_ir gno_at #795191036) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #1149578696) */",
+          "injection_verified": true,
+          "q_error": 5.233799280159882
+        }
+      }
+    },
+    {
+      "query": 141,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 218708363.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 38924.8195,
+          "runs_ms": [
+            39304.429,
+            38545.21
+          ],
+          "total_cost": 3033425.14,
+          "join_rows": 178424440.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2257758129996092
+        },
+        "true_card": {
+          "execution_ms": 38311.807,
+          "runs_ms": [
+            37921.791,
+            38701.823
+          ],
+          "total_cost": 3033470.79,
+          "join_rows": 218708363.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 218708363.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1703652) Rows(gno_io gno_ioa #20069351) Rows(gno_io gno_ir #15192335) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_oc gno_ioa #20069351) Rows(gno_io gno_oc gno_ir #15192335) Rows(gno_io gno_ioa gno_ir #218708363) Rows(gno_io gno_ioa gno_at #20069351) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_oc gno_ioa gno_ir #218708363) Rows(gno_io gno_oc gno_ioa gno_at #20069351) Rows(gno_io gno_ioa gno_ir gno_at #218708363) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #218708363) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 38938.916,
+          "runs_ms": [
+            38658.808,
+            39219.024
+          ],
+          "total_cost": 2632925.55,
+          "join_rows": 167376560.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 167376560.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1667997) Rows(gno_io gno_ioa #16533122) Rows(gno_io gno_ir #12055744) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_oc gno_ioa #20052602) Rows(gno_io gno_oc gno_ir #14395740) Rows(gno_io gno_ioa gno_ir #145685520) Rows(gno_io gno_ioa gno_at #17834200) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_oc gno_ioa gno_ir #173021328) Rows(gno_io gno_oc gno_ioa gno_at #18842492) Rows(gno_io gno_ioa gno_ir gno_at #163328480) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #167376560) */",
+          "injection_verified": true,
+          "q_error": 1.306684538145604
+        },
+        "price": {
+          "execution_ms": 39111.784499999994,
+          "runs_ms": [
+            39165.418,
+            39058.151
+          ],
+          "total_cost": 4525965.67,
+          "join_rows": 1126368046.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1126368045.7909522,
+          "hint": "/*+ Rows(gno_io gno_oc #1608261) Rows(gno_io gno_ioa #26284044) Rows(gno_io gno_ir #17130647) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_oc gno_ioa #26249525) Rows(gno_io gno_oc gno_ir #19478920) Rows(gno_io gno_ioa gno_ir #462825141) Rows(gno_io gno_ioa gno_at #51260737) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_oc gno_ioa gno_ir #824680118) Rows(gno_io gno_oc gno_ioa gno_at #46970731) Rows(gno_io gno_ioa gno_ir gno_at #802377621) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #1126368046) */",
+          "injection_verified": true,
+          "q_error": 5.1500913387569
+        }
+      }
+    },
+    {
+      "query": 90,
+      "aliases": [
+        "gno_io",
+        "gno_ioa",
+        "gno_ir",
+        "gno_at"
+      ],
+      "true_card": 222803787.0,
+      "hinted_prefixes": [
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_ioa gno_ir gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 39727.905,
+          "runs_ms": [
+            40707.251,
+            38748.559
+          ],
+          "total_cost": 3089039.35,
+          "join_rows": 182114930.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2234240597407362
+        },
+        "true_card": {
+          "execution_ms": 38825.637,
+          "runs_ms": [
+            38672.991,
+            38978.283
+          ],
+          "total_cost": 3081981.67,
+          "join_rows": 222803787.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 222803787.0,
+          "hint": "/*+ Rows(gno_io gno_ioa #20489587) Rows(gno_io gno_ir #15513884) Rows(gno_ioa gno_ir #9874747) Rows(gno_ioa gno_at #1074676) Rows(gno_io gno_ioa gno_ir #222803787) Rows(gno_io gno_ioa gno_at #20489587) Rows(gno_ioa gno_ir gno_at #9874747) Rows(gno_io gno_ioa gno_ir gno_at #222803787) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 39535.009999999995,
+          "runs_ms": [
+            38992.405,
+            40077.615
+          ],
+          "total_cost": 2346176.09,
+          "join_rows": 167865728.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 167865728.0,
+          "hint": "/*+ Rows(gno_io gno_ioa #16961810) Rows(gno_io gno_ir #12366757) Rows(gno_ioa gno_ir #7897700) Rows(gno_ioa gno_at #888601) Rows(gno_io gno_ioa gno_ir #149744912) Rows(gno_io gno_ioa gno_at #18259670) Rows(gno_ioa gno_ir gno_at #8876599) Rows(gno_io gno_ioa gno_ir gno_at #167865728) */",
+          "injection_verified": true,
+          "q_error": 1.3272738256614238
+        },
+        "price": {
+          "execution_ms": 38595.467000000004,
+          "runs_ms": [
+            38745.646,
+            38445.288
+          ],
+          "total_cost": 3808934.92,
+          "join_rows": 796812529.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 796812529.0887632,
+          "hint": "/*+ Rows(gno_io gno_ioa #29080802) Rows(gno_io gno_ir #18766203) Rows(gno_ioa gno_ir #16337544) Rows(gno_ioa gno_at #993483) Rows(gno_io gno_ioa gno_ir #466197184) Rows(gno_io gno_ioa gno_at #54091758) Rows(gno_ioa gno_ir gno_at #6636564) Rows(gno_io gno_ioa gno_ir gno_at #796812529) */",
+          "injection_verified": true,
+          "q_error": 3.5762970626706627
+        }
+      }
+    },
+    {
+      "query": 2,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_pc",
+        "gno_at"
+      ],
+      "true_card": 359506.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ioa gno_at",
+        "gno_ir gno_pc",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ioa gno_at",
+        "gno_io gno_ir gno_pc",
+        "gno_ioa gno_ir gno_pc",
+        "gno_ioa gno_ir gno_at",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_at",
+        "gno_io gno_oc gno_ir gno_pc",
+        "gno_io gno_ioa gno_ir gno_pc",
+        "gno_io gno_ioa gno_ir gno_at",
+        "gno_ioa gno_ir gno_pc gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_pc",
+        "gno_io gno_oc gno_ioa gno_ir gno_at",
+        "gno_io gno_ioa gno_ir gno_pc gno_at",
+        "gno_io gno_oc gno_ioa gno_ir gno_pc gno_at"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1048.0194999999999,
+          "runs_ms": [
+            1040.551,
+            1055.488
+          ],
+          "total_cost": 17428.05,
+          "join_rows": 45.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 7989.022222222222
+        },
+        "true_card": {
+          "execution_ms": 288.533,
+          "runs_ms": [
+            286.731,
+            290.335
+          ],
+          "total_cost": 23494.96,
+          "join_rows": 359506.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 359506.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1073) Rows(gno_io gno_ioa #43779) Rows(gno_io gno_ir #7900) Rows(gno_ioa gno_ir #11919) Rows(gno_ioa gno_at #1074676) Rows(gno_ir gno_pc #323) Rows(gno_io gno_oc gno_ioa #43779) Rows(gno_io gno_oc gno_ir #7900) Rows(gno_io gno_ioa gno_ir #359506) Rows(gno_io gno_ioa gno_at #43779) Rows(gno_io gno_ir gno_pc #7900) Rows(gno_ioa gno_ir gno_pc #11919) Rows(gno_ioa gno_ir gno_at #11919) Rows(gno_io gno_oc gno_ioa gno_ir #359506) Rows(gno_io gno_oc gno_ioa gno_at #43779) Rows(gno_io gno_oc gno_ir gno_pc #7900) Rows(gno_io gno_ioa gno_ir gno_pc #359506) Rows(gno_io gno_ioa gno_ir gno_at #359506) Rows(gno_ioa gno_ir gno_pc gno_at #11919) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc #359506) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #359506) Rows(gno_io gno_ioa gno_ir gno_pc gno_at #359506) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc gno_at #359506) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 1059.5385,
+          "runs_ms": [
+            1054.396,
+            1064.681
+          ],
+          "total_cost": 16344.24,
+          "join_rows": 243.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 243.44723510742188,
+          "hint": "/*+ Rows(gno_io gno_oc #1110) Rows(gno_io gno_ioa #8033) Rows(gno_io gno_ir #25) Rows(gno_ioa gno_ir #1651) Rows(gno_ioa gno_at #888601) Rows(gno_ir gno_pc #273) Rows(gno_io gno_oc gno_ioa #11520) Rows(gno_io gno_oc gno_ir #47) Rows(gno_io gno_ioa gno_ir #79) Rows(gno_io gno_ioa gno_at #9786) Rows(gno_io gno_ir gno_pc #57) Rows(gno_ioa gno_ir gno_pc #2435) Rows(gno_ioa gno_ir gno_at #2182) Rows(gno_io gno_oc gno_ioa gno_ir #114) Rows(gno_io gno_oc gno_ioa gno_at #11017) Rows(gno_io gno_oc gno_ir gno_pc #79) Rows(gno_io gno_ioa gno_ir gno_pc #148) Rows(gno_io gno_ioa gno_ir gno_at #139) Rows(gno_ioa gno_ir gno_pc gno_at #2645) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc #187) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #176) Rows(gno_io gno_ioa gno_ir gno_pc gno_at #207) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc gno_at #243) */",
+          "injection_verified": true,
+          "q_error": 1479.4485596707818
+        },
+        "price": {
+          "execution_ms": 276.996,
+          "runs_ms": [
+            304.545,
+            249.447
+          ],
+          "total_cost": 16811.43,
+          "join_rows": 11338.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 11338.453204817259,
+          "hint": "/*+ Rows(gno_io gno_oc #869) Rows(gno_io gno_ioa #30253) Rows(gno_io gno_ir #46) Rows(gno_ioa gno_ir #11260) Rows(gno_ioa gno_at #993483) Rows(gno_ir gno_pc #313) Rows(gno_io gno_oc gno_ioa #18372) Rows(gno_io gno_oc gno_ir #28) Rows(gno_io gno_ioa gno_ir #1975) Rows(gno_io gno_ioa gno_at #83007) Rows(gno_io gno_ir gno_pc #74) Rows(gno_ioa gno_ir gno_pc #16147) Rows(gno_ioa gno_ir gno_at #25045) Rows(gno_io gno_oc gno_ioa gno_ir #4197) Rows(gno_io gno_oc gno_ioa gno_at #52352) Rows(gno_io gno_oc gno_ir gno_pc #88) Rows(gno_io gno_ioa gno_ir gno_pc #3875) Rows(gno_io gno_ioa gno_ir gno_at #4450) Rows(gno_ioa gno_ir gno_pc gno_at #27860) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc #6385) Rows(gno_io gno_oc gno_ioa gno_ir gno_at #7986) Rows(gno_io gno_ioa gno_ir gno_pc gno_at #8041) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc gno_at #11338) */",
+          "injection_verified": true,
+          "q_error": 31.708061386487916
+        }
+      }
+    },
+    {
+      "query": 36,
+      "aliases": [
+        "gno_io",
+        "gno_ioa",
+        "gno_ir"
+      ],
+      "true_card": 283528.0,
+      "hinted_prefixes": [
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_io gno_ioa gno_ir"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 234.781,
+          "runs_ms": [
+            275.104,
+            194.458
+          ],
+          "total_cost": 24726.63,
+          "join_rows": 28029.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 10.11552320810589
+        },
+        "true_card": {
+          "execution_ms": 200.3785,
+          "runs_ms": [
+            201.606,
+            199.151
+          ],
+          "total_cost": 26272.26,
+          "join_rows": 283528.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 283528.0,
+          "hint": "/*+ Rows(gno_io gno_ioa #6582) Rows(gno_io gno_ir #15497293) Rows(gno_ioa gno_ir #2452) Rows(gno_io gno_ioa gno_ir #283528) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 192.95850000000002,
+          "runs_ms": [
+            193.167,
+            192.75
+          ],
+          "total_cost": 23330.87,
+          "join_rows": 9875.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 9874.642578125,
+          "hint": "/*+ Rows(gno_io gno_ioa #1131) Rows(gno_io gno_ir #12187342) Rows(gno_ioa gno_ir #523) Rows(gno_io gno_ioa gno_ir #9875) */",
+          "injection_verified": true,
+          "q_error": 28.711696202531645
+        },
+        "price": {
+          "execution_ms": 213.94,
+          "runs_ms": [
+            235.199,
+            192.681
+          ],
+          "total_cost": 25473.44,
+          "join_rows": 142335.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 142334.87526184836,
+          "hint": "/*+ Rows(gno_io gno_ioa #3157) Rows(gno_io gno_ir #17105865) Rows(gno_ioa gno_ir #2071) Rows(gno_io gno_ioa gno_ir #142335) */",
+          "injection_verified": true,
+          "q_error": 1.9919766747461973
+        }
+      }
+    },
+    {
+      "query": 48,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir"
+      ],
+      "true_card": 2145685.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_ir"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1345.748,
+          "runs_ms": [
+            1312.965,
+            1378.531
+          ],
+          "total_cost": 37834.93,
+          "join_rows": 193732.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 11.075532178473354
+        },
+        "true_card": {
+          "execution_ms": 1331.835,
+          "runs_ms": [
+            1314.394,
+            1349.276
+          ],
+          "total_cost": 65779.13,
+          "join_rows": 2145685.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 2145685.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1750617) Rows(gno_io gno_ioa #77035) Rows(gno_io gno_ir #15546924) Rows(gno_ioa gno_ir #27481) Rows(gno_io gno_oc gno_ioa #77035) Rows(gno_io gno_oc gno_ir #15546924) Rows(gno_io gno_ioa gno_ir #2145685) Rows(gno_io gno_oc gno_ioa gno_ir #2145685) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 1234.6775,
+          "runs_ms": [
+            1281.365,
+            1187.99
+          ],
+          "total_cost": 31389.82,
+          "join_rows": 150911.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 150910.796875,
+          "hint": "/*+ Rows(gno_io gno_oc #1692906) Rows(gno_io gno_ioa #12202) Rows(gno_io gno_ir #12264013) Rows(gno_ioa gno_ir #6067) Rows(gno_io gno_oc gno_ioa #17837) Rows(gno_io gno_oc gno_ir #14719229) Rows(gno_io gno_ioa gno_ir #111661) Rows(gno_io gno_oc gno_ioa gno_ir #150911) */",
+          "injection_verified": true,
+          "q_error": 14.21821470933199
+        },
+        "price": {
+          "execution_ms": 1224.4254999999998,
+          "runs_ms": [
+            1237.483,
+            1211.368
+          ],
+          "total_cost": 73519.86,
+          "join_rows": 2104868.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 2104868.2483813963,
+          "hint": "/*+ Rows(gno_io gno_oc #1287243) Rows(gno_io gno_ioa #54904) Rows(gno_io gno_ir #17542944) Rows(gno_ioa gno_ir #37608) Rows(gno_io gno_oc gno_ioa #38402) Rows(gno_io gno_oc gno_ir #19890973) Rows(gno_io gno_ioa gno_ir #830421) Rows(gno_io gno_oc gno_ioa gno_ir #2104868) */",
+          "injection_verified": true,
+          "q_error": 1.0193917148248726
+        }
+      }
+    },
+    {
+      "query": 102,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir"
+      ],
+      "true_card": 221289714.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_oc gno_ioa gno_ir"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 39085.1775,
+          "runs_ms": [
+            39064.083,
+            39106.272
+          ],
+          "total_cost": 3100298.09,
+          "join_rows": 183298366.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.2072650663999918
+        },
+        "true_card": {
+          "execution_ms": 37153.481,
+          "runs_ms": [
+            37795.078,
+            36511.884
+          ],
+          "total_cost": 3057926.01,
+          "join_rows": 221289714.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 221289714.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1750617) Rows(gno_io gno_ioa #20520212) Rows(gno_io gno_ir #15523327) Rows(gno_ioa gno_ir #9853820) Rows(gno_io gno_oc gno_ioa #20520212) Rows(gno_io gno_oc gno_ir #15523327) Rows(gno_io gno_ioa gno_ir #221289714) Rows(gno_io gno_oc gno_ioa gno_ir #221289714) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 37451.743,
+          "runs_ms": [
+            37584.726,
+            37318.76
+          ],
+          "total_cost": 2483527.8,
+          "join_rows": 177519792.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 177519792.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1692906) Rows(gno_io gno_ioa #16817394) Rows(gno_io gno_ir #12271828) Rows(gno_ioa gno_ir #8072490) Rows(gno_io gno_oc gno_ioa #20520464) Rows(gno_io gno_oc gno_ir #14733247) Rows(gno_io gno_ioa gno_ir #148818400) Rows(gno_io gno_oc gno_ioa gno_ir #177519792) */",
+          "injection_verified": true,
+          "q_error": 1.2465636169740442
+        },
+        "price": {
+          "execution_ms": 37527.0455,
+          "runs_ms": [
+            37296.266,
+            37757.825
+          ],
+          "total_cost": 5232922.88,
+          "join_rows": 797373532.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 797373532.4239072,
+          "hint": "/*+ Rows(gno_io gno_oc #1287243) Rows(gno_io gno_ioa #26828381) Rows(gno_io gno_ir #17217288) Rows(gno_ioa gno_ir #17759183) Rows(gno_io gno_oc gno_ioa #26890575) Rows(gno_io gno_oc gno_ir #19788536) Rows(gno_io gno_ioa gno_ir #437318171) Rows(gno_io gno_oc gno_ioa gno_ir #797373532) */",
+          "injection_verified": true,
+          "q_error": 3.603301380741086
+        }
+      }
+    },
+    {
+      "query": 42,
+      "aliases": [
+        "gno_io",
+        "gno_oc",
+        "gno_ioa",
+        "gno_ir",
+        "gno_pc"
+      ],
+      "true_card": 268876.0,
+      "hinted_prefixes": [
+        "gno_io gno_oc",
+        "gno_io gno_ioa",
+        "gno_io gno_ir",
+        "gno_ioa gno_ir",
+        "gno_ir gno_pc",
+        "gno_io gno_oc gno_ioa",
+        "gno_io gno_oc gno_ir",
+        "gno_io gno_ioa gno_ir",
+        "gno_io gno_ir gno_pc",
+        "gno_ioa gno_ir gno_pc",
+        "gno_io gno_oc gno_ioa gno_ir",
+        "gno_io gno_oc gno_ir gno_pc",
+        "gno_io gno_ioa gno_ir gno_pc",
+        "gno_io gno_oc gno_ioa gno_ir gno_pc"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 261.5815,
+          "runs_ms": [
+            275.85,
+            247.313
+          ],
+          "total_cost": 24720.27,
+          "join_rows": 27640.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 9.727785817655572
+        },
+        "true_card": {
+          "execution_ms": 285.5395,
+          "runs_ms": [
+            238.537,
+            332.542
+          ],
+          "total_cost": 26833.58,
+          "join_rows": 268876.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 268876.0,
+          "hint": "/*+ Rows(gno_io gno_oc #1718839) Rows(gno_io gno_ioa #6538) Rows(gno_io gno_ir #15316374) Rows(gno_ioa gno_ir #2457) Rows(gno_ir gno_pc #763159) Rows(gno_io gno_oc gno_ioa #6538) Rows(gno_io gno_oc gno_ir #15316374) Rows(gno_io gno_ioa gno_ir #268876) Rows(gno_io gno_ir gno_pc #15316374) Rows(gno_ioa gno_ir gno_pc #2457) Rows(gno_io gno_oc gno_ioa gno_ir #268876) Rows(gno_io gno_oc gno_ir gno_pc #15316374) Rows(gno_io gno_ioa gno_ir gno_pc #268876) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc #268876) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 346.59299999999996,
+          "runs_ms": [
+            328.786,
+            364.4
+          ],
+          "total_cost": 23392.45,
+          "join_rows": 15026.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 15026.1171875,
+          "hint": "/*+ Rows(gno_io gno_oc #1680425) Rows(gno_io gno_ioa #1120) Rows(gno_io gno_ir #12123052) Rows(gno_ioa gno_ir #523) Rows(gno_ir gno_pc #652810) Rows(gno_io gno_oc gno_ioa #1765) Rows(gno_io gno_oc gno_ir #14494651) Rows(gno_io gno_ioa gno_ir #9817) Rows(gno_io gno_ir gno_pc #13242059) Rows(gno_ioa gno_ir gno_pc #841) Rows(gno_io gno_oc gno_ioa gno_ir #13724) Rows(gno_io gno_oc gno_ir gno_pc #13933574) Rows(gno_io gno_ioa gno_ir gno_pc #13695) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc #15026) */",
+          "injection_verified": true,
+          "q_error": 17.894050312791162
+        },
+        "price": {
+          "execution_ms": 275.876,
+          "runs_ms": [
+            276.755,
+            274.997
+          ],
+          "total_cost": 26024.6,
+          "join_rows": 178012.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 178012.0261369131,
+          "hint": "/*+ Rows(gno_io gno_oc #1518164) Rows(gno_io gno_ioa #3223) Rows(gno_io gno_ir #16786498) Rows(gno_ioa gno_ir #2101) Rows(gno_ir gno_pc #699071) Rows(gno_io gno_oc gno_ioa #524) Rows(gno_io gno_oc gno_ir #18756755) Rows(gno_io gno_ioa gno_ir #150696) Rows(gno_io gno_ir gno_pc #24047154) Rows(gno_ioa gno_ir gno_pc #1588) Rows(gno_io gno_oc gno_ioa gno_ir #435208) Rows(gno_io gno_oc gno_ir gno_pc #25509989) Rows(gno_io gno_ioa gno_ir gno_pc #413073) Rows(gno_io gno_oc gno_ioa gno_ir gno_pc #178012) */",
+          "injection_verified": true,
+          "q_error": 1.5104374985956004
+        }
+      }
+    }
+  ]
+}

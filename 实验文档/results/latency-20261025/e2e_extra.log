@@ -1,0 +1,95 @@
+=== E2E genome ===
+{"query": 51, "pg_native": 1565.3805, "true_card": 966.4095, "ours": 2067.2690000000002, "price": 977.819}
+{"query": 110, "pg_native": 38391.348, "true_card": 37925.8305, "ours": 38411.6925, "price": 37597.911}
+{"query": 157, "pg_native": 39503.848, "true_card": 38656.269499999995, "ours": 39241.6215, "price": 40156.908500000005}
+{"query": 160, "pg_native": 38956.0445, "true_card": 38479.522, "ours": 39441.6515, "price": 39701.0605}
+{"query": 43, "pg_native": 421.88199999999995, "true_card": 385.6085, "ours": 465.02750000000003, "price": 397.95799999999997}
+{"query": 86, "pg_native": 40092.588, "true_card": 38321.0435, "ours": 40245.7105, "price": 38385.885}
+{"query": 182, "pg_native": 40047.1845, "true_card": 40495.246, "ours": 38774.2305, "price": 41037.7215}
+{"query": 171, "pg_native": 39177.757, "true_card": 39003.4935, "ours": 38844.88250000001, "price": 38953.6955}
+{"query": 136, "pg_native": 37405.503500000006, "true_card": 37465.957500000004, "ours": 38067.2825, "price": 36914.5475}
+{"query": 175, "pg_native": 38629.5555, "true_card": 38134.917, "ours": 38400.475000000006, "price": 38356.2695}
+{"query": 169, "pg_native": 40017.5245, "true_card": 40768.264500000005, "ours": 39898.323000000004, "price": 39213.311}
+{"query": 154, "pg_native": 39694.592, "true_card": 39050.832500000004, "ours": 39174.1765, "price": 38952.1495}
+{"query": 179, "pg_native": 38728.894499999995, "true_card": 39203.9735, "ours": 38574.3105, "price": 38417.4215}
+{"query": 141, "pg_native": 38924.8195, "true_card": 38311.807, "ours": 38938.916, "price": 39111.784499999994}
+{"query": 90, "pg_native": 39727.905, "true_card": 38825.637, "ours": 39535.009999999995, "price": 38595.467000000004}
+{"query": 2, "pg_native": 1048.0194999999999, "true_card": 288.533, "ours": 1059.5385, "price": 276.996}
+{"query": 36, "pg_native": 234.781, "true_card": 200.3785, "ours": 192.95850000000002, "price": 213.94}
+{"query": 48, "pg_native": 1345.748, "true_card": 1331.835, "ours": 1234.6775, "price": 1224.4254999999998}
+{"query": 102, "pg_native": 39085.1775, "true_card": 37153.481, "ours": 37451.743, "price": 37527.0455}
+{"query": 42, "pg_native": 261.5815, "true_card": 285.5395, "ours": 346.59299999999996, "price": 275.876}
+{
+  "true_card": {
+    "median": 0.9857233537528092,
+    "mean": 0.928694773552411,
+    "p90": 1.0129161340746284,
+    "better_than_pg": 14,
+    "worse_than_pg": 4,
+    "n": 20
+  },
+  "ours": {
+    "median": 0.9965149145173224,
+    "mean": 1.0206744973459494,
+    "p90": 1.124103963623304,
+    "better_than_pg": 5,
+    "worse_than_pg": 6,
+    "n": 20
+  },
+  "price": {
+    "median": 0.9805997983759269,
+    "mean": 0.9284400552995269,
+    "p90": 1.0196855008532755,
+    "better_than_pg": 12,
+    "worse_than_pg": 4,
+    "n": 20
+  }
+}
+=== E2E imdb ===
+{"query": 15, "pg_native": 394.78099999999995, "true_card": 389.2405, "ours": 381.42449999999997, "price": 362.322}
+{"query": 20, "pg_native": 829.731, "true_card": 799.6175000000001, "ours": 753.2660000000001, "price": 794.6395}
+{"query": 32, "pg_native": 8972.403999999999, "true_card": 8276.736499999999, "ours": 8632.627499999999, "price": 8788.492}
+{"query": 65, "pg_native": 9221.7855, "true_card": 9126.3945, "ours": 9140.3925, "price": 9580.478500000001}
+{"query": 66, "pg_native": 10038.1665, "true_card": 7162.249, "ours": 10403.4565, "price": 7164.455}
+{"query": 43, "pg_native": 2443.062, "true_card": 2741.4735, "ours": 2373.2174999999997, "price": 2288.8779999999997}
+{"query": 59, "pg_native": null, "true_card": null, "ours": null, "price": null}
+{"query": 6, "pg_native": 6853.504, "true_card": 7015.758, "ours": 7563.5755, "price": 6627.119500000001}
+{"query": 14, "pg_native": 1.5025, "true_card": 5.6765, "ours": 1.346, "price": 1.3435000000000001}
+{"query": 40, "pg_native": 84825.6325, "true_card": 83085.9865, "ours": 84360.05, "price": 83037.1055}
+{"query": 41, "pg_native": 36487.9055, "true_card": 36516.047, "ours": 35943.025, "price": 36556.238}
+{"query": 36, "pg_native": 5168.8095, "true_card": 3935.3675000000003, "ours": 4741.5005, "price": 4862.625}
+{"query": 26, "pg_native": 4491.1875, "true_card": 4474.3045, "ours": 4564.0885, "price": 4380.3235}
+{"query": 54, "pg_native": 938.1855, "true_card": 1001.684, "ours": 879.356, "price": 343.5575}
+{"query": 38, "pg_native": 4250.01, "true_card": 4154.599, "ours": 4012.9665000000005, "price": 4282.7735}
+{"query": 56, "pg_native": 5486.552, "true_card": 3361.665, "ours": 5032.077499999999, "price": 5308.2155}
+{"query": 50, "pg_native": 39242.49249999999, "true_card": 43026.362, "ours": 37881.16, "price": 38327.8335}
+{"query": 31, "pg_native": 145.208, "true_card": 157.3255, "ours": 131.5355, "price": 146.471}
+{"query": 39, "pg_native": 4064.5020000000004, "true_card": 3996.626, "ours": 4307.487499999999, "price": 3907.457}
+{"query": 28, "pg_native": 7094.3475, "true_card": 6818.075000000001, "ours": 6899.6939999999995, "price": 6587.368}
+{
+  "true_card": {
+    "median": 0.9859656366441142,
+    "mean": 1.10627357565946,
+    "p90": 1.1015675115465509,
+    "better_than_pg": 11,
+    "worse_than_pg": 6,
+    "n": 19
+  },
+  "ours": {
+    "median": 0.9661673180826839,
+    "mean": 0.971046591283957,
+    "p90": 1.0410685602722543,
+    "better_than_pg": 13,
+    "worse_than_pg": 4,
+    "n": 19
+  },
+  "price": {
+    "median": 0.9669680648030556,
+    "mean": 0.922062880778831,
+    "p90": 1.0079068061249015,
+    "better_than_pg": 15,
+    "worse_than_pg": 1,
+    "n": 19
+  }
+}
+=== EXTRA E2E DONE ===

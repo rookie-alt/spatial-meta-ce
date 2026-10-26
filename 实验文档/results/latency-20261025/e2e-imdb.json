@@ -1,0 +1,1830 @@
+{
+  "schema": 1,
+  "purpose": "postgres-e2e-with-injected-cardinalities",
+  "database": "imdb",
+  "includes_feature_extraction": false,
+  "includes_plan_generation": true,
+  "includes_database_execution": true,
+  "claim_boundary": "Execution of the unchanged SQL on PostgreSQL 13.23 with pg_hint_plan Rows() injection. The mechanism differs from PilotScope's push_card on PostgreSQL 13.1, so absolute times are not comparable with PRICE's published E2E figures; ratios within this report are.",
+  "population": {
+    "queries_total": 70,
+    "one_block": 70,
+    "unsupported_multi_block": 0,
+    "uninjectable_missing_estimate": 6,
+    "sampled": 20,
+    "sample_seed": 2026,
+    "unsupported_queries": [],
+    "uninjectable_queries": [
+      {
+        "query": 33,
+        "lines": [
+          268
+        ]
+      },
+      {
+        "query": 37,
+        "lines": [
+          332
+        ]
+      },
+      {
+        "query": 44,
+        "lines": [
+          444
+        ]
+      },
+      {
+        "query": 47,
+        "lines": [
+          492
+        ]
+      },
+      {
+        "query": 61,
+        "lines": [
+          807,
+          808,
+          809,
+          812
+        ]
+      },
+      {
+        "query": 68,
+        "lines": [
+          983,
+          984
+        ]
+      }
+    ]
+  },
+  "runs": 3,
+  "discarded_cold_runs": 1,
+  "statement_timeout_ms": 300000,
+  "arm_failures": [
+    {
+      "query": 59,
+      "arm": "pg_native",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    },
+    {
+      "query": 59,
+      "arm": "true_card",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    },
+    {
+      "query": 59,
+      "arm": "ours",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    },
+    {
+      "query": 59,
+      "arm": "price",
+      "error": "ERROR:  canceling statement due to statement timeout"
+    }
+  ],
+  "single_table_policy": "no hint; PostgreSQL's own scan estimate (PRICE convention)",
+  "server": {
+    "version": "PostgreSQL 13.23 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0, 64-bit",
+    "hint_session_preload": "pg_hint_plan",
+    "hint_enabled": "on",
+    "parallel_workers_per_gather": "0"
+  },
+  "arms_measured": [
+    "pg_native",
+    "true_card",
+    "ours",
+    "price"
+  ],
+  "ratios_to_pg_native": {
+    "true_card": {
+      "median": 0.9859656366441142,
+      "mean": 1.10627357565946,
+      "p90": 1.1015675115465509,
+      "better_than_pg": 11,
+      "worse_than_pg": 6,
+      "n": 19
+    },
+    "ours": {
+      "median": 0.9661673180826839,
+      "mean": 0.971046591283957,
+      "p90": 1.0410685602722543,
+      "better_than_pg": 13,
+      "worse_than_pg": 4,
+      "n": 19
+    },
+    "price": {
+      "median": 0.9669680648030556,
+      "mean": 0.922062880778831,
+      "p90": 1.0079068061249015,
+      "better_than_pg": 15,
+      "worse_than_pg": 1,
+      "n": 19
+    }
+  },
+  "ratio_subset": "the same queries for every arm: all four arms produced an execution time; the count is ratios_to_pg_native[*].n",
+  "injection_checks": {
+    "true_card": {
+      "verified": 19,
+      "unverified": 0,
+      "not_checked": 1
+    },
+    "ours": {
+      "verified": 19,
+      "unverified": 0,
+      "not_checked": 1
+    },
+    "price": {
+      "verified": 19,
+      "unverified": 0,
+      "not_checked": 1
+    }
+  },
+  "median_q_error": {
+    "pg_native": {
+      "median": 12.46790008954842,
+      "n": 19
+    },
+    "true_card": {
+      "median": 1.0,
+      "n": 19
+    },
+    "ours": {
+      "median": 11.287032625895776,
+      "n": 19
+    },
+    "price": {
+      "median": 4.217707072453743,
+      "n": 19
+    }
+  },
+  "results": [
+    {
+      "query": 15,
+      "aliases": [
+        "imdb_mk",
+        "imdb_t",
+        "imdb_ci"
+      ],
+      "true_card": 13221.0,
+      "hinted_prefixes": [
+        "imdb_mk imdb_t",
+        "imdb_mk imdb_ci",
+        "imdb_t imdb_ci",
+        "imdb_mk imdb_t imdb_ci"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 394.78099999999995,
+          "runs_ms": [
+            383.042,
+            406.52
+          ],
+          "total_cost": 67777.68,
+          "join_rows": 511.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 25.87279843444227
+        },
+        "true_card": {
+          "execution_ms": 389.2405,
+          "runs_ms": [
+            358.075,
+            420.406
+          ],
+          "total_cost": 69430.97,
+          "join_rows": 13221.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 13221.0,
+          "hint": "/*+ Rows(imdb_mk imdb_t #1054) Rows(imdb_mk imdb_ci #215765477) Rows(imdb_t imdb_ci #3099) Rows(imdb_mk imdb_t imdb_ci #13221) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 381.42449999999997,
+          "runs_ms": [
+            365.497,
+            397.352
+          ],
+          "total_cost": 67794.98,
+          "join_rows": 1058.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 1058.367431640625,
+          "hint": "/*+ Rows(imdb_mk imdb_t #46) Rows(imdb_mk imdb_ci #133258048) Rows(imdb_t imdb_ci #253) Rows(imdb_mk imdb_t imdb_ci #1058) */",
+          "injection_verified": true,
+          "q_error": 12.496219281663516
+        },
+        "price": {
+          "execution_ms": 362.322,
+          "runs_ms": [
+            324.133,
+            400.511
+          ],
+          "total_cost": 68188.99,
+          "join_rows": 10847.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 10846.55123764483,
+          "hint": "/*+ Rows(imdb_mk imdb_t #278) Rows(imdb_mk imdb_ci #85010515) Rows(imdb_t imdb_ci #1271) Rows(imdb_mk imdb_t imdb_ci #10847) */",
+          "injection_verified": true,
+          "q_error": 1.218862358255739
+        }
+      }
+    },
+    {
+      "query": 20,
+      "aliases": [
+        "imdb_ci",
+        "imdb_t"
+      ],
+      "true_card": 695701.0,
+      "hinted_prefixes": [
+        "imdb_ci imdb_t"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 829.731,
+          "runs_ms": [
+            838.177,
+            821.285
+          ],
+          "total_cost": 251268.19,
+          "join_rows": 585801.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 1.187606371446959
+        },
+        "true_card": {
+          "execution_ms": 799.6175000000001,
+          "runs_ms": [
+            887.931,
+            711.304
+          ],
+          "total_cost": 251542.94,
+          "join_rows": 695701.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 695701.0,
+          "hint": "/*+ Rows(imdb_ci imdb_t #695701) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 753.2660000000001,
+          "runs_ms": [
+            715.385,
+            791.147
+          ],
+          "total_cost": 251137.02,
+          "join_rows": 533333.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 533332.875,
+          "hint": "/*+ Rows(imdb_ci imdb_t #533333) */",
+          "injection_verified": true,
+          "q_error": 1.3044401902751188
+        },
+        "price": {
+          "execution_ms": 794.6395,
+          "runs_ms": [
+            836.292,
+            752.987
+          ],
+          "total_cost": 251525.62,
+          "join_rows": 688771.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 688771.3257266015,
+          "hint": "/*+ Rows(imdb_ci imdb_t #688771) */",
+          "injection_verified": true,
+          "q_error": 1.0100613992168659
+        }
+      }
+    },
+    {
+      "query": 32,
+      "aliases": [
+        "imdb_t",
+        "imdb_mk",
+        "imdb_mc"
+      ],
+      "true_card": 31339132.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mk",
+        "imdb_t imdb_mc",
+        "imdb_mk imdb_mc",
+        "imdb_t imdb_mk imdb_mc"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 8972.403999999999,
+          "runs_ms": [
+            9027.362,
+            8917.446
+          ],
+          "total_cost": 322369.22,
+          "join_rows": 4217371.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 7.430963982063708
+        },
+        "true_card": {
+          "execution_ms": 8276.736499999999,
+          "runs_ms": [
+            8082.608,
+            8470.865
+          ],
+          "total_cost": 386296.13,
+          "join_rows": 31339132.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 31339132.0,
+          "hint": "/*+ Rows(imdb_t imdb_mk #3961736) Rows(imdb_t imdb_mc #2229308) Rows(imdb_mk imdb_mc #34863638) Rows(imdb_t imdb_mk imdb_mc #31339132) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 8632.627499999999,
+          "runs_ms": [
+            8668.275,
+            8596.98
+          ],
+          "total_cost": 317760.45,
+          "join_rows": 4312051.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 4312051.0,
+          "hint": "/*+ Rows(imdb_t imdb_mk #3663794) Rows(imdb_t imdb_mc #2197460) Rows(imdb_mk imdb_mc #20645856) Rows(imdb_t imdb_mk imdb_mc #4312051) */",
+          "injection_verified": true,
+          "q_error": 7.267801795479691
+        },
+        "price": {
+          "execution_ms": 8788.492,
+          "runs_ms": [
+            9163.869,
+            8413.115
+          ],
+          "total_cost": 346072.74,
+          "join_rows": 6588084.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 6588083.780569335,
+          "hint": "/*+ Rows(imdb_t imdb_mk #4706019) Rows(imdb_t imdb_mc #2755708) Rows(imdb_mk imdb_mc #15805681) Rows(imdb_t imdb_mk imdb_mc #6588084) */",
+          "injection_verified": true,
+          "q_error": 4.756941775484344
+        }
+      }
+    },
+    {
+      "query": 65,
+      "aliases": [
+        "imdb_t",
+        "imdb_mi",
+        "imdb_mii",
+        "imdb_mk",
+        "imdb_mc"
+      ],
+      "true_card": 26718423.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mi",
+        "imdb_t imdb_mii",
+        "imdb_t imdb_mk",
+        "imdb_t imdb_mc",
+        "imdb_mi imdb_mii",
+        "imdb_mi imdb_mk",
+        "imdb_mi imdb_mc",
+        "imdb_mii imdb_mk",
+        "imdb_mii imdb_mc",
+        "imdb_mk imdb_mc",
+        "imdb_t imdb_mi imdb_mii",
+        "imdb_t imdb_mi imdb_mk",
+        "imdb_t imdb_mi imdb_mc",
+        "imdb_t imdb_mii imdb_mk",
+        "imdb_t imdb_mii imdb_mc",
+        "imdb_t imdb_mk imdb_mc",
+        "imdb_mi imdb_mii imdb_mk",
+        "imdb_mi imdb_mii imdb_mc",
+        "imdb_mi imdb_mk imdb_mc",
+        "imdb_mii imdb_mk imdb_mc",
+        "imdb_t imdb_mi imdb_mii imdb_mk",
+        "imdb_t imdb_mi imdb_mii imdb_mc",
+        "imdb_t imdb_mi imdb_mk imdb_mc",
+        "imdb_t imdb_mii imdb_mk imdb_mc",
+        "imdb_mi imdb_mii imdb_mk imdb_mc",
+        "imdb_t imdb_mi imdb_mii imdb_mk imdb_mc"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 9221.7855,
+          "runs_ms": [
+            9149.877,
+            9293.694
+          ],
+          "total_cost": 607623.04,
+          "join_rows": 248038.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 107.71907127133746
+        },
+        "true_card": {
+          "execution_ms": 9126.3945,
+          "runs_ms": [
+            9447.924,
+            8804.865
+          ],
+          "total_cost": 691577.28,
+          "join_rows": 26718423.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 26718423.0,
+          "hint": "/*+ Rows(imdb_t imdb_mi #641527) Rows(imdb_t imdb_mii #221314) Rows(imdb_t imdb_mk #1970380) Rows(imdb_t imdb_mc #1170186) Rows(imdb_mi imdb_mii #424997) Rows(imdb_mi imdb_mk #5076091) Rows(imdb_mi imdb_mc #2565724) Rows(imdb_mii imdb_mk #3461792) Rows(imdb_mii imdb_mc #1354883) Rows(imdb_mk imdb_mc #34863638) Rows(imdb_t imdb_mi imdb_mii #198913) Rows(imdb_t imdb_mi imdb_mk #2283714) Rows(imdb_t imdb_mi imdb_mc #1195290) Rows(imdb_t imdb_mii imdb_mk #1402930) Rows(imdb_t imdb_mii imdb_mc #646073) Rows(imdb_t imdb_mk imdb_mc #16657594) Rows(imdb_mi imdb_mii imdb_mk #4168677) Rows(imdb_mi imdb_mii imdb_mc #1582553) Rows(imdb_mi imdb_mk imdb_mc #50645370) Rows(imdb_mii imdb_mk imdb_mc #33227886) Rows(imdb_t imdb_mi imdb_mii imdb_mk #1801122) Rows(imdb_t imdb_mi imdb_mii imdb_mc #784265) Rows(imdb_t imdb_mi imdb_mk imdb_mc #27360458) Rows(imdb_t imdb_mii imdb_mk imdb_mc #16001104) Rows(imdb_mi imdb_mii imdb_mk imdb_mc #49077237) Rows(imdb_t imdb_mi imdb_mii imdb_mk imdb_mc #26718423) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 9140.3925,
+          "runs_ms": [
+            9281.712,
+            8999.073
+          ],
+          "total_cost": 607715.92,
+          "join_rows": 408246.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 408246.4375,
+          "hint": "/*+ Rows(imdb_t imdb_mi #612420) Rows(imdb_t imdb_mii #216764) Rows(imdb_t imdb_mk #2175038) Rows(imdb_t imdb_mc #1301195) Rows(imdb_mi imdb_mii #1113336) Rows(imdb_mi imdb_mk #14174959) Rows(imdb_mi imdb_mc #5843848) Rows(imdb_mii imdb_mk #3876642) Rows(imdb_mii imdb_mc #2092193) Rows(imdb_mk imdb_mc #20645856) Rows(imdb_t imdb_mi imdb_mii #113026) Rows(imdb_t imdb_mi imdb_mk #1131555) Rows(imdb_t imdb_mi imdb_mc #682574) Rows(imdb_t imdb_mii imdb_mk #413802) Rows(imdb_t imdb_mii imdb_mc #245490) Rows(imdb_t imdb_mk imdb_mc #2534131) Rows(imdb_mi imdb_mii imdb_mk #15776166) Rows(imdb_mi imdb_mii imdb_mc #6484684) Rows(imdb_mi imdb_mk imdb_mc #81703616) Rows(imdb_mii imdb_mk imdb_mc #22932744) Rows(imdb_t imdb_mi imdb_mii imdb_mk #261906) Rows(imdb_t imdb_mi imdb_mii imdb_mc #161604) Rows(imdb_t imdb_mi imdb_mk imdb_mc #1517323) Rows(imdb_t imdb_mii imdb_mk imdb_mc #576022) Rows(imdb_mi imdb_mii imdb_mk imdb_mc #90648352) Rows(imdb_t imdb_mi imdb_mii imdb_mk imdb_mc #408246) */",
+          "injection_verified": true,
+          "q_error": 65.4468702693964
+        },
+        "price": {
+          "execution_ms": 9580.478500000001,
+          "runs_ms": [
+            9498.1,
+            9662.857
+          ],
+          "total_cost": 620542.87,
+          "join_rows": 1817903.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1817902.835165717,
+          "hint": "/*+ Rows(imdb_t imdb_mi #861752) Rows(imdb_t imdb_mii #271561) Rows(imdb_t imdb_mk #3076069) Rows(imdb_t imdb_mc #1797702) Rows(imdb_mi imdb_mii #1115276) Rows(imdb_mi imdb_mk #15578098) Rows(imdb_mi imdb_mc #6687722) Rows(imdb_mii imdb_mk #4352597) Rows(imdb_mii imdb_mc #2286267) Rows(imdb_mk imdb_mc #15805681) Rows(imdb_t imdb_mi imdb_mii #178254) Rows(imdb_t imdb_mi imdb_mk #1852146) Rows(imdb_t imdb_mi imdb_mc #1110878) Rows(imdb_t imdb_mii imdb_mk #650971) Rows(imdb_t imdb_mii imdb_mc #362597) Rows(imdb_t imdb_mk imdb_mc #4257450) Rows(imdb_mi imdb_mii imdb_mk #18432178) Rows(imdb_mi imdb_mii imdb_mc #7378220) Rows(imdb_mi imdb_mk imdb_mc #114926679) Rows(imdb_mii imdb_mk imdb_mc #31447983) Rows(imdb_t imdb_mi imdb_mii imdb_mk #616434) Rows(imdb_t imdb_mi imdb_mii imdb_mc #357723) Rows(imdb_t imdb_mi imdb_mk imdb_mc #3785773) Rows(imdb_t imdb_mii imdb_mk imdb_mc #1333188) Rows(imdb_mi imdb_mii imdb_mk imdb_mc #139428865) Rows(imdb_t imdb_mi imdb_mii imdb_mk imdb_mc #1817903) */",
+          "injection_verified": true,
+          "q_error": 14.697386494218888
+        }
+      }
+    },
+    {
+      "query": 66,
+      "aliases": [
+        "imdb_t",
+        "imdb_mi",
+        "imdb_mii",
+        "imdb_mk",
+        "imdb_mc"
+      ],
+      "true_card": 15813608.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mi",
+        "imdb_t imdb_mii",
+        "imdb_t imdb_mk",
+        "imdb_t imdb_mc",
+        "imdb_mi imdb_mii",
+        "imdb_mi imdb_mk",
+        "imdb_mi imdb_mc",
+        "imdb_mii imdb_mk",
+        "imdb_mii imdb_mc",
+        "imdb_mk imdb_mc",
+        "imdb_t imdb_mi imdb_mii",
+        "imdb_t imdb_mi imdb_mk",
+        "imdb_t imdb_mi imdb_mc",
+        "imdb_t imdb_mii imdb_mk",
+        "imdb_t imdb_mii imdb_mc",
+        "imdb_t imdb_mk imdb_mc",
+        "imdb_mi imdb_mii imdb_mk",
+        "imdb_mi imdb_mii imdb_mc",
+        "imdb_mi imdb_mk imdb_mc",
+        "imdb_mii imdb_mk imdb_mc",
+        "imdb_t imdb_mi imdb_mii imdb_mk",
+        "imdb_t imdb_mi imdb_mii imdb_mc",
+        "imdb_t imdb_mi imdb_mk imdb_mc",
+        "imdb_t imdb_mii imdb_mk imdb_mc",
+        "imdb_mi imdb_mii imdb_mk imdb_mc",
+        "imdb_t imdb_mi imdb_mii imdb_mk imdb_mc"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 10038.1665,
+          "runs_ms": [
+            10448.248,
+            9628.085
+          ],
+          "total_cost": 547455.03,
+          "join_rows": 181820.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 86.97397426025739
+        },
+        "true_card": {
+          "execution_ms": 7162.249,
+          "runs_ms": [
+            7111.026,
+            7213.472
+          ],
+          "total_cost": 589093.13,
+          "join_rows": 15813608.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 15813608.0,
+          "hint": "/*+ Rows(imdb_t imdb_mi #455223) Rows(imdb_t imdb_mii #143567) Rows(imdb_t imdb_mk #1253091) Rows(imdb_t imdb_mc #829639) Rows(imdb_mi imdb_mii #424997) Rows(imdb_mi imdb_mk #5076091) Rows(imdb_mi imdb_mc #2565724) Rows(imdb_mii imdb_mk #3461792) Rows(imdb_mii imdb_mc #1354883) Rows(imdb_mk imdb_mc #34863638) Rows(imdb_t imdb_mi imdb_mii #125530) Rows(imdb_t imdb_mi imdb_mk #1384108) Rows(imdb_t imdb_mi imdb_mc #813700) Rows(imdb_t imdb_mii imdb_mk #850677) Rows(imdb_t imdb_mii imdb_mc #427700) Rows(imdb_t imdb_mk imdb_mc #10326085) Rows(imdb_mi imdb_mii imdb_mk #4168677) Rows(imdb_mi imdb_mii imdb_mc #1582553) Rows(imdb_mi imdb_mk imdb_mc #50645370) Rows(imdb_mii imdb_mk imdb_mc #33227886) Rows(imdb_t imdb_mi imdb_mii imdb_mk #1043763) Rows(imdb_t imdb_mi imdb_mii imdb_mc #508388) Rows(imdb_t imdb_mi imdb_mk imdb_mc #16264315) Rows(imdb_t imdb_mii imdb_mk imdb_mc #9861464) Rows(imdb_mi imdb_mii imdb_mk imdb_mc #49077237) Rows(imdb_t imdb_mi imdb_mii imdb_mk imdb_mc #15813608) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 10403.4565,
+          "runs_ms": [
+            10164.236,
+            10642.677
+          ],
+          "total_cost": 524261.82,
+          "join_rows": 297243.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 297243.03125,
+          "hint": "/*+ Rows(imdb_t imdb_mi #440252) Rows(imdb_t imdb_mii #154559) Rows(imdb_t imdb_mk #1558383) Rows(imdb_t imdb_mc #931176) Rows(imdb_mi imdb_mii #1113336) Rows(imdb_mi imdb_mk #14174959) Rows(imdb_mi imdb_mc #5843848) Rows(imdb_mii imdb_mk #3876642) Rows(imdb_mii imdb_mc #2092193) Rows(imdb_mk imdb_mc #20645856) Rows(imdb_t imdb_mi imdb_mii #80711) Rows(imdb_t imdb_mi imdb_mk #808096) Rows(imdb_t imdb_mi imdb_mc #487319) Rows(imdb_t imdb_mii imdb_mk #294742) Rows(imdb_t imdb_mii imdb_mc #174782) Rows(imdb_t imdb_mk imdb_mc #1799518) Rows(imdb_mi imdb_mii imdb_mk #15776166) Rows(imdb_mi imdb_mii imdb_mc #6484684) Rows(imdb_mi imdb_mk imdb_mc #81703616) Rows(imdb_mii imdb_mk imdb_mc #22932744) Rows(imdb_t imdb_mi imdb_mii imdb_mk #188620) Rows(imdb_t imdb_mi imdb_mii imdb_mc #116384) Rows(imdb_t imdb_mi imdb_mk imdb_mc #1089625) Rows(imdb_t imdb_mii imdb_mk imdb_mc #413253) Rows(imdb_mi imdb_mii imdb_mk imdb_mc #90648352) Rows(imdb_t imdb_mi imdb_mii imdb_mk imdb_mc #297243) */",
+          "injection_verified": true,
+          "q_error": 53.2009433359238
+        },
+        "price": {
+          "execution_ms": 7164.455,
+          "runs_ms": [
+            6902.579,
+            7426.331
+          ],
+          "total_cost": 610622.44,
+          "join_rows": 1397534.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1397534.4787273502,
+          "hint": "/*+ Rows(imdb_t imdb_mi #634226) Rows(imdb_t imdb_mii #199426) Rows(imdb_t imdb_mk #2277456) Rows(imdb_t imdb_mc #1322953) Rows(imdb_mi imdb_mii #1115276) Rows(imdb_mi imdb_mk #15578098) Rows(imdb_mi imdb_mc #6687722) Rows(imdb_mii imdb_mk #4352597) Rows(imdb_mii imdb_mc #2286267) Rows(imdb_mk imdb_mc #15805681) Rows(imdb_t imdb_mi imdb_mii #133879) Rows(imdb_t imdb_mi imdb_mk #1380128) Rows(imdb_t imdb_mi imdb_mc #822356) Rows(imdb_t imdb_mii imdb_mk #483109) Rows(imdb_t imdb_mii imdb_mc #268797) Rows(imdb_t imdb_mk imdb_mc #3106489) Rows(imdb_mi imdb_mii imdb_mk #18432178) Rows(imdb_mi imdb_mii imdb_mc #7378220) Rows(imdb_mi imdb_mk imdb_mc #114926679) Rows(imdb_mii imdb_mk imdb_mc #31447983) Rows(imdb_t imdb_mi imdb_mii imdb_mk #468053) Rows(imdb_t imdb_mi imdb_mii imdb_mc #272944) Rows(imdb_t imdb_mi imdb_mk imdb_mc #2849522) Rows(imdb_t imdb_mii imdb_mk imdb_mc #1008957) Rows(imdb_mi imdb_mii imdb_mk imdb_mc #139428865) Rows(imdb_t imdb_mi imdb_mii imdb_mk imdb_mc #1397534) */",
+          "injection_verified": true,
+          "q_error": 11.315365493791207
+        }
+      }
+    },
+    {
+      "query": 43,
+      "aliases": [
+        "imdb_ci",
+        "imdb_t",
+        "imdb_mk",
+        "imdb_mc"
+      ],
+      "true_card": 7796926.0,
+      "hinted_prefixes": [
+        "imdb_ci imdb_t",
+        "imdb_ci imdb_mk",
+        "imdb_ci imdb_mc",
+        "imdb_t imdb_mk",
+        "imdb_t imdb_mc",
+        "imdb_mk imdb_mc",
+        "imdb_ci imdb_t imdb_mk",
+        "imdb_ci imdb_t imdb_mc",
+        "imdb_ci imdb_mk imdb_mc",
+        "imdb_t imdb_mk imdb_mc",
+        "imdb_ci imdb_t imdb_mk imdb_mc"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 2443.062,
+          "runs_ms": [
+            2634.11,
+            2252.014
+          ],
+          "total_cost": 175136.52,
+          "join_rows": 625360.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 12.46790008954842
+        },
+        "true_card": {
+          "execution_ms": 2741.4735,
+          "runs_ms": [
+            2806.908,
+            2676.039
+          ],
+          "total_cost": 243382.99,
+          "join_rows": 7796926.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 7796926.0,
+          "hint": "/*+ Rows(imdb_ci imdb_t #36244344) Rows(imdb_ci imdb_mk #1038393) Rows(imdb_ci imdb_mc #80274241) Rows(imdb_t imdb_mk #41840) Rows(imdb_t imdb_mc #2609129) Rows(imdb_mk imdb_mc #148552) Rows(imdb_ci imdb_t imdb_mk #1038393) Rows(imdb_ci imdb_t imdb_mc #80274241) Rows(imdb_ci imdb_mk imdb_mc #7796926) Rows(imdb_t imdb_mk imdb_mc #148552) Rows(imdb_ci imdb_t imdb_mk imdb_mc #7796926) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 2373.2174999999997,
+          "runs_ms": [
+            2352.766,
+            2393.669
+          ],
+          "total_cost": 164377.05,
+          "join_rows": 3408755.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 3408755.25,
+          "hint": "/*+ Rows(imdb_ci imdb_t #34853792) Rows(imdb_ci imdb_mk #1152987) Rows(imdb_ci imdb_mc #79329096) Rows(imdb_t imdb_mk #32534) Rows(imdb_t imdb_mc #2397213) Rows(imdb_mk imdb_mc #177326) Rows(imdb_ci imdb_t imdb_mk #1178720) Rows(imdb_ci imdb_t imdb_mc #85279944) Rows(imdb_ci imdb_mk imdb_mc #3018812) Rows(imdb_t imdb_mk imdb_mc #36314) Rows(imdb_ci imdb_t imdb_mk imdb_mc #3408755) */",
+          "injection_verified": true,
+          "q_error": 2.287323670959045
+        },
+        "price": {
+          "execution_ms": 2288.8779999999997,
+          "runs_ms": [
+            2314.923,
+            2262.833
+          ],
+          "total_cost": 275544.25,
+          "join_rows": 6314080.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 6314079.960430759,
+          "hint": "/*+ Rows(imdb_ci imdb_t #24043577) Rows(imdb_ci imdb_mk #1431881) Rows(imdb_ci imdb_mc #54599565) Rows(imdb_t imdb_mk #57457) Rows(imdb_t imdb_mc #2104039) Rows(imdb_mk imdb_mc #272017) Rows(imdb_ci imdb_t imdb_mk #1735459) Rows(imdb_ci imdb_t imdb_mc #29759761) Rows(imdb_ci imdb_mk imdb_mc #4113904) Rows(imdb_t imdb_mk imdb_mc #94651) Rows(imdb_ci imdb_t imdb_mk imdb_mc #6314080) */",
+          "injection_verified": true,
+          "q_error": 1.2348475153941667
+        }
+      }
+    },
+    {
+      "query": 59,
+      "aliases": [
+        "imdb_t",
+        "imdb_mi",
+        "imdb_mc",
+        "imdb_ci",
+        "imdb_mk"
+      ],
+      "true_card": 9537310863.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mi",
+        "imdb_t imdb_mc",
+        "imdb_t imdb_ci",
+        "imdb_t imdb_mk",
+        "imdb_mi imdb_mc",
+        "imdb_mi imdb_ci",
+        "imdb_mi imdb_mk",
+        "imdb_mc imdb_ci",
+        "imdb_mc imdb_mk",
+        "imdb_ci imdb_mk",
+        "imdb_t imdb_mi imdb_mc",
+        "imdb_t imdb_mi imdb_ci",
+        "imdb_t imdb_mi imdb_mk",
+        "imdb_t imdb_mc imdb_ci",
+        "imdb_t imdb_mc imdb_mk",
+        "imdb_t imdb_ci imdb_mk",
+        "imdb_mi imdb_mc imdb_ci",
+        "imdb_mi imdb_mc imdb_mk",
+        "imdb_mi imdb_ci imdb_mk",
+        "imdb_mc imdb_ci imdb_mk",
+        "imdb_t imdb_mi imdb_mc imdb_ci",
+        "imdb_t imdb_mi imdb_mc imdb_mk",
+        "imdb_t imdb_mi imdb_ci imdb_mk",
+        "imdb_t imdb_mc imdb_ci imdb_mk",
+        "imdb_mi imdb_mc imdb_ci imdb_mk",
+        "imdb_t imdb_mi imdb_mc imdb_ci imdb_mk"
+      ],
+      "arms": {
+        "pg_native": {
+          "error": "ERROR:  canceling statement due to statement timeout"
+        },
+        "true_card": {
+          "error": "ERROR:  canceling statement due to statement timeout",
+          "injected": 9537310863.0,
+          "hint": "/*+ Rows(imdb_t imdb_mi #1798330) Rows(imdb_t imdb_mc #1170186) Rows(imdb_t imdb_ci #4402268) Rows(imdb_t imdb_mk #1970380) Rows(imdb_mi imdb_mc #10905021) Rows(imdb_mi imdb_ci #14802622) Rows(imdb_mi imdb_mk #36413233) Rows(imdb_mc imdb_ci #13355828) Rows(imdb_mc imdb_mk #34863638) Rows(imdb_ci imdb_mk #35805959) Rows(imdb_t imdb_mi imdb_mc #6621484) Rows(imdb_t imdb_mi imdb_ci #9273829) Rows(imdb_t imdb_mi imdb_mk #21795195) Rows(imdb_t imdb_mc imdb_ci #6991479) Rows(imdb_t imdb_mc imdb_mk #16657594) Rows(imdb_t imdb_ci imdb_mk #18054021) Rows(imdb_mi imdb_mc imdb_ci #132317651) Rows(imdb_mi imdb_mc imdb_mk #753818881) Rows(imdb_mi imdb_ci imdb_mk #540412309) Rows(imdb_mc imdb_ci imdb_mk #434306424) Rows(imdb_t imdb_mi imdb_mc imdb_ci #90649862) Rows(imdb_t imdb_mi imdb_mc imdb_mk #512575801) Rows(imdb_t imdb_mi imdb_ci imdb_mk #365166393) Rows(imdb_t imdb_mc imdb_ci imdb_mk #251883732) Rows(imdb_mi imdb_mc imdb_ci imdb_mk #12882774489) Rows(imdb_t imdb_mi imdb_mc imdb_ci imdb_mk #9537310863) */",
+          "injection_verified": null
+        },
+        "ours": {
+          "error": "ERROR:  canceling statement due to statement timeout",
+          "injected": 13204579.0,
+          "hint": "/*+ Rows(imdb_t imdb_mi #1477354) Rows(imdb_t imdb_mc #1301195) Rows(imdb_t imdb_ci #3703586) Rows(imdb_t imdb_mk #2175038) Rows(imdb_mi imdb_mc #14125300) Rows(imdb_mi imdb_ci #17862490) Rows(imdb_mi imdb_mk #34287524) Rows(imdb_mc imdb_ci #15344717) Rows(imdb_mc imdb_mk #20645856) Rows(imdb_ci imdb_mk #25839510) Rows(imdb_t imdb_mi imdb_mc #1683157) Rows(imdb_t imdb_mi imdb_ci #4533831) Rows(imdb_t imdb_mi imdb_mk #2788669) Rows(imdb_t imdb_mc imdb_ci #3723304) Rows(imdb_t imdb_mc imdb_mk #2534131) Rows(imdb_t imdb_ci imdb_mk #6431570) Rows(imdb_mi imdb_mc imdb_ci #105141896) Rows(imdb_mi imdb_mc imdb_mk #197825088) Rows(imdb_mi imdb_ci imdb_mk #249898400) Rows(imdb_mc imdb_ci imdb_mk #151633792) Rows(imdb_t imdb_mi imdb_mc imdb_ci #5569325) Rows(imdb_t imdb_mi imdb_mc imdb_mk #3695316) Rows(imdb_t imdb_mi imdb_ci imdb_mk #9143807) Rows(imdb_t imdb_mc imdb_ci imdb_mk #7682458) Rows(imdb_mi imdb_mc imdb_ci imdb_mk #1480105600) Rows(imdb_t imdb_mi imdb_mc imdb_ci imdb_mk #13204579) */",
+          "injection_verified": null
+        },
+        "price": {
+          "error": "ERROR:  canceling statement due to statement timeout",
+          "injected": 40558702.66484579,
+          "hint": "/*+ Rows(imdb_t imdb_mi #2060467) Rows(imdb_t imdb_mc #1797702) Rows(imdb_t imdb_ci #3938016) Rows(imdb_t imdb_mk #3076069) Rows(imdb_mi imdb_mc #16342530) Rows(imdb_mi imdb_ci #17233322) Rows(imdb_mi imdb_mk #39163037) Rows(imdb_mc imdb_ci #15737786) Rows(imdb_mc imdb_mk #15805681) Rows(imdb_ci imdb_mk #27325556) Rows(imdb_t imdb_mi imdb_mc #2598187) Rows(imdb_t imdb_mi imdb_ci #5534596) Rows(imdb_t imdb_mi imdb_mk #4351037) Rows(imdb_t imdb_mc imdb_ci #4822041) Rows(imdb_t imdb_mc imdb_mk #4257450) Rows(imdb_t imdb_ci imdb_mk #8550498) Rows(imdb_mi imdb_mc imdb_ci #117069188) Rows(imdb_mi imdb_mc imdb_mk #277057969) Rows(imdb_mi imdb_ci imdb_mk #279381193) Rows(imdb_mc imdb_ci imdb_mk #192197806) Rows(imdb_t imdb_mi imdb_mc imdb_ci #9474346) Rows(imdb_t imdb_mi imdb_mc imdb_mk #8493380) Rows(imdb_t imdb_mi imdb_ci imdb_mk #16129414) Rows(imdb_t imdb_mc imdb_ci imdb_mk #14880100) Rows(imdb_mi imdb_mc imdb_ci imdb_mk #1916075063) Rows(imdb_t imdb_mi imdb_mc imdb_ci imdb_mk #40558703) */",
+          "injection_verified": null
+        }
+      }
+    },
+    {
+      "query": 6,
+      "aliases": [
+        "imdb_t",
+        "imdb_mi",
+        "imdb_mk"
+      ],
+      "true_card": 11990578.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mi",
+        "imdb_t imdb_mk",
+        "imdb_mi imdb_mk",
+        "imdb_t imdb_mi imdb_mk"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 6853.504,
+          "runs_ms": [
+            6560.799,
+            7146.209
+          ],
+          "total_cost": 591261.15,
+          "join_rows": 3962419.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 3.026075233336
+        },
+        "true_card": {
+          "execution_ms": 7015.758,
+          "runs_ms": [
+            7290.088,
+            6741.428
+          ],
+          "total_cost": 565855.11,
+          "join_rows": 11990578.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 11990578.0,
+          "hint": "/*+ Rows(imdb_t imdb_mi #1726523) Rows(imdb_t imdb_mk #299534) Rows(imdb_mi imdb_mk #235420310) Rows(imdb_t imdb_mi imdb_mk #11990578) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 7563.5755,
+          "runs_ms": [
+            7879.879,
+            7247.272
+          ],
+          "total_cost": 564699.13,
+          "join_rows": 3712749.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 3712748.75,
+          "hint": "/*+ Rows(imdb_t imdb_mi #1964446) Rows(imdb_t imdb_mk #579679) Rows(imdb_mi imdb_mk #169887888) Rows(imdb_t imdb_mi imdb_mk #3712749) */",
+          "injection_verified": true,
+          "q_error": 3.2295687104083792
+        },
+        "price": {
+          "execution_ms": 6627.119500000001,
+          "runs_ms": [
+            6696.121,
+            6558.118
+          ],
+          "total_cost": 610165.9,
+          "join_rows": 5914233.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 5914233.436992465,
+          "hint": "/*+ Rows(imdb_t imdb_mi #2714906) Rows(imdb_t imdb_mk #893285) Rows(imdb_mi imdb_mk #104945947) Rows(imdb_t imdb_mi imdb_mk #5914233) */",
+          "injection_verified": true,
+          "q_error": 2.027410485856746
+        }
+      }
+    },
+    {
+      "query": 14,
+      "aliases": [
+        "imdb_mk",
+        "imdb_t",
+        "imdb_ci"
+      ],
+      "true_card": 1224.0,
+      "hinted_prefixes": [
+        "imdb_mk imdb_t",
+        "imdb_mk imdb_ci",
+        "imdb_t imdb_ci",
+        "imdb_mk imdb_t imdb_ci"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 1.5025,
+          "runs_ms": [
+            1.06,
+            1.945
+          ],
+          "total_cost": 3032.29,
+          "join_rows": 525.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 2.3314285714285714
+        },
+        "true_card": {
+          "execution_ms": 5.6765,
+          "runs_ms": [
+            5.699,
+            5.654
+          ],
+          "total_cost": 2824.06,
+          "join_rows": 1224.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 1224.0,
+          "hint": "/*+ Rows(imdb_mk imdb_t #11) Rows(imdb_mk imdb_ci #1242) Rows(imdb_t imdb_ci #5935230) Rows(imdb_mk imdb_t imdb_ci #1224) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 1.346,
+          "runs_ms": [
+            1.38,
+            1.312
+          ],
+          "total_cost": 3051.04,
+          "join_rows": 971.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 971.2684936523438,
+          "hint": "/*+ Rows(imdb_mk imdb_t #46) Rows(imdb_mk imdb_ci #6026) Rows(imdb_t imdb_ci #5089032) Rows(imdb_mk imdb_t imdb_ci #971) */",
+          "injection_verified": true,
+          "q_error": 1.2605561277033985
+        },
+        "price": {
+          "execution_ms": 1.3435000000000001,
+          "runs_ms": [
+            1.338,
+            1.349
+          ],
+          "total_cost": 3137.54,
+          "join_rows": 3450.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 3450.405530092648,
+          "hint": "/*+ Rows(imdb_mk imdb_t #87) Rows(imdb_mk imdb_ci #6834) Rows(imdb_t imdb_ci #5543492) Rows(imdb_mk imdb_t imdb_ci #3450) */",
+          "injection_verified": true,
+          "q_error": 2.8186274509803924
+        }
+      }
+    },
+    {
+      "query": 40,
+      "aliases": [
+        "imdb_t",
+        "imdb_mi",
+        "imdb_mc",
+        "imdb_mk"
+      ],
+      "true_card": 512575801.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mi",
+        "imdb_t imdb_mc",
+        "imdb_t imdb_mk",
+        "imdb_mi imdb_mc",
+        "imdb_mi imdb_mk",
+        "imdb_mc imdb_mk",
+        "imdb_t imdb_mi imdb_mc",
+        "imdb_t imdb_mi imdb_mk",
+        "imdb_t imdb_mc imdb_mk",
+        "imdb_mi imdb_mc imdb_mk",
+        "imdb_t imdb_mi imdb_mc imdb_mk"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 84825.6325,
+          "runs_ms": [
+            85234.766,
+            84416.499
+          ],
+          "total_cost": 672609.03,
+          "join_rows": 2883302.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 177.77388598211357
+        },
+        "true_card": {
+          "execution_ms": 83085.9865,
+          "runs_ms": [
+            82993.424,
+            83178.549
+          ],
+          "total_cost": 2207012.13,
+          "join_rows": 512575801.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 512575801.0,
+          "hint": "/*+ Rows(imdb_t imdb_mi #1798330) Rows(imdb_t imdb_mc #1170186) Rows(imdb_t imdb_mk #1970380) Rows(imdb_mi imdb_mc #10905021) Rows(imdb_mi imdb_mk #36413233) Rows(imdb_mc imdb_mk #34863638) Rows(imdb_t imdb_mi imdb_mc #6621484) Rows(imdb_t imdb_mi imdb_mk #21795195) Rows(imdb_t imdb_mc imdb_mk #16657594) Rows(imdb_mi imdb_mc imdb_mk #753818881) Rows(imdb_t imdb_mi imdb_mc imdb_mk #512575801) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 84360.05,
+          "runs_ms": [
+            83938.14,
+            84781.96
+          ],
+          "total_cost": 673896.62,
+          "join_rows": 3695316.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 3695316.25,
+          "hint": "/*+ Rows(imdb_t imdb_mi #1477354) Rows(imdb_t imdb_mc #1301195) Rows(imdb_t imdb_mk #2175038) Rows(imdb_mi imdb_mc #14125300) Rows(imdb_mi imdb_mk #34287524) Rows(imdb_mc imdb_mk #20645856) Rows(imdb_t imdb_mi imdb_mc #1683157) Rows(imdb_t imdb_mi imdb_mk #2788669) Rows(imdb_t imdb_mc imdb_mk #2534131) Rows(imdb_mi imdb_mc imdb_mk #197825088) Rows(imdb_t imdb_mi imdb_mc imdb_mk #3695316) */",
+          "injection_verified": true,
+          "q_error": 138.7095991249463
+        },
+        "price": {
+          "execution_ms": 83037.1055,
+          "runs_ms": [
+            83226.347,
+            82847.864
+          ],
+          "total_cost": 734758.4,
+          "join_rows": 8493380.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 8493380.276219202,
+          "hint": "/*+ Rows(imdb_t imdb_mi #2060467) Rows(imdb_t imdb_mc #1797702) Rows(imdb_t imdb_mk #3076069) Rows(imdb_mi imdb_mc #16342530) Rows(imdb_mi imdb_mk #39163037) Rows(imdb_mc imdb_mk #15805681) Rows(imdb_t imdb_mi imdb_mc #2598187) Rows(imdb_t imdb_mi imdb_mk #4351037) Rows(imdb_t imdb_mc imdb_mk #4257450) Rows(imdb_mi imdb_mc imdb_mk #277057969) Rows(imdb_t imdb_mi imdb_mc imdb_mk #8493380) */",
+          "injection_verified": true,
+          "q_error": 60.35003744092458
+        }
+      }
+    },
+    {
+      "query": 41,
+      "aliases": [
+        "imdb_t",
+        "imdb_mi",
+        "imdb_mc",
+        "imdb_mk"
+      ],
+      "true_card": 206778521.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mi",
+        "imdb_t imdb_mc",
+        "imdb_t imdb_mk",
+        "imdb_mi imdb_mc",
+        "imdb_mi imdb_mk",
+        "imdb_mc imdb_mk",
+        "imdb_t imdb_mi imdb_mc",
+        "imdb_t imdb_mi imdb_mk",
+        "imdb_t imdb_mc imdb_mk",
+        "imdb_mi imdb_mc imdb_mk",
+        "imdb_t imdb_mi imdb_mc imdb_mk"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 36487.9055,
+          "runs_ms": [
+            36232.598,
+            36743.213
+          ],
+          "total_cost": 603126.86,
+          "join_rows": 999123.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 206.96002494187402
+        },
+        "true_card": {
+          "execution_ms": 36516.047,
+          "runs_ms": [
+            35888.468,
+            37143.626
+          ],
+          "total_cost": 1199230.74,
+          "join_rows": 206778521.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 206778521.0,
+          "hint": "/*+ Rows(imdb_t imdb_mi #669960) Rows(imdb_t imdb_mc #420388) Rows(imdb_t imdb_mk #777213) Rows(imdb_mi imdb_mc #10905021) Rows(imdb_mi imdb_mk #36413233) Rows(imdb_mc imdb_mk #34863638) Rows(imdb_t imdb_mi imdb_mc #2557971) Rows(imdb_t imdb_mi imdb_mk #8542397) Rows(imdb_t imdb_mc imdb_mk #6670791) Rows(imdb_mi imdb_mc imdb_mk #753818881) Rows(imdb_t imdb_mi imdb_mc imdb_mk #206778521) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 35943.025,
+          "runs_ms": [
+            35815.784,
+            36070.266
+          ],
+          "total_cost": 602205.35,
+          "join_rows": 1235649.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1235649.375,
+          "hint": "/*+ Rows(imdb_t imdb_mi #499984) Rows(imdb_t imdb_mc #433518) Rows(imdb_t imdb_mk #729800) Rows(imdb_mi imdb_mc #14125300) Rows(imdb_mi imdb_mk #34287524) Rows(imdb_mc imdb_mk #20645856) Rows(imdb_t imdb_mi imdb_mc #555551) Rows(imdb_t imdb_mi imdb_mk #920837) Rows(imdb_t imdb_mc imdb_mk #828016) Rows(imdb_mi imdb_mc imdb_mk #197825088) Rows(imdb_t imdb_mi imdb_mc imdb_mk #1235649) */",
+          "injection_verified": true,
+          "q_error": 167.3440604896698
+        },
+        "price": {
+          "execution_ms": 36556.238,
+          "runs_ms": [
+            36446.258,
+            36666.218
+          ],
+          "total_cost": 631148.35,
+          "join_rows": 3307588.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 3307588.366948516,
+          "hint": "/*+ Rows(imdb_t imdb_mi #753675) Rows(imdb_t imdb_mc #652378) Rows(imdb_t imdb_mk #1124643) Rows(imdb_mi imdb_mc #16342530) Rows(imdb_mi imdb_mk #39163037) Rows(imdb_mc imdb_mk #15805681) Rows(imdb_t imdb_mi imdb_mc #979848) Rows(imdb_t imdb_mi imdb_mk #1626865) Rows(imdb_t imdb_mc imdb_mk #1544651) Rows(imdb_mi imdb_mc imdb_mk #277057969) Rows(imdb_t imdb_mi imdb_mc imdb_mk #3307588) */",
+          "injection_verified": true,
+          "q_error": 62.516408029053196
+        }
+      }
+    },
+    {
+      "query": 36,
+      "aliases": [
+        "imdb_t",
+        "imdb_mi",
+        "imdb_mc",
+        "imdb_mii"
+      ],
+      "true_card": 1919495.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mi",
+        "imdb_t imdb_mc",
+        "imdb_t imdb_mii",
+        "imdb_mi imdb_mc",
+        "imdb_mi imdb_mii",
+        "imdb_mc imdb_mii",
+        "imdb_t imdb_mi imdb_mc",
+        "imdb_t imdb_mi imdb_mii",
+        "imdb_t imdb_mc imdb_mii",
+        "imdb_mi imdb_mc imdb_mii",
+        "imdb_t imdb_mi imdb_mc imdb_mii"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 5168.8095,
+          "runs_ms": [
+            5251.185,
+            5086.434
+          ],
+          "total_cost": 245016.33,
+          "join_rows": 72068.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 26.634497974135538
+        },
+        "true_card": {
+          "execution_ms": 3935.3675000000003,
+          "runs_ms": [
+            3843.578,
+            4027.157
+          ],
+          "total_cost": 491425.16,
+          "join_rows": 1919495.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1919495.0,
+          "hint": "/*+ Rows(imdb_t imdb_mi #1083597) Rows(imdb_t imdb_mc #640620) Rows(imdb_t imdb_mii #209880) Rows(imdb_mi imdb_mc #3243070) Rows(imdb_mi imdb_mii #1118984) Rows(imdb_mc imdb_mii #584222) Rows(imdb_t imdb_mi imdb_mc #2250196) Rows(imdb_t imdb_mi imdb_mii #724731) Rows(imdb_t imdb_mc imdb_mii #302610) Rows(imdb_mi imdb_mc imdb_mii #2504990) Rows(imdb_t imdb_mi imdb_mc imdb_mii #1919495) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 4741.5005,
+          "runs_ms": [
+            4899.72,
+            4583.281
+          ],
+          "total_cost": 220887.56,
+          "join_rows": 84027.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 84026.71875,
+          "hint": "/*+ Rows(imdb_t imdb_mi #661092) Rows(imdb_t imdb_mc #277206) Rows(imdb_t imdb_mii #92447) Rows(imdb_mi imdb_mc #7160668) Rows(imdb_mi imdb_mii #2684145) Rows(imdb_mc imdb_mii #1054533) Rows(imdb_t imdb_mi imdb_mc #354267) Rows(imdb_t imdb_mi imdb_mii #119186) Rows(imdb_t imdb_mc imdb_mii #51194) Rows(imdb_mi imdb_mc imdb_mii #7905174) Rows(imdb_t imdb_mi imdb_mc imdb_mii #84027) */",
+          "injection_verified": true,
+          "q_error": 22.843788306139693
+        },
+        "price": {
+          "execution_ms": 4862.625,
+          "runs_ms": [
+            5030.022,
+            4695.228
+          ],
+          "total_cost": 213474.08,
+          "join_rows": 134093.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 134092.74732472375,
+          "hint": "/*+ Rows(imdb_t imdb_mi #819539) Rows(imdb_t imdb_mc #326813) Rows(imdb_t imdb_mii #71194) Rows(imdb_mi imdb_mc #8282401) Rows(imdb_mi imdb_mii #2735609) Rows(imdb_mc imdb_mii #1182047) Rows(imdb_t imdb_mi imdb_mc #546948) Rows(imdb_t imdb_mi imdb_mii #139221) Rows(imdb_t imdb_mc imdb_mii #47414) Rows(imdb_mi imdb_mc imdb_mii #9422247) Rows(imdb_t imdb_mi imdb_mc imdb_mii #134093) */",
+          "injection_verified": true,
+          "q_error": 14.314654754536031
+        }
+      }
+    },
+    {
+      "query": 26,
+      "aliases": [
+        "imdb_ci",
+        "imdb_t",
+        "imdb_mc"
+      ],
+      "true_card": 1381288.0,
+      "hinted_prefixes": [
+        "imdb_ci imdb_t",
+        "imdb_ci imdb_mc",
+        "imdb_t imdb_mc",
+        "imdb_ci imdb_t imdb_mc"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 4491.1875,
+          "runs_ms": [
+            4522.535,
+            4459.84
+          ],
+          "total_cost": 365929.48,
+          "join_rows": 737318.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.873395197187645
+        },
+        "true_card": {
+          "execution_ms": 4474.3045,
+          "runs_ms": [
+            4496.535,
+            4452.074
+          ],
+          "total_cost": 365908.85,
+          "join_rows": 1381288.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1381288.0,
+          "hint": "/*+ Rows(imdb_ci imdb_t #882675) Rows(imdb_ci imdb_mc #13355828) Rows(imdb_t imdb_mc #221088) Rows(imdb_ci imdb_t imdb_mc #1381288) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 4564.0885,
+          "runs_ms": [
+            4718.877,
+            4409.3
+          ],
+          "total_cost": 365965.09,
+          "join_rows": 1468913.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1468913.0,
+          "hint": "/*+ Rows(imdb_ci imdb_t #639127) Rows(imdb_ci imdb_mc #15344717) Rows(imdb_t imdb_mc #217091) Rows(imdb_ci imdb_t imdb_mc #1468913) */",
+          "injection_verified": true,
+          "q_error": 1.0634371687873927
+        },
+        "price": {
+          "execution_ms": 4380.3235,
+          "runs_ms": [
+            4338.113,
+            4422.534
+          ],
+          "total_cost": 372483.89,
+          "join_rows": 1943535.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1943535.0330622192,
+          "hint": "/*+ Rows(imdb_ci imdb_t #768088) Rows(imdb_ci imdb_mc #15737756) Rows(imdb_t imdb_mc #347984) Rows(imdb_ci imdb_t imdb_mc #1943535) */",
+          "injection_verified": true,
+          "q_error": 1.40704545322916
+        }
+      }
+    },
+    {
+      "query": 54,
+      "aliases": [
+        "imdb_t",
+        "imdb_mk",
+        "imdb_mc",
+        "imdb_mi"
+      ],
+      "true_card": 658557.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mk",
+        "imdb_t imdb_mc",
+        "imdb_t imdb_mi",
+        "imdb_mk imdb_mc",
+        "imdb_mk imdb_mi",
+        "imdb_mc imdb_mi",
+        "imdb_t imdb_mk imdb_mc",
+        "imdb_t imdb_mk imdb_mi",
+        "imdb_t imdb_mc imdb_mi",
+        "imdb_mk imdb_mc imdb_mi",
+        "imdb_t imdb_mk imdb_mc imdb_mi"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 938.1855,
+          "runs_ms": [
+            842.76,
+            1033.611
+          ],
+          "total_cost": 99736.83,
+          "join_rows": 23837.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 27.627511851323572
+        },
+        "true_card": {
+          "execution_ms": 1001.684,
+          "runs_ms": [
+            978.199,
+            1025.169
+          ],
+          "total_cost": 102316.95,
+          "join_rows": 658557.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 658557.0,
+          "hint": "/*+ Rows(imdb_t imdb_mk #8209) Rows(imdb_t imdb_mc #917428) Rows(imdb_t imdb_mi #10383437) Rows(imdb_mk imdb_mc #14102) Rows(imdb_mk imdb_mi #327572) Rows(imdb_mc imdb_mi #19468002) Rows(imdb_t imdb_mk imdb_mc #10936) Rows(imdb_t imdb_mk imdb_mi #272734) Rows(imdb_t imdb_mc imdb_mi #14623457) Rows(imdb_mk imdb_mc imdb_mi #777546) Rows(imdb_t imdb_mk imdb_mc imdb_mi #658557) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 879.356,
+          "runs_ms": [
+            854.962,
+            903.75
+          ],
+          "total_cost": 95391.57,
+          "join_rows": 29286.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 29286.404296875,
+          "hint": "/*+ Rows(imdb_t imdb_mk #6170) Rows(imdb_t imdb_mc #834145) Rows(imdb_t imdb_mi #9376191) Rows(imdb_mk imdb_mc #24672) Rows(imdb_mk imdb_mi #405265) Rows(imdb_mc imdb_mi #35215236) Rows(imdb_t imdb_mk imdb_mc #3608) Rows(imdb_t imdb_mk imdb_mi #39935) Rows(imdb_t imdb_mc imdb_mi #5411356) Rows(imdb_mk imdb_mc imdb_mi #1203103) Rows(imdb_t imdb_mk imdb_mc imdb_mi #29286) */",
+          "injection_verified": true,
+          "q_error": 22.487092808850644
+        },
+        "price": {
+          "execution_ms": 343.5575,
+          "runs_ms": [
+            322.621,
+            364.494
+          ],
+          "total_cost": 123538.15,
+          "join_rows": 156141.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 156140.51590581983,
+          "hint": "/*+ Rows(imdb_t imdb_mk #12233) Rows(imdb_t imdb_mc #1141904) Rows(imdb_t imdb_mi #11318067) Rows(imdb_mk imdb_mc #41929) Rows(imdb_mk imdb_mi #575165) Rows(imdb_mc imdb_mi #37932207) Rows(imdb_t imdb_mk imdb_mc #14704) Rows(imdb_t imdb_mk imdb_mi #109433) Rows(imdb_t imdb_mc imdb_mi #7678166) Rows(imdb_mk imdb_mc imdb_mi #1721786) Rows(imdb_t imdb_mk imdb_mc imdb_mi #156141) */",
+          "injection_verified": true,
+          "q_error": 4.217707072453743
+        }
+      }
+    },
+    {
+      "query": 38,
+      "aliases": [
+        "imdb_t",
+        "imdb_mi",
+        "imdb_mii",
+        "imdb_mk"
+      ],
+      "true_card": 3243247.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mi",
+        "imdb_t imdb_mii",
+        "imdb_t imdb_mk",
+        "imdb_mi imdb_mii",
+        "imdb_mi imdb_mk",
+        "imdb_mii imdb_mk",
+        "imdb_t imdb_mi imdb_mii",
+        "imdb_t imdb_mi imdb_mk",
+        "imdb_t imdb_mii imdb_mk",
+        "imdb_mi imdb_mii imdb_mk",
+        "imdb_t imdb_mi imdb_mii imdb_mk"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 4250.01,
+          "runs_ms": [
+            4148.903,
+            4351.117
+          ],
+          "total_cost": 457708.05,
+          "join_rows": 114891.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 28.228903917626273
+        },
+        "true_card": {
+          "execution_ms": 4154.599,
+          "runs_ms": [
+            4258.13,
+            4051.068
+          ],
+          "total_cost": 533326.12,
+          "join_rows": 3243247.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 3243247.0,
+          "hint": "/*+ Rows(imdb_t imdb_mi #705350) Rows(imdb_t imdb_mii #209880) Rows(imdb_t imdb_mk #2886675) Rows(imdb_mi imdb_mii #424997) Rows(imdb_mi imdb_mk #5076091) Rows(imdb_mii imdb_mk #3461792) Rows(imdb_t imdb_mi imdb_mii #238948) Rows(imdb_t imdb_mi imdb_mk #3643079) Rows(imdb_t imdb_mii imdb_mk #2503305) Rows(imdb_mi imdb_mii imdb_mk #4168677) Rows(imdb_t imdb_mi imdb_mii imdb_mk #3243247) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 4012.9665000000005,
+          "runs_ms": [
+            3898.596,
+            4127.337
+          ],
+          "total_cost": 390345.02,
+          "join_rows": 114181.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 114180.890625,
+          "hint": "/*+ Rows(imdb_t imdb_mi #274525) Rows(imdb_t imdb_mii #92447) Rows(imdb_t imdb_mk #927518) Rows(imdb_mi imdb_mii #1113336) Rows(imdb_mi imdb_mk #14174959) Rows(imdb_mii imdb_mk #3876642) Rows(imdb_t imdb_mi imdb_mii #49090) Rows(imdb_t imdb_mi imdb_mk #484808) Rows(imdb_t imdb_mii imdb_mk #172996) Rows(imdb_mi imdb_mii imdb_mk #15776166) Rows(imdb_t imdb_mi imdb_mii imdb_mk #114181) */",
+          "injection_verified": true,
+          "q_error": 28.404436815231957
+        },
+        "price": {
+          "execution_ms": 4282.7735,
+          "runs_ms": [
+            4607.854,
+            3957.693
+          ],
+          "total_cost": 340208.3,
+          "join_rows": 186094.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 186094.46678625376,
+          "hint": "/*+ Rows(imdb_t imdb_mi #337641) Rows(imdb_t imdb_mii #71194) Rows(imdb_t imdb_mk #1216889) Rows(imdb_mi imdb_mii #1115276) Rows(imdb_mi imdb_mk #15578098) Rows(imdb_mii imdb_mk #4352597) Rows(imdb_t imdb_mi imdb_mii #52931) Rows(imdb_t imdb_mi imdb_mk #752160) Rows(imdb_t imdb_mii imdb_mk #223372) Rows(imdb_mi imdb_mii imdb_mk #18432178) Rows(imdb_t imdb_mi imdb_mii imdb_mk #186094) */",
+          "injection_verified": true,
+          "q_error": 17.428004126946597
+        }
+      }
+    },
+    {
+      "query": 56,
+      "aliases": [
+        "imdb_t",
+        "imdb_mi",
+        "imdb_mii",
+        "imdb_mk",
+        "imdb_mc"
+      ],
+      "true_card": 5060606.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mi",
+        "imdb_t imdb_mii",
+        "imdb_t imdb_mk",
+        "imdb_t imdb_mc",
+        "imdb_mi imdb_mii",
+        "imdb_mi imdb_mk",
+        "imdb_mi imdb_mc",
+        "imdb_mii imdb_mk",
+        "imdb_mii imdb_mc",
+        "imdb_mk imdb_mc",
+        "imdb_t imdb_mi imdb_mii",
+        "imdb_t imdb_mi imdb_mk",
+        "imdb_t imdb_mi imdb_mc",
+        "imdb_t imdb_mii imdb_mk",
+        "imdb_t imdb_mii imdb_mc",
+        "imdb_t imdb_mk imdb_mc",
+        "imdb_mi imdb_mii imdb_mk",
+        "imdb_mi imdb_mii imdb_mc",
+        "imdb_mi imdb_mk imdb_mc",
+        "imdb_mii imdb_mk imdb_mc",
+        "imdb_t imdb_mi imdb_mii imdb_mk",
+        "imdb_t imdb_mi imdb_mii imdb_mc",
+        "imdb_t imdb_mi imdb_mk imdb_mc",
+        "imdb_t imdb_mii imdb_mk imdb_mc",
+        "imdb_mi imdb_mii imdb_mk imdb_mc",
+        "imdb_t imdb_mi imdb_mii imdb_mk imdb_mc"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 5486.552,
+          "runs_ms": [
+            5707.903,
+            5265.201
+          ],
+          "total_cost": 396398.73,
+          "join_rows": 95640.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 52.913069845253034
+        },
+        "true_card": {
+          "execution_ms": 3361.665,
+          "runs_ms": [
+            3465.404,
+            3257.926
+          ],
+          "total_cost": 403742.99,
+          "join_rows": 5060606.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 5060606.0,
+          "hint": "/*+ Rows(imdb_t imdb_mi #233592) Rows(imdb_t imdb_mii #64063) Rows(imdb_t imdb_mk #475878) Rows(imdb_t imdb_mc #409251) Rows(imdb_mi imdb_mii #424997) Rows(imdb_mi imdb_mk #5076091) Rows(imdb_mi imdb_mc #2565724) Rows(imdb_mii imdb_mk #3461792) Rows(imdb_mii imdb_mc #1354883) Rows(imdb_mk imdb_mc #34863638) Rows(imdb_t imdb_mi imdb_mii #53013) Rows(imdb_t imdb_mi imdb_mk #488089) Rows(imdb_t imdb_mi imdb_mc #374517) Rows(imdb_t imdb_mii imdb_mk #305628) Rows(imdb_t imdb_mii imdb_mc #183850) Rows(imdb_t imdb_mk imdb_mc #3655294) Rows(imdb_mi imdb_mii imdb_mk #4168677) Rows(imdb_mi imdb_mii imdb_mc #1582553) Rows(imdb_mi imdb_mk imdb_mc #50645370) Rows(imdb_mii imdb_mk imdb_mc #33227886) Rows(imdb_t imdb_mi imdb_mii imdb_mk #346794) Rows(imdb_t imdb_mi imdb_mii imdb_mc #208040) Rows(imdb_t imdb_mi imdb_mk imdb_mc #5280948) Rows(imdb_t imdb_mii imdb_mk imdb_mc #3432100) Rows(imdb_mi imdb_mii imdb_mk imdb_mc #49077237) Rows(imdb_t imdb_mi imdb_mii imdb_mk imdb_mc #5060606) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 5032.077499999999,
+          "runs_ms": [
+            5185.057,
+            4879.098
+          ],
+          "total_cost": 370824.53,
+          "join_rows": 158436.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 158436.375,
+          "hint": "/*+ Rows(imdb_t imdb_mi #227654) Rows(imdb_t imdb_mii #78597) Rows(imdb_t imdb_mk #800403) Rows(imdb_t imdb_mc #475621) Rows(imdb_mi imdb_mii #1113336) Rows(imdb_mi imdb_mk #14174959) Rows(imdb_mi imdb_mc #5843848) Rows(imdb_mii imdb_mk #3876642) Rows(imdb_mii imdb_mc #2092193) Rows(imdb_mk imdb_mc #20645856) Rows(imdb_t imdb_mi imdb_mii #41487) Rows(imdb_t imdb_mi imdb_mk #412630) Rows(imdb_t imdb_mi imdb_mc #248696) Rows(imdb_t imdb_mii imdb_mk #149310) Rows(imdb_t imdb_mii imdb_mc #88530) Rows(imdb_t imdb_mk imdb_mc #908360) Rows(imdb_mi imdb_mii imdb_mk #15776166) Rows(imdb_mi imdb_mii imdb_mc #6484684) Rows(imdb_mi imdb_mk imdb_mc #81703616) Rows(imdb_mii imdb_mk imdb_mc #22932744) Rows(imdb_t imdb_mi imdb_mii imdb_mk #98062) Rows(imdb_t imdb_mi imdb_mii imdb_mc #60706) Rows(imdb_t imdb_mi imdb_mk imdb_mc #565801) Rows(imdb_t imdb_mii imdb_mk imdb_mc #212726) Rows(imdb_mi imdb_mii imdb_mk imdb_mc #90648352) Rows(imdb_t imdb_mi imdb_mii imdb_mk imdb_mc #158436) */",
+          "injection_verified": true,
+          "q_error": 31.941010881365347
+        },
+        "price": {
+          "execution_ms": 5308.2155,
+          "runs_ms": [
+            5045.843,
+            5570.588
+          ],
+          "total_cost": 478259.19,
+          "join_rows": 822107.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 822106.9561259338,
+          "hint": "/*+ Rows(imdb_t imdb_mi #337104) Rows(imdb_t imdb_mii #105181) Rows(imdb_t imdb_mk #1221030) Rows(imdb_t imdb_mc #707488) Rows(imdb_mi imdb_mii #1115276) Rows(imdb_mi imdb_mk #15578098) Rows(imdb_mi imdb_mc #6687722) Rows(imdb_mii imdb_mk #4352597) Rows(imdb_mii imdb_mc #2286267) Rows(imdb_mk imdb_mc #15805681) Rows(imdb_t imdb_mi imdb_mii #74342) Rows(imdb_t imdb_mi imdb_mk #746942) Rows(imdb_t imdb_mi imdb_mc #450446) Rows(imdb_t imdb_mii imdb_mk #264310) Rows(imdb_t imdb_mii imdb_mc #148446) Rows(imdb_t imdb_mk imdb_mc #1672073) Rows(imdb_mi imdb_mii imdb_mk #18432178) Rows(imdb_mi imdb_mii imdb_mc #7378220) Rows(imdb_mi imdb_mk imdb_mc #114926679) Rows(imdb_mii imdb_mk imdb_mc #31447983) Rows(imdb_t imdb_mi imdb_mii imdb_mk #268967) Rows(imdb_t imdb_mi imdb_mii imdb_mc #158591) Rows(imdb_t imdb_mi imdb_mk imdb_mc #1610927) Rows(imdb_t imdb_mii imdb_mk imdb_mc #581909) Rows(imdb_mi imdb_mii imdb_mk imdb_mc #139428865) Rows(imdb_t imdb_mi imdb_mii imdb_mk imdb_mc #822107) */",
+          "injection_verified": true,
+          "q_error": 6.1556537044447985
+        }
+      }
+    },
+    {
+      "query": 50,
+      "aliases": [
+        "imdb_t",
+        "imdb_ci",
+        "imdb_mk"
+      ],
+      "true_card": 151179813.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_ci",
+        "imdb_t imdb_mk",
+        "imdb_ci imdb_mk",
+        "imdb_t imdb_ci imdb_mk"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 39242.49249999999,
+          "runs_ms": [
+            37834.984,
+            40650.001
+          ],
+          "total_cost": 1135816.23,
+          "join_rows": 15138946.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 9.986151810040145
+        },
+        "true_card": {
+          "execution_ms": 43026.362,
+          "runs_ms": [
+            43697.618,
+            42355.106
+          ],
+          "total_cost": 1683761.42,
+          "join_rows": 151179813.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 151179813.0,
+          "hint": "/*+ Rows(imdb_t imdb_ci #8852321) Rows(imdb_t imdb_mk #2343162) Rows(imdb_ci imdb_mk #215765477) Rows(imdb_t imdb_ci imdb_mk #151179813) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 37881.16,
+          "runs_ms": [
+            37677.484,
+            38084.836
+          ],
+          "total_cost": 1056496.07,
+          "join_rows": 13394115.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 13394115.0,
+          "hint": "/*+ Rows(imdb_t imdb_ci #7735952) Rows(imdb_t imdb_mk #871449) Rows(imdb_ci imdb_mk #133258048) Rows(imdb_t imdb_ci imdb_mk #13394115) */",
+          "injection_verified": true,
+          "q_error": 11.287032625895776
+        },
+        "price": {
+          "execution_ms": 38327.8335,
+          "runs_ms": [
+            40254.652,
+            36401.015
+          ],
+          "total_cost": 1130914.26,
+          "join_rows": 14709603.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 14709602.74143188,
+          "hint": "/*+ Rows(imdb_t imdb_ci #6383953) Rows(imdb_t imdb_mk #1041403) Rows(imdb_ci imdb_mk #85010515) Rows(imdb_t imdb_ci imdb_mk #14709603) */",
+          "injection_verified": true,
+          "q_error": 10.277627003257669
+        }
+      }
+    },
+    {
+      "query": 31,
+      "aliases": [
+        "imdb_t",
+        "imdb_mk",
+        "imdb_mc"
+      ],
+      "true_card": 14102.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mk",
+        "imdb_t imdb_mc",
+        "imdb_mk imdb_mc",
+        "imdb_t imdb_mk imdb_mc"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 145.208,
+          "runs_ms": [
+            135.258,
+            155.158
+          ],
+          "total_cost": 59791.86,
+          "join_rows": 6013.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "q_error": 2.345251954099451
+        },
+        "true_card": {
+          "execution_ms": 157.3255,
+          "runs_ms": [
+            160.764,
+            153.887
+          ],
+          "total_cost": 59352.32,
+          "join_rows": 14102.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 14102.0,
+          "hint": "/*+ Rows(imdb_t imdb_mk #10544) Rows(imdb_t imdb_mc #1334883) Rows(imdb_mk imdb_mc #14102) Rows(imdb_t imdb_mk imdb_mc #14102) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 131.5355,
+          "runs_ms": [
+            128.395,
+            134.676
+          ],
+          "total_cost": 58192.2,
+          "join_rows": 5013.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 5012.87548828125,
+          "hint": "/*+ Rows(imdb_t imdb_mk #8649) Rows(imdb_t imdb_mc #1182567) Rows(imdb_mk imdb_mc #24672) Rows(imdb_t imdb_mk imdb_mc #5013) */",
+          "injection_verified": true,
+          "q_error": 2.813085976461201
+        },
+        "price": {
+          "execution_ms": 146.471,
+          "runs_ms": [
+            147.866,
+            145.076
+          ],
+          "total_cost": 63493.71,
+          "join_rows": 20079.0,
+          "node_types": [
+            "Nested Loop"
+          ],
+          "injected": 20079.396374052565,
+          "hint": "/*+ Rows(imdb_t imdb_mk #17419) Rows(imdb_t imdb_mc #1536705) Rows(imdb_mk imdb_mc #41929) Rows(imdb_t imdb_mk imdb_mc #20079) */",
+          "injection_verified": true,
+          "q_error": 1.423840589987236
+        }
+      }
+    },
+    {
+      "query": 39,
+      "aliases": [
+        "imdb_t",
+        "imdb_mi",
+        "imdb_mii",
+        "imdb_mk"
+      ],
+      "true_card": 1043763.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_mi",
+        "imdb_t imdb_mii",
+        "imdb_t imdb_mk",
+        "imdb_mi imdb_mii",
+        "imdb_mi imdb_mk",
+        "imdb_mii imdb_mk",
+        "imdb_t imdb_mi imdb_mii",
+        "imdb_t imdb_mi imdb_mk",
+        "imdb_t imdb_mii imdb_mk",
+        "imdb_mi imdb_mii imdb_mk",
+        "imdb_t imdb_mi imdb_mii imdb_mk"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 4064.5020000000004,
+          "runs_ms": [
+            3992.726,
+            4136.278
+          ],
+          "total_cost": 546709.71,
+          "join_rows": 176181.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 5.924378905784392
+        },
+        "true_card": {
+          "execution_ms": 3996.626,
+          "runs_ms": [
+            3978.832,
+            4014.42
+          ],
+          "total_cost": 483001.85,
+          "join_rows": 1043763.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1043763.0,
+          "hint": "/*+ Rows(imdb_t imdb_mi #455223) Rows(imdb_t imdb_mii #143567) Rows(imdb_t imdb_mk #1253091) Rows(imdb_mi imdb_mii #424997) Rows(imdb_mi imdb_mk #5076091) Rows(imdb_mii imdb_mk #3461792) Rows(imdb_t imdb_mi imdb_mii #125530) Rows(imdb_t imdb_mi imdb_mk #1384108) Rows(imdb_t imdb_mii imdb_mk #850677) Rows(imdb_mi imdb_mii imdb_mk #4168677) Rows(imdb_t imdb_mi imdb_mii imdb_mk #1043763) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 4307.487499999999,
+          "runs_ms": [
+            4301.15,
+            4313.825
+          ],
+          "total_cost": 501684.97,
+          "join_rows": 188620.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 188620.5,
+          "hint": "/*+ Rows(imdb_t imdb_mi #440252) Rows(imdb_t imdb_mii #154559) Rows(imdb_t imdb_mk #1558383) Rows(imdb_mi imdb_mii #1113336) Rows(imdb_mi imdb_mk #14174959) Rows(imdb_mii imdb_mk #3876642) Rows(imdb_t imdb_mi imdb_mii #80711) Rows(imdb_t imdb_mi imdb_mk #808096) Rows(imdb_t imdb_mii imdb_mk #294742) Rows(imdb_mi imdb_mii imdb_mk #15776166) Rows(imdb_t imdb_mi imdb_mii imdb_mk #188620) */",
+          "injection_verified": true,
+          "q_error": 5.5336814759834585
+        },
+        "price": {
+          "execution_ms": 3907.457,
+          "runs_ms": [
+            3952.747,
+            3862.167
+          ],
+          "total_cost": 543616.61,
+          "join_rows": 468053.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 468053.1455915614,
+          "hint": "/*+ Rows(imdb_t imdb_mi #634226) Rows(imdb_t imdb_mii #199426) Rows(imdb_t imdb_mk #2277456) Rows(imdb_mi imdb_mii #1115276) Rows(imdb_mi imdb_mk #15578098) Rows(imdb_mii imdb_mk #4352597) Rows(imdb_t imdb_mi imdb_mii #133879) Rows(imdb_t imdb_mi imdb_mk #1380128) Rows(imdb_t imdb_mii imdb_mk #483109) Rows(imdb_mi imdb_mii imdb_mk #18432178) Rows(imdb_t imdb_mi imdb_mii imdb_mk #468053) */",
+          "injection_verified": true,
+          "q_error": 2.230010276613973
+        }
+      }
+    },
+    {
+      "query": 28,
+      "aliases": [
+        "imdb_t",
+        "imdb_ci",
+        "imdb_mc"
+      ],
+      "true_card": 2873214.0,
+      "hinted_prefixes": [
+        "imdb_t imdb_ci",
+        "imdb_t imdb_mc",
+        "imdb_ci imdb_mc",
+        "imdb_t imdb_ci imdb_mc"
+      ],
+      "arms": {
+        "pg_native": {
+          "execution_ms": 7094.3475,
+          "runs_ms": [
+            7005.941,
+            7182.754
+          ],
+          "total_cost": 542945.28,
+          "join_rows": 1953934.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "q_error": 1.4704764848761525
+        },
+        "true_card": {
+          "execution_ms": 6818.075000000001,
+          "runs_ms": [
+            8012.871,
+            5623.279
+          ],
+          "total_cost": 538817.67,
+          "join_rows": 2873214.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 2873214.0,
+          "hint": "/*+ Rows(imdb_t imdb_ci #1759319) Rows(imdb_t imdb_mc #294635) Rows(imdb_ci imdb_mc #27322258) Rows(imdb_t imdb_ci imdb_mc #2873214) */",
+          "injection_verified": true,
+          "q_error": 1.0
+        },
+        "ours": {
+          "execution_ms": 6899.6939999999995,
+          "runs_ms": [
+            7481.914,
+            6317.474
+          ],
+          "total_cost": 538973.65,
+          "join_rows": 1737827.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 1737826.875,
+          "hint": "/*+ Rows(imdb_t imdb_ci #1751507) Rows(imdb_t imdb_mc #343369) Rows(imdb_ci imdb_mc #26973124) Rows(imdb_t imdb_ci imdb_mc #1737827) */",
+          "injection_verified": true,
+          "q_error": 1.653337184886643
+        },
+        "price": {
+          "execution_ms": 6587.368,
+          "runs_ms": [
+            5802.972,
+            7371.764
+          ],
+          "total_cost": 551589.74,
+          "join_rows": 2440631.0,
+          "node_types": [
+            "Hash Join"
+          ],
+          "injected": 2440630.7716749646,
+          "hint": "/*+ Rows(imdb_t imdb_ci #1983715) Rows(imdb_t imdb_mc #520099) Rows(imdb_ci imdb_mc #28249320) Rows(imdb_t imdb_ci imdb_mc #2440631) */",
+          "injection_verified": true,
+          "q_error": 1.1772422787385721
+        }
+      }
+    }
+  ]
+}
