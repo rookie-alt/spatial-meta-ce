@@ -51,6 +51,25 @@ for _seed in (42, 43, 44):
         f"实验文档/results/erm-sum-target-20260927/s{_seed}-summary.json"
     )
 
+# doc 108: the four target databases re-measured on three seeds
+EVIDENCE["target3seed_summary.json"] = (
+    "实验文档/results/p2-2-target-3seed-20261023/summary.json"
+)
+# doc 106: linear probe on the frozen representation (database identity)
+EVIDENCE["probe_summary.json"] = (
+    "实验文档/results/p2-2-db-identity-probe-20261023/summary.json"
+)
+# doc 110: three-layer latency measurement (L1 forward, L2 estimation, L3 execution)
+for _name, _path in (
+    ("latency_cpu_fomaml.json", "latency-cpu-fomaml.json"),
+    ("latency_cpu_erm.json", "latency-cpu-erm.json"),
+    ("latency_cuda_fomaml.json", "latency-cuda-fomaml.json"),
+    ("estimation_cpu_fomaml.json", "estimation-cpu-fomaml.json"),
+):
+    EVIDENCE[_name] = f"实验文档/results/latency-20261025/{_path}"
+for _db in TARGET_DBS:
+    EVIDENCE[f"e2e_{_db}.json"] = f"实验文档/results/latency-20261025/e2e-{_db}.json"
+
 # evidence that lives on this branch (literature comparison)
 LIT_EVIDENCE = {
     "allrows_summary.json": "实验文档/results/p2-2-allrows-lit-20261022/summary.json",
@@ -97,6 +116,25 @@ def fetch_evidence(
 
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def renumber_section_refs(obj):
+    """Rewrite 「第 08 节」 -> 「第 09 节」 inside the literature evidence.
+
+    related_work.json was written on 2026-10-22, when the literature section
+    was number 08.  Inserting the latency section pushed it to 09.  The file is
+    sha256-pinned evidence, so it is not edited; the reference is retargeted in
+    memory at render time instead.  Only the literature bundle is passed in,
+    so the script's own 「第 08 节」 mentions (which do mean the latency section)
+    are untouched.
+    """
+    if isinstance(obj, str):
+        return obj.replace("第 08 节", "第 09 节")
+    if isinstance(obj, list):
+        return [renumber_section_refs(item) for item in obj]
+    if isinstance(obj, dict):
+        return {key: renumber_section_refs(value) for key, value in obj.items()}
+    return obj
 
 
 # ----------------------------------------------------------------- computation
@@ -288,7 +326,9 @@ def build_facts(evidence_dir: Path) -> dict:
     paper_table = load_json(evidence_dir / "price_paper_table2.json")
     facts["allrows"] = allrows
     facts["paper_table"] = paper_table
-    facts["related_work"] = load_json(evidence_dir / "related_work.json")
+    facts["related_work"] = renumber_section_refs(
+        load_json(evidence_dir / "related_work.json")
+    )
     for db in TARGET_DBS:
         published = paper_table["q_error"][db]["PG"]["q95"]
         measured = allrows["databases"][db]["pg"]["q95"]
@@ -319,6 +359,173 @@ def build_facts(evidence_dir: Path) -> dict:
             raise SystemExit(
                 f"doc 14 PG mismatch for {db}: {parsed['pg']} vs {q95(db, 'pg')}"
             )
+
+    # doc 108: three-seed re-measurement.  The single-seed target numbers above
+    # stay as they are (they are the same measurement); doc 108 is the
+    # robustness check that the direction survives a seed change.
+    target3 = load_json(evidence_dir / "target3seed_summary.json")
+    headline = target3["headline"]
+    per_db_beaten = sum(
+        entry["seeds_beating_price_on_q95"] for entry in target3["databases"].values()
+    )
+    if per_db_beaten != headline["seed_database_pairs_beating_price"]:
+        raise SystemExit(
+            "doc 108: per-database win counts disagree with the headline "
+            f"({per_db_beaten} vs {headline['seed_database_pairs_beating_price']})"
+        )
+    if headline["seed_database_pairs_beating_price"] != 0:
+        raise SystemExit(
+            "doc 108 now reports a seed beating PRICE on Q95; the report's "
+            "「0/12」 wording is stale and must be revisited"
+        )
+    facts["target3seed"] = target3
+    facts["target3seed_ratio"] = headline["median_q95_ratio_price_over_ours"]["value"]
+
+    # doc 106: the probe has to clear its own negative control, otherwise the
+    # "database identity is linearly readable" claim is a probe artefact.  The
+    # body text says "almost perfectly separable", so require an order of
+    # magnitude over chance, not merely beating the control.
+    probe = load_json(evidence_dir / "probe_summary.json")
+    if probe["k_way"]["accuracy"] < 10 * probe["k_way"]["chance"]:
+        raise SystemExit(
+            "doc 106: probe accuracy is not an order of magnitude above chance "
+            f"({probe['k_way']['accuracy']} vs chance {probe['k_way']['chance']})"
+        )
+    if probe["k_way"]["accuracy"] <= probe["negative_control"]["accuracy"] * 2:
+        raise SystemExit(
+            "doc 106: probe accuracy does not clear the permuted-label control "
+            f"({probe['k_way']['accuracy']} vs {probe['negative_control']['accuracy']})"
+        )
+    if len(probe["lodo_centroid_ratio"]) != probe["n_databases"]:
+        raise SystemExit(
+            "doc 106: centroid-ratio rows do not cover every probed database "
+            f"({len(probe['lodo_centroid_ratio'])} vs {probe['n_databases']})"
+        )
+    if probe["target_databases_read"]:
+        raise SystemExit(
+            "doc 106: the probe claims to have read target databases; the "
+            "report's read-only-to-sources claim would be false"
+        )
+    facts["probe"] = probe
+    probe_ratios = [entry["ratio"] for entry in probe["lodo_centroid_ratio"]]
+    facts["probe_centroid_ratio_median"] = stats.median(probe_ratios)
+    facts["probe_centroid_ratio_separated"] = sum(1 for r in probe_ratios if r > 2.0)
+
+    # doc 110: the three latency layers.  The injection self-check is the
+    # quality gate for L3 -- an unverified injection silently degrades that arm
+    # to pg_native while still being reported as a measurement.
+    latency = load_json(evidence_dir / "latency_cpu_fomaml.json")
+    latency_erm = load_json(evidence_dir / "latency_cpu_erm.json")
+    latency_gpu = load_json(evidence_dir / "latency_cuda_fomaml.json")
+    estimation = load_json(evidence_dir / "estimation_cpu_fomaml.json")
+    e2e = {db: load_json(evidence_dir / f"e2e_{db}.json") for db in TARGET_DBS}
+
+    # L1 must be the forward pass alone; a file that silently grew feature
+    # extraction or planning would inflate the speedup without looking wrong.
+    for name, payload in (
+        ("L1 cpu", latency),
+        ("L1 cpu erm", latency_erm),
+        ("L1 gpu", latency_gpu),
+    ):
+        if (
+            payload["includes_feature_extraction"]
+            or payload["includes_plan_generation"]
+            or payload["includes_database_execution"]
+        ):
+            raise SystemExit(
+                f"doc 110: {name} claims to include extraction/planning/execution; "
+                "L1 must be the forward pass alone"
+            )
+    if estimation["includes_feature_extraction"] is not True:
+        raise SystemExit(
+            "doc 110: L2 no longer includes feature extraction; the chain claim "
+            "would be understated"
+        )
+
+    for db, payload in e2e.items():
+        for arm, check in payload["injection_checks"].items():
+            if check["unverified"] != 0:
+                raise SystemExit(
+                    f"doc 110: {db}/{arm} has {check['unverified']} unverified "
+                    "cardinality injections; the L3 ratio would be meaningless"
+                )
+        if payload["includes_feature_extraction"]:
+            raise SystemExit(
+                f"doc 110: L3 for {db} claims to include feature extraction; "
+                "L3 must not, or it double-counts L2"
+            )
+    facts["latency"] = latency
+    facts["latency_gpu"] = latency_gpu
+    facts["estimation"] = estimation
+    facts["e2e"] = e2e
+    facts["latency_breaches"] = latency["stability_breaches"]
+
+    # 110 §3.1 voids the unstable stats row and says to take the CPU number from
+    # the ERM arm (latency does not depend on the weights, §3.5).  Do exactly
+    # that instead of quoting a run the source document rejected.
+    facts["latency_fallback_dbs"] = sorted(
+        b["database"] for b in latency["stability_breaches"]
+    )
+    cpu_ours_p50 = {}
+    for db in TARGET_DBS:
+        arm = latency["databases"][db]["models"]["ours"]
+        if arm["stability_ok"] and db not in facts["latency_fallback_dbs"]:
+            cpu_ours_p50[db] = arm["population"]["p50"]
+        else:
+            fallback = latency_erm["databases"][db]["models"]["ours"]
+            if not fallback["stability_ok"]:
+                raise SystemExit(
+                    f"doc 110: both arms are unstable for {db}; there is no "
+                    "trustworthy L1 number to report"
+                )
+            cpu_ours_p50[db] = fallback["population"]["p50"]
+    facts["latency_cpu_ours_p50"] = cpu_ours_p50
+
+    speedups_cpu, speedups_gpu, speedups_chain = [], [], []
+    for db in TARGET_DBS:
+        price = latency["databases"][db]["models"]["price"]["cache"]
+        speedups_cpu.append(price["population"]["p50"] / cpu_ours_p50[db])
+        ours_gpu = latency_gpu["databases"][db]["models"]["ours"]
+        price_gpu = latency_gpu["databases"][db]["models"]["price"]["cache"]
+        speedups_gpu.append(
+            price_gpu["population"]["p50"] / ours_gpu["population"]["p50"]
+        )
+        chain = estimation["databases"][db]
+        speedups_chain.append(
+            chain["price_total_ms"]["p50"] / chain["ours_total_ms"]["p50"]
+        )
+    if min(speedups_chain) <= 1.0:
+        raise SystemExit(
+            "doc 110: the estimation chain is not faster than PRICE on some "
+            f"database ({min(speedups_chain):.3f}); the report claims a speedup"
+        )
+    facts["speedup_forward_cpu"] = (min(speedups_cpu), max(speedups_cpu))
+    facts["speedup_forward_gpu"] = (min(speedups_gpu), max(speedups_gpu))
+    facts["speedup_chain"] = (min(speedups_chain), max(speedups_chain))
+    for arm, key in (("true_card", "true"), ("ours", "ours"), ("price", "price")):
+        values = [e2e[db]["ratios_to_pg_native"][arm]["median"] for db in TARGET_DBS]
+        facts[f"e2e_ratio_{key}"] = (min(values), max(values))
+
+    # The prose says "no measurable effect", which only holds while every arm
+    # sits near 1.0; a re-measurement outside this band must change the wording.
+    band = [0.95, 1.05]
+    for key in ("true", "ours", "price"):
+        low, high = facts[f"e2e_ratio_{key}"]
+        if low < band[0] or high > band[1]:
+            raise SystemExit(
+                f"doc 110: L3 {key} ratios {low:.3f}-{high:.3f} leave the "
+                f"[{band[0]}, {band[1]}] band; 「无可测收益」 would be false"
+            )
+    facts["extraction_share"] = (
+        min(
+            estimation["databases"][db]["extraction_share_of_ours_total"]
+            for db in TARGET_DBS
+        ),
+        max(
+            estimation["databases"][db]["extraction_share_of_ours_total"]
+            for db in TARGET_DBS
+        ),
+    )
     return facts
 
 
@@ -920,14 +1127,16 @@ def build_verdict_block(facts: dict) -> str:
 <div class="verdict">
   <p class="label">一句话结论</p>
   <p>在<b>双方都没训练过</b>的四个目标库上，我们的 K=0 尾部精度 <b>4/4 全部落后于 PRICE</b>
-  （PRICE/我们 中位 {t["price_median"]:.3f}，即我们差约 {1 / t["price_median"]:.1f} 倍）；
+  （PRICE/我们 中位 {t["price_median"]:.3f}，即我们差约 {1 / t["price_median"]:.1f} 倍；
+  三 seed 复核后是 <b>0/{facts["target3seed"]["headline"]["total_seed_database_pairs"]}</b> 个
+  （seed × 库）组合获胜，中位 {facts["target3seed_ratio"]:.3f}，方向和量级都不变）；
   在 <b>PRICE 训练过、我们训练过 23 个</b>的 26 个源库上，我们 <b>{s["win_price"]}/26</b> 优于 PRICE
   （中位 {s["price_median"]:.3f}，其中 {len(noise)} 个落在 seed 噪声带内、
   {stable} 个稳赢）。</p>
   <p><b>这个反转本身就是结论</b>：赢面来自拟合，不是漂移。对传统优化器 PG，两组都好于它
   （目标库 3/4 赢，源库 {s["win_pg"]}/26 赢）。</p>
 </div>
-<p>三条支撑事实：</p>
+<p>五条支撑事实：</p>
 <ul>
   <li><b>差距落在排序一致性上</b>，不是校准、也不是过度收缩：目标库 4/4 的与真值相关性低于 PRICE
   （dCorr 中位 {t["dcorr_median"]:+.4f}），源库只有 {s["corr_lose"]}/26 落后；两组的偏差中位
@@ -938,10 +1147,18 @@ def build_verdict_block(facts: dict) -> str:
   4+ 桶仅 118 条、由约 6 条决定。</li>
   <li><b>同赛道的直接对手基本只有 PRICE</b>：整库留出零样本这一设定，可查到的公开工作里
   只有 PRICE（已发表）与一篇已撤回的预印本；CardOOD、GRASP、AHCE/DACE 的指标与我们恒等，
-  但设定都不是整库零样本（详见 <a href="#literature">08 与文献的同口径对照</a>）。</li>
+  但设定都不是整库零样本（详见 <a href="#literature">09 与文献的同口径对照</a>）。</li>
+  <li><b>换个角度也没有额外收益</b>：110 号实测端到端执行时间，我们和 PRICE 相对
+  <code>pg_native</code> 都落在
+  {min(facts["e2e_ratio_ours"][0], facts["e2e_ratio_price"][0]):.3f}–
+  {max(facts["e2e_ratio_ours"][1], facts["e2e_ratio_price"][1]):.3f} 之间，
+  <b>连注入精确真值也只到
+  {facts["e2e_ratio_true"][0]:.3f}–{facts["e2e_ratio_true"][1]:.3f}</b>；
+  前向单项虽然快 {facts["speedup_forward_cpu"][0]:.1f}–{facts["speedup_forward_cpu"][1]:.1f}×，
+  但<b>精度与执行时间不单调</b>（<a href="#latency">08 延迟与端到端</a>）。</li>
 </ul>
 <p class="small muted">第一次看到 <code>seed</code>、<code>K=0</code>、<code>Q95</code> 这类词时，
-可直接查末尾的 <a href="#glossary">11 名词表</a>。</p>
+可直接查末尾的 <a href="#glossary">12 名词表</a>。</p>
 """
 
 
@@ -975,10 +1192,19 @@ def build_limits_block(facts: dict) -> str:
   <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 {stats_ratio:.3f}，属于打平而非胜负。</span></li>
   <li><span class="tag no">不可写</span><span>“我们优于 CardOOD / GRASP / AHCE”——它们的指标口径与我们恒等，
   但留出方式不是整库零样本，没有可比对象；也不把已撤回的 2502.14350 当作证据引用。</span></li>
+  <li><span class="tag no">不可写</span><span>“我们比 PRICE 快”——端到端执行时间无可测差异
+  （我们 {facts["e2e_ratio_ours"][0]:.3f}–{facts["e2e_ratio_ours"][1]:.3f}，
+  PRICE {facts["e2e_ratio_price"][0]:.3f}–{facts["e2e_ratio_price"][1]:.3f}），
+  且这个量级连精确真值都达不到。能写的是<b>前向单项</b>快
+  {facts["speedup_forward_cpu"][0]:.1f}–{facts["speedup_forward_cpu"][1]:.1f}×。</span></li>
+  <li><span class="tag no">不可写</span><span>“精度上去了查询就更快”——实测反驳：真值臂 Q-error 恒为 1.00，
+  却在四个库里从来不是最快的（第 08 节）。</span></li>
 </ul>
-<p class="small muted">其它限定：所有 ours 侧数字为<b>单 seed（42）</b>，标记
-<code>needs_evidence</code>；94 号实测 seed 间标准差 6.28pp，大于本表多数效应量；
-推理耗时不等于数据库端到端加速；本页只测精度。</p>
+<p class="small muted">其它限定：<b>四目标库的 Q95 已补到三 seed</b>（108 号，第 02 节），
+第 03–05 节的定量分解仍是<b>单 seed（42）</b>，标 <code>needs_evidence</code>；
+94 号实测 seed 间标准差 6.28pp，大于那些表里多数效应量。
+L3 的「执行时间」不含特征提取、模型前向与优化器规划时间，所以「L3 无收益」不等于
+「接入我们没有额外开销」——那部分成本在 L2 里（第 08 节）。</p>
 """
 
 
@@ -994,7 +1220,9 @@ def build_evidence_block(facts: dict, digests: dict[str, str]) -> str:
     broad = facts["broad"]
     return f"""
 <p>本报告<b>我们方</b>的每个数字都由 <code>scripts/build_advisor_report.py</code> 从下列已入库的
-证据文件计算，不手工誊抄。生成时会做三组断言，任何不一致都会中止构建：</p>
+证据文件计算，不手工誊抄。生成时会做<b>十几组断言</b>，任何不一致都会中止构建；
+下面列三组长期使用的，本轮为 106 / 108 / 110 新增的七组摘要见
+<a href="../实验文档/104-导师汇报报告与文献对标.md">104 号 §7.2</a>：</p>
 <ul class="small">
   <li>30 库 Q95 与 <code>cross_database</code> 计数自洽；</li>
   <li>14 号表格中可由 JSON 复现的三个臂（FOMAML-set / ERM-set / ERM-sum）逐格对得上
@@ -1005,7 +1233,9 @@ def build_evidence_block(facts: dict, digests: dict[str, str]) -> str:
 <p><b>文献方</b>的数字是<b>论文发表值的转录</b>，不是我们自己测的，因此单独列出并附出处；
 转录的原文依据、核对方式与未核实项都记在下列文件里，报告只引用其中已核实的数值：</p>
 <div class="evidence"><div>{esc(lit_body)}</div></div>
-<p class="small muted">证据等级：<code>{broad["evidence_level"]}</code>；
+<p class="small muted"><b>下列证据等级只描述第 05 节那份 30 库误差分解文件，不是全报告等级</b>
+（全报告等级见页头）。
+<code>{broad["evidence_level"]}</code>；
 <code>needs_evidence = {str(broad["needs_evidence"]).lower()}</code>，
 理由：{esc(broad["needs_evidence_reason"])}。
 <code>target_databases_read = {broad["target_databases_read"]}</code>，仅用于最终评估。</p>
@@ -1017,7 +1247,7 @@ GLOSSARY = [
     (
         "seed（随机种子）",
         "训练随机性的起点。同一个配置配同一个 seed，每次跑出的模型都一样；换 seed 等于换一次参数初始化、换一次数据排列顺序，得到一个不同的模型。",
-        "我们只用 seed 42 这一个模型。94 号实测换 seed 会让同一方法的 Q95 波动约 ±6.28 个百分点，所以差距小于它的结论只能算打平。",
+        "主线精度表用 seed 42 这一个模型；四目标库的 Q95 已扩到三 seed（第 02 节），其余定量分解仍是单 seed。94 号实测换 seed 会让同一方法的 Q95 波动约 ±6.28 个百分点，所以差距小于它的结论只能算打平。",
     ),
     (
         "checkpoint（检查点）",
@@ -1168,7 +1398,8 @@ GLOSSARY = [
     (
         "needs_evidence",
         "证据强度标记，提示该结论需要更多实验支撑。",
-        "全报告 ours 侧数字都带这个标记，因为只有单 seed。",
+        "第 01 节与第 03–05 节的 ours 侧数字仍是单 seed，带这个标记；"
+        "四目标库的 Q95 已补到三 seed（第 02 节），那部分不再标。",
     ),
     (
         "sha256",
@@ -1179,7 +1410,7 @@ GLOSSARY = [
     (
         "Q-ERROR",
         "PRICE 论文里用的误差指标：预测值与真值差了几倍，取两者的较大倍数。",
-        "与我们的 Q95 是同一个量（已数值验证，相对差 2.9e-15），所以第 08 节能把我们的数直接放进论文的表里。",
+        "与我们的 Q95 是同一个量（已数值验证，相对差 2.9e-15），所以第 09 节能把我们的数直接放进论文的表里。",
     ),
     (
         "p-error",
@@ -1189,12 +1420,19 @@ GLOSSARY = [
     (
         "all-rows（全部行）",
         "不去重，把工作负载里每一条查询结果行都算进指标。",
-        "PRICE 论文用的是这个口径；本项目主指标用 unique-query。第 08 节另算了一份 all-rows 专门用来对表。",
+        "PRICE 论文用的是这个口径；本项目主指标用 unique-query。第 09 节另算了一份 all-rows 专门用来对表。",
     ),
     (
         "E2E（端到端）",
         "把估计器接进真实数据库跑完整条查询链，测总耗时。",
-        "PRICE、GRASP、CardOOD 都报了，我们一个都没测——这是本报告明确列出的证据缺口。",
+        "PRICE、GRASP、CardOOD 都报了。本项目 110 号已实测四库四臂（不注入 / 精确真值 / 我们 / PRICE），"
+        "结论是执行时间无可测差异，详见第 08 节。",
+    ),
+    (
+        "L1 / L2 / L3",
+        "三层延迟口径：L1 是模型前向单项，L2 是 SQL 解析＋特征提取＋前向的完整估计链，"
+        "L3 是真实数据库执行时间。",
+        "三层逐层放大，速度优势也随之缩小；混着报会夸大收益。L3 不含前两层，L1 也不能当端到端用。",
     ),
     (
         "Visual Genome",
@@ -1292,11 +1530,24 @@ def build_advantages_block(facts: dict) -> str:
             "方法层面的差异，精度上尚未在漂移场景证明",
         ),
         (
-            "推理延迟",
-            "未测",
-            "未测",
-            "—",
-            "参数量小不等于更快，本项目没有测过端到端耗时",
+            "推理延迟（L1 前向 p50）※",
+            f"比 PRICE 快 {facts['speedup_forward_cpu'][0]:.1f}–"
+            f"{facts['speedup_forward_cpu'][1]:.1f}×（CPU 单线程）",
+            "基准",
+            "无模型前向",
+            "单项前向确实快一到两个数量级，但整条估计链只快 "
+            f"{facts['speedup_chain'][0]:.1f}–{facts['speedup_chain'][1]:.1f}×（第 08 节）",
+        ),
+        (
+            "数据库执行时间（L3 端到端）※",
+            f"无可测收益（{facts['e2e_ratio_ours'][0]:.3f}–"
+            f"{facts['e2e_ratio_ours'][1]:.3f}）",
+            f"无可测收益（{facts['e2e_ratio_price'][0]:.3f}–"
+            f"{facts['e2e_ratio_price'][1]:.3f}）",
+            "基准 1.000",
+            "连注入精确真值也只到 "
+            f"{facts['e2e_ratio_true'][0]:.3f}–{facts['e2e_ratio_true'][1]:.3f}；"
+            "精度与执行时间不单调",
         ),
     ]
     body = "".join(
@@ -1316,10 +1567,14 @@ def build_advantages_block(facts: dict) -> str:
 最大的 genome 领先 11 倍以上，源库 24/26 赢；②参数规模比 PRICE 小
 {facts["parameter_ratio"]:.1f}×，且用的源库更少；③方法本体带少样本适应能力，
 而本轮对 PRICE 的对照是零样本——这是设计差异，不是精度优势。</p>
-<p><b>必须同时说明的两条：</b>①对 PRICE 的尾部精度我们目前是负结果
-（目标库 4/4 输，4+ 桶中位 {facts["four_plus_price_median"]:.3f}），
-所以不能说比 PRICE 好；②参数量小<b>不等于</b>推理更快或端到端更快——
-本项目没有测过推理延迟，14 号 §5.2 明确禁止把参数比当作速度主张。</p>
+<p><b>必须同时说明的三条：</b>①对 PRICE 的尾部精度我们目前是负结果
+（目标库 4/4 输，三 seed 下仍是 0/12，4+ 桶中位 {facts["four_plus_price_median"]:.3f}），
+所以不能说比 PRICE 好；②参数量小<b>不等于</b>端到端更快——这个信息不足的问题 110 号已经补上了，
+结论是<b>前向确实快、执行时间没有可测收益</b>（第 08 节），两件事必须分开说；
+③本表<b>前七行</b>的「我们」列对应 <b>ERM-sum</b> 配置（{facts["our_parameters"]:,} 参数），
+集合架构（{facts["set_parameters"]:,} 参数）是另一套，两个倍数不能混用；
+带 <b>※</b> 的两行延迟测的是 <b>FOMAML-set seed42</b>（{facts["set_parameters"]:,} 参数），
+不是 ERM-sum——延迟由张量形状决定、与权重无关（两臂 p50 差 ≤0.04 ms），但报告里必须标清楚测的是哪个模型。</p>
 """
 
 
@@ -1328,6 +1583,234 @@ def fmt_compact(value: float) -> str:
     if value >= 10000:
         return f"{value:.0e}".replace("e+0", "e").replace("e+", "e")
     return f"{value:.2f}"
+
+
+def build_threeseed_block(facts: dict) -> str:
+    """Doc 108: the same four target databases, three seeds instead of one."""
+    data = facts["target3seed"]
+    order = ("stats", "genome", "ergastf1", "imdb")
+    rows = []
+    worst_spread = (0.0, "")
+    for db in order:
+        entry = data["databases"][db]
+        ours = entry["ours_k0"]["q95"]
+        per_seed = entry["ours_k0"]["per_seed_q95"]
+        spread = ours["std"] / ours["mean"]
+        if spread > worst_spread[0]:
+            worst_spread = (spread, db)
+        seeds = " / ".join(f"{per_seed[s]:.2f}" for s in ("42", "43", "44"))
+        seed_span = f"{ours['min']:.2f}–{ours['max']:.2f}"
+        rows.append(
+            "<tr>"
+            f"<td><b>{db}</b></td>"
+            f"<td class='num'>{entry['n']:,}</td>"
+            f"<td class='num'>{ours['mean']:.2f} ± {ours['std']:.2f}</td>"
+            f"<td class='num muted'>{seed_span}</td>"
+            f"<td class='num muted'>{seeds}</td>"
+            f"<td class='num'>{entry['price_k0']['q95']['mean']:.2f}</td>"
+            f"<td class='num'>{entry['pg']['q95']['mean']:,.2f}</td>"
+            f"<td class='num'>{entry['median_q95_ratio_price_over_ours']:.3f}</td>"
+            f"<td class='num'>{entry['median_q95_ratio_pg_over_ours']:.2f}×</td>"
+            f"<td class='num'>{entry['seeds_beating_price_on_q95']}/3</td>"
+            "</tr>"
+        )
+    headline = data["headline"]
+    return f"""
+<h3>三 seed 复核：方向不变，量级不变，但 genome 的离散度大到不能只写均值</h3>
+<p>上一节的数字是<b>单 seed（42）</b>。108 号用与 seed42 逐字节相同的训练配置、只改 <code>seed</code> 字段，
+把四个目标库各重测两遍。结论没有翻案，但多了两条必须一起报的事实。</p>
+<div class="tablewrap"><table>
+<caption><b>四目标库 K=0 唯一查询 Q95，三 seed</b>　PRICE 与 PG 不随 seed 变化（PRICE 是同一份官方权重，
+PG 是缓存里的原始估计），所以它们的列没有误差棒。<b>「PRICE/我们」与「PG/我们」两列是
+逐 seed 比值的中位数</b>，不是「两列均值相除」——两种算法在重尾数据上会差几个百分点。</caption>
+<thead><tr><th>库</th><th>n</th><th>我们（均值 ± SD）</th><th>三 seed 区间</th>
+<th>逐 seed</th><th>PRICE</th><th>PG</th><th>PRICE/我们</th><th>PG/我们</th><th>赢 PRICE</th></tr></thead>
+<tbody>{"".join(rows)}</tbody></table></div>
+<p><b>这张表最该看的是第四列。</b>{worst_spread[1]} 的三 seed 标准差是均值的
+{worst_spread[0] * 100:.0f}%，逐 seed 从 {data["databases"][worst_spread[1]]["ours_k0"]["q95"]["min"]:.2f}
+跨到 {data["databases"][worst_spread[1]]["ours_k0"]["q95"]["max"]:.2f}。
+引用 {worst_spread[1]} 的任何倍数都必须带区间，不能只引均值。</p>
+<p>汇总：<b>{headline["total_seed_database_pairs"] - headline["seed_database_pairs_beating_price"]}
+/{headline["total_seed_database_pairs"]}</b> 个（seed × 库）组合在 Q95 上输给 PRICE，
+<b>{headline["seed_database_pairs_beating_pg"]}/{headline["total_seed_database_pairs"]}</b> 个赢 PG；
+PRICE/我们 的中位比值从单 seed 的 {facts["targets"]["price_median"]:.3f}
+变成三 seed 的 {facts["target3seed_ratio"]:.3f}——差别在第三位小数，方向和量级都不变。</p>
+"""
+
+
+def build_probe_block(facts: dict) -> str:
+    """Doc 106: is database identity linearly readable from the frozen encoding?"""
+    probe = facts["probe"]
+    k_way = probe["k_way"]
+    control = probe["negative_control"]
+    separated = facts["probe_centroid_ratio_separated"]
+    median_ratio = facts["probe_centroid_ratio_median"]
+    return f"""
+<h3>表示探针：模型确实在表征里编了「这是哪个库」</h3>
+<p>前一段说差距跟着训练曝光走，但没说机制。最直接的假设是：模型学到了一条
+<b>库身份捷径</b>——只要认出这个库，就能套用该库的偏移量，而新库认不出来就失效。
+106 号用探针检验这条假设：冻结 checkpoint，对 {probe["n_databases"]} 个源库的
+{probe["n_rows"]:,} 条唯一查询做前向，取 <code>_head_input</code> 的
+{probe["feature_dim"]} 维池化向量，跑 {k_way["folds"]} 折线性分类器，任务是
+<b>{probe["n_databases"]} 选 1 猜库名</b>。</p>
+<div class="tablewrap"><table>
+<thead><tr><th>测的是什么</th><th>结果</th><th>随机基线</th><th>怎么读</th></tr></thead>
+<tbody>
+<tr><td><b>库身份可读性</b>（{probe["n_databases"]} 类，{k_way["folds"]} 折）</td>
+<td class="num"><b>{k_way["accuracy"]:.4f}</b></td><td class="num">{k_way["chance"]:.4f}</td>
+<td>几乎完全可分——捷径真实存在</td></tr>
+<tr><td>负对照（打乱库标签后重跑同一探针）</td>
+<td class="num">{control["accuracy"]:.4f}</td><td class="num">{control["chance"]:.4f}</td>
+<td>回落到随机，说明上面那个数不是探针伪影</td></tr>
+<tr><td>质心比中位（库内散度作分母，越大越分离）</td>
+<td class="num">{median_ratio:.2f}</td><td class="num">—</td>
+<td>只有 {separated}/{probe["n_databases"]} 个库超过 2.0</td></tr>
+</tbody></table></div>
+<p><b>但这个结果不能直接推出「每库一座孤岛」。</b>质心比中位只有 {median_ratio:.2f}，
+真正明显分离的只有 {separated}/{probe["n_databases"]} 个库。也就是说捷径是
+<b>重叠区域里的方向性差异</b>，不是每库各占一块互不重叠的地盘。
+直接后果：单纯把各库质心拉近的域不变正则<b>不够</b>——那些正则优化的量，
+在这个表征里本来就没有分开多少。后续任何「抹掉库信息」的干预，
+都必须拿这个探针准确率当验收指标，而不是靠 Q95 间接判断。</p>
+<p class="small muted">边界：单 seed（42）的冻结 checkpoint，只有线性探针一种读法，未做多种探针交叉验证。
+未读任何目标库（<code>target_databases_read: {probe["target_databases_read"]}</code>），
+脚本在构建时断言这一点。</p>
+"""
+
+
+def build_latency_block(facts: dict) -> str:
+    """Doc 110: three layers of latency, and why none of them is an E2E win."""
+    latency = facts["latency"]
+    latency_gpu = facts["latency_gpu"]
+    estimation = facts["estimation"]
+    rows_l1 = []
+    rows_l2 = []
+    rows_l3 = []
+    fallback_dbs = set(facts["latency_fallback_dbs"])
+    cpu_ours_p50 = facts["latency_cpu_ours_p50"]
+    for db in TARGET_DBS:
+        cpu = latency["databases"][db]["models"]
+        gpu = latency_gpu["databases"][db]["models"]
+        ours_cpu = cpu_ours_p50[db]
+        price_cpu = cpu["price"]["cache"]["population"]["p50"]
+        ours_gpu = gpu["ours"]["population"]["p50"]
+        price_gpu = gpu["price"]["cache"]["population"]["p50"]
+        cpu_cell = f"{ours_cpu:.3f}"
+        if db in fallback_dbs:
+            cpu_cell += "<sup>†</sup>"
+        rows_l1.append(
+            "<tr>"
+            f"<td><b>{db}</b></td>"
+            f"<td class='num'>{cpu_cell}</td><td class='num'>{price_cpu:.2f}</td>"
+            f"<td class='num'>{price_cpu / ours_cpu:.1f}×</td>"
+            f"<td class='num'>{ours_gpu:.3f}</td><td class='num'>{price_gpu:.2f}</td>"
+            f"<td class='num'>{price_gpu / ours_gpu:.1f}×</td>"
+            "</tr>"
+        )
+        chain = estimation["databases"][db]
+        ours_chain = chain["ours_total_ms"]["p50"]
+        price_chain = chain["price_total_ms"]["p50"]
+        rows_l2.append(
+            "<tr>"
+            f"<td><b>{db}</b></td>"
+            f"<td class='num'>{ours_chain:.1f}</td><td class='num'>{price_chain:.1f}</td>"
+            f"<td class='num'>{price_chain / ours_chain:.1f}×</td>"
+            f"<td class='num'>{chain['extraction_share_of_ours_total'] * 100:.1f}%</td>"
+            f"<td class='num'>{chain['queries_measured']}/{chain['queries_total']}</td>"
+            "</tr>"
+        )
+        e2e = facts["e2e"][db]
+        ratios = e2e["ratios_to_pg_native"]
+        qerr = e2e["median_q_error"]
+        rows_l3.append(
+            "<tr>"
+            f"<td><b>{db}</b></td>"
+            f"<td class='num'>{ratios['true_card']['n']}</td>"
+            f"<td class='num'>{ratios['true_card']['median']:.4f}</td>"
+            f"<td class='num'>{ratios['ours']['median']:.4f}</td>"
+            f"<td class='num'>{ratios['price']['median']:.4f}</td>"
+            f"<td class='num muted'>{qerr['pg_native']['median']:.2f} / "
+            f"{qerr['true_card']['median']:.2f} / {qerr['ours']['median']:.2f} / "
+            f"{qerr['price']['median']:.2f}</td>"
+            "</tr>"
+        )
+    lo_cpu, hi_cpu = facts["speedup_forward_cpu"]
+    lo_gpu, hi_gpu = facts["speedup_forward_gpu"]
+    lo_chain, hi_chain = facts["speedup_chain"]
+    lo_ext, hi_ext = facts["extraction_share"]
+    breaches = facts["latency_breaches"]
+    breach_note = (
+        "；".join(
+            f"{b['database']} 两次 population pass 的 p50 相差 "
+            f"{b['relative_delta'] * 100:.1f}%（容差 {b['tolerance'] * 100:.0f}%）"
+            for b in breaches
+        )
+        or "四库两次独立 pass 的 p50 全部落在 5% 容差内"
+    )
+    lo_true, hi_true = facts["e2e_ratio_true"]
+    genome_qerr = facts["e2e"]["genome"]["median_q_error"]
+    genome_price_q = genome_qerr["price"]["median"]
+    genome_pg_q = genome_qerr["pg_native"]["median"]
+    return f"""
+<p class="lede">此前的阶段汇报把「没测延迟」列为缺口，110 号把它补上了，而且结论比缺测更值得说：
+<b>前向快一到两个数量级，整条估计链快几倍，但真实数据库执行时间没有可测收益。</b></p>
+
+<h3>L1：模型前向单项（不含特征提取、不含规划、不含执行）</h3>
+<div class="tablewrap"><table>
+<caption><b>单查询前向 p50，毫秒</b>　同一批样本逐条 batch=1，先丢 20 行 warm-up。
+CPU 臂钉死单线程（<code>OMP_NUM_THREADS=1</code>），这是主口径。
+被测模型是 <b>FOMAML-set seed42</b>（99,777 参数），不是前面各表的 ERM-sum。
+PRICE 列取<b>各库自身的 <code>cache</code> maxima</b>（imdb 自身 maxima 比四库合并口径低 13%，两者不可混用）。</caption>
+<thead><tr><th>库</th><th>我们 CPU</th><th>PRICE CPU</th><th>快</th>
+<th>我们 GPU</th><th>PRICE GPU</th><th>快</th></tr></thead>
+<tbody>{"".join(rows_l1)}</tbody></table></div>
+<p>CPU 上快 <b>{lo_cpu:.1f}–{hi_cpu:.1f}×</b>，GPU 上只快 {lo_gpu:.1f}–{hi_gpu:.1f}×。
+<b>batch=1 时 GPU 反而比 CPU 慢约 2 倍</b>（我们自己的 {cpu_ours_p50["imdb"]:.2f} ms 对
+{latency_gpu["databases"]["imdb"]["models"]["ours"]["population"]["p50"]:.2f} ms），
+只有 batch=128 的吞吐才反过来。单查询在线估计应放 CPU。</p>
+<p class="small muted">稳定性：{breach_note}。违约的那次运行 110 号判其作废，
+CPU 数字改取<b>同一库的 ERM 臂</b>（表内 <sup>†</sup> 标注）——依据是延迟由张量形状决定、
+与权重数值无关，两臂 p50 实测差 ≤0.04 ms。</p>
+
+<h3>L2：逐查询完整估计链（SQL 解析 + 特征提取 + 模型前向）</h3>
+<div class="tablewrap"><table>
+<caption><b>每条顶层查询的估计总耗时 p50，毫秒</b>　按查询把各子查询的提取与前向求和，
+即优化器拿到全部基数估计之前的成本。</caption>
+<thead><tr><th>库</th><th>我们</th><th>PRICE</th><th>快</th>
+<th>特征提取占我们成本</th><th>可测查询</th></tr></thead>
+<tbody>{"".join(rows_l2)}</tbody></table></div>
+<p>整条链上我们快 <b>{lo_chain:.1f}–{hi_chain:.1f}×</b>，比 L1 的
+{lo_cpu:.1f}–{hi_cpu:.1f}× 小了一个量级，原因很直接：
+<b>特征提取占我们总成本的 {lo_ext * 100:.1f}–{hi_ext * 100:.1f}%</b>，
+而两条臂消费的是同一组 PRICE 特征，这笔钱谁都省不掉。
+想再快，要动的是提取器，不是模型。</p>
+
+<h3>L3：真实 PostgreSQL 执行（注入基数后跑完整条查询）</h3>
+<div class="tablewrap"><table>
+<caption><b>执行时间中位数相对 <code>pg_native</code> 的比值，越小越快</b>
+四臂在同一批抽样查询上比较，只在四臂都有执行时间的查询上算比值。
+<code>true_card</code> 是注入<b>精确真值</b>的臂，代表完美估计能达到的上限。</caption>
+<thead><tr><th>库</th><th>n</th><th>真值臂</th><th>我们</th><th>PRICE</th>
+<th>Q-error 中位（PG/真值/我们/PRICE）</th></tr></thead>
+<tbody>{"".join(rows_l3)}</tbody></table></div>
+
+<p><b>这一段是本报告最该被追问的地方。</b>把基数估计换成<b>精确真值</b>，执行时间中位数
+也只在 <b>{lo_true:.3f}–{hi_true:.3f}</b> 之间摆动；我们
+（{facts["e2e_ratio_ours"][0]:.3f}–{facts["e2e_ratio_ours"][1]:.3f}）和 PRICE
+（{facts["e2e_ratio_price"][0]:.3f}–{facts["e2e_ratio_price"][1]:.3f}）都在同一带内。
+也就是说在这批查询上，<b>基数误差不是执行时间的主导项</b>。</p>
+<p>更强的一条：<b>精度与执行时间不单调。</b>真值臂的 Q-error 恒为 1.00，
+但它在四个库里从来不是最快的；genome 上 PRICE 的估计 Q-error 是 {genome_price_q:.2f}、PG 是
+{genome_pg_q:.2f}（差约 {genome_price_q / genome_pg_q:.1f} 倍），执行时间反而比 PG 原生略好。
+<b>估计更准不等于计划更好。</b>这条动摇的是「提升基数精度 → 加速查询」这条论证链本身，
+而不只是我们自己的成绩。</p>
+<p class="small muted">口径边界（必须和第 10 节「边界与不可声称」一起读）：L3 汇总的是
+<code>EXPLAIN (ANALYZE)</code> 的 <code>Execution Time</code>，即<b>给定基数、已规划好</b>的查询跑完的时间。
+它<b>不含</b>特征提取与模型前向（那是 L2）、<b>不含</b>优化器规划时间、<b>不含</b>中间件往返与 hint 构造。
+所以「L3 没收益」不等于「接入我们不会有额外开销」——两段成本要分开看。
+另外 stats/ergastf1 用 120 s 语句上限、imdb/genome 用 300 s，跨库绝对时间不可直接比，
+但比值是库内算的，不影响库内结论。</p>
+"""
 
 
 def build_related_work_block(facts: dict) -> str:
@@ -1409,7 +1892,22 @@ def build_related_work_block(facts: dict) -> str:
         for row in paperb["rows"]
     )
 
-    takeaways = "".join(f"<li>{esc(item)}</li>" for item in rw["takeaways"])
+    def _takeaway(item: str) -> str:
+        """Doc 110 superseded the "we never measured E2E" takeaway (written 10-22).
+
+        The evidence JSON is sha256-pinned, so the sentence is struck through in
+        place rather than edited -- the old claim stays visible and traceable, and
+        the reader cannot mistake it for current.
+        """
+        if "没有报时间" in item or "只报误差" in item:
+            return (
+                f'<li><s class="muted">{esc(item)}</s><br>'
+                "<b>（已被 110 号更新：110 号已补测 L1/L2/L3，见第 08 节；"
+                "现状是「有实测、但口径与 GRASP/PRICE 报的不同，绝对值不可并列」）</b></li>"
+            )
+        return f"<li>{esc(item)}</li>"
+
+    takeaways = "".join(_takeaway(item) for item in rw["takeaways"])
 
     lineage = rw["metric_lineage"]
     lineage_rows = "".join(
@@ -1449,7 +1947,9 @@ def build_related_work_block(facts: dict) -> str:
 <h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">GRASP（VLDB 2025）</h4>
 <p class="small">不访问数据库数据、只吃查询与 schema 的组合式模型；留出的是
 <b>join 模板</b>而非数据库，因此与我们不是同一设定。它同时提供了
-<b>端到端时间</b>，这是我们目前完全缺失的一类证据。</p>
+<b>端到端时间</b>——10-22 那版报告把它列为我们缺失的一类证据，110 号已补测（第 08 节）；
+但两者口径不同（GRASP 报 CEB 上整条查询的总运行时间，我们的 L3 是
+<code>EXPLAIN (ANALYZE)</code> 的 <code>Execution Time</code>），<b>绝对值不可直接比</b>。</p>
 <div class="tablewrap"><table>
 <caption><b>GRASP 的 Q-error（seen / unseen join 模板，Median / %95 / Mean）</b>
 转录自 vldb.org 官方 PDF（vol18/p2519-wu.pdf）Table 6。</caption>
@@ -1496,6 +1996,14 @@ def build_literature_block(facts: dict) -> str:
     allrows = facts["allrows"]
     paper = facts["paper_table"]
     qe = paper["q_error"]
+    # measured PRICE forward p50, for the "not comparable to the paper's ms" note
+    price_l1_ms = [
+        facts["latency"]["databases"][db]["models"]["price"]["cache"]["population"][
+            "p50"
+        ]
+        for db in TARGET_DBS
+    ]
+    speed_lo, speed_hi = facts["speedup_forward_cpu"]
 
     # reproduction check: our re-run of PRICE and PG must land on the paper
     price_diffs = {
@@ -1614,9 +2122,17 @@ PRICE (Finetuned) 用 5×10⁴ 条目标库查询微调过，属另一种设定�
 <p><b>怎么读这一节：</b>在这个口径下，我们<b>优于 DeepDB、NeuroCard、MSCN、FactorJoin 中的大多数</b>，
 而这些对手是<b>在每个目标库上单独训练 5×10⁴ 条查询</b>的模型；我们是<b>用 23 个源库预训练一次、
 零样本直接用</b>。我们仍然落后 PRICE 与 ALECE，且在 Q95 上确实不是第一。</p>
-<p><b>两条必须同时说的：</b>①本项目尚<b>没有测过</b>推理延迟与端到端时间，而论文给了这两个数
-（PRICE 推理 5.3–14.1 ms/查询，E2E 在 stats/ergastf1/genome 三库最优）——这是我们相对论文
-最明显的证据缺口，参数少 80.80× 不等于更快；②PRICE 论文摘要称「achieving the highest estimation
+<p><b>两条必须同时说的：</b>①论文给了推理延迟与端到端两个数（PRICE 推理 5.3–14.1 ms/查询，
+E2E 在 stats/ergastf1/genome 三库最优）。此前的阶段汇报把「我们没测」列为最明显的证据缺口，
+110 号已经补上：<b>前向单项我们快 {facts["speedup_forward_cpu"][0]:.1f}–{facts["speedup_forward_cpu"][1]:.1f}×，
+但端到端执行时间没有可测差异</b>（第 08 节）。所以「参数少 {facts["parameter_ratio"]:.2f}×」
+这条<b>仍然不能</b>换算成速度优势——现在这一点有实测支撑，不再只是谨慎措辞。
+<b>但论文的 5.3–14.1 ms 与我们实测的 PRICE 前向不可比</b>：本轮同机同批实测 PRICE 前向 p50 是
+{min(price_l1_ms):.1f}–{max(price_l1_ms):.1f} ms，比论文高 2–6 倍
+（CPU 型号、batch、padding 口径均不同）。
+{speed_lo:.1f}–{speed_hi:.1f}× 是<b>同机同批的比值</b>，
+不能与论文的毫秒绝对值并列使用；
+②PRICE 论文摘要称「achieving the highest estimation
 accuracy on several unseen databases」，但其 Table 2 的 Q95 列里它<b>四个库都没拿第一</b>
 （ALECE 在三库优于它，DeepDB 与 NeuroCard 在 imdb 优于它），正文措辞则更谨慎
 （「has no significant gaps with other ML-based methods」）。引用时建议以表格为准。</p>
@@ -1637,8 +2153,11 @@ def main() -> int:
     )
     parser.add_argument(
         "--lit-branch",
-        default="claude/peaceful-kare-5bb350",
-        help="branch holding the literature-comparison evidence",
+        default=None,
+        help=(
+            "branch holding the literature-comparison evidence; "
+            "defaults to --git-branch (the 10-22 branch is long merged)"
+        ),
     )
     parser.add_argument("--out", required=True, help="output HTML path")
     parser.add_argument(
@@ -1653,14 +2172,19 @@ def main() -> int:
         evidence_dir = Path(tmp)
         digests = fetch_evidence(args.git_branch, repo_root, evidence_dir)
         digests.update(
-            fetch_evidence(args.lit_branch, repo_root, evidence_dir, LIT_EVIDENCE)
+            fetch_evidence(
+                args.lit_branch or args.git_branch,
+                repo_root,
+                evidence_dir,
+                LIT_EVIDENCE,
+            )
         )
         facts = build_facts(evidence_dir)
 
         target_block = (
             '<p class="lede">这四个库 PRICE 与我们都没有训练过，是本项目唯一一组对等的'
             "空间漂移比较点。口径：seed42 ERM-sum baseline 的 K=0 零样本，"
-            "全部唯一查询，单次全量，无 support。</p>"
+            "全部唯一查询，单次全量，无 support。本节末另附三 seed 复核（108 号）。</p>"
             + build_target_table(facts)
             + svg_target_chart(facts)
             + "<h3>4+ 表桶：项目主指标所在的粒度</h3>"
@@ -1669,7 +2193,7 @@ def main() -> int:
             "（Q95 = exp(percentile(|误差|, 95))），与 102 号文件（Q95 = percentile(exp(|误差|), 95)）"
             f"在整库尺度上差 ≤1e-7，但在重尾小样本的 4+ 桶上可见差异"
             f"（IMDB 4+ 桶 PG 列相差 {q95_definition_gap(facts):.2f}%）。"
-            "两套数字各自成立，不可互相替代或混排。</p>"
+            "两套数字各自成立，不可互相替代或混排。</p>" + build_threeseed_block(facts)
         )
 
         source_block = (
@@ -1697,7 +2221,7 @@ def main() -> int:
             + '<p class="note"><b>更正：</b>第一轮 7 库上「corr 与 Q95 一一对应」成立，'
             "扩到 30 库后只有 27/30 一致（accidents、airline 的 corr 略高但 Q95 输不足 1%，"
             "实为打平；movielens 的 corr 略低但 Q95 赢）。相关性解释了大部分 Q95 胜负，"
-            "但不是唯一决定因素。</p>"
+            "但不是唯一决定因素。</p>" + build_probe_block(facts)
         )
 
         fewshot_block = (
@@ -1712,10 +2236,10 @@ def main() -> int:
         blocks = {
             "TITLE": "面向空间漂移的自适应基数估计",
             "SUBTITLE": "当前进度与对照结果：漂移场景下我们赢的是拟合，不是迁移",
-            "DATE": "2026-10-22",
+            "DATE": "2026-10-26",
             "BRANCH": args.git_branch,
-            "COMMIT": "cd13f39",
-            "EVIDENCE_LEVEL": "single seed · 冻结 checkpoint · 全量 population",
+            "COMMIT": "b63b18f",
+            "EVIDENCE_LEVEL": ("四目标库三 seed · 单 seed 定量分解 · 只读延迟实测"),
             "VERDICT_BLOCK": build_verdict_block(facts),
             "PROTOCOL_BLOCK": build_protocol_block(facts),
             "TARGET_BLOCK": target_block,
@@ -1724,6 +2248,7 @@ def main() -> int:
             "ERROR_BLOCK": error_block,
             "FEWSHOT_BLOCK": fewshot_block,
             "ADVANTAGES_BLOCK": build_advantages_block(facts),
+            "LATENCY_BLOCK": build_latency_block(facts),
             "LIMITS_BLOCK": build_limits_block(facts),
             "EVIDENCE_BLOCK": build_evidence_block(facts, digests),
             "LITERATURE_BLOCK": (
@@ -1732,9 +2257,11 @@ def main() -> int:
             "GLOSSARY_BLOCK": build_glossary_block(),
             "FOOTER_NOTE": (
                 "本报告由 scripts/build_advisor_report.py 从已入库证据文件生成：我方数字由证据 JSON "
-                "计算并带一致性断言，文献方数字为论文发表值的转录（出处与未核实项见第 08 节与第 10 节）。"
-                "原始记录见实验文档 102 / 103 号，"
-                "证据 JSON 见 实验文档/results/p2-2-*-20261021/ 与 p2-2-allrows-lit-20261022/。"
+                "计算并带一致性断言，文献方数字为论文发表值的转录（出处与未核实项见第 09 节与第 11 节）。"
+                "原始记录见实验文档 102 / 103 号（精度）、106 号（表示探针）、108 号（三 seed 复核）、"
+                "110 号（延迟与端到端）；"
+                "证据 JSON 见 实验文档/results/ 下的 p2-2-*-2026102{1,2,3}/、p2-2-db-identity-probe-20261023/ "
+                "与 latency-20261025/。"
             ),
         }
 
