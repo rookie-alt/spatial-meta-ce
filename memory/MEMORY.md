@@ -12,7 +12,7 @@
 | 项目内记忆 | 对应 Claude 原文件 |
 |---|---|
 | [项目背景、范围和数据边界](spatial-meta-ce-project.md) | `spatial-meta-ce-project.md` |
-| [分支、协作、结果保存和同步](spatial-meta-ce-workflow.md) | `spatial-meta-ce-workflow.md` |
+| [分支开发、交付后快进 main、协作与同步](spatial-meta-ce-workflow.md) | `spatial-meta-ce-workflow.md` |
 | [收尾记录与新会话接手](spatial-meta-ce-progress-sync.md) | `spatial-meta-ce-progress-sync.md` |
 | [证据图谱更新与历史查询经验](spatial-meta-ce-graphify.md) | `spatial-meta-ce-graphify.md` |
 | [重试和轮询限制](stop-after-three-repeats.md) | `stop-after-three-repeats.md` |

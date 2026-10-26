@@ -29,6 +29,7 @@
 ## 工作流
 
 - **每个任务开一个分支**，命名 `feat/`、`docs/`、`experiment/`、`audit/` 前缀 + 简短主题；完成后及时 push 到 Gitee（`origin` = `gitee.com/william-forest/spatial-meta-ce`），不要长期留在本地。
+- **交付后把 `main` fast-forward 到该分支并推送**，让 `main` 始终等于最新已交付进度：本地全量测试与 ruff 通过才快进；禁止 force push；不在 `main` 上直接提交，`main` 只接受 fast-forward 或 merge 提交。（2026-10-26 修订：旧约定只写到分支上为止，导致 `main` 落后于已完成工作。）
 - Claude Code 建的 worktree 在 `.claude/worktrees/<name>`，是独立检出；在 worktree 内**只用该目录的绝对路径**操作，不要 `cd` 回主仓库。
 - 提交信息用 `feat:` / `fix:` / `docs:` / `test:` / `chore:` 前缀，正文写清验证方式。
 - 提交前自查：`git status` 确认只含本次改动；`graphify-out/`、`.claude/`、`__pycache__` 不入库。
