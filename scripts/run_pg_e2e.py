@@ -300,6 +300,7 @@ def measure_arm(args, sql) -> dict:
         return {"error": lines[-1][:200] if lines else "unknown failure"}
     return {
         "execution_ms": measured["execution_ms"],
+        "planning_ms": plan["planning_ms"],
         "runs_ms": measured["runs_ms"],
         "total_cost": plan["total_cost"],
         "join_rows": plan["join_rows"],
@@ -467,8 +468,14 @@ def main(argv: list[str]) -> int:
         "schema": 1,
         "purpose": "postgres-e2e-with-injected-cardinalities",
         "database": args.database,
+        "measured_quantity": (
+            "EXPLAIN (ANALYZE) Execution Time, i.e. the engine running an already "
+            "planned query under the injected cardinalities"
+        ),
         "includes_feature_extraction": False,
-        "includes_plan_generation": True,
+        "includes_estimation_cost": False,
+        "includes_planning_time": False,
+        "includes_plan_generation": False,
         "includes_database_execution": True,
         "claim_boundary": (
             "Execution of the unchanged SQL on PostgreSQL 13.23 with pg_hint_plan "
