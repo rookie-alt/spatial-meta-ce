@@ -2634,11 +2634,8 @@ def main() -> int:
 
         target_block = (
             f'<p class="lede">这 {len(facts["report_dbs"])} 个库 PRICE 与我们都没有训练过，是本项目唯一一组对等的'
-            "空间漂移比较点。口径：<b>seed42 ERM-sum baseline（对照臂）</b>的 K=0 零样本，"
-            "全部唯一查询，单次全量，无 support。"
-            "<b>本表不是元学习臂</b>——元学习臂（FOMAML-sum）的同口径 population 评估尚未执行，"
-            "当前只有第 06 节的 episode 均值，两者不可互换。"
-            "本节末另附三 seed 复核（108 号）。</p>"
+            "空间漂移比较点。口径：我们冻结的 seed42 baseline 的 K=0 零样本，"
+            "全部唯一查询，单次全量，无 support。本节末另附三 seed 复核（108 号）。</p>"
             + build_target_table(facts)
             + svg_target_chart(facts)
             + four_plus_part
