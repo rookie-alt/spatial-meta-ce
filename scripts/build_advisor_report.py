@@ -1372,7 +1372,7 @@ def build_training_block(facts: dict, meta: dict) -> str:
 唯一差别是 <code>method</code> 从 <code>fomaml</code> 改成 <code>erm</code>——没有内循环，
 直接监督预测。这一步是判断「收益是否来自元学习」的必要对照；少了它，任何提升都可以被解释成
 「网络或数据本身更好」。</p>
-<p class="note"><b>口径声明，必须先说：</b>第 02–05 节的主表是 <b>ERM-sum</b> 臂，<b>不是 FOMAML</b>。
+<p class="note"><b>口径说明：</b>第 02–05 节的主表是 <b>ERM-sum</b> 臂，<b>不是 FOMAML</b>。
 全库 population 评估那条线只跑过 ERM-sum baseline；元学习臂的证据在
 <b>06 节</b>（FOMAML / ERM 四列对照）与 <b>08 节</b>（延迟测的是 FOMAML-set）。</p>
 <p><b>元学习值多少。</b>set 臂上，K=0 时{n_cn}个库都是 FOMAML 更低（{k0}），K=5 与 K=10 仍然如此。
@@ -1616,7 +1616,7 @@ def build_verdict_block(facts: dict) -> str:
   {t["corr_lose"]}/{n_db} 的与真值相关性低于 PRICE
   （dCorr 中位 {t["dcorr_median"]:+.4f}），源库只有 {s["corr_lose"]}/26 落后；两组的偏差中位
   （{t["bias_median"]:+.3f} / {s["bias_median"]:+.3f}）都贴近零，预测离散度我们反而更大。</li>
-{four_plus_li}  <li><b>样本量必须随数字一起报</b>：IMDB 只有 521 条唯一查询，其 Q95 由约 26 条决定{sample_tail}。</li>
+{four_plus_li}  <li><b>样本量决定了这些数字的精度</b>：IMDB 只有 521 条唯一查询，其 Q95 由约 26 条决定{sample_tail}。</li>
   <li><b>同赛道的直接对手基本只有 PRICE</b>：整库留出零样本这一设定，可查到的公开工作里
   只有 PRICE（已发表）与一篇已撤回的预印本；CardOOD、GRASP、AHCE/DACE 的指标与我们恒等，
   但设定都不是整库零样本（详见 <a href="#literature">09 与文献的同口径对照</a>）。</li>
@@ -2059,25 +2059,25 @@ def build_advantages_block(facts: dict) -> str:
         for a, b, c, d, e in rows
     )
     return f"""
-<p class="lede">把话说明白：<b>目前能对导师主张的精度优势是对传统估计器 PG，不是对 PRICE。</b>
-下面逐条列出可主张的与不可主张的，数字全部来自前几节的证据。</p>
+<p class="lede">在双方都没训练过的目标库上，我们的尾部精度<b>落后于 PRICE</b>，但<b>优于传统估计器 PG</b>。
+下表按维度对照三个估计量，随后分别列出优势与限制。</p>
 <div class="tablewrap"><table class="prose cols-4">
 <caption><b>我们 / PRICE / PG 逐维度对照</b>　PG 指 PostgreSQL 自带优化器的行数估计，
 是本项目的传统基线；PRICE 是非严格训练条件匹配的预训练参考。</caption>
 <thead><tr><th>维度</th><th>我们</th><th>PRICE</th><th>PG</th><th>怎么读</th></tr></thead>
 <tbody>{body}</tbody></table></div>
-<p><b>可以主张的三条：</b>①对传统优化器 PG，在双方都没训练过的目标库上 {t["win_pg"]}/{n_db} 赢、
+<p><b>优势所在：</b>①对传统优化器 PG，在双方都没训练过的目标库上 {t["win_pg"]}/{n_db} 赢、
 最大的 {best_pg_db} 领先 {best_pg_ratio:.1f} 倍，源库 {s["win_pg"]}/26 赢；②参数规模比 PRICE 小
 {facts["parameter_ratio"]:.1f}×，且用的源库更少；③方法本体带少样本适应能力，
 而本轮对 PRICE 的对照是零样本——这是设计差异，不是精度优势。</p>
-<p><b>必须同时说明的三条：</b>①对 PRICE 的尾部精度我们目前是负结果
-（目标库 {t["win_price"]}/{n_db} 输，三 seed 下仍是 {facts["target3seed_pairs_beating_price"]}/{facts["target3seed_pairs"]}{four_plus_note}），
-所以不能说比 PRICE 好；②参数量小<b>不等于</b>端到端更快——这个信息不足的问题 110 号已经补上了，
-结论是<b>前向确实快、执行时间没有可测收益</b>（第 08 节），两件事必须分开说；
+<p><b>限制条件：</b>①对 PRICE 的尾部精度我们目前是负结果
+（目标库 {t["win_price"]}/{n_db} 赢，三 seed 下仍是 {facts["target3seed_pairs_beating_price"]}/{facts["target3seed_pairs"]}{four_plus_note}），
+因此不支持「优于 PRICE」的结论；②参数量小<b>不等于</b>端到端更快——这个信息不足的问题 110 号已经补上了，
+结论是<b>前向确实快、执行时间没有可测收益</b>（第 08 节），两者是两件事；
 ③本表<b>前七行</b>的「我们」列对应 <b>ERM-sum</b> 配置（{facts["our_parameters"]:,} 参数），
 集合架构（{facts["set_parameters"]:,} 参数）是另一套，两个倍数不能混用；
 带 <b>※</b> 的两行延迟测的是 <b>FOMAML-set seed42</b>（{facts["set_parameters"]:,} 参数），
-不是 ERM-sum——延迟由张量形状决定、与权重无关（两臂 p50 差 ≤0.04 ms），但报告里必须标清楚测的是哪个模型。</p>
+不是 ERM-sum——延迟由张量形状决定、与权重无关（两臂 p50 差 ≤0.04 ms）。</p>
 """
 
 
@@ -2122,7 +2122,7 @@ def build_threeseed_block(facts: dict) -> str:
     return f"""
 <h3>三 seed 复核：方向不变，量级不变，但 {worst_spread[1]} 的离散度大到不能只写均值</h3>
 <p>上一节的数字是<b>单 seed（42）</b>。108 号用与 seed42 逐字节相同的训练配置、只改 <code>seed</code> 字段，
-把{n_cn}个目标库各重测两遍。结论没有翻案，但多了两条必须一起报的事实。</p>
+把{n_cn}个目标库各重测两遍。结论没有翻案，但多了两条需要一并说明的事实。</p>
 <div class="tablewrap"><table>
 <caption><b>{n_cn}目标库 K=0 唯一查询 Q95，三 seed</b>　PRICE 与 PG 不随 seed 变化（PRICE 是同一份官方权重，
 PG 是缓存里的原始估计），所以它们的列没有误差棒。<b>「PRICE/我们」与「PG/我们」两列是
@@ -2133,7 +2133,7 @@ PG 是缓存里的原始估计），所以它们的列没有误差棒。<b>「PR
 <p><b>这张表最该看的是「我们（均值 ± SD）」那一列的 ±SD。</b>{worst_spread[1]} 的三 seed 标准差是均值的
 {worst_spread[0] * 100:.0f}%，逐 seed 从 {data["databases"][worst_spread[1]]["ours_k0"]["q95"]["min"]:.2f}
 跨到 {data["databases"][worst_spread[1]]["ours_k0"]["q95"]["max"]:.2f}。
-引用 {worst_spread[1]} 的任何倍数都必须带区间，不能只引均值。</p>
+引用 {worst_spread[1]} 的任何倍数都应连同三 seed 区间一起看；只取均值会高估精度。</p>
 <p>汇总：<b>{facts["target3seed_pairs"] - facts["target3seed_pairs_beating_price"]}
 /{facts["target3seed_pairs"]}</b> 个（seed × 库）组合在 Q95 上输给 PRICE，
 <b>{facts["target3seed_pairs_beating_pg"]}/{facts["target3seed_pairs"]}</b> 个赢 PG；

@@ -210,7 +210,7 @@ footer p{max-width:none}
   3/3 的与真值相关性低于 PRICE
   （dCorr 中位 +0.0208），源库只有 3/26 落后；两组的偏差中位
   （+0.001 / -0.026）都贴近零，预测离散度我们反而更大。</li>
-  <li><b>样本量必须随数字一起报</b>：IMDB 只有 521 条唯一查询，其 Q95 由约 26 条决定。</li>
+  <li><b>样本量决定了这些数字的精度</b>：IMDB 只有 521 条唯一查询，其 Q95 由约 26 条决定。</li>
   <li><b>同赛道的直接对手基本只有 PRICE</b>：整库留出零样本这一设定，可查到的公开工作里
   只有 PRICE（已发表）与一篇已撤回的预印本；CardOOD、GRASP、AHCE/DACE 的指标与我们恒等，
   但设定都不是整库零样本。</li>
@@ -284,7 +284,7 @@ footer p{max-width:none}
 唯一差别是 <code>method</code> 从 <code>fomaml</code> 改成 <code>erm</code>——没有内循环，
 直接监督预测。这一步是判断「收益是否来自元学习」的必要对照；少了它，任何提升都可以被解释成
 「网络或数据本身更好」。</p>
-<p class="note"><b>口径声明，必须先说：</b>第 02–03 节的主表是 <b>ERM-sum</b> 臂，<b>不是 FOMAML</b>。
+<p class="note"><b>口径说明：</b>第 02–03 节的主表是 <b>ERM-sum</b> 臂，<b>不是 FOMAML</b>。
 全库 population 评估那条线只跑过 ERM-sum baseline；元学习臂的证据在
 <b>04 节</b>（FOMAML / ERM 四列对照）与 <b>06 节</b>（延迟测的是 FOMAML-set）。</p>
 <p><b>元学习值多少。</b>set 臂上，K=0 时两个库都是 FOMAML 更低（stats 77.3 vs 79.4、ergastf1 24.5 vs 26.1），K=5 与 K=10 仍然如此。
@@ -389,7 +389,7 @@ PRICE 有 token 间 attention 交互、两阶段结构（先 scaling 再 filteri
   <p class="lede">这 3 个库 PRICE 与我们都没有训练过，是本项目唯一一组对等的空间漂移比较点。口径：我们冻结的 seed42 baseline 的 K=0 零样本，全部唯一查询，单次全量，无 support。本节末另附三 seed 复核（108 号）。</p><div class="tablewrap"><table><caption><b>目标库 · unique-query Q95（K=0，全量唯一查询）</b>　比值 &gt;1 表示我们更好；PRICE 与我们均未在这些库上训练，是唯一对等的漂移比较点。</caption><thead><tr><th>库</th><th>n</th><th>我们 Q95</th><th>PRICE Q95</th><th>PG Q95</th><th>PRICE / 我们</th><th>PG / 我们</th></tr></thead><tbody><tr><td>stats</td><td>2,603</td><td>83.72</td><td>39.52</td><td>75.65</td><td class="lose">0.472</td><td class="lose">0.904</td></tr><tr><td>ergastf1</td><td>1,258</td><td>22.28</td><td>15.29</td><td>27.61</td><td class="lose">0.686</td><td class="win">1.239</td></tr><tr><td>imdb</td><td>521</td><td>32.37</td><td>21.03</td><td>87.11</td><td class="lose">0.650</td><td class="win">2.691</td></tr><tr class="summary"><td>汇总（3 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="lose">0.650</td><td class="win">1.239</td></tr></tbody></table></div><figure class="figure"><figcaption><b>目标库 Q95 对照。</b>3 个库上 PRICE 的柱子都更短，即全部落后于 PRICE；对 PG 则在 ergastf1、imdb 上领先。</figcaption><ul class="legend"><li><span class="swatch" style="background:var(--series-ours)"></span>我们（冻结 seed42 baseline）</li><li><span class="swatch" style="background:var(--series-price)"></span>PRICE（官方权重，零样本）</li><li><span class="swatch" style="background:var(--series-pg)"></span>PG（原始优化器估计）</li></ul><svg viewBox="0 0 780 299" role="img" aria-label="目标库的 Q95 对照条形图，对数横轴"><line x1="96.0" y1="22" x2="96.0" y2="277" stroke="var(--border)" stroke-width="1"/><text x="96.0" y="291" text-anchor="middle" font-size="11" fill="var(--muted-fg)">10</text><line x1="351.5" y1="22" x2="351.5" y2="277" stroke="var(--border)" stroke-width="1"/><text x="351.5" y="291" text-anchor="middle" font-size="11" fill="var(--muted-fg)">100</text><line x1="607.1" y1="22" x2="607.1" y2="277" stroke="var(--border)" stroke-width="1"/><text x="607.1" y="291" text-anchor="middle" font-size="11" fill="var(--muted-fg)">1000</text><text x="0" y="60.0" font-size="13" font-weight="600" fill="var(--fg)">stats</text><rect x="96" y="34.0" width="235.8" height="15" fill="var(--series-ours)" rx="1"/><text x="337.8" y="46.0" font-size="11" fill="var(--muted-fg)">83.72</text><rect x="96" y="54.0" width="152.5" height="15" fill="var(--series-price)" rx="1"/><text x="254.5" y="66.0" font-size="11" fill="var(--muted-fg)">39.52</text><rect x="96" y="74.0" width="224.6" height="15" fill="var(--series-pg)" rx="1"/><text x="326.6" y="86.0" font-size="11" fill="var(--muted-fg)">75.65</text><text x="0" y="141.0" font-size="13" font-weight="600" fill="var(--fg)">ergastf1</text><rect x="96" y="115.0" width="88.9" height="15" fill="var(--series-ours)" rx="1"/><text x="190.9" y="127.0" font-size="11" fill="var(--muted-fg)">22.28</text><rect x="96" y="135.0" width="47.1" height="15" fill="var(--series-price)" rx="1"/><text x="149.1" y="147.0" font-size="11" fill="var(--muted-fg)">15.29</text><rect x="96" y="155.0" width="112.7" height="15" fill="var(--series-pg)" rx="1"/><text x="214.7" y="167.0" font-size="11" fill="var(--muted-fg)">27.61</text><text x="0" y="222.0" font-size="13" font-weight="600" fill="var(--fg)">imdb</text><rect x="96" y="196.0" width="130.4" height="15" fill="var(--series-ours)" rx="1"/><text x="232.4" y="208.0" font-size="11" fill="var(--muted-fg)">32.37</text><rect x="96" y="216.0" width="82.5" height="15" fill="var(--series-price)" rx="1"/><text x="184.5" y="228.0" font-size="11" fill="var(--muted-fg)">21.03</text><rect x="96" y="236.0" width="240.2" height="15" fill="var(--series-pg)" rx="1"/><text x="342.2" y="248.0" font-size="11" fill="var(--muted-fg)">87.11</text></svg><p class="axis-note">横轴为 Q95 的对数刻度（10 / 100 / 1000），每条柱直接标注数值；数值越靠左越准。</p></figure><p class="note"><b>口径：</b>本节全部数字取自 103 号证据文件（Q95 = exp(percentile(|误差|, 95))，整库唯一查询口径）。</p>
 <h3>三 seed 复核：方向不变，量级不变，但 ergastf1 的离散度大到不能只写均值</h3>
 <p>上一节的数字是<b>单 seed（42）</b>。108 号用与 seed42 逐字节相同的训练配置、只改 <code>seed</code> 字段，
-把三个目标库各重测两遍。结论没有翻案，但多了两条必须一起报的事实。</p>
+把三个目标库各重测两遍。结论没有翻案，但多了两条需要一并说明的事实。</p>
 <div class="tablewrap"><table>
 <caption><b>三目标库 K=0 唯一查询 Q95，三 seed</b>　PRICE 与 PG 不随 seed 变化（PRICE 是同一份官方权重，
 PG 是缓存里的原始估计），所以它们的列没有误差棒。<b>「PRICE/我们」与「PG/我们」两列是
@@ -400,7 +400,7 @@ PG 是缓存里的原始估计），所以它们的列没有误差棒。<b>「PR
 <p><b>这张表最该看的是「我们（均值 ± SD）」那一列的 ±SD。</b>ergastf1 的三 seed 标准差是均值的
 7%，逐 seed 从 22.28
 跨到 25.19。
-引用 ergastf1 的任何倍数都必须带区间，不能只引均值。</p>
+引用 ergastf1 的任何倍数都应连同三 seed 区间一起看；只取均值会高估精度。</p>
 <p>汇总：<b>9
 /9</b> 个（seed × 库）组合在 Q95 上输给 PRICE，
 <b>6/9</b> 个赢 PG；
@@ -424,25 +424,25 @@ PRICE/我们 的中位比值：单 seed 0.650、
 <section id="advantages">
   <h2><span class="num">05</span>相对基线的优势</h2>
   
-<p class="lede">把话说明白：<b>目前能对导师主张的精度优势是对传统估计器 PG，不是对 PRICE。</b>
-下面逐条列出可主张的与不可主张的，数字全部来自前几节的证据。</p>
+<p class="lede">在双方都没训练过的目标库上，我们的尾部精度<b>落后于 PRICE</b>，但<b>优于传统估计器 PG</b>。
+下表按维度对照三个估计量，随后分别列出优势与限制。</p>
 <div class="tablewrap"><table class="prose cols-4">
 <caption><b>我们 / PRICE / PG 逐维度对照</b>　PG 指 PostgreSQL 自带优化器的行数估计，
 是本项目的传统基线；PRICE 是非严格训练条件匹配的预训练参考。</caption>
 <thead><tr><th>维度</th><th>我们</th><th>PRICE</th><th>PG</th><th>怎么读</th></tr></thead>
 <tbody><tr><td><b>目标库 K=0 Q95</b></td><td>中位落后 PRICE 1.5×（0/3 全输）</td><td>领先 1.8×（PRICE/我们 0.650）</td><td>2/3 赢，最大 2.7×（imdb）</td><td>对传统估计器有明确优势；对预训练参考没有</td></tr><tr><td><b>源库 K=0 Q95</b></td><td>22/26 优于 PRICE</td><td>—</td><td>24/26 赢，PG/我们 中位 2.07</td><td>拟合场景我们更好，但 PRICE 见过这些库，不是漂移证据</td></tr><tr><td><b>参数量（FP32）</b></td><td>132,545</td><td>10,709,330</td><td>无参数（启发式）</td><td>我们比 PRICE 小 80.8×（set 架构 107.3×）</td></tr><tr><td><b>训练曝光</b></td><td>23 个源库</td><td>26 个源库</td><td>0</td><td>同样的结果用了更少的源库</td></tr><tr><td><b>是否吃 PG 估计作输入</b></td><td>是</td><td>否</td><td>本身就是优化器</td><td>从 PG 的估计出发做修正，而不是从零学</td></tr><tr><td><b>能否随新库适应</b></td><td>方法本体就是少样本适应</td><td>本轮对照为零样本</td><td>不能</td><td>方法层面的差异，精度上尚未在漂移场景证明</td></tr><tr><td><b>推理延迟（L1 前向 p50）※</b></td><td>比 PRICE 快 34.5–38.1×（CPU 单线程）</td><td>基准</td><td>无模型前向</td><td>单项前向确实快一到两个数量级，但整条估计链只快 3.7–7.5×（第 06 节）</td></tr><tr><td><b>数据库执行时间（L3 端到端）※</b></td><td>无可测收益（0.966–1.004）</td><td>无可测收益（0.960–1.003）</td><td>基准 1.000</td><td>连注入精确真值也只到 0.975–1.005；精度与执行时间不单调</td></tr></tbody></table></div>
-<p><b>可以主张的三条：</b>①对传统优化器 PG，在双方都没训练过的目标库上 2/3 赢、
+<p><b>优势所在：</b>①对传统优化器 PG，在双方都没训练过的目标库上 2/3 赢、
 最大的 imdb 领先 2.7 倍，源库 24/26 赢；②参数规模比 PRICE 小
 80.8×，且用的源库更少；③方法本体带少样本适应能力，
 而本轮对 PRICE 的对照是零样本——这是设计差异，不是精度优势。</p>
-<p><b>必须同时说明的三条：</b>①对 PRICE 的尾部精度我们目前是负结果
-（目标库 0/3 输，三 seed 下仍是 0/9），
-所以不能说比 PRICE 好；②参数量小<b>不等于</b>端到端更快——这个信息不足的问题 110 号已经补上了，
-结论是<b>前向确实快、执行时间没有可测收益</b>（第 06 节），两件事必须分开说；
+<p><b>限制条件：</b>①对 PRICE 的尾部精度我们目前是负结果
+（目标库 0/3 赢，三 seed 下仍是 0/9），
+因此不支持「优于 PRICE」的结论；②参数量小<b>不等于</b>端到端更快——这个信息不足的问题 110 号已经补上了，
+结论是<b>前向确实快、执行时间没有可测收益</b>（第 06 节），两者是两件事；
 ③本表<b>前七行</b>的「我们」列对应 <b>ERM-sum</b> 配置（132,545 参数），
 集合架构（99,777 参数）是另一套，两个倍数不能混用；
 带 <b>※</b> 的两行延迟测的是 <b>FOMAML-set seed42</b>（99,777 参数），
-不是 ERM-sum——延迟由张量形状决定、与权重无关（两臂 p50 差 ≤0.04 ms），但报告里必须标清楚测的是哪个模型。</p>
+不是 ERM-sum——延迟由张量形状决定、与权重无关（两臂 p50 差 ≤0.04 ms）。</p>
 
 </section>
 
