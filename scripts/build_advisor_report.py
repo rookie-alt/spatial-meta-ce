@@ -33,6 +33,19 @@ PAPER_ORDER = ("imdb", "stats", "ergastf1", "genome")
 DOC14_DBS = ("stats", "genome", "ergastf1")
 SEED_NOISE = 0.0628  # doc 94 6.1b: measured seed-to-seed SD, source-side arm
 
+# Architecture shown in section 01.  Mirrors spatial_meta_ce.model.SetEstimator;
+# the parameter count computed from these numbers is asserted against the two
+# shipped checkpoints below, so a drift in the code aborts the build.
+GROUP_DIMS = (40, 40, 4, 43)
+GROUP_LABELS = (
+    ("连接列", "J", "join 列直方图，按表规模归一"),
+    ("fanout", "F", "对侧表匹配行数按本表直方图分桶"),
+    ("表", "T", "[log 表规模, AVI, MINSEL, EBO]"),
+    ("过滤列", "C", "40 维直方图 + 归一化范围上下界 + 选择率"),
+)
+HEAD_HIDDEN = (128, 64)
+GLOBAL_SCALARS = 6  # log1p(四组 token 数量)×4 + PG 对数估计 + Σlog 表规模
+
 # repo-relative evidence paths -> local names inside the evidence directory
 EVIDENCE = {
     "broad_summary.json": "实验文档/results/p2-2-error-structure-broad-20261021/summary.json",
@@ -581,7 +594,7 @@ def build_target_table(facts: dict) -> str:
         )
     t = facts["targets"]
     rows.append(
-        f'<tr class="summary"><td>汇总（4 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td>'
+        f'<tr class="summary"><td>汇总（{len(facts["report_dbs"])} 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td>'
         f'<td class="lose">{t["price_median"]:.3f}</td>'
         f'<td class="win">{t["pg_median"]:.3f}</td></tr>'
     )
@@ -607,7 +620,7 @@ def build_target_four_plus_table(facts: dict) -> str:
             f"{ratio_cell(pr, pr > 1)}{ratio_cell(gr, gr > 1)}</tr>"
         )
     rows.append(
-        f'<tr class="summary"><td>汇总（4 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td>'
+        f'<tr class="summary"><td>汇总（{len(facts["report_dbs"])} 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td>'
         f'<td class="lose">{facts["four_plus_price_median"]:.3f}</td>'
         f'<td class="win">{facts["four_plus_pg_median"]:.3f}</td></tr>'
     )
@@ -1144,6 +1157,200 @@ def build_protocol_block(facts: dict) -> str:
 """
 
 
+def architecture_parameters(
+    group_dims: tuple[int, ...],
+    width: int,
+    poolings: tuple[str, ...],
+    head_hidden: tuple[int, ...],
+    scalars: int,
+) -> int:
+    """Forward parameter count for one pooling variant of SetEstimator."""
+    encoders = sum(dim * width + width + width * width + width for dim in group_dims)
+    head_in = len(poolings) * len(group_dims) * width + scalars
+    head = head_in * head_hidden[0] + head_hidden[0]
+    for fan_in, fan_out in zip(head_hidden, head_hidden[1:]):
+        head += fan_in * fan_out + fan_out
+    head += head_hidden[-1] + 1
+    return encoders + head
+
+
+def build_architecture_block(facts: dict) -> str:
+    """What the model actually is: four token groups, masked pooling, PG residual."""
+    config = facts["protocol"]["checkpoint"]["model_config"]
+    if config.get("arch") != "sum":
+        raise SystemExit(
+            f"report assumes the sum arm, protocol says {config.get('arch')!r}"
+        )
+    if not config.get("use_pg"):
+        raise SystemExit(
+            "report describes a PG-residual model, checkpoint has use_pg=False"
+        )
+    width = int(config["width"])
+    pool_set, pool_sum = ("mean", "max"), ("mean", "max", "sum")
+    set_params = architecture_parameters(
+        GROUP_DIMS, width, pool_set, HEAD_HIDDEN, GLOBAL_SCALARS
+    )
+    sum_params = architecture_parameters(
+        GROUP_DIMS, width, pool_sum, HEAD_HIDDEN, GLOBAL_SCALARS
+    )
+    if set_params != facts["set_parameters"]:
+        raise SystemExit(
+            f"architecture drift: set params {set_params:,} != checkpoint "
+            f"{facts['set_parameters']:,}"
+        )
+    if sum_params != facts["our_parameters"]:
+        raise SystemExit(
+            f"architecture drift: sum params {sum_params:,} != checkpoint "
+            f"{facts['our_parameters']:,}"
+        )
+    if facts["our_parameter_bytes"] != sum_params * 4:
+        raise SystemExit(
+            f"checkpoint is not FP32: {facts['our_parameter_bytes']:,} bytes for "
+            f"{sum_params:,} params"
+        )
+
+    lane_w, lane_gap, lane_x0 = 237, 12, 8
+    lane_x = [lane_x0 + i * (lane_w + lane_gap) for i in range(len(GROUP_DIMS))]
+    lane_cx = [x + lane_w / 2 for x in lane_x]
+    canvas_w = lane_x0 * 2 + len(GROUP_DIMS) * lane_w + (len(GROUP_DIMS) - 1) * lane_gap
+    box_w = canvas_w * 0.78
+    box_x = (canvas_w - box_w) / 2
+    head_in = len(pool_sum) * len(GROUP_DIMS) * width + GLOBAL_SCALARS
+    broad = facts["broad"]["databases"]
+    pg_q50 = [broad[db]["overview"]["pg"]["q50"] for db in facts["report_dbs"]]
+    pg_q95 = [broad[db]["overview"]["pg"]["q95"] for db in facts["report_dbs"]]
+
+    def arrow(cx: float, y0: float, y1: float) -> str:
+        return (
+            f'<line x1="{cx:.1f}" y1="{y0:.1f}" x2="{cx:.1f}" y2="{y1 - 6:.1f}" '
+            'stroke="var(--border)" stroke-width="1.5"/>'
+            f'<polygon points="{cx - 4:.1f},{y1 - 6:.1f} {cx + 4:.1f},{y1 - 6:.1f} '
+            f'{cx:.1f},{y1:.1f}" fill="var(--border)"/>'
+        )
+
+    lanes = []
+    for index, ((label, count, detail), dim) in enumerate(
+        zip(GROUP_LABELS, GROUP_DIMS)
+    ):
+        x, cx = lane_x[index], lane_cx[index]
+        lanes.append(
+            f'<rect x="{x}" y="6" width="{lane_w}" height="54" rx="2" '
+            'fill="var(--card)" stroke="var(--border)"/>'
+            f'<text x="{cx:.1f}" y="28" text-anchor="middle" font-size="13" '
+            f'font-weight="600" fill="var(--fg)">{label} {count}×{dim}</text>'
+            f'<text x="{cx:.1f}" y="46" text-anchor="middle" font-size="11" '
+            f'fill="var(--muted-fg)">{detail}</text>'
+            f'<rect x="{x}" y="88" width="{lane_w}" height="46" rx="2" '
+            'fill="var(--muted)" stroke="var(--border)"/>'
+            f'<text x="{cx:.1f}" y="116" text-anchor="middle" font-size="12" '
+            f'fill="var(--fg)">MLP {dim} → {width} → {width}</text>'
+            f'<rect x="{x}" y="160" width="{lane_w}" height="46" rx="2" '
+            'fill="var(--card)" stroke="var(--border)"/>'
+            f'<text x="{cx:.1f}" y="179" text-anchor="middle" font-size="12" '
+            'fill="var(--fg)">掩码池化 mean + max + sum</text>'
+            f'<text x="{cx:.1f}" y="196" text-anchor="middle" font-size="11" '
+            f'fill="var(--muted-fg)">{len(pool_sum) * width} 维 / 组</text>'
+            + arrow(cx, 60, 88)
+            + arrow(cx, 134, 160)
+            + arrow(cx, 206, 236)
+        )
+    pooled_total = len(pool_sum) * len(GROUP_DIMS) * width
+    set_head_in = len(pool_set) * len(GROUP_DIMS) * width + GLOBAL_SCALARS
+    token_rows = "".join(
+        f"<tr><td><b>{label}</b></td><td>{dim}</td><td>{count}</td>"
+        f"<td>{detail}</td></tr>"
+        for (label, count, detail), dim in zip(GROUP_LABELS, GROUP_DIMS)
+    )
+    return f"""
+<h3>模型架构：四组 token → 掩码池化 → PG 残差</h3>
+<p class="lede">把一条查询拆成四组变长 token，每组用共享的小 MLP 编码、掩码池化成定长向量，
+再用一个三层 MLP 预测「PG 错了多少」，加回 PG 的估计。<b>模型学的不是基数本身，是修正量。</b></p>
+<figure class="figure">
+  <figcaption><b>数据流（sum 变体，即本报告全部精度数字用的那一套）。</b>
+  四个方框是四组 token，长度随查询变化；灰色是逐组共享的编码器；最后一层零初始化，
+  所以未训练时输出精确等于 PG。</figcaption>
+  <div style="overflow-x:auto">
+  <svg viewBox="0 0 {canvas_w:.0f} 452" style="min-width:700px" role="img" aria-label="模型架构数据流：四组 token 编码、池化、拼接、回归头、加回 PG 锚">
+    {"".join(lanes)}
+    <rect x="{box_x:.1f}" y="236" width="{box_w:.1f}" height="58" rx="2" fill="var(--muted)" stroke="var(--border)"/>
+    <text x="{canvas_w / 2:.1f}" y="259" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">
+      拼接 {pooled_total} 维 ＋ {GLOBAL_SCALARS} 个全局标量 ＝ {head_in} 维</text>
+    <text x="{canvas_w / 2:.1f}" y="279" text-anchor="middle" font-size="11" fill="var(--muted-fg)">
+      四组 token 数量取对数 · PG 对数估计 · Σ log 表规模</text>
+    <line x1="{canvas_w / 2:.1f}" y1="294" x2="{canvas_w / 2:.1f}" y2="314" stroke="var(--border)" stroke-width="1.5"/>
+    <polygon points="{canvas_w / 2 - 4:.1f},314 {canvas_w / 2 + 4:.1f},314 {canvas_w / 2:.1f},320" fill="var(--border)"/>
+    <rect x="{box_x:.1f}" y="320" width="{box_w:.1f}" height="52" rx="2" fill="var(--card)" stroke="var(--border)"/>
+    <text x="{canvas_w / 2:.1f}" y="343" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">
+      MLP 头 {head_in} → {HEAD_HIDDEN[0]} → {HEAD_HIDDEN[1]} → 1</text>
+    <text x="{canvas_w / 2:.1f}" y="361" text-anchor="middle" font-size="11" fill="var(--muted-fg)">
+      末层权重与偏置零初始化</text>
+    <line x1="{canvas_w / 2:.1f}" y1="372" x2="{canvas_w / 2:.1f}" y2="398" stroke="var(--border)" stroke-width="1.5"/>
+    <polygon points="{canvas_w / 2 - 4:.1f},398 {canvas_w / 2 + 4:.1f},398 {canvas_w / 2:.1f},404" fill="var(--border)"/>
+    <rect x="{box_x:.1f}" y="404" width="{box_w:.1f}" height="42" rx="2" fill="var(--card)" stroke="var(--primary)" stroke-width="2"/>
+    <text x="{canvas_w / 2:.1f}" y="430" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">
+      输出 ＝ PG 对数估计 ＋ 残差</text>
+  </svg>
+  </div>
+</figure>
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">一条查询怎么变成 token</h4>
+<div class="tablewrap"><table class="prose cols-4">
+<caption><b>四组输入。</b>J / F / T / C 是每条查询自己带的长度，模型不做截断也不补齐到固定长度。</caption>
+<thead><tr><th>组</th><th>维度</th><th>每条查询的数量</th><th>装的是什么</th></tr></thead>
+<tbody>
+{token_rows}
+</tbody></table></div>
+<p class="small muted">维度的来源是 PRICE 的公开特征口径（<code>histogram40</code>），四组分别是
+连接列直方图 40 维、fanout 40 维、表级 4 维、过滤列 43 维；本项目只消费这些数值，不重新提取。
+<b>fanout 的准确含义</b>是「对侧表 join 列每个取值匹配到多少行」的期望值，按本表 join 列直方图分桶后
+得到 40 维分布，<b>不是两侧行数的乘积</b>（PRICE <code>gen_fanout.py</code> 用对侧 <code>value_counts</code>
+回填、再按桶取均值）。
+每条查询的 join 数、表数、谓词数都可以不同，掩码保证 padding 不参与池化、也不产生梯度。</p>
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">规模：参数量与体积</h4>
+<div class="tablewrap"><table>
+<caption><b>参数量。</b>两套变体只差一路 sum 池化，其余结构完全相同。</caption>
+<thead><tr><th>变体</th><th>池化</th><th>头输入</th><th>参数量</th><th>FP32 字节数</th><th>本报告用在哪</th></tr></thead>
+<tbody>
+<tr><td><b>set</b>（FOMAML）</td><td>mean + max</td><td class="num">{set_head_in}</td>
+<td class="num">{set_params:,}</td><td class="num">{set_params * 4:,}</td>
+<td style="text-align:left">第 08 节延迟测量</td></tr>
+<tr><td><b>sum</b>（ERM，本报告主模型）</td><td>mean + max + sum</td><td class="num">{head_in}</td>
+<td class="num"><b>{sum_params:,}</b></td><td class="num">{sum_params * 4:,}</td>
+<td style="text-align:left">第 02–07 节全部精度数字</td></tr>
+<tr><td>PRICE（对照）</td><td>两阶段 self-attention</td><td class="num">—</td>
+<td class="num">{facts["price_parameters"]:,}</td><td class="num">{facts["price_parameters"] * 4:,}</td>
+<td style="text-align:left">全篇对照基线</td></tr>
+</tbody></table></div>
+<p>我们的主模型是 PRICE 的 <b>1/{facts["price_parameters"] / sum_params:.1f}</b> 参数
+（{sum_params:,} vs {facts["price_parameters"]:,}）；换成 set 变体是 1/{facts["price_parameters"] / set_params:.1f}。
+参数少不等于端到端快——这件事第 08 节用实测分开了。</p>
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">三个设计决定</h4>
+<ul class="takeaways">
+<li><b>集合结构，不是固定宽度向量。</b>不同库的表数、join 数、谓词数从 1 到几十不等。
+四组各自有一套在组内共享的编码器，再掩码池化，同一个模型就能吃任意 schema ——
+这是同一份权重能在 {len(facts["protocol"]["checkpoint"]["train_databases"])} 个库上训练、
+又在 {len(facts["report_dbs"])} 个没见过的目标库上直接推理的结构前提。</li>
+<li><b>残差锚定在 PG 上。</b>输出 ＝ PG 对数估计 ＋ 残差。PG 的尾部很差
+（目标库 Q95 {min(pg_q95):.0f}–{max(pg_q95):.0f} 倍），但中位数只有
+{min(pg_q50):.1f}–{max(pg_q50):.1f} 倍；从它出发学修正，比从零学基数容易——
+这是设计上的取舍，不是已证明的因果结论。</li>
+<li><b>最后一层零初始化。</b>训练第 0 步残差恒为 0，模型输出精确等于 PG，
+所以训练只可能在这个基础上改善，起点不会先把 PG 已经算对的部分破坏掉。</li>
+</ul>
+<p class="small muted">另外：没有 Dropout、没有 BatchNorm——内循环要在一批 support 上做 5 步梯度更新，
+任何随机失活都会让内外循环和评估不可复现。</p>
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">它不编码什么</h4>
+<p class="note"><b>这三条决定了它的能力上限，不能回避。</b>
+① <b>不显式编码 join graph 的配对关系</b>：四组 token 各自池化，token 之间的关系只剩数值统计。
+但 <b>PRICE 同样不显式知道哪两个 fanout 属于同一个 join</b>（06 号 §2）——真正的差别是
+PRICE 有 token 间 attention 交互、两阶段结构（先 scaling 再 filtering）和
+{facts["price_parameters"] / sum_params:.0f}–{facts["price_parameters"] / set_params:.0f} 倍的参数量差距。
+这是一个尚未验证的候选解释，不是本报告的结论。
+② <b>没有表名、列名或字符串语义</b>，只有数值统计量；模型不知道「imdb」和「stats」是什么，
+只知道这组数字长什么样。
+③ <b>不读目标库的统计表</b>，目标库只提供查询特征与 PG 估计。</p>
+"""
+
+
 def build_verdict_block(facts: dict) -> str:
     t, s = facts["targets"], facts["source_stats"]
     noise = facts["noise_band_sources"]
@@ -1232,7 +1439,7 @@ def build_limits_block(facts: dict) -> str:
   IMDB 上 Q50 首次优于 PG（{imdb["ours_k0"]["q50"]:.3f} vs {imdb["pg"]["q50"]:.3f}）。</span></li>
   <li><span class="tag ok">可写</span><span>源分布内的拟合可超过给定的 PRICE 参考（{s["win_price"]}/26，
   其中 {s["win_price"] - len(noise)} 个稳赢、{len(noise)} 个打平）。</span></li>
-  <li><span class="tag no">不可写</span><span>“我们优于 PRICE”——对等漂移场景是 0/4。</span></li>
+  <li><span class="tag no">不可写</span><span>“我们优于 PRICE”——对等漂移场景是 0/{len(facts["report_dbs"])}。</span></li>
   <li><span class="tag no">不可写</span><span>“{s["win_price"]}/26 优于 PRICE”而不带拟合限定——PRICE 全见过这些库。</span></li>
   <li><span class="tag no">不可写</span><span>“全部目标库完整验收”——IMDB 只有 K=0，没有 few-shot 行。</span></li>
 {four_plus_limit}  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 {stats_ratio:.3f}，属于打平而非胜负。</span></li>
@@ -1244,7 +1451,7 @@ def build_limits_block(facts: dict) -> str:
   且这个量级连精确真值都达不到。能写的是<b>前向单项</b>快
   {facts["speedup_forward_cpu"][0]:.1f}–{facts["speedup_forward_cpu"][1]:.1f}×。</span></li>
   <li><span class="tag no">不可写</span><span>“精度上去了查询就更快”——实测反驳：真值臂 Q-error 恒为 1.00，
-  却在四个库里从来不是最快的（第 08 节）。</span></li>
+  却在 {len(facts["report_dbs"])} 个库里从来不是最快的（第 08 节）。</span></li>
 </ul>
 <p class="small muted">其它限定：<b>目标库的 Q95 已补到三 seed</b>（108 号，第 02 节），
 第 03–05 节的定量分解仍是<b>单 seed（42）</b>，标 <code>needs_evidence</code>；
@@ -2315,7 +2522,7 @@ def main() -> int:
             )
 
         target_block = (
-            '<p class="lede">这四个库 PRICE 与我们都没有训练过，是本项目唯一一组对等的'
+            f'<p class="lede">这 {len(facts["report_dbs"])} 个库 PRICE 与我们都没有训练过，是本项目唯一一组对等的'
             "空间漂移比较点。口径：seed42 ERM-sum baseline 的 K=0 零样本，"
             "全部唯一查询，单次全量，无 support。本节末另附三 seed 复核（108 号）。</p>"
             + build_target_table(facts)
@@ -2372,6 +2579,7 @@ def main() -> int:
             ),
             "VERDICT_BLOCK": build_verdict_block(facts),
             "PROTOCOL_BLOCK": build_protocol_block(facts),
+            "ARCHITECTURE_BLOCK": build_architecture_block(facts),
             "TARGET_BLOCK": target_block,
             "SOURCE_BLOCK": source_block,
             "FLIP_BLOCK": flip_block,

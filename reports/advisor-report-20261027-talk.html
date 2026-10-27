@@ -256,11 +256,99 @@ footer p{max-width:none}
 脚本在运行时以白名单守卫拒绝任何曝光重叠的 checkpoint。PRICE 在全部 26 个源库上训练过，
 这一点决定了下面两张表的语义完全不同。</p>
 
+  
+<h3>模型架构：四组 token → 掩码池化 → PG 残差</h3>
+<p class="lede">把一条查询拆成四组变长 token，每组用共享的小 MLP 编码、掩码池化成定长向量，
+再用一个三层 MLP 预测「PG 错了多少」，加回 PG 的估计。<b>模型学的不是基数本身，是修正量。</b></p>
+<figure class="figure">
+  <figcaption><b>数据流（sum 变体，即本报告全部精度数字用的那一套）。</b>
+  四个方框是四组 token，长度随查询变化；灰色是逐组共享的编码器；最后一层零初始化，
+  所以未训练时输出精确等于 PG。</figcaption>
+  <div style="overflow-x:auto">
+  <svg viewBox="0 0 1000 452" style="min-width:700px" role="img" aria-label="模型架构数据流：四组 token 编码、池化、拼接、回归头、加回 PG 锚">
+    <rect x="8" y="6" width="237" height="54" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="126.5" y="28" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">连接列 J×40</text><text x="126.5" y="46" text-anchor="middle" font-size="11" fill="var(--muted-fg)">join 列直方图，按表规模归一</text><rect x="8" y="88" width="237" height="46" rx="2" fill="var(--muted)" stroke="var(--border)"/><text x="126.5" y="116" text-anchor="middle" font-size="12" fill="var(--fg)">MLP 40 → 64 → 64</text><rect x="8" y="160" width="237" height="46" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="126.5" y="179" text-anchor="middle" font-size="12" fill="var(--fg)">掩码池化 mean + max + sum</text><text x="126.5" y="196" text-anchor="middle" font-size="11" fill="var(--muted-fg)">192 维 / 组</text><line x1="126.5" y1="60.0" x2="126.5" y2="82.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="122.5,82.0 130.5,82.0 126.5,88.0" fill="var(--border)"/><line x1="126.5" y1="134.0" x2="126.5" y2="154.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="122.5,154.0 130.5,154.0 126.5,160.0" fill="var(--border)"/><line x1="126.5" y1="206.0" x2="126.5" y2="230.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="122.5,230.0 130.5,230.0 126.5,236.0" fill="var(--border)"/><rect x="257" y="6" width="237" height="54" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="375.5" y="28" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">fanout F×40</text><text x="375.5" y="46" text-anchor="middle" font-size="11" fill="var(--muted-fg)">对侧表匹配行数按本表直方图分桶</text><rect x="257" y="88" width="237" height="46" rx="2" fill="var(--muted)" stroke="var(--border)"/><text x="375.5" y="116" text-anchor="middle" font-size="12" fill="var(--fg)">MLP 40 → 64 → 64</text><rect x="257" y="160" width="237" height="46" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="375.5" y="179" text-anchor="middle" font-size="12" fill="var(--fg)">掩码池化 mean + max + sum</text><text x="375.5" y="196" text-anchor="middle" font-size="11" fill="var(--muted-fg)">192 维 / 组</text><line x1="375.5" y1="60.0" x2="375.5" y2="82.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="371.5,82.0 379.5,82.0 375.5,88.0" fill="var(--border)"/><line x1="375.5" y1="134.0" x2="375.5" y2="154.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="371.5,154.0 379.5,154.0 375.5,160.0" fill="var(--border)"/><line x1="375.5" y1="206.0" x2="375.5" y2="230.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="371.5,230.0 379.5,230.0 375.5,236.0" fill="var(--border)"/><rect x="506" y="6" width="237" height="54" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="624.5" y="28" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">表 T×4</text><text x="624.5" y="46" text-anchor="middle" font-size="11" fill="var(--muted-fg)">[log 表规模, AVI, MINSEL, EBO]</text><rect x="506" y="88" width="237" height="46" rx="2" fill="var(--muted)" stroke="var(--border)"/><text x="624.5" y="116" text-anchor="middle" font-size="12" fill="var(--fg)">MLP 4 → 64 → 64</text><rect x="506" y="160" width="237" height="46" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="624.5" y="179" text-anchor="middle" font-size="12" fill="var(--fg)">掩码池化 mean + max + sum</text><text x="624.5" y="196" text-anchor="middle" font-size="11" fill="var(--muted-fg)">192 维 / 组</text><line x1="624.5" y1="60.0" x2="624.5" y2="82.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="620.5,82.0 628.5,82.0 624.5,88.0" fill="var(--border)"/><line x1="624.5" y1="134.0" x2="624.5" y2="154.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="620.5,154.0 628.5,154.0 624.5,160.0" fill="var(--border)"/><line x1="624.5" y1="206.0" x2="624.5" y2="230.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="620.5,230.0 628.5,230.0 624.5,236.0" fill="var(--border)"/><rect x="755" y="6" width="237" height="54" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="873.5" y="28" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">过滤列 C×43</text><text x="873.5" y="46" text-anchor="middle" font-size="11" fill="var(--muted-fg)">40 维直方图 + 归一化范围上下界 + 选择率</text><rect x="755" y="88" width="237" height="46" rx="2" fill="var(--muted)" stroke="var(--border)"/><text x="873.5" y="116" text-anchor="middle" font-size="12" fill="var(--fg)">MLP 43 → 64 → 64</text><rect x="755" y="160" width="237" height="46" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="873.5" y="179" text-anchor="middle" font-size="12" fill="var(--fg)">掩码池化 mean + max + sum</text><text x="873.5" y="196" text-anchor="middle" font-size="11" fill="var(--muted-fg)">192 维 / 组</text><line x1="873.5" y1="60.0" x2="873.5" y2="82.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="869.5,82.0 877.5,82.0 873.5,88.0" fill="var(--border)"/><line x1="873.5" y1="134.0" x2="873.5" y2="154.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="869.5,154.0 877.5,154.0 873.5,160.0" fill="var(--border)"/><line x1="873.5" y1="206.0" x2="873.5" y2="230.0" stroke="var(--border)" stroke-width="1.5"/><polygon points="869.5,230.0 877.5,230.0 873.5,236.0" fill="var(--border)"/>
+    <rect x="110.0" y="236" width="780.0" height="58" rx="2" fill="var(--muted)" stroke="var(--border)"/>
+    <text x="500.0" y="259" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">
+      拼接 768 维 ＋ 6 个全局标量 ＝ 774 维</text>
+    <text x="500.0" y="279" text-anchor="middle" font-size="11" fill="var(--muted-fg)">
+      四组 token 数量取对数 · PG 对数估计 · Σ log 表规模</text>
+    <line x1="500.0" y1="294" x2="500.0" y2="314" stroke="var(--border)" stroke-width="1.5"/>
+    <polygon points="496.0,314 504.0,314 500.0,320" fill="var(--border)"/>
+    <rect x="110.0" y="320" width="780.0" height="52" rx="2" fill="var(--card)" stroke="var(--border)"/>
+    <text x="500.0" y="343" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">
+      MLP 头 774 → 128 → 64 → 1</text>
+    <text x="500.0" y="361" text-anchor="middle" font-size="11" fill="var(--muted-fg)">
+      末层权重与偏置零初始化</text>
+    <line x1="500.0" y1="372" x2="500.0" y2="398" stroke="var(--border)" stroke-width="1.5"/>
+    <polygon points="496.0,398 504.0,398 500.0,404" fill="var(--border)"/>
+    <rect x="110.0" y="404" width="780.0" height="42" rx="2" fill="var(--card)" stroke="var(--primary)" stroke-width="2"/>
+    <text x="500.0" y="430" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">
+      输出 ＝ PG 对数估计 ＋ 残差</text>
+  </svg>
+  </div>
+</figure>
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">一条查询怎么变成 token</h4>
+<div class="tablewrap"><table class="prose cols-4">
+<caption><b>四组输入。</b>J / F / T / C 是每条查询自己带的长度，模型不做截断也不补齐到固定长度。</caption>
+<thead><tr><th>组</th><th>维度</th><th>每条查询的数量</th><th>装的是什么</th></tr></thead>
+<tbody>
+<tr><td><b>连接列</b></td><td>40</td><td>J</td><td>join 列直方图，按表规模归一</td></tr><tr><td><b>fanout</b></td><td>40</td><td>F</td><td>对侧表匹配行数按本表直方图分桶</td></tr><tr><td><b>表</b></td><td>4</td><td>T</td><td>[log 表规模, AVI, MINSEL, EBO]</td></tr><tr><td><b>过滤列</b></td><td>43</td><td>C</td><td>40 维直方图 + 归一化范围上下界 + 选择率</td></tr>
+</tbody></table></div>
+<p class="small muted">维度的来源是 PRICE 的公开特征口径（<code>histogram40</code>），四组分别是
+连接列直方图 40 维、fanout 40 维、表级 4 维、过滤列 43 维；本项目只消费这些数值，不重新提取。
+<b>fanout 的准确含义</b>是「对侧表 join 列每个取值匹配到多少行」的期望值，按本表 join 列直方图分桶后
+得到 40 维分布，<b>不是两侧行数的乘积</b>（PRICE <code>gen_fanout.py</code> 用对侧 <code>value_counts</code>
+回填、再按桶取均值）。
+每条查询的 join 数、表数、谓词数都可以不同，掩码保证 padding 不参与池化、也不产生梯度。</p>
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">规模：参数量与体积</h4>
+<div class="tablewrap"><table>
+<caption><b>参数量。</b>两套变体只差一路 sum 池化，其余结构完全相同。</caption>
+<thead><tr><th>变体</th><th>池化</th><th>头输入</th><th>参数量</th><th>FP32 字节数</th><th>本报告用在哪</th></tr></thead>
+<tbody>
+<tr><td><b>set</b>（FOMAML）</td><td>mean + max</td><td class="num">518</td>
+<td class="num">99,777</td><td class="num">399,108</td>
+<td style="text-align:left">第 08 节延迟测量</td></tr>
+<tr><td><b>sum</b>（ERM，本报告主模型）</td><td>mean + max + sum</td><td class="num">774</td>
+<td class="num"><b>132,545</b></td><td class="num">530,180</td>
+<td style="text-align:left">第 02–07 节全部精度数字</td></tr>
+<tr><td>PRICE（对照）</td><td>两阶段 self-attention</td><td class="num">—</td>
+<td class="num">10,709,330</td><td class="num">42,837,320</td>
+<td style="text-align:left">全篇对照基线</td></tr>
+</tbody></table></div>
+<p>我们的主模型是 PRICE 的 <b>1/80.8</b> 参数
+（132,545 vs 10,709,330）；换成 set 变体是 1/107.3。
+参数少不等于端到端快——这件事第 08 节用实测分开了。</p>
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">三个设计决定</h4>
+<ul class="takeaways">
+<li><b>集合结构，不是固定宽度向量。</b>不同库的表数、join 数、谓词数从 1 到几十不等。
+四组各自有一套在组内共享的编码器，再掩码池化，同一个模型就能吃任意 schema ——
+这是同一份权重能在 23 个库上训练、
+又在 3 个没见过的目标库上直接推理的结构前提。</li>
+<li><b>残差锚定在 PG 上。</b>输出 ＝ PG 对数估计 ＋ 残差。PG 的尾部很差
+（目标库 Q95 28–87 倍），但中位数只有
+1.5–2.3 倍；从它出发学修正，比从零学基数容易——
+这是设计上的取舍，不是已证明的因果结论。</li>
+<li><b>最后一层零初始化。</b>训练第 0 步残差恒为 0，模型输出精确等于 PG，
+所以训练只可能在这个基础上改善，起点不会先把 PG 已经算对的部分破坏掉。</li>
+</ul>
+<p class="small muted">另外：没有 Dropout、没有 BatchNorm——内循环要在一批 support 上做 5 步梯度更新，
+任何随机失活都会让内外循环和评估不可复现。</p>
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">它不编码什么</h4>
+<p class="note"><b>这三条决定了它的能力上限，不能回避。</b>
+① <b>不显式编码 join graph 的配对关系</b>：四组 token 各自池化，token 之间的关系只剩数值统计。
+但 <b>PRICE 同样不显式知道哪两个 fanout 属于同一个 join</b>（06 号 §2）——真正的差别是
+PRICE 有 token 间 attention 交互、两阶段结构（先 scaling 再 filtering）和
+81–107 倍的参数量差距。
+这是一个尚未验证的候选解释，不是本报告的结论。
+② <b>没有表名、列名或字符串语义</b>，只有数值统计量；模型不知道「imdb」和「stats」是什么，
+只知道这组数字长什么样。
+③ <b>不读目标库的统计表</b>，目标库只提供查询特征与 PG 估计。</p>
+
 </section>
 
 <section id="targets">
   <h2><span class="num">02</span>目标库：对等漂移比较</h2>
-  <p class="lede">这四个库 PRICE 与我们都没有训练过，是本项目唯一一组对等的空间漂移比较点。口径：seed42 ERM-sum baseline 的 K=0 零样本，全部唯一查询，单次全量，无 support。本节末另附三 seed 复核（108 号）。</p><div class="tablewrap"><table><caption><b>目标库 · unique-query Q95（K=0，全量唯一查询）</b>　比值 &gt;1 表示我们更好；PRICE 与我们均未在这些库上训练，是唯一对等的漂移比较点。</caption><thead><tr><th>库</th><th>n</th><th>我们 Q95</th><th>PRICE Q95</th><th>PG Q95</th><th>PRICE / 我们</th><th>PG / 我们</th></tr></thead><tbody><tr><td>stats</td><td>2,603</td><td>83.72</td><td>39.52</td><td>75.65</td><td class="lose">0.472</td><td class="lose">0.904</td></tr><tr><td>ergastf1</td><td>1,258</td><td>22.28</td><td>15.29</td><td>27.61</td><td class="lose">0.686</td><td class="win">1.239</td></tr><tr><td>imdb</td><td>521</td><td>32.37</td><td>21.03</td><td>87.11</td><td class="lose">0.650</td><td class="win">2.691</td></tr><tr class="summary"><td>汇总（4 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="lose">0.650</td><td class="win">1.239</td></tr></tbody></table></div><figure class="figure"><figcaption><b>目标库 Q95 对照。</b>3 个库上 PRICE 的柱子都更短，即全部落后于 PRICE；对 PG 则在 ergastf1、imdb 上领先。</figcaption><ul class="legend"><li><span class="swatch" style="background:var(--series-ours)"></span>我们（冻结 seed42 baseline）</li><li><span class="swatch" style="background:var(--series-price)"></span>PRICE（官方权重，零样本）</li><li><span class="swatch" style="background:var(--series-pg)"></span>PG（原始优化器估计）</li></ul><svg viewBox="0 0 780 299" role="img" aria-label="目标库的 Q95 对照条形图，对数横轴"><line x1="96.0" y1="22" x2="96.0" y2="277" stroke="var(--border)" stroke-width="1"/><text x="96.0" y="291" text-anchor="middle" font-size="11" fill="var(--muted-fg)">10</text><line x1="351.5" y1="22" x2="351.5" y2="277" stroke="var(--border)" stroke-width="1"/><text x="351.5" y="291" text-anchor="middle" font-size="11" fill="var(--muted-fg)">100</text><line x1="607.1" y1="22" x2="607.1" y2="277" stroke="var(--border)" stroke-width="1"/><text x="607.1" y="291" text-anchor="middle" font-size="11" fill="var(--muted-fg)">1000</text><text x="0" y="60.0" font-size="13" font-weight="600" fill="var(--fg)">stats</text><rect x="96" y="34.0" width="235.8" height="15" fill="var(--series-ours)" rx="1"/><text x="337.8" y="46.0" font-size="11" fill="var(--muted-fg)">83.72</text><rect x="96" y="54.0" width="152.5" height="15" fill="var(--series-price)" rx="1"/><text x="254.5" y="66.0" font-size="11" fill="var(--muted-fg)">39.52</text><rect x="96" y="74.0" width="224.6" height="15" fill="var(--series-pg)" rx="1"/><text x="326.6" y="86.0" font-size="11" fill="var(--muted-fg)">75.65</text><text x="0" y="141.0" font-size="13" font-weight="600" fill="var(--fg)">ergastf1</text><rect x="96" y="115.0" width="88.9" height="15" fill="var(--series-ours)" rx="1"/><text x="190.9" y="127.0" font-size="11" fill="var(--muted-fg)">22.28</text><rect x="96" y="135.0" width="47.1" height="15" fill="var(--series-price)" rx="1"/><text x="149.1" y="147.0" font-size="11" fill="var(--muted-fg)">15.29</text><rect x="96" y="155.0" width="112.7" height="15" fill="var(--series-pg)" rx="1"/><text x="214.7" y="167.0" font-size="11" fill="var(--muted-fg)">27.61</text><text x="0" y="222.0" font-size="13" font-weight="600" fill="var(--fg)">imdb</text><rect x="96" y="196.0" width="130.4" height="15" fill="var(--series-ours)" rx="1"/><text x="232.4" y="208.0" font-size="11" fill="var(--muted-fg)">32.37</text><rect x="96" y="216.0" width="82.5" height="15" fill="var(--series-price)" rx="1"/><text x="184.5" y="228.0" font-size="11" fill="var(--muted-fg)">21.03</text><rect x="96" y="236.0" width="240.2" height="15" fill="var(--series-pg)" rx="1"/><text x="342.2" y="248.0" font-size="11" fill="var(--muted-fg)">87.11</text></svg><p class="axis-note">横轴为 Q95 的对数刻度（10 / 100 / 1000），每条柱直接标注数值；数值越靠左越准。</p></figure><p class="note"><b>口径：</b>本节全部数字取自 103 号证据文件（Q95 = exp(percentile(|误差|, 95))，整库唯一查询口径）。</p>
+  <p class="lede">这 3 个库 PRICE 与我们都没有训练过，是本项目唯一一组对等的空间漂移比较点。口径：seed42 ERM-sum baseline 的 K=0 零样本，全部唯一查询，单次全量，无 support。本节末另附三 seed 复核（108 号）。</p><div class="tablewrap"><table><caption><b>目标库 · unique-query Q95（K=0，全量唯一查询）</b>　比值 &gt;1 表示我们更好；PRICE 与我们均未在这些库上训练，是唯一对等的漂移比较点。</caption><thead><tr><th>库</th><th>n</th><th>我们 Q95</th><th>PRICE Q95</th><th>PG Q95</th><th>PRICE / 我们</th><th>PG / 我们</th></tr></thead><tbody><tr><td>stats</td><td>2,603</td><td>83.72</td><td>39.52</td><td>75.65</td><td class="lose">0.472</td><td class="lose">0.904</td></tr><tr><td>ergastf1</td><td>1,258</td><td>22.28</td><td>15.29</td><td>27.61</td><td class="lose">0.686</td><td class="win">1.239</td></tr><tr><td>imdb</td><td>521</td><td>32.37</td><td>21.03</td><td>87.11</td><td class="lose">0.650</td><td class="win">2.691</td></tr><tr class="summary"><td>汇总（3 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="lose">0.650</td><td class="win">1.239</td></tr></tbody></table></div><figure class="figure"><figcaption><b>目标库 Q95 对照。</b>3 个库上 PRICE 的柱子都更短，即全部落后于 PRICE；对 PG 则在 ergastf1、imdb 上领先。</figcaption><ul class="legend"><li><span class="swatch" style="background:var(--series-ours)"></span>我们（冻结 seed42 baseline）</li><li><span class="swatch" style="background:var(--series-price)"></span>PRICE（官方权重，零样本）</li><li><span class="swatch" style="background:var(--series-pg)"></span>PG（原始优化器估计）</li></ul><svg viewBox="0 0 780 299" role="img" aria-label="目标库的 Q95 对照条形图，对数横轴"><line x1="96.0" y1="22" x2="96.0" y2="277" stroke="var(--border)" stroke-width="1"/><text x="96.0" y="291" text-anchor="middle" font-size="11" fill="var(--muted-fg)">10</text><line x1="351.5" y1="22" x2="351.5" y2="277" stroke="var(--border)" stroke-width="1"/><text x="351.5" y="291" text-anchor="middle" font-size="11" fill="var(--muted-fg)">100</text><line x1="607.1" y1="22" x2="607.1" y2="277" stroke="var(--border)" stroke-width="1"/><text x="607.1" y="291" text-anchor="middle" font-size="11" fill="var(--muted-fg)">1000</text><text x="0" y="60.0" font-size="13" font-weight="600" fill="var(--fg)">stats</text><rect x="96" y="34.0" width="235.8" height="15" fill="var(--series-ours)" rx="1"/><text x="337.8" y="46.0" font-size="11" fill="var(--muted-fg)">83.72</text><rect x="96" y="54.0" width="152.5" height="15" fill="var(--series-price)" rx="1"/><text x="254.5" y="66.0" font-size="11" fill="var(--muted-fg)">39.52</text><rect x="96" y="74.0" width="224.6" height="15" fill="var(--series-pg)" rx="1"/><text x="326.6" y="86.0" font-size="11" fill="var(--muted-fg)">75.65</text><text x="0" y="141.0" font-size="13" font-weight="600" fill="var(--fg)">ergastf1</text><rect x="96" y="115.0" width="88.9" height="15" fill="var(--series-ours)" rx="1"/><text x="190.9" y="127.0" font-size="11" fill="var(--muted-fg)">22.28</text><rect x="96" y="135.0" width="47.1" height="15" fill="var(--series-price)" rx="1"/><text x="149.1" y="147.0" font-size="11" fill="var(--muted-fg)">15.29</text><rect x="96" y="155.0" width="112.7" height="15" fill="var(--series-pg)" rx="1"/><text x="214.7" y="167.0" font-size="11" fill="var(--muted-fg)">27.61</text><text x="0" y="222.0" font-size="13" font-weight="600" fill="var(--fg)">imdb</text><rect x="96" y="196.0" width="130.4" height="15" fill="var(--series-ours)" rx="1"/><text x="232.4" y="208.0" font-size="11" fill="var(--muted-fg)">32.37</text><rect x="96" y="216.0" width="82.5" height="15" fill="var(--series-price)" rx="1"/><text x="184.5" y="228.0" font-size="11" fill="var(--muted-fg)">21.03</text><rect x="96" y="236.0" width="240.2" height="15" fill="var(--series-pg)" rx="1"/><text x="342.2" y="248.0" font-size="11" fill="var(--muted-fg)">87.11</text></svg><p class="axis-note">横轴为 Q95 的对数刻度（10 / 100 / 1000），每条柱直接标注数值；数值越靠左越准。</p></figure><p class="note"><b>口径：</b>本节全部数字取自 103 号证据文件（Q95 = exp(percentile(|误差|, 95))，整库唯一查询口径）。</p>
 <h3>三 seed 复核：方向不变，量级不变，但 ergastf1 的离散度大到不能只写均值</h3>
 <p>上一节的数字是<b>单 seed（42）</b>。108 号用与 seed42 逐字节相同的训练配置、只改 <code>seed</code> 字段，
 把三个目标库各重测两遍。结论没有翻案，但多了两条必须一起报的事实。</p>
@@ -562,7 +650,7 @@ arXiv 2406.01027）。论文的 'Visual Genome' 即本项目的 'genome'。
   IMDB 上 Q50 首次优于 PG（2.037 vs 2.278）。</span></li>
   <li><span class="tag ok">可写</span><span>源分布内的拟合可超过给定的 PRICE 参考（22/26，
   其中 19 个稳赢、3 个打平）。</span></li>
-  <li><span class="tag no">不可写</span><span>“我们优于 PRICE”——对等漂移场景是 0/4。</span></li>
+  <li><span class="tag no">不可写</span><span>“我们优于 PRICE”——对等漂移场景是 0/3。</span></li>
   <li><span class="tag no">不可写</span><span>“22/26 优于 PRICE”而不带拟合限定——PRICE 全见过这些库。</span></li>
   <li><span class="tag no">不可写</span><span>“全部目标库完整验收”——IMDB 只有 K=0，没有 few-shot 行。</span></li>
   <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 0.904，属于打平而非胜负。</span></li>
@@ -574,7 +662,7 @@ arXiv 2406.01027）。论文的 'Visual Genome' 即本项目的 'genome'。
   且这个量级连精确真值都达不到。能写的是<b>前向单项</b>快
   34.5–38.1×。</span></li>
   <li><span class="tag no">不可写</span><span>“精度上去了查询就更快”——实测反驳：真值臂 Q-error 恒为 1.00，
-  却在四个库里从来不是最快的（第 08 节）。</span></li>
+  却在 3 个库里从来不是最快的（第 08 节）。</span></li>
 </ul>
 <p class="small muted">其它限定：<b>目标库的 Q95 已补到三 seed</b>（108 号，第 02 节），
 第 03–05 节的定量分解仍是<b>单 seed（42）</b>，标 <code>needs_evidence</code>；
