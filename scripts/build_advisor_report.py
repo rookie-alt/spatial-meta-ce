@@ -133,11 +133,69 @@ def load_json(path: Path) -> dict:
 
 # whole sections a trimmed handout may drop, keyed by <section id="...">
 OMITTABLE_SECTIONS = {
+    "flip": "04 漂移与拟合的反转",
+    "error": "05 误差结构诊断",
     "literature": "09 与文献的同口径对照",
     "limits": "10 边界与不可声称",
     "evidence": "11 证据与复算",
     "glossary": "12 名词表",
 }
+
+
+SECTION_ORDER = (
+    "verdict",
+    "protocol",
+    "targets",
+    "sources",
+    "flip",
+    "error",
+    "fewshot",
+    "advantages",
+    "latency",
+    "literature",
+    "limits",
+    "evidence",
+    "glossary",
+)
+
+
+def renumber_sections(html_text: str, omit: set[str]) -> str:
+    """Close the numbering gaps left by removed sections and retarget references."""
+    remaining = [sid for sid in SECTION_ORDER if sid not in omit]
+    if len(remaining) == len(SECTION_ORDER):
+        return html_text
+    mapping = {SECTION_ORDER.index(sid): index for index, sid in enumerate(remaining)}
+
+    def range_repl(match: re.Match) -> str:
+        start, end = int(match.group(1)), int(match.group(2))
+        kept = [mapping[old] for old in sorted(mapping) if old <= end]
+        return f"第 {mapping[start]:02d}–{kept[-1]:02d} 节"
+
+    html_text = re.sub(r"第 (\d{2})–(\d{2}) 节", range_repl, html_text)
+
+    def single_repl(match: re.Match) -> str:
+        old = int(match.group(1))
+        new = mapping.get(old)
+        return match.group(0) if new is None else f"{new:02d} 节"
+
+    html_text = re.sub(r"(?<![0-9–])(\d{2}) 节", single_repl, html_text)
+
+    def anchor_repl(match: re.Match) -> str:
+        old = int(match.group(2))
+        new = mapping.get(old)
+        if new is None:
+            return match.group(0)
+        return f'<a href="{match.group(1)}">{new:02d} '
+
+    html_text = re.sub(r'<a href="(#[a-z]+)">(\d{2}) ', anchor_repl, html_text)
+    for new_index, section_id in enumerate(remaining):
+        pattern = re.compile(
+            rf'(<section id="{section_id}">\s*<h2><span class="num">)(\d{{2}})(</span>)'
+        )
+        html_text, count = pattern.subn(rf"\g<1>{new_index:02d}\g<3>", html_text)
+        if count != 1:
+            raise SystemExit(f"section {section_id!r} header not matched")
+    return html_text
 
 
 def strip_sections(html_text: str, omit: set[str]) -> str:
@@ -180,7 +238,7 @@ def strip_sections(html_text: str, omit: set[str]) -> str:
         html_text = html_text.replace(
             "（出处与未核实项见第 09 节与第 11 节）", "（未核实项见第 09 节）"
         )
-    return html_text
+    return renumber_sections(html_text, omit)
 
 
 def _drop_reference(text: str, needle: str) -> str:
