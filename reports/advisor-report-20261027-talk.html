@@ -257,6 +257,45 @@ footer p{max-width:none}
 这一点决定了下面两张表的语义完全不同。</p>
 
   
+<h3>训练方式：监督式 FOMAML（元学习在这里，不在网络里）</h3>
+<p class="lede">同一个网络，元学习与它的对照用的是同一套结构。区别在训练目标：
+元学习学的是一个<b>能在 5 步内适应新库的公共初始化</b>，不是某个库的估计函数。</p>
+<figure class="figure">
+  <figcaption><b>一个 meta-step。</b>内循环在 support 上把参数推到任务局部；外循环拿
+  query 的损失去更新<b>公共初始化</b>，而不是留下这 5 步的结果。所以训练结束时得到的是
+  「一个适合被少量样本快速调整的起点」。</figcaption>
+  <div style="overflow-x:auto">
+  <svg viewBox="0 0 1000 180" style="min-width:700px" role="img"
+       aria-label="FOMAML 训练流程：抽库、切任务、内循环、外循环，重复 2000 步">
+    <rect x="10" y="16" width="230" height="84" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="125" y="46" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">① 抽库</text><text x="125" y="68" text-anchor="middle" font-size="10.5" fill="var(--muted-fg)">从训练库随机取 1 个（每步 4 个）</text><line x1="240" y1="58" x2="254" y2="58" stroke="var(--border)" stroke-width="1.5"/><polygon points="254,54 254,62 260,58" fill="var(--border)"/><rect x="260" y="16" width="230" height="84" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="375" y="46" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">② 切任务</text><text x="375" y="68" text-anchor="middle" font-size="10.5" fill="var(--muted-fg)">support K∈{5,10,20,50,100} + query 64 条</text><line x1="490" y1="58" x2="504" y2="58" stroke="var(--border)" stroke-width="1.5"/><polygon points="504,54 504,62 510,58" fill="var(--border)"/><rect x="510" y="16" width="230" height="84" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="625" y="46" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">③ 内循环</text><text x="625" y="68" text-anchor="middle" font-size="10.5" fill="var(--muted-fg)">support 上 5 步梯度，lr 1e-3</text><line x1="740" y1="58" x2="754" y2="58" stroke="var(--border)" stroke-width="1.5"/><polygon points="754,54 754,62 760,58" fill="var(--border)"/><rect x="760" y="16" width="230" height="84" rx="2" fill="var(--card)" stroke="var(--border)"/><text x="875" y="46" text-anchor="middle" font-size="13" font-weight="600" fill="var(--fg)">④ 外循环</text><text x="875" y="68" text-anchor="middle" font-size="10.5" fill="var(--muted-fg)">query 损失，Adam 3e-4 更新初始化</text><path d="M 875 100 V 160 H 125 V 108" fill="none" stroke="var(--border)" stroke-width="1.5"/><polygon points="121,108 129,108 125,100" fill="var(--border)"/><text x="500" y="150" text-anchor="middle" font-size="11" fill="var(--muted-fg)">重复 2000 步；每个任务都从同一个公共初始化重新开始</text>
+  </svg>
+  </div>
+</figure>
+<div class="tablewrap"><table class="prose cols-3">
+<caption><b>训练超参。</b>FOMAML 与 ERM 对照共用同一份配置，唯一的差别是 <code>method</code> 字段。</caption>
+<thead><tr><th>项目</th><th>值</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>外循环</td><td class="num">2000 步 · Adam 3e-4</td><td style="text-align:left">更新公共初始化</td></tr>
+<tr><td>内循环</td><td class="num">5 步 · lr 1e-3</td><td style="text-align:left">每个任务从同一初始化重新开始，全参数</td></tr>
+<tr><td>任务采样</td><td class="num">每步 4 个库</td><td style="text-align:left">K 从 [5, 10, 20, 50, 100] 随机，query 64 条，与 support 不重叠</td></tr>
+<tr><td>损失</td><td class="num">smooth_l1</td><td style="text-align:left">在 log 基数空间上回归</td></tr>
+<tr><td>二阶</td><td class="num">一阶近似</td><td style="text-align:left">FOMAML 截断二阶依赖，但保留 <code>fast = θ − lr·∇</code> 这条初始化通路</td></tr>
+</tbody></table></div>
+<p><b>ERM 对照怎么做的</b>：同一结构、同一数据划分、同一 seed，两个配置文件逐字段相同，
+唯一差别是 <code>method</code> 从 <code>fomaml</code> 改成 <code>erm</code>——没有内循环，
+直接监督预测。这一步是判断「收益是否来自元学习」的必要对照；少了它，任何提升都可以被解释成
+「网络或数据本身更好」。</p>
+<p class="note"><b>口径声明，必须先说：</b>第 02–05 节的主表是 <b>ERM-sum</b> 臂，<b>不是 FOMAML</b>。
+全库 population 评估那条线只跑过 ERM-sum baseline；元学习臂的证据在
+<b>06 节</b>（FOMAML / ERM 四列对照）与 <b>08 节</b>（延迟测的是 FOMAML-set）。</p>
+<p><b>元学习值多少。</b>set 臂上，K=0 时两个库都是 FOMAML 更低（stats 77.3 vs 79.4、ergastf1 24.5 vs 26.1），K=5 与 K=10 仍然如此。
+这一列来自 06 节的 <b>episode 均值</b>口径，与 02 节的全库 population 表（stats 81.1 / ergastf1 23.4）
+是两套算法，不能互换——所以这里只用来比较 FOMAML 与 ERM 的相对高低，不用来引用绝对值。
+到 K≥20 方向不再一致：stats 上 FOMAML 仍略低，但差距与两臂的 seed 波动同量级（06 节 SD 列）；
+ergastf1 上 ERM 反而更低。sum 臂的对照更不干净：K=0 时 stats 78.0 vs 78.8（领先）、ergastf1 24.0 vs 23.7（落后）。
+所以「元学习有效」这句话只能限定在 <b>set 臂与 K≤10</b>，不能推广到全部配置。</p>
+
+  
 <h3>模型架构：四组 token → 掩码池化 → PG 残差</h3>
 <p class="lede">把一条查询拆成四组变长 token，每组用共享的小 MLP 编码、掩码池化成定长向量，
 再用一个三层 MLP 预测「PG 错了多少」，加回 PG 的估计。<b>模型学的不是基数本身，是修正量。</b></p>
@@ -296,9 +335,9 @@ footer p{max-width:none}
 </tbody></table></div>
 <p class="small muted">维度的来源是 PRICE 的公开特征口径（<code>histogram40</code>），四组分别是
 连接列直方图 40 维、fanout 40 维、表级 4 维、过滤列 43 维；本项目只消费这些数值，不重新提取。
-<b>fanout 的准确含义</b>是「对侧表 join 列每个取值匹配到多少行」的期望值，按本表 join 列直方图分桶后
-得到 40 维分布，<b>不是两侧行数的乘积</b>（PRICE <code>gen_fanout.py</code> 用对侧 <code>value_counts</code>
-回填、再按桶取均值）。
+<b>fanout 的准确含义</b>是：<b>本表</b> join 列每个取值在<b>对侧表</b>里匹配到多少行，
+再按本表 join 列直方图分桶取均值，得到 40 维分布；<b>不是两侧行数的乘积</b>
+（PRICE 源码 <code>utils/statistics/gen_fanout.py</code> 用对侧 <code>value_counts</code> 回填、按桶取均值）。
 每条查询的 join 数、表数、谓词数都可以不同，掩码保证 padding 不参与池化、也不产生梯度。</p>
 <h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">规模：参数量与体积</h4>
 <div class="tablewrap"><table>

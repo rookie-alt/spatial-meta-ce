@@ -1157,6 +1157,117 @@ def build_protocol_block(facts: dict) -> str:
 """
 
 
+def load_training_configs(repo_root: Path) -> dict:
+    """Load the FOMAML run and its ERM control; they must differ only in `method`."""
+    meta = load_json(repo_root / "configs/meta.json")
+    erm = load_json(repo_root / "configs/erm.json")
+    diff = sorted(k for k in set(meta) | set(erm) if meta.get(k) != erm.get(k))
+    if diff != ["method"]:
+        raise SystemExit(f"ERM is not a matched control; differing keys: {diff}")
+    return meta
+
+
+def build_training_block(facts: dict, meta: dict) -> str:
+    """Where the meta-learning lives: the inner/outer loop, and its ERM control."""
+    shown = [db for db in DOC14_DBS if db in facts["report_dbs"]]
+    for db in shown:
+        for k in (0, 5, 10):
+            fast = facts["doc14"][db][k]["FOMAML-set"]["mean"]
+            plain = facts["doc14"][db][k]["ERM-set"]["mean"]
+            if not fast < plain:
+                raise SystemExit(
+                    f"meta-learning claim fails at {db} K={k}: {fast} vs {plain}"
+                )
+    n_cn = {1: "一", 2: "两", 3: "三"}.get(len(shown), str(len(shown)))
+    k0 = "、".join(
+        f"{db} {facts['doc14'][db][0]['FOMAML-set']['mean']:.1f} vs "
+        f"{facts['doc14'][db][0]['ERM-set']['mean']:.1f}"
+        for db in shown
+    )
+    sum_claims = []
+    for db in shown:
+        row = facts["doc14"][db][0]
+        fast, plain = row["FOMAML-sum"]["mean"], row["ERM-sum"]["mean"]
+        verdict = "领先" if fast < plain else "落后"
+        sum_claims.append(f"{db} {fast:.1f} vs {plain:.1f}（{verdict}）")
+
+    steps = (
+        ("① 抽库", "从训练库随机取 1 个（每步 4 个）"),
+        ("② 切任务", "support K∈{5,10,20,50,100} + query 64 条"),
+        ("③ 内循环", "support 上 5 步梯度，lr 1e-3"),
+        ("④ 外循环", "query 损失，Adam 3e-4 更新初始化"),
+    )
+    outer_lr = f"{meta['outer_lr']:.0e}".replace("e-0", "e-")
+    inner_lr = f"{meta['inner_lr']:.0e}".replace("e-0", "e-")
+    boxes = []
+    for index, (title, detail) in enumerate(steps):
+        x = 10 + index * 250
+        boxes.append(
+            f'<rect x="{x}" y="16" width="230" height="84" rx="2" '
+            'fill="var(--card)" stroke="var(--border)"/>'
+            f'<text x="{x + 115}" y="46" text-anchor="middle" font-size="13" '
+            f'font-weight="600" fill="var(--fg)">{title}</text>'
+            f'<text x="{x + 115}" y="68" text-anchor="middle" font-size="10.5" '
+            f'fill="var(--muted-fg)">{detail}</text>'
+        )
+        if index < len(steps) - 1:
+            start, end = x + 230, x + 250
+            boxes.append(
+                f'<line x1="{start}" y1="58" x2="{end - 6}" y2="58" '
+                'stroke="var(--border)" stroke-width="1.5"/>'
+                f'<polygon points="{end - 6},54 {end - 6},62 {end},58" '
+                'fill="var(--border)"/>'
+            )
+    loop_x0, loop_x1 = 10 + 115, 10 + 3 * 250 + 115
+    boxes.append(
+        f'<path d="M {loop_x1} 100 V 160 H {loop_x0} V 108" fill="none" '
+        'stroke="var(--border)" stroke-width="1.5"/>'
+        f'<polygon points="{loop_x0 - 4},108 {loop_x0 + 4},108 {loop_x0},100" '
+        'fill="var(--border)"/>'
+        '<text x="500" y="150" text-anchor="middle" font-size="11" '
+        'fill="var(--muted-fg)">重复 2000 步；每个任务都从同一个公共初始化重新开始</text>'
+    )
+    return f"""
+<h3>训练方式：监督式 FOMAML（元学习在这里，不在网络里）</h3>
+<p class="lede">同一个网络，元学习与它的对照用的是同一套结构。区别在训练目标：
+元学习学的是一个<b>能在 5 步内适应新库的公共初始化</b>，不是某个库的估计函数。</p>
+<figure class="figure">
+  <figcaption><b>一个 meta-step。</b>内循环在 support 上把参数推到任务局部；外循环拿
+  query 的损失去更新<b>公共初始化</b>，而不是留下这 5 步的结果。所以训练结束时得到的是
+  「一个适合被少量样本快速调整的起点」。</figcaption>
+  <div style="overflow-x:auto">
+  <svg viewBox="0 0 1000 180" style="min-width:700px" role="img"
+       aria-label="FOMAML 训练流程：抽库、切任务、内循环、外循环，重复 2000 步">
+    {"".join(boxes)}
+  </svg>
+  </div>
+</figure>
+<div class="tablewrap"><table class="prose cols-3">
+<caption><b>训练超参。</b>FOMAML 与 ERM 对照共用同一份配置，唯一的差别是 <code>method</code> 字段。</caption>
+<thead><tr><th>项目</th><th>值</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td>外循环</td><td class="num">{meta["steps"]} 步 · Adam {outer_lr}</td><td style="text-align:left">更新公共初始化</td></tr>
+<tr><td>内循环</td><td class="num">{meta["inner_steps"]} 步 · lr {inner_lr}</td><td style="text-align:left">每个任务从同一初始化重新开始，全参数</td></tr>
+<tr><td>任务采样</td><td class="num">每步 {meta["meta_batch"]} 个库</td><td style="text-align:left">K 从 {meta["support_sizes"]} 随机，query {meta["query_size"]} 条，与 support 不重叠</td></tr>
+<tr><td>损失</td><td class="num">{meta["loss"]}</td><td style="text-align:left">在 log 基数空间上回归</td></tr>
+<tr><td>二阶</td><td class="num">一阶近似</td><td style="text-align:left">FOMAML 截断二阶依赖，但保留 <code>fast = θ − lr·∇</code> 这条初始化通路</td></tr>
+</tbody></table></div>
+<p><b>ERM 对照怎么做的</b>：同一结构、同一数据划分、同一 seed，两个配置文件逐字段相同，
+唯一差别是 <code>method</code> 从 <code>fomaml</code> 改成 <code>erm</code>——没有内循环，
+直接监督预测。这一步是判断「收益是否来自元学习」的必要对照；少了它，任何提升都可以被解释成
+「网络或数据本身更好」。</p>
+<p class="note"><b>口径声明，必须先说：</b>第 02–05 节的主表是 <b>ERM-sum</b> 臂，<b>不是 FOMAML</b>。
+全库 population 评估那条线只跑过 ERM-sum baseline；元学习臂的证据在
+<b>06 节</b>（FOMAML / ERM 四列对照）与 <b>08 节</b>（延迟测的是 FOMAML-set）。</p>
+<p><b>元学习值多少。</b>set 臂上，K=0 时{n_cn}个库都是 FOMAML 更低（{k0}），K=5 与 K=10 仍然如此。
+这一列来自 06 节的 <b>episode 均值</b>口径，与 02 节的全库 population 表（{" / ".join(f"{db} {facts['target3seed']['databases'][db]['ours_k0']['q95']['mean']:.1f}" for db in shown)}）
+是两套算法，不能互换——所以这里只用来比较 FOMAML 与 ERM 的相对高低，不用来引用绝对值。
+到 K≥20 方向不再一致：stats 上 FOMAML 仍略低，但差距与两臂的 seed 波动同量级（06 节 SD 列）；
+ergastf1 上 ERM 反而更低。sum 臂的对照更不干净：K=0 时 {"、".join(sum_claims)}。
+所以「元学习有效」这句话只能限定在 <b>set 臂与 K≤10</b>，不能推广到全部配置。</p>
+"""
+
+
 def architecture_parameters(
     group_dims: tuple[int, ...],
     width: int,
@@ -1301,9 +1412,9 @@ def build_architecture_block(facts: dict) -> str:
 </tbody></table></div>
 <p class="small muted">维度的来源是 PRICE 的公开特征口径（<code>histogram40</code>），四组分别是
 连接列直方图 40 维、fanout 40 维、表级 4 维、过滤列 43 维；本项目只消费这些数值，不重新提取。
-<b>fanout 的准确含义</b>是「对侧表 join 列每个取值匹配到多少行」的期望值，按本表 join 列直方图分桶后
-得到 40 维分布，<b>不是两侧行数的乘积</b>（PRICE <code>gen_fanout.py</code> 用对侧 <code>value_counts</code>
-回填、再按桶取均值）。
+<b>fanout 的准确含义</b>是：<b>本表</b> join 列每个取值在<b>对侧表</b>里匹配到多少行，
+再按本表 join 列直方图分桶取均值，得到 40 维分布；<b>不是两侧行数的乘积</b>
+（PRICE 源码 <code>utils/statistics/gen_fanout.py</code> 用对侧 <code>value_counts</code> 回填、按桶取均值）。
 每条查询的 join 数、表数、谓词数都可以不同，掩码保证 padding 不参与池化、也不产生梯度。</p>
 <h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">规模：参数量与体积</h4>
 <div class="tablewrap"><table>
@@ -2579,6 +2690,9 @@ def main() -> int:
             ),
             "VERDICT_BLOCK": build_verdict_block(facts),
             "PROTOCOL_BLOCK": build_protocol_block(facts),
+            "TRAINING_BLOCK": build_training_block(
+                facts, load_training_configs(repo_root)
+            ),
             "ARCHITECTURE_BLOCK": build_architecture_block(facts),
             "TARGET_BLOCK": target_block,
             "SOURCE_BLOCK": source_block,
