@@ -214,7 +214,8 @@ def cross_check_arms(doc14_rows: dict, families: dict[str, dict]) -> None:
                 )
 
 
-def build_facts(evidence_dir: Path) -> dict:
+def build_facts(evidence_dir: Path, report_dbs: tuple[str, ...] = TARGET_DBS) -> dict:
+    dbs = tuple(report_dbs)
     broad = load_json(evidence_dir / "broad_summary.json")
     protocol = load_json(evidence_dir / "broad_protocol.json")
     imdb102 = load_json(evidence_dir / "imdb_summary.json")
@@ -226,6 +227,7 @@ def build_facts(evidence_dir: Path) -> dict:
         "broad": broad,
         "protocol": protocol,
         "sources": sorted(sources),
+        "report_dbs": dbs,
         "imdb102": imdb102,
         "source102": source102,
     }
@@ -287,7 +289,7 @@ def build_facts(evidence_dir: Path) -> dict:
     facts["use_pg"] = bool(protocol["checkpoint"]["model_config"]["use_pg"])
     facts["parameter_ratio"] = facts["price_parameters"] / facts["our_parameters"]
 
-    facts["targets"] = group_stats(list(TARGET_DBS))
+    facts["targets"] = group_stats(list(dbs))
     facts["source_stats"] = group_stats(facts["sources"])
 
     # rows that sit inside the measured seed-noise band
@@ -297,14 +299,12 @@ def build_facts(evidence_dir: Path) -> dict:
         if 1.0 < q95(db, "price_k0") / q95(db, "ours_k0") < 1.0 + SEED_NOISE
     ]
     facts["noise_band_targets"] = [
-        db
-        for db in TARGET_DBS
-        if abs(q95(db, "pg") / q95(db, "ours_k0") - 1.0) < SEED_NOISE
+        db for db in dbs if abs(q95(db, "pg") / q95(db, "ours_k0") - 1.0) < SEED_NOISE
     ]
 
     # 4+ bucket (the project's headline macro_four_plus_q95 granularity)
     four_plus = {}
-    for db in TARGET_DBS:
+    for db in dbs:
         entry = databases[db]["four_plus"]
         four_plus[db] = {
             "n": entry["n"],
@@ -379,7 +379,19 @@ def build_facts(evidence_dir: Path) -> dict:
             "「0/12」 wording is stale and must be revisited"
         )
     facts["target3seed"] = target3
-    facts["target3seed_ratio"] = headline["median_q95_ratio_price_over_ours"]["value"]
+    # statistics for the databases this report actually shows (the evidence file
+    # itself always covers all four)
+    report3 = [target3["databases"][db] for db in dbs]
+    facts["target3seed_ratio"] = stats.median(
+        [entry["median_q95_ratio_price_over_ours"] for entry in report3]
+    )
+    facts["target3seed_pairs"] = len(report3) * 3
+    facts["target3seed_pairs_beating_price"] = sum(
+        entry["seeds_beating_price_on_q95"] for entry in report3
+    )
+    facts["target3seed_pairs_beating_pg"] = sum(
+        entry["seeds_beating_pg_on_q95"] for entry in report3
+    )
 
     # doc 106: the probe has to clear its own negative control, otherwise the
     # "database identity is linearly readable" claim is a probe artefact.  The
@@ -418,7 +430,7 @@ def build_facts(evidence_dir: Path) -> dict:
     latency_erm = load_json(evidence_dir / "latency_cpu_erm.json")
     latency_gpu = load_json(evidence_dir / "latency_cuda_fomaml.json")
     estimation = load_json(evidence_dir / "estimation_cpu_fomaml.json")
-    e2e = {db: load_json(evidence_dir / f"e2e_{db}.json") for db in TARGET_DBS}
+    e2e = {db: load_json(evidence_dir / f"e2e_{db}.json") for db in dbs}
 
     # L1 must be the forward pass alone; a file that silently grew feature
     # extraction or planning would inflate the speedup without looking wrong.
@@ -467,7 +479,7 @@ def build_facts(evidence_dir: Path) -> dict:
         b["database"] for b in latency["stability_breaches"]
     )
     cpu_ours_p50 = {}
-    for db in TARGET_DBS:
+    for db in dbs:
         arm = latency["databases"][db]["models"]["ours"]
         if arm["stability_ok"] and db not in facts["latency_fallback_dbs"]:
             cpu_ours_p50[db] = arm["population"]["p50"]
@@ -482,7 +494,7 @@ def build_facts(evidence_dir: Path) -> dict:
     facts["latency_cpu_ours_p50"] = cpu_ours_p50
 
     speedups_cpu, speedups_gpu, speedups_chain = [], [], []
-    for db in TARGET_DBS:
+    for db in dbs:
         price = latency["databases"][db]["models"]["price"]["cache"]
         speedups_cpu.append(price["population"]["p50"] / cpu_ours_p50[db])
         ours_gpu = latency_gpu["databases"][db]["models"]["ours"]
@@ -503,7 +515,7 @@ def build_facts(evidence_dir: Path) -> dict:
     facts["speedup_forward_gpu"] = (min(speedups_gpu), max(speedups_gpu))
     facts["speedup_chain"] = (min(speedups_chain), max(speedups_chain))
     for arm, key in (("true_card", "true"), ("ours", "ours"), ("price", "price")):
-        values = [e2e[db]["ratios_to_pg_native"][arm]["median"] for db in TARGET_DBS]
+        values = [e2e[db]["ratios_to_pg_native"][arm]["median"] for db in dbs]
         facts[f"e2e_ratio_{key}"] = (min(values), max(values))
 
     # The prose says "no measurable effect", which only holds while every arm
@@ -518,12 +530,10 @@ def build_facts(evidence_dir: Path) -> dict:
             )
     facts["extraction_share"] = (
         min(
-            estimation["databases"][db]["extraction_share_of_ours_total"]
-            for db in TARGET_DBS
+            estimation["databases"][db]["extraction_share_of_ours_total"] for db in dbs
         ),
         max(
-            estimation["databases"][db]["extraction_share_of_ours_total"]
-            for db in TARGET_DBS
+            estimation["databases"][db]["extraction_share_of_ours_total"] for db in dbs
         ),
     )
     return facts
@@ -559,7 +569,7 @@ def ratio_cell(value: float, ours_better: bool) -> str:
 def build_target_table(facts: dict) -> str:
     broad = facts["broad"]["databases"]
     rows = []
-    for db in TARGET_DBS:
+    for db in facts["report_dbs"]:
         entry = broad[db]["overview"]
         ours, price, pg = (entry[m]["q95"] for m in ("ours_k0", "price_k0", "pg"))
         pr = price / ours
@@ -577,7 +587,7 @@ def build_target_table(facts: dict) -> str:
     )
     return (
         '<div class="tablewrap"><table>'
-        "<caption><b>四个目标库 · unique-query Q95（K=0，全量唯一查询）</b>"
+        "<caption><b>目标库 · unique-query Q95（K=0，全量唯一查询）</b>"
         "　比值 &gt;1 表示我们更好；PRICE 与我们均未在这些库上训练，是唯一对等的漂移比较点。"
         "</caption><thead><tr><th>库</th><th>n</th><th>我们 Q95</th><th>PRICE Q95</th>"
         "<th>PG Q95</th><th>PRICE / 我们</th><th>PG / 我们</th></tr></thead>"
@@ -587,7 +597,7 @@ def build_target_table(facts: dict) -> str:
 
 def build_target_four_plus_table(facts: dict) -> str:
     rows = []
-    for db in TARGET_DBS:
+    for db in facts["report_dbs"]:
         entry = facts["four_plus_targets"][db]
         pr = entry["price"] / entry["ours"]
         gr = entry["pg"] / entry["ours"]
@@ -680,9 +690,14 @@ def build_source_table(facts: dict) -> str:
 
 def build_flip_table(facts: dict) -> str:
     t, s = facts["targets"], facts["source_stats"]
+    n_db = len(facts["report_dbs"])
     rows = [
-        ("Q95 输给 PRICE 的库", f"{t['lose_price']} / 4", f"{s['lose_price']} / 26"),
-        ("Q95 输给 PG 的库", f"{t['lose_pg']} / 4", f"{s['lose_pg']} / 26"),
+        (
+            "Q95 输给 PRICE 的库",
+            f"{t['lose_price']} / {n_db}",
+            f"{s['lose_price']} / 26",
+        ),
+        ("Q95 输给 PG 的库", f"{t['lose_pg']} / {n_db}", f"{s['lose_pg']} / 26"),
         ("PRICE / 我们 中位", f"{t['price_median']:.3f}", f"{s['price_median']:.3f}"),
         (
             "PRICE / 我们 范围",
@@ -692,7 +707,7 @@ def build_flip_table(facts: dict) -> str:
         ("PG / 我们 中位", f"{t['pg_median']:.3f}", f"{s['pg_median']:.3f}"),
         (
             "与真值相关性落后 PRICE 的库",
-            f"{t['corr_lose']} / 4",
+            f"{t['corr_lose']} / {n_db}",
             f"{s['corr_lose']} / 26",
         ),
         (
@@ -702,7 +717,7 @@ def build_flip_table(facts: dict) -> str:
         ),
         (
             "我们离散度大于 PRICE 的库",
-            f"{t['wider_than_price']} / 4",
+            f"{t['wider_than_price']} / {n_db}",
             f"{s['wider_than_price']} / 26",
         ),
     ]
@@ -722,9 +737,9 @@ def build_flip_table(facts: dict) -> str:
 def build_error_table(facts: dict) -> str:
     broad = facts["broad"]["databases"]
     rows = []
-    for db in list(TARGET_DBS) + list(facts["sources"]):
+    for db in list(facts["report_dbs"]) + list(facts["sources"]):
         entry = broad[db]["overview"]
-        group = "目标" if db in TARGET_DBS else "源"
+        group = "目标" if db in facts["report_dbs"] else "源"
         rows.append(
             f"<tr><td>{db}</td><td>{group}</td>"
             f"<td>{entry['ours_k0']['bias_med']:+.3f}</td>"
@@ -759,7 +774,7 @@ def build_error_table(facts: dict) -> str:
 
 def build_fewshot_table(facts: dict) -> str:
     rows = []
-    for db in DOC14_DBS:
+    for db in [d for d in DOC14_DBS if d in facts["report_dbs"]]:
         for k in K_VALUES:
             row = facts["doc14"][db][k]
             cells = [f"{row[arm]['mean']:.2f} ± {row[arm]['sd']:.2f}" for arm in ARMS]
@@ -797,10 +812,10 @@ def svg_target_chart(facts: dict) -> str:
     bar_h, gap, group_gap = 15, 5, 26
     group_h = bar_h * 3 + gap * 2 + group_gap
     top = 34
-    height = top + group_h * len(TARGET_DBS) + 22
+    height = top + group_h * len(facts["report_dbs"]) + 22
     parts = [
         f'<svg viewBox="0 0 {width} {height}" role="img" '
-        'aria-label="四个目标库的 Q95 对照条形图，对数横轴">'
+        'aria-label="目标库的 Q95 对照条形图，对数横轴">'
     ]
     for tick in (10, 100, 1000):
         x = x_of(tick)
@@ -812,7 +827,7 @@ def svg_target_chart(facts: dict) -> str:
             f'<text x="{x:.1f}" y="{height - 8}" text-anchor="middle" font-size="11" '
             f'fill="var(--muted-fg)">{tick}</text>'
         )
-    for index, db in enumerate(TARGET_DBS):
+    for index, db in enumerate(facts["report_dbs"]):
         entry = broad[db]["overview"]
         base = top + index * group_h
         parts.append(
@@ -848,10 +863,19 @@ def svg_target_chart(facts: dict) -> str:
         '<p class="axis-note">横轴为 Q95 的对数刻度（10 / 100 / 1000），'
         "每条柱直接标注数值；数值越靠左越准。</p>"
     )
+    dbs = facts["report_dbs"]
+    beat_pg = [
+        db
+        for db in dbs
+        if facts["broad"]["databases"][db]["overview"]["ours_k0"]["q95"]
+        < facts["broad"]["databases"][db]["overview"]["pg"]["q95"]
+    ]
     return (
         '<figure class="figure">'
-        "<figcaption><b>目标库 Q95 对照。</b>四个库上 PRICE 的柱子都更短，"
-        "即全部落后于 PRICE；对 PG 则在 genome、ergastf1、imdb 上领先。</figcaption>"
+        f"<figcaption><b>目标库 Q95 对照。</b>{len(dbs)} 个库上 PRICE 的柱子都更短，"
+        "即全部落后于 PRICE；对 PG 则在 "
+        f"{'、'.join(beat_pg) if beat_pg else '任何库'}"
+        f"{' 上领先' if beat_pg else '上都没有领先'}。</figcaption>"
         f"{legend}{''.join(parts)}{note}</figure>"
     )
 
@@ -1006,9 +1030,9 @@ def svg_flip_chart(facts: dict) -> str:
 
 
 def svg_fewshot_charts(facts: dict) -> str:
-    """Three small multiples: our Q95 across K against the PRICE reference."""
+    """Small multiples: our Q95 across K against the PRICE reference."""
     panels = []
-    for db in DOC14_DBS:
+    for db in [d for d in DOC14_DBS if d in facts["report_dbs"]]:
         width, height = 300, 230
         left, right, top, bottom = 46, 24, 26, 40
         values = [facts["doc14"][db][k]["ERM-sum"]["mean"] for k in K_VALUES]
@@ -1075,12 +1099,13 @@ def svg_fewshot_charts(facts: dict) -> str:
             f'<figure class="figure" style="margin:0">{"".join(parts)}'
             '<p class="axis-note">纵轴对数刻度。</p></figure>'
         )
+    shown = [d for d in DOC14_DBS if d in facts["report_dbs"]]
     return (
         '<div class="grid3">' + "".join(panels) + "</div>"
-        '<p class="axis-note">曲线为 ERM-sum 臂在三个目标库上的 Q95（臂 × seed 均值），'
-        "虚线为 PRICE 的 <b>K=0</b> 值；PRICE 自己的 K&gt;0 值见下表（它在 stats / genome 上"
-        "同样没有优于自己的 K=0）。genome 上我们的适应把差距缩小，stats 上适应反而变差，"
-        "ergastf1 基本持平。</p>"
+        f'<p class="axis-note">曲线为 ERM-sum 臂在{len(shown)}个目标库上的 Q95（臂 × seed 均值），'
+        "虚线为 PRICE 的 <b>K=0</b> 值；PRICE 自己的 K&gt;0 值见下表（它在这些库上"
+        "同样没有优于自己的 K=0）。适应在部分库上把差距缩小、在另一部分库上反而变差，"
+        "没有哪一处超过 PRICE。</p>"
     )
 
 
@@ -1111,7 +1136,7 @@ def build_protocol_block(facts: dict) -> str:
 <tbody>
 <tr><td>源训练库</td><td>23</td><td>是</td><td>是</td><td>拟合能力，<b>不是</b>空间漂移</td></tr>
 <tr><td>源验证库（chembl / legalacts / telstra）</td><td>3</td><td>否</td><td>是</td><td>我们 out-of-sample，PRICE in-sample</td></tr>
-<tr><td>目标库（imdb / stats / genome / ergastf1）</td><td>4</td><td>否</td><td>否</td><td><b>唯一对等的漂移比较</b></td></tr>
+<tr><td>目标库（{esc(" / ".join(facts["report_dbs"]))}）</td><td>{len(facts["report_dbs"])}</td><td>否</td><td>否</td><td><b>唯一对等的漂移比较</b></td></tr>
 </tbody></table></div>
 <p class="small muted">目标库只用于最终评估，从不进入训练、超参选择、适应策略选择或 checkpoint 选择；
 脚本在运行时以白名单守卫拒绝任何曝光重叠的 checkpoint。PRICE 在全部 26 个源库上训练过，
@@ -1124,6 +1149,8 @@ def build_verdict_block(facts: dict) -> str:
     noise = facts["noise_band_sources"]
     stable = s["win_price"] - len(noise)
     omitted = facts.get("omit_four_plus", False)
+    n_db = len(facts["report_dbs"])
+    n_cn = {3: "三", 4: "四"}.get(n_db, str(n_db))
     four_plus_li = (
         ""
         if omitted
@@ -1138,19 +1165,21 @@ def build_verdict_block(facts: dict) -> str:
     return f"""
 <div class="verdict">
   <p class="label">一句话结论</p>
-  <p>在<b>双方都没训练过</b>的四个目标库上，我们的 K=0 尾部精度 <b>4/4 全部落后于 PRICE</b>
+  <p>在<b>双方都没训练过</b>的{n_cn}个目标库上，我们的 K=0 尾部精度
+  <b>{t["win_price"]}/{n_db} 全部落后于 PRICE</b>
   （PRICE/我们 中位 {t["price_median"]:.3f}，即我们差约 {1 / t["price_median"]:.1f} 倍；
-  三 seed 复核后是 <b>0/{facts["target3seed"]["headline"]["total_seed_database_pairs"]}</b> 个
+  三 seed 复核后是 <b>{facts["target3seed_pairs_beating_price"]}/{facts["target3seed_pairs"]}</b> 个
   （seed × 库）组合获胜，中位 {facts["target3seed_ratio"]:.3f}，方向和量级都不变）；
   在 <b>PRICE 训练过、我们训练过 23 个</b>的 26 个源库上，我们 <b>{s["win_price"]}/26</b> 优于 PRICE
   （中位 {s["price_median"]:.3f}，其中 {len(noise)} 个落在 seed 噪声带内、
   {stable} 个稳赢）。</p>
   <p><b>这个反转本身就是结论</b>：赢面来自拟合，不是漂移。对传统优化器 PG，两组都好于它
-  （目标库 3/4 赢，源库 {s["win_pg"]}/26 赢）。</p>
+  （目标库 {t["win_pg"]}/{n_db} 赢，源库 {s["win_pg"]}/26 赢）。</p>
 </div>
 <p>{support_lead}</p>
 <ul>
-  <li><b>差距落在排序一致性上</b>，不是校准、也不是过度收缩：目标库 4/4 的与真值相关性低于 PRICE
+  <li><b>差距落在排序一致性上</b>，不是校准、也不是过度收缩：目标库
+  {t["corr_lose"]}/{n_db} 的与真值相关性低于 PRICE
   （dCorr 中位 {t["dcorr_median"]:+.4f}），源库只有 {s["corr_lose"]}/26 落后；两组的偏差中位
   （{t["bias_median"]:+.3f} / {s["bias_median"]:+.3f}）都贴近零，预测离散度我们反而更大。</li>
 {four_plus_li}  <li><b>样本量必须随数字一起报</b>：IMDB 只有 521 条唯一查询，其 Q95 由约 26 条决定{sample_tail}。</li>
@@ -1198,13 +1227,14 @@ def build_limits_block(facts: dict) -> str:
     )
     return f"""
 <ul class="limits">
-  <li><span class="tag ok">可写</span><span>对传统估计器 PG，目标库 3/4 赢、源库 {s["win_pg"]}/26 赢；
+  <li><span class="tag ok">可写</span><span>对传统估计器 PG，目标库
+  {facts["targets"]["win_pg"]}/{len(facts["report_dbs"])} 赢、源库 {s["win_pg"]}/26 赢；
   IMDB 上 Q50 首次优于 PG（{imdb["ours_k0"]["q50"]:.3f} vs {imdb["pg"]["q50"]:.3f}）。</span></li>
   <li><span class="tag ok">可写</span><span>源分布内的拟合可超过给定的 PRICE 参考（{s["win_price"]}/26，
   其中 {s["win_price"] - len(noise)} 个稳赢、{len(noise)} 个打平）。</span></li>
   <li><span class="tag no">不可写</span><span>“我们优于 PRICE”——对等漂移场景是 0/4。</span></li>
   <li><span class="tag no">不可写</span><span>“{s["win_price"]}/26 优于 PRICE”而不带拟合限定——PRICE 全见过这些库。</span></li>
-  <li><span class="tag no">不可写</span><span>“四目标库完整验收”——IMDB 只有 K=0，没有 few-shot 行。</span></li>
+  <li><span class="tag no">不可写</span><span>“全部目标库完整验收”——IMDB 只有 K=0，没有 few-shot 行。</span></li>
 {four_plus_limit}  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 {stats_ratio:.3f}，属于打平而非胜负。</span></li>
   <li><span class="tag no">不可写</span><span>“我们优于 CardOOD / GRASP / AHCE”——它们的指标口径与我们恒等，
   但留出方式不是整库零样本，没有可比对象；也不把已撤回的 2502.14350 当作证据引用。</span></li>
@@ -1216,7 +1246,7 @@ def build_limits_block(facts: dict) -> str:
   <li><span class="tag no">不可写</span><span>“精度上去了查询就更快”——实测反驳：真值臂 Q-error 恒为 1.00，
   却在四个库里从来不是最快的（第 08 节）。</span></li>
 </ul>
-<p class="small muted">其它限定：<b>四目标库的 Q95 已补到三 seed</b>（108 号，第 02 节），
+<p class="small muted">其它限定：<b>目标库的 Q95 已补到三 seed</b>（108 号，第 02 节），
 第 03–05 节的定量分解仍是<b>单 seed（42）</b>，标 <code>needs_evidence</code>；
 94 号实测 seed 间标准差 6.28pp，大于那些表里多数效应量。
 L3 的「执行时间」不含特征提取、模型前向与优化器规划时间，所以「L3 无收益」不等于
@@ -1263,7 +1293,7 @@ GLOSSARY = [
     (
         "seed（随机种子）",
         "训练随机性的起点。同一个配置配同一个 seed，每次跑出的模型都一样；换 seed 等于换一次参数初始化、换一次数据排列顺序，得到一个不同的模型。",
-        "主线精度表用 seed 42 这一个模型；四目标库的 Q95 已扩到三 seed（第 02 节），其余定量分解仍是单 seed。94 号实测换 seed 会让同一方法的 Q95 波动约 ±6.28 个百分点，所以差距小于它的结论只能算打平。",
+        "主线精度表用 seed 42 这一个模型；目标库的 Q95 已扩到三 seed（第 02 节），其余定量分解仍是单 seed。94 号实测换 seed 会让同一方法的 Q95 波动约 ±6.28 个百分点，所以差距小于它的结论只能算打平。",
     ),
     (
         "checkpoint（检查点）",
@@ -1331,7 +1361,7 @@ GLOSSARY = [
     (
         "Q95",
         "误差的 95 分位，越小越好。本报告定义为 exp(percentile(|预测对数 − 真值对数|, 95))，精确预测记 1.0。",
-        "四个目标库、26 个源库、4+ 桶全部用它。",
+        "目标库、26 个源库、4+ 桶全部用它。",
     ),
     (
         "log 空间（对数空间）",
@@ -1361,7 +1391,7 @@ GLOSSARY = [
     (
         "dCorr",
         "corr(PRICE) − corr(我们)。",
-        "正值表示 PRICE 的排序更准；目标库 4/4 为正，源库中位为负。",
+        "正值表示 PRICE 的排序更准；目标库全部为正，源库中位为负。",
     ),
     (
         "bias_med（中位偏差）",
@@ -1388,7 +1418,7 @@ GLOSSARY = [
     (
         "目标库",
         "我们和 PRICE 都没训练过的库。",
-        "imdb / stats / genome / ergastf1 四个；唯一对等的漂移比较点，且不参与任何选择。",
+        "本报告列出的各目标库；唯一对等的漂移比较点，且不参与任何选择。",
     ),
     (
         "拟合诊断 vs 漂移证据",
@@ -1415,7 +1445,7 @@ GLOSSARY = [
         "needs_evidence",
         "证据强度标记，提示该结论需要更多实验支撑。",
         "第 01 节与第 03–05 节的 ours 侧数字仍是单 seed，带这个标记；"
-        "四目标库的 Q95 已补到三 seed（第 02 节），那部分不再标。",
+        "目标库的 Q95 已补到三 seed（第 02 节），那部分不再标。",
     ),
     (
         "sha256",
@@ -1441,7 +1471,7 @@ GLOSSARY = [
     (
         "E2E（端到端）",
         "把估计器接进真实数据库跑完整条查询链，测总耗时。",
-        "PRICE、GRASP、CardOOD 都报了。本项目 110 号已实测四库四臂（不注入 / 精确真值 / 我们 / PRICE），"
+        "PRICE、GRASP、CardOOD 都报了。本项目 110 号已实测多库四臂（不注入 / 精确真值 / 我们 / PRICE），"
         "结论是执行时间无可测差异，详见第 08 节。",
     ),
     (
@@ -1482,6 +1512,8 @@ def build_glossary_block(facts: dict) -> str:
             continue
         if drop_four_plus and term == "4+ 表桶":
             continue
+        if "genome" not in facts["report_dbs"] and term == "Visual Genome":
+            continue
         if drop_four_plus and concrete:
             concrete = concrete.replace("、4+ 桶全部用它", "全部用它")
         rows.append(
@@ -1499,12 +1531,21 @@ def build_glossary_block(facts: dict) -> str:
 def build_advantages_block(facts: dict) -> str:
     """What we can actually claim against PRICE and the classic estimator."""
     t, s = facts["targets"], facts["source_stats"]
+    dbs = facts["report_dbs"]
+    n_db = len(dbs)
+    pg_ratio_by_db = {
+        db: facts["broad"]["databases"][db]["overview"]["pg"]["q95"]
+        / facts["broad"]["databases"][db]["overview"]["ours_k0"]["q95"]
+        for db in dbs
+    }
+    best_pg_db = max(pg_ratio_by_db, key=pg_ratio_by_db.get)
+    best_pg_ratio = pg_ratio_by_db[best_pg_db]
     rows = [
         (
             "目标库 K=0 Q95",
-            f"中位落后 PRICE {1 / t['price_median']:.1f}×（4/4 全输）",
-            "领先 1.8×（PRICE/我们 0.561）",
-            "3/4 赢，最大 11.17×（genome）",
+            f"中位落后 PRICE {1 / t['price_median']:.1f}×（{t['win_price']}/{n_db} 全输）",
+            f"领先 1.8×（PRICE/我们 {t['price_median']:.3f}）",
+            f"{t['win_pg']}/{n_db} 赢，最大 {best_pg_ratio:.1f}×（{best_pg_db}）",
             "对传统估计器有明确优势；对预训练参考没有",
         ),
         (
@@ -1591,12 +1632,12 @@ def build_advantages_block(facts: dict) -> str:
 是本项目的传统基线；PRICE 是非严格训练条件匹配的预训练参考。</caption>
 <thead><tr><th>维度</th><th>我们</th><th>PRICE</th><th>PG</th><th>怎么读</th></tr></thead>
 <tbody>{body}</tbody></table></div>
-<p><b>可以主张的三条：</b>①对传统优化器 PG，在双方都没训练过的目标库上 3/4 赢、
-最大的 genome 领先 11 倍以上，源库 24/26 赢；②参数规模比 PRICE 小
+<p><b>可以主张的三条：</b>①对传统优化器 PG，在双方都没训练过的目标库上 {t["win_pg"]}/{n_db} 赢、
+最大的 {best_pg_db} 领先 {best_pg_ratio:.1f} 倍，源库 {s["win_pg"]}/26 赢；②参数规模比 PRICE 小
 {facts["parameter_ratio"]:.1f}×，且用的源库更少；③方法本体带少样本适应能力，
 而本轮对 PRICE 的对照是零样本——这是设计差异，不是精度优势。</p>
 <p><b>必须同时说明的三条：</b>①对 PRICE 的尾部精度我们目前是负结果
-（目标库 4/4 输，三 seed 下仍是 0/12{four_plus_note}），
+（目标库 {t["win_price"]}/{n_db} 输，三 seed 下仍是 {facts["target3seed_pairs_beating_price"]}/{facts["target3seed_pairs"]}{four_plus_note}），
 所以不能说比 PRICE 好；②参数量小<b>不等于</b>端到端更快——这个信息不足的问题 110 号已经补上了，
 结论是<b>前向确实快、执行时间没有可测收益</b>（第 08 节），两件事必须分开说；
 ③本表<b>前七行</b>的「我们」列对应 <b>ERM-sum</b> 配置（{facts["our_parameters"]:,} 参数），
@@ -1616,7 +1657,7 @@ def fmt_compact(value: float) -> str:
 def build_threeseed_block(facts: dict) -> str:
     """Doc 108: the same four target databases, three seeds instead of one."""
     data = facts["target3seed"]
-    order = ("stats", "genome", "ergastf1", "imdb")
+    order = tuple(facts["report_dbs"])
     rows = []
     worst_spread = (0.0, "")
     for db in order:
@@ -1642,27 +1683,28 @@ def build_threeseed_block(facts: dict) -> str:
             f"<td class='num'>{entry['seeds_beating_price_on_q95']}/3</td>"
             "</tr>"
         )
-    headline = data["headline"]
+    n_db = len(order)
+    n_cn = {3: "三", 4: "四"}.get(n_db, str(n_db))
     return f"""
-<h3>三 seed 复核：方向不变，量级不变，但 genome 的离散度大到不能只写均值</h3>
+<h3>三 seed 复核：方向不变，量级不变，但 {worst_spread[1]} 的离散度大到不能只写均值</h3>
 <p>上一节的数字是<b>单 seed（42）</b>。108 号用与 seed42 逐字节相同的训练配置、只改 <code>seed</code> 字段，
-把四个目标库各重测两遍。结论没有翻案，但多了两条必须一起报的事实。</p>
+把{n_cn}个目标库各重测两遍。结论没有翻案，但多了两条必须一起报的事实。</p>
 <div class="tablewrap"><table>
-<caption><b>四目标库 K=0 唯一查询 Q95，三 seed</b>　PRICE 与 PG 不随 seed 变化（PRICE 是同一份官方权重，
+<caption><b>{n_cn}目标库 K=0 唯一查询 Q95，三 seed</b>　PRICE 与 PG 不随 seed 变化（PRICE 是同一份官方权重，
 PG 是缓存里的原始估计），所以它们的列没有误差棒。<b>「PRICE/我们」与「PG/我们」两列是
 逐 seed 比值的中位数</b>，不是「两列均值相除」——两种算法在重尾数据上会差几个百分点。</caption>
 <thead><tr><th>库</th><th>n</th><th>我们（均值 ± SD）</th><th>三 seed 区间</th>
 <th>逐 seed</th><th>PRICE</th><th>PG</th><th>PRICE/我们</th><th>PG/我们</th><th>赢 PRICE</th></tr></thead>
 <tbody>{"".join(rows)}</tbody></table></div>
-<p><b>这张表最该看的是第四列。</b>{worst_spread[1]} 的三 seed 标准差是均值的
+<p><b>这张表最该看的是「我们（均值 ± SD）」那一列的 ±SD。</b>{worst_spread[1]} 的三 seed 标准差是均值的
 {worst_spread[0] * 100:.0f}%，逐 seed 从 {data["databases"][worst_spread[1]]["ours_k0"]["q95"]["min"]:.2f}
 跨到 {data["databases"][worst_spread[1]]["ours_k0"]["q95"]["max"]:.2f}。
 引用 {worst_spread[1]} 的任何倍数都必须带区间，不能只引均值。</p>
-<p>汇总：<b>{headline["total_seed_database_pairs"] - headline["seed_database_pairs_beating_price"]}
-/{headline["total_seed_database_pairs"]}</b> 个（seed × 库）组合在 Q95 上输给 PRICE，
-<b>{headline["seed_database_pairs_beating_pg"]}/{headline["total_seed_database_pairs"]}</b> 个赢 PG；
-PRICE/我们 的中位比值从单 seed 的 {facts["targets"]["price_median"]:.3f}
-变成三 seed 的 {facts["target3seed_ratio"]:.3f}——差别在第三位小数，方向和量级都不变。</p>
+<p>汇总：<b>{facts["target3seed_pairs"] - facts["target3seed_pairs_beating_price"]}
+/{facts["target3seed_pairs"]}</b> 个（seed × 库）组合在 Q95 上输给 PRICE，
+<b>{facts["target3seed_pairs_beating_pg"]}/{facts["target3seed_pairs"]}</b> 个赢 PG；
+PRICE/我们 的中位比值：单 seed {facts["targets"]["price_median"]:.3f}、
+三 seed {facts["target3seed_ratio"]:.3f}，方向与量级都一致。</p>
 """
 
 
@@ -1716,7 +1758,7 @@ def build_latency_block(facts: dict) -> str:
     rows_l3 = []
     fallback_dbs = set(facts["latency_fallback_dbs"])
     cpu_ours_p50 = facts["latency_cpu_ours_p50"]
-    for db in TARGET_DBS:
+    for db in facts["report_dbs"]:
         cpu = latency["databases"][db]["models"]
         gpu = latency_gpu["databases"][db]["models"]
         ours_cpu = cpu_ours_p50[db]
@@ -1773,12 +1815,23 @@ def build_latency_block(facts: dict) -> str:
             f"{b['relative_delta'] * 100:.1f}%（容差 {b['tolerance'] * 100:.0f}%）"
             for b in breaches
         )
-        or "四库两次独立 pass 的 p50 全部落在 5% 容差内"
+        or "各库两次独立 pass 的 p50 全部落在 5% 容差内"
     )
     lo_true, hi_true = facts["e2e_ratio_true"]
-    genome_qerr = facts["e2e"]["genome"]["median_q_error"]
-    genome_price_q = genome_qerr["price"]["median"]
-    genome_pg_q = genome_qerr["pg_native"]["median"]
+    # does the perfect-cardinality arm ever come out fastest?  if it did, the
+    # "accuracy and runtime are not monotone" claim below would be false
+    fastest_arm = []
+    for db, payload in facts["e2e"].items():
+        ratios = {
+            arm: payload["ratios_to_pg_native"][arm]["median"]
+            for arm in payload["ratios_to_pg_native"]
+        }
+        fastest_arm.append(min(ratios, key=ratios.get))
+    if "true_card" in fastest_arm:
+        raise SystemExit(
+            "doc 110: the true-cardinality arm is fastest somewhere; the "
+            "「精度与执行时间不单调」 claim would be false"
+        )
     return f"""
 <p class="lede">此前的阶段汇报把「没测延迟」列为缺口，110 号把它补上了，而且结论比缺测更值得说：
 <b>前向快一到两个数量级，整条估计链快几倍，但真实数据库执行时间没有可测收益。</b></p>
@@ -1827,16 +1880,15 @@ CPU 数字改取<b>同一库的 ERM 臂</b>（表内 <sup>†</sup> 标注）—
 （{facts["e2e_ratio_ours"][0]:.3f}–{facts["e2e_ratio_ours"][1]:.3f}）和 PRICE
 （{facts["e2e_ratio_price"][0]:.3f}–{facts["e2e_ratio_price"][1]:.3f}）都在同一带内。
 也就是说在这批查询上，<b>基数误差不是执行时间的主导项</b>。</p>
-<p>更强的一条：<b>精度与执行时间不单调。</b>真值臂的 Q-error 恒为 1.00，
-但它在四个库里从来不是最快的；genome 上 PRICE 的估计 Q-error 是 {genome_price_q:.2f}、PG 是
-{genome_pg_q:.2f}（差约 {genome_price_q / genome_pg_q:.1f} 倍），执行时间反而比 PG 原生略好。
+<p>更强的一条：<b>精度与执行时间不单调。</b>真值臂的 Q-error 恒为 1.00，代表完美估计，
+但它在<b>每一个库</b>里都不是最快的（表内可直接核对）——把估计换成精确真值，也没有让计划更快。
 <b>估计更准不等于计划更好。</b>这条动摇的是「提升基数精度 → 加速查询」这条论证链本身，
 而不只是我们自己的成绩。</p>
 <p class="small muted">口径边界（必须和第 10 节「边界与不可声称」一起读）：L3 汇总的是
 <code>EXPLAIN (ANALYZE)</code> 的 <code>Execution Time</code>，即<b>给定基数、已规划好</b>的查询跑完的时间。
 它<b>不含</b>特征提取与模型前向（那是 L2）、<b>不含</b>优化器规划时间、<b>不含</b>中间件往返与 hint 构造。
 所以「L3 没收益」不等于「接入我们不会有额外开销」——两段成本要分开看。
-另外 stats/ergastf1 用 120 s 语句上限、imdb/genome 用 300 s，跨库绝对时间不可直接比，
+另外各库的语句上限不统一（120 s 与 300 s 两种），跨库绝对时间不可直接比，
 但比值是库内算的，不影响库内结论。</p>
 """
 
@@ -2029,7 +2081,7 @@ def build_literature_block(facts: dict) -> str:
         facts["latency"]["databases"][db]["models"]["price"]["cache"]["population"][
             "p50"
         ]
-        for db in TARGET_DBS
+        for db in facts["report_dbs"]
     ]
     speed_lo, speed_hi = facts["speedup_forward_cpu"]
 
@@ -2121,6 +2173,9 @@ PVLDB 18(3): 637-650, 2024）与<b>本次实测值</b>（同一份 checkpoint、
 但换成论文用的 all-rows 口径）。我们先验证两者同口径，再把我们的结果放进论文的那张表里。
 后半部分是<b>相关工作版图</b>：同一方向还有哪些论文、它们的指标口径是否与我们一致、
 哪些数可以直接引、哪些不能。</p>
+<p class="note"><b>关于本节里的 genome：</b>论文原表是四个库，本节为了能与论文逐列对表而
+<b>保留其 genome 列</b>——这是论文的发表值，不是我们的实验结论，也不参与本报告的漂移判断。
+本报告自己的目标库分析只涉及三个库。</p>
 
 <h3>口径验证：我们的复算能否落在论文的数上</h3>
 <div class="tablewrap"><table>
@@ -2198,6 +2253,16 @@ def main() -> int:
         ),
     )
     parser.add_argument(
+        "--omit-db",
+        action="append",
+        default=[],
+        choices=TARGET_DBS,
+        help=(
+            "drop one target database from the report (repeatable); every "
+            "aggregate, count and median is recomputed over the remaining set"
+        ),
+    )
+    parser.add_argument(
         "--report-date",
         default="2026-10-26",
         help="date shown in the masthead (YYYY-MM-DD)",
@@ -2226,7 +2291,10 @@ def main() -> int:
                 LIT_EVIDENCE,
             )
         )
-        facts = build_facts(evidence_dir)
+        report_dbs = tuple(db for db in TARGET_DBS if db not in args.omit_db)
+        if not report_dbs:
+            raise SystemExit("--omit-db removed every target database")
+        facts = build_facts(evidence_dir, report_dbs)
         facts["omit_four_plus"] = args.omit_four_plus
 
         if args.omit_four_plus:
@@ -2286,9 +2354,9 @@ def main() -> int:
 
         fewshot_block = (
             '<p class="lede">上面所有数字都是 <b>K=0 零样本</b>，而课题是<b>空间漂移下的少样本'
-            "元适应</b>。14 号的 K&gt;0 轨迹是另一半：适应在 genome 上把差距显著缩小，"
-            "在 stats 上反而变差（负迁移），在 ergastf1 上基本持平——"
-            "但三种情况下都没有超过 PRICE。</p>"
+            "元适应</b>。14 号的 K&gt;0 轨迹是另一半：适应在部分库上把差距明显缩小，"
+            "在另一部分库上反而变差（负迁移），其余基本持平——"
+            "但所有情况下都没有超过 PRICE。</p>"
             + svg_fewshot_charts(facts)
             + build_fewshot_table(facts)
         )
@@ -2299,7 +2367,9 @@ def main() -> int:
             "DATE": args.report_date,
             "BRANCH": args.git_branch,
             "COMMIT": args.commit,
-            "EVIDENCE_LEVEL": ("四目标库三 seed · 单 seed 定量分解 · 只读延迟实测"),
+            "EVIDENCE_LEVEL": (
+                f"{len(facts['report_dbs'])} 个目标库三 seed · 单 seed 定量分解 · 只读延迟实测"
+            ),
             "VERDICT_BLOCK": build_verdict_block(facts),
             "PROTOCOL_BLOCK": build_protocol_block(facts),
             "TARGET_BLOCK": target_block,
