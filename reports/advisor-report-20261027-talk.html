@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>面向空间漂移的自适应基数估计</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#1E3A5F; --on-primary:#FFFFFF;
+  --secondary:#2563EB; --accent:#A16207;
+  --bg:#F8FAFC; --fg:#0F172A; --card:#FFFFFF;
+  --muted:#E9EEF5; --muted-fg:#475569; --border:#CBD5E1;
+  --destructive:#DC2626;
+  --series-ours:#1E3A5F; --series-price:#A16207; --series-pg:#64748B;
+  --win:#15803D; --tie:#64748B; --lose:#B91C1C;
+  --serif:"EB Garamond",Georgia,"Songti SC",serif;
+  --sans:"Helvetica Neue",Helvetica,Inter,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+  --mono:"Fira Code",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --s1:4px; --s2:8px; --s3:16px; --s4:24px; --s5:32px; --s6:48px; --s7:64px;
+  --r:2px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0B1220; --fg:#E6EDF6; --card:#111A2C; --muted:#1B2740; --muted-fg:#9FB0C7;
+    --border:#2B3A55; --primary:#7FA8D9; --on-primary:#0B1220; --secondary:#60A5FA;
+    --accent:#E0A458; --destructive:#F87171;
+    --series-ours:#8FB8E6; --series-price:#E0A458; --series-pg:#94A3B8;
+    --win:#4ADE80; --tie:#94A3B8; --lose:#F87171;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  font-variant-numeric:tabular-nums;
+}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:var(--s3);top:var(--s3);position:fixed;z-index:99;background:var(--primary);
+  color:var(--on-primary);padding:var(--s2) var(--s3);border-radius:var(--r)}
+:focus-visible{outline:2px solid var(--secondary);outline-offset:2px}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--s4) var(--s7)}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:1px solid var(--border);background:var(--card)}
+.masthead .wrap{padding-top:var(--s6);padding-bottom:var(--s5)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-fg);
+  font-weight:600;margin:0 0 var(--s2)}
+h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,50px);line-height:1.12;font-weight:600;
+  margin:0 0 var(--s2);letter-spacing:-.01em}
+.subtitle{font-size:19px;color:var(--muted-fg);margin:0 0 var(--s4);max-width:70ch}
+.factgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;
+  background:var(--border);border:1px solid var(--border)}
+.fact{background:var(--card);padding:var(--s3)}
+.fact dt{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-fg);
+  font-weight:600;margin:0 0 var(--s1)}
+.fact dd{margin:0;font-size:14px;line-height:1.5}
+.fact dd code{font-family:var(--mono);font-size:12px;word-break:break-all}
+
+/* ---------- sections ---------- */
+section{padding-top:var(--s6);scroll-margin-top:var(--s4)}
+h2{font-family:var(--serif);font-size:clamp(24px,3vw,32px);font-weight:600;margin:0 0 var(--s2);
+  letter-spacing:-.005em;display:flex;align-items:baseline;gap:var(--s3)}
+h2 .num{font-family:var(--mono);font-size:13px;color:var(--muted-fg);font-weight:500;
+  border:1px solid var(--border);padding:2px 8px;border-radius:var(--r);flex:none}
+h3{font-size:17px;font-weight:600;margin:var(--s5) 0 var(--s2)}
+.lede{font-size:17px;max-width:76ch;margin:0 0 var(--s4);color:var(--fg)}
+p{max-width:76ch;margin:0 0 var(--s3)}
+.muted{color:var(--muted-fg)}
+.small{font-size:14px}
+code{font-family:var(--mono);font-size:.88em;background:var(--muted);padding:1px 5px;border-radius:var(--r)}
+
+/* ---------- verdict ---------- */
+.verdict{border:1px solid var(--primary);border-left-width:4px;background:var(--card);
+  padding:var(--s4) var(--s5);margin-bottom:var(--s4)}
+.verdict p:last-child{margin-bottom:0}
+.verdict .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  color:var(--primary);margin:0 0 var(--s2)}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto;border:1px solid var(--border);background:var(--card);margin:0 0 var(--s3)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+caption{text-align:left;padding:var(--s3) var(--s3) var(--s2);font-size:13px;color:var(--muted-fg)}
+caption b{color:var(--fg);font-weight:600}
+th,td{padding:7px var(--s3);text-align:right;white-space:nowrap;border-bottom:1px solid var(--border)}
+th{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted-fg);
+  font-weight:600;background:var(--muted);position:sticky;top:0}
+th:first-child,td:first-child{text-align:left}
+tbody tr:last-child td{border-bottom:none}
+tr.group td{background:var(--muted);font-weight:600;font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted-fg)}
+/* prose table: left aligned, wrapping cells */
+table.prose th,table.prose td{text-align:left;white-space:normal;vertical-align:top}
+table.prose.cols-3 th:nth-child(1),table.prose.cols-3 td:nth-child(1){width:17%}
+table.prose.cols-3 th:nth-child(2),table.prose.cols-3 td:nth-child(2){width:36%}
+table.prose.cols-3 th:nth-child(3),table.prose.cols-3 td:nth-child(3){width:47%}
+table.prose.cols-4 th:nth-child(1),table.prose.cols-4 td:nth-child(1){width:19%}
+table.prose.cols-4 th:nth-child(2),table.prose.cols-4 td:nth-child(2){width:25%}
+table.prose.cols-4 th:nth-child(3),table.prose.cols-4 td:nth-child(3){width:25%}
+table.prose.cols-4 th:nth-child(4),table.prose.cols-4 td:nth-child(4){width:31%}
+table.prose td:first-child{font-size:13.5px}
+table.prose td p{margin:0}
+tr.summary td{background:var(--muted);font-weight:600}
+tr.summary td:first-child{border-left:3px solid var(--primary)}
+.win{color:var(--win);font-weight:600}
+.lose{color:var(--lose);font-weight:600}
+.tie{color:var(--tie)}
+.flag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:var(--r);
+  border:1px solid var(--border);color:var(--muted-fg);margin-left:6px;vertical-align:middle}
+.flag.noise{border-color:var(--accent);color:var(--accent)}
+.flag.same{border-color:var(--win);color:var(--win)}
+.flag.diff{border-color:var(--border);color:var(--muted-fg)}
+.takeaways{margin:0 0 var(--s3);padding-left:var(--s4);max-width:82ch}
+.takeaways li{margin-bottom:var(--s2)}
+.takeaways li::marker{color:var(--muted-fg);font-family:var(--mono);font-size:13px}
+
+/* ---------- charts ---------- */
+.figure{margin:0 0 var(--s4);border:1px solid var(--border);background:var(--card);padding:var(--s4)}
+.figure figcaption{font-size:13px;color:var(--muted-fg);margin:0 0 var(--s3);max-width:80ch}
+.figure figcaption b{color:var(--fg)}
+.figure svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:var(--s3);margin:0 0 var(--s3);padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted-fg)}
+.swatch{width:11px;height:11px;flex:none;border-radius:2px}
+.axis-note{font-size:12px;color:var(--muted-fg);margin:var(--s2) 0 0}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s3)}
+
+/* ---------- lists ---------- */
+.limits{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--border);
+  border:1px solid var(--border)}
+.limits li{background:var(--card);padding:var(--s3) var(--s4);display:grid;
+  grid-template-columns:118px 1fr;gap:var(--s3);font-size:14px}
+.limits b{font-weight:600}
+.limits .tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  padding-top:2px}
+.tag.ok{color:var(--win)} .tag.no{color:var(--lose)}
+
+.note{border-left:3px solid var(--accent);background:var(--muted);padding:var(--s3) var(--s4);
+  margin:0 0 var(--s3);font-size:14px;max-width:80ch}
+.note b{color:var(--accent)}
+
+.evidence{font-family:var(--mono);font-size:12px;line-height:1.9;background:var(--card);
+  border:1px solid var(--border);padding:var(--s3) var(--s4);overflow-x:auto;margin:0 0 var(--s3)}
+.evidence div{white-space:pre}
+
+footer{border-top:1px solid var(--border);margin-top:var(--s6);padding:var(--s5) 0 var(--s6);
+  color:var(--muted-fg);font-size:13px}
+footer p{max-width:none}
+
+@media (max-width:768px){
+  .wrap{padding-left:var(--s3);padding-right:var(--s3)}
+  .masthead .wrap{padding-top:var(--s5)}
+  .verdict{padding:var(--s3)}
+  .limits li{grid-template-columns:1fr;gap:var(--s1)}
+  table{font-size:13px}
+  th,td{padding:6px var(--s2)}
+}
+@media print{
+  body{background:#fff}
+  .skip,.figure figcaption{display:none}
+  section{break-inside:avoid}
+  .tablewrap{overflow:visible}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">毕业论文 · 阶段性实验汇报</p>
+    <h1>面向空间漂移的自适应基数估计</h1>
+    <p class="subtitle">当前进度与对照结果：漂移场景下我们赢的是拟合，不是迁移</p>
+    <dl class="factgrid">
+      <div class="fact"><dt>日期</dt><dd>2026-10-27</dd></div>
+      <div class="fact"><dt>数据分支</dt><dd><code>claude/teacher-progress-report-ccf3f8</code></dd></div>
+      <div class="fact"><dt>提交</dt><dd><code>4ff5bba</code></dd></div>
+      <div class="fact"><dt>证据等级</dt><dd>四目标库三 seed · 单 seed 定量分解 · 只读延迟实测</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+<section id="verdict">
+  <h2><span class="num">00</span>结论摘要</h2>
+  
+<div class="verdict">
+  <p class="label">一句话结论</p>
+  <p>在<b>双方都没训练过</b>的四个目标库上，我们的 K=0 尾部精度 <b>4/4 全部落后于 PRICE</b>
+  （PRICE/我们 中位 0.561，即我们差约 1.8 倍；
+  三 seed 复核后是 <b>0/12</b> 个
+  （seed × 库）组合获胜，中位 0.570，方向和量级都不变）；
+  在 <b>PRICE 训练过、我们训练过 23 个</b>的 26 个源库上，我们 <b>22/26</b> 优于 PRICE
+  （中位 1.184，其中 3 个落在 seed 噪声带内、
+  19 个稳赢）。</p>
+  <p><b>这个反转本身就是结论</b>：赢面来自拟合，不是漂移。对传统优化器 PG，两组都好于它
+  （目标库 3/4 赢，源库 24/26 赢）。</p>
+</div>
+<p>四条支撑事实：</p>
+<ul>
+  <li><b>差距落在排序一致性上</b>，不是校准、也不是过度收缩：目标库 4/4 的与真值相关性低于 PRICE
+  （dCorr 中位 +0.0212），源库只有 3/26 落后；两组的偏差中位
+  （+0.024 / -0.026）都贴近零，预测离散度我们反而更大。</li>
+  <li><b>样本量必须随数字一起报</b>：IMDB 只有 521 条唯一查询，其 Q95 由约 26 条决定。</li>
+  <li><b>同赛道的直接对手基本只有 PRICE</b>：整库留出零样本这一设定，可查到的公开工作里
+  只有 PRICE（已发表）与一篇已撤回的预印本；CardOOD、GRASP、AHCE/DACE 的指标与我们恒等，
+  但设定都不是整库零样本（详见 <a href="#literature">09 与文献的同口径对照</a>）。</li>
+  <li><b>换个角度也没有额外收益</b>：110 号实测端到端执行时间，我们和 PRICE 相对
+  <code>pg_native</code> 都落在
+  0.960–
+  1.004 之间，
+  <b>连注入精确真值也只到
+  0.975–1.005</b>；
+  前向单项虽然快 34.5–38.1×，
+  但<b>精度与执行时间不单调</b>（<a href="#latency">08 延迟与端到端</a>）。</li>
+</ul>
+<p class="small muted">第一次看到 <code>seed</code>、<code>K=0</code>、<code>Q95</code> 这类词时，
+可直接查末尾的 <a href="#glossary">12 名词表</a>。</p>
+
+</section>
+
+<section id="protocol">
+  <h2><span class="num">01</span>使用的方案</h2>
+  
+<div class="verdict">
+  <p class="label">评估协议（本次全部数字的共同口径）</p>
+  <p>三个估计量在同一批唯一查询上并列：<b>我们</b>是冻结的 seed42 ERM-sum baseline
+  （<code>baseline/last.pt</code>，
+  sha256 <code>563ec1596b1a…</code>，last.pt，未做任何 checkpoint 选择）、
+  <b>PRICE</b> 是官方提供的权重（<code>model_params.pth</code>，
+  sha256 <code>4f889c4df269…</code>，原生 <code>log1p(card)+1</code>
+  解码到 <code>log(card)</code>）、<b>PG</b> 是缓存里的原始优化器估计。</p>
+  <p>评估是 <b>K=0 零样本</b>，对每个库的<b>全部唯一查询做单次全量推理</b>，无 support。
+  指标是标准 <b>unique-query Q95</b>：预测与真值的对数误差取 95 分位再取指数，
+  精确预测记 1.0，越小越好。目标库用 maxima <code>[12, 14, 8, 10]</code>、
+  源库用 <code>[12, 12, 7, 10]</code>，两组布局差异已实测为相对 9.1e-07。</p>
+</div>
+<h3>曝光矩阵（决定每张表能说明什么）</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>库集合</th><th>数量</th><th>我们训练过</th><th>PRICE 训练过</th><th>这一组比较测的是什么</th></tr></thead>
+<tbody>
+<tr><td>源训练库</td><td>23</td><td>是</td><td>是</td><td>拟合能力，<b>不是</b>空间漂移</td></tr>
+<tr><td>源验证库（chembl / legalacts / telstra）</td><td>3</td><td>否</td><td>是</td><td>我们 out-of-sample，PRICE in-sample</td></tr>
+<tr><td>目标库（imdb / stats / genome / ergastf1）</td><td>4</td><td>否</td><td>否</td><td><b>唯一对等的漂移比较</b></td></tr>
+</tbody></table></div>
+<p class="small muted">目标库只用于最终评估，从不进入训练、超参选择、适应策略选择或 checkpoint 选择；
+脚本在运行时以白名单守卫拒绝任何曝光重叠的 checkpoint。PRICE 在全部 26 个源库上训练过，
+这一点决定了下面两张表的语义完全不同。</p>
+
+</section>
+
+<section id="targets">
+  <h2><span class="num">02</span>目标库：对等漂移比较</h2>
+  <p class="lede">这四个库 PRICE 与我们都没有训练过，是本项目唯一一组对等的空间漂移比较点。口径：seed42 ERM-sum baseline 的 K=0 零样本，全部唯一查询，单次全量，无 support。本节末另附三 seed 复核（108 号）。</p><div class="tablewrap"><table><caption><b>四个目标库 · unique-query Q95（K=0，全量唯一查询）</b>　比值 &gt;1 表示我们更好；PRICE 与我们均未在这些库上训练，是唯一对等的漂移比较点。</caption><thead><tr><th>库</th><th>n</th><th>我们 Q95</th><th>PRICE Q95</th><th>PG Q95</th><th>PRICE / 我们</th><th>PG / 我们</th></tr></thead><tbody><tr><td>stats</td><td>2,603</td><td>83.72</td><td>39.52</td><td>75.65</td><td class="lose">0.472</td><td class="lose">0.904</td></tr><tr><td>genome</td><td>1,699</td><td>170.82</td><td>31.34</td><td>1,907</td><td class="lose">0.183</td><td class="win">11.166</td></tr><tr><td>ergastf1</td><td>1,258</td><td>22.28</td><td>15.29</td><td>27.61</td><td class="lose">0.686</td><td class="win">1.239</td></tr><tr><td>imdb</td><td>521</td><td>32.37</td><td>21.03</td><td>87.11</td><td class="lose">0.650</td><td class="win">2.691</td></tr><tr class="summary"><td>汇总（4 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="lose">0.561</td><td class="win">1.965</td></tr></tbody></table></div><figure class="figure"><figcaption><b>目标库 Q95 对照。</b>四个库上 PRICE 的柱子都更短，即全部落后于 PRICE；对 PG 则在 genome、ergastf1、imdb 上领先。</figcaption><ul class="legend"><li><span class="swatch" style="background:var(--series-ours)"></span>我们（冻结 seed42 baseline）</li><li><span class="swatch" style="background:var(--series-price)"></span>PRICE（官方权重，零样本）</li><li><span class="swatch" style="background:var(--series-pg)"></span>PG（原始优化器估计）</li></ul><svg viewBox="0 0 780 380" role="img" aria-label="四个目标库的 Q95 对照条形图，对数横轴"><line x1="96.0" y1="22" x2="96.0" y2="358" stroke="var(--border)" stroke-width="1"/><text x="96.0" y="372" text-anchor="middle" font-size="11" fill="var(--muted-fg)">10</text><line x1="351.5" y1="22" x2="351.5" y2="358" stroke="var(--border)" stroke-width="1"/><text x="351.5" y="372" text-anchor="middle" font-size="11" fill="var(--muted-fg)">100</text><line x1="607.1" y1="22" x2="607.1" y2="358" stroke="var(--border)" stroke-width="1"/><text x="607.1" y="372" text-anchor="middle" font-size="11" fill="var(--muted-fg)">1000</text><text x="0" y="60.0" font-size="13" font-weight="600" fill="var(--fg)">stats</text><rect x="96" y="34.0" width="235.8" height="15" fill="var(--series-ours)" rx="1"/><text x="337.8" y="46.0" font-size="11" fill="var(--muted-fg)">83.72</text><rect x="96" y="54.0" width="152.5" height="15" fill="var(--series-price)" rx="1"/><text x="254.5" y="66.0" font-size="11" fill="var(--muted-fg)">39.52</text><rect x="96" y="74.0" width="224.6" height="15" fill="var(--series-pg)" rx="1"/><text x="326.6" y="86.0" font-size="11" fill="var(--muted-fg)">75.65</text><text x="0" y="141.0" font-size="13" font-weight="600" fill="var(--fg)">genome</text><rect x="96" y="115.0" width="315.0" height="15" fill="var(--series-ours)" rx="1"/><text x="417.0" y="127.0" font-size="11" fill="var(--muted-fg)">170.82</text><rect x="96" y="135.0" width="126.8" height="15" fill="var(--series-price)" rx="1"/><text x="228.8" y="147.0" font-size="11" fill="var(--muted-fg)">31.34</text><rect x="96" y="155.0" width="582.7" height="15" fill="var(--series-pg)" rx="1"/><text x="684.7" y="167.0" font-size="11" fill="var(--muted-fg)">1,907</text><text x="0" y="222.0" font-size="13" font-weight="600" fill="var(--fg)">ergastf1</text><rect x="96" y="196.0" width="88.9" height="15" fill="var(--series-ours)" rx="1"/><text x="190.9" y="208.0" font-size="11" fill="var(--muted-fg)">22.28</text><rect x="96" y="216.0" width="47.1" height="15" fill="var(--series-price)" rx="1"/><text x="149.1" y="228.0" font-size="11" fill="var(--muted-fg)">15.29</text><rect x="96" y="236.0" width="112.7" height="15" fill="var(--series-pg)" rx="1"/><text x="214.7" y="248.0" font-size="11" fill="var(--muted-fg)">27.61</text><text x="0" y="303.0" font-size="13" font-weight="600" fill="var(--fg)">imdb</text><rect x="96" y="277.0" width="130.4" height="15" fill="var(--series-ours)" rx="1"/><text x="232.4" y="289.0" font-size="11" fill="var(--muted-fg)">32.37</text><rect x="96" y="297.0" width="82.5" height="15" fill="var(--series-price)" rx="1"/><text x="184.5" y="309.0" font-size="11" fill="var(--muted-fg)">21.03</text><rect x="96" y="317.0" width="240.2" height="15" fill="var(--series-pg)" rx="1"/><text x="342.2" y="329.0" font-size="11" fill="var(--muted-fg)">87.11</text></svg><p class="axis-note">横轴为 Q95 的对数刻度（10 / 100 / 1000），每条柱直接标注数值；数值越靠左越准。</p></figure><p class="note"><b>口径：</b>本节全部数字取自 103 号证据文件（Q95 = exp(percentile(|误差|, 95))，整库唯一查询口径）。</p>
+<h3>三 seed 复核：方向不变，量级不变，但 genome 的离散度大到不能只写均值</h3>
+<p>上一节的数字是<b>单 seed（42）</b>。108 号用与 seed42 逐字节相同的训练配置、只改 <code>seed</code> 字段，
+把四个目标库各重测两遍。结论没有翻案，但多了两条必须一起报的事实。</p>
+<div class="tablewrap"><table>
+<caption><b>四目标库 K=0 唯一查询 Q95，三 seed</b>　PRICE 与 PG 不随 seed 变化（PRICE 是同一份官方权重，
+PG 是缓存里的原始估计），所以它们的列没有误差棒。<b>「PRICE/我们」与「PG/我们」两列是
+逐 seed 比值的中位数</b>，不是「两列均值相除」——两种算法在重尾数据上会差几个百分点。</caption>
+<thead><tr><th>库</th><th>n</th><th>我们（均值 ± SD）</th><th>三 seed 区间</th>
+<th>逐 seed</th><th>PRICE</th><th>PG</th><th>PRICE/我们</th><th>PG/我们</th><th>赢 PRICE</th></tr></thead>
+<tbody><tr><td><b>stats</b></td><td class='num'>2,603</td><td class='num'>81.07 ± 2.44</td><td class='num muted'>78.91–83.72</td><td class='num muted'>83.72 / 80.56 / 78.91</td><td class='num'>39.52</td><td class='num'>75.65</td><td class='num'>0.491</td><td class='num'>0.94×</td><td class='num'>0/3</td></tr><tr><td><b>genome</b></td><td class='num'>1,699</td><td class='num'>192.01 ± 122.70</td><td class='num muted'>81.28–323.93</td><td class='num muted'>170.83 / 323.93 / 81.28</td><td class='num'>31.34</td><td class='num'>1,907.32</td><td class='num'>0.183</td><td class='num'>11.16×</td><td class='num'>0/3</td></tr><tr><td><b>ergastf1</b></td><td class='num'>1,258</td><td class='num'>23.44 ± 1.54</td><td class='num muted'>22.28–25.19</td><td class='num muted'>22.28 / 22.86 / 25.19</td><td class='num'>15.29</td><td class='num'>27.61</td><td class='num'>0.669</td><td class='num'>1.21×</td><td class='num'>0/3</td></tr><tr><td><b>imdb</b></td><td class='num'>521</td><td class='num'>33.13 ± 1.79</td><td class='num muted'>31.84–35.18</td><td class='num muted'>32.37 / 35.18 / 31.84</td><td class='num'>21.03</td><td class='num'>87.11</td><td class='num'>0.650</td><td class='num'>2.69×</td><td class='num'>0/3</td></tr></tbody></table></div>
+<p><b>这张表最该看的是第四列。</b>genome 的三 seed 标准差是均值的
+64%，逐 seed 从 81.28
+跨到 323.93。
+引用 genome 的任何倍数都必须带区间，不能只引均值。</p>
+<p>汇总：<b>12
+/12</b> 个（seed × 库）组合在 Q95 上输给 PRICE，
+<b>9/12</b> 个赢 PG；
+PRICE/我们 的中位比值从单 seed 的 0.561
+变成三 seed 的 0.570——差别在第三位小数，方向和量级都不变。</p>
+
+</section>
+
+<section id="sources">
+  <h2><span class="num">03</span>源库：拟合诊断</h2>
+  <p class="lede">PRICE 在全部 26 个源库上训练过，我们训练过 23 个，所以这张表测的是<b>拟合能力</b>，不是漂移。它给出的是「模型在自己见过的分布里有多强」，以及 PRICE 官方权重在这批库上的拟合水平。</p><div class="tablewrap"><table><caption><b>26 源库分布统计</b></caption><thead><tr><th>统计量</th><th>值</th></tr></thead><tbody><tr><td>优于 PG 的库数</td><td>24 / 26</td></tr><tr><td>优于 PRICE 的库数</td><td>22 / 26</td></tr><tr><td>其中落在 seed 噪声带内</td><td>3（fnhk、movielens、sap）</td></tr><tr><td>噪声带外的稳赢</td><td>19 / 26</td></tr><tr><td>PRICE / 我们 中位</td><td>1.184（0.490 – 3.081）</td></tr><tr><td>PG / 我们 中位</td><td>2.066（0.872 – 4.978）</td></tr><tr><td>训练库 / 源验证库</td><td>23 库我们训练过（21 赢 2 输） / 3 库未训练（1 赢 2 输）</td></tr></tbody></table></div><figure class="figure"><figcaption><b>26 源库的相对位置。</b>我们相对 PRICE 的赢面集中在中段，两端是 chembl（我们大输）与 tpc_h（我们大赢）。</figcaption><ul class="legend"><li><span class="swatch" style="background:var(--series-ours)"></span>我们更好（比值 &gt; 1）</li><li><span class="swatch" style="background:var(--series-price)"></span>PRICE 更好（比值 &lt; 1）</li><li><span class="swatch" style="background:var(--accent);opacity:.5"></span>落在 seed 噪声带内（*）</li></ul><svg viewBox="0 0 780 550" role="img" aria-label="26 个源库的 PRICE 除以我们 的比值条形图，对数横轴，1.0 为持平线"><rect x="344.6" y="20" width="34.3" height="506" fill="var(--accent)" opacity="0.10"/><line x1="361.8" y1="14" x2="361.8" y2="530" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="4 3"/><text x="361.8" y="10" text-anchor="middle" font-size="11" fill="var(--muted-fg)">持平 1.00</text><text x="361.8" y="544" text-anchor="middle" font-size="10" fill="var(--accent)">seed 噪声带 ±6.28%</text><text x="0" y="42.0" font-size="11" fill="var(--fg)">tpc_h</text><rect x="361.8" y="33.0" width="316.6" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="683.3" y="42.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">3.081</text><text x="0" y="61.0" font-size="11" fill="var(--fg)">ssb</text><rect x="361.8" y="52.0" width="153.0" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="519.7" y="61.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.722</text><text x="0" y="80.0" font-size="11" fill="var(--fg)">hockey</text><rect x="361.8" y="71.0" width="144.7" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="511.4" y="80.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.672</text><text x="0" y="99.0" font-size="11" fill="var(--fg)">tournament</text><rect x="361.8" y="90.0" width="91.5" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="458.3" y="99.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.384</text><text x="0" y="118.0" font-size="11" fill="var(--fg)">grants</text><rect x="361.8" y="109.0" width="90.7" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="457.5" y="118.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.380</text><text x="0" y="137.0" font-size="11" fill="var(--fg)">baseball</text><rect x="361.8" y="128.0" width="84.0" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="450.7" y="137.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.348</text><text x="0" y="156.0" font-size="11" fill="var(--fg)">basketball</text><rect x="361.8" y="147.0" width="77.0" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="443.8" y="156.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.315</text><text x="0" y="175.0" font-size="11" fill="var(--fg)">sakila</text><rect x="361.8" y="166.0" width="74.3" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="441.1" y="175.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.303</text><text x="0" y="194.0" font-size="11" fill="var(--fg)">seznam</text><rect x="361.8" y="185.0" width="61.2" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="427.9" y="194.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.243</text><text x="0" y="213.0" font-size="11" fill="var(--fg)">legalacts</text><rect x="361.8" y="204.0" width="55.2" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="421.9" y="213.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.217</text><text x="0" y="232.0" font-size="11" fill="var(--fg)">talkingdata</text><rect x="361.8" y="223.0" width="51.9" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="418.7" y="232.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.203</text><text x="0" y="251.0" font-size="11" fill="var(--fg)">financial</text><rect x="361.8" y="242.0" width="50.6" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="417.4" y="251.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.197</text><text x="0" y="270.0" font-size="11" fill="var(--fg)">employee</text><rect x="361.8" y="261.0" width="48.6" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="415.3" y="270.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.189</text><text x="0" y="289.0" font-size="11" fill="var(--fg)">tubepricing</text><rect x="361.8" y="280.0" width="46.3" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="413.1" y="289.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.179</text><text x="0" y="308.0" font-size="11" fill="var(--fg)">ccs</text><rect x="361.8" y="299.0" width="44.2" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="411.0" y="308.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.170</text><text x="0" y="327.0" font-size="11" fill="var(--fg)">consumer</text><rect x="361.8" y="318.0" width="40.9" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="407.6" y="327.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.156</text><text x="0" y="346.0" font-size="11" fill="var(--fg)">credit</text><rect x="361.8" y="337.0" width="40.8" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="407.6" y="346.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.156</text><text x="0" y="365.0" font-size="11" fill="var(--fg)">carcinogenesis</text><rect x="361.8" y="356.0" width="38.3" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="405.0" y="365.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.146</text><text x="0" y="384.0" font-size="11" fill="var(--fg)">hepatitis</text><rect x="361.8" y="375.0" width="26.0" height="11" fill="var(--series-ours)" opacity="1" rx="1"/><text x="392.8" y="384.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.097</text><text x="0" y="403.0" font-size="11" fill="var(--fg)">sap</text><rect x="361.8" y="394.0" width="14.9" height="11" fill="var(--series-ours)" opacity="0.45" rx="1"/><text x="381.6" y="403.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.054*</text><text x="0" y="422.0" font-size="11" fill="var(--fg)">fnhk</text><rect x="361.8" y="413.0" width="14.8" height="11" fill="var(--series-ours)" opacity="0.45" rx="1"/><text x="381.5" y="422.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.054*</text><text x="0" y="441.0" font-size="11" fill="var(--fg)">movielens</text><rect x="361.8" y="432.0" width="13.1" height="11" fill="var(--series-ours)" opacity="0.45" rx="1"/><text x="379.8" y="441.0" text-anchor="start" font-size="10.5" fill="var(--muted-fg)">1.048*</text><text x="0" y="460.0" font-size="11" fill="var(--fg)">accidents</text><rect x="360.0" y="451.0" width="1.7" height="11" fill="var(--series-price)" opacity="1" rx="1"/><text x="355.0" y="460.0" text-anchor="end" font-size="10.5" fill="var(--muted-fg)">0.994</text><text x="0" y="479.0" font-size="11" fill="var(--fg)">airline</text><rect x="341.1" y="470.0" width="20.6" height="11" fill="var(--series-price)" opacity="1" rx="1"/><text x="336.1" y="479.0" text-anchor="end" font-size="10.5" fill="var(--muted-fg)">0.929</text><text x="0" y="498.0" font-size="11" fill="var(--fg)">telstra</text><rect x="264.3" y="489.0" width="97.4" height="11" fill="var(--series-price)" opacity="1" rx="1"/><text x="259.3" y="498.0" text-anchor="end" font-size="10.5" fill="var(--muted-fg)">0.707</text><text x="0" y="517.0" font-size="11" fill="var(--fg)">chembl</text><rect x="161.0" y="508.0" width="200.7" height="11" fill="var(--series-price)" opacity="1" rx="1"/><text x="156.0" y="517.0" text-anchor="end" font-size="10.5" fill="var(--muted-fg)">0.490</text></svg><p class="axis-note">横轴为 PRICE / 我们的比值，对数刻度；条形跨过虚线即为我们更好。带 * 的三个库差距小于 94 号实测的 seed 间标准差 6.28%，应读作打平。</p></figure><div class="tablewrap"><table><caption><b>26 个源库 · unique-query Q95（K=0，1,279,218 条唯一查询）</b>　<span class="flag">拟合诊断</span>PRICE 在全部 26 库训练过，我们训练过 23 个，因此本表不是漂移证据。</caption><thead><tr><th>库</th><th>n</th><th>我们 Q95</th><th>PRICE Q95</th><th>PG Q95</th><th>PRICE / 我们</th><th>PG / 我们</th></tr></thead><tbody><tr><td>accidents</td><td>50,000</td><td>25.06</td><td>24.91</td><td>33.30</td><td class="tie">0.994</td><td class="win">1.329</td></tr><tr><td>airline</td><td>50,000</td><td>14.96</td><td>13.90</td><td>29.50</td><td class="lose">0.929</td><td class="win">1.972</td></tr><tr><td>baseball</td><td>50,000</td><td>21.33</td><td>28.75</td><td>93.69</td><td class="win">1.348</td><td class="win">4.392</td></tr><tr><td>basketball</td><td>50,000</td><td>16.48</td><td>21.68</td><td>34.00</td><td class="win">1.315</td><td class="win">2.063</td></tr><tr><td>carcinogenesis</td><td>50,000</td><td>6.05</td><td>6.94</td><td>9.32</td><td class="win">1.146</td><td class="win">1.540</td></tr><tr><td>ccs</td><td>50,000</td><td>6.29</td><td>7.36</td><td>17.00</td><td class="win">1.170</td><td class="win">2.704</td></tr><tr><td>chembl</td><td>50,000</td><td>68.23</td><td>33.43</td><td>146.06</td><td class="lose">0.490</td><td class="win">2.141</td></tr><tr><td>consumer</td><td>50,000</td><td>3.57</td><td>4.12</td><td>4.84</td><td class="win">1.156</td><td class="win">1.358</td></tr><tr><td>credit</td><td>50,000</td><td>3.16</td><td>3.66</td><td>3.89</td><td class="win">1.156</td><td class="win">1.230</td></tr><tr><td>employee</td><td>50,000</td><td>3.64</td><td>4.33</td><td>15.73</td><td class="win">1.189</td><td class="win">4.317</td></tr><tr><td>financial</td><td>50,000</td><td>5.98</td><td>7.16</td><td>10.35</td><td class="win">1.197</td><td class="win">1.729</td></tr><tr><td>fnhk<span class="flag noise">噪声带内</span></td><td>50,000</td><td>31.98</td><td>33.71</td><td>66.17</td><td class="win">1.054</td><td class="win">2.069</td></tr><tr><td>grants</td><td>50,000</td><td>11.93</td><td>16.47</td><td>34.00</td><td class="win">1.380</td><td class="win">2.851</td></tr><tr><td>hepatitis</td><td>50,000</td><td>3.66</td><td>4.02</td><td>6.25</td><td class="win">1.097</td><td class="win">1.705</td></tr><tr><td>hockey</td><td>50,000</td><td>6.50</td><td>10.87</td><td>23.00</td><td class="win">1.672</td><td class="win">3.540</td></tr><tr><td>legalacts</td><td>49,504</td><td>9.71</td><td>11.82</td><td>26.00</td><td class="win">1.217</td><td class="win">2.677</td></tr><tr><td>movielens<span class="flag noise">噪声带内</span></td><td>50,000</td><td>27.57</td><td>28.88</td><td>63.81</td><td class="win">1.048</td><td class="win">2.315</td></tr><tr><td>sakila</td><td>50,000</td><td>2.20</td><td>2.87</td><td>2.41</td><td class="win">1.303</td><td class="win">1.093</td></tr><tr><td>sap<span class="flag noise">噪声带内</span></td><td>29,714</td><td>11.41</td><td>12.03</td><td>12.93</td><td class="win">1.054</td><td class="win">1.133</td></tr><tr><td>seznam</td><td>50,000</td><td>6.00</td><td>7.45</td><td>15.04</td><td class="win">1.243</td><td class="win">2.509</td></tr><tr><td>ssb</td><td>50,000</td><td>2.17</td><td>3.74</td><td>2.39</td><td class="win">1.722</td><td class="win">1.102</td></tr><tr><td>talkingdata</td><td>50,000</td><td>26.83</td><td>32.28</td><td>56.47</td><td class="win">1.203</td><td class="win">2.104</td></tr><tr><td>telstra</td><td>50,000</td><td>7.99</td><td>5.65</td><td>6.97</td><td class="lose">0.707</td><td class="lose">0.872</td></tr><tr><td>tournament</td><td>50,000</td><td>5.04</td><td>6.98</td><td>25.08</td><td class="win">1.384</td><td class="win">4.978</td></tr><tr><td>tpc_h</td><td>50,000</td><td>2.23</td><td>6.87</td><td>2.08</td><td class="win">3.081</td><td class="lose">0.932</td></tr><tr><td>tubepricing</td><td>50,000</td><td>6.33</td><td>7.46</td><td>28.74</td><td class="win">1.179</td><td class="win">4.542</td></tr><tr class="summary"><td>汇总（26 库中位）</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="win">1.184</td><td class="win">2.066</td></tr></tbody></table></div>
+</section>
+
+<section id="flip">
+  <h2><span class="num">04</span>漂移与拟合的反转</h2>
+  <p class="lede">把两组并排放，结论就出来了：同一个模型，在没见过的库上落后，在见过的库上更好。赢面集中在模型见过的分布里。</p><figure class="figure"><figcaption><b>反转。</b>同一个模型，在双方都没见过的库上落后 1.8 倍，在 PRICE 见过且我们多数也见过的库上好 1.18 倍。</figcaption><svg viewBox="0 0 780 250" role="img" aria-label="目标库与源库的 PRICE 除以我们 中位比值对比，1.0 为持平线"><line x1="217.9" y1="40" x2="217.9" y2="200" stroke="var(--border)"/><text x="217.9" y="218" text-anchor="middle" font-size="11" fill="var(--muted-fg)">0.5</text><line x1="429.0" y1="40" x2="429.0" y2="200" stroke="var(--border)"/><text x="429.0" y="218" text-anchor="middle" font-size="11" fill="var(--muted-fg)">1.0</text><line x1="640.0" y1="40" x2="640.0" y2="200" stroke="var(--border)"/><text x="640.0" y="218" text-anchor="middle" font-size="11" fill="var(--muted-fg)">2.0</text><line x1="429.0" y1="40" x2="429.0" y2="200" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="4 3"/><text x="429.0" y="30" text-anchor="middle" font-size="11" fill="var(--muted-fg)">持平 1.00（PRICE 与我们打平）</text><line x1="252.9" y1="70" x2="480.3" y2="170" stroke="var(--series-ours)" stroke-width="2" fill="none"/><circle cx="252.9" cy="70" r="7" fill="var(--series-price)"/><text x="266.9" y="74" font-size="13" font-weight="600" fill="var(--fg)">0.561</text><text x="0" y="74" font-size="12" fill="var(--muted-fg)">目标库（4，双方都没训练）</text><circle cx="480.3" cy="170" r="7" fill="var(--series-ours)"/><text x="494.3" y="174" font-size="13" font-weight="600" fill="var(--fg)">1.184</text><text x="0" y="174" font-size="12" fill="var(--muted-fg)">源库（26，PRICE 全训练）</text></svg><p class="axis-note">纵轴为场景、横轴为 PRICE / 我们的中位比值（对数刻度）。同一条连线跨过持平线，说明赢面来源在两组之间发生了反转。</p></figure><div class="tablewrap"><table><caption><b>同一模型的两种场景</b>　左列是双方都没训练过的库（漂移证据），右列是 PRICE 全训练过、我们训练过 23 个的库（拟合诊断）。</caption><thead><tr><th>指标</th><th>目标库（4，对等）</th><th>源库（26，不对称）</th></tr></thead><tbody><tr><td>Q95 输给 PRICE 的库</td><td>4 / 4</td><td>4 / 26</td></tr><tr><td>Q95 输给 PG 的库</td><td>1 / 4</td><td>2 / 26</td></tr><tr><td>PRICE / 我们 中位</td><td>0.561</td><td>1.184</td></tr><tr><td>PRICE / 我们 范围</td><td>0.183 – 0.686</td><td>0.490 – 3.081</td></tr><tr><td>PG / 我们 中位</td><td>1.965</td><td>2.066</td></tr><tr><td>与真值相关性落后 PRICE 的库</td><td>4 / 4</td><td>3 / 26</td></tr><tr><td>dCorr 中位（PRICE − 我们）</td><td>+0.0212</td><td>-0.0053</td></tr><tr><td>我们离散度大于 PRICE 的库</td><td>4 / 4</td><td>18 / 26</td></tr></tbody></table></div>
+</section>
+
+<section id="error">
+  <h2><span class="num">05</span>误差结构诊断</h2>
+  <p class="lede">102 号称出了差距但没回答为什么。103 号把它拆成两个候选解释，用 30 库的误差分解检验：<b>不是校准问题</b>（偏差中位贴近零），<b>不是过度收缩</b>（我们预测更散），<b>是排序一致性差一截</b>，而且这个差距精确跟随训练曝光。</p><div class="tablewrap"><table><caption><b>30 库误差分解（K=0，全量唯一查询）</b>　bias 为 log 空间中位偏差，over% 为高估占比，corr 为与真值的 Pearson 相关，std 为预测离散度（对数空间）。</caption><thead><tr><th>库</th><th>组</th><th>我们 bias</th><th>我们 over%</th><th>我们 corr</th><th>PRICE corr</th><th>dCorr</th><th>我们 std</th><th>PRICE std</th></tr></thead><tbody><tr><td>stats</td><td>目标</td><td>+0.111</td><td>58.9%</td><td>0.8393</td><td>0.8702</td><td>+0.0309</td><td>3.554</td><td>3.387</td></tr><tr><td>genome</td><td>目标</td><td>+0.047</td><td>57.8%</td><td>0.9454</td><td>0.9670</td><td>+0.0216</td><td>4.563</td><td>4.381</td></tr><tr><td>ergastf1</td><td>目标</td><td>+0.001</td><td>50.0%</td><td>0.9489</td><td>0.9592</td><td>+0.0103</td><td>4.094</td><td>3.983</td></tr><tr><td>imdb</td><td>目标</td><td>-0.454</td><td>27.6%</td><td>0.9226</td><td>0.9434</td><td>+0.0208</td><td>3.738</td><td>3.467</td></tr><tr><td>accidents</td><td>源</td><td>-0.053</td><td>45.9%</td><td>0.9428</td><td>0.9413</td><td>-0.0015</td><td>4.267</td><td>4.115</td></tr><tr><td>airline</td><td>源</td><td>-0.043</td><td>43.9%</td><td>0.9479</td><td>0.9474</td><td>-0.0005</td><td>3.548</td><td>3.531</td></tr><tr><td>baseball</td><td>源</td><td>-0.026</td><td>48.3%</td><td>0.9502</td><td>0.9396</td><td>-0.0106</td><td>4.392</td><td>4.324</td></tr><tr><td>basketball</td><td>源</td><td>-0.113</td><td>41.3%</td><td>0.9559</td><td>0.9490</td><td>-0.0070</td><td>4.319</td><td>4.247</td></tr><tr><td>carcinogenesis</td><td>源</td><td>+0.001</td><td>50.1%</td><td>0.9625</td><td>0.9544</td><td>-0.0080</td><td>2.927</td><td>2.956</td></tr><tr><td>ccs</td><td>源</td><td>-0.086</td><td>40.3%</td><td>0.9363</td><td>0.9228</td><td>-0.0135</td><td>2.089</td><td>2.152</td></tr><tr><td>chembl</td><td>源</td><td>+0.022</td><td>51.1%</td><td>0.8451</td><td>0.8990</td><td>+0.0539</td><td>3.281</td><td>3.142</td></tr><tr><td>consumer</td><td>源</td><td>-0.025</td><td>42.7%</td><td>0.9862</td><td>0.9824</td><td>-0.0038</td><td>3.182</td><td>3.137</td></tr><tr><td>credit</td><td>源</td><td>-0.025</td><td>44.2%</td><td>0.9892</td><td>0.9854</td><td>-0.0038</td><td>3.600</td><td>3.492</td></tr><tr><td>employee</td><td>源</td><td>+0.006</td><td>51.7%</td><td>0.9901</td><td>0.9878</td><td>-0.0023</td><td>4.060</td><td>4.223</td></tr><tr><td>financial</td><td>源</td><td>+0.004</td><td>50.6%</td><td>0.9754</td><td>0.9701</td><td>-0.0053</td><td>3.630</td><td>3.485</td></tr><tr><td>fnhk</td><td>源</td><td>-0.222</td><td>33.7%</td><td>0.9503</td><td>0.9406</td><td>-0.0097</td><td>4.414</td><td>4.406</td></tr><tr><td>grants</td><td>源</td><td>+0.106</td><td>59.5%</td><td>0.9456</td><td>0.9285</td><td>-0.0171</td><td>3.075</td><td>3.150</td></tr><tr><td>hepatitis</td><td>源</td><td>-0.043</td><td>46.3%</td><td>0.8979</td><td>0.8845</td><td>-0.0134</td><td>1.316</td><td>1.280</td></tr><tr><td>hockey</td><td>源</td><td>-0.020</td><td>48.4%</td><td>0.9317</td><td>0.8927</td><td>-0.0390</td><td>2.316</td><td>2.352</td></tr><tr><td>legalacts</td><td>源</td><td>-0.110</td><td>36.0%</td><td>0.9220</td><td>0.9121</td><td>-0.0099</td><td>2.357</td><td>2.584</td></tr><tr><td>movielens</td><td>源</td><td>-0.161</td><td>41.3%</td><td>0.9089</td><td>0.9158</td><td>+0.0069</td><td>3.154</td><td>3.077</td></tr><tr><td>sakila</td><td>源</td><td>-0.021</td><td>41.1%</td><td>0.9943</td><td>0.9915</td><td>-0.0028</td><td>3.442</td><td>3.252</td></tr><tr><td>sap</td><td>源</td><td>-0.047</td><td>41.8%</td><td>0.9449</td><td>0.9433</td><td>-0.0016</td><td>3.172</td><td>3.149</td></tr><tr><td>seznam</td><td>源</td><td>-0.189</td><td>33.2%</td><td>0.9745</td><td>0.9696</td><td>-0.0049</td><td>3.653</td><td>3.554</td></tr><tr><td>ssb</td><td>源</td><td>-0.039</td><td>30.2%</td><td>0.9920</td><td>0.9861</td><td>-0.0059</td><td>3.251</td><td>3.015</td></tr><tr><td>talkingdata</td><td>源</td><td>-0.035</td><td>48.4%</td><td>0.9243</td><td>0.9156</td><td>-0.0087</td><td>3.948</td><td>3.888</td></tr><tr><td>telstra</td><td>源</td><td>+0.083</td><td>57.5%</td><td>0.9397</td><td>0.9565</td><td>+0.0167</td><td>2.708</td><td>2.736</td></tr><tr><td>tournament</td><td>源</td><td>-0.026</td><td>46.7%</td><td>0.9861</td><td>0.9808</td><td>-0.0053</td><td>4.450</td><td>4.268</td></tr><tr><td>tpc_h</td><td>源</td><td>-0.026</td><td>39.4%</td><td>0.9912</td><td>0.9814</td><td>-0.0098</td><td>3.934</td><td>3.516</td></tr><tr><td>tubepricing</td><td>源</td><td>+0.027</td><td>51.3%</td><td>0.9355</td><td>0.9350</td><td>-0.0005</td><td>2.425</td><td>2.639</td></tr><tr class="summary"><td>目标库中位</td><td>目标</td><td>+0.024</td><td>53.9%</td><td>—</td><td>—</td><td>+0.0212</td><td>—</td><td>—</td></tr><tr class="summary"><td>源库中位</td><td>源</td><td>-0.026</td><td>45.0%</td><td>—</td><td>—</td><td>-0.0053</td><td>—</td><td>—</td></tr></tbody></table></div><p class="note"><b>更正：</b>第一轮 7 库上「corr 与 Q95 一一对应」成立，扩到 30 库后只有 27/30 一致（accidents、airline 的 corr 略高但 Q95 输不足 1%，实为打平；movielens 的 corr 略低但 Q95 赢）。相关性解释了大部分 Q95 胜负，但不是唯一决定因素。</p>
+<h3>表示探针：模型确实在表征里编了「这是哪个库」</h3>
+<p>前一段说差距跟着训练曝光走，但没说机制。最直接的假设是：模型学到了一条
+<b>库身份捷径</b>——只要认出这个库，就能套用该库的偏移量，而新库认不出来就失效。
+106 号用探针检验这条假设：冻结 checkpoint，对 26 个源库的
+39,000 条唯一查询做前向，取 <code>_head_input</code> 的
+774 维池化向量，跑 5 折线性分类器，任务是
+<b>26 选 1 猜库名</b>。</p>
+<div class="tablewrap"><table>
+<thead><tr><th>测的是什么</th><th>结果</th><th>随机基线</th><th>怎么读</th></tr></thead>
+<tbody>
+<tr><td><b>库身份可读性</b>（26 类，5 折）</td>
+<td class="num"><b>0.9858</b></td><td class="num">0.0385</td>
+<td>几乎完全可分——捷径真实存在</td></tr>
+<tr><td>负对照（打乱库标签后重跑同一探针）</td>
+<td class="num">0.0372</td><td class="num">0.0385</td>
+<td>回落到随机，说明上面那个数不是探针伪影</td></tr>
+<tr><td>质心比中位（库内散度作分母，越大越分离）</td>
+<td class="num">0.85</td><td class="num">—</td>
+<td>只有 6/26 个库超过 2.0</td></tr>
+</tbody></table></div>
+<p><b>但这个结果不能直接推出「每库一座孤岛」。</b>质心比中位只有 0.85，
+真正明显分离的只有 6/26 个库。也就是说捷径是
+<b>重叠区域里的方向性差异</b>，不是每库各占一块互不重叠的地盘。
+直接后果：单纯把各库质心拉近的域不变正则<b>不够</b>——那些正则优化的量，
+在这个表征里本来就没有分开多少。后续任何「抹掉库信息」的干预，
+都必须拿这个探针准确率当验收指标，而不是靠 Q95 间接判断。</p>
+<p class="small muted">边界：单 seed（42）的冻结 checkpoint，只有线性探针一种读法，未做多种探针交叉验证。
+未读任何目标库（<code>target_databases_read: []</code>），
+脚本在构建时断言这一点。</p>
+
+</section>
+
+<section id="fewshot">
+  <h2><span class="num">06</span>少样本适应（K&gt;0）</h2>
+  <p class="lede">上面所有数字都是 <b>K=0 零样本</b>，而课题是<b>空间漂移下的少样本元适应</b>。14 号的 K&gt;0 轨迹是另一半：适应在 genome 上把差距显著缩小，在 stats 上反而变差（负迁移），在 ergastf1 上基本持平——但三种情况下都没有超过 PRICE。</p><div class="grid3"><figure class="figure" style="margin:0"><svg viewBox="0 0 300 230" role="img" aria-label="stats 目标库上我们与 PRICE 的 Q95 随 K 的变化"><text x="0" y="12" font-size="12" font-weight="600" fill="var(--fg)">stats</text><line x1="46" y1="190.0" x2="276" y2="190.0" stroke="var(--border)"/><text x="41" y="193.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">29</text><line x1="46" y1="108.0" x2="276" y2="108.0" stroke="var(--border)"/><text x="41" y="111.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">80</text><line x1="46" y1="26.0" x2="276" y2="26.0" stroke="var(--border)"/><text x="41" y="29.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">218</text><line x1="46" y1="165.5" x2="276" y2="165.5" stroke="var(--series-price)" stroke-width="1.5" stroke-dasharray="5 3"/><text x="276" y="160.5" text-anchor="end" font-size="10" fill="var(--series-price)">PRICE 39.5</text><polyline points="46.0,109.2 92.0,50.5 138.0,87.5 184.0,98.4 230.0,88.9 276.0,91.4" fill="none" stroke="var(--series-ours)" stroke-width="2"/><circle cx="46.0" cy="109.2" r="3.5" fill="var(--series-ours)"/><text x="46.0" y="101.2" text-anchor="middle" font-size="9" fill="var(--muted-fg)">79</text><circle cx="92.0" cy="50.5" r="3.5" fill="var(--series-ours)"/><text x="92.0" y="42.5" text-anchor="middle" font-size="9" fill="var(--muted-fg)">162</text><circle cx="138.0" cy="87.5" r="3.5" fill="var(--series-ours)"/><text x="138.0" y="79.5" text-anchor="middle" font-size="9" fill="var(--muted-fg)">103</text><circle cx="184.0" cy="98.4" r="3.5" fill="var(--series-ours)"/><text x="184.0" y="90.4" text-anchor="middle" font-size="9" fill="var(--muted-fg)">90</text><circle cx="230.0" cy="88.9" r="3.5" fill="var(--series-ours)"/><text x="230.0" y="80.9" text-anchor="middle" font-size="9" fill="var(--muted-fg)">101</text><circle cx="276.0" cy="91.4" r="3.5" fill="var(--series-ours)"/><text x="276.0" y="83.4" text-anchor="middle" font-size="9" fill="var(--muted-fg)">98</text><text x="46.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=0</text><text x="92.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=5</text><text x="138.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=10</text><text x="184.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=20</text><text x="230.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=50</text><text x="276.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=100</text></svg><p class="axis-note">纵轴对数刻度。</p></figure><figure class="figure" style="margin:0"><svg viewBox="0 0 300 230" role="img" aria-label="genome 目标库上我们与 PRICE 的 Q95 随 K 的变化"><text x="0" y="12" font-size="12" font-weight="600" fill="var(--fg)">genome</text><line x1="46" y1="190.0" x2="276" y2="190.0" stroke="var(--border)"/><text x="41" y="193.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">23</text><line x1="46" y1="108.0" x2="276" y2="108.0" stroke="var(--border)"/><text x="41" y="111.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">85</text><line x1="46" y1="26.0" x2="276" y2="26.0" stroke="var(--border)"/><text x="41" y="29.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">310</text><line x1="46" y1="171.0" x2="276" y2="171.0" stroke="var(--series-price)" stroke-width="1.5" stroke-dasharray="5 3"/><text x="276" y="166.0" text-anchor="end" font-size="10" fill="var(--series-price)">PRICE 31.3</text><polyline points="46.0,45.0 92.0,71.8 138.0,80.2 184.0,97.3 230.0,100.9 276.0,94.1" fill="none" stroke="var(--series-ours)" stroke-width="2"/><circle cx="46.0" cy="45.0" r="3.5" fill="var(--series-ours)"/><text x="46.0" y="37.0" text-anchor="middle" font-size="9" fill="var(--muted-fg)">230</text><circle cx="92.0" cy="71.8" r="3.5" fill="var(--series-ours)"/><text x="92.0" y="63.8" text-anchor="middle" font-size="9" fill="var(--muted-fg)">150</text><circle cx="138.0" cy="80.2" r="3.5" fill="var(--series-ours)"/><text x="138.0" y="72.2" text-anchor="middle" font-size="9" fill="var(--muted-fg)">132</text><circle cx="184.0" cy="97.3" r="3.5" fill="var(--series-ours)"/><text x="184.0" y="89.3" text-anchor="middle" font-size="9" fill="var(--muted-fg)">101</text><circle cx="230.0" cy="100.9" r="3.5" fill="var(--series-ours)"/><text x="230.0" y="92.9" text-anchor="middle" font-size="9" fill="var(--muted-fg)">95</text><circle cx="276.0" cy="94.1" r="3.5" fill="var(--series-ours)"/><text x="276.0" y="86.1" text-anchor="middle" font-size="9" fill="var(--muted-fg)">106</text><text x="46.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=0</text><text x="92.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=5</text><text x="138.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=10</text><text x="184.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=20</text><text x="230.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=50</text><text x="276.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=100</text></svg><p class="axis-note">纵轴对数刻度。</p></figure><figure class="figure" style="margin:0"><svg viewBox="0 0 300 230" role="img" aria-label="ergastf1 目标库上我们与 PRICE 的 Q95 随 K 的变化"><text x="0" y="12" font-size="12" font-weight="600" fill="var(--fg)">ergastf1</text><line x1="46" y1="190.0" x2="276" y2="190.0" stroke="var(--border)"/><text x="41" y="193.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">11</text><line x1="46" y1="108.0" x2="276" y2="108.0" stroke="var(--border)"/><text x="41" y="111.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">19</text><line x1="46" y1="26.0" x2="276" y2="26.0" stroke="var(--border)"/><text x="41" y="29.0" text-anchor="end" font-size="9.5" fill="var(--muted-fg)">32</text><line x1="46" y1="142.6" x2="276" y2="142.6" stroke="var(--series-price)" stroke-width="1.5" stroke-dasharray="5 3"/><text x="276" y="137.6" text-anchor="end" font-size="10" fill="var(--series-price)">PRICE 15.3</text><polyline points="46.0,73.4 92.0,75.3 138.0,76.8 184.0,74.5 230.0,82.1 276.0,84.7" fill="none" stroke="var(--series-ours)" stroke-width="2"/><circle cx="46.0" cy="73.4" r="3.5" fill="var(--series-ours)"/><text x="46.0" y="65.4" text-anchor="middle" font-size="9" fill="var(--muted-fg)">24</text><circle cx="92.0" cy="75.3" r="3.5" fill="var(--series-ours)"/><text x="92.0" y="67.3" text-anchor="middle" font-size="9" fill="var(--muted-fg)">23</text><circle cx="138.0" cy="76.8" r="3.5" fill="var(--series-ours)"/><text x="138.0" y="68.8" text-anchor="middle" font-size="9" fill="var(--muted-fg)">23</text><circle cx="184.0" cy="74.5" r="3.5" fill="var(--series-ours)"/><text x="184.0" y="66.5" text-anchor="middle" font-size="9" fill="var(--muted-fg)">24</text><circle cx="230.0" cy="82.1" r="3.5" fill="var(--series-ours)"/><text x="230.0" y="74.1" text-anchor="middle" font-size="9" fill="var(--muted-fg)">22</text><circle cx="276.0" cy="84.7" r="3.5" fill="var(--series-ours)"/><text x="276.0" y="76.7" text-anchor="middle" font-size="9" fill="var(--muted-fg)">22</text><text x="46.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=0</text><text x="92.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=5</text><text x="138.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=10</text><text x="184.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=20</text><text x="230.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=50</text><text x="276.0" y="208" text-anchor="middle" font-size="10" fill="var(--muted-fg)">K=100</text></svg><p class="axis-note">纵轴对数刻度。</p></figure></div><p class="axis-note">曲线为 ERM-sum 臂在三个目标库上的 Q95（臂 × seed 均值），虚线为 PRICE 的 <b>K=0</b> 值；PRICE 自己的 K&gt;0 值见下表（它在 stats / genome 上同样没有优于自己的 K=0）。genome 上我们的适应把差距缩小，stats 上适应反而变差，ergastf1 基本持平。</p><div class="tablewrap"><table><caption><b>目标库 few-shot 轨迹（臂 × seed 均值，3 seed × 5 support 抽样）</b>　口径与上方 K=0 population 表不同（episode 均值 vs 全库 population），两者不可互换；PRICE 列是 <b>PRICE 自己的少样本值</b>，不是常数——K&gt;0 时它同样适应，PG 与 K 无关。</caption><thead><tr><th>库</th><th>K</th><th>FOMAML-set</th><th>ERM-set</th><th>FOMAML-sum</th><th>ERM-sum</th><th>PRICE†</th><th>PG</th></tr></thead><tbody><tr><td>stats</td><td>0</td><td>77.32 ± 2.50</td><td>79.37 ± 5.87</td><td>78.02 ± 2.13</td><td>78.77 ± 6.32</td><td>39.52</td><td>75.65</td></tr><tr><td>stats</td><td>5</td><td>96.29 ± 10.02</td><td>116.06 ± 18.58</td><td>96.77 ± 8.85</td><td>161.68 ± 41.80</td><td>43.59</td><td>75.65</td></tr><tr><td>stats</td><td>10</td><td>85.74 ± 4.21</td><td>91.99 ± 9.88</td><td>85.61 ± 4.97</td><td>102.75 ± 11.39</td><td>41.88</td><td>75.65</td></tr><tr><td>stats</td><td>20</td><td>84.20 ± 3.94</td><td>88.70 ± 8.28</td><td>86.41 ± 6.94</td><td>89.87 ± 4.94</td><td>41.83</td><td>75.65</td></tr><tr><td>stats</td><td>50</td><td>90.04 ± 7.58</td><td>97.91 ± 11.58</td><td>90.25 ± 6.38</td><td>100.98 ± 5.95</td><td>42.92</td><td>75.65</td></tr><tr><td>stats</td><td>100</td><td>86.76 ± 5.35</td><td>94.81 ± 12.36</td><td>88.98 ± 7.47</td><td>97.96 ± 6.60</td><td>42.39</td><td>75.65</td></tr><tr><td>genome</td><td>0</td><td>248.69 ± 67.29</td><td>374.09 ± 27.35</td><td>220.30 ± 65.47</td><td>229.64 ± 20.65</td><td>31.34</td><td>1907.32</td></tr><tr><td>genome</td><td>5</td><td>171.96 ± 32.59</td><td>220.31 ± 23.75</td><td>162.91 ± 40.92</td><td>150.39 ± 7.98</td><td>42.40</td><td>1907.32</td></tr><tr><td>genome</td><td>10</td><td>135.47 ± 14.76</td><td>171.81 ± 13.80</td><td>141.12 ± 43.79</td><td>131.63 ± 8.66</td><td>42.96</td><td>1907.32</td></tr><tr><td>genome</td><td>20</td><td>122.99 ± 17.43</td><td>129.99 ± 14.41</td><td>129.76 ± 41.94</td><td>100.51 ± 10.34</td><td>40.75</td><td>1907.32</td></tr><tr><td>genome</td><td>50</td><td>125.63 ± 17.27</td><td>124.14 ± 13.65</td><td>128.89 ± 36.38</td><td>94.96 ± 13.11</td><td>38.45</td><td>1907.32</td></tr><tr><td>genome</td><td>100</td><td>137.66 ± 22.13</td><td>137.33 ± 14.48</td><td>135.94 ± 34.81</td><td>105.71 ± 12.49</td><td>39.05</td><td>1907.32</td></tr><tr><td>ergastf1</td><td>0</td><td>24.53 ± 0.91</td><td>26.14 ± 2.02</td><td>24.03 ± 0.96</td><td>23.70 ± 1.94</td><td>15.29</td><td>27.61</td></tr><tr><td>ergastf1</td><td>5</td><td>23.69 ± 1.52</td><td>24.24 ± 1.24</td><td>23.58 ± 0.20</td><td>23.42 ± 1.62</td><td>14.80</td><td>27.61</td></tr><tr><td>ergastf1</td><td>10</td><td>24.10 ± 1.50</td><td>24.66 ± 1.79</td><td>23.62 ± 0.39</td><td>23.20 ± 1.80</td><td>14.61</td><td>27.61</td></tr><tr><td>ergastf1</td><td>20</td><td>24.18 ± 1.19</td><td>24.02 ± 2.13</td><td>23.66 ± 0.63</td><td>23.53 ± 2.08</td><td>14.53</td><td>27.61</td></tr><tr><td>ergastf1</td><td>50</td><td>23.91 ± 1.64</td><td>23.49 ± 1.75</td><td>23.13 ± 0.73</td><td>22.43 ± 2.06</td><td>14.41</td><td>27.61</td></tr><tr><td>ergastf1</td><td>100</td><td>23.75 ± 1.63</td><td>23.46 ± 1.59</td><td>23.15 ± 0.74</td><td>22.06 ± 2.31</td><td>14.46</td><td>27.61</td></tr></tbody></table></div>
+</section>
+
+<section id="advantages">
+  <h2><span class="num">07</span>相对基线的优势</h2>
+  
+<p class="lede">把话说明白：<b>目前能对导师主张的精度优势是对传统估计器 PG，不是对 PRICE。</b>
+下面逐条列出可主张的与不可主张的，数字全部来自前几节的证据。</p>
+<div class="tablewrap"><table class="prose cols-4">
+<caption><b>我们 / PRICE / PG 逐维度对照</b>　PG 指 PostgreSQL 自带优化器的行数估计，
+是本项目的传统基线；PRICE 是非严格训练条件匹配的预训练参考。</caption>
+<thead><tr><th>维度</th><th>我们</th><th>PRICE</th><th>PG</th><th>怎么读</th></tr></thead>
+<tbody><tr><td><b>目标库 K=0 Q95</b></td><td>中位落后 PRICE 1.8×（4/4 全输）</td><td>领先 1.8×（PRICE/我们 0.561）</td><td>3/4 赢，最大 11.17×（genome）</td><td>对传统估计器有明确优势；对预训练参考没有</td></tr><tr><td><b>源库 K=0 Q95</b></td><td>22/26 优于 PRICE</td><td>—</td><td>24/26 赢，PG/我们 中位 2.07</td><td>拟合场景我们更好，但 PRICE 见过这些库，不是漂移证据</td></tr><tr><td><b>参数量（FP32）</b></td><td>132,545</td><td>10,709,330</td><td>无参数（启发式）</td><td>我们比 PRICE 小 80.8×（set 架构 107.3×）</td></tr><tr><td><b>训练曝光</b></td><td>23 个源库</td><td>26 个源库</td><td>0</td><td>同样的结果用了更少的源库</td></tr><tr><td><b>是否吃 PG 估计作输入</b></td><td>是</td><td>否</td><td>本身就是优化器</td><td>从 PG 的估计出发做修正，而不是从零学</td></tr><tr><td><b>能否随新库适应</b></td><td>方法本体就是少样本适应</td><td>本轮对照为零样本</td><td>不能</td><td>方法层面的差异，精度上尚未在漂移场景证明</td></tr><tr><td><b>推理延迟（L1 前向 p50）※</b></td><td>比 PRICE 快 34.5–38.1×（CPU 单线程）</td><td>基准</td><td>无模型前向</td><td>单项前向确实快一到两个数量级，但整条估计链只快 3.7–7.5×（第 08 节）</td></tr><tr><td><b>数据库执行时间（L3 端到端）※</b></td><td>无可测收益（0.966–1.004）</td><td>无可测收益（0.960–1.003）</td><td>基准 1.000</td><td>连注入精确真值也只到 0.975–1.005；精度与执行时间不单调</td></tr></tbody></table></div>
+<p><b>可以主张的三条：</b>①对传统优化器 PG，在双方都没训练过的目标库上 3/4 赢、
+最大的 genome 领先 11 倍以上，源库 24/26 赢；②参数规模比 PRICE 小
+80.8×，且用的源库更少；③方法本体带少样本适应能力，
+而本轮对 PRICE 的对照是零样本——这是设计差异，不是精度优势。</p>
+<p><b>必须同时说明的三条：</b>①对 PRICE 的尾部精度我们目前是负结果
+（目标库 4/4 输，三 seed 下仍是 0/12），
+所以不能说比 PRICE 好；②参数量小<b>不等于</b>端到端更快——这个信息不足的问题 110 号已经补上了，
+结论是<b>前向确实快、执行时间没有可测收益</b>（第 08 节），两件事必须分开说；
+③本表<b>前七行</b>的「我们」列对应 <b>ERM-sum</b> 配置（132,545 参数），
+集合架构（99,777 参数）是另一套，两个倍数不能混用；
+带 <b>※</b> 的两行延迟测的是 <b>FOMAML-set seed42</b>（99,777 参数），
+不是 ERM-sum——延迟由张量形状决定、与权重无关（两臂 p50 差 ≤0.04 ms），但报告里必须标清楚测的是哪个模型。</p>
+
+</section>
+
+<section id="latency">
+  <h2><span class="num">08</span>延迟与端到端</h2>
+  
+<p class="lede">此前的阶段汇报把「没测延迟」列为缺口，110 号把它补上了，而且结论比缺测更值得说：
+<b>前向快一到两个数量级，整条估计链快几倍，但真实数据库执行时间没有可测收益。</b></p>
+
+<h3>L1：模型前向单项（不含特征提取、不含规划、不含执行）</h3>
+<div class="tablewrap"><table>
+<caption><b>单查询前向 p50，毫秒</b>　同一批样本逐条 batch=1，先丢 20 行 warm-up。
+CPU 臂钉死单线程（<code>OMP_NUM_THREADS=1</code>），这是主口径。
+被测模型是 <b>FOMAML-set seed42</b>（99,777 参数），不是前面各表的 ERM-sum。
+PRICE 列取<b>各库自身的 <code>cache</code> maxima</b>（imdb 自身 maxima 比四库合并口径低 13%，两者不可混用）。</caption>
+<thead><tr><th>库</th><th>我们 CPU</th><th>PRICE CPU</th><th>快</th>
+<th>我们 GPU</th><th>PRICE GPU</th><th>快</th></tr></thead>
+<tbody><tr><td><b>stats</b></td><td class='num'>0.897<sup>†</sup></td><td class='num'>34.22</td><td class='num'>38.1×</td><td class='num'>1.790</td><td class='num'>29.76</td><td class='num'>16.6×</td></tr><tr><td><b>genome</b></td><td class='num'>0.904</td><td class='num'>32.71</td><td class='num'>36.2×</td><td class='num'>1.805</td><td class='num'>28.89</td><td class='num'>16.0×</td></tr><tr><td><b>ergastf1</b></td><td class='num'>0.911</td><td class='num'>33.81</td><td class='num'>37.1×</td><td class='num'>1.831</td><td class='num'>29.51</td><td class='num'>16.1×</td></tr><tr><td><b>imdb</b></td><td class='num'>0.886</td><td class='num'>30.53</td><td class='num'>34.5×</td><td class='num'>1.799</td><td class='num'>28.08</td><td class='num'>15.6×</td></tr></tbody></table></div>
+<p>CPU 上快 <b>34.5–38.1×</b>，GPU 上只快 15.6–16.6×。
+<b>batch=1 时 GPU 反而比 CPU 慢约 2 倍</b>（我们自己的 0.89 ms 对
+1.80 ms），
+只有 batch=128 的吞吐才反过来。单查询在线估计应放 CPU。</p>
+<p class="small muted">稳定性：stats 两次 population pass 的 p50 相差 16.8%（容差 5%）。违约的那次运行 110 号判其作废，
+CPU 数字改取<b>同一库的 ERM 臂</b>（表内 <sup>†</sup> 标注）——依据是延迟由张量形状决定、
+与权重数值无关，两臂 p50 实测差 ≤0.04 ms。</p>
+
+<h3>L2：逐查询完整估计链（SQL 解析 + 特征提取 + 模型前向）</h3>
+<div class="tablewrap"><table>
+<caption><b>每条顶层查询的估计总耗时 p50，毫秒</b>　按查询把各子查询的提取与前向求和，
+即优化器拿到全部基数估计之前的成本。</caption>
+<thead><tr><th>库</th><th>我们</th><th>PRICE</th><th>快</th>
+<th>特征提取占我们成本</th><th>可测查询</th></tr></thead>
+<tbody><tr><td><b>stats</b></td><td class='num'>149.7</td><td class='num'>552.5</td><td class='num'>3.7×</td><td class='num'>92.3%</td><td class='num'>146/146</td></tr><tr><td><b>genome</b></td><td class='num'>89.8</td><td class='num'>435.4</td><td class='num'>4.8×</td><td class='num'>85.4%</td><td class='num'>186/186</td></tr><tr><td><b>ergastf1</b></td><td class='num'>38.6</td><td class='num'>216.6</td><td class='num'>5.6×</td><td class='num'>86.4%</td><td class='num'>148/148</td></tr><tr><td><b>imdb</b></td><td class='num'>50.4</td><td class='num'>380.2</td><td class='num'>7.5×</td><td class='num'>83.7%</td><td class='num'>70/70</td></tr></tbody></table></div>
+<p>整条链上我们快 <b>3.7–7.5×</b>，比 L1 的
+34.5–38.1× 小了一个量级，原因很直接：
+<b>特征提取占我们总成本的 83.7–92.3%</b>，
+而两条臂消费的是同一组 PRICE 特征，这笔钱谁都省不掉。
+想再快，要动的是提取器，不是模型。</p>
+
+<h3>L3：真实 PostgreSQL 执行（注入基数后跑完整条查询）</h3>
+<div class="tablewrap"><table>
+<caption><b>执行时间中位数相对 <code>pg_native</code> 的比值，越小越快</b>
+四臂在同一批抽样查询上比较，只在四臂都有执行时间的查询上算比值。
+<code>true_card</code> 是注入<b>精确真值</b>的臂，代表完美估计能达到的上限。</caption>
+<thead><tr><th>库</th><th>n</th><th>真值臂</th><th>我们</th><th>PRICE</th>
+<th>Q-error 中位（PG/真值/我们/PRICE）</th></tr></thead>
+<tbody><tr><td><b>stats</b></td><td class='num'>19</td><td class='num'>0.9746</td><td class='num'>0.9795</td><td class='num'>0.9598</td><td class='num muted'>11.94 / 1.00 / 9.41 / 6.58</td></tr><tr><td><b>genome</b></td><td class='num'>20</td><td class='num'>0.9857</td><td class='num'>0.9965</td><td class='num'>0.9806</td><td class='num muted'>1.22 / 1.00 / 1.31 / 5.14</td></tr><tr><td><b>ergastf1</b></td><td class='num'>19</td><td class='num'>1.0047</td><td class='num'>1.0038</td><td class='num'>1.0031</td><td class='num muted'>2.74 / 1.00 / 2.85 / 1.42</td></tr><tr><td><b>imdb</b></td><td class='num'>19</td><td class='num'>0.9860</td><td class='num'>0.9662</td><td class='num'>0.9670</td><td class='num muted'>12.47 / 1.00 / 11.29 / 4.22</td></tr></tbody></table></div>
+
+<p><b>这一段是本报告最该被追问的地方。</b>把基数估计换成<b>精确真值</b>，执行时间中位数
+也只在 <b>0.975–1.005</b> 之间摆动；我们
+（0.966–1.004）和 PRICE
+（0.960–1.003）都在同一带内。
+也就是说在这批查询上，<b>基数误差不是执行时间的主导项</b>。</p>
+<p>更强的一条：<b>精度与执行时间不单调。</b>真值臂的 Q-error 恒为 1.00，
+但它在四个库里从来不是最快的；genome 上 PRICE 的估计 Q-error 是 5.14、PG 是
+1.22（差约 4.2 倍），执行时间反而比 PG 原生略好。
+<b>估计更准不等于计划更好。</b>这条动摇的是「提升基数精度 → 加速查询」这条论证链本身，
+而不只是我们自己的成绩。</p>
+<p class="small muted">口径边界（必须和第 10 节「边界与不可声称」一起读）：L3 汇总的是
+<code>EXPLAIN (ANALYZE)</code> 的 <code>Execution Time</code>，即<b>给定基数、已规划好</b>的查询跑完的时间。
+它<b>不含</b>特征提取与模型前向（那是 L2）、<b>不含</b>优化器规划时间、<b>不含</b>中间件往返与 hint 构造。
+所以「L3 没收益」不等于「接入我们不会有额外开销」——两段成本要分开看。
+另外 stats/ergastf1 用 120 s 语句上限、imdb/genome 用 300 s，跨库绝对时间不可直接比，
+但比值是库内算的，不影响库内结论。</p>
+
+</section>
+
+<section id="literature">
+  <h2><span class="num">09</span>与文献的同口径对照</h2>
+  
+<p class="lede">本节前半部分只比较两种数字：<b>论文公开发表值</b>（PRICE 论文 Table 2，
+PVLDB 18(3): 637-650, 2024）与<b>本次实测值</b>（同一份 checkpoint、同一套缓存、同一指标定义，
+但换成论文用的 all-rows 口径）。我们先验证两者同口径，再把我们的结果放进论文的那张表里。
+后半部分是<b>相关工作版图</b>：同一方向还有哪些论文、它们的指标口径是否与我们一致、
+哪些数可以直接引、哪些不能。</p>
+
+<h3>口径验证：我们的复算能否落在论文的数上</h3>
+<div class="tablewrap"><table>
+<caption><b>复现检查</b>　论文的 Q-ERROR 与我们的 unique-query Q95 是同一个量
+（<code>exp(percentile(|Δlog|, 95))</code> ≡ <code>percentile(max(est/true, true/est), 95)</code>，
+已数值验证相对差 2.9e-15）；唯一差别是论文用 all-rows、本项目主指标用 unique-query。</caption>
+<thead><tr><th>库</th><th>我们复算 PRICE Q95</th><th>论文 PRICE Q95</th><th>差</th>
+<th>我们复算 PG Q95</th><th>论文 PG Q95</th><th>差</th></tr></thead>
+<tbody><tr><td>imdb</td><td>16.1527</td><td>15.45</td><td class="win">4.55%</td><td>49.4370</td><td>49.44</td><td class="win">0.01%</td></tr><tr><td>stats</td><td>35.5512</td><td>35.55</td><td class="win">0.00%</td><td>73.3499</td><td>73.35</td><td class="win">0.00%</td></tr><tr><td>ergastf1</td><td>14.5751</td><td>14.57</td><td class="win">0.03%</td><td>27.4797</td><td>27.47</td><td class="win">0.04%</td></tr><tr><td>genome</td><td>15.6701</td><td>15.67</td><td class="win">0.00%</td><td>383.0942</td><td>383.09</td><td class="win">0.00%</td></tr></tbody></table></div>
+<p class="small muted">PG 是同一批缓存里的原始估计，不含任何模型，所以它在四库上都与论文吻合到
+0.04% 以内（最大差出现在 ergastf1）就证明<b>我们的缓存、PG 估计与指标定义与论文一致</b>；
+PRICE 列四库四分位也全部吻合，Q50 最大差 0.40%、Q90 最大差 0.06%、Q95 最大差 4.55%、Q99 最大差 1.05%
+（Q95 的最大差出现在 imdb，是该库尾部插值位置的差异）。</p>
+
+<h3>放进论文那张表：我们在什么位置</h3>
+<div class="tablewrap"><table>
+<caption><b>同一张表（all-rows 口径，Q95，越小越好）</b>　除最后一行外全部是论文 Table 2 的发表值；
+最后一行是本次实测的我们。列序与论文 Table 2 一致（imdb, stats, ergastf1, genome）。
+绿色表示该方法在该库上优于我们，红色表示我们优于它。</caption>
+<thead><tr><th>方法</th><th>imdb</th><th>stats</th><th>ergastf1</th><th>genome</th></tr></thead>
+<tbody><tr><td>PG</td><td class="win">49.44</td><td class="lose">73.35</td><td class="win">27.47</td><td class="win">383.09</td></tr><tr><td>ALECE</td><td class="lose">19.07</td><td class="lose">16.44</td><td class="lose">8.43</td><td class="lose">1.58</td></tr><tr><td>MSCN</td><td class="win">104.20</td><td class="win">1609.45</td><td class="win">999.52</td><td class="lose">47.45</td></tr><tr><td>DeepDB</td><td class="lose">5.03</td><td class="win">132.63</td><td>—</td><td>—</td></tr><tr><td>NeuroCard</td><td class="lose">14.25</td><td class="win">228.41</td><td>—</td><td class="lose">26.75</td></tr><tr><td>FactorJoin</td><td class="win">1027.19</td><td class="win">666.59</td><td>—</td><td>—</td></tr><tr><td>PRICE (Pretrained)</td><td class="lose">15.45</td><td class="lose">35.55</td><td class="lose">14.57</td><td class="lose">15.67</td></tr><tr><td>PRICE (Finetuned)</td><td class="lose">5.36</td><td class="lose">7.07</td><td class="lose">7.37</td><td class="lose">1.35</td></tr><tr class="summary"><td>我们（ERM-sum, K=0, 本次实测）</td><td class="tie"><b>21.33</b></td><td class="tie"><b>74.15</b></td><td class="tie"><b>22.26</b></td><td class="tie"><b>60.16</b></td></tr></tbody></table></div>
+<div class="tablewrap"><table>
+<caption><b>我们的名次</b>　只在<b>零样本/预训练</b>方法之间按 Q95 排序（论文未跑或未报告的格不计入）。
+PRICE (Finetuned) 用 5×10⁴ 条目标库查询微调过，属另一种设定，不参与此排名。</caption>
+<thead><tr><th>库</th><th>我们的名次</th><th>该库最优</th></tr></thead>
+<tbody><tr><td>imdb</td><td>第 5 / 8</td><td>DeepDB（5.03）</td></tr><tr><td>stats</td><td>第 4 / 8</td><td>ALECE（16.44）</td></tr><tr><td>ergastf1</td><td>第 3 / 5</td><td>ALECE（8.43）</td></tr><tr><td>genome</td><td>第 5 / 6</td><td>ALECE（1.58）</td></tr></tbody></table></div>
+<p><b>怎么读这一节：</b>在这个口径下，我们<b>优于 DeepDB、NeuroCard、MSCN、FactorJoin 中的大多数</b>，
+而这些对手是<b>在每个目标库上单独训练 5×10⁴ 条查询</b>的模型；我们是<b>用 23 个源库预训练一次、
+零样本直接用</b>。我们仍然落后 PRICE 与 ALECE，且在 Q95 上确实不是第一。</p>
+<p><b>两条必须同时说的：</b>①论文给了推理延迟与端到端两个数（PRICE 推理 5.3–14.1 ms/查询，
+E2E 在 stats/ergastf1/genome 三库最优）。此前的阶段汇报把「我们没测」列为最明显的证据缺口，
+110 号已经补上：<b>前向单项我们快 34.5–38.1×，
+但端到端执行时间没有可测差异</b>（第 08 节）。所以「参数少 80.80×」
+这条<b>仍然不能</b>换算成速度优势——现在这一点有实测支撑，不再只是谨慎措辞。
+<b>但论文的 5.3–14.1 ms 与我们实测的 PRICE 前向不可比</b>：本轮同机同批实测 PRICE 前向 p50 是
+30.5–34.2 ms，比论文高 2–6 倍
+（CPU 型号、batch、padding 口径均不同）。
+34.5–38.1× 是<b>同机同批的比值</b>，
+不能与论文的毫秒绝对值并列使用；
+②PRICE 论文摘要称「achieving the highest estimation
+accuracy on several unseen databases」，但其 Table 2 的 Q95 列里它<b>四个库都没拿第一</b>
+（ALECE 在三库优于它，DeepDB 与 NeuroCard 在 imdb 优于它），正文措辞则更谨慎
+（「has no significant gaps with other ML-based methods」）。引用时建议以表格为准。</p>
+<p class="small muted">出处置信：Tianjing Zeng, Junwei Lan, Jiahong Ma, Wenqing Wei, Rong Zhu, Yingli Zhou, Pengfei Li, Bolin Ding, Defu Lian, Zhewei Wei, Jingren Zhou. PRICE: A Pretrained Model for Cross-Database Cardinality Estimation. PVLDB 18(3): 637-650, 2024.
+（/gly/weilin/PRICE-master/PRICE_full_paper.pdf (camera-ready, 1,767,989 bytes)，DOI 10.14778/3712221.3712231，
+arXiv 2406.01027）。论文的 'Visual Genome' 即本项目的 'genome'。
+本次实测证据：<code>实验文档/results/p2-2-allrows-lit-20261022/</code>。</p>
+
+<h3>相关工作版图：谁和我们在同一根轴上</h3>
+<p class="lede">近年做「基数估计 + 分布外泛化」的公开工作不算少，但把它们按
+<b>留出方式</b>分类后，真正与我们同设定的极少。下表的判断标准只有一条：
+<b>是不是整库留出、零样本直接测</b>——这是本项目实验协议的核心。</p>
+<div class="tablewrap"><table class="prose cols-4">
+<caption><b>相关工作版图</b>　「同设定」= 整库留出零样本。
+指标列标出该文的 Q95 与我们的 Q95 是否<b>恒等</b>（恒等才谈得上直接比大小）。</caption>
+<thead><tr><th>论文与出处</th><th>指标口径</th><th>留出方式与少样本</th><th>与我们的关系</th></tr></thead>
+<tbody><tr><td><b>PRICE</b><br><span class="small muted">PVLDB 18(3): 637-650, 2024<br>arXiv 2406.01027 · DOI 10.14778/3712221.3712231<br>Tianjing Zeng, Junwei Lan, Jiahong Ma, et al.（camera-ready 共 11 人）</span></td><td>Q-ERROR = max(ĉ/c, c/ĉ)，倍数空间；报 Q50/Q80/Q90/Q95/Q99<br><span class="small muted">与我们的 Q95 口径恒等，可同列比较</span></td><td>26 个源库各 5×10⁴ 条查询预训练 → 4 个整库零样本测试（imdb/stats/ergastf1/genome）<br><span class="small muted">少样本：有：PRICE (Finetuned) 在目标库查询上微调</span></td><td><span class="flag same">同设定</span><br>同一设定的直接对手，已在本文第 09 节同口径对表</td></tr><tr><td><b>CardOOD</b><br><span class="small muted">The VLDB Journal 35(4)，2026-05-20<br>arXiv 2412.05864 · DOI 10.1007/s00778-026-00979-3<br>Rui Li, Kangfei Zhao, Jeffrey Xu Yu, Guoren Wang</span></td><td>逐查询 Q-error = max{c/ĉ, ĉ/c}，倍数空间；报 Q50/Q75/Q95/Q99<br><span class="small muted">与我们的 Q95 口径恒等，可同列比较</span></td><td>同库内留 10% 查询作测试，另按谓词数配比 / join 数配比 / 整模板留出 / 表数留出四类构造偏移<br><span class="small muted">少样本：无（论文明确只做离线一次性训练）</span></td><td><span class="flag diff">不同设定</span><br>不同设定：covariate shift（同库工作负载漂移），不含整库留出零样本。但 q-error 口径与我们恒等，是最接近的鲁棒训练方法学参照</td></tr><tr><td><b>GRASP</b><br><span class="small muted">PVLDB 18(8): 2519-2532, 2025（VLDB 2025）<br>arXiv 2506.16007 · DOI 10.14778/3742728.3742745<br>Peizhi Wu, Rong Kang, Tieying Zhang, et al.（6 人）</span></td><td>Q-error = max(ĉ(q)/c(q), c(q)/ĉ(q)) ≥ 1，原始基数空间直接取倍数；报 Median / %95 / Mean<br><span class="small muted">与我们的 Q95 口径恒等，可同列比较</span></td><td>留出 join 模板（不是留出数据库），训练只用 10%-20% 的 join 模板；seen / unseen 模板两套测试集<br><span class="small muted">少样本：无适应实验（只有训练查询比例扫描与模板不平衡扫描）</span></td><td><span class="flag diff">不同设定</span><br>不同设定：同库训练同库测试，泛化对象是未见 join 模板，不是跨库漂移。可作为「不访问数据也能强」的方法学对照</td></tr><tr><td><b>预训练数据精简（单作者）</b><br><span class="small muted">arXiv 2502.14350，v1 2025-02-20；v2 2025-05-28 已被作者撤回，无 venue<br>arXiv 2502.14350<br>Boyang Fang（单作者）</span></td><td>q-error = max(Ĉ/C, C/Ĉ)，倍数空间；报 Q50/Q80/Q90/Q95/Q99；另有 p-error（计划代价比），不可换算为 q-error<br><span class="small muted">与我们的 Q95 口径恒等，可同列比较</span></td><td>26 个预训练数据集（与 PRICE 同一语料）→ 留出 4 个整库做零样本（IMDB/STATS/ErgastF1/Visual Genome）<br><span class="small muted">少样本：未找到</span></td><td><span class="flag same">同设定</span><br>设定与 PRICE、我们完全一致（整库留出零样本），但已撤回，只能当「同设定的另一条尝试」提及，不能作为可靠证据</td></tr><tr><td><b>AHCE / DACE</b><br><span class="small muted">Expert Systems with Applications 276: 127065, 2025<br>DOI 10.1016/j.eswa.2025.127065<br>Qixiong Zeng, Zilong Wang, Zicheng Zhang, et al.（5 人）</span></td><td>摘要只声明 mean q-error；Q95/中位数的确切定义未核实（全文付费墙）<br><span class="small muted">与我们的 Q95 口径未核实</span></td><td>从代码看 source/target 是同一 IMDB 库上的不同 workload（source=subtrain-5000；target=job-light / synthetic / subtrain-500），即 workload 漂移；是否存在整库跨库实验未核实<br><span class="small muted">少样本：有无标签目标域适应（MMD 与 GRL 两种变体），属无监督适应，不是少样本标注</span></td><td><span class="flag diff">不同设定</span><br>不可直接比：依赖 PostgreSQL 直方图等数据侧元信息，违反本项目「不看目标库数据/统计」的约束；论文表格数值未取到，本报告不引用其数字</td></tr><tr><td><b>LLM-CE（LLM 做基数估计）</b><br><span class="small muted">arXiv 2603.28080, 2026-03<br>arXiv 2603.28080<br>Liangzu Liu, Yiyan Wang, Yinjun Wu, et al.（11 人）</span></td><td>q-error 50/90/95/99，倍数空间，与我们恒等；但它改用整条查询作统计单元<br><span class="small muted">与我们的 Q95 口径恒等，可同列比较</span></td><td>IMDB / STATS / ErgastF1 / Genome 四库，与 PRICE 同一组库；LLM 作查询编码器 + MLP 或微调<br><span class="small muted">少样本：有：预微调（PFT）与微调（FT）两档</span></td><td><span class="flag diff">不同设定</span><br>不同设定：每个库上都要跑 LLM 编码，且统计单元与 PRICE 不同。它的价值之一是明确写出 PRICE 的 Q-ERROR 算在分解后的子查询上——这正是我们第 09 节 all-rows 面板所对齐的单元</td></tr></tbody></table></div>
+
+<h3>值得引用的具体数字</h3>
+
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">CardOOD（VLDB Journal 2026）</h4>
+<p class="small">同库内工作负载漂移，<b>没有</b>整库零样本；但 q-error 口径与我们恒等，
+是鲁棒训练方向最直接的参照。它对比的基线 ERM 就是「同库内无偏移」的普通训练。</p>
+<div class="tablewrap"><table>
+<caption><b>CardOOD 的 Q-error（Overall，Q50 / Q95 / Q99）</b>　转录自 arXiv 2412.05864 全文。
+我们的 Q95 与其 Q95 口径恒等，但<b>它们的库和留出方式与我们不同</b>，因此这里只作方法学参照，不作优劣比较。</caption>
+<thead><tr><th>设置</th><th>ERM 基线</th><th>最好方法</th><th>最好方法数值</th></tr></thead>
+<tbody><tr><td>forest · MLP · 谓词配比 20/80</td><td>1.40 / 102.48 / 976.64</td><td>Group DRO</td><td>1.06 / 39.57 / 351.06</td></tr><tr><td>forest · MSCN · 谓词配比 50/50</td><td>1.18 / 41.40 / 182.31</td><td>Deep CORAL</td><td>1.02 / 20.81 / 85.77</td></tr><tr><td>IMDB · MLP · 谓词配比 20/80</td><td>1.04 / 21.83 / 161.88</td><td>OrderEmb</td><td>1.68 / 11.05 / 100.93</td></tr><tr><td>IMDB · MSCN · 谓词配比 20/80</td><td>1.08 / 25.55 / 241.01</td><td>Query Mixup</td><td>1.01 / 9.63 / 61.56</td></tr><tr><td>DSB · MSCN · 整模板留出</td><td>1.60 / 88.51 / 298.47</td><td>Deep CORAL</td><td>1.05 / 37.93 / 185.13</td></tr></tbody></table></div>
+<div class="tablewrap"><table>
+<caption><b>CardOOD 的端到端时间</b>　与其 Q-error 表分开列出，因为两者并不成正比（见表下说明）。</caption>
+<thead><tr><th>库</th><th>PostgreSQL 原生 (s)</th><th>最好方法 (s)</th><th>比值</th></tr></thead>
+<tbody><tr><td>IMDB</td><td>40,968</td><td>38,690</td><td>0.944</td></tr><tr><td>DSB</td><td>1,139</td><td>722</td><td>0.634</td></tr><tr><td>JOB-light</td><td>9,939</td><td>9,479</td><td>0.954</td></tr></tbody></table></div>
+<p class="small muted">CardOOD 的 ERM 基线在这里就是「同库内无偏移」的普通训练。 其最好方法相对 ERM 的 Q95 改善倍数，在上面 5 种设置里为 1.98×–2.65×。 论文自称端到端提速 5.6% / 36.6% / 4.6%；且其 q-error 改善与端到端提速不成比例。</p>
+
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">GRASP（VLDB 2025）</h4>
+<p class="small">不访问数据库数据、只吃查询与 schema 的组合式模型；留出的是
+<b>join 模板</b>而非数据库，因此与我们不是同一设定。它同时提供了
+<b>端到端时间</b>——10-22 那版报告把它列为我们缺失的一类证据，110 号已补测（第 08 节）；
+但两者口径不同（GRASP 报 CEB 上整条查询的总运行时间，我们的 L3 是
+<code>EXPLAIN (ANALYZE)</code> 的 <code>Execution Time</code>），<b>绝对值不可直接比</b>。</p>
+<div class="tablewrap"><table>
+<caption><b>GRASP 的 Q-error（seen / unseen join 模板，Median / %95 / Mean）</b>
+转录自 vldb.org 官方 PDF（vol18/p2519-wu.pdf）Table 6。</caption>
+<thead><tr><th>方法</th><th>库</th><th>seen 模板</th><th>unseen 模板</th></tr></thead>
+<tbody><tr><td>PostgreSQL（数据侧）</td><td>CEB-IMDb-full</td><td>1781.00 / 1e6 / 4e5</td><td>6.10 / 702.00 / 717.00</td></tr><tr><td>MSCN w/o Data（仅查询）</td><td>CEB-IMDb-full</td><td>1.90 / 7.10 / 3.70</td><td>2.50 / 663.00 / 2671.00</td></tr><tr><td>GRASP（仅查询）</td><td>CEB-IMDb-full</td><td>2.00 / 9.40 / 5.70</td><td>1.70 / 23.00 / 41.00</td></tr><tr><td>PostgreSQL（数据侧）</td><td>DSB</td><td>1.50 / 9.60 / 3.60</td><td>1.30 / 8.10 / 3.20</td></tr><tr><td>GRASP（仅查询）</td><td>DSB</td><td>1.80 / 8.70 / 6.70</td><td>1.80 / 15.00 / 9.50</td></tr></tbody></table></div>
+<div class="tablewrap"><table>
+<caption><b>GRASP 的端到端时间</b>（CEB-IMDb-full，相对 True-Card 基线的总运行时间比）。</caption>
+<thead><tr><th>方法</th><th>总运行时间 / True-Card 基线</th></tr></thead>
+<tbody><tr><td>GRASP</td><td>135%</td></tr><tr><td>PostgreSQL</td><td>176%</td></tr><tr><td>MSCN w/o Data</td><td>1044%</td></tr><tr><td>MSCN w/ Data</td><td>930%</td></tr></tbody></table></div>
+<p class="small muted">CEB-IMDb-full 由 CEB 基准的 IMDb 数据衍生，是 IMDb 系 join 查询的现成 PG 参照点：PG 在未见模板上 Median 6.1、%95 702，远差于任何学习模型。 在 CEB-IMDb-full 上，GRASP 的端到端开销低于 PostgreSQL 原生统计，说明「不访问数据」的模型也能换取端到端收益。</p>
+
+<h4 style="font-size:15px;margin:var(--s4) 0 var(--s2)">2502.14350（同设定，但已撤回）</h4>
+<div class="tablewrap"><table>
+<caption><b>该文 Table 2（Q50 / Q95 / Q99）</b>　转录自 arXiv 2502.14350 v1 全文。</caption>
+<thead><tr><th>库</th><th>PRICE 预训（26 库）</th><th>精简预训集（3.8%）</th></tr></thead>
+<tbody><tr><td>IMDB</td><td>1.78 / 15.45 / 70.89</td><td>2.00 / 19.07 / 54.24</td></tr><tr><td>STATS</td><td>1.87 / 35.55 / 579.67</td><td>2.49 / 62.56 / 1307.80</td></tr><tr><td>Visual Genome</td><td>1.65 / 15.67 / 114.42</td><td>1.83 / 15.83 / 85.49</td></tr></tbody></table></div>
+<p class="small muted">其 PRICE 列的 STATS Q95 = 35.5513 与 PRICE 论文 Table 2 的 35.55 逐位一致，是本项目复现目标的一次独立第三方确认。</p>
+<p class="note"><b>必须声明的撤回状态：</b>该文 Table 2 的 ErgastF1 行与 IMDB 行逐位相同（1.7771/15.4516/…），与作者自述的「数据质量顾虑」互相印证，其 ErgastF1 数值不可用；整篇已于 2025-05-28 撤回。
+该文与 PRICE、与我们<b>同设定</b>（26 个预训练库 → 4 个整库留出零样本），
+是除 PRICE 外唯一一条同赛道的公开尝试，但它的结论目前不能当作可靠证据引用。</p>
+
+<h3>同一个方法在不同论文里的数不一样</h3>
+<p class="small">JOB-light / IMDb 这套负载被多篇论文各自评测过。同一方法的 Q95 在各自论文里可以差一个数量级以上（PostgreSQL 分别是 797 / 817 / 6,955，而 PRICE 表里是 49.44），差在统计单元与工作负载版本，不在实现优劣。读任何一张表都要先问「这张表的数是哪篇论文、哪套负载、哪个统计单元」。</p>
+<div class="tablewrap"><table>
+<caption><b>JOB-light / IMDb 负载：各论文自报值 vs PRICE Table 2（imdb 行 Q95）</b>
+各论文自报值逐条转录自其原文表格（DeepDB / FLAT / NeuroCard 三篇的 JOB-light 表）。
+末列是 PRICE Table 2 里同一方法的 imdb 行，也就是我们上面那张表里的列。</caption>
+<thead><tr><th>方法</th><th>各论文自报（Q95）</th><th>PRICE Table 2（imdb Q95）</th></tr></thead>
+<tbody><tr><td>PostgreSQL / Histogram</td><td>DeepDB 原文 817；FLAT 原文 6,955；NeuroCard 原文 797</td><td>49.44</td></tr><tr><td>DeepDB</td><td>DeepDB 原文 3.16；FLAT 原文 3.769；NeuroCard 原文 4.90</td><td>5.03</td></tr><tr><td>MSCN</td><td>DeepDB 原文 143；FLAT 原文 97.60；NeuroCard 原文 136</td><td>104.20</td></tr><tr><td>NeuroCard</td><td>NeuroCard 原文 5.91；FLAT 原文 5.910</td><td>14.25</td></tr><tr><td>FLAT</td><td>FLAT 原文 2.247</td><td>—</td></tr></tbody></table></div>
+<p class="small muted">上表「PRICE Table 2」列是 imdb 那一行的 Q95（即我们第 09 节那张表里的同一列）。三篇原文自报的 PostgreSQL 分别是 797（NeuroCard）/ 817（DeepDB）/ 6,955（FLAT），而 PRICE 表里是 49.44；NeuroCard 自己论文报 5.91，PRICE 表里是 14.25。这些差异都不来自方法实现的优劣。</p>
+<p class="note"><b>统计单元：</b>PRICE 论文的 Q-ERROR 是在每条查询分解出的子查询上算的，不是整条查询（LLM-CE 论文脚注 3 明确写出这一点，并说明它自己改用整条查询重算）。我们的 all-rows 面板与 PRICE 同单元——证据是我们的 PG 列在四个库上逐位复现 PRICE 发表的 Q95；而 DeepDB / FLAT / NeuroCard 各自论文用的是整条查询单元。</p>
+<p class="note"><b>一个常被引错的数：</b>BIRD 全文不含 'cardinality' 一词（grep 命中 0 次），也没有 Q-ERROR：它报的是执行准确率 EX 与 VES。所以「BIRD 上的 PG Q95」这个东西并不存在，任何这样写的对比都缺乏文献依据。</p>
+<p class="small muted">NeuroCard、FLAT、DeepDB、Naru、MSCN、PRICE 全部使用同一个 q-error 公式 max(真值/估计, 估计/真值)，且都把真值与估计的下界取 1——与我们 Q95 的定义恒等。所以跨论文比 Q95 的大小是可行的，但前提是统计单元与负载版本一致。</p>
+
+<h3>这次调研的结论</h3>
+<ol class="takeaways"><li>整库留出零样本这一设定，在可查到的公开工作里只有三条线：PRICE（已发表）、2502.14350（已撤回）、以及本项目。也就是说我们面对的直接同行对手基本只有 PRICE 一个。</li><li>CardOOD、GRASP、AHCE/DACE 三篇的指标口径与我们恒等（AHCE 的 Q95 定义未核实），但设定都不是整库零样本：前两者是同库内留出，AHCE 是同库 workload 漂移且依赖目标库直方图。它们不与我们在同一根轴上竞争，不能用来证明我们更强或更弱。</li><li>GRASP 与 CardOOD 共同支持一个与我们相同的直觉：不访问目标库数据也能取得强结果，且鲁棒训练能压低尾部；这为「零样本 + 少样本适应」这条路线提供了同行证据。</li><li><s class="muted">我们仍然缺的那一项（PRICE、GRASP、CardOOD 都报了，我们没有）是端到端时间。PRICE 报 5.3-14.1 ms/查询推理与三库 E2E 最优，GRASP 报 CEB 上 135%、PG 176%，CardOOD 报 DSB 上 0.634 倍 PG。我们只报误差，没有报时间——这是汇报时必须主动说清的缺口。</s><br><b>（已被 110 号更新：110 号已补测 L1/L2/L3，见第 08 节；现状是「有实测、但口径与 GRASP/PRICE 报的不同，绝对值不可并列」）</b></li><li>同一个方法在不同论文里的数可以差好几倍（PostgreSQL 从 817 到 49.44，NeuroCard 从 5.91 到 14.25），差在统计单元与负载版本，不在实现优劣。我们的数只与 PRICE 那张表可比，且这一点已由 PG 列逐位复现证明。</li></ol>
+<p class="small muted">口径说明：本项目的 Q95 = exp(percentile(|max(log_pred,0) - log(max(true,1))|, 95))，与 max(ĉ/c, c/ĉ) 在倍数空间取 95 分位恒等（两侧下取 1）。下表 metric_identical_to_ours = true 的论文，其 Q95 可与我们同列比较，无需换算。</p>
+<p class="small muted">转录说明：以下事实与数字全部转录自论文公开版本（arXiv HTML / 官方 PDF / Crossref 元数据 / 官方代码仓库），每条附出处。转录中凡未取到原文的，标为 unverified，本报告不引用其数值。</p>
+
+</section>
+
+<section id="limits">
+  <h2><span class="num">10</span>边界与不可声称</h2>
+  
+<ul class="limits">
+  <li><span class="tag ok">可写</span><span>对传统估计器 PG，目标库 3/4 赢、源库 24/26 赢；
+  IMDB 上 Q50 首次优于 PG（2.037 vs 2.278）。</span></li>
+  <li><span class="tag ok">可写</span><span>源分布内的拟合可超过给定的 PRICE 参考（22/26，
+  其中 19 个稳赢、3 个打平）。</span></li>
+  <li><span class="tag no">不可写</span><span>“我们优于 PRICE”——对等漂移场景是 0/4。</span></li>
+  <li><span class="tag no">不可写</span><span>“22/26 优于 PRICE”而不带拟合限定——PRICE 全见过这些库。</span></li>
+  <li><span class="tag no">不可写</span><span>“四目标库完整验收”——IMDB 只有 K=0，没有 few-shot 行。</span></li>
+  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 0.904，属于打平而非胜负。</span></li>
+  <li><span class="tag no">不可写</span><span>“我们优于 CardOOD / GRASP / AHCE”——它们的指标口径与我们恒等，
+  但留出方式不是整库零样本，没有可比对象；也不把已撤回的 2502.14350 当作证据引用。</span></li>
+  <li><span class="tag no">不可写</span><span>“我们比 PRICE 快”——端到端执行时间无可测差异
+  （我们 0.966–1.004，
+  PRICE 0.960–1.003），
+  且这个量级连精确真值都达不到。能写的是<b>前向单项</b>快
+  34.5–38.1×。</span></li>
+  <li><span class="tag no">不可写</span><span>“精度上去了查询就更快”——实测反驳：真值臂 Q-error 恒为 1.00，
+  却在四个库里从来不是最快的（第 08 节）。</span></li>
+</ul>
+<p class="small muted">其它限定：<b>四目标库的 Q95 已补到三 seed</b>（108 号，第 02 节），
+第 03–05 节的定量分解仍是<b>单 seed（42）</b>，标 <code>needs_evidence</code>；
+94 号实测 seed 间标准差 6.28pp，大于那些表里多数效应量。
+L3 的「执行时间」不含特征提取、模型前向与优化器规划时间，所以「L3 无收益」不等于
+「接入我们没有额外开销」——那部分成本在 L2 里（第 08 节）。</p>
+
+</section>
+
+<section id="evidence">
+  <h2><span class="num">11</span>证据与复算</h2>
+  
+<p>本报告<b>我们方</b>的每个数字都由 <code>scripts/build_advisor_report.py</code> 从下列已入库的
+证据文件计算，不手工誊抄。生成时会做<b>十几组断言</b>，任何不一致都会中止构建；
+下面列三组长期使用的，本轮为 106 / 108 / 110 新增的七组摘要见
+<a href="../实验文档/104-导师汇报报告与文献对标.md">104 号 §7.2</a>：</p>
+<ul class="small">
+  <li>30 库 Q95 与 <code>cross_database</code> 计数自洽；</li>
+  <li>14 号表格中可由 JSON 复现的三个臂（FOMAML-set / ERM-set / ERM-sum）逐格对得上
+  （容差 0.01），第四臂 FOMAML-sum 因 seed44 摘要为空只取文档值；</li>
+  <li>14 号的 PRICE / PG 两列与 30 库证据文件的 K=0 值一致。</li>
+</ul>
+<div class="evidence"><div>2af6cbc65ae146cc94e61b7d4d3038976e347205daa30a06fce0e1427120e0f7  实验文档/results/p2-2-error-structure-broad-20261021/summary.json
+54ba799f7b83d74d4b2609bc15e3985d3d919cffa4dda7e98c90ffe3ed5060ea  实验文档/results/p2-2-error-structure-broad-20261021/protocol.json
+af063ca1e8bf3b9257b05c0123455eac99585d0dfc74a67bf67c64a38e2b58a7  实验文档/results/p2-2-target-imdb-20261021/summary.json
+018c38be2e30bc4de82f413a4b27935be1b94f07670292868ecf2c0c94295e13  实验文档/results/p2-2-target-imdb-20261021/protocol.json
+6607c3502934c62673d5320d4680f9bfacc0406504f3b3a09e55b3c416fd8d4d  实验文档/results/p2-2-price-population-broad-20261021/summary.json
+63c1dbe1ea9f1389155a23b93aacb38d39f4f018918cb8ce41368cb53c6703aa  实验文档/14-离线实验统一对照与论文结论.md
+62779cad081eba915fb40b1b83129b36163ca09817d754c9a75eef6c38525f41  实验文档/results/frozen3-20260927/s42-summary.json
+0a492a9d223b0ad05d9ea9301eac2614e11cb1567a686c1f607636722b32762a  实验文档/results/erm-s42-summary.json
+1e3bda5838ab2e0a8351334918955316305feda75af8e5aa866966c03f51819a  实验文档/results/erm-sum-target-20260927/s42-summary.json
+19af5b2d1901934a8d92846c3e6c5caa982bd5dd9bbf110a7cf3fe110f44cc60  实验文档/results/frozen3-20260927/s43-summary.json
+e2eeb6652dfe6a0d76b56a47f56ece9b2748c574e33b03f2065f0b6c582c7cc2  实验文档/results/erm-s43-summary.json
+355c9a37a65706f884b0036eb97686e764c55d64766b212b05943f3335118545  实验文档/results/erm-sum-target-20260927/s43-summary.json
+c5f58c286c73d2441fac110ae1bceb6d3f60f42dc82ba7c8d1c21cb92429bde5  实验文档/results/frozen3-20260927/s44-summary.json
+beb768b5fca48fdc5baeb8735dee1444e098e1908e78511f701fa61d78f54f01  实验文档/results/erm-s44-summary.json
+e899877667eff583af60dd5d62f190548b4f507e3520c717a60ff6bdd4fafb94  实验文档/results/erm-sum-target-20260927/s44-summary.json
+b832423d7521f29ab47c50a795f2bb5be478006da0e60c8362912b3880d8d0ff  实验文档/results/p2-2-target-3seed-20261023/summary.json
+e4a1e81c86ffff1f8a3be57246618fd9e073da5ee9724a5d1c8d041fcebbf8f4  实验文档/results/p2-2-db-identity-probe-20261023/summary.json
+e6fac97029c3ab5cd1b271023361dd1d93bf936d8004e80086e45c5bfcc55f6e  实验文档/results/latency-20261025/latency-cpu-fomaml.json
+9dc94ad9358812152dfc8b3e348625cfe30eca741bd411a448a262321e357e49  实验文档/results/latency-20261025/latency-cpu-erm.json
+c9fea59d0a0edf0b0942d80a5d85ad7f85fb9a4c589e11960cad2506d8968153  实验文档/results/latency-20261025/latency-cuda-fomaml.json
+128ae87225555fc387749afd77bd6dba674740efa26a2a47e26e38bd661531b7  实验文档/results/latency-20261025/estimation-cpu-fomaml.json
+ea78121dd8977e286af7a6950096de52abe53e7c0f1782d344fb4fd4538c01ee  实验文档/results/latency-20261025/e2e-stats.json
+0981120c2f41fc45629ad93e1f05b33a3824455c633785f9248de07262482ec5  实验文档/results/latency-20261025/e2e-genome.json
+ff79486329e0989ecc93e8e9bf31273c0ad55bd387f8a18c926794c313f6e9de  实验文档/results/latency-20261025/e2e-ergastf1.json
+70085cbed389e94ea766995c695fed63ebd9969fb6c12a0ab7247819fbcc59bd  实验文档/results/latency-20261025/e2e-imdb.json</div></div>
+<p><b>文献方</b>的数字是<b>论文发表值的转录</b>，不是我们自己测的，因此单独列出并附出处；
+转录的原文依据、核对方式与未核实项都记在下列文件里，报告只引用其中已核实的数值：</p>
+<div class="evidence"><div>98d9f1e02e2dcf8d2cf7c3b9196f1d36a8f44b24f95bd577f9e0496cbc3b019e  实验文档/results/p2-2-allrows-lit-20261022/summary.json
+22af209f44f8a69a3c4794f0cddf0187d3087455498da3378fab1bba2b771946  实验文档/results/p2-2-allrows-lit-20261022/protocol.json
+e8df8eff2119da9c869834a8247e2d02ca634eb6a72716b17b6e7ba149f04fd2  实验文档/results/p2-2-allrows-lit-20261022/price_paper_table2.json
+3449dabdaae22cce3e67d83f78701dbd85f26295d0c16581b9c66ddefb3cb850  实验文档/results/p2-2-allrows-lit-20261022/related_work.json</div></div>
+<p class="small muted"><b>下列证据等级只描述第 05 节那份 30 库误差分解文件，不是全报告等级</b>
+（全报告等级见页头）。
+<code>single_seed_frozen_checkpoint_full_population</code>；
+<code>needs_evidence = true</code>，
+理由：ours_k0 is one seed (42); this diagnosis inherits every single-seed caveat of the accuracy tables it explains。
+<code>target_databases_read = ['stats', 'genome', 'ergastf1', 'imdb']</code>，仅用于最终评估。</p>
+
+</section>
+
+<section id="glossary">
+  <h2><span class="num">12</span>名词表</h2>
+  <div class="tablewrap"><table class="prose"><caption><b>全文出现的缩写与术语</b>　「通俗解释」是给不熟悉这个方向的人看的，「本报告中的含义」是该词在这次实验里的具体所指。</caption><thead><tr><th>名词</th><th>通俗解释</th><th>本报告中的含义</th></tr></thead><tbody><tr class="group"><td colspan="3">训练与模型</td></tr><tr><td><b>seed（随机种子）</b></td><td>训练随机性的起点。同一个配置配同一个 seed，每次跑出的模型都一样；换 seed 等于换一次参数初始化、换一次数据排列顺序，得到一个不同的模型。</td><td>主线精度表用 seed 42 这一个模型；四目标库的 Q95 已扩到三 seed（第 02 节），其余定量分解仍是单 seed。94 号实测换 seed 会让同一方法的 Q95 波动约 ±6.28 个百分点，所以差距小于它的结论只能算打平。</td></tr><tr><td><b>checkpoint（检查点）</b></td><td>训练过程中的模型存档文件。</td><td>固定取最后一次训练的存档 last.pt，从不在目标库上比较多个存档再挑最好的——那等于按目标测试选模型。</td></tr><tr><td><b>ERM</b></td><td>经验风险最小化，即普通训练：每条查询独立地学一个回归。</td><td>我们四个臂之一。</td></tr><tr><td><b>FOMAML</b></td><td>元学习：先学一个「遇到新库能快速适应的初始化」，再做少量调整。</td><td>本课题的核心方法，与 ERM 对照。</td></tr><tr><td><b>set / sum（臂名后缀）</b></td><td>模型内部的两种聚合结构：一个把特征当集合处理，一个做求和聚合。</td><td>四个臂是 FOMAML-set / ERM-set / FOMAML-sum / ERM-sum；结构在源验证库上选定，主线用 sum。</td></tr><tr><td><b>arm（臂）</b></td><td>一组完整的对照配置（架构 + 训练方式 + seed）。</td><td>14 号主表的每一列就是一个臂。</td></tr><tr><td><b>maxima</b></td><td>PRICE 的输入特征布局长度参数，决定特征向量怎么切分。</td><td>目标库用 [12,14,8,10]、源库用 [12,12,7,10]；换它会改变特征被读到的位置，但实测数值差异相对仅 9.1e-07。</td></tr><tr class="group"><td colspan="3">评估口径</td></tr><tr><td><b>K</b></td><td>适应时给模型看的示例查询条数。</td><td>K=0 表示一条都不给（零样本）；K=5/10/20/50/100 是少样本档位。</td></tr><tr><td><b>support（支撑查询）</b></td><td>用来做适应的示例查询。</td><td>K&gt;0 的部分才有 support。</td></tr><tr><td><b>zero-shot / 零样本</b></td><td>不看任何示例，直接对目标库预测。</td><td>目标库侧的全部数字都是 K=0。</td></tr><tr><td><b>few-shot（少样本）</b></td><td>给少量示例后快速适应一个新库。</td><td>本课题的场景；14 号给了 K=0…100 的完整轨迹。</td></tr><tr><td><b>unique-query（唯一查询）</b></td><td>去重后的不同查询；同一条 SQL 重复出现只算一次。</td><td>所有表都是「全部唯一查询」口径，例如 IMDB 521 条、stats 2,603 条。</td></tr><tr><td><b>population（全体口径）</b></td><td>对该库所有唯一查询一次性全跑，不抽样。</td><td>与 episode 均值是两套口径，报告里不可互换。</td></tr><tr><td><b>episode（适应回合）</b></td><td>一次支撑样本抽样加一次评估。</td><td>14 号主表是 3 seed × 5 次抽样的均值。</td></tr><tr class="group"><td colspan="3">指标</td></tr><tr><td><b>Q95</b></td><td>误差的 95 分位，越小越好。本报告定义为 exp(percentile(|预测对数 − 真值对数|, 95))，精确预测记 1.0。</td><td>四个目标库、26 个源库全部用它。</td></tr><tr><td><b>log 空间（对数空间）</b></td><td>用对数表示误差：差 10 倍变成差 1。</td><td>所有偏差、相关、离散度统计都在对数空间计算。</td></tr><tr><td><b>Q50 / Q90 / Q99</b></td><td>误差的 50 / 90 / 99 分位。</td><td>Q50 是中位数，Q95 是尾部——两者可以给出相反结论，所以要分开看。</td></tr><tr><td><b>macro（宏平均）</b></td><td>先算每个库自己的指标，再对库取平均。</td><td>与把所有查询混在一起算不同。</td></tr><tr><td><b>corr（与真值的相关性）</b></td><td>预测值高低与真值高低的一致程度，衡量「排序准不准」。</td><td>解释误差结构的关键量；它高不代表 Q95 就好。</td></tr><tr><td><b>dCorr</b></td><td>corr(PRICE) − corr(我们)。</td><td>正值表示 PRICE 的排序更准；目标库 4/4 为正，源库中位为负。</td></tr><tr><td><b>bias_med（中位偏差）</b></td><td>预测与真值偏差的中位数（对数空间）。</td><td>接近 0 表示既不普遍高估也不普遍低估。</td></tr><tr><td><b>over%（高估占比）</b></td><td>预测偏大的查询所占比例。</td><td>50% 附近表示居中；IMDB 是 27.6%，即 72% 的查询被低估。</td></tr><tr><td><b>离散度（std）</b></td><td>预测值的分散程度。</td><td>若远小于真值的分散度，说明模型过度收缩——报告里 22/30 库我们比 PRICE 更散，这条被否证。</td></tr><tr class="group"><td colspan="3">库与曝光</td></tr><tr><td><b>源训练库</b></td><td>我们训练过的库。</td><td>23 个。</td></tr><tr><td><b>源验证库</b></td><td>只用来选方案（模型结构、适应策略）、没参与训练的库。</td><td>chembl / legalacts / telstra 三个。</td></tr><tr><td><b>目标库</b></td><td>我们和 PRICE 都没训练过的库。</td><td>imdb / stats / genome / ergastf1 四个；唯一对等的漂移比较点，且不参与任何选择。</td></tr><tr><td><b>拟合诊断 vs 漂移证据</b></td><td>在模型见过的分布上比，叫拟合诊断；在双方都没见过的库上比，才叫漂移证据。</td><td>26 源库表是前者，4 目标库表是后者——两者的结论方向相反，所以必须分开讲。</td></tr><tr><td><b>PG（PostgreSQL）</b></td><td>数据库自带优化器给出的行数估计。</td><td>本项目的传统基线，不是学习出来的模型。</td></tr><tr><td><b>PRICE</b></td><td>另一个基数估计方法的官方预训练权重。</td><td>非严格训练条件匹配的强参考（它在全部 26 个源库上都训练过）。</td></tr><tr class="group"><td colspan="3">证据</td></tr><tr><td><b>噪声带（±6.28pp）</b></td><td>由 seed 间标准差界定的「打平区间」。</td><td>落在带内的差异读作打平，报告里灰色标记。</td></tr><tr><td><b>needs_evidence</b></td><td>证据强度标记，提示该结论需要更多实验支撑。</td><td>第 01 节与第 03–05 节的 ours 侧数字仍是单 seed，带这个标记；四目标库的 Q95 已补到三 seed（第 02 节），那部分不再标。</td></tr><tr><td><b>sha256</b></td><td>文件内容指纹，内容变一点就完全不同。</td><td>用于证明引用的到底是哪一份证据文件。</td></tr><tr class="group"><td colspan="3">文献与指标口径</td></tr><tr><td><b>Q-ERROR</b></td><td>PRICE 论文里用的误差指标：预测值与真值差了几倍，取两者的较大倍数。</td><td>与我们的 Q95 是同一个量（已数值验证，相对差 2.9e-15），所以第 09 节能把我们的数直接放进论文的表里。</td></tr><tr><td><b>p-error</b></td><td>计划代价之比：把估计值当真值去算查询代价，与用真实基数算的代价相比差多少。</td><td>另一种指标，2502.14350 顺带报了；它和 Q95 不在同一个数轴上，不能互相换算或混排。</td></tr><tr><td><b>all-rows（全部行）</b></td><td>不去重，把工作负载里每一条查询结果行都算进指标。</td><td>PRICE 论文用的是这个口径；本项目主指标用 unique-query。第 09 节另算了一份 all-rows 专门用来对表。</td></tr><tr><td><b>E2E（端到端）</b></td><td>把估计器接进真实数据库跑完整条查询链，测总耗时。</td><td>PRICE、GRASP、CardOOD 都报了。本项目 110 号已实测四库四臂（不注入 / 精确真值 / 我们 / PRICE），结论是执行时间无可测差异，详见第 08 节。</td></tr><tr><td><b>L1 / L2 / L3</b></td><td>三层延迟口径：L1 是模型前向单项，L2 是 SQL 解析＋特征提取＋前向的完整估计链，L3 是真实数据库执行时间。</td><td>三层逐层放大，速度优势也随之缩小；混着报会夸大收益。L3 不含前两层，L1 也不能当端到端用。</td></tr><tr><td><b>Visual Genome</b></td><td>一个图像标注数据库。</td><td>PRICE 论文与 2502.14350 论文里叫 Visual Genome 的，就是本项目与 PRICE 缓存里的 genome。</td></tr><tr><td><b>join 模板</b></td><td>多表连接的结构骨架（表与连接条件固定、参数可变）。</td><td>GRASP 留出的是模板而非数据库——它的「泛化」是同库内换骨架，与本项目的跨库漂移不是一回事。</td></tr><tr><td><b>covariate shift（协变量偏移）</b></td><td>测试数据的分布相对训练数据变了，但预测目标没变。</td><td>CardOOD 的 OOD 指的是这个，纯查询工作负载漂移，不含整库留出。</td></tr><tr><td><b>Group DRO</b></td><td>一种鲁棒训练法：给训练集里最难的那部分加权，逼模型照顾最差情况。</td><td>CardOOD 里在 forest 上把 Q95 从 102.48 压到 39.57；与本项目的少样本适应是两回事，但思路可借鉴。</td></tr></tbody></table></div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>本报告由 scripts/build_advisor_report.py 从已入库证据文件生成：我方数字由证据 JSON 计算并带一致性断言，文献方数字为论文发表值的转录（出处与未核实项见第 09 节与第 11 节）。原始记录见实验文档 102 / 103 号（精度）、106 号（表示探针）、108 号（三 seed 复核）、110 号（延迟与端到端）；证据 JSON 见 实验文档/results/ 下的 p2-2-*-2026102{1,2,3}/、p2-2-db-identity-probe-20261023/ 与 latency-20261025/。</p>
+  </div>
+</footer>
+</body>
+</html>

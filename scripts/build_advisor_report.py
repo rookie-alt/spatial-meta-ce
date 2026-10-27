@@ -1123,6 +1123,18 @@ def build_verdict_block(facts: dict) -> str:
     t, s = facts["targets"], facts["source_stats"]
     noise = facts["noise_band_sources"]
     stable = s["win_price"] - len(noise)
+    omitted = facts.get("omit_four_plus", False)
+    four_plus_li = (
+        ""
+        if omitted
+        else (
+            "  <li><b>主指标口径下差距更大</b>：4+ 表桶上 PRICE/我们 中位 "
+            f"{facts['four_plus_price_median']:.3f}"
+            f"（整库口径是 {t['price_median']:.3f}）。</li>\n"
+        )
+    )
+    sample_tail = "" if omitted else "，4+ 桶仅 118 条、由约 6 条决定"
+    support_lead = "四条支撑事实：" if omitted else "五条支撑事实："
     return f"""
 <div class="verdict">
   <p class="label">一句话结论</p>
@@ -1136,15 +1148,12 @@ def build_verdict_block(facts: dict) -> str:
   <p><b>这个反转本身就是结论</b>：赢面来自拟合，不是漂移。对传统优化器 PG，两组都好于它
   （目标库 3/4 赢，源库 {s["win_pg"]}/26 赢）。</p>
 </div>
-<p>五条支撑事实：</p>
+<p>{support_lead}</p>
 <ul>
   <li><b>差距落在排序一致性上</b>，不是校准、也不是过度收缩：目标库 4/4 的与真值相关性低于 PRICE
   （dCorr 中位 {t["dcorr_median"]:+.4f}），源库只有 {s["corr_lose"]}/26 落后；两组的偏差中位
   （{t["bias_median"]:+.3f} / {s["bias_median"]:+.3f}）都贴近零，预测离散度我们反而更大。</li>
-  <li><b>主指标口径下差距更大</b>：4+ 表桶上 PRICE/我们 中位
-  {facts["four_plus_price_median"]:.3f}（整库口径是 {t["price_median"]:.3f}）。</li>
-  <li><b>样本量必须随数字一起报</b>：IMDB 只有 521 条唯一查询，其 Q95 由约 26 条决定，
-  4+ 桶仅 118 条、由约 6 条决定。</li>
+{four_plus_li}  <li><b>样本量必须随数字一起报</b>：IMDB 只有 521 条唯一查询，其 Q95 由约 26 条决定{sample_tail}。</li>
   <li><b>同赛道的直接对手基本只有 PRICE</b>：整库留出零样本这一设定，可查到的公开工作里
   只有 PRICE（已发表）与一篇已撤回的预印本；CardOOD、GRASP、AHCE/DACE 的指标与我们恒等，
   但设定都不是整库零样本（详见 <a href="#literature">09 与文献的同口径对照</a>）。</li>
@@ -1178,6 +1187,15 @@ def build_limits_block(facts: dict) -> str:
         facts["broad"]["databases"]["stats"]["overview"]["pg"]["q95"]
         / facts["broad"]["databases"]["stats"]["overview"]["ours_k0"]["q95"]
     )
+    four_plus_limit = (
+        ""
+        if facts.get("omit_four_plus")
+        else (
+            '  <li><span class="tag no">不可写</span><span>把源库的 4+ 桶值与 102 号的桶值混排'
+            "——两份证据文件的 Q95 定义不同（倍数空间 vs 对数空间），"
+            f"IMDB 4+ 桶的 PG 列相差 {bucket_gap:.2f}%。</span></li>\n"
+        )
+    )
     return f"""
 <ul class="limits">
   <li><span class="tag ok">可写</span><span>对传统估计器 PG，目标库 3/4 赢、源库 {s["win_pg"]}/26 赢；
@@ -1187,9 +1205,7 @@ def build_limits_block(facts: dict) -> str:
   <li><span class="tag no">不可写</span><span>“我们优于 PRICE”——对等漂移场景是 0/4。</span></li>
   <li><span class="tag no">不可写</span><span>“{s["win_price"]}/26 优于 PRICE”而不带拟合限定——PRICE 全见过这些库。</span></li>
   <li><span class="tag no">不可写</span><span>“四目标库完整验收”——IMDB 只有 K=0，没有 few-shot 行。</span></li>
-  <li><span class="tag no">不可写</span><span>把源库的 4+ 桶值与 102 号的桶值混排——两份证据文件的 Q95
-  定义不同（倍数空间 vs 对数空间），IMDB 4+ 桶的 PG 列相差 {bucket_gap:.2f}%。</span></li>
-  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 {stats_ratio:.3f}，属于打平而非胜负。</span></li>
+{four_plus_limit}  <li><span class="tag no">不可写</span><span>“目标库全胜 PG”——stats 是 {stats_ratio:.3f}，属于打平而非胜负。</span></li>
   <li><span class="tag no">不可写</span><span>“我们优于 CardOOD / GRASP / AHCE”——它们的指标口径与我们恒等，
   但留出方式不是整库零样本，没有可比对象；也不把已撤回的 2502.14350 当作证据引用。</span></li>
   <li><span class="tag no">不可写</span><span>“我们比 PRICE 快”——端到端执行时间无可测差异
@@ -1457,12 +1473,17 @@ GLOSSARY = [
 ]
 
 
-def build_glossary_block() -> str:
+def build_glossary_block(facts: dict) -> str:
     rows = []
+    drop_four_plus = facts.get("omit_four_plus", False)
     for term, plain, concrete in GLOSSARY:
         if plain is None:
             rows.append(f'<tr class="group"><td colspan="3">{esc(term)}</td></tr>')
             continue
+        if drop_four_plus and term == "4+ 表桶":
+            continue
+        if drop_four_plus and concrete:
+            concrete = concrete.replace("、4+ 桶全部用它", "全部用它")
         rows.append(
             f"<tr><td><b>{esc(term)}</b></td><td>{esc(plain)}</td><td>{esc(concrete)}</td></tr>"
         )
@@ -1550,6 +1571,13 @@ def build_advantages_block(facts: dict) -> str:
             "精度与执行时间不单调",
         ),
     ]
+    if facts.get("omit_four_plus"):
+        rows = [row for row in rows if not row[0].startswith("4+ 表桶")]
+    four_plus_note = (
+        ""
+        if facts.get("omit_four_plus")
+        else f"，4+ 桶中位 {facts['four_plus_price_median']:.3f}"
+    )
     body = "".join(
         f"<tr><td><b>{esc(a)}</b></td><td>{esc(b)}</td><td>{esc(c)}</td>"
         f"<td>{esc(d)}</td><td>{esc(e)}</td></tr>"
@@ -1568,7 +1596,7 @@ def build_advantages_block(facts: dict) -> str:
 {facts["parameter_ratio"]:.1f}×，且用的源库更少；③方法本体带少样本适应能力，
 而本轮对 PRICE 的对照是零样本——这是设计差异，不是精度优势。</p>
 <p><b>必须同时说明的三条：</b>①对 PRICE 的尾部精度我们目前是负结果
-（目标库 4/4 输，三 seed 下仍是 0/12，4+ 桶中位 {facts["four_plus_price_median"]:.3f}），
+（目标库 4/4 输，三 seed 下仍是 0/12{four_plus_note}），
 所以不能说比 PRICE 好；②参数量小<b>不等于</b>端到端更快——这个信息不足的问题 110 号已经补上了，
 结论是<b>前向确实快、执行时间没有可测收益</b>（第 08 节），两件事必须分开说；
 ③本表<b>前七行</b>的「我们」列对应 <b>ERM-sum</b> 配置（{facts["our_parameters"]:,} 参数），
@@ -2161,6 +2189,25 @@ def main() -> int:
     )
     parser.add_argument("--out", required=True, help="output HTML path")
     parser.add_argument(
+        "--omit-four-plus",
+        action="store_true",
+        help=(
+            "drop every 4+ table-bucket metric from the report; used for the "
+            "short talk version, where three metric definitions side by side "
+            "cost more than they explain"
+        ),
+    )
+    parser.add_argument(
+        "--report-date",
+        default="2026-10-26",
+        help="date shown in the masthead (YYYY-MM-DD)",
+    )
+    parser.add_argument(
+        "--commit",
+        default="b63b18f",
+        help="commit shown in the masthead; the one holding the evidence",
+    )
+    parser.add_argument(
         "--template",
         default=str(Path(__file__).with_name("advisor_report_template.html")),
         help="HTML template with {{PLACEHOLDER}} slots",
@@ -2180,6 +2227,24 @@ def main() -> int:
             )
         )
         facts = build_facts(evidence_dir)
+        facts["omit_four_plus"] = args.omit_four_plus
+
+        if args.omit_four_plus:
+            four_plus_part = (
+                '<p class="note"><b>口径：</b>本节全部数字取自 103 号证据文件'
+                "（Q95 = exp(percentile(|误差|, 95))，整库唯一查询口径）。</p>"
+            )
+        else:
+            four_plus_part = (
+                "<h3>4+ 表桶：项目主指标所在的粒度</h3>"
+                + build_target_four_plus_table(facts)
+                + '<p class="note"><b>口径提示：</b>本节全部数字取自 103 号证据文件'
+                "（Q95 = exp(percentile(|误差|, 95))），与 102 号文件"
+                "（Q95 = percentile(exp(|误差|), 95)）"
+                "在整库尺度上差 ≤1e-7，但在重尾小样本的 4+ 桶上可见差异"
+                f"（IMDB 4+ 桶 PG 列相差 {q95_definition_gap(facts):.2f}%）。"
+                "两套数字各自成立，不可互相替代或混排。</p>"
+            )
 
         target_block = (
             '<p class="lede">这四个库 PRICE 与我们都没有训练过，是本项目唯一一组对等的'
@@ -2187,13 +2252,8 @@ def main() -> int:
             "全部唯一查询，单次全量，无 support。本节末另附三 seed 复核（108 号）。</p>"
             + build_target_table(facts)
             + svg_target_chart(facts)
-            + "<h3>4+ 表桶：项目主指标所在的粒度</h3>"
-            + build_target_four_plus_table(facts)
-            + '<p class="note"><b>口径提示：</b>本节全部数字取自 103 号证据文件'
-            "（Q95 = exp(percentile(|误差|, 95))），与 102 号文件（Q95 = percentile(exp(|误差|), 95)）"
-            f"在整库尺度上差 ≤1e-7，但在重尾小样本的 4+ 桶上可见差异"
-            f"（IMDB 4+ 桶 PG 列相差 {q95_definition_gap(facts):.2f}%）。"
-            "两套数字各自成立，不可互相替代或混排。</p>" + build_threeseed_block(facts)
+            + four_plus_part
+            + build_threeseed_block(facts)
         )
 
         source_block = (
@@ -2236,9 +2296,9 @@ def main() -> int:
         blocks = {
             "TITLE": "面向空间漂移的自适应基数估计",
             "SUBTITLE": "当前进度与对照结果：漂移场景下我们赢的是拟合，不是迁移",
-            "DATE": "2026-10-26",
+            "DATE": args.report_date,
             "BRANCH": args.git_branch,
-            "COMMIT": "b63b18f",
+            "COMMIT": args.commit,
             "EVIDENCE_LEVEL": ("四目标库三 seed · 单 seed 定量分解 · 只读延迟实测"),
             "VERDICT_BLOCK": build_verdict_block(facts),
             "PROTOCOL_BLOCK": build_protocol_block(facts),
@@ -2254,7 +2314,7 @@ def main() -> int:
             "LITERATURE_BLOCK": (
                 build_literature_block(facts) + build_related_work_block(facts)
             ),
-            "GLOSSARY_BLOCK": build_glossary_block(),
+            "GLOSSARY_BLOCK": build_glossary_block(facts),
             "FOOTER_NOTE": (
                 "本报告由 scripts/build_advisor_report.py 从已入库证据文件生成：我方数字由证据 JSON "
                 "计算并带一致性断言，文献方数字为论文发表值的转录（出处与未核实项见第 09 节与第 11 节）。"
