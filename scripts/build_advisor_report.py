@@ -131,6 +131,64 @@ def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+# whole sections a trimmed handout may drop, keyed by <section id="...">
+OMITTABLE_SECTIONS = {
+    "literature": "09 与文献的同口径对照",
+    "limits": "10 边界与不可声称",
+    "evidence": "11 证据与复算",
+    "glossary": "12 名词表",
+}
+
+
+def strip_sections(html_text: str, omit: set[str]) -> str:
+    """Drop whole sections and every in-text pointer to them.
+
+    Removing a section without its pointers would leave dead anchors, so each
+    rewrite is asserted: if the wording changes, the build stops instead of
+    shipping a dangling reference.
+    """
+    if not omit:
+        return html_text
+    for section_id in omit:
+        html_text, count = re.subn(
+            rf'\n<section id="{section_id}">.*?</section>', "", html_text, flags=re.S
+        )
+        if count != 1:
+            raise SystemExit(f"section {section_id!r} matched {count} times")
+    if "literature" in omit:
+        html_text = _drop_reference(
+            html_text, '（详见 <a href="#literature">09 与文献的同口径对照</a>）'
+        )
+    if "glossary" in omit:
+        html_text, count = re.subn(
+            r'<p class="small muted">第一次看到 .*?</p>', "", html_text, flags=re.S
+        )
+        if count != 1:
+            raise SystemExit(f"glossary pointer matched {count} times")
+    if "limits" in omit:
+        html_text = _drop_reference(
+            html_text, "（必须和第 10 节「边界与不可声称」一起读）"
+        )
+    literature_note = (
+        "文献方数字为论文发表值的转录（出处与未核实项见第 09 节与第 11 节）。"
+    )
+    if "literature" in omit:
+        html_text = _drop_reference(html_text, literature_note).replace(
+            "计算并带一致性断言，原始记录见", "计算并带一致性断言。原始记录见"
+        )
+    elif "evidence" in omit:
+        html_text = html_text.replace(
+            "（出处与未核实项见第 09 节与第 11 节）", "（未核实项见第 09 节）"
+        )
+    return html_text
+
+
+def _drop_reference(text: str, needle: str) -> str:
+    if needle not in text:
+        raise SystemExit(f"cross-reference not found: {needle[:40]!r}")
+    return text.replace(needle, "")
+
+
 def renumber_section_refs(obj):
     """Rewrite 「第 08 节」 -> 「第 09 节」 inside the literature evidence.
 
@@ -2581,6 +2639,16 @@ def main() -> int:
         ),
     )
     parser.add_argument(
+        "--omit-section",
+        action="append",
+        default=[],
+        choices=tuple(OMITTABLE_SECTIONS),
+        help=(
+            "drop a whole section and its in-text pointers (repeatable): "
+            + ", ".join(f"{key}={title}" for key, title in OMITTABLE_SECTIONS.items())
+        ),
+    )
+    parser.add_argument(
         "--report-date",
         default="2026-10-26",
         help="date shown in the masthead (YYYY-MM-DD)",
@@ -2723,6 +2791,8 @@ def main() -> int:
         leftover = re.findall(r"\{\{[A-Z0-9_]+\}\}", template)
         if leftover:
             raise SystemExit(f"unfilled template slots: {sorted(set(leftover))}")
+
+        template = strip_sections(template, set(args.omit_section))
 
         out = Path(args.out)
         out.parent.mkdir(parents=True, exist_ok=True)
