@@ -13,6 +13,7 @@ from spatial_meta_ce.checkpoints import load_checkpoint
 from spatial_meta_ce.data import StorePool
 from spatial_meta_ce.features import write_cache
 from spatial_meta_ce.plans import build_training_plan, verify_plan_against_stores
+from scripts.audit_fomaml_joint_gradient import audit_run
 
 
 def fixtures(root):
@@ -279,6 +280,20 @@ class FixedBudgetTrainTests(unittest.TestCase):
             train_module.FIXED_MODEL,
             {"width": 64, "use_pg": True, "arch": "sum", "layers": 2, "heads": 4},
         )
+
+    def test_gradient_audit_recomputes_exactly(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config, data_config = fixtures(root)
+            _, config = self.run_fixed(root, config, data_config)
+            self.assertTrue((root / "out" / "initial_state.pt").is_file())
+            audit = json.loads((root / "out" / "gradient_audit.json").read_text())
+            self.assertEqual(len(audit["gradient_sha256"]), 64)
+            self.assertIsNotNone(audit["pre_loss"])
+            self.assertTrue(audit["post_loss"] >= 0)
+            result = audit_run(root / "out", config["training_plan"])
+            self.assertTrue(result["verified"])
+            self.assertTrue(all(result["comparisons"].values()))
 
     def test_fixed_budget_rejects_wrong_seed(self):
         with tempfile.TemporaryDirectory() as directory:

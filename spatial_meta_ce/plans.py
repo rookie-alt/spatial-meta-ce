@@ -18,6 +18,7 @@ TRAINING_KIND = "fomaml_joint_source_training_plan"
 EVAL_SCHEMA = 1
 EVAL_KIND = "fomaml_joint_source_eval_plan"
 EVAL_DATABASES = ("chembl", "legalacts", "telstra")
+TARGET_DATABASES = frozenset({"imdb", "stats", "genome", "ergastf1"})
 SUPPORT_SEED = 2026
 SUPPORT_BLOCKS = 5
 SUPPORT_BLOCK_SIZE = 20

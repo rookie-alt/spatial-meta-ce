@@ -9,7 +9,7 @@ import torch
 
 from .checkpoints import load_checkpoint, restore_rng, save_checkpoint
 from .data import StorePool
-from .manifests import digest, episode_indices, validate_splits
+from .manifests import digest, episode_indices, file_hash, validate_splits
 from .meta import (
     JOINT_PRE_WEIGHT,
     OBJECTIVES,
@@ -74,6 +74,84 @@ def state_dict_sha256(model):
         hasher.update(name.encode())
         hasher.update(tensor.detach().cpu().contiguous().numpy().tobytes())
     return hasher.hexdigest()
+
+
+def gradient_sha256(model, gradients):
+    named = [
+        (name, parameter)
+        for name, parameter in model.named_parameters()
+        if parameter.requires_grad
+    ]
+    if len(named) != len(gradients):
+        raise ValueError("Gradient audit received the wrong number of tensors")
+    hasher = hashlib.sha256()
+    for (name, parameter), gradient in zip(named, gradients):
+        if not parameter.requires_grad:
+            raise ValueError(f"Audited parameter {name} does not require grad")
+        if gradient is None or not torch.isfinite(gradient).all():
+            raise FloatingPointError(f"Non-finite audited gradient for {name}")
+        hasher.update(name.encode())
+        hasher.update(gradient.detach().cpu().contiguous().numpy().tobytes())
+    return hasher.hexdigest()
+
+
+def _write_gradient_audit(model, training_plan, stores, config, tau, output_dir, device):
+    episode = training_plan["episodes"][0]
+    store = stores[episode["db"]]
+    support = store.batch(np.asarray(episode["support"], dtype=np.int64), device)
+    query = store.batch(np.asarray(episode["query"], dtype=np.int64), device)
+    if config["method"] == "fomaml":
+        terms = meta_loss_terms(
+            model,
+            support,
+            query,
+            config["inner_lr"],
+            config["inner_steps"],
+            config["adapt_scope"],
+            config["loss"],
+            tau=tau,
+            objective=config["meta_objective"],
+        )
+        total = terms["total"]
+        pre_loss = float(terms["pre"].detach())
+        post_loss = float(terms["post"].detach())
+    else:
+        batch = store.batch(
+            np.asarray(
+                episode["support"] + episode["query"],
+                dtype=np.int64,
+            ),
+            device,
+        )
+        total = loss_value(
+            model(batch),
+            batch["label"],
+            config["loss"],
+            **({} if tau is None else {"tau": tau}),
+        )
+        pre_loss = None
+        post_loss = float(total.detach())
+    parameters = [parameter for parameter in model.parameters() if parameter.requires_grad]
+    gradients = torch.autograd.grad(total, parameters)
+    payload = {
+        "schema": 1,
+        "step": 1,
+        "episode_index": 0,
+        "database": episode["db"],
+        "k": episode["k"],
+        "support": episode["support"],
+        "query": episode["query"],
+        "support_hashes": episode["support_hashes"],
+        "query_hashes": episode["query_hashes"],
+        "pre_loss": pre_loss,
+        "post_loss": post_loss,
+        "total_loss": float(total.detach()),
+        "gradient_sha256": gradient_sha256(model, gradients),
+        "initial_state_sha256": file_hash(output_dir / "initial_state.pt"),
+    }
+    (output_dir / "gradient_audit.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
+    )
 
 
 def _validate_fixed_budget(config):
@@ -405,6 +483,13 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         verify_plan_against_stores(training_plan, stores)
         sample_plan_digest = training_plan["plan_sha256"]
         episodes = []
+        torch.save(
+            {"model_config": model.config, "state_dict": model.state_dict()},
+            output_dir / "initial_state.pt",
+        )
+        _write_gradient_audit(
+            model, training_plan, stores, config, tau, output_dir, device
+        )
     else:
         training_plan = None
         episodes = validation_plan(pool, splits["validation"], config)
