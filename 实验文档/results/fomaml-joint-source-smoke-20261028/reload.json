@@ -1,0 +1,18 @@
+{
+  "phase": "reload",
+  "updates": 2,
+  "seconds": 47.09645210625604,
+  "counts": {
+    "support_presentations": 1450,
+    "query_presentations": 512,
+    "backward_calls": 48,
+    "optimizer_steps": 2,
+    "pre_forward_calls": 8,
+    "joint_pre_grad_calls": 8
+  },
+  "checkpoint_sha256": "86b05dd23fbf64e3cb329ae218970901a9820647886941e2b6c657e1429df0d2",
+  "initial_state_sha256": "439f2e559fb859ad9d08ce33a64c4764ccf71495d5883fa4ab3ae62a940acd34",
+  "reload_next_step": 2,
+  "purpose": "smoke-not-research",
+  "best_pt_exists": false
+}

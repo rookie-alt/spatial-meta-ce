@@ -1,0 +1,25 @@
+{
+  "phase": "train",
+  "arm": "C_joint",
+  "updates": 200,
+  "seconds": 125.84777172096074,
+  "counts": {
+    "support_presentations": 158825,
+    "query_presentations": 51200,
+    "backward_calls": 4800,
+    "optimizer_steps": 200,
+    "pre_forward_calls": 800,
+    "joint_pre_grad_calls": 800
+  },
+  "gradient_stats": {
+    "count": 200,
+    "total_norm": 225.01974008977413,
+    "max_norm": 4.110841751098633,
+    "clipped_count": 93
+  },
+  "checkpoint_sha256": "c00b9ba4ac5bf7158c0ad1dde9ef5d8d9666e59276b6554eebbef5c83b87aaef",
+  "next_step": 200,
+  "purpose": "smoke-not-research",
+  "rss_kib": 2583196,
+  "cuda_max_memory_allocated": 29101056
+}

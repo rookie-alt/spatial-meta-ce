@@ -1,0 +1,25 @@
+{
+  "phase": "train",
+  "arm": "B_fomaml",
+  "updates": 200,
+  "seconds": 111.22553988732398,
+  "counts": {
+    "support_presentations": 158825,
+    "query_presentations": 51200,
+    "backward_calls": 4800,
+    "optimizer_steps": 200,
+    "pre_forward_calls": 800,
+    "joint_pre_grad_calls": 0
+  },
+  "gradient_stats": {
+    "count": 200,
+    "total_norm": 220.4308082908392,
+    "max_norm": 5.033036231994629,
+    "clipped_count": 94
+  },
+  "checkpoint_sha256": "fe721eaf58dce149d0f52165662c1408f7166a63d31a8004ceeb33b3d61ee3f9",
+  "next_step": 200,
+  "purpose": "smoke-not-research",
+  "rss_kib": 2584128,
+  "cuda_max_memory_allocated": 26460672
+}

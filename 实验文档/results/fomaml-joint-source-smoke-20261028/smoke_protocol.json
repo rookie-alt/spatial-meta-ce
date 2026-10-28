@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "kind": "fomaml_joint_source_smoke",
+  "purpose": "smoke-not-research",
+  "device": "cuda",
+  "resource_limits": {
+    "vram_bytes": 8589934592,
+    "rss_bytes": 12884901888,
+    "output_bytes": 2147483648,
+    "wall_seconds": 1800
+  },
+  "seed": 42,
+  "results": [
+    {
+      "phase": "reload",
+      "updates": 2,
+      "seconds": 47.09645210625604,
+      "counts": {
+        "support_presentations": 1450,
+        "query_presentations": 512,
+        "backward_calls": 48,
+        "optimizer_steps": 2,
+        "pre_forward_calls": 8,
+        "joint_pre_grad_calls": 8
+      },
+      "checkpoint_sha256": "86b05dd23fbf64e3cb329ae218970901a9820647886941e2b6c657e1429df0d2",
+      "initial_state_sha256": "439f2e559fb859ad9d08ce33a64c4764ccf71495d5883fa4ab3ae62a940acd34",
+      "reload_next_step": 2,
+      "purpose": "smoke-not-research",
+      "best_pt_exists": false
+    },
+    {
+      "phase": "train",
+      "arm": "A_erm",
+      "updates": 200,
+      "seconds": 68.95753272296861,
+      "counts": {
+        "support_presentations": 0,
+        "query_presentations": 82965,
+        "backward_calls": 800,
+        "optimizer_steps": 200,
+        "pre_forward_calls": 0,
+        "joint_pre_grad_calls": 0
+      },
+      "gradient_stats": {
+        "count": 200,
+        "total_norm": 99.60653645917773,
+        "max_norm": 2.5842909812927246,
+        "clipped_count": 20
+      },
+      "checkpoint_sha256": "4aba7e33dd1a3eeea7af0f54ba7c524d3bd62a21075cf39ba2afdd423e99f6d8",
+      "next_step": 200,
+      "purpose": "smoke-not-research",
+      "rss_kib": 2583460,
+      "cuda_max_memory_allocated": 28079616
+    },
+    {
+      "phase": "train",
+      "arm": "B_fomaml",
+      "updates": 200,
+      "seconds": 111.22553988732398,
+      "counts": {
+        "support_presentations": 158825,
+        "query_presentations": 51200,
+        "backward_calls": 4800,
+        "optimizer_steps": 200,
+        "pre_forward_calls": 800,
+        "joint_pre_grad_calls": 0
+      },
+      "gradient_stats": {
+        "count": 200,
+        "total_norm": 220.4308082908392,
+        "max_norm": 5.033036231994629,
+        "clipped_count": 94
+      },
+      "checkpoint_sha256": "fe721eaf58dce149d0f52165662c1408f7166a63d31a8004ceeb33b3d61ee3f9",
+      "next_step": 200,
+      "purpose": "smoke-not-research",
+      "rss_kib": 2584128,
+      "cuda_max_memory_allocated": 26460672
+    },
+    {
+      "phase": "train",
+      "arm": "C_joint",
+      "updates": 200,
+      "seconds": 125.84777172096074,
+      "counts": {
+        "support_presentations": 158825,
+        "query_presentations": 51200,
+        "backward_calls": 4800,
+        "optimizer_steps": 200,
+        "pre_forward_calls": 800,
+        "joint_pre_grad_calls": 800
+      },
+      "gradient_stats": {
+        "count": 200,
+        "total_norm": 225.01974008977413,
+        "max_norm": 4.110841751098633,
+        "clipped_count": 93
+      },
+      "checkpoint_sha256": "c00b9ba4ac5bf7158c0ad1dde9ef5d8d9666e59276b6554eebbef5c83b87aaef",
+      "next_step": 200,
+      "purpose": "smoke-not-research",
+      "rss_kib": 2583196,
+      "cuda_max_memory_allocated": 29101056
+    },
+    {
+      "phase": "eval",
+      "checkpoint": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-smoke-20261028/training/C_joint/last.pt",
+      "checkpoint_sha256": "c00b9ba4ac5bf7158c0ad1dde9ef5d8d9666e59276b6554eebbef5c83b87aaef",
+      "source_eval_plan_sha256": "38490ceac130b9f7e6407491a2538199b993173d16e254c35d148231f145287d",
+      "units": [
+        {
+          "database": "chembl",
+          "k0_seconds": 12.175689996220171,
+          "k20_adapt_seconds": 0.11261526588350534,
+          "k20_predict_seconds": 10.899025157094002,
+          "query_count": 49900,
+          "support_count": 20
+        },
+        {
+          "database": "legalacts",
+          "k0_seconds": 11.45121446903795,
+          "k20_adapt_seconds": 0.07061713421717286,
+          "k20_predict_seconds": 10.875594743993133,
+          "query_count": 49404,
+          "support_count": 20
+        },
+        {
+          "database": "telstra",
+          "k0_seconds": 11.62277139769867,
+          "k20_adapt_seconds": 0.0701692602597177,
+          "k20_predict_seconds": 10.671029499731958,
+          "query_count": 49900,
+          "support_count": 20
+        }
+      ],
+      "validation_monitor_reads": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "target_databases_read": [],
+      "purpose": "smoke-not-research"
+    }
+  ],
+  "target_databases_read": [],
+  "formal_training": false,
+  "validation_monitor_reads": [
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "model": {
+    "width": 64,
+    "use_pg": true,
+    "arch": "sum",
+    "layers": 2,
+    "heads": 4
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "phase": "train",
+  "arm": "A_erm",
+  "updates": 200,
+  "seconds": 68.95753272296861,
+  "counts": {
+    "support_presentations": 0,
+    "query_presentations": 82965,
+    "backward_calls": 800,
+    "optimizer_steps": 200,
+    "pre_forward_calls": 0,
+    "joint_pre_grad_calls": 0
+  },
+  "gradient_stats": {
+    "count": 200,
+    "total_norm": 99.60653645917773,
+    "max_norm": 2.5842909812927246,
+    "clipped_count": 20
+  },
+  "checkpoint_sha256": "4aba7e33dd1a3eeea7af0f54ba7c524d3bd62a21075cf39ba2afdd423e99f6d8",
+  "next_step": 200,
+  "purpose": "smoke-not-research",
+  "rss_kib": 2583460,
+  "cuda_max_memory_allocated": 28079616
+}

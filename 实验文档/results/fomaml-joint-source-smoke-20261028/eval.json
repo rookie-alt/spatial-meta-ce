@@ -1,0 +1,39 @@
+{
+  "phase": "eval",
+  "checkpoint": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-smoke-20261028/training/C_joint/last.pt",
+  "checkpoint_sha256": "c00b9ba4ac5bf7158c0ad1dde9ef5d8d9666e59276b6554eebbef5c83b87aaef",
+  "source_eval_plan_sha256": "38490ceac130b9f7e6407491a2538199b993173d16e254c35d148231f145287d",
+  "units": [
+    {
+      "database": "chembl",
+      "k0_seconds": 12.175689996220171,
+      "k20_adapt_seconds": 0.11261526588350534,
+      "k20_predict_seconds": 10.899025157094002,
+      "query_count": 49900,
+      "support_count": 20
+    },
+    {
+      "database": "legalacts",
+      "k0_seconds": 11.45121446903795,
+      "k20_adapt_seconds": 0.07061713421717286,
+      "k20_predict_seconds": 10.875594743993133,
+      "query_count": 49404,
+      "support_count": 20
+    },
+    {
+      "database": "telstra",
+      "k0_seconds": 11.62277139769867,
+      "k20_adapt_seconds": 0.0701692602597177,
+      "k20_predict_seconds": 10.671029499731958,
+      "query_count": 49900,
+      "support_count": 20
+    }
+  ],
+  "validation_monitor_reads": [
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "target_databases_read": [],
+  "purpose": "smoke-not-research"
+}
