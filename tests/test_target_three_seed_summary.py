@@ -15,16 +15,18 @@ DATABASES = ("stats", "genome", "ergastf1", "imdb")
 SEEDS = (42, 43, 44)
 
 
-def seed_payload(seed, ours_q95, price_q95=10.0, pg_q95=100.0, ours_q50=1.5):
+def seed_payload(
+    seed, ours_q95, price_q95=10.0, pg_q95=100.0, ours_q50=1.5, databases=DATABASES
+):
     """Build a synthetic per-seed summary payload.
 
     ``price_q95`` and ``pg_q95`` default to the same value in every seed,
     which is what the real runs produce: PRICE ships one checkpoint and the
     PostgreSQL estimate is fixed.
     """
-    databases = {}
-    for database in DATABASES:
-        databases[database] = {
+    payload_databases = {}
+    for database in databases:
+        payload_databases[database] = {
             "n": 100,
             "ours_k0": {"q95": ours_q95[database], "q50": ours_q50},
             "price_k0": {"q95": price_q95, "q50": 1.1},
@@ -37,9 +39,9 @@ def seed_payload(seed, ours_q95, price_q95=10.0, pg_q95=100.0, ours_q50=1.5):
             },
         }
     return {
-        "target_databases_read": list(DATABASES),
+        "target_databases_read": list(databases),
         "checkpoint": {"seed": seed},
-        "databases": databases,
+        "databases": payload_databases,
     }
 
 
@@ -63,7 +65,9 @@ def protocol_payload(seed):
     }
 
 
-def write_seed_files(directory, ours_by_seed, price_q95=10.0, pg_q95=100.0):
+def write_seed_files(
+    directory, ours_by_seed, price_q95=10.0, pg_q95=100.0, databases=DATABASES
+):
     """Write the six per-seed files the aggregator consumes; return their paths."""
     summary_paths = []
     protocol_paths = []
@@ -71,7 +75,15 @@ def write_seed_files(directory, ours_by_seed, price_q95=10.0, pg_q95=100.0):
         summary_path = Path(directory) / f"seed{seed}-summary.json"
         protocol_path = Path(directory) / f"seed{seed}-protocol.json"
         summary_path.write_text(
-            json.dumps(seed_payload(seed, ours_by_seed[seed], price_q95, pg_q95))
+            json.dumps(
+                seed_payload(
+                    seed,
+                    ours_by_seed[seed],
+                    price_q95,
+                    pg_q95,
+                    databases=databases,
+                )
+            )
         )
         protocol_path.write_text(json.dumps(protocol_payload(seed)))
         summary_paths.append(str(summary_path))
@@ -80,10 +92,17 @@ def write_seed_files(directory, ours_by_seed, price_q95=10.0, pg_q95=100.0):
 
 
 class TargetThreeSeedSummaryTests(unittest.TestCase):
-    def run_aggregator(self, ours_by_seed, price_q95=10.0, pg_q95=100.0):
+    def run_aggregator(
+        self,
+        ours_by_seed,
+        price_q95=10.0,
+        pg_q95=100.0,
+        databases=DATABASES,
+        audit=None,
+    ):
         with tempfile.TemporaryDirectory() as directory:
             summary_paths, protocol_paths = write_seed_files(
-                directory, ours_by_seed, price_q95, pg_q95
+                directory, ours_by_seed, price_q95, pg_q95, databases
             )
             argv = []
             for path in summary_paths:
@@ -93,6 +112,9 @@ class TargetThreeSeedSummaryTests(unittest.TestCase):
             output = Path(directory) / "summary.json"
             protocol = Path(directory) / "protocol.json"
             argv += ["--output", str(output), "--protocol", str(protocol)]
+            argv += ["--databases", *databases]
+            if audit is not None:
+                argv += ["--audit", audit]
             summary_module.main(argv)
             return json.loads(output.read_text()), json.loads(protocol.read_text())
 
@@ -273,6 +295,20 @@ class TargetThreeSeedSummaryTests(unittest.TestCase):
         self.assertAlmostEqual(
             summary["bucket_4plus"]["stats"]["ours_k0"]["q95"]["mean"], 40.0
         )
+
+    def test_databases_and_audit_options_restrict_the_aggregate(self):
+        databases = ("stats", "ergastf1", "imdb")
+        ours = {seed: {database: 20.0 for database in databases} for seed in SEEDS}
+        summary, protocol = self.run_aggregator(
+            ours, databases=databases, audit="p2-2-fomaml-sum-target-3seed"
+        )
+        self.assertEqual(summary["audit"], "p2-2-fomaml-sum-target-3seed")
+        self.assertEqual(protocol["audit"], "p2-2-fomaml-sum-target-3seed")
+        self.assertEqual(summary["target_databases_read"], list(databases))
+        self.assertEqual(protocol["target_databases_read"], list(databases))
+        self.assertEqual(list(summary["databases"]), list(databases))
+        self.assertEqual(summary["headline"]["total_seed_database_pairs"], 9)
+        self.assertFalse(any("genome" in note for note in protocol["limitations"]))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,657 @@
+{
+  "schema": 1,
+  "purpose": "research-read-only-audit",
+  "audit": "p2-2-fomaml-sum-target-3seed",
+  "target_databases_read": [
+    "stats",
+    "ergastf1",
+    "imdb"
+  ],
+  "metric": "unique-query population Q95 (single pass, NOT episode mean)",
+  "evidence_level": "three_seed_frozen_checkpoints_full_population",
+  "needs_evidence": false,
+  "needs_evidence_reason": "the three seeds share a byte-identical training configuration and differ only in the seed; the remaining limits are the small seed count and the single provided PRICE checkpoint",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "checkpoints": {
+    "42": {
+      "path": "/gly/weilin/spatial-meta-ce/runs/arch4k-sum-seed42-20260927/last.pt",
+      "sha256": "ebdaf1afe37e2dbe8606b7bef20c65e8c3a67d5f9cffd69900022c1b2473c994",
+      "seed": 42,
+      "method": "fomaml",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "transform": "price40-group-logfanout-v1"
+    },
+    "43": {
+      "path": "/gly/weilin/spatial-meta-ce/runs/arch4k-sum-seed43-20260927/last.pt",
+      "sha256": "3b30acb4d9f4c01b9e7d22da24a33b1233f559d37e1dbf24b36b8272808a42bc",
+      "seed": 43,
+      "method": "fomaml",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "transform": "price40-group-logfanout-v1"
+    },
+    "44": {
+      "path": "/gly/weilin/spatial-meta-ce/runs/arch4k-sum-seed44-20260927/last.pt",
+      "sha256": "e364ebd552fa66bfad96e0b5c1d66cc7607847b5161f0e2c812ee790b3d5ce31",
+      "seed": 44,
+      "method": "fomaml",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing"
+      ],
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "transform": "price40-group-logfanout-v1"
+    }
+  },
+  "price": {
+    "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+    "checkpoint_sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92",
+    "parameters": 10709330,
+    "maxima": [
+      12,
+      14,
+      8,
+      10
+    ],
+    "maxima_rule": "",
+    "per_database_max_counts": {
+      "stats": [
+        8,
+        12,
+        7,
+        10
+      ],
+      "ergastf1": [
+        8,
+        12,
+        7,
+        9
+      ],
+      "imdb": [
+        5,
+        8,
+        5,
+        4
+      ]
+    },
+    "decoding": "price_log_predictions(): native output is log1p(card)+1, decoded to log(card)",
+    "adaptation": "none (K=0, no support, no inner steps)"
+  },
+  "inputs": {
+    "split": "test",
+    "caches": {
+      "stats": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/test/stats",
+        "content_hash": "4f1726a2ddcd0f40a964cc6a5620073fa9fd05ad88e4daf8343d84f2e0248b22",
+        "unique_queries": 2603
+      },
+      "ergastf1": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/test/ergastf1",
+        "content_hash": "2a1c15b25326ccc7b4eb3b009c78f8178797ecce7e44d87245519776ac01697a",
+        "unique_queries": 1258
+      },
+      "imdb": {
+        "path": "/gly/weilin/spatial-meta-ce/artifacts/cache/test/imdb",
+        "content_hash": "aa0e1628ed7aa637e90ffedfcd27c7a4c6703e98cb46083e6beef05e3d86d333",
+        "unique_queries": 521
+      }
+    }
+  },
+  "databases": {
+    "stats": {
+      "n": 2603,
+      "ours_k0": {
+        "q95": {
+          "mean": 78.18878121383298,
+          "std": 4.905096248648586,
+          "min": 72.52505406460158,
+          "max": 81.06083549385065,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.9717599272669428,
+          "std": 0.025231397355230754,
+          "min": 1.9546318399738607,
+          "max": 2.0007346269969606,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 72.52505406460158,
+          "43": 81.06083549385065,
+          "44": 80.98045408304674
+        },
+        "per_seed_q50": {
+          "42": 2.0007346269969606,
+          "43": 1.9599133148300072,
+          "44": 1.9546318399738607
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 39.520592438960115,
+          "std": 0.0,
+          "min": 39.520592438960115,
+          "max": 39.520592438960115,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.9537982430926426,
+          "std": 0.0,
+          "min": 1.9537982430926426,
+          "max": 1.9537982430926426,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 39.520592438960115,
+          "43": 39.520592438960115,
+          "44": 39.520592438960115
+        },
+        "per_seed_q50": {
+          "42": 1.9537982430926426,
+          "43": 1.9537982430926426,
+          "44": 1.9537982430926426
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 75.65001568267913,
+          "std": 0.0,
+          "min": 75.65001568267913,
+          "max": 75.65001568267913,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.9838989479238796,
+          "std": 0.0,
+          "min": 1.9838989479238796,
+          "max": 1.9838989479238796,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 75.65001568267913,
+          "43": 75.65001568267913,
+          "44": 75.65001568267913
+        },
+        "per_seed_q50": {
+          "42": 1.9838989479238796,
+          "43": 1.9838989479238796,
+          "44": 1.9838989479238796
+        }
+      },
+      "per_seed_q95_ratio_price_over_ours": {
+        "42": 0.5449233088989801,
+        "43": 0.4875423772551442,
+        "44": 0.4880263130956406
+      },
+      "per_seed_q95_ratio_pg_over_ours": {
+        "42": 1.0430880287975242,
+        "43": 0.933249888454678,
+        "44": 0.9341762347380621
+      },
+      "seeds_beating_price_on_q95": 0,
+      "seeds_beating_pg_on_q95": 1,
+      "median_q95_ratio_price_over_ours": 0.4880263130956406,
+      "median_q95_ratio_pg_over_ours": 0.9341762347380621
+    },
+    "ergastf1": {
+      "n": 1258,
+      "ours_k0": {
+        "q95": {
+          "mean": 22.314901953902012,
+          "std": 1.206188907899356,
+          "min": 21.59330511527743,
+          "max": 23.707381129749336,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.604903414189482,
+          "std": 0.02201011598870408,
+          "min": 1.5883154779215891,
+          "max": 1.6298729777735301,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 21.59330511527743,
+          "43": 21.64401961667927,
+          "44": 23.707381129749336
+        },
+        "per_seed_q50": {
+          "42": 1.6298729777735301,
+          "43": 1.596521786873327,
+          "44": 1.5883154779215891
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 15.292854470718373,
+          "std": 0.0,
+          "min": 15.292854470718373,
+          "max": 15.292854470718373,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.4658351839794366,
+          "std": 0.0,
+          "min": 1.4658351839794366,
+          "max": 1.4658351839794366,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 15.292854470718373,
+          "43": 15.292854470718373,
+          "44": 15.292854470718373
+        },
+        "per_seed_q50": {
+          "42": 1.4658351839794366,
+          "43": 1.4658351839794366,
+          "44": 1.4658351839794366
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 27.609005752236286,
+          "std": 0.0,
+          "min": 27.609005752236286,
+          "max": 27.609005752236286,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.5399160879155946,
+          "std": 0.0,
+          "min": 1.5399160879155946,
+          "max": 1.5399160879155946,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 27.609005752236286,
+          "43": 27.609005752236286,
+          "44": 27.609005752236286
+        },
+        "per_seed_q50": {
+          "42": 1.5399160879155946,
+          "43": 1.5399160879155946,
+          "44": 1.5399160879155946
+        }
+      },
+      "per_seed_q95_ratio_price_over_ours": {
+        "42": 0.7082220340552943,
+        "43": 0.7065625859502283,
+        "44": 0.6450672213443286
+      },
+      "per_seed_q95_ratio_pg_over_ours": {
+        "42": 1.2785910079463796,
+        "43": 1.2755951177830338,
+        "44": 1.1645742564787545
+      },
+      "seeds_beating_price_on_q95": 0,
+      "seeds_beating_pg_on_q95": 3,
+      "median_q95_ratio_price_over_ours": 0.7065625859502283,
+      "median_q95_ratio_pg_over_ours": 1.2755951177830338
+    },
+    "imdb": {
+      "n": 521,
+      "ours_k0": {
+        "q95": {
+          "mean": 45.964615166966134,
+          "std": 16.777884877870484,
+          "min": 32.69733092546054,
+          "max": 64.82453217487888,
+          "n": 3
+        },
+        "q50": {
+          "mean": 2.115732295094942,
+          "std": 0.07501983712122796,
+          "min": 2.0482813375618067,
+          "max": 2.196529551049045,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 32.69733092546054,
+          "43": 64.82453217487888,
+          "44": 40.371982400558984
+        },
+        "per_seed_q50": {
+          "42": 2.1023859966739753,
+          "43": 2.196529551049045,
+          "44": 2.0482813375618067
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 21.025178154201523,
+          "std": 0.0,
+          "min": 21.025178154201523,
+          "max": 21.025178154201523,
+          "n": 3
+        },
+        "q50": {
+          "mean": 1.8626085114085298,
+          "std": 0.0,
+          "min": 1.8626085114085298,
+          "max": 1.8626085114085298,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 21.025178154201523,
+          "43": 21.025178154201523,
+          "44": 21.025178154201523
+        },
+        "per_seed_q50": {
+          "42": 1.8626085114085298,
+          "43": 1.8626085114085298,
+          "44": 1.8626085114085298
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 87.10975609756095,
+          "std": 1.7404671430534633e-14,
+          "min": 87.10975609756096,
+          "max": 87.10975609756096,
+          "n": 3
+        },
+        "q50": {
+          "mean": 2.2777777777777786,
+          "std": 0.0,
+          "min": 2.2777777777777786,
+          "max": 2.2777777777777786,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 87.10975609756096,
+          "43": 87.10975609756096,
+          "44": 87.10975609756096
+        },
+        "per_seed_q50": {
+          "42": 2.2777777777777786,
+          "43": 2.2777777777777786,
+          "44": 2.2777777777777786
+        }
+      },
+      "per_seed_q95_ratio_price_over_ours": {
+        "42": 0.6430242946169583,
+        "43": 0.32433983630581914,
+        "44": 0.5207863697550411
+      },
+      "per_seed_q95_ratio_pg_over_ours": {
+        "42": 2.6641243683205627,
+        "43": 1.3437776282374492,
+        "44": 2.1576784422742357
+      },
+      "seeds_beating_price_on_q95": 0,
+      "seeds_beating_pg_on_q95": 3,
+      "median_q95_ratio_price_over_ours": 0.5207863697550411,
+      "median_q95_ratio_pg_over_ours": 2.1576784422742357
+    }
+  },
+  "bucket_4plus": {
+    "stats": {
+      "n": 906,
+      "ours_k0": {
+        "q95": {
+          "mean": 266.73484140764066,
+          "std": 50.30713532823392,
+          "min": 209.9940917894244,
+          "max": 305.88359107130873,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 209.9940917894244,
+          "43": 305.88359107130873,
+          "44": 284.3268413621888
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 141.7560761280571,
+          "std": 0.0,
+          "min": 141.7560761280571,
+          "max": 141.7560761280571,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 141.7560761280571,
+          "43": 141.7560761280571,
+          "44": 141.7560761280571
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 230.05715998496598,
+          "std": 0.0,
+          "min": 230.05715998496598,
+          "max": 230.05715998496598,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 230.05715998496598,
+          "43": 230.05715998496598,
+          "44": 230.05715998496598
+        }
+      }
+    },
+    "ergastf1": {
+      "n": 258,
+      "ours_k0": {
+        "q95": {
+          "mean": 92.83699501987911,
+          "std": 3.40871325363238,
+          "min": 88.90168615150465,
+          "max": 94.87048355130325,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 94.73881535682945,
+          "43": 88.90168615150465,
+          "44": 94.87048355130325
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 58.22408875108716,
+          "std": 0.0,
+          "min": 58.22408875108716,
+          "max": 58.22408875108716,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 58.22408875108716,
+          "43": 58.22408875108716,
+          "44": 58.22408875108716
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 107.29673625022347,
+          "std": 0.0,
+          "min": 107.29673625022347,
+          "max": 107.29673625022347,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 107.29673625022347,
+          "43": 107.29673625022347,
+          "44": 107.29673625022347
+        }
+      }
+    },
+    "imdb": {
+      "n": 118,
+      "ours_k0": {
+        "q95": {
+          "mean": 573.7082627242446,
+          "std": 205.08147037468936,
+          "min": 396.63529428460635,
+          "max": 798.414796430086,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 396.63529428460635,
+          "43": 798.414796430086,
+          "44": 526.0746974580416
+        }
+      },
+      "price_k0": {
+        "q95": {
+          "mean": 88.90998140560941,
+          "std": 0.0,
+          "min": 88.90998140560941,
+          "max": 88.90998140560941,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 88.90998140560941,
+          "43": 88.90998140560941,
+          "44": 88.90998140560941
+        }
+      },
+      "pg": {
+        "q95": {
+          "mean": 1174.910739450328,
+          "std": 0.0,
+          "min": 1174.910739450328,
+          "max": 1174.910739450328,
+          "n": 3
+        },
+        "per_seed_q95": {
+          "42": 1174.910739450328,
+          "43": 1174.910739450328,
+          "44": 1174.910739450328
+        }
+      }
+    }
+  },
+  "headline": {
+    "databases": [
+      "stats",
+      "ergastf1",
+      "imdb"
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "median_q95_ratio_price_over_ours": {
+      "value": 0.5207863697550411,
+      "min": 0.4880263130956406,
+      "max": 0.7065625859502283
+    },
+    "median_q95_ratio_pg_over_ours": {
+      "value": 1.2755951177830338,
+      "min": 0.9341762347380621,
+      "max": 2.1576784422742357
+    },
+    "every_seed_loses_to_price_on_q95": true,
+    "total_seed_database_pairs": 9,
+    "seed_database_pairs_beating_price": 0,
+    "seed_database_pairs_beating_pg": 7
+  }
+}

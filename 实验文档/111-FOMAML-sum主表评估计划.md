@@ -1,7 +1,7 @@
-# 111 FOMAML-sum 主表评估计划（待执行）
+# 111 FOMAML-sum 主表评估计划
 
-> 状态：**计划，未执行**。写于 2026-10-27，动机是导师问「怎么体现元学习」时暴露的口径缺口。
-> 本文只描述要做什么、验收什么，不预设结果，也不替代 104 号的报告说明。
+> 状态：**已执行（2026-10-27）**，结果与验收见 [104 号 §7.13](104-导师汇报报告与文献对标.md) 与 `results/p2-2-fomaml-sum-target-3seed-20261027/`。
+> 本文保留原计划与验收标准；执行中的口径差异与结论见 §9。
 
 ## 1. 为什么需要这一步
 
@@ -100,3 +100,10 @@ python3 scripts/target_population_eval.py \
 - 不重训、不调参、不因为结果不好而换 checkpoint。
 - 不把 population 与 episode 两种口径混进同一张表。
 - 不在目标库上做任何选择（这是红线），只做评估。
+
+## 9. 执行记录（2026-10-27）
+
+- 已执行：3 seed × 3 库（stats / ergastf1 / imdb）K=0 population，结果归档 `results/p2-2-fomaml-sum-target-3seed-20261027/`，逐 seed 数字、对照与结论见 [104 号 §7.13](104-导师汇报报告与文献对标.md)。
+- 服务器：`/gly/weilin/spatial-meta-ce-fomaml-sum-pop-20261027-runs`；代码目录 `/gly/weilin/spatial-meta-ce-p2-2-source-broad-20261021-code`（`scripts/target_population_eval.py` sha256 `593da187…7d71`）。
+- 与 §4 的口径差异：实际为每个 seed 单次调用合并评估三库，因此每份 `protocol.json` 的 `target_databases_read` 记录三库，不是 §4 字面要求的单库一份；未读取 genome，评估范围未超出三库。
+- 结果：FOMAML-sum Q95 均值 stats 78.19±4.91、ergastf1 22.31±1.21、imdb 45.96±16.78；ERM-sum 对照 81.07±2.44、23.44±1.54、33.13±1.79。主表口径下元学习臂不占优，02 表维持 ERM 主表。

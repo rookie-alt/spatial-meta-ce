@@ -68,9 +68,9 @@ def _mean_sd(values):
     }
 
 
-def _assert_identical_across_seeds(per_seed, label):
+def _assert_identical_across_seeds(per_seed, label, databases=DATABASES):
     """Fixed estimators must not move between seeds; refuse to aggregate if they do."""
-    for database in DATABASES:
+    for database in databases:
         values = [per_seed[seed][database][label]["q95"] for seed in SEEDS]
         if len(set(values)) != 1:
             raise ValueError(
@@ -79,10 +79,10 @@ def _assert_identical_across_seeds(per_seed, label):
             )
 
 
-def collect(per_seed):
+def collect(per_seed, databases=DATABASES):
     """Build the per-database, per-estimator aggregate block."""
     aggregate = {}
-    for database in DATABASES:
+    for database in databases:
         entry = {"n": per_seed[SEEDS[0]][database]["n"]}
         for estimator in ESTIMATORS:
             q95 = [per_seed[seed][database][estimator]["q95"] for seed in SEEDS]
@@ -118,10 +118,10 @@ def collect(per_seed):
     return aggregate
 
 
-def four_plus_aggregate(per_seed):
+def four_plus_aggregate(per_seed, databases=DATABASES):
     """Same aggregation for the 4+ table bucket, which is where the tail lives."""
     aggregate = {}
-    for database in DATABASES:
+    for database in databases:
         entry = {"n": per_seed[SEEDS[0]][database]["bucket_4plus"]["n"]}
         for estimator in ESTIMATORS:
             q95 = [
@@ -136,20 +136,20 @@ def four_plus_aggregate(per_seed):
     return aggregate
 
 
-def headline(aggregate):
+def headline(aggregate, databases=DATABASES):
     """The one-paragraph claim this aggregate supports, computed from it."""
     price_medians = [
         aggregate[database]["median_q95_ratio_price_over_ours"]
-        for database in DATABASES
+        for database in databases
     ]
     pg_medians = [
-        aggregate[database]["median_q95_ratio_pg_over_ours"] for database in DATABASES
+        aggregate[database]["median_q95_ratio_pg_over_ours"] for database in databases
     ]
     all_seeds_lose = all(
-        aggregate[database]["seeds_beating_price_on_q95"] == 0 for database in DATABASES
+        aggregate[database]["seeds_beating_price_on_q95"] == 0 for database in databases
     )
     return {
-        "databases": list(DATABASES),
+        "databases": list(databases),
         "seeds": list(SEEDS),
         "median_q95_ratio_price_over_ours": {
             "value": statistics.median(price_medians),
@@ -162,25 +162,37 @@ def headline(aggregate):
             "max": max(pg_medians),
         },
         "every_seed_loses_to_price_on_q95": all_seeds_lose,
-        "total_seed_database_pairs": len(SEEDS) * len(DATABASES),
+        "total_seed_database_pairs": len(SEEDS) * len(databases),
         "seed_database_pairs_beating_price": sum(
-            aggregate[database]["seeds_beating_price_on_q95"] for database in DATABASES
+            aggregate[database]["seeds_beating_price_on_q95"] for database in databases
         ),
         "seed_database_pairs_beating_pg": sum(
-            aggregate[database]["seeds_beating_pg_on_q95"] for database in DATABASES
+            aggregate[database]["seeds_beating_pg_on_q95"] for database in databases
         ),
     }
 
 
 def main(argv):
     parser = argparse.ArgumentParser(
-        description="Aggregate the four target databases across three seeds"
+        description="Aggregate target databases across three training seeds"
     )
     parser.add_argument("--seed-summary", action="append", required=True)
     parser.add_argument("--seed-protocol", action="append", required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--protocol", required=True)
+    parser.add_argument(
+        "--databases",
+        nargs="+",
+        default=list(DATABASES),
+        help="target databases to aggregate (default: the four of doc 108)",
+    )
+    parser.add_argument(
+        "--audit",
+        default="p2-2-target-3seed",
+        help="audit id written into the protocol and summary",
+    )
     args = parser.parse_args(argv)
+    databases = tuple(args.databases)
 
     if len(args.seed_summary) != len(SEEDS):
         raise ValueError(f"expected {len(SEEDS)} --seed-summary arguments")
@@ -194,10 +206,10 @@ def main(argv):
     ):
         summary = json.loads(Path(summary_path).read_text())
         protocol = json.loads(Path(protocol_path).read_text())
-        if summary["target_databases_read"] != list(DATABASES):
+        if summary["target_databases_read"] != list(databases):
             raise ValueError(
                 f"seed {seed} read targets {summary['target_databases_read']}, "
-                f"expected {list(DATABASES)}"
+                f"expected {list(databases)}"
             )
         if summary["checkpoint"]["seed"] != seed:
             raise ValueError(
@@ -208,18 +220,18 @@ def main(argv):
         protocols[seed] = protocol
 
     # PRICE and PG must not move between seeds, or the runs are not comparable.
-    _assert_identical_across_seeds(per_seed, "price_k0")
-    _assert_identical_across_seeds(per_seed, "pg")
+    _assert_identical_across_seeds(per_seed, "price_k0", databases)
+    _assert_identical_across_seeds(per_seed, "pg", databases)
 
-    aggregate = collect(per_seed)
-    four_plus = four_plus_aggregate(per_seed)
+    aggregate = collect(per_seed, databases)
+    four_plus = four_plus_aggregate(per_seed, databases)
 
     protocol = {
         "schema": 1,
         "purpose": "research-read-only-audit",
-        "audit": "p2-2-target-3seed",
-        "target_databases_read": list(DATABASES),
-        "allowed_targets": list(DATABASES),
+        "audit": args.audit,
+        "target_databases_read": list(databases),
+        "allowed_targets": list(databases),
         "metric": protocols[SEEDS[0]]["metric"],
         "metric_definitions": protocols[SEEDS[0]]["metric_definitions"],
         "estimators": protocols[SEEDS[0]]["estimators"],
@@ -252,8 +264,8 @@ def main(argv):
             "price_and_pg_fixed_across_seeds": True,
             "fixed_estimator_check": (
                 "PRICE (one provided checkpoint) and PostgreSQL (a fixed estimate) "
-                "produce bitwise identical Q95 on all four databases in all three "
-                "runs; the aggregator refuses to publish otherwise"
+                "produce bitwise identical Q95 on every evaluated database in all "
+                "three runs; the aggregator refuses to publish otherwise"
             ),
             "aggregation": (
                 "mean and sample SD (ddof=1) over the three seeds, never a "
@@ -265,9 +277,15 @@ def main(argv):
             "three seeds is the project's seed coverage; it bounds the seed "
             "spread, it does not make any single database's Q95 a stable "
             "point estimate",
-            "genome's seed spread is large relative to the other three "
-            "databases; the per-seed values are reported rather than hidden "
-            "behind a mean",
+            *(
+                [
+                    "genome's seed spread is large relative to the other three "
+                    "databases; the per-seed values are reported rather than hidden "
+                    "behind a mean"
+                ]
+                if "genome" in databases
+                else []
+            ),
             "PRICE contributes one provided checkpoint, so its column has no "
             "seed spread and is not a training-matched comparison",
             "the IMDB row is a K=0 supplement, not a fourth complete few-shot "
@@ -278,8 +296,8 @@ def main(argv):
     summary = {
         "schema": 1,
         "purpose": "research-read-only-audit",
-        "audit": "p2-2-target-3seed",
-        "target_databases_read": list(DATABASES),
+        "audit": args.audit,
+        "target_databases_read": list(databases),
         "metric": protocol["metric"],
         "evidence_level": "three_seed_frozen_checkpoints_full_population",
         "needs_evidence": False,
@@ -294,7 +312,7 @@ def main(argv):
         "inputs": protocol["inputs"],
         "databases": aggregate,
         "bucket_4plus": four_plus,
-        "headline": headline(aggregate),
+        "headline": headline(aggregate, databases),
     }
 
     Path(args.protocol).parent.mkdir(parents=True, exist_ok=True)
