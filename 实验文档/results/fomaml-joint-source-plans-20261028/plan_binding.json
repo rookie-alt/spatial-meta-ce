@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "kind": "fomaml_joint_source_plan_binding",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "steps": 4000,
+  "meta_batch": 4,
+  "accumulation": 1,
+  "query_size": 64,
+  "support_sizes": [
+    5,
+    10,
+    20,
+    50,
+    100
+  ],
+  "expected_unique": {
+    "chembl": 50000,
+    "legalacts": 49504,
+    "telstra": 50000
+  },
+  "training_plans": {
+    "42": {
+      "path": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed42.json",
+      "file_sha256": "07abc216b5d12466e722617b2cfc8342014b05a4e9845412e04621c5be763289",
+      "plan_sha256": "302c75f5f63d8863141bdc4f1cfcebeeaac33c6a7e7e116825991a17e3849791",
+      "episodes": 16000
+    },
+    "43": {
+      "path": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed43.json",
+      "file_sha256": "0f1e7a1b663a3a8446bc4e88a1fc478d9cb2a8f2a9ee84598fd42c448e1f88a0",
+      "plan_sha256": "51e55f68bf60d72e41e52a6649394e56a00a528e33005f4c59070900a2560d28",
+      "episodes": 16000
+    },
+    "44": {
+      "path": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed44.json",
+      "file_sha256": "0c0c35dc08cef444a5dd3086db2317214a3fcd78383c518abe1493ef13e2f0d6",
+      "plan_sha256": "678e3afdf5172cec4797569122fe7da99b1c0412f893b3909c605b8021580fad",
+      "episodes": 16000
+    }
+  },
+  "source_eval_plan": {
+    "path": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/source_eval_plan.json",
+    "file_sha256": "7c212763ff3d3ae818f152e297e33afcb607e4f800dad5b1444d7d2c1591b972",
+    "plan_sha256": "38490ceac130b9f7e6407491a2538199b993173d16e254c35d148231f145287d"
+  },
+  "config_sha256": "f4db1e1deaea80ea45bc93529a229bd5a4b9f7b0ee7e1df4e7e45202637bebbb",
+  "target_databases_read": []
+}

@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "kind": "fomaml_joint_source_plan_verification",
+  "generated_at": "2026-10-28T19:29:59+08:00",
+  "server_code_dir": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-code",
+  "server_plan_dir": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans",
+  "config": "configs/fomaml_joint_sum_4k.json",
+  "config_sha256": "f4db1e1deaea80ea45bc93529a229bd5a4b9f7b0ee7e1df4e7e45202637bebbb",
+  "plan_binding_file": "plan_binding.json",
+  "plan_binding_file_sha256": "bb1bf8009af92c3813feb0ca1979a5f69f4f4c4a0bc00471bf203662be561ebc",
+  "training_plans": {
+    "42": {
+      "file_sha256": "07abc216b5d12466e722617b2cfc8342014b05a4e9845412e04621c5be763289",
+      "plan_sha256": "302c75f5f63d8863141bdc4f1cfcebeeaac33c6a7e7e116825991a17e3849791",
+      "bytes": 149731324,
+      "episodes": 16000,
+      "databases": 23,
+      "db_count_min": 628,
+      "db_count_max": 754,
+      "k_counts": {
+        "5": 3146,
+        "10": 3222,
+        "20": 3202,
+        "50": 3187,
+        "100": 3243
+      }
+    },
+    "43": {
+      "file_sha256": "0f1e7a1b663a3a8446bc4e88a1fc478d9cb2a8f2a9ee84598fd42c448e1f88a0",
+      "plan_sha256": "51e55f68bf60d72e41e52a6649394e56a00a528e33005f4c59070900a2560d28",
+      "bytes": 149324450,
+      "episodes": 16000,
+      "databases": 23,
+      "db_count_min": 644,
+      "db_count_max": 736,
+      "k_counts": {
+        "5": 3127,
+        "10": 3183,
+        "20": 3295,
+        "50": 3234,
+        "100": 3161
+      }
+    },
+    "44": {
+      "file_sha256": "0c0c35dc08cef444a5dd3086db2317214a3fcd78383c518abe1493ef13e2f0d6",
+      "plan_sha256": "678e3afdf5172cec4797569122fe7da99b1c0412f893b3909c605b8021580fad",
+      "bytes": 149480988,
+      "episodes": 16000,
+      "databases": 23,
+      "db_count_min": 654,
+      "db_count_max": 757,
+      "k_counts": {
+        "5": 3180,
+        "10": 3167,
+        "20": 3248,
+        "50": 3203,
+        "100": 3202
+      }
+    }
+  },
+  "source_eval_plan": {
+    "file_sha256": "7c212763ff3d3ae818f152e297e33afcb607e4f800dad5b1444d7d2c1591b972",
+    "plan_sha256": "38490ceac130b9f7e6407491a2538199b993173d16e254c35d148231f145287d",
+    "bytes": 13576821,
+    "databases": {
+      "chembl": {
+        "unique_queries": 50000,
+        "query_count": 49900,
+        "support_blocks": [20, 20, 20, 20, 20],
+        "support_total": 100
+      },
+      "legalacts": {
+        "unique_queries": 49504,
+        "query_count": 49404,
+        "support_blocks": [20, 20, 20, 20, 20],
+        "support_total": 100
+      },
+      "telstra": {
+        "unique_queries": 50000,
+        "query_count": 49900,
+        "support_blocks": [20, 20, 20, 20, 20],
+        "support_total": 100
+      }
+    }
+  },
+  "verification": {
+    "config_hash_matches": true,
+    "file_hashes_match_binding": true,
+    "plan_sha256_matches_binding": true,
+    "training_plan_reloaded_and_validated": true,
+    "training_plan_store_verification": true,
+    "source_eval_plan_reloaded_and_validated": true,
+    "source_eval_plan_store_verification": true,
+    "deterministic_recheck": {
+      "exit_code": 0,
+      "all_four_files_match": true
+    }
+  },
+  "target_databases_read": [],
+  "notes": "Only train/validation source caches were read to build and verify the plans. No training, smoke, inference or evaluation was run."
+}
