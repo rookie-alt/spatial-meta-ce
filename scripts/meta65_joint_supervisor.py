@@ -414,6 +414,32 @@ def _status_failed(output: Path, record: dict[str, Any]) -> None:
     _write_json(status_path, status)
 
 
+def _live_group_members(pgid: int) -> list[tuple[int, tuple[int, int, int, int, str]]]:
+    rows = _process_rows()
+    return [(pid, row) for pid, row in rows.items() if row[1] == pgid and row[4] != "Z"]
+
+
+def _assert_group_owned(
+    members: list[tuple[int, tuple[int, int, int, int, str]]], pgid: int
+) -> None:
+    for _, row in members:
+        if row[2] not in (0, pgid):
+            raise GPUQueryError("refusing to signal a reused process group")
+    if sys.platform.startswith("linux"):
+        return
+    # macOS ps does not expose the session id.  Ask the kernel directly so a
+    # recycled PGID cannot receive a signal meant for the worker.
+    for pid, _ in members:
+        try:
+            sid = os.getsid(pid)
+        except ProcessLookupError:
+            continue
+        except PermissionError as exc:
+            raise GPUQueryError("cannot verify process group ownership") from exc
+        if sid != pgid:
+            raise GPUQueryError("refusing to signal a reused process group")
+
+
 def _kill_group(
     child: subprocess.Popen[Any], grace: float, signals: list[int], *, owned_pgid: int,
 ) -> None:
@@ -427,23 +453,27 @@ def _kill_group(
             if sys.platform.startswith("linux") and child.returncode is not None:
                 raise GPUQueryError("refusing to signal after the leader PID was reaped")
             try:
-                rows = _process_rows()
+                members = _live_group_members(owned_pgid)
             except GPUQueryError:
                 # Linux's unreaped WNOWAIT leader still reserves this PGID;
                 # fail closed for the sampler while cleaning only that group.
                 if not sys.platform.startswith("linux") or child.returncode is not None:
                     raise
             else:
-                remaining = [row for row in rows.values() if row[1] == owned_pgid and row[4] != "Z"]
-                if not remaining:
+                if not members:
                     return
-                if any(row[2] not in (0, owned_pgid) for row in remaining):
-                    raise GPUQueryError("refusing to signal a reused process group")
+                _assert_group_owned(members, owned_pgid)
         try:
             os.killpg(owned_pgid, sig)
             signals.append(int(sig))
         except ProcessLookupError:
             pass
+        except PermissionError:
+            members = _live_group_members(owned_pgid)
+            if not members:
+                return
+            _assert_group_owned(members, owned_pgid)
+            raise GPUQueryError("refusing to signal an unowned process group") from None
 
     send(signal.SIGTERM)
     deadline = time.monotonic() + grace
@@ -452,6 +482,12 @@ def _kill_group(
             os.killpg(owned_pgid, 0)
         except ProcessLookupError:
             break
+        except PermissionError:
+            members = _live_group_members(owned_pgid)
+            if not members:
+                break
+            _assert_group_owned(members, owned_pgid)
+            raise GPUQueryError("refusing to signal an unowned process group") from None
         time.sleep(min(0.02, max(0.0, deadline - time.monotonic())))
     else:
         send(signal.SIGKILL)

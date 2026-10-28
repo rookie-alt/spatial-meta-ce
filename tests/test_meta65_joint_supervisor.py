@@ -23,6 +23,23 @@ SMALL = {
 }
 
 
+class _FakeChild:
+    """Minimal Popen stand-in for _kill_group permission-error tests."""
+
+    def __init__(self, pid, polls):
+        self.pid = pid
+        self.returncode = None
+        self._polls = list(polls)
+
+    def poll(self):
+        return self._polls.pop(0) if self._polls else None
+
+    def wait(self):
+        if self.returncode is None:
+            self.returncode = 0
+        return self.returncode
+
+
 @unittest.skipUnless(os.name == "posix", "requires POSIX owned process groups")
 class SupervisorTests(unittest.TestCase):
     def setUp(self):
@@ -219,6 +236,39 @@ class SupervisorTests(unittest.TestCase):
             leader.stdout.close()
             unrelated.terminate()
             unrelated.wait(timeout=2)
+
+    def test_kill_group_permission_error_after_exit_is_treated_as_gone(self):
+        child = _FakeChild(pid=4242, polls=[None])
+        sent = []
+
+        def fake_killpg(pgid, sig):
+            if sig == 0:
+                raise PermissionError("reused pgid")
+
+        with (
+            patch.object(s.os, "killpg", side_effect=fake_killpg),
+            patch.object(s, "_process_rows", return_value={}),
+        ):
+            s._kill_group(child, 0.05, sent, owned_pgid=child.pid)
+        self.assertEqual(sent, [int(signal.SIGTERM)])
+        self.assertEqual(child.returncode, 0)
+
+    def test_kill_group_permission_error_with_live_foreign_group_fails_closed(self):
+        child = _FakeChild(pid=4243, polls=[None])
+        sent = []
+        foreign = {999: (1, 4243, 0, 0, "R")}
+
+        def fake_killpg(pgid, sig):
+            raise PermissionError("reused pgid")
+
+        with (
+            patch.object(s.os, "killpg", side_effect=fake_killpg),
+            patch.object(s, "_process_rows", return_value=foreign),
+            patch.object(s.os, "getsid", return_value=9999),
+        ):
+            with self.assertRaises(s.GPUQueryError):
+                s._kill_group(child, 0.05, sent, owned_pgid=child.pid)
+        self.assertEqual(sent, [])
 
     def test_each_external_phase_timeout_without_worker_deadline(self):
         for phase in ("preparation", "evaluation", "certification"):
