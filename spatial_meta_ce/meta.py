@@ -6,6 +6,8 @@ from torch.nn import functional as F
 
 
 LOSSES = ("smooth_l1", "mse", "log_l1", "pinball_tau")
+JOINT_PRE_WEIGHT = 0.5
+OBJECTIVES = ("post", "joint")
 
 
 def _check_tau(tau):
@@ -171,6 +173,43 @@ def adapt_trajectory(
             if step in record_steps:
                 out[step] = params
     return out
+
+
+def meta_loss_terms(
+    model,
+    support,
+    query,
+    lr,
+    steps,
+    scope="all",
+    loss="smooth_l1",
+    tau=None,
+    objective="post",
+):
+    """Return pre/post/total losses for the FOMAML objective.
+
+    ``post`` is the adapted-query loss used by the original FOMAML.  ``pre`` is
+    the unadapted-query loss used by the joint objective; for post-only it is a
+    detached diagnostic and does not enter the graph.
+    """
+    if objective not in OBJECTIVES:
+        raise ValueError(f"Unknown meta objective {objective!r}")
+    extra = {} if tau is None else {"tau": tau}
+    base = OrderedDict(model.named_parameters())
+    if objective == "joint":
+        pre = loss_value(forward(model, base, query), query["label"], loss, **extra)
+    else:
+        with torch.no_grad():
+            pre = loss_value(
+                forward(model, base, query), query["label"], loss, **extra
+            ).detach()
+    params = adapt(model, support, lr, steps, scope, loss, tau=tau)
+    post = loss_value(forward(model, params, query), query["label"], loss, **extra)
+    if objective == "joint":
+        total = JOINT_PRE_WEIGHT * pre + (1.0 - JOINT_PRE_WEIGHT) * post
+    else:
+        total = post
+    return {"pre": pre, "post": post, "total": total}
 
 
 def meta_loss(

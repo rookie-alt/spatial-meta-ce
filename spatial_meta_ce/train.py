@@ -10,10 +10,44 @@ import torch
 from .checkpoints import load_checkpoint, restore_rng, save_checkpoint
 from .data import StorePool
 from .manifests import digest, episode_indices, validate_splits
-from .meta import _check_tau, adapt, forward, loss_value, meta_loss
+from .meta import (
+    JOINT_PRE_WEIGHT,
+    OBJECTIVES,
+    _check_tau,
+    adapt,
+    forward,
+    loss_value,
+    meta_loss,
+    meta_loss_terms,
+)
 from .metrics import summarize
 from .model import SetEstimator
+from .plans import (
+    load_training_plan,
+    validate_plan_matches_config,
+    verify_plan_against_stores,
+)
 from .tail_risk import capture_loss, tail_terms
+
+FIXED_STEPS = 4000
+FIXED_META_BATCH = 4
+FIXED_ACCUMULATION = 1
+FIXED_QUERY_SIZE = 64
+FIXED_SUPPORT_SIZES = (5, 10, 20, 50, 100)
+FIXED_LOSS = "smooth_l1"
+FIXED_INNER_LR = 0.001
+FIXED_INNER_STEPS = 5
+FIXED_ADAPT_SCOPE = "all"
+FIXED_OUTER_LR = 0.0003
+FIXED_MODEL = {
+    "width": 64,
+    "use_pg": True,
+    "arch": "sum",
+    "layers": 2,
+    "heads": 4,
+}
+FIXED_SELECTION = "none (fixed 4000 updates, last.pt only)"
+FIXED_SEEDS = (42, 43, 44)
 
 
 def seed_all(seed):
@@ -32,6 +66,51 @@ def select_best(best_metric, bad_validations, metric, min_delta):
         if metric < best_metric - min_delta
         else (best_metric, bad_validations + 1, False)
     )
+
+
+def state_dict_sha256(model):
+    hasher = hashlib.sha256()
+    for name, tensor in sorted(model.state_dict().items()):
+        hasher.update(name.encode())
+        hasher.update(tensor.detach().cpu().contiguous().numpy().tobytes())
+    return hasher.hexdigest()
+
+
+def _validate_fixed_budget(config):
+    if config["method"] == "erm" and config["meta_objective"] != "post":
+        raise ValueError("ERM requires meta_objective=post")
+    if config["method"] == "fomaml" and config["meta_objective"] not in OBJECTIVES:
+        raise ValueError("Unknown meta_objective")
+    if config["steps"] != FIXED_STEPS:
+        raise ValueError(f"fixed_budget requires steps={FIXED_STEPS}")
+    if config["meta_batch"] != FIXED_META_BATCH:
+        raise ValueError(f"fixed_budget requires meta_batch={FIXED_META_BATCH}")
+    if config["accumulation"] != FIXED_ACCUMULATION:
+        raise ValueError(f"fixed_budget requires accumulation={FIXED_ACCUMULATION}")
+    if config["query_size"] != FIXED_QUERY_SIZE:
+        raise ValueError(f"fixed_budget requires query_size={FIXED_QUERY_SIZE}")
+    if list(config["support_sizes"]) != list(FIXED_SUPPORT_SIZES):
+        raise ValueError(f"fixed_budget requires support_sizes={FIXED_SUPPORT_SIZES}")
+    if not config.get("training_plan"):
+        raise ValueError("fixed_budget requires a sealed training_plan")
+    if config["loss"] != FIXED_LOSS:
+        raise ValueError(f"fixed_budget requires loss={FIXED_LOSS}")
+    if config["inner_lr"] != FIXED_INNER_LR:
+        raise ValueError(f"fixed_budget requires inner_lr={FIXED_INNER_LR}")
+    if config["inner_steps"] != FIXED_INNER_STEPS:
+        raise ValueError(f"fixed_budget requires inner_steps={FIXED_INNER_STEPS}")
+    if config["adapt_scope"] != FIXED_ADAPT_SCOPE:
+        raise ValueError(f"fixed_budget requires adapt_scope={FIXED_ADAPT_SCOPE}")
+    if config["outer_lr"] != FIXED_OUTER_LR:
+        raise ValueError(f"fixed_budget requires outer_lr={FIXED_OUTER_LR}")
+    if config["model"] != FIXED_MODEL:
+        raise ValueError("fixed_budget requires the frozen model configuration")
+    if "complex_query_weight" in config or "tail_risk_mode" in config:
+        raise ValueError(
+            "fixed_budget forbids complex_query_weight/tail_risk_mode"
+        )
+    if config["seed"] not in FIXED_SEEDS:
+        raise ValueError(f"fixed_budget requires seed in {FIXED_SEEDS}")
 
 
 def validation_plan(pool, databases, config):
@@ -185,6 +264,20 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
             raise ValueError(f"{key} must be positive")
     if config["method"] not in ("fomaml", "erm") or min(config["support_sizes"]) < 1:
         raise ValueError("Invalid training method or support sizes")
+    fixed_budget = bool(config.get("fixed_budget", False))
+    meta_objective = config.get("meta_objective", "post")
+    if meta_objective not in OBJECTIVES:
+        raise ValueError("Unknown meta_objective")
+    if meta_objective == "joint" and config["method"] != "fomaml":
+        raise ValueError("joint objective requires method=fomaml")
+    if meta_objective == "joint" and not fixed_budget:
+        raise ValueError("joint objective requires fixed_budget")
+    if fixed_budget:
+        _validate_fixed_budget({**config, "meta_objective": meta_objective})
+    if config.get("training_plan") and not fixed_budget:
+        raise ValueError("training_plan requires fixed_budget")
+    if fixed_budget and resume:
+        raise ValueError("fixed_budget does not authorize resume")
     mapped = config.get("model", {}).get("arch") == "sum_map"
     mapping_config = config.get("mapping")
     if mapped and not mapping_config:
@@ -202,7 +295,7 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         raise FileExistsError("Use a new run directory or explicit --resume")
     output_dir.mkdir(parents=True, exist_ok=True)
     splits = data_config["splits"]
-    sources = splits["train"] + splits["validation"]
+    sources = splits["train"] if fixed_budget else splits["train"] + splits["validation"]
     # Opening a mapped store parses its whole sidecar (~3.5s). Keep every source
     # store resident so uniform database sampling cannot thrash the LRU.
     pool = StorePool(
@@ -213,9 +306,11 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
     )
     hashes = {}
     pools = {}
+    stores = {}
     mapping_provenance = {}
     for db in sources:
         store = pool.get("pretrain", db)
+        stores[db] = store
         hashes[db] = store.manifest["content_hash"]
         pools[db] = store.unique_indices()
         if mapping_config:
@@ -225,16 +320,35 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         "method": config["method"],
         "seed": config["seed"],
         "train_databases": splits["train"],
-        "validation_databases": splits["validation"],
+        "validation_databases": [] if fixed_budget else splits["validation"],
         "manifest_hashes": hashes,
         "training_signature": signature,
         "purpose": config.get("purpose", "research"),
-        "selection": "source-validation macro mean log-Q95 after adaptation",
+        "selection": (
+            FIXED_SELECTION
+            if fixed_budget
+            else "source-validation macro mean log-Q95 after adaptation"
+        ),
     }
+    if fixed_budget:
+        metadata = {
+            **metadata,
+            "meta_objective": meta_objective,
+            "joint_pre_weight": (
+                JOINT_PRE_WEIGHT if meta_objective == "joint" else None
+            ),
+            "fixed_budget": True,
+            "fixed_steps": FIXED_STEPS,
+            "selection_databases": [],
+            "validation_monitor_reads": [],
+            "training_plan": str(Path(config["training_plan"]).resolve()),
+        }
     if mapping_config:
         metadata = {**metadata, "mapping_provenance": mapping_provenance}
     rng = np.random.default_rng(config["seed"] + 1)
     model = SetEstimator(**config["model"]).to(device)
+    if fixed_budget and not resume:
+        metadata["initial_state_sha256"] = state_dict_sha256(model)
     start, best, bad = 0, float("inf"), 0
     history = []
     sample_plan_digest = hashlib.sha256(b"").hexdigest()
@@ -245,8 +359,10 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         "backward_calls": 0,
         "optimizer_steps": 0,
     }
+    if fixed_budget:
+        counts.update({"pre_forward_calls": 0, "joint_pre_grad_calls": 0})
     total_seconds = 0.0
-    if s5 or s6:
+    if s5 or s6 or fixed_budget:
         gradient_stats = {
             "count": 0,
             "total_norm": 0.0,
@@ -283,45 +399,95 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
     if resume:
         optimizer.load_state_dict(state["optimizer"])
         restore_rng(state["rng"])
-    episodes = validation_plan(pool, splits["validation"], config)
-    (output_dir / "validation_manifest.json").write_text(json.dumps(episodes, indent=2))
+    if fixed_budget:
+        training_plan = load_training_plan(config["training_plan"], data_config)
+        validate_plan_matches_config(training_plan, config)
+        verify_plan_against_stores(training_plan, stores)
+        sample_plan_digest = training_plan["plan_sha256"]
+        episodes = []
+    else:
+        training_plan = None
+        episodes = validation_plan(pool, splits["validation"], config)
+        (output_dir / "validation_manifest.json").write_text(
+            json.dumps(episodes, indent=2)
+        )
     (output_dir / "config.json").write_text(
         json.dumps({"training": config, "data": data_config}, indent=2)
     )
     started = time.perf_counter()
     last_step = start
+    loss_audit = []
     for window_start in range(start, config["steps"], config["accumulation"]):
         model.train()
         optimizer.zero_grad(set_to_none=True)
         window = min(config["accumulation"], config["steps"] - window_start)
         losses = []
+        pre_losses = []
+        post_losses = []
         for _ in range(window):
             for _ in range(config["meta_batch"]):
-                db = str(rng.choice(splits["train"]))
-                k = int(rng.choice(config["support_sizes"]))
-                si, qi = episode_indices(pools[db], k, config["query_size"], rng)
-                store = pool.get("pretrain", db)
-                episode = {
-                    "db": db,
-                    "support": [store.rows[int(i)]["query_hash"] for i in si],
-                    "query": [store.rows[int(i)]["query_hash"] for i in qi],
-                }
-                sample_plan_digest = digest(
-                    {"previous": sample_plan_digest, "episode": episode}
-                )
-                sample_plan_episodes += 1
+                if fixed_budget:
+                    episode = training_plan["episodes"][sample_plan_episodes]
+                    sample_plan_episodes += 1
+                    db = episode["db"]
+                    k = episode["k"]
+                    si = np.asarray(episode["support"], dtype=np.int64)
+                    qi = np.asarray(episode["query"], dtype=np.int64)
+                    store = stores[db]
+                    episode_hashes = {
+                        "db": db,
+                        "support": episode["support_hashes"],
+                        "query": episode["query_hashes"],
+                    }
+                else:
+                    db = str(rng.choice(splits["train"]))
+                    k = int(rng.choice(config["support_sizes"]))
+                    si, qi = episode_indices(
+                        pools[db], k, config["query_size"], rng
+                    )
+                    store = pool.get("pretrain", db)
+                    episode_hashes = {
+                        "db": db,
+                        "support": [store.rows[int(i)]["query_hash"] for i in si],
+                        "query": [store.rows[int(i)]["query_hash"] for i in qi],
+                    }
+                    sample_plan_digest = digest(
+                        {"previous": sample_plan_digest, "episode": episode_hashes}
+                    )
+                    sample_plan_episodes += 1
                 if config["method"] == "fomaml":
                     support, query = store.batch(si, device), store.batch(qi, device)
-                    objective = meta_loss(
-                        model,
-                        support,
-                        query,
-                        config["inner_lr"],
-                        config["inner_steps"],
-                        config["adapt_scope"],
-                        config["loss"],
-                        tau=tau,
-                    )
+                    if fixed_budget:
+                        terms = meta_loss_terms(
+                            model,
+                            support,
+                            query,
+                            config["inner_lr"],
+                            config["inner_steps"],
+                            config["adapt_scope"],
+                            config["loss"],
+                            tau=tau,
+                            objective=meta_objective,
+                        )
+                        objective = terms["total"]
+                        pre_losses.append(float(terms["pre"].detach()))
+                        post_losses.append(float(terms["post"].detach()))
+                        counts["pre_forward_calls"] += 1
+                        if meta_objective == "joint":
+                            counts["joint_pre_grad_calls"] += 1
+                    else:
+                        objective = meta_loss(
+                            model,
+                            support,
+                            query,
+                            config["inner_lr"],
+                            config["inner_steps"],
+                            config["adapt_scope"],
+                            config["loss"],
+                            tau=tau,
+                        )
+                        pre_losses.append(None)
+                        post_losses.append(float(objective.detach()))
                     counts["support_presentations"] += k * config["inner_steps"]
                     counts["query_presentations"] += len(qi)
                     counts["backward_calls"] += config["inner_steps"] + 1
@@ -349,7 +515,8 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
                             objective=objective,
                             pred=pred,
                             batch=batch,
-                            hashes=episode["support"] + episode["query"],
+                            hashes=episode_hashes["support"]
+                            + episode_hashes["query"],
                             steps=config["steps"],
                         )
                         loss_evidence = {
@@ -375,6 +542,8 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
                             config["loss"],
                             **({} if tau is None else {"tau": tau}),
                         )
+                    pre_losses.append(None)
+                    post_losses.append(float(objective.detach()))
                     counts["query_presentations"] += len(si) + len(qi)
                     counts["backward_calls"] += 1
                 losses.append(float(objective.detach()))
@@ -387,7 +556,7 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         norm = torch.nn.utils.clip_grad_norm_(
             model.parameters(), 1.0, error_if_nonfinite=True
         )
-        if s5 or s6:
+        if s5 or s6 or fixed_budget:
             norm_value = float(norm)
             gradient_stats = {
                 "count": gradient_stats["count"] + 1,
@@ -399,7 +568,23 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         optimizer.step()
         counts["optimizer_steps"] += 1
         last_step = window_start + window
-        check = (
+        if fixed_budget:
+            loss_audit.append(
+                {
+                    "step": last_step,
+                    "mean_train_loss": float(np.mean(losses)),
+                    "mean_pre_loss": (
+                        None
+                        if any(value is None for value in pre_losses)
+                        else float(np.mean(pre_losses))
+                    ),
+                    "mean_post_loss": float(np.mean(post_losses)),
+                    "grad_norm": norm_value,
+                    "grad_clipped": norm_value > 1.0,
+                    "counts": dict(counts),
+                }
+            )
+        check = not fixed_budget and (
             last_step // config["validate_every"]
             > window_start // config["validate_every"]
             or last_step == config["steps"]
@@ -428,7 +613,7 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
             "sample_plan_episodes": sample_plan_episodes,
             "total_seconds": total_seconds + time.perf_counter() - started,
         }
-        if s5 or s6:
+        if s5 or s6 or fixed_budget:
             extra = {**extra, "gradient_stats": dict(gradient_stats)}
         if s6:
             extra = {**extra, "loss_evidence": dict(loss_evidence)}
@@ -442,7 +627,7 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
             metadata,
             extra,
         )
-        if improved:
+        if improved and not fixed_budget:
             save_checkpoint(
                 output_dir / "best.pt",
                 model,
@@ -456,13 +641,30 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         if check and bad >= config["patience"]:
             break
     (output_dir / "history.json").write_text(json.dumps(history, indent=2))
+    if fixed_budget:
+        (output_dir / "loss_audit.jsonl").write_text(
+            "\n".join(json.dumps(row) for row in loss_audit) + "\n"
+        )
     return {
         "last_step": last_step,
-        "best_validation_macro_log_q95": best,
+        "best_validation_macro_log_q95": None if fixed_budget else best,
         "counts": counts,
         "total_seconds": total_seconds + time.perf_counter() - started,
         "parameters": sum(p.numel() for p in model.parameters()),
         "purpose": metadata["purpose"],
-        **({"gradient_stats": dict(gradient_stats)} if s5 or s6 else {}),
+        **(
+            {"gradient_stats": dict(gradient_stats)}
+            if s5 or s6 or fixed_budget
+            else {}
+        ),
         **({"loss_evidence": dict(loss_evidence)} if s6 else {}),
+        **(
+            {
+                "meta_objective": meta_objective,
+                "fixed_budget": True,
+                "training_plan_sha256": sample_plan_digest,
+            }
+            if fixed_budget
+            else {}
+        ),
     }
