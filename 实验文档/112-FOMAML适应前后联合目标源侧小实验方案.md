@@ -209,4 +209,5 @@ NaN/Inf、梯度非有限、OOM、超时、输出超限、hash/config/身份错�
 - 未采纳为事实：父总时限与单项 timeout 必须相加的说法、未验证的 5% 假阳性概率；改为明确层级预算与操作阈值的不确定性。不新增单 seed 1.25 门槛或早停通用开关，避免不必要扩展。
 - 本轮文档链接、代码块、矩阵算术与空白检查通过，Ruff 通过。全量 unittest 实跑 1572 项，16 skip、1 error：`test_meta65_joint_supervisor.SupervisorTests.test_each_external_phase_timeout_without_worker_deadline` 在 `killpg` 收到 `PermissionError`；未修改该代码或重试求通过，因此不推进 main。这不是新方法的实验结果。
 - 未完成且未授权：联合目标实现、配置/plan 文件生成、smoke、训练、全量端点评估、目标评估。
+- 实现状态（2026-10-28，仅代码与合成测试）：`feat/fomaml-joint-objective-20261028` 上的 `1bed3c7`/`8b75c39` 已实现联合目标、fixed-budget 训练、训练/source-eval 计划、K0/K5/K20 全量 Q_d 推理、独立 NumPy 汇总、梯度审计与 §7 拒绝测试。全量 1629 项 OK（16 skip）、ruff 通过；两轮独立只读复审 APPROVE。未执行真实计划生成/训练/smoke/评估，未读目标库；已知残余是逐 query 配对 log-error 与恶化查询比例未汇总（`predictions.csv` 保留全行可补算）。实现代码存在不等于执行认证或效果结论。
 - 修订版独立复审：**通过（无未解决阻塞，仅设计文档）**。同一独立只读审查代理复核 v2 及最终 metadata/计时两段；未代跑测试或实验，测试、SHA 与链接校验由主代理实际执行并区分记录。§8 使用字段组简写，精确定义以 §7 为准。审查通过不等于实现完成、效果认证或执行授权。
