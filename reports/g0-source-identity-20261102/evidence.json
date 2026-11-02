@@ -1,0 +1,99 @@
+{
+  "verified_at": "2026-11-02",
+  "scope": "26 source databases (23 train + 3 validation); targets not extracted",
+  "source_archive": {
+    "path": "/gly/weilin/datasets.tar.gz",
+    "bytes": 3870918542,
+    "sha256": "b5918f1e1743599bb717dfae15cd1715b4156363d79a2aabd5dfee552f1c62f8",
+    "member_mtime": "2024-04-23/24",
+    "owner": "ljw"
+  },
+  "generator": {
+    "root": "/gly/weilin/PRICE-master/utils/statistics",
+    "reads_csv_directly": true,
+    "postgres_import_required": false,
+    "price_repo_commit": "0a9358eafb332201678e411ac35dc78141f751bd",
+    "scripts_sha256": {
+      "gen_size.py": "6f2c7e28dadeb020870b2deae64dc58cf6e140415c8c7a2bb88e2a44c8df6819",
+      "gen_histogram.py": "8ad5181892859bc548921db46e21d49d9d9a29c51bb236f3074d3c80c9012cf0",
+      "gen_summary.py": "30ea3df4b26e8cbb3c7e53a33a8b55b3af664bede0be2ff131c2b4e994837a5d",
+      "gen_fanout.py": "dcef7cc56165a7ee61b02dc83ae2d5e2e988689b3c74333f45650e61f57d05ad",
+      "tools.py": "d89ed28db054f78d2d42e5a81435676dfd4b415ef5b1d76d68549e52f87ac307"
+    },
+    "env": {"pandas": "2.1.3", "numpy": "1.26.1"}
+  },
+  "cache_binding": {
+    "databases_checked": 26,
+    "statistics_sha256_match_manifest": true,
+    "workload_sha256_match_manifest": true,
+    "extractor_sha256_match_vendor": true,
+    "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+  },
+  "size_schema_check": {
+    "databases_checked": 26,
+    "row_column_mismatches": 0,
+    "schema_notes": [
+      "airline.on_time_on_time_performance_2016_1: CSV header has extra column uniquecarrier (83 vs SQL 82)",
+      "tubepricing: 7 tables have extra column unique_feature not declared in SQL",
+      "Both are SQL-documentation gaps; frozen num_cols matches CSV header"
+    ]
+  },
+  "content_reproduction": {
+    "train_databases": 23,
+    "histogram_columns_ok": 631,
+    "histogram_columns_bad": 0,
+    "summary_columns_ok": 854,
+    "summary_columns_bad": 0,
+    "validation_databases": {
+      "chembl": {"hist_ok": 29, "hist_bad": 0, "summary_ok": 32, "summary_bad": 0},
+      "legalacts": {"hist_ok": 10, "hist_bad": 0, "summary_ok": 10, "summary_bad": 0},
+      "telstra": {"hist_ok": 6, "hist_bad": 0, "summary_ok": 4, "summary_bad": 0}
+    },
+    "per_database": "summary_server.json"
+  },
+  "fanout_reproduction": {
+    "databases_exact": 24,
+    "databases_checked": 26,
+    "shared_values_equal_in_all_anomalies": true,
+    "only_recomputed_keys_in_all": 0,
+    "anomalies": {
+      "legalacts": {
+        "frozen": 20,
+        "recomputed_from_current_workload": 16,
+        "only_frozen": [
+          "leg_ll.actid1=leg_s.actid",
+          "leg_ll.actid2=leg_s.actid",
+          "leg_s.actid=leg_ll.actid1",
+          "leg_s.actid=leg_ll.actid2"
+        ]
+      },
+      "sakila": {
+        "frozen": 68,
+        "recomputed_from_current_workload": 62,
+        "only_frozen": [
+          "skl_cus.address_id=skl_stf.address_id",
+          "skl_cus.address_id=skl_str.address_id",
+          "skl_stf.address_id=skl_cus.address_id",
+          "skl_stf.address_id=skl_str.address_id",
+          "skl_str.address_id=skl_cus.address_id",
+          "skl_str.address_id=skl_stf.address_id"
+        ]
+      }
+    }
+  },
+  "verdict": {
+    "functional_equivalence": "pass",
+    "documentary_lineage": "absent",
+    "g0_status": "conditional_pass",
+    "conditions": [
+      "Record this report as the equivalence proof; do not replace frozen statistics",
+      "Regenerate fanout from the verified snapshot before any new feature work that depends on join sets",
+      "New statistics/caches/features still require a separate protocol and authorization"
+    ]
+  },
+  "limits": [
+    "No historical generation manifest or log; archive has no README",
+    "Timestamps are packaging time, not generation time evidence",
+    "Target databases imdb/stats/genome/ergastf1 were not extracted or used"
+  ]
+}

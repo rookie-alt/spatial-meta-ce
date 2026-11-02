@@ -1,0 +1,364 @@
+{
+ "content": {
+  "accidents": {
+   "hist_ok": 10,
+   "hist_bad": 0,
+   "summary_ok": 23,
+   "summary_bad": 0
+  },
+  "airline": {
+   "hist_ok": 56,
+   "hist_bad": 0,
+   "summary_ok": 27,
+   "summary_bad": 0
+  },
+  "baseball": {
+   "hist_ok": 128,
+   "hist_bad": 0,
+   "summary_ok": 173,
+   "summary_bad": 0
+  },
+  "basketball": {
+   "hist_ok": 83,
+   "hist_bad": 0,
+   "summary_ok": 87,
+   "summary_bad": 0
+  },
+  "carcinogenesis": {
+   "hist_ok": 9,
+   "hist_bad": 0,
+   "summary_ok": 4,
+   "summary_bad": 0
+  },
+  "ccs": {
+   "hist_ok": 12,
+   "hist_bad": 0,
+   "summary_ok": 8,
+   "summary_bad": 0
+  },
+  "consumer": {
+   "hist_ok": 11,
+   "hist_bad": 0,
+   "summary_ok": 11,
+   "summary_bad": 0
+  },
+  "credit": {
+   "hist_ok": 23,
+   "hist_bad": 0,
+   "summary_ok": 11,
+   "summary_bad": 0
+  },
+  "employee": {
+   "hist_ok": 8,
+   "hist_bad": 0,
+   "summary_ok": 3,
+   "summary_bad": 0
+  },
+  "financial": {
+   "hist_ok": 23,
+   "hist_bad": 0,
+   "summary_ok": 14,
+   "summary_bad": 0
+  },
+  "fnhk": {
+   "hist_ok": 12,
+   "hist_bad": 0,
+   "summary_ok": 4,
+   "summary_bad": 0
+  },
+  "grants": {
+   "hist_ok": 21,
+   "hist_bad": 0,
+   "summary_ok": 5,
+   "summary_bad": 0
+  },
+  "hepatitis": {
+   "hist_ok": 10,
+   "hist_bad": 0,
+   "summary_ok": 15,
+   "summary_bad": 0
+  },
+  "hockey": {
+   "hist_ok": 42,
+   "hist_bad": 0,
+   "summary_ok": 184,
+   "summary_bad": 0
+  },
+  "movielens": {
+   "hist_ok": 10,
+   "hist_bad": 0,
+   "summary_ok": 14,
+   "summary_bad": 0
+  },
+  "sakila": {
+   "hist_ok": 36,
+   "hist_bad": 0,
+   "summary_ok": 24,
+   "summary_bad": 0
+  },
+  "sap": {
+   "hist_ok": 32,
+   "hist_bad": 0,
+   "summary_ok": 12,
+   "summary_bad": 0
+  },
+  "seznam": {
+   "hist_ok": 6,
+   "hist_bad": 0,
+   "summary_ok": 7,
+   "summary_bad": 0
+  },
+  "ssb": {
+   "hist_ok": 15,
+   "hist_bad": 0,
+   "summary_ok": 31,
+   "summary_bad": 0
+  },
+  "talkingdata": {
+   "hist_ok": 17,
+   "hist_bad": 0,
+   "summary_ok": 26,
+   "summary_bad": 0
+  },
+  "tournament": {
+   "hist_ok": 20,
+   "hist_bad": 0,
+   "summary_ok": 81,
+   "summary_bad": 0
+  },
+  "tpc_h": {
+   "hist_ok": 22,
+   "hist_bad": 0,
+   "summary_ok": 18,
+   "summary_bad": 0
+  },
+  "tubepricing": {
+   "hist_ok": 25,
+   "hist_bad": 0,
+   "summary_ok": 72,
+   "summary_bad": 0
+  }
+ },
+ "fanout": {
+  "accidents": {
+   "recomputed": 6,
+   "frozen": 6,
+   "shared": 6,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "airline": {
+   "recomputed": 44,
+   "frozen": 44,
+   "shared": 44,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "baseball": {
+   "recomputed": 206,
+   "frozen": 206,
+   "shared": 206,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "basketball": {
+   "recomputed": 64,
+   "frozen": 64,
+   "shared": 64,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "carcinogenesis": {
+   "recomputed": 30,
+   "frozen": 30,
+   "shared": 30,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "ccs": {
+   "recomputed": 10,
+   "frozen": 10,
+   "shared": 10,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "chembl": {
+   "recomputed": 38,
+   "frozen": 38,
+   "shared": 38,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "consumer": {
+   "recomputed": 6,
+   "frozen": 6,
+   "shared": 6,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "credit": {
+   "recomputed": 26,
+   "frozen": 26,
+   "shared": 26,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "employee": {
+   "recomputed": 22,
+   "frozen": 22,
+   "shared": 22,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "financial": {
+   "recomputed": 22,
+   "frozen": 22,
+   "shared": 22,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "fnhk": {
+   "recomputed": 6,
+   "frozen": 6,
+   "shared": 6,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "grants": {
+   "recomputed": 42,
+   "frozen": 42,
+   "shared": 42,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "hepatitis": {
+   "recomputed": 18,
+   "frozen": 18,
+   "shared": 18,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "hockey": {
+   "recomputed": 290,
+   "frozen": 290,
+   "shared": 290,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "legalacts": {
+   "recomputed": 16,
+   "frozen": 20,
+   "shared": 16,
+   "shared_values_equal": true,
+   "only_frozen": [
+    "('leg_ll.actid1', 'leg_s.actid')",
+    "('leg_ll.actid2', 'leg_s.actid')",
+    "('leg_s.actid', 'leg_ll.actid1')",
+    "('leg_s.actid', 'leg_ll.actid2')"
+   ],
+   "only_recomputed": []
+  },
+  "movielens": {
+   "recomputed": 18,
+   "frozen": 18,
+   "shared": 18,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "sakila": {
+   "recomputed": 62,
+   "frozen": 68,
+   "shared": 62,
+   "shared_values_equal": true,
+   "only_frozen": [
+    "('skl_cus.address_id', 'skl_stf.address_id')",
+    "('skl_cus.address_id', 'skl_str.address_id')",
+    "('skl_stf.address_id', 'skl_cus.address_id')",
+    "('skl_stf.address_id', 'skl_str.address_id')",
+    "('skl_str.address_id', 'skl_cus.address_id')",
+    "('skl_str.address_id', 'skl_stf.address_id')"
+   ],
+   "only_recomputed": []
+  },
+  "sap": {
+   "recomputed": 12,
+   "frozen": 12,
+   "shared": 12,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "seznam": {
+   "recomputed": 12,
+   "frozen": 12,
+   "shared": 12,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "ssb": {
+   "recomputed": 8,
+   "frozen": 8,
+   "shared": 8,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "talkingdata": {
+   "recomputed": 20,
+   "frozen": 20,
+   "shared": 20,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "telstra": {
+   "recomputed": 20,
+   "frozen": 20,
+   "shared": 20,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "tournament": {
+   "recomputed": 42,
+   "frozen": 42,
+   "shared": 42,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "tpc_h": {
+   "recomputed": 24,
+   "frozen": 24,
+   "shared": 24,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  },
+  "tubepricing": {
+   "recomputed": 18,
+   "frozen": 18,
+   "shared": 18,
+   "shared_values_equal": true,
+   "only_frozen": [],
+   "only_recomputed": []
+  }
+ }
+}
