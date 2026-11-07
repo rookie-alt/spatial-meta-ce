@@ -1,0 +1,106 @@
+{
+  "selectivity": "min(sel_left, sel_middle, sel_right)",
+  "note": "descriptive only; does not enter the go/no-go gate. Queries with M_i = 0 have no defined selectivity and sit in zero_join_population.",
+  "rows": [
+    {
+      "database": "basketball",
+      "selectivity_bucket": "1e-1..0.5",
+      "n": 27,
+      "median_q_u_indep": 1.236677492178761,
+      "q95_q_u_indep": 5.237538843487097,
+      "median_q_f_indep": 1.0112470791254413,
+      "q95_q_f_indep": 1.4322557153683741,
+      "q95_q_f_joint": 1.0
+    },
+    {
+      "database": "basketball",
+      "selectivity_bucket": "1e-2..1e-1",
+      "n": 70,
+      "median_q_u_indep": 1.269800246096421,
+      "q95_q_u_indep": 2.8145956148447064,
+      "median_q_f_indep": 1.01660429192198,
+      "q95_q_f_indep": 1.504980452801089,
+      "q95_q_f_joint": 1.0
+    },
+    {
+      "database": "basketball",
+      "selectivity_bucket": "1e-3..1e-2",
+      "n": 43,
+      "median_q_u_indep": 1.477008734209231,
+      "q95_q_u_indep": 7.637123476219588,
+      "median_q_f_indep": 1.0014659616649677,
+      "q95_q_f_indep": 1.404054555207377,
+      "q95_q_f_joint": 1.0
+    },
+    {
+      "database": "basketball",
+      "selectivity_bucket": "<1e-3",
+      "n": 31,
+      "median_q_u_indep": 1.6697527414510474,
+      "q95_q_u_indep": 9.356094725879759,
+      "median_q_f_indep": 1.0046705691866988,
+      "q95_q_f_indep": 2.05264613938873,
+      "q95_q_f_joint": 1.0
+    },
+    {
+      "database": "basketball",
+      "selectivity_bucket": ">=0.5",
+      "n": 29,
+      "median_q_u_indep": 1.024688344866001,
+      "q95_q_u_indep": 1.335611315442336,
+      "median_q_f_indep": 1.008922726965057,
+      "q95_q_f_indep": 1.1036281857706545,
+      "q95_q_f_joint": 1.0
+    },
+    {
+      "database": "hepatitis",
+      "selectivity_bucket": "1e-1..0.5",
+      "n": 36,
+      "median_q_u_indep": 1.1030632210530962,
+      "q95_q_u_indep": 1.6282094933780322,
+      "median_q_f_indep": 1.0881069817599203,
+      "q95_q_f_indep": 1.3448287908709051,
+      "q95_q_f_joint": 1.0
+    },
+    {
+      "database": "hepatitis",
+      "selectivity_bucket": "1e-2..1e-1",
+      "n": 114,
+      "median_q_u_indep": 1.1923549295040863,
+      "q95_q_u_indep": 1.6797938894095599,
+      "median_q_f_indep": 1.1829037536724432,
+      "q95_q_f_indep": 1.7712323091075008,
+      "q95_q_f_joint": 1.0
+    },
+    {
+      "database": "hepatitis",
+      "selectivity_bucket": "1e-3..1e-2",
+      "n": 46,
+      "median_q_u_indep": 1.236630451867412,
+      "q95_q_u_indep": 1.6845897030398875,
+      "median_q_f_indep": 1.236630451867412,
+      "q95_q_f_indep": 1.6845897030398875,
+      "q95_q_f_joint": 1.0
+    },
+    {
+      "database": "hepatitis",
+      "selectivity_bucket": "<1e-3",
+      "n": 1,
+      "median_q_u_indep": 1.5434025242515905,
+      "q95_q_u_indep": 1.5434025242515905,
+      "median_q_f_indep": 1.5434025242515905,
+      "q95_q_f_indep": 1.5434025242515905,
+      "q95_q_f_joint": 1.0
+    },
+    {
+      "database": "hepatitis",
+      "selectivity_bucket": ">=0.5",
+      "n": 3,
+      "median_q_u_indep": 1.0195225805421029,
+      "q95_q_u_indep": 1.0216154542372344,
+      "median_q_f_indep": 1.0195225805421029,
+      "q95_q_f_indep": 1.0216154542372344,
+      "q95_q_f_joint": 1.0
+    }
+  ]
+}
