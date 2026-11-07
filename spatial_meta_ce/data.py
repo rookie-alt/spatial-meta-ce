@@ -1,3 +1,4 @@
+import json
 from collections import OrderedDict
 from pathlib import Path
 
@@ -92,6 +93,16 @@ def batch_samples(samples, device="cpu"):
             mapping_values[key] = torch.tensor(padded, dtype=torch.long, device=device)
         result["mapping"] = mapping_values
         result["mapping_mode"] = next(iter(mapping_mode))
+    structural = [s.get("struct_log") for s in samples]
+    if any(value is not None for value in structural):
+        if not all(value is not None for value in structural):
+            raise ValueError("Cannot mix samples with and without a struct_log")
+        values = np.asarray(structural, dtype=np.float64)
+        if not np.isfinite(values).all():
+            raise ValueError("struct_log must be finite")
+        result["struct_log"] = torch.as_tensor(
+            values, dtype=torch.float32, device=device
+        )
     return result
 
 
@@ -138,6 +149,30 @@ class FeatureStore:
                 expected_cache_hash=self.manifest.get("content_hash"),
             )
             self.mapping.bind_cache(self)
+        self.struct_log = self._load_struct_log()
+
+    def _load_struct_log(self):
+        """Optional sidecar: log C_struct per row, bound to this cache's hash.
+
+        It is a sidecar rather than part of the cache transform because the
+        group arrays are unchanged; a missing sidecar simply means the model may
+        not use `anchor="struct"`, which the model raises on at forward time.
+        """
+        path = self.path / "struct_log.npy"
+        if not path.exists():
+            return None
+        values = np.load(path, mmap_mode="r")
+        if values.shape != (len(self.rows),):
+            raise ValueError("struct_log length disagrees with the cache rows")
+        meta_path = self.path / "struct_manifest.json"
+        if not meta_path.exists():
+            raise ValueError("struct_log present without struct_manifest.json")
+        meta = json.loads(meta_path.read_text())
+        if meta.get("cache_content_hash") != self.manifest.get("content_hash"):
+            raise ValueError("struct_log was built for a different cache")
+        if meta.get("rows") != len(self.rows):
+            raise ValueError("struct_log manifest row count mismatch")
+        return values
 
     def __len__(self):
         return len(self.rows)
@@ -161,6 +196,11 @@ class FeatureStore:
             **(
                 {"mapping": self._mapping_for(index), "mapping_mode": self.mapping.mode}
                 if self.mapping is not None
+                else {}
+            ),
+            **(
+                {"struct_log": float(self.struct_log[index])}
+                if self.struct_log is not None
                 else {}
             ),
         }

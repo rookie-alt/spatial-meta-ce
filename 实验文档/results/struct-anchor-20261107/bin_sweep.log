@@ -1,0 +1,11 @@
+hepatitis done
+carcinogenesis done
+basketball done
+q_exact q95 9.537
+40 {'redistribute': 20.723, 'exact_counts': 17.055, 'redistribute_median': 1.98}
+80 {'redistribute': 14.24, 'exact_counts': 12.347, 'redistribute_median': 1.834}
+160 {'redistribute': 10.54, 'exact_counts': 10.159, 'redistribute_median': 1.704}
+320 {'redistribute': 10.948, 'exact_counts': 9.22, 'redistribute_median': 1.605}
+basketball {40: 78.4, 80: 32.1, 160: 20.8, 320: 18.3}
+carcinogenesis {40: 10.8, 80: 10.1, 160: 9.5, 320: 11.0}
+hepatitis {40: 3.5, 80: 3.1, 160: 2.9, 320: 3.0}

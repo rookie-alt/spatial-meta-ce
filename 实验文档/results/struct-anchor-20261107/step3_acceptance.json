@@ -1,0 +1,13 @@
+{
+  "stage": "118-step-3",
+  "database": "hepatitis",
+  "split": "pretrain",
+  "rows_checked": 2000,
+  "max_abs_difference": 0.0,
+  "anchor_q_median": 1.357121112057285,
+  "anchor_q95": 3.208141163802654,
+  "tolerance": 1e-05,
+  "model": {"arch": "sum", "width": 64, "use_pg": false, "anchor": "struct"},
+  "command": "python scripts/verify_struct_anchor.py --cache-root /gly/weilin/spatial-meta-ce/artifacts/cache --split pretrain --database hepatitis --limit 2000",
+  "note": "Untrained model output equals the stored struct_log bit for bit; the log was produced by scripts/struct_summary.py queries --bins 160 over the first 2000 cache rows."
+}

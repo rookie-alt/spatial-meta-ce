@@ -8,6 +8,7 @@ from .data import GROUP_DIMS
 #       'attn'      variant B: A + token self-attention across all groups
 #       'attn_pair' variant C: B + join-index embedding on fanout tokens
 ARCHES = ("set", "sum", "sum_map", "attn", "attn_pair")
+ANCHORS = ("pg", "struct")
 MAX_JOINS = 16
 
 
@@ -21,6 +22,7 @@ class SetEstimator(nn.Module):
         heads=4,
         pg_output_scale=1.0,
         gate=None,
+        anchor="pg",
     ):
         super().__init__()
         if (
@@ -35,6 +37,12 @@ class SetEstimator(nn.Module):
             raise ValueError("width must be positive")
         if arch not in ARCHES:
             raise ValueError(f"Unknown arch {arch!r}")
+        if anchor not in ANCHORS:
+            raise ValueError(f"Unknown anchor {anchor!r}")
+        if anchor == "struct" and use_pg:
+            # The structural anchor must be a PG-free estimator; PG input would
+            # leak back into the residual head at training time.
+            raise ValueError("anchor='struct' requires use_pg=False")
         # Keep the original config shape for arch='set' so old checkpoints stay byte-identical.
         self.config = {"width": width, "use_pg": use_pg}
         if arch != "set":
@@ -45,6 +53,9 @@ class SetEstimator(nn.Module):
         self.gate_mode = gate
         if gate is not None:
             self.config = {**self.config, "gate": gate}
+        self.anchor = anchor
+        if anchor != "pg":
+            self.config = {**self.config, "anchor": anchor}
         self.use_pg = use_pg
         self.arch = arch
         self.encoders = nn.ModuleList(
@@ -219,6 +230,12 @@ class SetEstimator(nn.Module):
 
     def output_anchor(self, batch):
         """Return the zero-shot anchor used by the residual output head."""
+        if self.anchor == "struct":
+            if "struct_log" not in batch:
+                raise ValueError(
+                    "anchor='struct' requires a struct_log sidecar in the data cache"
+                )
+            return batch["struct_log"]
         if self.use_pg and self.pg_output_scale == 1.0:
             return batch["pg_log"]
         return torch.zeros_like(batch["pg_log"])
