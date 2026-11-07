@@ -37,7 +37,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import tree_identity as ti  # noqa: E402
 from g1_oracle import (  # noqa: E402
     TARGET_DATABASES,
-    apply_filters,
+    _mask,
     load_tables,
     parse_ddl,
     percentile,
@@ -56,6 +56,22 @@ from spatial_meta_ce.struct_summary import (  # noqa: E402
 SCHEMA = 1
 
 
+def filtered_count(frame: pd.DataFrame, predicates) -> int:
+    """Rows surviving `predicates`, without materialising a filtered copy.
+
+    `apply_filters` returns `frame[mask]`, which copies every column; callers
+    here only need the row count, and on a million-row table that copy is the
+    whole cost.
+    """
+    if not predicates:
+        return len(frame)
+    mask = None
+    for predicate in predicates:
+        current = np.asarray(_mask(frame[predicate.column], predicate), dtype=bool)
+        mask = current if mask is None else (mask & current)
+    return int(mask.sum())
+
+
 def binned_c_uncond(
     spec: ti.TreeSpec, frames: dict[str, pd.DataFrame], bins: int = DEFAULT_BINS
 ) -> float:
@@ -71,7 +87,7 @@ def binned_c_uncond(
     for alias in spec.tables:
         total = len(frames[alias])
         total_rows[alias] = total
-        kept = len(apply_filters(frames[alias], spec.for_alias(alias)))
+        kept = filtered_count(frames[alias], spec.for_alias(alias))
         selectivities[alias] = kept / total if total else 0.0
     return c_struct(
         spec.tables, spec.predicates, hists, selectivities, total_rows, bins
@@ -208,8 +224,7 @@ def _summary_factors(
         frame = frames[alias]
         keep = np.ones(len(frame), dtype=bool)
         for predicate in spec.for_alias(alias):
-            filtered = apply_filters(frame, [predicate])
-            keep &= np.isin(np.arange(len(frame)), filtered.index.to_numpy())
+            keep &= np.asarray(_mask(frame[predicate.column], predicate), dtype=bool)
         stored = {entry["column"]: entry for entry in block[table]["columns"]}
         columns = [
             next(c for a, c in classes[var] if a == alias) for var in table_vars[alias]
@@ -366,7 +381,7 @@ def _cached_estimate(spec, tables, bins, hist_cache, class_cache) -> float:
         frame = tables[table_of[alias]]
         total = len(frame)
         total_rows[alias] = total
-        kept = len(apply_filters(frame, spec.for_alias(alias)))
+        kept = filtered_count(frame, spec.for_alias(alias))
         selectivities[alias] = kept / total if total else 0.0
 
     scale = 1.0
