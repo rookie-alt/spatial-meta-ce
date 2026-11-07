@@ -1,0 +1,24 @@
+{
+  "stage": "plan",
+  "sqlglot": "18.17.0",
+  "pandas": "2.1.3",
+  "numpy": "1.26.1",
+  "databases": [
+    "hepatitis",
+    "carcinogenesis",
+    "basketball"
+  ],
+  "max_per_db": 200,
+  "scope": "two tables, one equi-join, AND-only literal predicates",
+  "metric": "q = exp(abs(log(max(est,1)) - log(max(true,1))))",
+  "estimators": {
+    "b0": "|R|^P |S|^P / max(dom_R, dom_S)",
+    "c_uncond": "|R|^P |S|^P sum_k p_R(k) p_S(k), p unfiltered",
+    "c_cond": "sum_k phi_R^P(k) phi_S^P(k)"
+  },
+  "workload_hashes": {
+    "hepatitis": "231b5328e0bf510a6e377435adf3764622c7a569114919d3936c6786d1c52a2f",
+    "carcinogenesis": "71e5e6ef1038d47344b9677251fce80829249e95d16ddf0374b3e11a1db997cd",
+    "basketball": "266750e2d9980e950175124adc4f99062b6c22c7f970d102dccf7398c95dcb50"
+  }
+}

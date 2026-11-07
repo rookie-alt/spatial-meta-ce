@@ -1,0 +1,115 @@
+{
+  "verdict": "conditional_signal_not_observed",
+  "gates": {
+    "1_oracle_correctness": {
+      "passed": true,
+      "c_cond_equals_exact": true
+    },
+    "1b_snapshot_vs_workload": {
+      "passed": true,
+      "max_relative_discrepancy": 0.0,
+      "threshold": 0.05
+    },
+    "2_coverage": {
+      "passed": true,
+      "rule": "every database: >=95% of sampled queries re-analyze to the frozen spec",
+      "per_database": {
+        "hepatitis": {
+          "rows": 50000,
+          "unique_queries": 50000,
+          "eligible": 3060,
+          "eligible_fraction": 0.0612,
+          "sampled": 200,
+          "sampled_representable": 200,
+          "sampled_representable_fraction": 1.0,
+          "unsupported": {
+            "table_count_3": 8402,
+            "table_count_4": 13548,
+            "table_count_5": 12925,
+            "table_count_6": 7394,
+            "table_count_7": 4671
+          },
+          "filters_join_key_count": 0,
+          "run_rejected": 0
+        },
+        "carcinogenesis": {
+          "rows": 50000,
+          "unique_queries": 50000,
+          "eligible": 14842,
+          "eligible_fraction": 0.29684,
+          "sampled": 200,
+          "sampled_representable": 200,
+          "sampled_representable_fraction": 1.0,
+          "unsupported": {
+            "table_count_3": 18622,
+            "table_count_4": 12327,
+            "table_count_5": 3726,
+            "table_count_6": 483
+          },
+          "filters_join_key_count": 0,
+          "run_rejected": 0
+        },
+        "basketball": {
+          "rows": 50000,
+          "unique_queries": 50000,
+          "eligible": 7065,
+          "eligible_fraction": 0.1413,
+          "sampled": 200,
+          "sampled_representable": 200,
+          "sampled_representable_fraction": 1.0,
+          "unsupported": {
+            "table_count_3": 11616,
+            "table_count_4": 14208,
+            "table_count_5": 10980,
+            "table_count_6": 4708,
+            "table_count_7": 1423
+          },
+          "filters_join_key_count": 0,
+          "run_rejected": 0
+        }
+      }
+    },
+    "3_conditional_signal": {
+      "passed": false,
+      "rule": "q95 and median both <= 50% of c_uncond",
+      "ratio_q95": 0.40306324933250287,
+      "ratio_median": 0.936875736244662
+    },
+    "4_counterexample": {
+      "c_cond": [
+        1.0,
+        0.0
+      ],
+      "c_uncond": [
+        0.5,
+        0.5
+      ],
+      "passed": true,
+      "note": "worlds differ only in which key carries x=1"
+    },
+    "5_compression": {
+      "status": "not_run",
+      "reason": "G1b is a separate stage"
+    }
+  },
+  "summary": {
+    "b0": {
+      "median": 1.1667246860611908,
+      "q95": 4.645475544181985,
+      "max": 36.0,
+      "mean": 1.950729312051158
+    },
+    "c_uncond": {
+      "median": 1.0673774133679275,
+      "q95": 2.481000194525451,
+      "max": 36.38627540243919,
+      "mean": 1.6014761875805894
+    },
+    "c_cond": {
+      "median": 1.0,
+      "q95": 1.0,
+      "max": 1.0,
+      "mean": 1.0
+    }
+  }
+}

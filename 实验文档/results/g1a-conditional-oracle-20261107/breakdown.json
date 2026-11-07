@@ -1,0 +1,153 @@
+{
+  "selectivity": "min(sel_left, sel_right), the more selective side",
+  "buckets": [
+    "<1e-3",
+    "1e-3..1e-2",
+    "1e-2..1e-1",
+    "1e-1..0.5",
+    ">=0.5"
+  ],
+  "rows": [
+    {
+      "database": "basketball",
+      "filters_join_key": false,
+      "selectivity_bucket": "1e-1..0.5",
+      "n": 29,
+      "median_q_uncond": 1.1918692721157385,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 1.634931851010234,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "basketball",
+      "filters_join_key": false,
+      "selectivity_bucket": "1e-2..1e-1",
+      "n": 61,
+      "median_q_uncond": 1.2130146362009047,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 3.042918757478774,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "basketball",
+      "filters_join_key": false,
+      "selectivity_bucket": "1e-3..1e-2",
+      "n": 42,
+      "median_q_uncond": 1.3227286043662154,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 12.328282345486222,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "basketball",
+      "filters_join_key": false,
+      "selectivity_bucket": "<1e-3",
+      "n": 27,
+      "median_q_uncond": 1.241294651990671,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 13.834872262907025,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "basketball",
+      "filters_join_key": false,
+      "selectivity_bucket": ">=0.5",
+      "n": 41,
+      "median_q_uncond": 1.0269139937502239,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 1.1679894774735033,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "carcinogenesis",
+      "filters_join_key": false,
+      "selectivity_bucket": "1e-1..0.5",
+      "n": 104,
+      "median_q_uncond": 1.2327995053079357,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 2.7878201723032365,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "carcinogenesis",
+      "filters_join_key": false,
+      "selectivity_bucket": "1e-2..1e-1",
+      "n": 17,
+      "median_q_uncond": 1.3656755519201356,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 13.362892895851813,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "carcinogenesis",
+      "filters_join_key": false,
+      "selectivity_bucket": "1e-3..1e-2",
+      "n": 11,
+      "median_q_uncond": 1.4839948306858497,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 15.58519827683438,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "carcinogenesis",
+      "filters_join_key": false,
+      "selectivity_bucket": "<1e-3",
+      "n": 2,
+      "median_q_uncond": 2.8022657983182064,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 4.2541907444165314,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "carcinogenesis",
+      "filters_join_key": false,
+      "selectivity_bucket": ">=0.5",
+      "n": 66,
+      "median_q_uncond": 1.0856738435854174,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 1.5432293353315745,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "hepatitis",
+      "filters_join_key": false,
+      "selectivity_bucket": "1e-1..0.5",
+      "n": 30,
+      "median_q_uncond": 1.0,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 1.2122636875825898,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "hepatitis",
+      "filters_join_key": false,
+      "selectivity_bucket": "1e-2..1e-1",
+      "n": 107,
+      "median_q_uncond": 1.0,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 1.3377041637911191,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "hepatitis",
+      "filters_join_key": false,
+      "selectivity_bucket": "1e-3..1e-2",
+      "n": 59,
+      "median_q_uncond": 1.0,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 1.0000000000000004,
+      "q95_q_cond": 1.0
+    },
+    {
+      "database": "hepatitis",
+      "filters_join_key": false,
+      "selectivity_bucket": ">=0.5",
+      "n": 4,
+      "median_q_uncond": 1.068262731823808,
+      "median_q_cond": 1.0,
+      "q95_q_uncond": 1.1756014801031944,
+      "q95_q_cond": 1.0
+    }
+  ],
+  "note": "descriptive only; it does not change the frozen go/no-go gate. Strata are listed per database because the sampled table pairs are not balanced across databases."
+}
