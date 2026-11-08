@@ -1,0 +1,415 @@
+{
+  "stage": "118-step-4-and-5",
+  "split": "test",
+  "training": {
+    "config": "configs/erm_struct_4k_full.json",
+    "config_sha256": "587f134777317ee2282df8003daf4a3549ccd74e44d103a1af6ef7b86bed2bbb",
+    "model": {
+      "width": 64,
+      "use_pg": false,
+      "arch": "sum",
+      "layers": 2,
+      "heads": 4,
+      "anchor": "struct"
+    },
+    "parameters": 132545,
+    "method": "erm",
+    "steps": 4000,
+    "patience": 201,
+    "selection": "last.pt at step 4000 (no early stop, no best.pt selection)",
+    "why_this_protocol": "The main-table ERM-sum baseline (p1-screen-20261020/baseline/last.pt) was trained for a fixed 4000 updates and evaluated from last.pt; doc 111 states the two sides must use the same rule or the comparison is two selections. An earlier struct run (runs/struct-seed*, configs/erm_struct_4k.json, patience 10, best.pt) stopped at 3700/3600/1100 and is therefore not used for the target table.",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "train_databases": 23,
+    "validation_databases": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "wall_seconds": {
+      "42": 771.4039792959811,
+      "43": 811.0900840680115,
+      "44": 731.7783164489665
+    },
+    "checkpoints": {
+      "42": {
+        "path": "runs/struct-full-seed42/last.pt",
+        "sha256": "6bef6b123547232445df0ee6056ddc8b5738b4d967d4151462d84cbcdffa28f7"
+      },
+      "43": {
+        "path": "runs/struct-full-seed43/last.pt",
+        "sha256": "de192755c581cc2a08669cb08953fc1a4fb45fcaf7932b23e0e21be07da2a92c"
+      },
+      "44": {
+        "path": "runs/struct-full-seed44/last.pt",
+        "sha256": "ce88bd003376f30085ae054f16c53ccad36ab4fe08cb2f601fdc7e841f79ca5d"
+      }
+    },
+    "runs": {
+      "42": {
+        "step": 4000,
+        "validation_q95_log_error": 2.784180862255893,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1621915,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        }
+      },
+      "43": {
+        "step": 4000,
+        "validation_q95_log_error": 2.670581256880939,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1612925,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        }
+      },
+      "44": {
+        "step": 4000,
+        "validation_q95_log_error": 2.864429265914456,
+        "counts": {
+          "support_presentations": 0,
+          "query_presentations": 1608345,
+          "backward_calls": 16000,
+          "optimizer_steps": 4000
+        }
+      }
+    },
+    "runs_source": "runs/struct-full-seed*/history.json last row on the server; runs/ is not committed"
+  },
+  "gate_4_source_validation": {
+    "metric": "validation_macro_log_q95 at step 4000, re-scored at a fixed inner_steps",
+    "protocol_correction": "The baseline checkpoints were validated with inner_steps=0 (zero-shot); the struct config used inner_steps=5. validate() reads config['inner_steps'], so the previously published table paired a zero-shot baseline with a 5-step-adapted struct arm. All six checkpoints were re-scored at both settings with scripts/validate_inner_steps.py; the raw output is step6_inner_steps_protocol.json.",
+    "plan": {
+      "databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "episodes": 75,
+      "support_sizes": [
+        5,
+        10,
+        20,
+        50,
+        100
+      ],
+      "validation_runs": 5,
+      "validation_seed": 1729,
+      "query_size": 64,
+      "inner_lr": 0.001,
+      "adapt_scope": "all",
+      "loss": "smooth_l1"
+    },
+    "scores": {
+      "42": {
+        "baseline_inner_steps_0": 2.6875541768782463,
+        "baseline_inner_steps_5": 2.820989537196335,
+        "struct_inner_steps_0": 3.0337269245478744,
+        "struct_inner_steps_5": 2.7841810637990645
+      },
+      "43": {
+        "baseline_inner_steps_0": 2.686646454009024,
+        "baseline_inner_steps_5": 2.7905008536714098,
+        "struct_inner_steps_0": 3.880105054582127,
+        "struct_inner_steps_5": 2.670581634675046
+      },
+      "44": {
+        "baseline_inner_steps_0": 2.706905930615274,
+        "baseline_inner_steps_5": 2.74837288657921,
+        "struct_inner_steps_0": 3.184154439401594,
+        "struct_inner_steps_5": 2.864429373878336
+      }
+    },
+    "relative_change_percent_matched": {
+      "42": {
+        "inner_steps_0": 12.880586767249035,
+        "inner_steps_5": -1.304807157627852
+      },
+      "43": {
+        "inner_steps_0": 44.421870201500454,
+        "inner_steps_5": -4.297408432561067
+      },
+      "44": {
+        "inner_steps_0": 17.630775542977318,
+        "inner_steps_5": 4.222734399173067
+      }
+    },
+    "adaptation_effect_percent": {
+      "42": {
+        "baseline_0_to_5": 4.964936575644474,
+        "struct_0_to_5": -8.225719287044942
+      },
+      "43": {
+        "baseline_0_to_5": 3.8655774565132583,
+        "struct_0_to_5": -31.172439995631564
+      },
+      "44": {
+        "baseline_0_to_5": 1.5318949762879397,
+        "struct_0_to_5": -10.041129336155718
+      }
+    },
+    "threshold_percent": 10,
+    "passed_under_project_protocol_inner_steps_0": false,
+    "passed_under_struct_protocol_inner_steps_5": true,
+    "verdict": "The gate's verdict depends on the reading. (i) Selected checkpoint scored under the baseline's own protocol (inner_steps=0): +12.88/+44.42/+17.63%, FAILS. (ii) Selected checkpoint scored under the struct config's protocol (inner_steps=5): -1.30/-4.30/+4.22%, passes; that protocol favours the struct arm, because 5-step adaptation worsens the baseline by 1.5-5.0% but improves the struct arm by 8.2-31.2%. (iii) Each run's own best_metric: +1.31/-1.56/+3.43%, passes, but the two sides are then measured under different protocols at different steps and neither is the checkpoint used downstream. The only reading that is both protocol-matched and at the operating point used by the K=0 target evaluation (zero-shot) is (i), which fails.",
+    "best_not_used": {
+      "42": {
+        "step": 2700,
+        "value": 2.607102614045977
+      },
+      "43": {
+        "step": 2600,
+        "value": 2.570107250601493
+      },
+      "44": {
+        "step": 100,
+        "value": 2.719601230428457
+      }
+    },
+    "selection_reading": {
+      "note": "A third reading compares each run's own best_metric (the source-validation selection value stored in the checkpoint). Each side then uses its own protocol (baseline inner_steps=0, struct inner_steps=5) and its own best step, so this is not a matched-protocol comparison either, but doc 118 section 2.2 says 'source-validation selection' and this is the literal selection value.",
+      "baseline": {
+        "42": 2.5733689057584117,
+        "43": 2.610725266655268,
+        "44": 2.629307712009371
+      },
+      "struct": {
+        "42": 2.607102614045977,
+        "43": 2.570107250601493,
+        "44": 2.719601230428457
+      },
+      "relative_change_percent": {
+        "42": 1.3108772788883671,
+        "43": -1.5558134964470116,
+        "44": 3.4341175818513037
+      }
+    }
+  },
+  "stop_condition_2_bare_anchor": {
+    "rule": "doc 118 section 6.2: if the trained model is worse than the closed-form anchor on source validation, drop the correction head",
+    "measurement": "A fresh SetEstimator(width=64, use_pg=False, arch=sum, layers=2, heads=4, anchor=struct) has a zero-initialised last layer; torch.manual_seed(0); the same 75-episode source validation plan; log at step6_bare_anchor_protocols.log.",
+    "bare_anchor": {
+      "inner_steps_0": 3.6722179821446814,
+      "inner_steps_5": 3.636194424170763
+    },
+    "trained": {
+      "42": {
+        "inner_steps_0": 3.0337269245478744,
+        "inner_steps_5": 2.7841810637990645
+      },
+      "43": {
+        "inner_steps_0": 3.880105054582127,
+        "inner_steps_5": 2.670581634675046
+      },
+      "44": {
+        "inner_steps_0": 3.184154439401594,
+        "inner_steps_5": 2.864429373878336
+      }
+    },
+    "triggered": false,
+    "counterexample": "At inner_steps=0 (the anchor's own protocol, deterministic) seed 43 scores 3.8801 vs the bare anchor's 3.6722, i.e. 5.66% worse; seeds 42/44 improve. At inner_steps=5 all three seeds improve (-21% to -26%). The head helps on average, not always.",
+    "superseded_value": {
+      "anchor_validation_q95_log_error": 3.6517707179035197,
+      "why": "Produced by a fresh model whose random seed was not recorded, at inner_steps=5; a 5-step score depends on the random weights under the zero-initialised layer, so it is not the pure-anchor value. Superseded by the inner_steps=0 measurement 3.6722."
+    },
+    "literal_reference_not_measured": "Doc 118 section 6.2 names C_uncond; C_uncond was measured in doc 119 on a different 600-query (4-7 table) set and is not available on this 75-episode source validation plan. The bare struct anchor on the same plan is the substitute used here, so the literal stop condition was not evaluated.",
+    "verdict": "Not triggered under either measured protocol, but not clean: at inner_steps=0 seed 43 scores 3.8801 vs the bare anchor's 3.6722 (+5.66%, worse), while seeds 42/44 improve; at inner_steps=5 all three seeds improve (-21% to -27%). The plan gives no aggregation rule across seeds or protocols, so 'the head helps on average' is the most that is supported."
+  },
+  "target_k0": {
+    "script": "scripts/target_population_eval.py",
+    "aggregator": "scripts/target_three_seed_summary.py",
+    "cache_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+    "databases": [
+      "imdb",
+      "stats",
+      "genome",
+      "ergastf1"
+    ],
+    "maxima": [
+      12,
+      14,
+      8,
+      10
+    ],
+    "maxima_rule": "doc 102 section 2.2 recomputation; unchanged since doc 108",
+    "price_checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+    "metric": "unique-query population Q95 (single pass)",
+    "population_q95": {
+      "imdb": {
+        "n": 521,
+        "pg": 87.10975609756095,
+        "price": 21.025178154201523,
+        "old_sum_mean": 33.12955182059044,
+        "old_sum_sd": 1.7919476705285207,
+        "struct_mean": 36.01390082379549,
+        "struct_sd": 8.382951842002912
+      },
+      "stats": {
+        "n": 2603,
+        "pg": 75.65001568267913,
+        "price": 39.520592438960115,
+        "old_sum_mean": 81.06533931463939,
+        "old_sum_sd": 2.4442726309400933,
+        "struct_mean": 376.41018497205687,
+        "struct_sd": 69.86007975419155
+      },
+      "genome": {
+        "n": 1699,
+        "pg": 1907.320652173913,
+        "price": 31.33616583353631,
+        "old_sum_mean": 192.01494543351706,
+        "old_sum_sd": 122.70168358751683,
+        "struct_mean": 976.1271477779824,
+        "struct_sd": 747.7968402381612
+      },
+      "ergastf1": {
+        "n": 1258,
+        "pg": 27.609005752236286,
+        "price": 15.292854470718373,
+        "old_sum_mean": 23.443582936208013,
+        "old_sum_sd": 1.5396807773219219,
+        "struct_mean": 81.18513327037523,
+        "struct_sd": 119.15048211682817
+      }
+    },
+    "bucket_4plus_q95": {
+      "imdb": {
+        "n": 118,
+        "pg": 1174.910739450328,
+        "price": 88.90998140560941,
+        "old_sum_mean": 440.4932330061544,
+        "old_sum_sd": 82.68153656833672,
+        "struct_mean": 68.24508747760308,
+        "struct_sd": 6.737157959552184
+      },
+      "stats": {
+        "n": 906,
+        "pg": 230.05715998496598,
+        "price": 141.7560761280571,
+        "old_sum_mean": 271.26247677526953,
+        "old_sum_sd": 35.82989361089987,
+        "struct_mean": 931.7446851585281,
+        "struct_sd": 301.6782619070117
+      },
+      "genome": {
+        "n": 544,
+        "pg": 9986.27777777777,
+        "price": 64.03089673949823,
+        "old_sum_mean": 1278.206117026553,
+        "old_sum_sd": 1189.3422200944294,
+        "struct_mean": 3891.45593382219,
+        "struct_sd": 3821.441313011778
+      },
+      "ergastf1": {
+        "n": 258,
+        "pg": 107.29673625022347,
+        "price": 58.22408875108716,
+        "old_sum_mean": 93.78899644734396,
+        "old_sum_sd": 14.912840767916041,
+        "struct_mean": 100.4597125419374,
+        "struct_sd": 69.57842473331107
+      }
+    },
+    "per_seed_q95": {
+      "imdb": {
+        "42": 27.488643805289648,
+        "43": 44.24690414679745,
+        "44": 36.30615451929937
+      },
+      "stats": {
+        "42": 402.78818066464845,
+        "43": 429.24074294593623,
+        "44": 297.201631305586
+      },
+      "genome": {
+        "42": 1030.8218276039754,
+        "43": 1695.074979542538,
+        "44": 202.48463618743367
+      },
+      "ergastf1": {
+        "42": 218.7358484109616,
+        "43": 14.995885115311298,
+        "44": 9.823666284852774
+      }
+    },
+    "headline": {
+      "total_seed_database_pairs": 12,
+      "seed_database_pairs_beating_price": 2,
+      "seed_database_pairs_beating_pg": 8,
+      "every_seed_loses_to_price_on_q95": false,
+      "median_q95_ratio_price_over_ours": 0.3386126908783801,
+      "median_q95_ratio_pg_over_ours": 1.8456983694246358
+    },
+    "old_sum_source": "实验文档/results/p2-2-target-3seed-20261023/summary.json (same script, same maxima, same cache content hashes)"
+  },
+  "diagnosis": {
+    "script": "scripts/diagnose_struct_target.py",
+    "log": "实验文档/results/struct-anchor-20261107/step6_target_diagnosis.log",
+    "anchor_q95_log_error": {
+      "imdb": 3.975,
+      "stats": 6.792,
+      "genome": 7.93,
+      "ergastf1": 2.542
+    },
+    "anchor_median_log_error": {
+      "imdb": 0.706,
+      "stats": 1.627,
+      "genome": 0.733,
+      "ergastf1": 0.415
+    },
+    "finding": "The bare anchor's error grows with table count on all four targets when measured by the median; the q95 rise is not strictly monotone (genome 5->6 tables 9.779->9.770, ergastf1 6->7 tables 3.207->3.140). The curve mixes the structural-independence error with the 160-bin approximation, which doc 119 section 3 measured on a different query set (4 tables: binned 8.81 vs exact 9.558, within that section's bootstrap noise; 5 tables 12.24 vs 7.399; 6 tables 41.24 vs 15.967; 7 tables 6.03 vs 3.055). Two-table medians are 0.227-0.586, so the sidecar/queries path is not broken; the script's intended n=1 control is unavailable because no target database has 1-table queries.",
+    "head_residual": {
+      "imdb": {
+        "42": 2.338,
+        "43": 2.717,
+        "44": 2.536
+      },
+      "stats": {
+        "42": 0.414,
+        "43": 0.93,
+        "44": 0.605
+      },
+      "genome": {
+        "42": 0.296,
+        "43": -0.031,
+        "44": 3.647
+      },
+      "ergastf1": {
+        "42": 1.389,
+        "43": 0.863,
+        "44": 0.245
+      }
+    },
+    "head_effect": "The head lowers the anchor's q95 log error on all three seeds for imdb, stats and genome, but on ergastf1 only seed 44 improves (2.542->2.285); seeds 42 (5.388) and 43 (2.708) are worse than the bare anchor. The residual is mostly a near-uniform upward shift learned on source databases, not a fix of the target tail.",
+    "anchor_by_table_count_caveat": "struct_log is a 160-bin approximation, and doc 119 section 3 measured that approximation degrading with table count on the same source queries (5 tables: 160-bin Q95 12.24 vs exact 7.399; 6 tables: 41.24 vs 15.967). The by-table-count curve therefore mixes the structural-independence error with the bucketing error; it does not attribute the growth to the structural estimator alone. The script's intended n=1 control is unavailable: no target database has 1-table queries (the 1-table bucket is empty in every seed summary)."
+  },
+  "stop_conditions": {
+    "rule_6_2_drop_head": "not triggered under either measured protocol, with one counterexample: at the anchor's own 0-step protocol seeds 42/44 beat the bare anchor but seed 43 is 5.66% worse (3.8801 vs 3.6722); at 5 steps all three seeds improve. The plan's literal reference (C_uncond on this plan) was not measured; a bare struct anchor was used as the proxy.",
+    "rule_6_3_all_seeds_lose_to_pg": "not triggered literally: all three seeds beat PG on imdb and genome; all three lose to PG on stats; two of three beat PG on ergastf1",
+    "substantive_result": "The struct anchor without PG loses to the existing PG-anchored sum baseline on three of four targets at the 3-seed mean (stats 376.4 vs 81.1, genome 976.1 vs 192.0, ergastf1 81.2 vs 23.4) and is slightly worse on imdb (36.0 vs 33.1); on the 4+ table bucket it is much better on imdb (68.2 vs 440.5) and worse on stats and genome."
+  },
+  "verification": {
+    "reproduced_history": {
+      "baseline_seed42": 2.6875541244261583,
+      "baseline_seed43": 2.6866463958348907,
+      "baseline_seed44": 2.706906068421213,
+      "max_abs_difference_vs_rescore": 1.4e-07,
+      "struct": {
+        "42": 2.784180862255893,
+        "43": 2.670581256880939,
+        "44": 2.864429265914456
+      },
+      "note": "Baseline values are the history.json step-4000 rows; struct values are the same rows, reproduced by re-scoring the checkpoints at inner_steps=5 within 2.1e-07."
+    },
+    "scripts": [
+      "scripts/validate_inner_steps.py",
+      "scripts/diagnose_struct_target.py"
+    ]
+  }
+}

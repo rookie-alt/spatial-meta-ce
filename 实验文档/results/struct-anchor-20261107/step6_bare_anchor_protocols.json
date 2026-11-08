@@ -1,0 +1,47 @@
+{
+  "config": "configs/erm_struct_4k_full.json",
+  "plan": {
+    "databases": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "episodes": 75,
+    "support_sizes": [
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "validation_runs": 5,
+    "validation_seed": 1729,
+    "query_size": 64,
+    "inner_lr": 0.001,
+    "adapt_scope": "all",
+    "loss": "smooth_l1"
+  },
+  "checkpoints": {
+    "bare-anchor": {
+      "seed": 0,
+      "model_config": {
+        "width": 64,
+        "use_pg": false,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4,
+        "anchor": "struct"
+      },
+      "scores": {
+        "0": {
+          "validation_q95_log_error": 3.6722179821446814,
+          "episodes": 75
+        },
+        "5": {
+          "validation_q95_log_error": 3.636194424170763,
+          "episodes": 75
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+== imdb queries=521 anchor q95=3.975 median=0.706
+   sidecar bins=160 rows=766 cache=aa0e1628ed7a struct_log_sha256=93890fd14673
+   n_tables= 2 count=  191 median= 0.227 q95= 1.460 max= 2.284
+   n_tables= 3 count=  212 median= 0.757 q95= 2.980 max= 5.332
+   n_tables= 4 count=   94 median= 2.297 q95= 4.974 max= 6.296
+   n_tables= 5 count=   24 median= 3.091 q95= 6.443 max= 6.452
+   seed42: q95= 3.314 residual mean=+2.338 median=+2.259 p95=+5.462 max=+6.592
+   seed43: q95= 3.790 residual mean=+2.717 median=+2.854 p95=+5.797 max=+6.939
+   seed44: q95= 3.592 residual mean=+2.536 median=+2.447 p95=+5.386 max=+6.648
+== stats queries=2603 anchor q95=6.792 median=1.627
+   sidecar bins=160 rows=2749 cache=4f1726a2ddcd struct_log_sha256=d8081cfe6856
+   n_tables= 2 count=  828 median= 0.586 q95= 4.094 max= 6.070
+   n_tables= 3 count=  869 median= 1.494 q95= 6.686 max=10.827
+   n_tables= 4 count=  578 median= 2.420 q95= 7.350 max=14.647
+   n_tables= 5 count=  244 median= 3.922 q95= 7.675 max=10.602
+   n_tables= 6 count=   76 median= 5.478 q95= 7.759 max= 9.986
+   n_tables= 7 count=    8 median= 7.559 q95= 8.020 max= 8.020
+   seed42: q95= 5.998 residual mean=+0.414 median=+0.147 p95=+1.822 max=+7.136
+   seed43: q95= 6.062 residual mean=+0.930 median=+0.309 p95=+3.816 max=+10.339
+   seed44: q95= 5.694 residual mean=+0.605 median=+0.387 p95=+2.027 max=+6.777
+== genome queries=1699 anchor q95=7.930 median=0.733
+   sidecar bins=160 rows=2302 cache=f0f0f8660623 struct_log_sha256=58a5b9ea1620
+   n_tables= 2 count=  553 median= 0.347 q95= 2.134 max= 8.092
+   n_tables= 3 count=  602 median= 0.732 q95= 4.951 max=10.236
+   n_tables= 4 count=  385 median= 0.736 q95= 9.050 max=10.236
+   n_tables= 5 count=  134 median= 2.632 q95= 9.779 max=10.023
+   n_tables= 6 count=   25 median= 3.177 q95= 9.770 max= 9.779
+   seed42: q95= 6.938 residual mean=+0.296 median=+0.196 p95=+1.167 max=+2.572
+   seed43: q95= 7.435 residual mean=-0.031 median=-0.058 p95=+0.475 max=+1.190
+   seed44: q95= 5.311 residual mean=+3.647 median=+3.639 p95=+6.104 max=+8.007
+== ergastf1 queries=1258 anchor q95=2.542 median=0.415
+   sidecar bins=160 rows=1422 cache=2a1c15b25326 struct_log_sha256=18ffade3128f
+   n_tables= 2 count=  578 median= 0.285 q95= 1.577 max= 3.099
+   n_tables= 3 count=  422 median= 0.474 q95= 2.467 max= 4.855
+   n_tables= 4 count=  187 median= 0.806 q95= 3.154 max= 6.154
+   n_tables= 5 count=   55 median= 1.139 q95= 3.202 max= 6.198
+   n_tables= 6 count=   14 median= 2.173 q95= 3.207 max= 3.230
+   n_tables= 7 count=    2 median= 3.140 q95= 3.140 max= 3.140
+   seed42: q95= 5.388 residual mean=+1.389 median=+0.716 p95=+5.426 max=+11.497
+   seed43: q95= 2.708 residual mean=+0.863 median=+0.444 p95=+2.756 max=+5.037
+   seed44: q95= 2.285 residual mean=+0.245 median=+0.080 p95=+1.239 max=+2.991

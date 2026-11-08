@@ -1,0 +1,2 @@
+{"checkpoint": "bare-anchor", "inner_steps": 0, "validation_q95_log_error": 3.6722179821446814}
+{"checkpoint": "bare-anchor", "inner_steps": 5, "validation_q95_log_error": 3.636194424170763}

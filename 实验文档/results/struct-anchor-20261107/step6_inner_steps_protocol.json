@@ -1,0 +1,173 @@
+{
+  "config": "configs/erm_struct_4k_full.json",
+  "plan": {
+    "databases": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "episodes": 75,
+    "support_sizes": [
+      5,
+      10,
+      20,
+      50,
+      100
+    ],
+    "validation_runs": 5,
+    "validation_seed": 1729,
+    "query_size": 64,
+    "inner_lr": 0.001,
+    "adapt_scope": "all",
+    "loss": "smooth_l1"
+  },
+  "checkpoints": {
+    "baseline-s42": {
+      "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/baseline/last.pt",
+      "sha256": "563ec1596b1a34dd3853e05d098634a473a74947aa176367d0d293857499d8a3",
+      "seed": 42,
+      "method": "erm",
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "best_step": 2.5733689057584117,
+      "scores": {
+        "0": {
+          "validation_q95_log_error": 2.6875541768782463,
+          "episodes": 75
+        },
+        "5": {
+          "validation_q95_log_error": 2.820989537196335,
+          "episodes": 75
+        }
+      }
+    },
+    "baseline-s43": {
+      "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/seed43/baseline/last.pt",
+      "sha256": "5617f7ddf875a024b9330bc82bc6126c0ab19806972a6e42d710d92617b7ad15",
+      "seed": 43,
+      "method": "erm",
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "best_step": 2.610725266655268,
+      "scores": {
+        "0": {
+          "validation_q95_log_error": 2.686646454009024,
+          "episodes": 75
+        },
+        "5": {
+          "validation_q95_log_error": 2.7905008536714098,
+          "episodes": 75
+        }
+      }
+    },
+    "baseline-s44": {
+      "path": "/gly/weilin/spatial-meta-ce-p1-loss-gate-20261020-code/runs/p1-screen-20261020/seed44/baseline/last.pt",
+      "sha256": "2546821e395ddfcfe6294757347fbb21acdc01da7fa4ec2498639571bbbec093",
+      "seed": 44,
+      "method": "erm",
+      "model_config": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      },
+      "best_step": 2.629307712009371,
+      "scores": {
+        "0": {
+          "validation_q95_log_error": 2.706905930615274,
+          "episodes": 75
+        },
+        "5": {
+          "validation_q95_log_error": 2.74837288657921,
+          "episodes": 75
+        }
+      }
+    },
+    "struct-s42": {
+      "path": "runs/struct-full-seed42/last.pt",
+      "sha256": "6bef6b123547232445df0ee6056ddc8b5738b4d967d4151462d84cbcdffa28f7",
+      "seed": 42,
+      "method": "erm",
+      "model_config": {
+        "width": 64,
+        "use_pg": false,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4,
+        "anchor": "struct"
+      },
+      "best_step": 2.607102614045977,
+      "scores": {
+        "0": {
+          "validation_q95_log_error": 3.0337269245478744,
+          "episodes": 75
+        },
+        "5": {
+          "validation_q95_log_error": 2.7841810637990645,
+          "episodes": 75
+        }
+      }
+    },
+    "struct-s43": {
+      "path": "runs/struct-full-seed43/last.pt",
+      "sha256": "de192755c581cc2a08669cb08953fc1a4fb45fcaf7932b23e0e21be07da2a92c",
+      "seed": 43,
+      "method": "erm",
+      "model_config": {
+        "width": 64,
+        "use_pg": false,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4,
+        "anchor": "struct"
+      },
+      "best_step": 2.570107250601493,
+      "scores": {
+        "0": {
+          "validation_q95_log_error": 3.880105054582127,
+          "episodes": 75
+        },
+        "5": {
+          "validation_q95_log_error": 2.670581634675046,
+          "episodes": 75
+        }
+      }
+    },
+    "struct-s44": {
+      "path": "runs/struct-full-seed44/last.pt",
+      "sha256": "ce88bd003376f30085ae054f16c53ccad36ab4fe08cb2f601fdc7e841f79ca5d",
+      "seed": 44,
+      "method": "erm",
+      "model_config": {
+        "width": 64,
+        "use_pg": false,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4,
+        "anchor": "struct"
+      },
+      "best_step": 2.719601230428457,
+      "scores": {
+        "0": {
+          "validation_q95_log_error": 3.184154439401594,
+          "episodes": 75
+        },
+        "5": {
+          "validation_q95_log_error": 2.864429373878336,
+          "episodes": 75
+        }
+      }
+    }
+  }
+}
