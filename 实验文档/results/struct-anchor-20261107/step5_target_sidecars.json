@@ -1,0 +1,59 @@
+{
+  "stage": "118-step-5-prep",
+  "ruling": "118 §5.1 (2026-11-08, approved by the user): key-distribution summaries may be built from target-database cache data, as evaluation-time inference input only -- never for training, hyperparameter or checkpoint selection",
+  "split": "test",
+  "bins": 160,
+  "generator": "scripts/struct_summary.py queries --bins 160 --allow-target",
+  "dataset_dir": "/tmp/struct118/datasets",
+  "started": "2026-11-08 10:14:28 (server local)",
+  "finished": "2026-11-08 10:18:44 (server local, batch shell reported ALL_DONE)",
+  "databases": [
+    {
+      "database": "imdb",
+      "rows": 766,
+      "completed": "2026-11-08 10:18:42",
+      "failure_count": 0,
+      "target_database": true,
+      "cache_content_hash": "aa0e1628ed7aa637e90ffedfcd27c7a4c6703e98cb46083e6beef05e3d86d333",
+      "anchor_median_log": 14.042206682280554
+    },
+    {
+      "database": "stats",
+      "rows": 2749,
+      "completed": "2026-11-08 10:14:49",
+      "failure_count": 0,
+      "target_database": true,
+      "cache_content_hash": "4f1726a2ddcd0f40a964cc6a5620073fa9fd05ad88e4daf8343d84f2e0248b22",
+      "anchor_median_log": 11.191659214698847
+    },
+    {
+      "database": "genome",
+      "rows": 2302,
+      "completed": "2026-11-08 10:14:57",
+      "failure_count": 0,
+      "target_database": true,
+      "cache_content_hash": "f0f0f8660623fe3694b808916d1ec24b4ff51355723e13343a3d95cd897a07f9",
+      "anchor_median_log": 15.768918909989276
+    },
+    {
+      "database": "ergastf1",
+      "rows": 1422,
+      "completed": "2026-11-08 10:14:36",
+      "failure_count": 0,
+      "target_database": true,
+      "cache_content_hash": "2a1c15b25326ccc7b4eb3b009c78f8178797ecce7e44d87245519776ac01697a",
+      "anchor_median_log": 12.536477829920008
+    }
+  ],
+  "load_check": {
+    "script": "scripts/check_target_sidecars.py",
+    "command": "python -B scripts/check_target_sidecars.py --cache-root /gly/weilin/spatial-meta-ce/artifacts/cache --databases imdb stats genome ergastf1",
+    "log": "实验文档/results/struct-anchor-20261107/step5_target_sidecars_check.log",
+    "method": "FeatureStore(cache/test/<db>): struct_log is not None, length equals cache rows, store.batch([0,1]) carries a finite struct_log; manifest fields read back",
+    "passed": 4,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "label_use": "Value semantics: every entry of struct_log.npy is computed from base-table data and the query structure; no true cardinality feeds any computed value. Reading boundary, stated precisely: the queries path parses the workload file, whose rows are 'SQL || exact_cardinality || pg_estimate'; read_workload (spatial_meta_ce/manifests.py:52-79) parses all three fields and uses exact_cardinality as a consistency gate (two different values for the same canonical SQL raise). source['true'] is used only by the verify/bineval stages; source['pg'] only by the --on-failure pg branch, which did not run (on_failure=fail, failure_count=0). cards.npy is never opened.",
+  "note": "imdb has no finetune cache, so its evaluation is K=0 only (doc 102 §3.1). No finetune-split target sidecars were generated: step 5 is K=0, so they are not needed. The 4 min 16 s batch wall-clock is dominated by imdb (~4 min 14 s); the other three wrote their sidecars within the first minute."
+}

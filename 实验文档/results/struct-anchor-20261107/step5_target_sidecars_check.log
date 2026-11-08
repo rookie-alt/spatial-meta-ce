@@ -1,0 +1,51 @@
+imdb: rows=766 ok=True
+stats: rows=2749 ok=True
+genome: rows=2302 ok=True
+ergastf1: rows=1422 ok=True
+[
+  {
+    "database": "imdb",
+    "rows": 766,
+    "finite": true,
+    "batch_has_struct_log": true,
+    "target_database": true,
+    "bins": 160,
+    "failure_count": 0,
+    "cache_content_hash": "aa0e1628ed7aa637e90ffedfcd27c7a4c6703e98cb46083e6beef05e3d86d333",
+    "anchor_median_log": 14.042206682280554
+  },
+  {
+    "database": "stats",
+    "rows": 2749,
+    "finite": true,
+    "batch_has_struct_log": true,
+    "target_database": true,
+    "bins": 160,
+    "failure_count": 0,
+    "cache_content_hash": "4f1726a2ddcd0f40a964cc6a5620073fa9fd05ad88e4daf8343d84f2e0248b22",
+    "anchor_median_log": 11.191659214698847
+  },
+  {
+    "database": "genome",
+    "rows": 2302,
+    "finite": true,
+    "batch_has_struct_log": true,
+    "target_database": true,
+    "bins": 160,
+    "failure_count": 0,
+    "cache_content_hash": "f0f0f8660623fe3694b808916d1ec24b4ff51355723e13343a3d95cd897a07f9",
+    "anchor_median_log": 15.768918909989276
+  },
+  {
+    "database": "ergastf1",
+    "rows": 1422,
+    "finite": true,
+    "batch_has_struct_log": true,
+    "target_database": true,
+    "bins": 160,
+    "failure_count": 0,
+    "cache_content_hash": "2a1c15b25326ccc7b4eb3b009c78f8178797ecce7e44d87245519776ac01697a",
+    "anchor_median_log": 12.536477829920008
+  }
+]
+EXIT=0
