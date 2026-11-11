@@ -13,13 +13,14 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from spatial_meta_ce.cli import data_settings, read_json  # noqa: E402
+from spatial_meta_ce.price_protocol import A_ARMS  # noqa: E402
 from spatial_meta_ce.source_eval import ARMS, evaluate_source  # noqa: E402
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--checkpoint", required=True)
-    parser.add_argument("--arm", required=True, choices=sorted(ARMS))
+    parser.add_argument("--arm", required=True, choices=sorted((*ARMS, *A_ARMS)))
     parser.add_argument("--seed", required=True, type=int)
     parser.add_argument("--plan", required=True)
     parser.add_argument("--data-config", default="configs/data.json")

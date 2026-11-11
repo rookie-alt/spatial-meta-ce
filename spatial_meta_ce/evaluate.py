@@ -221,6 +221,8 @@ def evaluate(
     training_seed=42,
     reference_manifest=None,
 ):
+    if config.get("model", {}).get("arch") in ("price_lite", "price_tiny", "sum_anchor_only"):
+        raise ValueError("122 candidates require source-only population evaluation; target D is not authorized")
     validate_splits(data_config["splits"])
     if (
         any(k < 0 for k in config["shots"])
@@ -229,16 +231,20 @@ def evaluate(
     ):
         raise ValueError("Invalid evaluation budgets")
     out = Path(output_dir)
-    out.mkdir(parents=True, exist_ok=False)
     seed_all(training_seed)
     pool = StorePool(data_config["cache_root"])
     model = None
+    if not checkpoint:
+        out.mkdir(parents=True, exist_ok=False)
     metadata = {"method": baseline or "checkpoint", "training_seed": training_seed}
     if checkpoint:
         if baseline:
             raise ValueError("Choose checkpoint OR baseline")
         model, state = load_checkpoint(checkpoint, device)
         metadata = state["metadata"]
+        if metadata.get("fixed_stage", "").startswith("122-") or state["model_type"] != "grouped_set_residual":
+            raise ValueError("122 target D is not authorized; use source-only evaluation")
+        out.mkdir(parents=True, exist_ok=False)
         if metadata.get("adapted_database"):
             raise ValueError(
                 "An already-adapted checkpoint is not an independent meta-initialization"

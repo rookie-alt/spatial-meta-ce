@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from spatial_meta_ce.data import StorePool  # noqa: E402
 from spatial_meta_ce.manifests import file_hash  # noqa: E402
 from spatial_meta_ce.meta import loss_value, meta_loss_terms  # noqa: E402
-from spatial_meta_ce.model import SetEstimator  # noqa: E402
+from spatial_meta_ce.model import create_model  # noqa: E402
 from spatial_meta_ce.plans import load_training_plan  # noqa: E402
 from spatial_meta_ce.train import gradient_sha256  # noqa: E402
 
@@ -34,7 +34,7 @@ def audit_run(run_dir, plan_path, device="cpu"):
     state = torch.load(
         run_dir / "initial_state.pt", map_location="cpu", weights_only=False
     )
-    model = SetEstimator(**state["model_config"]).to(device)
+    model = create_model(state["model_config"], state.get("model_type", "grouped_set_residual")).to(device)
     model.load_state_dict(state["state_dict"], strict=True)
     model.train()
     plan = load_training_plan(plan_path, data_config)

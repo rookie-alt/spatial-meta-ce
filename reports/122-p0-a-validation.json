@@ -1,0 +1,337 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "protocol": 122,
+  "scope": "implementation and CPU synthetic validation only; not a research execution",
+  "base_commit": "1e1766def13e42f3704e767dfb81408da8c0ea80",
+  "branch": "feat/price-meta-lora-impl-20261111",
+  "protocol_sha256": "d95fffbb030191b28ff02c1c80ec00e100f7ac18d2b3151a793e44bf8cfc07f3",
+  "code_sha256": {
+    "scripts/audit_fomaml_joint_gradient.py": "5eeda293c69141eafa2790ab59dec96e094f456156b62211a3cba7b89838350c",
+    "scripts/evaluate_fomaml_joint_source.py": "4ad78be9f5038c6556273850807fd934977029d82e62945f5e4003a8515ee90b",
+    "scripts/price_meta_p0.py": "142b7e04f952d3677f5bfbdb89224cf98febf06c3552b93412eaa38c40b69749",
+    "spatial_meta_ce/checkpoints.py": "18348efa54eff3e563aa07815876e8a37d76f870bf384b328edb7545d6ddc3f6",
+    "spatial_meta_ce/cli.py": "bda8f55d085a7dc99c1c8105bf2921d2a47a00b3488fc0e83226b7109c18a1e3",
+    "spatial_meta_ce/data.py": "4caf69ea8b43b721e6034a8a15df9c6a31b80f0c041bdd59da9657ed5576c99a",
+    "spatial_meta_ce/evaluate.py": "aea8a268a925a3c7a2f53cea046754c65d5dd817ea5fd18f958203c0c8e897ce",
+    "spatial_meta_ce/meta.py": "d5bb3e236503d7e599bfc53da94aecb821b137b4cdfaa8b6de81df865b51dee0",
+    "spatial_meta_ce/model.py": "7f817bca28e514e34e22c97ecbbff2bb0af27ed155c8374f44c1230dd3e2e217",
+    "spatial_meta_ce/plans.py": "d04de79355bdbed89f3b11ee62ac57b857a2795f547a430d426d436dd7559bd1",
+    "spatial_meta_ce/price_capacity.py": "7903ee0185c72ef9111f6c93c117900d7e0b184d41470a620fb221adb350577e",
+    "spatial_meta_ce/price_model.py": "fcb8ea9f30596d92a7941e18db8366d695a03cf1c57fb270673ddf02a1d8299e",
+    "spatial_meta_ce/price_protocol.py": "ac1a68df252bb10aadc0c9da436c044fe3b156127547111ea0e690a0057cf8d7",
+    "spatial_meta_ce/source_eval.py": "5e9d1619aa2387f5cbd20c7787b119a60c142a71ff01b16ea80029d58d3d2486",
+    "spatial_meta_ce/train.py": "90ecec3d89c2b7aa3ecf09458d64faab645c2f41e35afd9636308de68d162a86",
+    "tests/test_meta65_scope_gradients.py": "04668e168a32b6f4e292f888d27debcafca14091a317acc50638ace9688d46aa",
+    "tests/test_price_model.py": "010b8db1629536b32e440b7253d2f6d4acb15489b939eb01139e486e9596f04e",
+    "tests/test_price_protocol.py": "48dff8370c59dd0baa071e6244474da9126781188e7166d08fbbccd2f022f3a6",
+    "vendor/PROVENANCE.json": "1396973cdbbcb9267769a8494c4cfb41138f17d25cb029e1ecf5e5a9683880eb"
+  },
+  "code_bundle_sha256": "6922d64781797c1a64e40531713ede85ed7166b805188f6046e76fcc2870fa40",
+  "checks": {
+    "unittest": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python3 -B -m unittest discover -s tests -v",
+      "exit_code": 0,
+      "tests": 1784,
+      "seconds": 175.439,
+      "skipped": 16,
+      "log": "reports/122-unittest-final-reviewed.log",
+      "log_sha256": "93c9b2ad05aaa425ec09895c0159df0585f72fe03b5150fd5ceac917e6cb38d0"
+    },
+    "ruff": {
+      "command": "ruff check scripts tests spatial_meta_ce",
+      "exit_code": 0
+    },
+    "diff_check": {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  },
+  "coverage": {
+    "tool": "stdlib trace.Trace(count=True), line coverage only; not branch or repository-wide coverage",
+    "files": {
+      "spatial_meta_ce/price_capacity.py": {
+        "executed": 111,
+        "missing": 23,
+        "percent": 82.83582089552239
+      },
+      "spatial_meta_ce/price_model.py": {
+        "executed": 151,
+        "missing": 10,
+        "percent": 93.7888198757764
+      },
+      "spatial_meta_ce/price_protocol.py": {
+        "executed": 145,
+        "missing": 28,
+        "percent": 83.81502890173411
+      },
+      "scripts/price_meta_p0.py": {
+        "executed": 266,
+        "missing": 40,
+        "percent": 86.9281045751634
+      }
+    },
+    "trace_dir": "runs/122-stdlib-coverage-postreview"
+  },
+  "smoke": {
+    "exit_code": 0,
+    "protocol_sha256": "f2710c6e21f5cc63d03cdff2a94038c90c87b6f8de87b353157997468a366727",
+    "supervisor_sha256": "783ff15a15f43e6e8eb3b2f46f29e93d15437cb65dd9a1fb25d0c8844a9650b1",
+    "report": {
+      "purpose": "smoke-not-research",
+      "protocol": 122,
+      "updates": 2,
+      "cpu_threads": 1,
+      "device": "cpu",
+      "synthetic_only": true,
+      "target_databases_read": [],
+      "losses": [
+        4.654476165771484,
+        4.653093338012695
+      ],
+      "seconds": 0.23243395797908306,
+      "peak_rss_bytes": 258727936,
+      "parameters": {
+        "A0-ref": {
+          "parameters": 132545,
+          "synthetic_batch2_forward_ms": 0.5805792054161429,
+          "timing_not_comparable_to_research_workloads": true
+        },
+        "A0": {
+          "parameters": 132417,
+          "synthetic_batch2_forward_ms": 0.45374580658972263,
+          "timing_not_comparable_to_research_workloads": true
+        },
+        "A1": {
+          "parameters": 293905,
+          "synthetic_batch2_forward_ms": 3.8224332965910435,
+          "timing_not_comparable_to_research_workloads": true
+        },
+        "A2": {
+          "parameters": 86769,
+          "synthetic_batch2_forward_ms": 3.1366708921268582,
+          "timing_not_comparable_to_research_workloads": true
+        }
+      },
+      "lora_inner_parameters": 10240,
+      "checkpoint_roundtrip_equal": true,
+      "formal_training_started": false,
+      "p0_real_data_gate_passed": false,
+      "estimate_4000_synthetic_updates_seconds_not_research_budget": 464.8679159581661
+    },
+    "supervisor": {
+      "command": [
+        "/opt/anaconda3/bin/python3",
+        "-B",
+        "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/price-meta-lora-impl-20261111/scripts/price_meta_p0.py",
+        "smoke-worker",
+        "--output",
+        "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/price-meta-lora-impl-20261111/runs/price-meta-p0-synthetic-20261111",
+        "--updates",
+        "2"
+      ],
+      "elapsed": 3.7628279170021415,
+      "failure": null,
+      "mode": "cpu_preflight",
+      "output": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/price-meta-lora-impl-20261111/runs/price-meta-p0-synthetic-20261111",
+      "outputbytes": 3943037,
+      "peak_rss_bytes": 280477696,
+      "peak_vram_bytes": 0,
+      "pgid": 39711,
+      "phase": "certification",
+      "pid": 39711,
+      "received_signals": [],
+      "returncode": 0,
+      "schema": 1,
+      "signals": [],
+      "status": "preflight_completed",
+      "supervisor_json": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/price-meta-lora-impl-20261111/runs/price-meta-p0-synthetic-20261111.supervisor.json"
+    }
+  },
+  "real_data_preflight": {
+    "exit_code": 2,
+    "report_sha256": "6a067f9c29671db4072b6526d40db4bab827ac36478b810cb81ab76b9713d3e1",
+    "report": {
+      "schema": 1,
+      "protocol": 122,
+      "purpose": "implementation-preflight-not-research",
+      "status": "incomplete_missing_evidence",
+      "p0_gate_passed": false,
+      "formal_training_authorized": false,
+      "target_databases_read": [],
+      "missing": [
+        "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/price-meta-lora-impl-20261111/artifacts/cache/pretrain/accidents/manifest.json"
+      ],
+      "unsupported": null
+    }
+  },
+  "p0_gate_passed": false,
+  "formal_training_authorized": false,
+  "target_databases_read": [],
+  "research_training_started": false,
+  "server_connected": false,
+  "gpu_used": false,
+  "review_status": "APPROVE; independent initial and focused readonly rereviews; no unresolved blocking findings",
+  "final_frozen_code_smoke_and_partial_flops": {
+    "runs/price-meta-p0-synthetic-final-20261111/smoke_protocol.json": {
+      "sha256": "a07f9411a6f4594d5dacacd53db59be52bdd389747b6cb579b3579d52ec1d784",
+      "content": {
+        "purpose": "smoke-not-research",
+        "protocol": 122,
+        "updates": 2,
+        "cpu_threads": 1,
+        "device": "cpu",
+        "synthetic_only": true,
+        "target_databases_read": [],
+        "losses": [
+          4.654476165771484,
+          4.653093338012695
+        ],
+        "seconds": 0.22799000004306436,
+        "peak_rss_bytes": 260681728,
+        "parameters": {
+          "A0-ref": {
+            "parameters": 132545,
+            "synthetic_batch2_forward_ms": 0.4807000048458576,
+            "timing_not_comparable_to_research_workloads": true
+          },
+          "A0": {
+            "parameters": 132417,
+            "synthetic_batch2_forward_ms": 0.42893749196082354,
+            "timing_not_comparable_to_research_workloads": true
+          },
+          "A1": {
+            "parameters": 293905,
+            "synthetic_batch2_forward_ms": 3.660120884887874,
+            "timing_not_comparable_to_research_workloads": true
+          },
+          "A2": {
+            "parameters": 86769,
+            "synthetic_batch2_forward_ms": 3.020995785482228,
+            "timing_not_comparable_to_research_workloads": true
+          }
+        },
+        "lora_inner_parameters": 10240,
+        "checkpoint_roundtrip_equal": true,
+        "formal_training_started": false,
+        "p0_real_data_gate_passed": false,
+        "estimate_4000_synthetic_updates_seconds_not_research_budget": 455.9800000861287
+      }
+    },
+    "runs/price-meta-p0-synthetic-final-20261111.supervisor.json": {
+      "sha256": "9900e835bbe87081fb956b85795b0d72aca2462fb2e4353e0f72740f70d74dea",
+      "content": {
+        "command": [
+          "/opt/anaconda3/bin/python3",
+          "-B",
+          "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/price-meta-lora-impl-20261111/scripts/price_meta_p0.py",
+          "smoke-worker",
+          "--output",
+          "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/price-meta-lora-impl-20261111/runs/price-meta-p0-synthetic-final-20261111",
+          "--updates",
+          "2"
+        ],
+        "elapsed": 3.2679159590043128,
+        "failure": null,
+        "mode": "cpu_preflight",
+        "output": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/price-meta-lora-impl-20261111/runs/price-meta-p0-synthetic-final-20261111",
+        "outputbytes": 3943051,
+        "peak_rss_bytes": 291483648,
+        "peak_vram_bytes": 0,
+        "pgid": 18930,
+        "phase": "certification",
+        "pid": 18930,
+        "received_signals": [],
+        "returncode": 0,
+        "schema": 1,
+        "signals": [],
+        "status": "preflight_completed",
+        "supervisor_json": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/price-meta-lora-impl-20261111/runs/price-meta-p0-synthetic-final-20261111.supervisor.json"
+      }
+    },
+    "runs/122-synthetic-profile.json": {
+      "sha256": "4caa488e9c41745bf0c1a0d5ab61385fac28e080a2950a9f69c14af8fb3abec3",
+      "content": {
+        "purpose": "smoke-not-research",
+        "device": "cpu",
+        "cpu_threads": 1,
+        "batch_size": 2,
+        "capacity": "synthetic [4,4,4,4]",
+        "actual_counts": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            4,
+            4,
+            4,
+            4
+          ]
+        ],
+        "measurement": "torch.profiler CPU with_flops; only supported operators are counted, not a full-model FLOPs estimate",
+        "models": {
+          "A0-ref": {
+            "counted_flops": 823562,
+            "counted_ops": {
+              "aten::addmm": 821504,
+              "aten::mul": 2056,
+              "aten::add": 2
+            },
+            "incomplete_flops_not_full_model_cost": true
+          },
+          "A0": {
+            "counted_flops": 823050,
+            "counted_ops": {
+              "aten::addmm": 820992,
+              "aten::mul": 2056,
+              "aten::add": 2
+            },
+            "incomplete_flops_not_full_model_cost": true
+          },
+          "A1": {
+            "counted_flops": 14231554,
+            "counted_ops": {
+              "aten::mul": 1024,
+              "aten::addmm": 13838336,
+              "aten::bmm": 378880,
+              "aten::add": 13314
+            },
+            "incomplete_flops_not_full_model_cost": true
+          },
+          "A2": {
+            "counted_flops": 3729410,
+            "counted_ops": {
+              "aten::mul": 1024,
+              "aten::addmm": 3532288,
+              "aten::bmm": 189440,
+              "aten::add": 6658
+            },
+            "incomplete_flops_not_full_model_cost": true
+          }
+        }
+      }
+    }
+  },
+  "review_remediations": [
+    "unconditional source offsets/maxima cross-check",
+    "malformed checkpoint metadata ValueError",
+    "null/nonstring stage clear rejection",
+    "prepare failure record",
+    "rejected target checkpoint leaves no output directory",
+    "malformed PRICE checkpoint metadata now rejects ValueError; RED/GREEN test"
+  ],
+  "checkpoint_guard_test": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python3 -B -m unittest discover -s tests -p test_price_model.py -v",
+    "exit_code": 0,
+    "tests": 12,
+    "red_before_fix": true
+  },
+  "review_limitations": [
+    "Real 23 training cache and 3 source validation cache unavailable in this worktree; P0 data gate false",
+    "The reviewer verified full-suite log SHA but did not independently rerun full-suite or smoke",
+    "Partial synthetic CPU profiler counts are not full-model FLOPs or workload timings"
+  ]
+}

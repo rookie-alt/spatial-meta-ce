@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from contextlib import contextmanager
 
 import torch
 from torch.func import functional_call
@@ -71,8 +72,25 @@ def forward(model, params, batch):
     return functional_call(model, params, (batch,), strict=True)
 
 
+@contextmanager
+def adaptation_mode(model, training):
+    modes = [(module, module.training) for module in model.modules()]
+    model.train(training)
+    try:
+        yield
+    finally:
+        for module, mode in modes:
+            module.training = mode
+
+
 def _adaptation_names(model, params, scope):
-    if scope == "last":
+    if scope not in ("all", "full", "head", "last", "lora"):
+        raise ValueError("Invalid adaptation scope")
+    if scope == "lora":
+        names = [n for n in params if n.endswith((".lora_A", ".lora_B"))]
+        if not names:
+            raise ValueError("LoRA scope requires registered lora parameters")
+    elif scope == "last":
         head = getattr(model, "head", None)
         if (
             not isinstance(head, torch.nn.Sequential)
@@ -85,7 +103,7 @@ def _adaptation_names(model, params, scope):
         prefix = f"head.{len(head) - 1}."
         names = [n for n in params if n.startswith(prefix)]
     else:
-        names = [n for n in params if scope == "all" or n.startswith("head.")]
+        names = [n for n in params if scope in ("all", "full") or n.startswith("head.")]
     if not names:
         raise ValueError("No adaptation parameters selected")
     return names
@@ -101,14 +119,14 @@ def adapt(
     training=True,
     tau=None,
 ):
-    if steps < 0 or lr <= 0 or scope not in ("all", "head", "last"):
+    if steps < 0 or lr <= 0 or scope not in ("all", "full", "head", "last", "lora"):
         raise ValueError("Invalid adaptation configuration")
     params = OrderedDict(model.named_parameters())
+    names = _adaptation_names(model, params, scope)
     if steps == 0 or support is None:
         return params
-    names = _adaptation_names(model, params, scope)
     extra = {} if tau is None else {"tau": tau}
-    with torch.enable_grad():
+    with torch.enable_grad(), adaptation_mode(model, training):
         for _ in range(steps):
             objective = loss_value(
                 forward(model, params, support), support["label"], loss, **extra
@@ -141,7 +159,7 @@ def adapt_trajectory(
         not record_steps
         or record_steps[0] < 0
         or lr <= 0
-        or scope not in ("all", "head", "last")
+        or scope not in ("all", "full", "head", "last", "lora")
     ):
         raise ValueError("Invalid adaptation configuration")
     params = OrderedDict(model.named_parameters())
@@ -150,7 +168,7 @@ def adapt_trajectory(
         out[0] = params
     names = _adaptation_names(model, params, scope)
     extra = {} if tau is None else {"tau": tau}
-    with torch.enable_grad():
+    with torch.enable_grad(), adaptation_mode(model, False):
         for step in range(1, record_steps[-1] + 1):
             objective = loss_value(
                 forward(model, params, support), support["label"], loss, **extra
@@ -176,6 +194,14 @@ def adapt_trajectory(
 
 
 def meta_loss_terms(
+    model, support, query, lr, steps, scope="all", loss="smooth_l1", tau=None,
+    objective="post",
+):
+    with adaptation_mode(model, True):
+        return _meta_loss_terms(model, support, query, lr, steps, scope, loss, tau, objective)
+
+
+def _meta_loss_terms(
     model,
     support,
     query,
@@ -215,6 +241,7 @@ def meta_loss_terms(
 def meta_loss(
     model, support, query, lr, steps, scope="all", loss="smooth_l1", tau=None
 ):
-    params = adapt(model, support, lr, steps, scope, loss, tau=tau)
-    extra = {} if tau is None else {"tau": tau}
-    return loss_value(forward(model, params, query), query["label"], loss, **extra)
+    with adaptation_mode(model, True):
+        params = adapt(model, support, lr, steps, scope, loss, tau=tau)
+        extra = {} if tau is None else {"tau": tau}
+        return loss_value(forward(model, params, query), query["label"], loss, **extra)

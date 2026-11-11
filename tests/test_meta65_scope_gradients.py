@@ -316,7 +316,7 @@ class Meta65ScopeGradientTests(unittest.TestCase):
                 arm_config = {**config, "adapt_scope": scope}
                 with (
                     patch(
-                        "spatial_meta_ce.train.SetEstimator", wraps=SetEstimator
+                        "spatial_meta_ce.train.create_model", wraps=lambda config: SetEstimator(**config)
                     ) as constructor,
                     patch(
                         "spatial_meta_ce.train.episode_indices", wraps=episode_indices
@@ -330,8 +330,8 @@ class Meta65ScopeGradientTests(unittest.TestCase):
                     initial_hashes = []
                     task_flow = []
 
-                    def build_model(**kwargs: object) -> SetEstimator:
-                        model = SetEstimator(**kwargs)
+                    def build_model(config: dict) -> SetEstimator:
+                        model = SetEstimator(**config)
                         initial_hashes.append(state_hash(model))
                         return model
 

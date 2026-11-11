@@ -277,7 +277,9 @@ def load_training_plan(path, data_config):
     return validate_training_plan(plan, data_config)
 
 
-def build_source_eval_plan(data_config, expected_unique=EXPECTED_UNIQUE):
+def build_source_eval_plan(data_config, expected_unique=EXPECTED_UNIQUE, *, protocol=112):
+    if protocol not in (112, 122):
+        raise ValueError("Unsupported source evaluation protocol")
     validate_splits(data_config["splits"])
     if tuple(data_config["splits"]["validation"]) != EVAL_DATABASES:
         raise ValueError(
@@ -329,9 +331,28 @@ def build_source_eval_plan(data_config, expected_unique=EXPECTED_UNIQUE):
         "support_block_size": SUPPORT_BLOCK_SIZE,
         "databases": databases,
     }
+    if protocol == 122:
+        plan = bind_source_eval_ids(plan, {db: pool.get("pretrain", db) for db in EVAL_DATABASES})
     plan["plan_sha256"] = _plan_digest(plan)
     validate_source_eval_plan(plan, data_config, expected_unique=expected_unique)
     return plan
+
+
+def bind_source_eval_ids(plan, stores):
+    """Add 122 identity fields without resampling a single sealed 112 index."""
+    if "plan_seed" in plan or "shot_seed" in plan:
+        raise ValueError("Historical diagnostic plan cannot become a population plan")
+    databases = {}
+    for db, entry in plan["databases"].items():
+        store = stores[db]
+        databases[db] = {
+            **entry, "excluded_unique": SUPPORT_BLOCKS * SUPPORT_BLOCK_SIZE,
+            "query_ids": [store.rows[i]["id"] for i in entry["query"]],
+            "support_blocks": [{**block, "support_ids": [store.rows[i]["id"] for i in block["support"]]}
+                               for block in entry["support_blocks"]],
+        }
+    result = {**plan, "protocol": 122, "analysis_role": "population_primary", "databases": databases}
+    return {**result, "plan_sha256": _plan_digest(result)}
 
 
 def validate_source_eval_plan(plan, data_config, expected_unique=None):
@@ -410,6 +431,17 @@ def validate_source_eval_plan(plan, data_config, expected_unique=None):
                 f"{db} unique-query population changed: {entry['unique_queries']} != "
                 f"{expected_unique[db]}"
             )
+    if plan.get("protocol") == 122:
+        if plan.get("analysis_role") != "population_primary" or "plan_seed" in plan or "shot_seed" in plan:
+            raise ValueError("122 population plan cannot use historical diagnostic seeds")
+        for db, entry in plan["databases"].items():
+            if entry.get("excluded_unique") != expected_support:
+                raise ValueError(f"{db} population exclusion denominator mismatch")
+            for indices, ids in [(entry["query"], entry.get("query_ids"))] + [
+                (block["support"], block.get("support_ids")) for block in entry["support_blocks"]
+            ]:
+                if not isinstance(ids, list) or len(ids) != len(indices) or not all(isinstance(i, str) and i for i in ids):
+                    raise ValueError(f"{db} source eval plan lacks complete IDs")
     if plan.get("plan_sha256") != _plan_digest(plan):
         raise ValueError("Source eval plan digest mismatch")
     return plan
@@ -424,6 +456,14 @@ def verify_source_eval_plan_against_stores(plan, stores):
             raise ValueError(f"Source eval unique-query population mismatch for {db}")
         if _store_data_sha256(store) != entry["data_sha256"]:
             raise ValueError(f"Source eval label/feature hash mismatch for {db}")
+        if plan.get("protocol") == 122:
+            for indices, ids in [(entry["query"], entry["query_ids"])] + [
+                (block["support"], block["support_ids"]) for block in entry["support_blocks"]
+            ]:
+                if any(type(i) is not int or i < 0 or i >= len(store.rows) for i in indices):
+                    raise ValueError(f"Source eval index out of range for {db}")
+                if [store.rows[i]["id"] for i in indices] != ids:
+                    raise ValueError(f"Source eval ID mismatch for {db}")
         for block in entry["support_blocks"]:
             for index, expected in zip(block["support"], block["support_hashes"]):
                 if store.rows[index]["query_hash"] != expected:

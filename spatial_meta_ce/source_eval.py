@@ -26,6 +26,8 @@ from .plans import (
     load_source_eval_plan,
     verify_source_eval_plan_against_stores,
 )
+from .price_protocol import A_ARMS, validate_a_checkpoint, validate_a_plan
+from .metrics import q_values, summarize
 from .train import FIXED_MODEL, FIXED_SELECTION, FIXED_STEPS
 
 ARMS = {
@@ -56,6 +58,8 @@ def _is_sha256(value):
 
 
 def validate_eval_checkpoint(state, arm, seed):
+    if arm in A_ARMS:
+        return validate_a_checkpoint(state, arm, seed)
     if arm not in ARMS:
         raise ValueError(f"Unknown arm {arm!r}")
     method, objective = ARMS[arm]
@@ -139,6 +143,21 @@ def _write_rows(writer, arm, seed, database, store, indices, k, run, predictions
         )
 
 
+def _unit_diagnostics(store, indices, prediction, k0_prediction):
+    truth = np.asarray(store.cards[np.asarray(indices), 0], dtype=np.float64)
+    metrics = summarize(prediction, truth)
+    log_error = q_values(prediction, truth)[2]
+    base_error = q_values(k0_prediction, truth)[2]
+    counts = np.diff(store.offsets, axis=0)[np.asarray(indices), 2]
+    four_plus = counts >= 4
+    return {
+        "metrics": metrics,
+        "four_plus": summarize(prediction[four_plus], truth[four_plus]) if four_plus.any() else None,
+        "worsened_fraction_vs_same_model_k0": float(np.mean(log_error > base_error)),
+        "negative_transfer_delta_log_q95": metrics["log_q95"] - summarize(k0_prediction, truth)["log_q95"],
+    }
+
+
 def evaluate_source(
     checkpoint,
     arm,
@@ -149,13 +168,23 @@ def evaluate_source(
     device="cpu",
     batch_size=128,
 ):
-    if arm not in ARMS:
+    if arm not in (*ARMS, *A_ARMS):
         raise ValueError(f"Unknown arm {arm!r}")
     if batch_size < 1:
         raise ValueError("batch_size must be positive")
     model, state = load_checkpoint(checkpoint, device)
     metadata = validate_eval_checkpoint(state, arm, seed)
     plan = load_source_eval_plan(plan_path, data_config)
+    if arm in A_ARMS:
+        validate_a_plan(plan, data_config)
+        from .price_capacity import build_capacity, scan_source_capacity, UnsupportedCapacity
+
+        capacity = build_capacity(data_config)
+        if hasattr(model, "capacity") and model.capacity != capacity:
+            raise ValueError("Source evaluation capacity/cache binding changed")
+        coverage = scan_source_capacity(data_config, capacity)
+        if coverage["unsupported"]:
+            raise UnsupportedCapacity(coverage["unsupported"])
     if tuple(plan["databases"]) != EVAL_DATABASES:
         raise ValueError(f"Source plan must cover exactly {EVAL_DATABASES}")
     pool = StorePool(data_config["cache_root"], max_open=len(EVAL_DATABASES))
@@ -178,6 +207,7 @@ def evaluate_source(
             started = time.perf_counter()
             predictions = _predict(model, base, store, query, device, batch_size)
             predict_seconds = time.perf_counter() - started
+            k0_predictions = predictions.copy()
             _write_rows(writer, arm, seed, db, store, query, 0, 0, predictions)
             units.append(
                 {
@@ -188,6 +218,8 @@ def evaluate_source(
                     "adapt_seconds": 0.0,
                     "predict_seconds": predict_seconds,
                     "unit_wall_seconds": time.perf_counter() - started,
+                    **({"arm": arm, "seed": seed, "source_eval_plan_sha256": plan["plan_sha256"],
+                        **_unit_diagnostics(store, query, predictions, k0_predictions)} if arm in A_ARMS else {}),
                 }
             )
             for k in (5, 20):
@@ -222,11 +254,17 @@ def evaluate_source(
                             "adapt_seconds": adapt_seconds,
                             "predict_seconds": predict_seconds,
                             "unit_wall_seconds": time.perf_counter() - started,
+                            **({
+                                "arm": arm, "seed": seed, "source_eval_plan_sha256": plan["plan_sha256"],
+                                "support_ids": block["support_ids"][:k],
+                                "support_hashes": block["support_hashes"][:k],
+                                **_unit_diagnostics(store, query, predictions, k0_predictions),
+                            } if arm in A_ARMS else {}),
                         }
                     )
     protocol = {
         "schema": 1,
-        "kind": "fomaml_joint_source_eval_protocol",
+        "kind": "price_source_eval_122_a" if arm in A_ARMS else "fomaml_joint_source_eval_protocol",
         "arm": arm,
         "seed": seed,
         "checkpoint": str(Path(checkpoint).resolve()),

@@ -81,6 +81,8 @@ def batch_samples(samples, device="cpu"):
             np.log(np.maximum(pg, 1)), dtype=torch.float32, device=device
         ),
         "ids": [s["id"] for s in samples],
+        "hashes": [s.get("hash", "unknown") for s in samples],
+        "databases": [s.get("database", str(s["id"]).split("/")[0]) for s in samples],
     }
     if mapped:
         mapping_values = {}

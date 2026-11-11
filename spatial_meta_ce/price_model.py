@@ -1,0 +1,207 @@
+"""PRICE-style two-stage encoder; PG enters only the residual output anchor."""
+
+from __future__ import annotations
+
+import copy
+import math
+
+import torch
+from torch import nn
+from torch.nn import functional as F
+
+from vendor.price_baseline.module import Encoder, FilterEmbedding, ScaleEmbedding
+
+from .data import GROUP_DIMS
+from .price_capacity import GROUP_NAMES, UnsupportedCapacity, validate_capacity
+
+PRICE_ARCHES = ("price_lite", "price_tiny")
+LORA_RANK = 4
+LORA_ALPHA = 4
+LORA_SEED = 42
+
+
+class LoRALinear(nn.Linear):
+    """Unmerged per-head Q/V projection, with functional_call-visible A/B."""
+
+    def __init__(self, original: nn.Linear, generator: torch.Generator) -> None:
+        super().__init__(original.in_features, original.out_features)
+        self.weight = original.weight
+        self.bias = original.bias
+        self.lora_A = nn.Parameter(torch.empty(LORA_RANK, self.in_features))
+        self.lora_B = nn.Parameter(torch.zeros(self.out_features, LORA_RANK))
+        nn.init.kaiming_uniform_(self.lora_A, a=math.sqrt(5), generator=generator)
+
+    def forward(self, inputs: torch.Tensor) -> torch.Tensor:
+        return F.linear(inputs, self.weight, self.bias) + (
+            LORA_ALPHA / LORA_RANK
+        ) * F.linear(F.linear(inputs, self.lora_A), self.lora_B)
+
+
+class PriceResidualEstimator(nn.Module):
+    def __init__(
+        self,
+        capacity: dict,
+        arch: str = "price_lite",
+        d_model: int | None = None,
+        layers: int = 2,
+        heads: int = 4,
+        dropout: float = 0.0,
+        lora: bool = False,
+        lora_seed: int = LORA_SEED,
+    ) -> None:
+        super().__init__()
+        expected_dim = 64 if arch == "price_lite" else 32
+        if arch not in PRICE_ARCHES or d_model not in (None, expected_dim):
+            raise ValueError("PRICE model_type/arch/d_model configuration mismatch")
+        if layers != 2 or heads != 4 or dropout != 0.0:
+            raise ValueError("122 freezes layers=2, heads=4, dropout=0")
+        if (
+            type(lora) is not bool
+            or type(lora_seed) is not int
+            or lora_seed != LORA_SEED
+        ):
+            raise ValueError("122 freezes LoRA A initialization seed=42")
+        self.capacity = copy.deepcopy(validate_capacity(capacity))
+        self.counts = tuple(self.capacity["max_counts"])
+        self.config = {
+            "arch": arch,
+            "d_model": expected_dim,
+            "layers": layers,
+            "heads": heads,
+            "dropout": float(dropout),
+            "capacity": copy.deepcopy(self.capacity),
+            "lora": lora,
+            "lora_seed": lora_seed,
+        }
+        self.model_type = f"{arch}_residual"
+        self.scale_embedding = ScaleEmbedding(*self.counts[:2], 40, expected_dim)
+        self.filter_embedding = FilterEmbedding(*self.counts, 40, 4, 43, expected_dim)
+        self.scale_encoder = Encoder(expected_dim, layers, heads, dropout)
+        self.filter_encoder = Encoder(expected_dim, layers, heads, dropout)
+        self.len_net = nn.Linear(4, 16)
+        self.head = nn.Sequential(
+            nn.Linear(expected_dim + 16 + 1, 128),
+            nn.ReLU(),
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Linear(64, 1),
+        )
+        nn.init.zeros_(self.head[-1].weight)
+        nn.init.zeros_(self.head[-1].bias)
+        if lora:
+            generator = torch.Generator().manual_seed(lora_seed)
+            for encoder in (self.scale_encoder, self.filter_encoder):
+                for block in encoder.blocks:
+                    for attention_head in block.attention.heads:
+                        attention_head.Query = LoRALinear(
+                            attention_head.Query, generator
+                        )
+                        attention_head.Value = LoRALinear(
+                            attention_head.Value, generator
+                        )
+
+    def _check_counts(self, batch: dict) -> None:
+        counts = batch["counts"]
+        if counts.ndim != 2 or counts.shape[1] != 4 or not torch.isfinite(counts).all():
+            raise ValueError("Invalid PRICE batch counts")
+        if (counts < 0).any() or not torch.equal(counts, counts.round()):
+            raise ValueError("PRICE batch counts must be nonnegative integers")
+        overflow = counts > counts.new_tensor(self.counts)
+        if overflow.any():
+            records = []
+            for row, group in overflow.nonzero().tolist():
+                records.append(
+                    {
+                        "database": batch["databases"][row],
+                        "query_hash": batch["hashes"][row],
+                        "group": GROUP_NAMES[group],
+                        "actual": int(counts[row, group]),
+                        "capacity": self.counts[group],
+                    }
+                )
+            raise UnsupportedCapacity(records)
+
+    def price_inputs(self, batch: dict) -> tuple[torch.Tensor, torch.Tensor]:
+        """Restore raw fanout, then pad to the checkpoint's fixed capacities."""
+        self._check_counts(batch)
+        if "mapping" in batch or len(batch["groups"]) != 4 or len(batch["masks"]) != 4:
+            raise ValueError(
+                "PRICE candidates require the four unmapped feature groups"
+            )
+        vectors = []
+        masks = [
+            torch.ones(
+                len(batch["counts"]), 1, dtype=torch.bool, device=batch["counts"].device
+            )
+        ]
+        for i, (group, mask, n, dim) in enumerate(
+            zip(batch["groups"], batch["masks"], self.counts, GROUP_DIMS)
+        ):
+            if (
+                group.ndim != 3
+                or group.shape[2] != dim
+                or mask.shape != group.shape[:2]
+            ):
+                raise ValueError("Invalid PRICE group/mask shape")
+            expected = (
+                torch.arange(group.shape[1], device=group.device)[None, :]
+                < batch["counts"][:, i, None]
+            )
+            if (
+                mask.dtype != torch.bool
+                or not torch.equal(mask, expected)
+                or not torch.equal(
+                    mask.sum(1).to(batch["counts"].dtype), batch["counts"][:, i]
+                )
+            ):
+                raise ValueError("PRICE mask/counts mismatch (prefix padding required)")
+            raw = group.masked_fill(~mask[..., None], 0)
+            raw = torch.expm1(raw) if i == 1 else raw
+            if not torch.isfinite(raw).all():
+                raise FloatingPointError("Nonfinite PRICE input/fanout")
+            padded = group.new_full((len(group), n, dim), -1000.0)
+            if i == 2:
+                padded[:, :, 0] = 0
+            # Counts were checked above; this only discards empty batch padding.
+            width = min(group.shape[1], n)
+            padded[:, :width] = torch.where(
+                mask[:, :width, None], raw[:, :width], padded[:, :width]
+            )
+            valid = torch.zeros(len(group), n, dtype=torch.bool, device=group.device)
+            valid[:, :width] = mask[:, :width]
+            vectors.append(padded.flatten(1))
+            masks.append(valid)
+        return torch.cat(vectors, dim=1), torch.cat(masks, dim=1)
+
+    def _head_input(self, batch: dict) -> torch.Tensor:
+        x, mask = self.price_inputs(batch)
+        scale = self.scale_embedding(x)
+        scale = self.scale_encoder(scale, mask[:, : 1 + sum(self.counts[:2])])
+        filtered = self.filter_embedding(scale, x)
+        cls = self.filter_encoder(filtered, mask)[:, 0, :]
+        # A zero-capacity group has no vendor embedding call. Keep an explicit
+        # zero derivative so strict functional SGD/audits work without dummy tokens.
+        embeddings = (
+            self.scale_embedding.join_hist_embeddings,
+            self.scale_embedding.fanout_embeddings,
+            self.filter_embedding.table_embeddings,
+            self.filter_embedding.filter_embeddings,
+        )
+        for count, embedding in zip(self.counts, embeddings):
+            if count == 0:
+                cls = cls + 0 * (embedding.weight.sum() + embedding.bias.sum())
+        lengths = self.len_net(torch.log1p(batch["counts"]))
+        tables = batch["groups"][2].masked_fill(~batch["masks"][2][..., None], 0)
+        log_cartesian = tables[:, :, 0].sum(1, keepdim=True)
+        return torch.cat([cls, lengths, log_cartesian], dim=1)
+
+    def head_features(self, batch: dict) -> torch.Tensor:
+        return self.head[:-1](self._head_input(batch))
+
+    def output_anchor(self, batch: dict) -> torch.Tensor:
+        return batch["pg_log"]
+
+    def forward(self, batch: dict) -> torch.Tensor:
+        return self.output_anchor(batch) + self.head(self._head_input(batch)).squeeze(
+            -1
+        )

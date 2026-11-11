@@ -6,7 +6,8 @@ import numpy as np
 import torch
 
 from .data import TRANSFORM_VERSION
-from .model import SetEstimator
+from .manifests import digest
+from .model import create_model
 
 
 def rng_state():
@@ -40,7 +41,7 @@ def save_checkpoint(
     path.parent.mkdir(parents=True, exist_ok=True)
     state = {
         "schema": 1,
-        "model_type": "grouped_set_residual",
+        "model_type": model.model_type,
         "transform": TRANSFORM_VERSION,
         "model_config": model.config,
         "model": model.state_dict(),
@@ -52,9 +53,30 @@ def save_checkpoint(
         "rng": rng_state(),
         "extra": extra or {},
     }
+    if model.model_type != "grouped_set_residual":
+        state = {**state, "model_config_sha256": digest(model.config)}
+        _validate_candidate_binding(model, state)
     temp = path.with_suffix(path.suffix + ".tmp")
     torch.save(state, temp)
     os.replace(temp, path)
+
+
+def _validate_candidate_binding(model, state):
+    if model.model_type == "grouped_set_residual":
+        return
+    if state.get("model_config_sha256") != digest(state["model_config"]):
+        raise ValueError("Checkpoint model configuration hash mismatch")
+    if model.config != state["model_config"]:
+        raise ValueError("Checkpoint candidate config is not canonical")
+    if hasattr(model, "capacity"):
+        from .price_capacity import validate_capacity
+
+        if not isinstance(state["metadata"], dict):
+            raise ValueError("PRICE checkpoint metadata must be a dictionary")
+        hashes = state["metadata"].get("manifest_hashes")
+        if hashes is None:
+            raise ValueError("PRICE checkpoint is missing training cache hashes")
+        validate_capacity(model.capacity, hashes)
 
 
 def load_checkpoint(path, device="cpu"):
@@ -78,10 +100,14 @@ def load_checkpoint(path, device="cpu"):
         raise ValueError("Not a versioned spatial-meta-ce checkpoint")
     if (
         state["schema"] != 1
-        or state["model_type"] != "grouped_set_residual"
+        or state["model_type"] not in (
+            "grouped_set_residual", "sum_anchor_only_residual",
+            "price_lite_residual", "price_tiny_residual",
+        )
         or state["transform"] != TRANSFORM_VERSION
     ):
         raise ValueError("Incompatible schema, model, or preprocessing")
-    model = SetEstimator(**state["model_config"]).to(device)
+    model = create_model(state["model_config"], state["model_type"]).to(device)
+    _validate_candidate_binding(model, state)
     model.load_state_dict(state["model"], strict=True)
     return model, state

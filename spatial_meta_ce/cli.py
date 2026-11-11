@@ -199,8 +199,10 @@ def adapt_one(config, data, output, args):
         raise ValueError("adapt requires --checkpoint, --database and positive --k")
     if args.database not in data["splits"]["test"]:
         raise ValueError("Adaptation target must be a held-out database")
-    output.mkdir(parents=True, exist_ok=False)
     model, state = load_checkpoint(args.checkpoint, args.device)
+    if state.get("model_type") != "grouped_set_residual" or state["metadata"].get("fixed_stage", "").startswith("122-"):
+        raise ValueError("122 target adaptation is not authorized")
+    output.mkdir(parents=True, exist_ok=False)
     model.eval()
     if (
         args.database
@@ -257,7 +259,7 @@ def main():
     parser.add_argument("--steps", type=int)
     parser.add_argument("--inner-lr", type=float)
     parser.add_argument("--inner-steps", type=int)
-    parser.add_argument("--scope", choices=["all", "head"])
+    parser.add_argument("--scope", choices=["all", "full", "head", "last", "lora"])
     parser.add_argument("--no-pg", action="store_true")
     parser.add_argument("--allow-exclusions", action="store_true")
     args = parser.parse_args()

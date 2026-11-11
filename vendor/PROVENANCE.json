@@ -2,6 +2,15 @@
   "origin": "/gly/weilin/PRICE-master",
   "commit": "0a9358eafb332201678e411ac35dc78141f751bd",
   "license": "No LICENSE/NOTICE found in checkout. Private research reuse only; do not redistribute without checking upstream permission.",
+  "local_reuse": {
+    "2026-11-11": {
+      "consumer": "spatial_meta_ce/price_model.py",
+      "protocol": 122,
+      "modules": ["ScaleEmbedding", "FilterEmbedding", "Encoder"],
+      "changes": "Imported unchanged; no RegressionModel final_linear1/final_linear2. PG residual head and unmerged per-head Q/V LoRA live outside vendor.",
+      "upstream_tree_modified": false
+    }
+  },
   "files": {
     "price_baseline/encoder.py": {
       "original_path": "model/encoder.py",

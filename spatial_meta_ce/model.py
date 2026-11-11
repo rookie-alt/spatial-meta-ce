@@ -7,7 +7,7 @@ from .data import GROUP_DIMS
 #       'sum'       variant A: + masked sum pooling (log-cardinality is additive)
 #       'attn'      variant B: A + token self-attention across all groups
 #       'attn_pair' variant C: B + join-index embedding on fanout tokens
-ARCHES = ("set", "sum", "sum_map", "attn", "attn_pair")
+ARCHES = ("set", "sum", "sum_anchor_only", "sum_map", "attn", "attn_pair")
 ANCHORS = ("pg", "struct")
 MAX_JOINS = 16
 
@@ -56,6 +56,14 @@ class SetEstimator(nn.Module):
         self.anchor = anchor
         if anchor != "pg":
             self.config = {**self.config, "anchor": anchor}
+        if arch == "sum_anchor_only" and (
+            not use_pg or anchor != "pg" or pg_output_scale != 1.0 or gate is not None
+        ):
+            raise ValueError("sum_anchor_only requires the ungated PG residual anchor")
+        self.model_type = (
+            "sum_anchor_only_residual" if arch == "sum_anchor_only"
+            else "grouped_set_residual"
+        )
         self.use_pg = use_pg
         self.arch = arch
         self.encoders = nn.ModuleList(
@@ -96,7 +104,7 @@ class SetEstimator(nn.Module):
             )
         per_group = 2 if arch == "set" else 3
         self.head = nn.Sequential(
-            nn.Linear(per_group * len(GROUP_DIMS) * width + 6, 128),
+            nn.Linear(per_group * len(GROUP_DIMS) * width + (5 if arch == "sum_anchor_only" else 6), 128),
             nn.ReLU(),
             nn.Linear(128, 64),
             nn.ReLU(),
@@ -222,7 +230,7 @@ class SetEstimator(nn.Module):
             [
                 *pooled,
                 torch.log1p(batch["counts"]),
-                pg[:, None],
+                *([] if self.arch == "sum_anchor_only" else [pg[:, None]]),
                 log_cartesian[:, None],
             ],
             dim=1,
@@ -260,3 +268,23 @@ class SetEstimator(nn.Module):
         if self.gate_mode is None:
             return anchor + residual
         return anchor + self.gate_values(batch) * residual
+
+
+def create_model(config: dict, model_type: str | None = None) -> nn.Module:
+    """Dispatch explicitly; legacy grouped_set_residual keeps its strict keys."""
+    from .price_model import PRICE_ARCHES, PriceResidualEstimator
+
+    if not isinstance(config, dict):
+        raise ValueError("Model config must be a dictionary")
+    arch = config.get("arch", "set")
+    expected = (
+        f"{arch}_residual"
+        if arch in (*PRICE_ARCHES, "sum_anchor_only")
+        else "grouped_set_residual"
+    )
+    if model_type is not None and model_type != expected:
+        raise ValueError("Checkpoint model_type/config mismatch")
+    try:
+        return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+    except TypeError as error:
+        raise ValueError(f"Invalid model configuration: {error}") from error

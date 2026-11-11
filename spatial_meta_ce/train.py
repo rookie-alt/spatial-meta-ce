@@ -21,7 +21,8 @@ from .meta import (
     meta_loss_terms,
 )
 from .metrics import summarize
-from .model import SetEstimator
+from .model import create_model
+from .price_protocol import fixed_model_scope
 from .plans import (
     load_training_plan,
     validate_plan_matches_config,
@@ -177,11 +178,12 @@ def _validate_fixed_budget(config):
         raise ValueError(f"fixed_budget requires inner_lr={FIXED_INNER_LR}")
     if config["inner_steps"] != FIXED_INNER_STEPS:
         raise ValueError(f"fixed_budget requires inner_steps={FIXED_INNER_STEPS}")
-    if config["adapt_scope"] != FIXED_ADAPT_SCOPE:
-        raise ValueError(f"fixed_budget requires adapt_scope={FIXED_ADAPT_SCOPE}")
+    expected_model, expected_scope = fixed_model_scope(config, FIXED_MODEL, FIXED_ADAPT_SCOPE)
+    if config["adapt_scope"] != expected_scope:
+        raise ValueError(f"fixed_budget requires adapt_scope={expected_scope}")
     if config["outer_lr"] != FIXED_OUTER_LR:
         raise ValueError(f"fixed_budget requires outer_lr={FIXED_OUTER_LR}")
-    if config["model"] != FIXED_MODEL:
+    if config["model"] != expected_model:
         raise ValueError("fixed_budget requires the frozen model configuration")
     if "complex_query_weight" in config or "tail_risk_mode" in config:
         raise ValueError(
@@ -283,6 +285,10 @@ def _legacy_sample_plan(
 
 
 def train(config, data_config, output_dir, device="cpu", resume=None):
+    stage = config.get("fixed_stage")
+    if stage is not None and not isinstance(stage, str):
+        raise ValueError("fixed_stage must be a string or null")
+    stage = stage or ""
     s6 = "tail_risk_mode" in config
     s5 = "complex_query_weight" in config
     if s6:
@@ -350,8 +356,18 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         raise ValueError("joint objective requires method=fomaml")
     if meta_objective == "joint" and not fixed_budget:
         raise ValueError("joint objective requires fixed_budget")
+    if config.get("model", {}).get("arch") in ("sum_anchor_only", "price_lite", "price_tiny") and not stage.startswith("122-"):
+        raise ValueError("122 candidate training requires its frozen fixed_stage")
+    if config.get("fixed_stage") is not None and not fixed_budget:
+        raise ValueError("fixed_stage requires fixed_budget")
     if fixed_budget:
         _validate_fixed_budget({**config, "meta_objective": meta_objective})
+    if stage.startswith("122-"):
+        from .price_capacity import validate_source_splits
+        from .price_protocol import validate_training_preflight
+
+        validate_source_splits(data_config)
+        validate_training_preflight(config, data_config)
     if config.get("training_plan") and not fixed_budget:
         raise ValueError("training_plan requires fixed_budget")
     if fixed_budget and resume:
@@ -424,7 +440,9 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
     if mapping_config:
         metadata = {**metadata, "mapping_provenance": mapping_provenance}
     rng = np.random.default_rng(config["seed"] + 1)
-    model = SetEstimator(**config["model"]).to(device)
+    model = create_model(config["model"]).to(device)
+    if config.get("fixed_stage"):
+        metadata = {**metadata, "fixed_stage": config["fixed_stage"]}
     if fixed_budget and not resume:
         metadata["initial_state_sha256"] = state_dict_sha256(model)
     start, best, bad = 0, float("inf"), 0
@@ -482,9 +500,10 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         validate_plan_matches_config(training_plan, config)
         verify_plan_against_stores(training_plan, stores)
         sample_plan_digest = training_plan["plan_sha256"]
+        metadata = {**metadata, "training_plan_sha256": sample_plan_digest}
         episodes = []
         torch.save(
-            {"model_config": model.config, "state_dict": model.state_dict()},
+            {"model_type": model.model_type, "model_config": model.config, "state_dict": model.state_dict()},
             output_dir / "initial_state.pt",
         )
         _write_gradient_audit(
