@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "worktree": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/122-p0-closure-20261111",
+  "base_commit": "89623047d644842dca134867b6a6ec5f38c0e756",
+  "scope": "主代理关键实际命令；独立撰写偏差说明，不复制子代理会话原文",
+  "path_convention": "下列相对路径均相对此worktree；实际调用使用其绝对路径。",
+  "commands": [
+    {"id":"C01","command":"git worktree add --detach <audit-worktree> 89623047d644842dca134867b6a6ec5f38c0e756 && git -C <audit-worktree> switch -c audit/122-p0-closure-20261111","exit_code":0,"note":"会话进入worktree前建立新检出；未切换主工作树。"},
+    {"id":"C02","command":"ssh myserver 'env CUDA_VISIBLE_DEVICES=\"\" OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 /gly/weilin/PRICE-master/venv/bin/python -I -B -' < runs/122-audit/inspect_remote.py > runs/122-audit/remote_structure.jsonl 2> runs/122-audit/remote_structure.stderr","exit_code":0,"role":"探索结构，不是主验收证据"},
+    {"id":"C03","command":"ssh myserver 'env CUDA_VISIBLE_DEVICES=\"\" OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 /gly/weilin/PRICE-master/venv/bin/python -I -B -' < runs/122-audit/source_readonly.py > runs/122-audit/source_readonly.json 2> runs/122-audit/source_readonly.stderr","exit_code":0,"script":"source_readonly.py.txt","stdout":"source_readonly.json","stderr_bytes":0,"note":"无项目导入/torch/模型；26源库及既有计划只读。脚本设4GiB RLIMIT_AS；无updates，不是smoke。"},
+    {"id":"C04","command":"env PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python3 -I -B runs/122-audit/numpy_recompute.py > runs/122-audit/numpy_recompute.json 2> runs/122-audit/numpy_recompute.stderr","exit_code":1,"stderr":"numpy_initial_failure.txt","note":"首次人工阈值>0.01错误；两口径实际差约0.0048787。未改生产函数，改独立脚本为非相等断言。"},
+    {"id":"C05","command":"env PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python3 -I -B runs/122-audit/numpy_recompute.py > runs/122-audit/numpy_recompute_v2.json 2> runs/122-audit/numpy_recompute_v2.stderr","exit_code":0,"note":"独立期望值与生产输出相符，无模型更新。"},
+    {"id":"C06","command":"env PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python3 -I -B runs/122-audit/numpy_recompute.py > runs/122-audit/numpy_recompute_final.json 2> runs/122-audit/numpy_recompute_final.stderr","exit_code":0,"note":"补充精确SD0边界，改用二进制精确的-0.25。"},
+    {"id":"C07","command":"env PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python3 -I -B runs/122-audit/numpy_recompute.py > runs/122-audit/numpy_recompute_verified.json 2> runs/122-audit/numpy_recompute_verified.stderr","exit_code":0,"script":"numpy_recompute.py.txt","stdout":"numpy_recompute.json","stderr_bytes":0,"note":"中间版本覆盖自比负迁移与恶化比例均0；随后C12补强逐库保护反例，归档脚本/JSON对应C12最终版。"},
+    {"id":"C08","command":"ssh myserver 'env CUDA_VISIBLE_DEVICES=\"\" OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 /gly/weilin/PRICE-master/venv/bin/python -I -B -' < runs/122-audit/checkpoint_readonly.py > runs/122-audit/checkpoint_readonly.json 2> runs/122-audit/checkpoint_readonly.stderr","exit_code":0,"script":"checkpoint_readonly.py.txt","stdout":"checkpoint_readonly.json","stderr_bytes":0,"note":"具名历史源候选；全文件原始字节仅用于SHA，解析data.pkl primitive opcode，不unpickle、不加载/解码或使用tensor值；原始stdout的tensor_storage_read=false只指未按storage成员加载/解码。"},
+    {"id":"C09","command":"ruff check scripts tests spatial_meta_ce","exit_code":0,"output":"Ruff: No issues found","note":"实际传入三个目录的worktree绝对路径。"},
+    {"id":"C10","command":"python3 -I -B -c <逐文件SHA比较>","exit_code":0,"note":"19项历史验证文件与16项部署文件均已按本地/远端字节SHA比对；其中metrics.py的本地/远端值单列在manifest.json的deployment_extra_code_sha256，其余历史或配置值见相应字段。是SHA检查，不是重新运行测试。"},
+    {"id":"C11","command":"ssh myserver 'sha256sum /gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/vendor/price_baseline/module.py /gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/vendor/price_baseline/encoder.py; df -Pk /gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code; test ! -e /gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/vendor/price_features/features_tool.py' > runs/122-audit/remote_vendor_storage.txt 2> runs/122-audit/remote_vendor_storage.stderr","exit_code":0,"stdout":"remote_vendor_storage.txt","note":"两个模型vendor模块匹配；feature提取模块缺失但不被缓存模型路径调用。之前包含缺文件的sha256sum子命令曾失败，后续df/test使shell为0，不能解释为三文件均存在。"},
+    {"id":"C12","command":"env PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python3 -I -B runs/122-audit/numpy_recompute.py > runs/122-audit/numpy_recompute_guard_verified.json 2> runs/122-audit/numpy_recompute_guard_verified.stderr","exit_code":0,"script":"numpy_recompute.py.txt","stdout":"numpy_recompute.json","stderr_bytes":0,"note":"最终归档版本另assert macro方向与幅度通过而单库保护独立失败，避免其他条件先否决掩盖guard。"},
+    {"id":"C13","command":"python3 -I -B runs/122-audit/package_verify.py","exit_code":0,"note":"文件证据校验：19历史代码/16部署文件/11原始input/10包内文件SHA、11条链接及原始两门false；不导入应用、不执行模型。"},
+    {"id":"C14","command":"python3 -I -B - <stdlib ast.parse审阅三份归档.py.txt并检查交付无权重数组>","exit_code":0,"note":"仅语法和静态边界断言，无应用导入或模型执行。"},
+    {"id":"C15","command":"git -C <audit-worktree> diff --exit-code 89623047d644842dca134867b6a6ec5f38c0e756 -- spatial_meta_ce scripts tests configs vendor 实验文档/122-PRICE式编码器与元学习低秩适配分阶段协议.md 实验文档/results/price-meta-lora-p0-20261111 && git -C <audit-worktree> diff --check","exit_code":0,"note":"生产代码/测试/配置/vendor/协议/原始两份预检不变，文档无空白错误。"}
+  ],
+  "subagent_execution_deviation": {
+    "status":"failed_scope_compliance",
+    "description":"历史复用子代理违反不执行模型/测试约束，做CPU模块构造及两次完整unittest；主代理原位核对调用，无会话原文复制。",
+    "observed_commands":[
+      {"command":"PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 timeout 590 python3 -B -m unittest discover -s tests 2>&1 | tail -12","shell_reported_success":true,"unittest_exit_code":null,"note":"无pipefail，摘要未保留；不能把管道成功当unittest进程exit0。"},
+      {"command":"PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 timeout 590 python3 -B -m unittest discover -s tests 2>&1 | grep -E \"^(Ran|OK|FAILED|ERROR)\" | tail -5","shell_reported_success":true,"unittest_exit_code":null,"observed_output":"Ran 1784 tests in 179.602s; OK (skipped=16)","note":"确有OK，但无独立exit留痕，无本轮2-update/300s/4GiB supervisor，不列为合规P0或成本证据。"}
+    ],
+    "gpu_status_query_observed":true,
+    "gpu_compute_observed":false,
+    "new_formal_training_command_observed":false,
+    "model_updates_in_tests":"not_measured",
+    "rss_and_aggregate_wall_time":"not_supervised",
+    "target_cache_reads":"not_observed; 无独立file-access trace",
+    "target_result_directory_listing":"曾列既有目标结果run文件名，未观察到读payload；不使用其数值。"
+  },
+  "not_executed_by_main":["模型构造/forward/backward","train/smoke/4000-step A","A/B/C/D研究评估","真实目标缓存读取","GPU计算","完整模型unittest"],
+  "tool_failures":["首次fact gate纠正后恢复；若干classifier timeout在动作执行前。","rg不可用exit1，改grep。","复杂SSH heredoc被worktree guard拒绝，改为显式scratch脚本stdin只读执行。","复制子代理会话记录到仓库被拒绝；未复制，独立撰写偏差说明。","Workflow-agent SendMessage resume失败，完成通知/journal后收集结果。"],
+  "p0_gate_passed":false,
+  "formal_training_authorized":false,
+  "research_training_started":false
+}

@@ -1,0 +1,3027 @@
+{
+  "schema": 1,
+  "purpose": "readonly-source-evidence-audit-not-smoke-not-research",
+  "date": "2026-11-11",
+  "libraries": {
+    "python": "3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]",
+    "numpy": "1.26.1"
+  },
+  "project_imports": [],
+  "model_updates": 0,
+  "gpu_used": false,
+  "target_databases_read": [],
+  "remote_writes": [],
+  "p0_gate_passed": false,
+  "formal_training_authorized": false,
+  "raw_preflight": {
+    "sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9",
+    "bytes": 9218
+  },
+  "capacity": [
+    12,
+    12,
+    7,
+    10
+  ],
+  "capacity_sha256": "1b7326c0ce8a562c3988ac793f817f8a6834d0925c6068616f8009eeda95f1f8",
+  "cache_records": {
+    "accidents": {
+      "manifest_sha256": "ff823dfdc94051780b91ef76c914da20566869c9e3967cb8ab2edf58343493c8",
+      "content_hash": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        3,
+        4,
+        3,
+        7
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "d83d6b61a164725e27d002838c20a5ffeb118bae46d4dec55e53425b277a295e",
+        "offsets.npy": "9a8e987650f56bedd5e9d1ba50fdc2708a53fc56981387b4c0ceb36b011f4b9a",
+        "group0.npy": "e388cf11c6fff94e323676b9b4fef007a8d1efc9fd12a1f2f726bea4ed510686",
+        "group1.npy": "6849da34955d712398fcd6eaa6f433bb7bde6c1bb03a890a29b73f7a8e39cfe6",
+        "group2.npy": "3eb7828931b49bf6bed8c3e79efe5b5dc032c06e1d702c1e2ddb0531d448f27d",
+        "group3.npy": "0254f43b5a2232c621df47dc464f7f13a15a9282336a88f2601a058543282e36"
+      },
+      "data_sha256": "e0f826887bfc8c3aaefc2cbe38491b38647e0e2fa2acd43a2fcec873ce0379d6",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "b4c53ef1d5d77cf35182cec8cdc236550800067c54cee9b0943a01568ef3bf73",
+          "feature_sha256": "fa64d39bc83a38e80f4425a8ebafefd800ea8dff829fdc768d870c104449e769",
+          "database": "accidents",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "4bb363e38ab88643ca775a6ba6cdac22c456b8a6d22fb773ea22dd3e4c1c90a0",
+            "fanout40.pkl": "cb03f0912a7df55ce3e2c2fb249555d49b9726d81a48894eb8e1d65f63cc19af",
+            "histogram40.pkl": "2dcf269f458bee1913957d0aad5933ad459b2dab34350e3a88513dc8f117820e",
+            "size.pkl": "8482a6ada13264d69b20c1d712ba080472bbdc684e296162c6aaf073f6a41994",
+            "summary40.pkl": "10e1f0eee35714b68c1fba07dea01bcf00644f5178c94b3489753010c63aaf33"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "airline": {
+      "manifest_sha256": "6589e7d1ce5cf600fed5dd66edaa8abaf65d8aa1a2d09bee220183c8a9512784",
+      "content_hash": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        12,
+        12,
+        7,
+        7
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "cfb64e792d8408ed18bbc1816ea1787f07d8b380bb2dab95a6d6a4d274802078",
+        "offsets.npy": "402b46d9718404efe3d1df0ac955f7fb58dfb307109b42217570e3944ad3d61a",
+        "group0.npy": "b7331b78f523da854f91c2584d4f7a3eef2937d7d0c58d6a25fd7016182fdcdd",
+        "group1.npy": "73cde1780d0c57567a6ef7c745fbe019025c1f6db1550a9b133bddc172dd469f",
+        "group2.npy": "f74d6e4ace0246cdb855e918da0fe37e06049a181adfafb8592976658bf78de9",
+        "group3.npy": "9b55198180b9a908bb2995c65818eb690be9a12298b4871576c598e2f737f117"
+      },
+      "data_sha256": "e602172245b72cfdbb455b0641a8b1f81819a71a35e534ed62ec095d4f5d2f38",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "9e5f7b0f2443fc3c7851215b337168fcf073099748741cf3b3fae3126e0150e9",
+          "feature_sha256": "aef2de10ec1dda5f8ba8d9a77f77e51da1a27857a5df9a03a958a04ea109ee79",
+          "database": "airline",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "62456a79bce7073d4e637144523a167d38f01b1e867dedf00938901b49f53ae2",
+            "fanout40.pkl": "2220c6cd77a38f8897499595502412cf8fbd162e273f0dbea60eb523f85b3a8a",
+            "histogram40.pkl": "31de826cf2e123c5077d261d809218423068c6cc64ab739cf8f3de03aba26f6f",
+            "size.pkl": "d64339cb7316cde88a43a82e1ea5f60b86cacff460de16248de91f396fa2eb4c",
+            "summary40.pkl": "7f4b26f8bda96ab710408b1e1193693f438b9142723c5c6af51d78ea5c713112"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "baseball": {
+      "manifest_sha256": "f350876bc121289364d1cee386dc97bace304721a3e2fa093d11c19c61b78663",
+      "content_hash": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        10,
+        12,
+        7,
+        7
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "296e50ca9c59ad7b093aaf47e8941d4801fb8f51e765f6e7a2158545d7f3005d",
+        "offsets.npy": "88bbd1df94192c00382f53a1ffa74901ff72dae12e6dccd3a0c17f7de4c233a1",
+        "group0.npy": "447f2d7c7fd9969103ea1240f8495b783a4f569859186d8f45927faefbe13a4a",
+        "group1.npy": "2736b186ffef0c68fe2de26e6531dfc06c3622529a680f746fedf844159b4638",
+        "group2.npy": "d68432bc98ed51109ed280da37214baffe1e505f6aabf6a16b64ce938f1885da",
+        "group3.npy": "f5343128d967b10d163147a45473efa74aa00e2b3fae04860b4ee7b7335499d6"
+      },
+      "data_sha256": "bcb8cf17490c3f8953e7b919bbf749202fffa0c364a7e3a1c6a5f6f1bc4f3558",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "ebac72bca5d7e0fbf237b725bc9097e7e73fdec921398941972b83583b851837",
+          "feature_sha256": "739873f345c26b656449ba1377e15a0f16516808e4fbc3d5a31ed420afe61ded",
+          "database": "baseball",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "18e374ea5920c9f08e377bab331012281b7dcd4423cd9abaaa10dc9f41368af4",
+            "fanout40.pkl": "d601b229995f276b76cc1eee63aa5bac79d0ba274a8a9c2b247915b0c529fd8c",
+            "histogram40.pkl": "3835e42561caf763a09b5f53d19032832d8a46750906768593e29a65ab63ee54",
+            "size.pkl": "c1c554c564a5834aa379aaee3d8e07e125f70fa770dae5da632d9cdcffc5443e",
+            "summary40.pkl": "ca2447f344474f83a94951e74cc9556c36c11c31715fb2ed9bf2511eee2093b7"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "basketball": {
+      "manifest_sha256": "c420cb4d1eee71ead3ade34e984da0383f79b6e8ed94ebe141fb7548e83425fb",
+      "content_hash": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        10,
+        12,
+        7,
+        6
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "00adac236b23bb8d98cc9605ea2873791693685afa0ae3f4562acba24a973a47",
+        "offsets.npy": "b62996411885fcbed1851d322fb233539ad844ed3cb4e6b3d9260b5e90548820",
+        "group0.npy": "9380ac125cf978c02d6a56d40f742a0a03cc4b822124d02878caa9064ece01df",
+        "group1.npy": "35eb00993b9defd2953ea58515bd43bb77c5921b1c4489c499399fb7889b9a92",
+        "group2.npy": "4c99ecc30bb439aa27bbe16343e16864cffe3ef91eaf984d01a0facf53abaa92",
+        "group3.npy": "29ab55e003064ede3a3578341bc0aed556a0b15aff77c2740edcaa6a615e87ca"
+      },
+      "data_sha256": "b91bba002bf8c5629f3db0b0a67ccf6451b7b2af6345f4643dd9872ef84c899d",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "266750e2d9980e950175124adc4f99062b6c22c7f970d102dccf7398c95dcb50",
+          "feature_sha256": "1ef2cf73aa56a0b867f933c72530ea9d53aeea8c82348dfd8945c9bf627bd086",
+          "database": "basketball",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "0e7898b79d1ea73928d74960a5e7463f91ad09dbb304e7ac433a15545790714f",
+            "fanout40.pkl": "c3c921fd4e5b951ba8bd2128d907a886506a6c93121ffd013874c5a6c3bd5726",
+            "histogram40.pkl": "f998fd2db60b4375561ed6491dd25afaedcccd554a1a6e437a6379d833f841da",
+            "size.pkl": "845b4bffbfc2e0d49d0d2666d55a0042903ad3e61448104c114c0d96f0752380",
+            "summary40.pkl": "23f745a30db789c658d1921c7865fcf85ae66bcf61c455ee2c01ce7d046bb2a0"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "carcinogenesis": {
+      "manifest_sha256": "498e869ada2f116b16a4965c673d70853dc4a52c97fd1558a855639d3d3b8a8a",
+      "content_hash": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        6,
+        10,
+        6,
+        6
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "c354ba3839278a953544ecb8966452929e95b1f6eb1a4bb31f8318cc3e96168d",
+        "offsets.npy": "9682518426e98975b96f0f488dd2619a14b2c502b7db4db30bb27f2e51e2a041",
+        "group0.npy": "ffe6bdf9ff433ea513b9927440ffe82e10d231aabbc793645b3a4b2c816a686e",
+        "group1.npy": "2757a43077a727cc60c93c9101beb104423cf47ef02b5e3d7492bb461ccb4b0d",
+        "group2.npy": "4b0c68d1c34d82db69f0a91bc58dd464e2cfda311ac208b86ed6aa072e702679",
+        "group3.npy": "75b3b976257ed5b85cf95f9111cb008dea20de3e3d182a6df63c5713dad8132d"
+      },
+      "data_sha256": "0e1f39fd5c035bbc395b23b8fb7486012342d88f9f9c19537a8a9f8f064282a5",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "71e5e6ef1038d47344b9677251fce80829249e95d16ddf0374b3e11a1db997cd",
+          "feature_sha256": "f0030f899d2cf04bb101ab018db15af1435e08965948fcff4433227b1dd8fd3f",
+          "database": "carcinogenesis",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "909df503a107b9e6ee0aa0bfae447889ffb6f9970619b726e1d96084a8742a4b",
+            "fanout40.pkl": "3d2e495f4f39ee58f1460fe0fcfb62eaf0e75f5b531f61455691c1dab60914f1",
+            "histogram40.pkl": "12f83f5351dba31420fb0e7380940d9d1904ca9fd6d31be7cb54546902757b5b",
+            "size.pkl": "b13360fc0c50009d1b102ba84d0ecad8ee870dc694fa0f9f1e88a61e947d8fba",
+            "summary40.pkl": "525c91402c55820ceb16cd813a034f74332ffdd9b48c51707c05d801ec3004b3"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "ccs": {
+      "manifest_sha256": "3f9ae6a5525076144f5022421379e9acf2d0bf912a91c7c08184c57edbe35ca8",
+      "content_hash": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        7,
+        8,
+        5,
+        10
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "0bcae93f11d1e3fd437d6915eba35bf16530688c127b002a522165279c89f418",
+        "offsets.npy": "8c01b196a0b46486a4b1c9e3a747066ebc256caa7445006a9fa50bbe98c3dc42",
+        "group0.npy": "cc6988cb8f4e71b7ccf23bf3d4c3c6a9360c093546917100c5280834be508620",
+        "group1.npy": "fd4aea7823029414aa034a994b002ab76634d8782baee82320cf4f66edca05c8",
+        "group2.npy": "76499228caff9d3b591a421b004bc0c32903e763c56ee5b9e0086bc52cae9bc4",
+        "group3.npy": "e64a96dab64e8f2f363315443d3ecf45f19e4e0cedb02777d194d468aa1bcede"
+      },
+      "data_sha256": "57c5a9cb9a68f71e3b284c79443ffb112235be1c3819a6bd36a223b01d565923",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "e4277f9d99574369a7beab275cd10e9dff89328511c171f92100238978bc3cb7",
+          "feature_sha256": "10847e906669c33899535aa0e8110927f7ce50069848014c390181971f1ac2ac",
+          "database": "ccs",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "1abbf541c879f82d204bf113e34b392d122b1d55682a2a2dfc73f769546da713",
+            "fanout40.pkl": "2cc7d4a8739efca8ceb9ce2a01954d483a0ad2a0b4debc63d15e491c6f08f34a",
+            "histogram40.pkl": "ed3510c626f1bdb92f5ab28abae14d02e55572d00027e7711d39cbb636118f22",
+            "size.pkl": "571c608ad3571b9cbc18507f7d55080fb0d53f8f300e543dae02dae16cc0556a",
+            "summary40.pkl": "139029db605009df58fffbfdf3c663eb45c894f3683181fb598bdd3dcab380e9"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "consumer": {
+      "manifest_sha256": "0b0a636ba7d76732118dc945f41cec78ae5224c53323ab293f128a3f0a8b581a",
+      "content_hash": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        3,
+        4,
+        3,
+        6
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "e69f129c80eeb7a495b9c25a4f784314d7fef11fc1b588b88151f3246cde3fb5",
+        "offsets.npy": "0985381120cc783323def07a79d6941096bdda763db62711ed33b54cdd48f7e0",
+        "group0.npy": "8597d6365a3268b4e6815fa3b6278aa3adcb8569edb6227ce6656e0162c44136",
+        "group1.npy": "bd22e1e97479000551c0da31b3fd866cb9f96d5eaedcbb2abdce2426c49d0eab",
+        "group2.npy": "8c81b495f53d75b87641ce83ea3a67515509f8e8a89aba6d9c8e46c82cfa5ca7",
+        "group3.npy": "3f38af0aa3e8bca9423514f31f9f5e7ba0807a626c93e2c1d7711b0c8a6d5b69"
+      },
+      "data_sha256": "4afdc8f27bdce103a25dbaad4fe9f4c5e42599ef8a7631b93c5e4f2173a96bb8",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "d017b13d5e5709ea1617afd0c637e8ae432c652c1ffcf265623d1242b2176f3b",
+          "feature_sha256": "6214901cc165f81b982836e0a6c947da0494cbc1f4423e3dd6ca430b6650fc9e",
+          "database": "consumer",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "cc8c93dcefaa7c223a4ce5a042a0d31db6f764f15706c241ae89e788c5b1be26",
+            "fanout40.pkl": "244794846388dbf9970e6d631b8c5587a895b7cafa737c3be4ee761e315577c6",
+            "histogram40.pkl": "57cd47dbd45ff1cfda1e12244873fe0b91463beaa4846326a469f254f148b971",
+            "size.pkl": "e1414c98c4fbfe188ddd6de87851c9f277da8bcf2e15d53cedd63dd153903d14",
+            "summary40.pkl": "9f4661e3190f7042b190f81969308fe4cda68a655b3ad65cc6ccaa18e007fa49"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "credit": {
+      "manifest_sha256": "f90d8a803685831149d93db11acce01b2dd4e87e83004cecadcaedfd0a0f7fe3",
+      "content_hash": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        9,
+        12,
+        7,
+        6
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "2c070c8f8b48f9796ee287b87220d300bce3a53c93beae0861de006740e4b024",
+        "offsets.npy": "f5effbb3b84c0f58fe0c60c6b29ecbbb15732fd5d529534e0495ef10ba116ec6",
+        "group0.npy": "ae085c9b872466287cfac4cd61c511341656c6e327e442ab5bc0d1b4b8e2662b",
+        "group1.npy": "887838ae9601b1d9d137ba91a156c472738dd9ffcce0b190b575e704d31dc964",
+        "group2.npy": "a042156cd352247bc4cbddbf6b391f715ee22bd31ddecc82d190eb29021fceb9",
+        "group3.npy": "dc468acf98f85323142b7699f82247f33d3e0d389c69a567e95e7f4c1d622f81"
+      },
+      "data_sha256": "c38bf6697c76cf775facc822a8073b1bb00de49e53dbaf7ec6d6aa594437196d",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "4f10a8e482c53f604e051f6881dcec1bbb2ffeeeba642f443c03e72dec233a6d",
+          "feature_sha256": "c69a1f2ef86283fb9be0640db100c6a3b52084dc896f390bf7a043aa300c3629",
+          "database": "credit",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "ba173a1736dae5f6e79b064c8a6d6dd8481cb1a8a95d380eb9ee5c2ec74bbd1d",
+            "fanout40.pkl": "0ab64f694d12eba7c36daa121c8addc18f57065b27292d15ad8a78f7c702ddb1",
+            "histogram40.pkl": "907f8cc0f9897350880853924e4dd432c6d41853f85d6f88600ca92e50488ccc",
+            "size.pkl": "24ae3d15c715399971c5c1b708b508054ee4f787344e7f4ea4c5b9c82061a97f",
+            "summary40.pkl": "0a25fd5543d79416c17972c3b1f14c4b2df6342fd6341ec893433758c028e667"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "employee": {
+      "manifest_sha256": "65f521f7bfcfdb10948d00c535448bda0ad74281ebedba9f0c18acba90164f62",
+      "content_hash": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        7,
+        10,
+        6,
+        3
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "265c467b4859407ff187a3bd0e9fd06958de26d63b330d3c5890228dbeaf299b",
+        "offsets.npy": "6fe5fb1e9083f7b0a5fcc849861146310a0824283921c8266c929478ddb7706a",
+        "group0.npy": "3ab8ec240ed9759ef6f288b63691301470f1f43d59c01a20573f0510ff84144e",
+        "group1.npy": "c320be9dbcba452c5d060f8466a934d12367ad9d39d31f21c9feddbfa7e38cbf",
+        "group2.npy": "43411c4a723493d6b3641c1cb2a201334851c670bfd26c269e9db4960027e22f",
+        "group3.npy": "bc9207da76ff23a49ac67ab5f5bcd4e86f5606df6a6bba24917d60aa76208d86"
+      },
+      "data_sha256": "50b1161aa7037a36277d74d490f67f535cc9786a88ef8bb29c1e1196f57b498c",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "7858ac648f04a6aa667dfff59a4d3e69f894ddae6fb0cb4c127936fc3c3cd2a0",
+          "feature_sha256": "29ea81fed7deae4f3a5f7301f73aba566073c49733b1078aee004584e5f61f06",
+          "database": "employee",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "689e644f7cb4168b2617e5f35c2b873ad398ac1820aebacaa32c4423434b0120",
+            "fanout40.pkl": "dca517bb37ea3c41a27971eaeb15861f4e026d3dac213968a9e86b1f7c248540",
+            "histogram40.pkl": "d9738a5bae3c05f4ecfbb603c833daddb03ec69849720ae46fdd35d76a805aa2",
+            "size.pkl": "2c35148f41f18306f8b61c1dde01035a1fbc823db4d3237737988ac6be23a8ce",
+            "summary40.pkl": "c23b2a7d66b0e66787c7c13896d9035547a92f590cd53a85d51a6d0faadbf4fa"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "financial": {
+      "manifest_sha256": "65876ead6f557da3fce5436d5e50bb713d784778848e73444bc7187be6bb92a8",
+      "content_hash": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        10,
+        12,
+        7,
+        7
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "f9c56c95325996092556efba925385728d2183eefc950062b050226c26b11b3b",
+        "offsets.npy": "5664ebedeb8e65c603630de52d51da209825dce02edc7effe74e11c28c312248",
+        "group0.npy": "d916578ac2d7481f88a703cce0f94cdb8667c8996141fd7c728e6845768c85cf",
+        "group1.npy": "83fbc95023f6121dd1520940b8d43f2797990c8d574de67300358c29814104be",
+        "group2.npy": "6d9d967863164541f1a4080972c163e0e287747973f219a83057fa8eafee079d",
+        "group3.npy": "73d40929cec6c82325d673fa4c04095c0743cc61357a79c435a533f72697c378"
+      },
+      "data_sha256": "3e8bab4f28998817319f15c6462d20ab42388a73f378962414104e05057c8683",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "6929c589dec5a20f0b3586ce7239c2ff88702d84bb025505d52e024fbfa217ff",
+          "feature_sha256": "fa671932a16cee9b95a2b5b792113b79ed90d698f45e222bff966196f871cf85",
+          "database": "financial",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "4e84335b41d8f949f5e285a6e7d6e7a631c08335302d14fe424be6fb1dd31f85",
+            "fanout40.pkl": "399aba90ac443897bb1461e0aa5d0f8bbfcef92fc65fe4845e2e29068f147cb5",
+            "histogram40.pkl": "7fbe3de10d80d4026d5bf34bf807f2cc49d58abdc4d6b4a69a44ce6b649082fa",
+            "size.pkl": "8507726ac9bb56ce859680b4a202433b6553d5a6d355056fcced7eaf6728d45e",
+            "summary40.pkl": "31d8da32710e2b9faf86b99ab798fb0d726bc0be58b00df1f79c309c1754be58"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "fnhk": {
+      "manifest_sha256": "3ee5edd07c8dd9aa85a388464dfbe59a38f3caef12585743daf1b240d9b11144",
+      "content_hash": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        3,
+        4,
+        3,
+        7
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "f1955531581ca84da2f43322180dc81948b5d6d769a56cb4ca74e1ada018be05",
+        "offsets.npy": "e04ae3913227a53e2caf53d3a4cbd6caa76312c07d41f0c99fe7b04625e15f44",
+        "group0.npy": "71b7cfa85766fc005bd88e43f922d9e912387beba257fbe44cb74a5f7c0af2d0",
+        "group1.npy": "9b319860e12899e2f4cf3be173a0ea49f721bddb06a10a19361a8ade0b40bc50",
+        "group2.npy": "23af39ddb94dbe75476d24df4720e1b72cf8b5882f0cade12fe858c0f092def4",
+        "group3.npy": "828b67c405a9d9f1c29421e9462c471bd7c81c7d9440dc6cce94a2299c725218"
+      },
+      "data_sha256": "1e2bf3e33340f61fdc8eac213c61c91439bad04e8cdb1e8e007e1a9d9d6c2925",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "f57bbfc4308cd196f23bfd6e66da644e667f2abd8bb6cb7c28f222cc657fe52c",
+          "feature_sha256": "e62cc924dbcde9a8e1be7087b6ee29fc32f9517ca70d34919deb8e148a8fd911",
+          "database": "fnhk",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "b61c24a31e638034076741167c360f1f885b545a165bdab9bec76c3dab3ab5ff",
+            "fanout40.pkl": "800757932c86aefa28db84d2782987d23808ea9b045fe10cabc4642c7aa60f21",
+            "histogram40.pkl": "1216a85a92c377edf868146a6decfeae9407911f08d7770490945d6f6adc7273",
+            "size.pkl": "c9b15230f3b912f3711d70ec0c9b52f593690f82c5667e5ad6b18e51ce1a25d3",
+            "summary40.pkl": "c6acac8738852001ba53d5f22b73181c950795791186ebbf733bddd2174d0b18"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "grants": {
+      "manifest_sha256": "24c2032c6e7c9acb4365a0125fcdc3cae5f7e6b99c487f642e5cb216609ed5dc",
+      "content_hash": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        10,
+        12,
+        7,
+        10
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "8dd25d48ddfb768694c280d02dac94ff1ed560e9df60c1ef03ea11c91b01f909",
+        "offsets.npy": "b69e63f1af739bd00dad5e6e3ef6ac1d6696bdb0c66525eed8562dd01eb0bb24",
+        "group0.npy": "d3872b8e90bccbf70156c11c3e8dd8dd07326e8aed717cf399c8f811698906b7",
+        "group1.npy": "3305a78b27804c6ab4aa23c53521b8af2937912a81c6d435a7d5335cecdb8cbe",
+        "group2.npy": "cbe3b0f76430e2b1f454456fb876382f939ab95073a31cb42117b21a93ccb9c5",
+        "group3.npy": "31b7633369c9038115d50f4766d0d1133dcfab9e12868f2866bd3d723c965978"
+      },
+      "data_sha256": "dfefa58a21cf4eef765dce13c0209ade8e7de710aba28bdb7d80587f6ce86499",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "63aeb873845dd3a7eee34746f79f4888f562545edb3b17e4fbb32e09917f5a0f",
+          "feature_sha256": "f5c26a8aff94b7291c909f902101262cbf7e1a33490446b70e622620317a812a",
+          "database": "grants",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "9e426c3082fcc84307efc5933b5c4830ac2aa2c51dc6b124884a275009cbb3b1",
+            "fanout40.pkl": "d98dfa493353785d4935d670ad4931cf417f29b4d44038306b1e049e725f0324",
+            "histogram40.pkl": "40d9a8924799c41f09c18a568b1ab9c18b09245e0e66e6bafd032dda4d21b89f",
+            "size.pkl": "13694a00911c5b4e27f909844280e24665515ed74743e46a4b2a354f5df864c2",
+            "summary40.pkl": "e5f7064720bba5d202d3e34565cfe1f42fc7b5201d71ef0eeecd1555c04048a4"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "hepatitis": {
+      "manifest_sha256": "e83a753d466350f365c6c6a6b493f23f9c086dd0018c24722f2215cf483d4e09",
+      "content_hash": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        10,
+        12,
+        7,
+        7
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "68c63cc91f48404c8c184920aa768d29d61cbe5cdd88043bfa2f19c8ba8f2906",
+        "offsets.npy": "8fd267f5e47437a77bd1df0aba785449973a24e39a10878ea24d4b7a19183e87",
+        "group0.npy": "3044518cb7ac7f62fc082868b51b968f411cd2395d2b6bb9ded7b9d5cd66a3f1",
+        "group1.npy": "22c7abb6764e186a8b63609fc2e1591e9d9dbc3069039aa8336308c1f32fcfd4",
+        "group2.npy": "7834158851ca75248374405061f29e758ee67898a634e799cebc667f2df48a2a",
+        "group3.npy": "cc0149b1fe79a79ce1abbd79f70e7288db3a51342efc6a8df617ff14e6baf5cf"
+      },
+      "data_sha256": "f0bc496c809ec7629dd0cc99bad7643bbb0163b121c62ceaefb66c2f66e20fe7",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "231b5328e0bf510a6e377435adf3764622c7a569114919d3936c6786d1c52a2f",
+          "feature_sha256": "7a1345dfd3826088437d2376c125aa9225b37880aefc61ae7454927fae4a80e6",
+          "database": "hepatitis",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "7a7442f763ac6b97379b5ba1ec3fdf35d3fd6b0b39246ee5eafbaa8e521ef73a",
+            "fanout40.pkl": "1db0315510eaa137620f5993c6940cdec00b31a3be169405eb74d3bd29f53467",
+            "histogram40.pkl": "a970d161aeaa5504be9eff2f8ff2524cae5f516ea3361e77aafae1ba2179415b",
+            "size.pkl": "4758161fc864e322d3c9747c6555e3339f2f7a42f9d499b7cb0edd5f625a4e8d",
+            "summary40.pkl": "564aa5de8264a6aa95f70d2a1359ba037842daacaac8831b9984389fe1112834"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "hockey": {
+      "manifest_sha256": "81188aa035bf803d41e1568b47bf68f7f4da65c3acc69255c7d9a3c4d2673ede",
+      "content_hash": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        9,
+        12,
+        7,
+        9
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "33d5f7c715b14ea5f7b7ca17cc1a990380a7f679702e5091f83eb5139aaeadc3",
+        "offsets.npy": "a04d6165694649dd0fbcac09f9ceb79e7f9963f0ef0619f8973b180449a17037",
+        "group0.npy": "ea96a65a85a50de53f608ebff121cd12d5fa4cddeca97221aedc2465079b1da3",
+        "group1.npy": "fd56b8708307e5d086199d90d606108c8ac4d07ae17c3f8e99dbce39c6895c47",
+        "group2.npy": "7ca3e6aec805a2c0504b0eb9058e79065337c33167d4f9a5405ad97c26a6ad38",
+        "group3.npy": "7acbca91ec0961cb98018e9f6cf4c6e7bdbaed7d129d312e9780c7d52353f82f"
+      },
+      "data_sha256": "350d5731aaea0e035336d2e4e8c9bf670933291474cb8f2f72997872c9b870c0",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "8a9a64c6ee0583cda6626be7caa1975f86654a956fa02b23dee6f63db7571be7",
+          "feature_sha256": "076b76c6341a7936871a862cc5baaf3fab41d41440ca7ab47e10fabf72d94a5d",
+          "database": "hockey",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "348ec2787d04d71603b1353931ddafac6d170caac3d7f79e0f6838e84615771a",
+            "fanout40.pkl": "3467b1ef1ac6c77a3f834a8b915b449da6736b288dc21ce0aff230f3c9fc6242",
+            "histogram40.pkl": "c36c523a13fbc1388d524c15a1868e584c730383060d7c1cf71def2748f03a61",
+            "size.pkl": "9d8d554b9ea2f98429cb0b26cedf4139c07bffd080e24c1632686ceda76c39d8",
+            "summary40.pkl": "9f795320eef02e9007c52e1f409aeeedf83364d80f6ad513fba03ab7db580cde"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "movielens": {
+      "manifest_sha256": "0e76c11fa83601ecb4c938de42f2eb71a3670e3a729d8a61f5d97b126b36c2f4",
+      "content_hash": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        10,
+        12,
+        7,
+        7
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "ad6965d936a28dfd670df04c2bf8ae2adff05b9e9fc2c39f5560febcb1faf8d8",
+        "offsets.npy": "ec1487b92daec5021a701eafa08aeaa5e5b83f3f428855ee1757ba14fbb5c8b5",
+        "group0.npy": "79c9f9a23765bcd4f072601bae5d319984f17ba15060a852d04a43ba13d60f87",
+        "group1.npy": "e3202b7fb7901fa20c5f4a2c50bfbc188b723c7582b8e9e5dcfe8e570de569af",
+        "group2.npy": "6359e7e6b928ee5dc2acade7483bcde2758846283bb523f53f0149a4c97d8e88",
+        "group3.npy": "096f1ab245c088b098f679d9afb701ce955dbe1087abc072046c34d7b4bafb43"
+      },
+      "data_sha256": "ebfb6e3ddc6305c2d30140f0872c1d0a64e4427712d94f7ade2fc25979ac62e5",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "b7f4f5a3c15a14202472b5163f0103cb371a240b271af9b90a38fb296e55b144",
+          "feature_sha256": "b9a3d605499b156fccaeda3a71e4c78c3ef7dc695042620c8a85b1053b722f7f",
+          "database": "movielens",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "7ac581229d6c82fc4289c93bf558e877ed20267c269de8241cd4f81738c24b57",
+            "fanout40.pkl": "41ccc2f7fea5388e6262d78c367b6b4cd35231c90f383e08dc2e23be5ab01447",
+            "histogram40.pkl": "d958f33d43e342f33a7a284bed02492d9ab092b8b8faa1221a5b6f5c05184291",
+            "size.pkl": "e2ae0e40fcb9f786ac32d42ec91e77783feb7329f5617ca7ee30abe61ba967ab",
+            "summary40.pkl": "2013536efd3b750bc35159f9157be146440eb9344695ed459d6bb1e3cf020724"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "sakila": {
+      "manifest_sha256": "9a518b7c4b045457f93081106cb506942af8c8dbc775f5a8d43bc92bf129fcb5",
+      "content_hash": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        12,
+        12,
+        7,
+        10
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "cc54f41ed372b5a9f1b4419e48de533683a5e3c337d945429d855cdf866325c0",
+        "offsets.npy": "366f327c620ef81ef9a03acd5945e6be604a7cdee656d993b9cf15b3c17bfd0e",
+        "group0.npy": "332403221e98594ebcb75f8a5ee12caf2a527af2a7c61e6891bb8e07d55c1581",
+        "group1.npy": "6fb6e9c003fcdb0767ab55fdbe88853757da7b23646d6e53d19d42dbaba2c56d",
+        "group2.npy": "dc75a9471f827e82ae734c5a6e0c524ec6cfc741f500f94d98758232b234cc85",
+        "group3.npy": "a755104f00347342da29c7b1bc5a03780b63e00c27e5a9f2d5c3d056bf0d8cdb"
+      },
+      "data_sha256": "5572900437ecb79322ec9595a08941422b97711fdb8236461a848b3c686f7f7f",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "5622f4f05cd5a5195ceefa942a24b717e2928f9439937ba239dbce4a37025424",
+          "feature_sha256": "72cb56957ce0b90dbab6711348a28951221aa394b1c9b4f38a7a5b02ab7da6d3",
+          "database": "sakila",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "69773a31777d10c884384155f469acbecdbb7546f8803f5d16eb488fef85847d",
+            "fanout40.pkl": "229e116aeb4a5fe6fd627c7ebe2f3678479223b1436814e869a881f69caa5048",
+            "histogram40.pkl": "0fe8a30180455bc77dd2db54c8bff6bd9816bb8e227df9ba1a5d5c528301dc5e",
+            "size.pkl": "695612c52bc8a09979bb07063723d5ba5392960e191631290f7b3375e48d158e",
+            "summary40.pkl": "de5429223bf52e138bcb3020d7e7bb38352fb38d6f52cf7eb60ebbbe46793920"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "sap": {
+      "manifest_sha256": "9e12062c46ff20acd7677153f3f21dcabef189017bf5faf710647b536e3288a9",
+      "content_hash": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+      "rows": 50000,
+      "unique_queries": 29714,
+      "max_counts": [
+        5,
+        6,
+        4,
+        10
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "403415761905e7726b59206cb416cfc283a3dd4e60b0e5e4cd96d37ffc8707c0",
+        "offsets.npy": "b04e881cd077c601897bcd9a6c08fed94610b51e37fe4c3d14d2262a41131a9b",
+        "group0.npy": "4d083aa0bf64af1e9f38a0b33be8c2a6d69bac2753da9bfd938ee354dc8247ff",
+        "group1.npy": "06bc5e28221eb447b08a34cf117521e35af1dfc5cd8dd0ae49cf3e4499b04076",
+        "group2.npy": "d737720290f4804db5ba9fb6b148d09a913608e544c495ecdf7173a419d3e73a",
+        "group3.npy": "0dce65b350ba8eacb33de967278303cbf1e2ddbdf61e0add4bb5746c6a6545ba"
+      },
+      "data_sha256": "af7e5cea1638ea45e6e338b709effa01b58de32cc0c67be3f070c098e7397069",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "b5627c2014fc7e5c570b427b8a4bf11472bd04fd50ea01dc6752fedba572429f",
+          "feature_sha256": "b4b3dc8e0fbe9a754be444c6ce3f2728ff4893ac1781e857badf45e8abddd343",
+          "database": "sap",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "a09e150d049be4a5709ce9f75a7540aa18a29a5f1540d4986b3def53c2f7e77f",
+            "fanout40.pkl": "5d0ce505dfe436940cfbafd70228b8ab6ceab0197467f930767a49b33eba7a68",
+            "histogram40.pkl": "2fbf6f914861c426f66c6516150ea0d7f774e0742ff9fa73ee1b59b535968663",
+            "size.pkl": "a25c67b0e18a3b95dd5f069e3897e4e644a55f042e1273fd69974a318f8b1826",
+            "summary40.pkl": "f1a202aa0d9d07eb8f85c9d3a54130dbebe0590dc091e47a2550be2c2651d5c5"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "seznam": {
+      "manifest_sha256": "f8440202f24c5cd2c1a968da575561aabf7fbad4fae37d33e2ad8b37c6282f1f",
+      "content_hash": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        4,
+        6,
+        4,
+        7
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "f54aafe9c185ac01f1af8931290d540938147a72a2ebc5931f8394947fde07f9",
+        "offsets.npy": "61e59e988cddb59d8e5b190e23526046ac7001fb68510405416f7a407b8a3377",
+        "group0.npy": "5e4bd9fff456e9d84df3b6bd28d26a473ed66d60fb008ded911db2952d044e61",
+        "group1.npy": "02a2cd1702a426717fd02ae5712e2b0dce047ace2daf27960dd54fd873c7e3fc",
+        "group2.npy": "a9a45ffbac57719b6f72572dfc97c96b5c340a6b2bb331554f4cab561d1a92e9",
+        "group3.npy": "be0dfe1c43e931d0e379a6ccfbbd866412ece55cc0ef1c177ed64acaf86dd902"
+      },
+      "data_sha256": "ae93535d90cfbf57ba969cbfc7559e70001092e46afe5269f910a012ad928744",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "3ef855cffe073b3d85037a3f3de34d00c51c82808de8dd393e16088774d86060",
+          "feature_sha256": "84bcd43e6633d15f51e6f6d805ffb423c8c5ce1b563893be7c74b14324fcc62b",
+          "database": "seznam",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "8de7fa332c14d046023738bddba7332a749abae902c1ba9c484f3463f3f46d84",
+            "fanout40.pkl": "0bf4cc2f6261c5ad3895a892ebdb980bee0cf9c1f413d26260d76dc8f60375ce",
+            "histogram40.pkl": "fd1a6e810b7f390231418e37a06b9323f30ecd5253985fac8e12c16614d36af8",
+            "size.pkl": "549cca5ad98f166bc18c02d31423ca1677ee46ea4861dac136bb569ada5ebcb0",
+            "summary40.pkl": "7d17777d8af39b1f5c7e57dbcf8ff2a9123fe6e8b50d0417edf4788f404b510f"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "ssb": {
+      "manifest_sha256": "b47234152f17846696b680d723336cb03e999c5a9902bff765a76dbbc4adb942",
+      "content_hash": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        8,
+        8,
+        5,
+        7
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "d11e9b9b81271a28a3e2227bc6f2b9f1e97dc460e5d02e0be4f51431ce7326f9",
+        "offsets.npy": "f7abd5fa82d9380dd6d5afc6c8250698186bf9fab161df81a9a6eb4d003d56cb",
+        "group0.npy": "acc750672aff7346f93bc43f6bbc8db3cc15a169eac9d577b3e24d59c6fec4c4",
+        "group1.npy": "d050c2d2ab1f89f552500624a881feebccb233fae5007e6daf79dc315934ed48",
+        "group2.npy": "9449b730403dee9d084ab20a1b326466d6ac12a73aa82f3629b9972b315645fc",
+        "group3.npy": "1804a305d5bed7e24569def2dff19f56dd53079334b07aea18b1ffdb0f762ac3"
+      },
+      "data_sha256": "580347bee7a5b9ae4e2a4541897037bc6fcc4b5a152532fdb480c7670adc7d61",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "2b700aaa7fb300f96e461d8166a961106762a2040840edcca9d72a582bc8fa2a",
+          "feature_sha256": "8672de40996797c3014d0c72896cf9bc0bf0b983a641e651eef399855c090512",
+          "database": "ssb",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "06a7824b727548a9956cbc9759a7d7f508987535465a09ad510c8344d8825ed8",
+            "fanout40.pkl": "12f101d0b6cf5f7b0381b3e87328e017c7e3b15adcfaad7dd14fa9e24428e627",
+            "histogram40.pkl": "d9077bdd724142bd52335216eb27675e5a5d115b9b9424862520ea8ff84a048b",
+            "size.pkl": "4797cfc8c49aa78876be219d0c424b57c0d6031a40f9ea4f41a6c152e2ac8c2c",
+            "summary40.pkl": "da00d2dda8ee540de0f59a40285a18cf5fffedf3878228223bbe8c1e4751f421"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "talkingdata": {
+      "manifest_sha256": "bfb7e5e5be00b3400ad91b2459265469f45370d0608ee08d8a8293a6e9202d96",
+      "content_hash": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        10,
+        12,
+        7,
+        10
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "90f1bf1d2adc0b1c1552a9cce788c7c4e18cfa7d2abf0de3d6d1ba7dd9a048c7",
+        "offsets.npy": "4bbe895dea4e9c13b3e888d42e3f7d75c564361e4130985b54a946a738030a08",
+        "group0.npy": "c9dac58c2f24588e9dd88f92cdd589b1ef8669dee70932a33f85d0a728405d3d",
+        "group1.npy": "b7b56131b1cfbfc0aca6856652ea3b0031cc5a4fb5343ce3ef4e87df3966b95d",
+        "group2.npy": "710898a53803bbe301d5ebbcd121cc20153d5ad5a718bbf048034e0b56e5ddf3",
+        "group3.npy": "3401c0232e0769adc0cb8bf8a776c8af13c6dd79e25deb0c6577f302d30a1856"
+      },
+      "data_sha256": "40d77dc0c011b74db319ab509f4e3d86f036d546395df52488cace30cabdfe4f",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "fa65dc80c911bef4e01f49d76f95c1f085a6f41dd79033958b2967d7e5bdeaba",
+          "feature_sha256": "3009470992df1fa99a4180150b7e6ebb73f3fc428892981145348476425b2fee",
+          "database": "talkingdata",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "ddae51612a26a9813789d8dda3ebd53b332f340a36a8997500c54e41677e57ba",
+            "fanout40.pkl": "fc361a8dbb1e1f46f7873f090e3af887545aa62dd0f61c224a0ca37b617a5413",
+            "histogram40.pkl": "f531de360d55041a79f0117153a9f74a964fe203aa980c7d7530b06d14aab447",
+            "size.pkl": "3a683eec2591a7b8af5cd9fb98243e4add6f383c634678a565e3f7d9b9e576ec",
+            "summary40.pkl": "cfde51e97d848557795b4508ff3021da6d5da52ac1962358c019a22af3a62e4a"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "tournament": {
+      "manifest_sha256": "907c45b0be134437de7e654388cd604795cd42434f69b1ed7e3e636b6008ebd9",
+      "content_hash": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        8,
+        12,
+        7,
+        7
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "572624501b37d8e9f28bb9dfc328042afd832bb79ae64febb46594563a9f0668",
+        "offsets.npy": "edd1ad9ddf7e78c24f6140329af97faed8313aca9b9370528d77f60f8b3d4a99",
+        "group0.npy": "87f22612b69beb484d35ab8532062f846aa06c7aab78c29ac156f6877d479b43",
+        "group1.npy": "6fb1192134cef00b8e7a3907fa1b3888d6437a912e2f308b69c9f038b45bb093",
+        "group2.npy": "32f64ec4841c51b2ed382dbd513aa177349e16fc4c9ce2f102ff7159e7269820",
+        "group3.npy": "6ab4f44593be999f60f4ac2b609525f43dfd70303ebce0d4ab9d81c246d1d11a"
+      },
+      "data_sha256": "deefe3513e60c336542e3fcf776474271cb8cbffc45a9fb12409c84a04d424bc",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "9490ed3bd9cb522aa33f59183eff05e885fb8157f0639c8f0efc7b6bfc17b621",
+          "feature_sha256": "a8501628d26fb710f9a307b21cf73f98e64e14c0e1a5937293f8b15db5dadce7",
+          "database": "tournament",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "e1dfe0b39dd0a6cd35aaca2b29abe0b8a68ca6179f343d1522874ef3b51d16f9",
+            "fanout40.pkl": "dcfd3b9d51ea315c783d43fbcc15cf6de82425e3691f5a2174e4e5f2474b91d8",
+            "histogram40.pkl": "dd355bd86f57e6fb78818ee6f9cf24aff9f2d56271a9797088ba1033c5748beb",
+            "size.pkl": "823f0054884a4b5b162589d51832ab5a8d852e4c1603b7a62ed0a7af1051078f",
+            "summary40.pkl": "59d7577f37a457450360d4e6caa421a7eb346ca6b2852db82f7ecc896574df05"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "tpc_h": {
+      "manifest_sha256": "ac4e675c5f07232f453df70a7e082847b9286ecd750e0073469103e83be28760",
+      "content_hash": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        11,
+        12,
+        7,
+        7
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "fb6bad69aad696754fa20fe1158dd0c05aa89aacc34a703c168d6a7c5beb2606",
+        "offsets.npy": "28ce6f939a0fd02c0eeb621d89fb02fa00be5292f197125e2dcdc8184b5892c0",
+        "group0.npy": "fb04e9c74133f7b5eb07f407e2fe916db63cfbca74bc3d649b252fa09807d0de",
+        "group1.npy": "11929b9e45a89f576c94c6a534f0d48f19ab8576fc3d71987fc8d16e71e2d274",
+        "group2.npy": "f05be95a29d5f7adc89208e0a5fd508278d072380b1886b2fb8ba851388f293f",
+        "group3.npy": "a07f866ba5b21b38a7e7f564517c4bcd246f1e1ff7554d151157845016f94a47"
+      },
+      "data_sha256": "b67b673c3ecd542b96f41621dd75b2e4f7e1d91497308b0b673f1f4c09cee4a1",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "5c30ceb43d3c373d913f1390056be0eccf23dea095940cbfa12606e0e617522a",
+          "feature_sha256": "05f081f7106330a36d533606bb7c44d89990059e5dd3b42dd124fce43d26413f",
+          "database": "tpc_h",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "5ab59be68a0864426292f48af8443c3f97b04ea1f5ebf5e3dfbd1c56cf698eea",
+            "fanout40.pkl": "2b6fe5ad04956d69b3a59c95c314b93b10d0b283cb4d8580bdfbbf23a87b5e21",
+            "histogram40.pkl": "77eed081573c5229b4e06cbf0be1c117d3df1a62f2cec2fe531e5dc0e4434104",
+            "size.pkl": "73bcc9b2d08104c508ddb08f14542f4e8cc7baf27233173c5beec245519b6914",
+            "summary40.pkl": "eeca41e92d93ed41f3c5fd409a1166ea0cfb19a96fa55d0f6cea43e9bc593baf"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "tubepricing": {
+      "manifest_sha256": "cb3460d9aefbb3c3e10ed5022185fd9050168eda1dd2a0864a351f6cbc31bc90",
+      "content_hash": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        7,
+        10,
+        6,
+        10
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "e9358398d218aba1df4ba13164baf428cec747764ff76718285b8573188e32a4",
+        "offsets.npy": "2f8ebe70fb5bbfbccfd873d6a315cd10934d63e24c2c4a81f862e0f8d84fe3a1",
+        "group0.npy": "2710b9ca0b1ebf8539232e7c76eda21159a8fab3040ed7d6362090892aa292e8",
+        "group1.npy": "e1ad4e355429b0e30f62dad3f30cdba95590a044f2f172c2fc7ff6041137022a",
+        "group2.npy": "0866f01de27f81bae4145503ea25ec47e7601a02cafc1f2214e2a6577c31e5b4",
+        "group3.npy": "fc37182d56546cd1120ca562ce63c03d0df787879779681bd9e1732f95985175"
+      },
+      "data_sha256": "e351561baa9121870061d2c2a08aa4e24c1475cc86cac344b3d4adf50a58625e",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "9ec428107e95ca8aeb742252cb5b0589916d1f892bdefc382dc5f9843616ac58",
+          "feature_sha256": "74ad976616aeac19d968d88e857b32e76bcb50c2cf54c7f88bfa2719e56224f7",
+          "database": "tubepricing",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "16817e951c018b1f413357fa06b78d7fc62e24dd9962dd29c6233a960bc4e128",
+            "fanout40.pkl": "3121c3bb1b8edf878c129dfe95f66e330baacc3be83c88f84b1662c0f037b132",
+            "histogram40.pkl": "141e2caf96ea512d7339deeddb85cd6711489f855320d87c10e150e5cd903f56",
+            "size.pkl": "b62a2e7c38608e2c23b2e5250ff854042c3fa5b11e6baa05ff84be8de8745d15",
+            "summary40.pkl": "a9d8faa32b5d134fde714341fd03cdd6d8ddbee35e4444083c7f051f6c560bc7"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "chembl": {
+      "manifest_sha256": "7a936bbe92c1f919bb4a9d8e0276f1cba418f93e1bb0a5595b51cf0c8d837952",
+      "content_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        11,
+        12,
+        7,
+        10
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "11d638adede17523c34893ca37f8fc13c728c01af2146991f58034a670adbd44",
+        "offsets.npy": "a401fdb739eedc1902faed45b5e068d33b4c262bc5aa7b7a3425be6071f19765",
+        "group0.npy": "d522589b6cb3ccdb9684ecad2e83db94a3b213c732de1fe737561696c0ae5ba4",
+        "group1.npy": "0ac6dfb2401ef5bec24b80ec5593ef64fda6ba3ef97af380a6e3d4e175b009e5",
+        "group2.npy": "0e52ceeb3418de73d188c897a8c77ae1b33b222e589446e560d067bfb9c0c7c6",
+        "group3.npy": "d808ff804adbc4442689b2552d3c33596fc20c78becc99575eb5fddd8c0b150b"
+      },
+      "data_sha256": "61aed60e46b2e78a17c4809773a02df3901a7493cc7dd614ad70798c46a8728d",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "b21b33af062be1203dea77096d62c07680085548cf6c5f0061231cabb1cab269",
+          "feature_sha256": "7f53bb21f699f12efa95b593ba746e49e9983ddc0278757ca19d2199c6d948ca",
+          "database": "chembl",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "4c1b22573cf113adf9d1c733fa8324647534cc9b926b41e33e8ee5923058c1dc",
+            "fanout40.pkl": "41b4ce7827184d064d21a30ca2a5dd87d610f6beb01ca3b6e55786b6a36c275d",
+            "histogram40.pkl": "c67fb1fb81b742e31163fc97d9ee9a019932bda339cc498c980127ff5b45568f",
+            "size.pkl": "60e82e0b78195f4ab4108e9024057bd383258f679770c6db8afe1f435282d2c7",
+            "summary40.pkl": "c8acc044dcb53a253676cda230a41af2f6689aee7836b20ea8e1b3da9d603200"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "legalacts": {
+      "manifest_sha256": "a87b4ceb61d687f0f0525ea763422b4b8f29cad4bb56b664ee6d305f40e7d225",
+      "content_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+      "rows": 50000,
+      "unique_queries": 49504,
+      "max_counts": [
+        5,
+        6,
+        4,
+        10
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "13a9afe2b62e5c6697367993e4ded72d1a025ee26b425b8c04446e10aba76dd3",
+        "offsets.npy": "67aa46828a9dcfb2a9f1335c11f8658882333025ea394a17d863f249f50c9144",
+        "group0.npy": "49c6e9f212ef767a8a4664dfb78347f8b1b336f37a1b4fe99d28da736c87188a",
+        "group1.npy": "3cd65ae187956ba8d59f1dcd03f0c6e39c81d89abfdc8b39da0a8f06293822aa",
+        "group2.npy": "1e7ebd2a9f1d2b1e7fc386e6ce3c38836cd728c55c2d38c9da536d55a2c3b58c",
+        "group3.npy": "9487079283c0c482745d951413e6668ba6787af988f8d00546aa1d32b7620696"
+      },
+      "data_sha256": "218d881e1d3a76409ccb4f2437ea2511e623dac5bd0b6d81512243c09e4de292",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "4be49ba258b10c4a9e778e54ba57dce3a9ab638a2ed16b6c0258cba890d8eac9",
+          "feature_sha256": "53d840ccf31dad603efdf7fc5083dd66413a6dae9811ca7e854ee59226ebc491",
+          "database": "legalacts",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "63eee1e55833c5b66c322f3f95c6cd73afc20ec5c6af4641ff2eaff9010e4970",
+            "fanout40.pkl": "df4ea29d1154d17bd189408dae95bef24bdf537679f29d128f51768a71d7b104",
+            "histogram40.pkl": "615e05f2ac9e303c3e2a13d65b0ee789edb3455754c6f1c2eda1ec2fdbd2ceda",
+            "size.pkl": "1db4520b1d1bd59176db84a8e1479949bbfe9c18906d44e14af84137b680becb",
+            "summary40.pkl": "7f30ad89ddfaccc3c8111736db9307278ffd4115de5c0d794b137b13ac8cf5f1"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    },
+    "telstra": {
+      "manifest_sha256": "3df79cbd9b0913d1cb8d6f7b0b58eca8bf9ef7094f2048657ade2fc49c8ec144",
+      "content_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+      "rows": 50000,
+      "unique_queries": 50000,
+      "max_counts": [
+        5,
+        8,
+        5,
+        5
+      ],
+      "unsupported_rows": 0,
+      "array_sha256": {
+        "cards.npy": "c15f05bdb013320516f0ead9fbef0b776870e061d930847e3833014c47ef291a",
+        "offsets.npy": "9f1d6fd6d8cda47162da4592acf3486a3bcf6448813a610758db33c9643f77e6",
+        "group0.npy": "2304c6e474308b0f17f956c6ad3864e129c716d629f16801f740779cb777567a",
+        "group1.npy": "86735ac3dc5b9d843e6f06c6b4f7acf8f1153bfb24afe0dd673c4748a91d826d",
+        "group2.npy": "ad6becd65f27c805a41c5ac4aec82de1999a1ca79cbb50227d72f2d06f4ae135",
+        "group3.npy": "6f372b92258a9fa7fde03228c68cc430e0c0ecb2757bac407b9040ee924fc033"
+      },
+      "data_sha256": "91d8888e2547b0a8975f20038b3316255587cb895e8cd14e28bf04399fa3aeb9",
+      "upstream_provenance_recorded_not_reread": {
+        "source": {
+          "workload_sha256": "019b3755d93491775aceb650e4ce1a9f5cc52d87711c77ce7ce2b5b59840aeeb",
+          "feature_sha256": "3224e94426c92ae78e377e987edff7d273f79a4a1c98e797a2ec7739708aa1ab",
+          "database": "telstra",
+          "split": "pretrain",
+          "sqlglot": "18.17.0",
+          "statistics": {
+            "abbrev_col_type.pkl": "b9aae24e5d089db2ea29b751a0e6c71e5c7e6b152d71d930b5608dd5e64e7840",
+            "fanout40.pkl": "e1cbb847ef88884452b6a07cd519ab2b7f91b5952e462b31406df619cdec940d",
+            "histogram40.pkl": "9dbbc1e1120e646eb3492d85525e0a973abbc7a51867f0b60ff8d1416ebe8843",
+            "size.pkl": "312e212d218c21ee3b0012e9f4002874eb0803f7681e1cdb996708929dc017c9",
+            "summary40.pkl": "8707c57c576ebaf2a4903e217c6b166f88b88a724e0868079aebe34dd1371831"
+          },
+          "extractor_sha256": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+        },
+        "regenerated": false,
+        "reason": null,
+        "excluded": [],
+        "alignment": "full label sequence plus first/middle/last feature spot-check"
+      }
+    }
+  },
+  "plan_binding_sha256": "bb1bf8009af92c3813feb0ca1979a5f69f4f4c4a0bc00471bf203662be561ebc",
+  "training_plans": {
+    "42": {
+      "file_sha256": "07abc216b5d12466e722617b2cfc8342014b05a4e9845412e04621c5be763289",
+      "plan_sha256": "302c75f5f63d8863141bdc4f1cfcebeeaac33c6a7e7e116825991a17e3849791",
+      "bytes": 149731324,
+      "episodes_checked": 16000,
+      "support_sizes_counts": {
+        "5": 3146,
+        "10": 3222,
+        "20": 3202,
+        "50": 3187,
+        "100": 3243
+      },
+      "database_counts": {
+        "accidents": 666,
+        "airline": 666,
+        "baseball": 691,
+        "basketball": 661,
+        "carcinogenesis": 751,
+        "ccs": 724,
+        "consumer": 754,
+        "credit": 704,
+        "employee": 720,
+        "financial": 659,
+        "fnhk": 720,
+        "grants": 628,
+        "hepatitis": 664,
+        "hockey": 702,
+        "movielens": 732,
+        "sakila": 684,
+        "sap": 684,
+        "seznam": 704,
+        "ssb": 751,
+        "talkingdata": 691,
+        "tournament": 675,
+        "tpc_h": 693,
+        "tubepricing": 676
+      },
+      "all_index_hash_pairs_match": true,
+      "support_query_hash_overlap": 0,
+      "all_data_hashes_match": true
+    },
+    "43": {
+      "file_sha256": "0f1e7a1b663a3a8446bc4e88a1fc478d9cb2a8f2a9ee84598fd42c448e1f88a0",
+      "plan_sha256": "51e55f68bf60d72e41e52a6649394e56a00a528e33005f4c59070900a2560d28",
+      "bytes": 149324450,
+      "episodes_checked": 16000,
+      "support_sizes_counts": {
+        "5": 3127,
+        "10": 3183,
+        "20": 3295,
+        "50": 3234,
+        "100": 3161
+      },
+      "database_counts": {
+        "accidents": 644,
+        "airline": 736,
+        "baseball": 661,
+        "basketball": 717,
+        "carcinogenesis": 728,
+        "ccs": 674,
+        "consumer": 721,
+        "credit": 651,
+        "employee": 691,
+        "financial": 674,
+        "fnhk": 715,
+        "grants": 718,
+        "hepatitis": 669,
+        "hockey": 722,
+        "movielens": 682,
+        "sakila": 716,
+        "sap": 691,
+        "seznam": 708,
+        "ssb": 724,
+        "talkingdata": 716,
+        "tournament": 700,
+        "tpc_h": 689,
+        "tubepricing": 653
+      },
+      "all_index_hash_pairs_match": true,
+      "support_query_hash_overlap": 0,
+      "all_data_hashes_match": true
+    },
+    "44": {
+      "file_sha256": "0c0c35dc08cef444a5dd3086db2317214a3fcd78383c518abe1493ef13e2f0d6",
+      "plan_sha256": "678e3afdf5172cec4797569122fe7da99b1c0412f893b3909c605b8021580fad",
+      "bytes": 149480988,
+      "episodes_checked": 16000,
+      "support_sizes_counts": {
+        "5": 3180,
+        "10": 3167,
+        "20": 3248,
+        "50": 3203,
+        "100": 3202
+      },
+      "database_counts": {
+        "accidents": 705,
+        "airline": 654,
+        "baseball": 757,
+        "basketball": 691,
+        "carcinogenesis": 714,
+        "ccs": 658,
+        "consumer": 702,
+        "credit": 708,
+        "employee": 728,
+        "financial": 703,
+        "fnhk": 671,
+        "grants": 674,
+        "hepatitis": 679,
+        "hockey": 695,
+        "movielens": 670,
+        "sakila": 705,
+        "sap": 695,
+        "seznam": 719,
+        "ssb": 721,
+        "talkingdata": 691,
+        "tournament": 693,
+        "tpc_h": 666,
+        "tubepricing": 701
+      },
+      "all_index_hash_pairs_match": true,
+      "support_query_hash_overlap": 0,
+      "all_data_hashes_match": true
+    }
+  },
+  "source_eval_plan": {
+    "original_file_sha256": "7c212763ff3d3ae818f152e297e33afcb607e4f800dad5b1444d7d2c1591b972",
+    "bound_file_sha256": "26c83355b2ea5bee8cb403154d05e6bafa7b23e4b6f4fba5ee70ba0a9abd0a59",
+    "bound_plan_sha256": "b760ec2383d4fe0048b3a4e4e6aa2e10f815eca9cd23e4e6c7b98ad08a991764",
+    "databases": {
+      "chembl": {
+        "unique_queries": 50000,
+        "query_population": 49900,
+        "excluded_unique": 100,
+        "support_query_hash_overlap": 0,
+        "query_order_ids_hashes_sha256": "943e3f4d7be817caa079aa23f371cbecf58b15a5fcc5efd78b5ec3e50e670324",
+        "support_blocks": [
+          {
+            "size": 20,
+            "ids": [
+              "chembl/pretrain/43539",
+              "chembl/pretrain/28599",
+              "chembl/pretrain/22645",
+              "chembl/pretrain/42159",
+              "chembl/pretrain/24464",
+              "chembl/pretrain/45069",
+              "chembl/pretrain/32296",
+              "chembl/pretrain/25522",
+              "chembl/pretrain/31833",
+              "chembl/pretrain/40535",
+              "chembl/pretrain/38578",
+              "chembl/pretrain/27090",
+              "chembl/pretrain/31312",
+              "chembl/pretrain/5172",
+              "chembl/pretrain/7376",
+              "chembl/pretrain/21070",
+              "chembl/pretrain/34309",
+              "chembl/pretrain/28539",
+              "chembl/pretrain/22563",
+              "chembl/pretrain/39844"
+            ],
+            "hashes": [
+              "66edaba5de697f339c3ca1b8f426fe18b39cd5b515468d7be1b6703e88d6954a",
+              "8343922a101a61a8e0cd07c1ccc5c829e653f081987bbd7126cbeee2642652e7",
+              "7cde74cf5230eeb9c9165cee7def421de662ea6cbf7753204ea417b5f44a226e",
+              "a1bcaff6a3338f179830d117a3bc501310191437f43634da0d08c2e21811488a",
+              "0871e3e1c53c805a28787a0e65bf70f6ac306e197b5f60e4ead4ad3e88522052",
+              "eee8a14f0aca2bb43ada4b44d88e9d96d17cd674f0e0a7a1178c2c3f0e85faba",
+              "965842f4bb7d4b88f604febc42fbc87d78afdbe658f9eb48d04c87be6c20d749",
+              "82cec1099019d2bf9ca99669247064601c95d73a0e7c5a80e13104a1a0663e81",
+              "55e4320bddc3b2fe1c4f13900eeacfffa5ec7b31ea13a64c85b14684925a906e",
+              "c0414ea5d3bff37eee0a43ae869077d3f7f404d2974164b0e6d78fe3809650f0",
+              "a10addb8b5c46a8255571c5d3141e3279b370bb345ee1752ba492a722d9cd5dd",
+              "3329d10eaa5b31424f74e2785348d35abedd7122895241fdb54af3b90d6c6ba8",
+              "5bf039596eeadb0686e25dc95cf71329aeda2554a1190c4a011166fe1ab8b63b",
+              "ab9b8e833ef8c78d41b7b59e5d26798124146412d597d13f9cf26dcc559627c5",
+              "2554ce86c0655f51e37f0c29e5d3f810d72b3f11f8b351fe0cabe48b99bc4843",
+              "071a8a58264a43da58a8d1a13fbcc43dae80f9d7dee57c88cfc308be72074a75",
+              "57acbed8c65f1204716b36990e0718a3699126aa2dba60cf9e73b4ce5de6c8c6",
+              "6ba59ea7a9c952719e6151c6fe60add97830f0b4ab018624e4684afe6a205c80",
+              "c4b25616dca4e0fdaebd1aef38cc2ed72a4ad379ab783f2534fac434953e46ba",
+              "002318e2d0c124fd344b5baf5ef038b69391bb6a110d03bfe7a44c5c6883e52f"
+            ],
+            "k5_ids": [
+              "chembl/pretrain/43539",
+              "chembl/pretrain/28599",
+              "chembl/pretrain/22645",
+              "chembl/pretrain/42159",
+              "chembl/pretrain/24464"
+            ],
+            "k20_ids": [
+              "chembl/pretrain/43539",
+              "chembl/pretrain/28599",
+              "chembl/pretrain/22645",
+              "chembl/pretrain/42159",
+              "chembl/pretrain/24464",
+              "chembl/pretrain/45069",
+              "chembl/pretrain/32296",
+              "chembl/pretrain/25522",
+              "chembl/pretrain/31833",
+              "chembl/pretrain/40535",
+              "chembl/pretrain/38578",
+              "chembl/pretrain/27090",
+              "chembl/pretrain/31312",
+              "chembl/pretrain/5172",
+              "chembl/pretrain/7376",
+              "chembl/pretrain/21070",
+              "chembl/pretrain/34309",
+              "chembl/pretrain/28539",
+              "chembl/pretrain/22563",
+              "chembl/pretrain/39844"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "chembl/pretrain/45152",
+              "chembl/pretrain/45697",
+              "chembl/pretrain/36350",
+              "chembl/pretrain/14503",
+              "chembl/pretrain/30174",
+              "chembl/pretrain/4701",
+              "chembl/pretrain/17456",
+              "chembl/pretrain/29189",
+              "chembl/pretrain/11437",
+              "chembl/pretrain/9570",
+              "chembl/pretrain/143",
+              "chembl/pretrain/45741",
+              "chembl/pretrain/30478",
+              "chembl/pretrain/29778",
+              "chembl/pretrain/27468",
+              "chembl/pretrain/10796",
+              "chembl/pretrain/18560",
+              "chembl/pretrain/10052",
+              "chembl/pretrain/45639",
+              "chembl/pretrain/40266"
+            ],
+            "hashes": [
+              "20c27fed7d479de66fd163633d778efeeb41bbc667a8d622ef273e4dcd4751ca",
+              "53c736dc629cb786c5b2302fdb37c3a84385a78f862f1796ee1e1ec38928b454",
+              "8f37ca40e6fe7c7ecdc0f722f2b9dab0aad36c1853b6334ec7f33eddf3d1f354",
+              "d5a1fddf51126ac24070dfd14ff6c41c0a940961d53f0a2f09293787a78406d5",
+              "dbb00479e86e9e67a0815ed2d5c22e558949b1299a8854c6a43832af7ca4847e",
+              "b8bba93801abe062443252319cbd1c8362c0fb8e141ccb5c9182721297ffa46b",
+              "b3e8b1ba395a6e34ccbc561344186d87aa51abc0e1a7ee8e344c619425927578",
+              "532f7c22014680eac1a19008a821456a342bd2c71258f233d9f7fda36ffa61b8",
+              "42568a5f2e735df1d919abaab7b826bb90376d266634da9aaf87b4660512e5f6",
+              "a6dc9cc54067afdea5db48088fd9ff49c8ac62a05fcced6f5a2f47bac450d810",
+              "bccedcce8eebae53f659d3465e3cb0e1b62418835c4ba43a11932ae2bdec6c68",
+              "87a87cfd655ffe8e673089e8fbf46108198469fd59750f4d3613c847f3e675e8",
+              "19afc02f0b3a49aa4aea36e4ce7d61709dd001cb03c5d6520ca35d9861323e3e",
+              "5a1fae38e7a6b32bbebb8494e292b631512ab8ffa9cb347e862a0bc20cbde44e",
+              "2003cb3c962985b9f6dbf756bfbdf98961ce1ac3d4b11235a0b52c370e35b6a7",
+              "c7f9e274b058a76ed50c4d36aeec7db92f4ec95dbf5529a4b9b739f02f8de9d9",
+              "6714b9506df820c3e35cab0560d42a90199d6452c599b30132ac8e81282e2456",
+              "2e0c908b9b89adb3665d677ba0c6b7e07034456816cfdd5ef7deb15a4b95a6bd",
+              "1e24678558e556e80568de92695c52ea10585912fea9056a7eef1e02579c427b",
+              "46c04f096a0f4c660b36c1b64f220018894f4ef8653cf6bdae68edc455200e41"
+            ],
+            "k5_ids": [
+              "chembl/pretrain/45152",
+              "chembl/pretrain/45697",
+              "chembl/pretrain/36350",
+              "chembl/pretrain/14503",
+              "chembl/pretrain/30174"
+            ],
+            "k20_ids": [
+              "chembl/pretrain/45152",
+              "chembl/pretrain/45697",
+              "chembl/pretrain/36350",
+              "chembl/pretrain/14503",
+              "chembl/pretrain/30174",
+              "chembl/pretrain/4701",
+              "chembl/pretrain/17456",
+              "chembl/pretrain/29189",
+              "chembl/pretrain/11437",
+              "chembl/pretrain/9570",
+              "chembl/pretrain/143",
+              "chembl/pretrain/45741",
+              "chembl/pretrain/30478",
+              "chembl/pretrain/29778",
+              "chembl/pretrain/27468",
+              "chembl/pretrain/10796",
+              "chembl/pretrain/18560",
+              "chembl/pretrain/10052",
+              "chembl/pretrain/45639",
+              "chembl/pretrain/40266"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "chembl/pretrain/12471",
+              "chembl/pretrain/22408",
+              "chembl/pretrain/34188",
+              "chembl/pretrain/16144",
+              "chembl/pretrain/22587",
+              "chembl/pretrain/6446",
+              "chembl/pretrain/16511",
+              "chembl/pretrain/21885",
+              "chembl/pretrain/11351",
+              "chembl/pretrain/19193",
+              "chembl/pretrain/42048",
+              "chembl/pretrain/1664",
+              "chembl/pretrain/28873",
+              "chembl/pretrain/7654",
+              "chembl/pretrain/27767",
+              "chembl/pretrain/14629",
+              "chembl/pretrain/33017",
+              "chembl/pretrain/17490",
+              "chembl/pretrain/46576",
+              "chembl/pretrain/30189"
+            ],
+            "hashes": [
+              "2b5d50b50e6c458678df974b39b3dd67172b97387e8c88a07b8171afacb60fa9",
+              "54b80783dbeb2c467f7734c774e46874c57f6ea36fccc990c100a6546f24e908",
+              "d2541150362ba9c36923ba430ec58fed6723f7cae7b39f624bd17e447be1fd69",
+              "6f1609dca68a7a6a1b0e7e29629c63cfb8f888385c5dd6e9d3be7b009b1d4f91",
+              "c89e8a3c3b1359256fc094c42a57a6ab44ae260f8d5feda3363c39d0549a6295",
+              "fe71d2f9c480ad01b1e2da9b108eeb6cd22e9676855a0c608b06cc135f03f688",
+              "cdf4da7fc03ae6ec86987f061788d82f822d1207092ee37550166cf47539343d",
+              "a0f488d2ac8459fa2e02f5255a75ee6d7106e6227a9bfbae72c7af9121006313",
+              "9b24a6a517f85976ab2190ecabbfcde4587c4cc0657117e968313b223b83c6aa",
+              "335a382b7efc57e0c5f45501f7dfe8c251f69459dcf206e7800e71ef0efebdaf",
+              "965dcb1d56f3bfe0497ab46d14e5685e05fa5c57e2e8a41d08d7ee8dd975f366",
+              "9b0498613578e5c0ae0b12c9386a4925575dde6913108c74b0718228972e6b0d",
+              "d7ac5135c33010cfbe3bece563c1b69c9ac782fa7c97180ef31836ebd08f218b",
+              "90ee491d151b33142550e963864c229ffd350da5e34413aac95b119d738eb2cb",
+              "68183cad92f661bc8eebceefcfdc0021e2eeebf409284fd3e10132e172593625",
+              "02b24b404c6771f48a234f989a6c1f20ad80e161f14ea395768a5574afbbe575",
+              "f39a30f219fd20286facddb8e253b1d03949e1510da8f1413cd6a4a1b8edc3be",
+              "872e12621b36cf53e47510cbaab24386716ac253ab5cb9be226985dafab17e7a",
+              "bea2a658fadc5b46ab17843ffffa997ac1a136135b5e9bd2e7d076497e67918c",
+              "70be51f855acd977866bf4d3d0f8b738414daa0848cee51a963d504ca554ca57"
+            ],
+            "k5_ids": [
+              "chembl/pretrain/12471",
+              "chembl/pretrain/22408",
+              "chembl/pretrain/34188",
+              "chembl/pretrain/16144",
+              "chembl/pretrain/22587"
+            ],
+            "k20_ids": [
+              "chembl/pretrain/12471",
+              "chembl/pretrain/22408",
+              "chembl/pretrain/34188",
+              "chembl/pretrain/16144",
+              "chembl/pretrain/22587",
+              "chembl/pretrain/6446",
+              "chembl/pretrain/16511",
+              "chembl/pretrain/21885",
+              "chembl/pretrain/11351",
+              "chembl/pretrain/19193",
+              "chembl/pretrain/42048",
+              "chembl/pretrain/1664",
+              "chembl/pretrain/28873",
+              "chembl/pretrain/7654",
+              "chembl/pretrain/27767",
+              "chembl/pretrain/14629",
+              "chembl/pretrain/33017",
+              "chembl/pretrain/17490",
+              "chembl/pretrain/46576",
+              "chembl/pretrain/30189"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "chembl/pretrain/5104",
+              "chembl/pretrain/10000",
+              "chembl/pretrain/7379",
+              "chembl/pretrain/26265",
+              "chembl/pretrain/36393",
+              "chembl/pretrain/34858",
+              "chembl/pretrain/18987",
+              "chembl/pretrain/10066",
+              "chembl/pretrain/27416",
+              "chembl/pretrain/39550",
+              "chembl/pretrain/30775",
+              "chembl/pretrain/9853",
+              "chembl/pretrain/4141",
+              "chembl/pretrain/22407",
+              "chembl/pretrain/30586",
+              "chembl/pretrain/19705",
+              "chembl/pretrain/19363",
+              "chembl/pretrain/27748",
+              "chembl/pretrain/49153",
+              "chembl/pretrain/41688"
+            ],
+            "hashes": [
+              "371130dec66683c3391152c2e3b585b7d4738c41a84e295ec295bf461a2a15a4",
+              "4a3b922bbacf66b245450a9c479c81378875f144e031cb96ea14f89263058ec5",
+              "4075ac3965a9bcc7ae3c48175d51f19320d26f1713b4a1061e5aa9783e961ec8",
+              "df8515ce432bebb7bbad48481c77fb00426f34211af09515946802e2b886f7a1",
+              "4b600453f88443de655196d2c8e101338e264bb5496eba64e1c00c240771c00b",
+              "45d46ee4ea0de1911119fd921a14031d7880ddadd5df90ecc999166ce070da68",
+              "44c84ef54d2f16d63eb27405e2d83a61081a6815ef1e73d53c475634c68a0164",
+              "f00f5204b8caf7a81e646599abce3cca0e8d212d7be0796c921048248df1619a",
+              "9d29b00eca09eeacae7fca5ea7f27a3396eb938d25afe85539230829eef98001",
+              "f190320ed787a251e41734925ca223c0f327c0a1c39f65fd0d047d64cda452f9",
+              "93e645238e5b8bd81de5ecb1f9766366522984439ad23671cdb19353e857f9e7",
+              "9c6a37b26fc3c53deefaaac908596d58b8a935b031274b905061f1211c4264de",
+              "4099d8beafdf577b5bd9cea4968ac204dafdffa8650aedad6f93f27e08e68fdc",
+              "8d3c701104b2b24076811b02f3e5511eeccc2973a481d08a6df105e923a297c3",
+              "0fa43da91591ce3c55687b38d752b2047a991be88e8a1b613e66b98f48f1be13",
+              "643e80dec07a3751bda2651742c7a6a9c74345c9064b40129c0ea3fecd03a84a",
+              "18fc8e81a71113b73207eeab11604d6f4d9563b1039f20e9da94e4393cbedc6e",
+              "6a3ac92a49a1a2a1db1ac8bf1c5d86ab9575494b0851b1bcede16a83e7cd5721",
+              "e96392fd148e938c7014e68d53e3de3d223df56fb4125c5efef97af56413f97b",
+              "373116834adf27d19339bd975dea376ea45fcb9bd0f3e2b32923f95450d51279"
+            ],
+            "k5_ids": [
+              "chembl/pretrain/5104",
+              "chembl/pretrain/10000",
+              "chembl/pretrain/7379",
+              "chembl/pretrain/26265",
+              "chembl/pretrain/36393"
+            ],
+            "k20_ids": [
+              "chembl/pretrain/5104",
+              "chembl/pretrain/10000",
+              "chembl/pretrain/7379",
+              "chembl/pretrain/26265",
+              "chembl/pretrain/36393",
+              "chembl/pretrain/34858",
+              "chembl/pretrain/18987",
+              "chembl/pretrain/10066",
+              "chembl/pretrain/27416",
+              "chembl/pretrain/39550",
+              "chembl/pretrain/30775",
+              "chembl/pretrain/9853",
+              "chembl/pretrain/4141",
+              "chembl/pretrain/22407",
+              "chembl/pretrain/30586",
+              "chembl/pretrain/19705",
+              "chembl/pretrain/19363",
+              "chembl/pretrain/27748",
+              "chembl/pretrain/49153",
+              "chembl/pretrain/41688"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "chembl/pretrain/47099",
+              "chembl/pretrain/794",
+              "chembl/pretrain/37719",
+              "chembl/pretrain/34037",
+              "chembl/pretrain/46168",
+              "chembl/pretrain/11518",
+              "chembl/pretrain/47145",
+              "chembl/pretrain/35617",
+              "chembl/pretrain/47585",
+              "chembl/pretrain/42951",
+              "chembl/pretrain/40083",
+              "chembl/pretrain/29964",
+              "chembl/pretrain/45866",
+              "chembl/pretrain/17812",
+              "chembl/pretrain/29559",
+              "chembl/pretrain/16121",
+              "chembl/pretrain/33170",
+              "chembl/pretrain/16362",
+              "chembl/pretrain/24568",
+              "chembl/pretrain/27701"
+            ],
+            "hashes": [
+              "0edb0fad6ec7a9a54d79d98ddfe343ac577eec01f71ed403b24d3589ffab207a",
+              "14470e596fcd75d9281d16e8266b56f601a6834c6861ef73a5332918b0057815",
+              "ac8c83c69a743641de06f8cedbdd431c73df08fccfd7d7cdbe4b64a849f16a44",
+              "1627f9ae6538feefc75549cf4f07c5b19d8e1e724be94bc0122c28fcc61f9860",
+              "ea6a2af1d8e7b5d73e07dc229b47114ad3587e3986965adf598341a5e8c90170",
+              "533f25bc6e13b88e28cc29dea15925b6720eff02f826966d7293a9f660df42e7",
+              "cc78aa98fbcfd5d6233955043e939f3e64fd8ec275dea72ec65599ac7da6a0c0",
+              "488a3871ab6ad8b7a3dbb205dca0d9e7dbd8da6aba814041b86eeab99a8115d8",
+              "cdf6100a363c9bc108165fb94eed466ef1ae8fb246203aa3d7257807b3828b15",
+              "1f5345256b980c3d53087691a4958f1c2f58530e9933d65c63ba49265fef9651",
+              "ec22157f66328ce1eba614debd5dd665567ba4de68ff48145a39c71410edb11c",
+              "4596232ea01a1db38bbef9e59df36f485b5e5d5be51120a253ec91d21cdd8069",
+              "88ab14af64f0b864ac5a934a45e149a150e0c124906ac1dd050c57777154fe72",
+              "2b8abc192a7220f70cfa1cbcde53ef8e026aa23f902f38cbc3ff7c2e56ef4c2d",
+              "e827587580cdf9752a8b9b5d32962f759efd04a4dea4e1180de5a3a17b9ec51b",
+              "408a5ea9f02c8f2a18b6a6c1df89c8058bad43494ad62c789b6fcfff2c0b4d50",
+              "83b3eae46a1834a0e1f16e57640eb33734c7e05aee68ed248aac534ede38b223",
+              "1217d91cd213fc136ed1e7f891cdbabcb544a68cee1f9d490b64e6b582ad6667",
+              "2b46e18966223940c23ee7a639fc207d577bcc4817e3d8f47b1729d95418abe0",
+              "7920e51da0c121b6bf0fbe65c806b1a74d9ab14d33d67b56350c97ab01519fab"
+            ],
+            "k5_ids": [
+              "chembl/pretrain/47099",
+              "chembl/pretrain/794",
+              "chembl/pretrain/37719",
+              "chembl/pretrain/34037",
+              "chembl/pretrain/46168"
+            ],
+            "k20_ids": [
+              "chembl/pretrain/47099",
+              "chembl/pretrain/794",
+              "chembl/pretrain/37719",
+              "chembl/pretrain/34037",
+              "chembl/pretrain/46168",
+              "chembl/pretrain/11518",
+              "chembl/pretrain/47145",
+              "chembl/pretrain/35617",
+              "chembl/pretrain/47585",
+              "chembl/pretrain/42951",
+              "chembl/pretrain/40083",
+              "chembl/pretrain/29964",
+              "chembl/pretrain/45866",
+              "chembl/pretrain/17812",
+              "chembl/pretrain/29559",
+              "chembl/pretrain/16121",
+              "chembl/pretrain/33170",
+              "chembl/pretrain/16362",
+              "chembl/pretrain/24568",
+              "chembl/pretrain/27701"
+            ]
+          }
+        ],
+        "original_order_unchanged": true
+      },
+      "legalacts": {
+        "unique_queries": 49504,
+        "query_population": 49404,
+        "excluded_unique": 100,
+        "support_query_hash_overlap": 0,
+        "query_order_ids_hashes_sha256": "c4a6079ba5f867bc8c0e0e68bcbe2a59c93ecbd0861842409dc389392d42f74e",
+        "support_blocks": [
+          {
+            "size": 20,
+            "ids": [
+              "legalacts/pretrain/12391",
+              "legalacts/pretrain/42043",
+              "legalacts/pretrain/25355",
+              "legalacts/pretrain/20149",
+              "legalacts/pretrain/18571",
+              "legalacts/pretrain/38369",
+              "legalacts/pretrain/41712",
+              "legalacts/pretrain/26159",
+              "legalacts/pretrain/12439",
+              "legalacts/pretrain/9121",
+              "legalacts/pretrain/6858",
+              "legalacts/pretrain/17154",
+              "legalacts/pretrain/14410",
+              "legalacts/pretrain/9567",
+              "legalacts/pretrain/13560",
+              "legalacts/pretrain/44762",
+              "legalacts/pretrain/38285",
+              "legalacts/pretrain/33605",
+              "legalacts/pretrain/13940",
+              "legalacts/pretrain/36359"
+            ],
+            "hashes": [
+              "69a4ae573e277e48fd4cabefe4278d5c7d5df08eddcee3f06e42dd7276d39dbf",
+              "68d3b889f2bcc629fd88753860719575f1d7908457040626b1538640abec289e",
+              "e33ca5b17b4f329b76b0ca503fef6becb60291b1bf279540d9c8ff1d18f84cc5",
+              "1099e2a2a650fc3a1c2d223059ebff1f13bb17d298932b1baf390c79ae696ec3",
+              "9aa187029281d46a62860cc8fbe4e7e4e92cc19569131c9fe36d252fda554942",
+              "1de4ff397ceb15264da3c916bf862b870e2dcffca444d8751f8dc4414500db9d",
+              "c1cf8aba20ae4bd0c1039f015a28f32560b6f5ff9f4c3bcf5f06b1be550c31c3",
+              "2456a54a1799bb6b343e9a12635abd758430497942a4eb1efc2bc836f17af70d",
+              "d4690fe9949cc55540f79cee1e73a0b57f2e7365b02ab5735ae265770085e409",
+              "90b8129875f7f1044cf252587336687f3ab071f5f81312b603c550c1804ff65a",
+              "fb5339454ad68da8c2b3b5bb82552811d8eab6a58261d16777a1613815879e33",
+              "2f6cc05675155b951d14c562b8d2a27843e48a033faf5c2aa3ac413a9dd0cb99",
+              "3720561ffa8034292f11cd216371654d225d551334cacacd9fa8726b7bd125df",
+              "84b7942d7e26c18e6b5cb6953037464c65098ce50eaf46fa0bc26caac30edd2d",
+              "b3075259ac6493e14c1b0ebd6f4625dd932d356f156209a8617579d697c1df09",
+              "f916fbf2685750685648ef642db64f33e404d9be05f71c8ff408196b7e6ec537",
+              "1cc9df9d39121957d0a9a7898fa0b98600d5b92ff4e216b534e83e0f0208d0ae",
+              "35dea5b7741f1248508ad499d7be1ab5b46e7900a7b10ed8f4863afbf9bf46f0",
+              "ed0dcaebbc701aa14cd0aeab80f85965588d1fa44af68c4f422c8616119faf58",
+              "98e3afb631ce68956b1e6c10c8b2c6adbedc1f717de62debe864e980b26cc4d3"
+            ],
+            "k5_ids": [
+              "legalacts/pretrain/12391",
+              "legalacts/pretrain/42043",
+              "legalacts/pretrain/25355",
+              "legalacts/pretrain/20149",
+              "legalacts/pretrain/18571"
+            ],
+            "k20_ids": [
+              "legalacts/pretrain/12391",
+              "legalacts/pretrain/42043",
+              "legalacts/pretrain/25355",
+              "legalacts/pretrain/20149",
+              "legalacts/pretrain/18571",
+              "legalacts/pretrain/38369",
+              "legalacts/pretrain/41712",
+              "legalacts/pretrain/26159",
+              "legalacts/pretrain/12439",
+              "legalacts/pretrain/9121",
+              "legalacts/pretrain/6858",
+              "legalacts/pretrain/17154",
+              "legalacts/pretrain/14410",
+              "legalacts/pretrain/9567",
+              "legalacts/pretrain/13560",
+              "legalacts/pretrain/44762",
+              "legalacts/pretrain/38285",
+              "legalacts/pretrain/33605",
+              "legalacts/pretrain/13940",
+              "legalacts/pretrain/36359"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "legalacts/pretrain/36151",
+              "legalacts/pretrain/18727",
+              "legalacts/pretrain/29251",
+              "legalacts/pretrain/25591",
+              "legalacts/pretrain/793",
+              "legalacts/pretrain/36808",
+              "legalacts/pretrain/15848",
+              "legalacts/pretrain/3422",
+              "legalacts/pretrain/12797",
+              "legalacts/pretrain/9459",
+              "legalacts/pretrain/32807",
+              "legalacts/pretrain/26859",
+              "legalacts/pretrain/37061",
+              "legalacts/pretrain/17645",
+              "legalacts/pretrain/24837",
+              "legalacts/pretrain/37734",
+              "legalacts/pretrain/11833",
+              "legalacts/pretrain/25319",
+              "legalacts/pretrain/7961",
+              "legalacts/pretrain/20463"
+            ],
+            "hashes": [
+              "eb1492a22e65e8294caeadcbc245f9178037350e5921f022dfeb23269cd423b6",
+              "250df6baa2f8cb3c6caf10416fbc87c468f9edd5eb4a465377ffb99278f49bf3",
+              "53d7ac1bf97580359f5b2fd3c3090800043cccc88cfb5c716b7a25914b86d871",
+              "b9ca8d2de71254fed2466a19ad59446ab86b54827d74ff35fd27f2b486f3adc5",
+              "f27bd58f664cc5b9a898b9d15cf7a2a6c07ea89be6e14667a5c1fd807f47efb3",
+              "2a7f1274ebc3e814dbe345f0d8853cd46b9c55ff2ba0ffdebe1de21fac5345d5",
+              "2534bddd45b0c48a73f8ec599d867d0a538c134712baf8b2f6b2a6263dff66d8",
+              "f2ed7427047b364b675bca86254a8b69194ccbf315c2a24e3d72a1e3618b1ebf",
+              "20e906108305b58b7e9877d1fdbb472d25362608129124148452f7b2df5aa29b",
+              "41212596a65d6d5c25f32f802ba013fb7ecfe541f8a5b3de9fbbd370d4d87012",
+              "4c9f2f7189075c0a2f69b53fc9f0bf95e58233363e399d1b4873ce1efe895ff9",
+              "74d37e888dc2713ed6e034a0beb76392acb6562242b3e10f08b9a09a4b418b01",
+              "6ff38c7160e581e8f10eeeb98040557063638a85112db5f64a051277b49e7579",
+              "e093723ac56992aa04e33f7c5770cb0f5f2fff05e2c1a4a68428ab232565d6ff",
+              "91f90bde07c3ce88f3111792730555a113d1606bc9193c3f3b6bb8a1961afb87",
+              "1c0fd3fc758ec62ea3650a2c83dc03e6d1cf9e5656418f45ec6ed3e9da3881e7",
+              "4a1605d4f37dedc0653cee71a223ee32350cb53de48ce21e9e2d7544fb7a8a96",
+              "e2b888dd064ef21ba71996a0941e8b50ef2ee40e877fc2baf770ff2dbb5a5baa",
+              "0275c3c52db098beb3dccb9a252dcb598fa6990018fefbb174991ca2d7551a2d",
+              "5463da4bb8ffbef6eeae4e3d71af1ad736420767378c0477c58b8c1afddcb603"
+            ],
+            "k5_ids": [
+              "legalacts/pretrain/36151",
+              "legalacts/pretrain/18727",
+              "legalacts/pretrain/29251",
+              "legalacts/pretrain/25591",
+              "legalacts/pretrain/793"
+            ],
+            "k20_ids": [
+              "legalacts/pretrain/36151",
+              "legalacts/pretrain/18727",
+              "legalacts/pretrain/29251",
+              "legalacts/pretrain/25591",
+              "legalacts/pretrain/793",
+              "legalacts/pretrain/36808",
+              "legalacts/pretrain/15848",
+              "legalacts/pretrain/3422",
+              "legalacts/pretrain/12797",
+              "legalacts/pretrain/9459",
+              "legalacts/pretrain/32807",
+              "legalacts/pretrain/26859",
+              "legalacts/pretrain/37061",
+              "legalacts/pretrain/17645",
+              "legalacts/pretrain/24837",
+              "legalacts/pretrain/37734",
+              "legalacts/pretrain/11833",
+              "legalacts/pretrain/25319",
+              "legalacts/pretrain/7961",
+              "legalacts/pretrain/20463"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "legalacts/pretrain/13903",
+              "legalacts/pretrain/34431",
+              "legalacts/pretrain/17301",
+              "legalacts/pretrain/49445",
+              "legalacts/pretrain/45475",
+              "legalacts/pretrain/48350",
+              "legalacts/pretrain/23231",
+              "legalacts/pretrain/947",
+              "legalacts/pretrain/10305",
+              "legalacts/pretrain/41416",
+              "legalacts/pretrain/16533",
+              "legalacts/pretrain/5375",
+              "legalacts/pretrain/23896",
+              "legalacts/pretrain/37888",
+              "legalacts/pretrain/24120",
+              "legalacts/pretrain/39486",
+              "legalacts/pretrain/19593",
+              "legalacts/pretrain/7426",
+              "legalacts/pretrain/45957",
+              "legalacts/pretrain/34011"
+            ],
+            "hashes": [
+              "6037ffcf3b8b110136dd1973761575dfd996bcecd0afd14747cb79c3804a6b42",
+              "d91241baca8985f281d78cd6fd47acdd03b97919f6fa861c35c60609b5d01d44",
+              "72a504e022b5a7cd02348a3cca10c1bfbd2bfb081a194a8a0f4939782be4aa65",
+              "6602adad2d1f8a84a7c7ff4f9d7cdd18cb198fc20f98cb30eb5bb1500de25db5",
+              "a94dea7771336cb6d0e3fdbd92e4e052d0782c1a7dccdbe22c035886462546d7",
+              "62704b26efcecb94ac4132dca5b667059d3bb9b5dd3708f37986d29d7462e20f",
+              "a7ac869371bb0318b4af4f1bffb420302aa159c1caad8442310d34fca935b732",
+              "6ee86d15451fa510e9250673d32427647487ccac466963bdd2bbf65661ce13cc",
+              "5fc9f08db08051b8edd820398df7959a0153e6678d7a8130e92abee0e07ffebb",
+              "2e26e952619709730c9f04d1bb39d10bdc908446bb08bab80cf210a2f52b8b59",
+              "d3575385864a65d126e89f369c3651131c94030058e41a514a8ba92b5a1f978f",
+              "fb7a21025d7db3414a00f409257fc211c56b9f7a5db106a7829e076393e78e6e",
+              "712108660db13450ccb1b1c49743238847183ff854efd3fddf38fbb41d427fdd",
+              "07e59751e3c598a31568f6fdeadba6c2f346ace594d296166734406b7f1dc2f6",
+              "897325173998ff1ab3f852a4be315435c2650f9e3231669e757b25a3f880d8fd",
+              "c34479bc43e88931b8c82e4474bd203e33ba7eedf485df2e2d4dc5c6ec7475d7",
+              "aa174677d92bb03b3e17540cb1b4410dc62b6e060dee9ccb22f5ad999489a016",
+              "da2e5c2f0e29263ef89dbbf4a908690dcbf744660d3b161125135c7111650b7c",
+              "ca4d8de0fb556083fd23295344fd3a9f9dd0ead1a224a7525035190b57bca0f4",
+              "54175b7e658cc879b9c683b151969d0499c60b812c6aca055cf40c943382794f"
+            ],
+            "k5_ids": [
+              "legalacts/pretrain/13903",
+              "legalacts/pretrain/34431",
+              "legalacts/pretrain/17301",
+              "legalacts/pretrain/49445",
+              "legalacts/pretrain/45475"
+            ],
+            "k20_ids": [
+              "legalacts/pretrain/13903",
+              "legalacts/pretrain/34431",
+              "legalacts/pretrain/17301",
+              "legalacts/pretrain/49445",
+              "legalacts/pretrain/45475",
+              "legalacts/pretrain/48350",
+              "legalacts/pretrain/23231",
+              "legalacts/pretrain/947",
+              "legalacts/pretrain/10305",
+              "legalacts/pretrain/41416",
+              "legalacts/pretrain/16533",
+              "legalacts/pretrain/5375",
+              "legalacts/pretrain/23896",
+              "legalacts/pretrain/37888",
+              "legalacts/pretrain/24120",
+              "legalacts/pretrain/39486",
+              "legalacts/pretrain/19593",
+              "legalacts/pretrain/7426",
+              "legalacts/pretrain/45957",
+              "legalacts/pretrain/34011"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "legalacts/pretrain/32721",
+              "legalacts/pretrain/38205",
+              "legalacts/pretrain/1043",
+              "legalacts/pretrain/35842",
+              "legalacts/pretrain/38128",
+              "legalacts/pretrain/27086",
+              "legalacts/pretrain/12962",
+              "legalacts/pretrain/38750",
+              "legalacts/pretrain/36285",
+              "legalacts/pretrain/38474",
+              "legalacts/pretrain/44489",
+              "legalacts/pretrain/40935",
+              "legalacts/pretrain/5295",
+              "legalacts/pretrain/22765",
+              "legalacts/pretrain/5139",
+              "legalacts/pretrain/45323",
+              "legalacts/pretrain/2555",
+              "legalacts/pretrain/42489",
+              "legalacts/pretrain/49115",
+              "legalacts/pretrain/37338"
+            ],
+            "hashes": [
+              "4e1f575ff5f96c7fa02f635e6d6349028dea8c79e8ef88a3052fa51e3aa3dd1d",
+              "866c29094fd1c508be5b5e8d0c3ac80fbc9a466481f8e6939eb2b797d8698fbf",
+              "38603a7a9513f6a66750ec138411b5ce45dbb16b52d759716e9ba48163add665",
+              "4f57a0bb171b4d724c211b9b162fbbd2c1361b950169f64921530c46dac1d884",
+              "5e7bcd1b5c36a728c6a9458d788a79823433d2e818083eee9cd8a31dd7cd2924",
+              "2bdedb780ecc50928384ba4a8e0e054619f15c5828e759a893f309890abc9b6b",
+              "170112e6737bbc27457f834bb149f48b74b5eff94526f6d2a3984582da11dc3e",
+              "07abccf7862b9009b3df48606f51ed1d06f9c710a75d8386b6eb831b00e1af42",
+              "bd5d35db5fc30127264662efd0d1d20297a3a4c08a96bebfecf204c67345f1e9",
+              "77e30af2bbdef71894156379424c5f700d819a9604a75a5eeba3346115f6bc06",
+              "e1b8e06bd50bc96c3c860aaace3b4df1e70a5007028706bab70b030cc055c76d",
+              "b6ed081cac582f7b0e8cee0e84439129e3355761969fa6e356f300a20af3891c",
+              "56e1d8cb018cedc0ebd30de5188ccfea4e9368cccdfdcd6e1137773aea9a6067",
+              "3063a8239ef3cf5d8128b9eedc699eaaff0a809e84e45479f466ad65804a8ac6",
+              "817a0668d1a15fdd584bd22c00eb96a9cf61cc65f3ec1351177fd6ae484a1653",
+              "4b9569ef805c9146fd77764267ff9b469b130b4cec5f0578426bde4e923a0a70",
+              "2e0a8ae93ddaee03e1f6a9239a7760954379e10baf5d5d86c3ff5da021ac433c",
+              "843ef18531e2eecd63d7d6c288b684ef14b28d6f9a44b8aac7c11bcd3ebee44d",
+              "72d11e83fce59db806780eebfc9244e256f2da1f476aa23d08fd2f66b168c265",
+              "2a62d983ae9ff4cfe8ac6ae9f7f23efaba5bdb98f8afc906060988030c902e65"
+            ],
+            "k5_ids": [
+              "legalacts/pretrain/32721",
+              "legalacts/pretrain/38205",
+              "legalacts/pretrain/1043",
+              "legalacts/pretrain/35842",
+              "legalacts/pretrain/38128"
+            ],
+            "k20_ids": [
+              "legalacts/pretrain/32721",
+              "legalacts/pretrain/38205",
+              "legalacts/pretrain/1043",
+              "legalacts/pretrain/35842",
+              "legalacts/pretrain/38128",
+              "legalacts/pretrain/27086",
+              "legalacts/pretrain/12962",
+              "legalacts/pretrain/38750",
+              "legalacts/pretrain/36285",
+              "legalacts/pretrain/38474",
+              "legalacts/pretrain/44489",
+              "legalacts/pretrain/40935",
+              "legalacts/pretrain/5295",
+              "legalacts/pretrain/22765",
+              "legalacts/pretrain/5139",
+              "legalacts/pretrain/45323",
+              "legalacts/pretrain/2555",
+              "legalacts/pretrain/42489",
+              "legalacts/pretrain/49115",
+              "legalacts/pretrain/37338"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "legalacts/pretrain/47568",
+              "legalacts/pretrain/11961",
+              "legalacts/pretrain/38354",
+              "legalacts/pretrain/18723",
+              "legalacts/pretrain/47843",
+              "legalacts/pretrain/23981",
+              "legalacts/pretrain/33250",
+              "legalacts/pretrain/6398",
+              "legalacts/pretrain/38700",
+              "legalacts/pretrain/26498",
+              "legalacts/pretrain/42313",
+              "legalacts/pretrain/16245",
+              "legalacts/pretrain/21791",
+              "legalacts/pretrain/7600",
+              "legalacts/pretrain/9680",
+              "legalacts/pretrain/39995",
+              "legalacts/pretrain/33168",
+              "legalacts/pretrain/32578",
+              "legalacts/pretrain/12147",
+              "legalacts/pretrain/34321"
+            ],
+            "hashes": [
+              "5db17398c55866fbd03ca8d6d8c1807993216bc2456f5e162c72bea7984e9114",
+              "5dd6d130646cdfec0c6ec4c967696a7e4e0d8508f3b81d5767844259f964efd6",
+              "41ee36de4016bcde87541e4c320df13ca789cfd02c82b48079a10b46587d0440",
+              "6ac8c6c294126fa4a88961ad3fac5941cb2a35a1400b7b94a71d479fa8b9a402",
+              "fa9dcea69c905296eb111a9cbec9a1b0bc20f4bb605ba8d58e5f073f280c1815",
+              "7e95e5ab781dd25dbcb3f1a45b0bc53e3604397af0ab54464c21735c5b717164",
+              "036d7430017dc3a62e1e7af2f56099251f3914587f79c81fa7391264a55133ef",
+              "5de11a59fd0aff49f3ffa3fc1565d031d19e4325bc6acf0948cd0af2770426d2",
+              "86b6b4b8151dc3bc8c19d89a4b5ddced00d035d5c59592d3aebfdcd030ca9667",
+              "dc3d037847d0d0925ca1e6570cb8f4e31d9d4b8cd6ed3c232412a72955043dbb",
+              "dd639becd44074a72624bdc84d74eccffefd29cbfbdd1dcabe40b72872e81b8d",
+              "5cf152b68331e8a3bcaca14a183c66949bbd066c5e39d58be21d5a27d735708d",
+              "cd379ad6f068968a7762191bd8603150711a37183eca218eeac326677e8bb717",
+              "338587553cedcaaa4f682f4f2a8f51d0016cf136ec38b3dca93ab99523ce7299",
+              "bee1f2d393528edf1a26c25379aa101e46f7a973daf758645028913ff7538082",
+              "dda5e6411d18d62b47875bec7cfcbca02d1d65a844430cc91560dd88e2409fd4",
+              "23b532cc00bc9c55ba33df8831572a2511f188ea8c80cbc54eb738729a36a941",
+              "63ba5ad65f9ec19d8ee8c4521b5fda540839e16487230d8d966f9a6ef23f5808",
+              "25c01e9d6a4378a73adc817c56f8c98aeceb99872686d10ca1f2a621c85ebddd",
+              "208c4ecfd053014f9c3596da307ff1f54e02cea4923cfb3ce5193dce33d34b3f"
+            ],
+            "k5_ids": [
+              "legalacts/pretrain/47568",
+              "legalacts/pretrain/11961",
+              "legalacts/pretrain/38354",
+              "legalacts/pretrain/18723",
+              "legalacts/pretrain/47843"
+            ],
+            "k20_ids": [
+              "legalacts/pretrain/47568",
+              "legalacts/pretrain/11961",
+              "legalacts/pretrain/38354",
+              "legalacts/pretrain/18723",
+              "legalacts/pretrain/47843",
+              "legalacts/pretrain/23981",
+              "legalacts/pretrain/33250",
+              "legalacts/pretrain/6398",
+              "legalacts/pretrain/38700",
+              "legalacts/pretrain/26498",
+              "legalacts/pretrain/42313",
+              "legalacts/pretrain/16245",
+              "legalacts/pretrain/21791",
+              "legalacts/pretrain/7600",
+              "legalacts/pretrain/9680",
+              "legalacts/pretrain/39995",
+              "legalacts/pretrain/33168",
+              "legalacts/pretrain/32578",
+              "legalacts/pretrain/12147",
+              "legalacts/pretrain/34321"
+            ]
+          }
+        ],
+        "original_order_unchanged": true
+      },
+      "telstra": {
+        "unique_queries": 50000,
+        "query_population": 49900,
+        "excluded_unique": 100,
+        "support_query_hash_overlap": 0,
+        "query_order_ids_hashes_sha256": "2fa08da68621cd2afd6fc295b719efa906fc4e445c635bc42b800198c9f04481",
+        "support_blocks": [
+          {
+            "size": 20,
+            "ids": [
+              "telstra/pretrain/48877",
+              "telstra/pretrain/17922",
+              "telstra/pretrain/27965",
+              "telstra/pretrain/18117",
+              "telstra/pretrain/23784",
+              "telstra/pretrain/11670",
+              "telstra/pretrain/12346",
+              "telstra/pretrain/17223",
+              "telstra/pretrain/28487",
+              "telstra/pretrain/2696",
+              "telstra/pretrain/12538",
+              "telstra/pretrain/15225",
+              "telstra/pretrain/13200",
+              "telstra/pretrain/2993",
+              "telstra/pretrain/8844",
+              "telstra/pretrain/11735",
+              "telstra/pretrain/4255",
+              "telstra/pretrain/23540",
+              "telstra/pretrain/42338",
+              "telstra/pretrain/20129"
+            ],
+            "hashes": [
+              "6bccef58cfb73ceaf15047505c92a1183460b64a7ac3bfff365d5ecbfa4ead00",
+              "80d33ec8130236da3f364142007c8f3ed626952ed64041f141300c17bc7ea375",
+              "bea65a2cd9efa930b37020ef9cb4c4a6452e752a8e877e19d2bdbfc4e8092c3c",
+              "440662b57ff34fa7815b368fa48f2fb072155e3fc6c6b2141f224d771c4900e3",
+              "b42d4a0bca3508be25c7df49cfe119e1ed66d6d2fa0c754a8ed3c835dda6adc5",
+              "fb1523c1fc24e115de7ae7efb24775c0865ac3c325a53e9591845ba7a64a8add",
+              "4c71c40c6ace18dead93da2e274145cbe1205bb955d85ce92da5757d7ce9ed09",
+              "6024908cc4319315380d9ca3016664b809d37beacd69fd8f4b601dad3ea46e19",
+              "c8880e5685a7a17cde9da5ff0e2a869cf2d09f1555521b023c00de79092f3b80",
+              "3c5ca9c70f7f4613e39fb7edb13e976baa032a763348b1525c482cc86609d626",
+              "a39217e0d2ea7be62c296662f7ff18fde4396916112ce0d16e3c4a7de477e483",
+              "1c69675aa8249715d273a26caf8d5044c38f2d2be4779143ec6ea1c31ed9fecd",
+              "3b35f62f3d7c74dfa22635451ee452706b704f3e5c40671cbd01d46b46dba127",
+              "60a7d169ba4ba5832376df6486bd4e6f3e74a4f0297325f75bbea5daf745a775",
+              "ecaeaab9aa5c7bad1cc16471a215d8fa3939e9107a71c1f7e767459c0f372307",
+              "53bb61882c8960c745b69cad210d2bc37e339100364196aeb0e2ef320fcab34e",
+              "55c01ec5cb6b32adb51005542b20932f744c63f3b821b33034e54ea349c94c80",
+              "7a89cd7c04f2a57080fff39fca6891dd597bb2cc3118d2c80f3b810b304d8720",
+              "ca72c2281a199f98efa1cc31c7e2c431a10d1de83e9bea8582c0527fa9f6d397",
+              "a2a11caf41b58941d498e8c3b5c33e37ed4ca342fb5a84508277dae1f7077acd"
+            ],
+            "k5_ids": [
+              "telstra/pretrain/48877",
+              "telstra/pretrain/17922",
+              "telstra/pretrain/27965",
+              "telstra/pretrain/18117",
+              "telstra/pretrain/23784"
+            ],
+            "k20_ids": [
+              "telstra/pretrain/48877",
+              "telstra/pretrain/17922",
+              "telstra/pretrain/27965",
+              "telstra/pretrain/18117",
+              "telstra/pretrain/23784",
+              "telstra/pretrain/11670",
+              "telstra/pretrain/12346",
+              "telstra/pretrain/17223",
+              "telstra/pretrain/28487",
+              "telstra/pretrain/2696",
+              "telstra/pretrain/12538",
+              "telstra/pretrain/15225",
+              "telstra/pretrain/13200",
+              "telstra/pretrain/2993",
+              "telstra/pretrain/8844",
+              "telstra/pretrain/11735",
+              "telstra/pretrain/4255",
+              "telstra/pretrain/23540",
+              "telstra/pretrain/42338",
+              "telstra/pretrain/20129"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "telstra/pretrain/34707",
+              "telstra/pretrain/43328",
+              "telstra/pretrain/40191",
+              "telstra/pretrain/32442",
+              "telstra/pretrain/30379",
+              "telstra/pretrain/19430",
+              "telstra/pretrain/8942",
+              "telstra/pretrain/4812",
+              "telstra/pretrain/6962",
+              "telstra/pretrain/31322",
+              "telstra/pretrain/22625",
+              "telstra/pretrain/25673",
+              "telstra/pretrain/736",
+              "telstra/pretrain/39390",
+              "telstra/pretrain/30299",
+              "telstra/pretrain/8182",
+              "telstra/pretrain/35240",
+              "telstra/pretrain/42887",
+              "telstra/pretrain/31004",
+              "telstra/pretrain/38341"
+            ],
+            "hashes": [
+              "224aeba29f1d6b24cceb6e9bda02f6d283cf96875aa868897f3a3300aad1a87f",
+              "d813b56f51a6dc427e31365178053c3e058e98fc64e74500c7f82ea55eaa0b4f",
+              "745bc696d9f03a9b7f64b43623837f24aba1b248913e8716333081bf6fb7b8b2",
+              "2ce2142fbdf805eb03a1d8663d56b62db79182531be47bf04ab82e4670bf4706",
+              "f3f2f76ef185cb3d4b85e67765dfecc6362f3f2a58a5066674615a4a528cea4a",
+              "dfe978bbdfb0e9074865ea39c659a8ce10a2c69342c37883b6a3a48d062dadb5",
+              "b959885b66afb507de18abc4d3414b5996116e23bf3bb67e501a534904d35ea6",
+              "3d76d5e7f0239514905285cb411c957e3399ace995e7f59909d5007bc9fe5618",
+              "64ceb0ad9224c87063a199ac614aa57c707300630d5b5be81eea18a9be05cfa4",
+              "2aa254316fa7838db49ca1301afc5503a7abd8acef0c3f746ff8280c279d91a6",
+              "ddd5054652b9ba629c17614bd1525e92fbf85b84c1c1b3796c68d4fe5b023608",
+              "18376630a32c98f2e6a9d3c4ab998adf673554b46131c8002447e568d890f37e",
+              "f5edeb210d1b61b7c86a9cc77ca0030838e0c79df1b6e3ddcec43804a74ce320",
+              "b45b3514bdb900f313991a12f8aefbf62b614e498192cced28d80b571a302bd8",
+              "ebae95f5fecbdc5eb5f09f7e688e2294887543a62a7f3f05d6138488ac084e7e",
+              "696d956d20a5391014917ec100930838917033b8a8c7e685cd85547325d1782e",
+              "b581eed42e77176189d4b920b54f2d53aadaa8c841016314a1f825a7688e817e",
+              "3b3f5260cdfe9ff8e35799b6c46eda6dc1ac2fcc1b4f7c9213cd968002f3d915",
+              "06218ea2fc3ec4ac13956742832acdc259753ef2e983c7d447c2a61c2d4e4ec7",
+              "f40fc39384be1e510634e29adb1ca48595271ebbc61235738e6ee9785618c470"
+            ],
+            "k5_ids": [
+              "telstra/pretrain/34707",
+              "telstra/pretrain/43328",
+              "telstra/pretrain/40191",
+              "telstra/pretrain/32442",
+              "telstra/pretrain/30379"
+            ],
+            "k20_ids": [
+              "telstra/pretrain/34707",
+              "telstra/pretrain/43328",
+              "telstra/pretrain/40191",
+              "telstra/pretrain/32442",
+              "telstra/pretrain/30379",
+              "telstra/pretrain/19430",
+              "telstra/pretrain/8942",
+              "telstra/pretrain/4812",
+              "telstra/pretrain/6962",
+              "telstra/pretrain/31322",
+              "telstra/pretrain/22625",
+              "telstra/pretrain/25673",
+              "telstra/pretrain/736",
+              "telstra/pretrain/39390",
+              "telstra/pretrain/30299",
+              "telstra/pretrain/8182",
+              "telstra/pretrain/35240",
+              "telstra/pretrain/42887",
+              "telstra/pretrain/31004",
+              "telstra/pretrain/38341"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "telstra/pretrain/39407",
+              "telstra/pretrain/3189",
+              "telstra/pretrain/22623",
+              "telstra/pretrain/38048",
+              "telstra/pretrain/31205",
+              "telstra/pretrain/36936",
+              "telstra/pretrain/10818",
+              "telstra/pretrain/27969",
+              "telstra/pretrain/32357",
+              "telstra/pretrain/35380",
+              "telstra/pretrain/44297",
+              "telstra/pretrain/44475",
+              "telstra/pretrain/16778",
+              "telstra/pretrain/29087",
+              "telstra/pretrain/18582",
+              "telstra/pretrain/6574",
+              "telstra/pretrain/20591",
+              "telstra/pretrain/2120",
+              "telstra/pretrain/32303",
+              "telstra/pretrain/12333"
+            ],
+            "hashes": [
+              "5535eefa91f6c5d0aaa14ff5c2be28bc9752902fcde0bc97573ab94b3126b784",
+              "926c62c5d89b6b476cb5c78d51c1eccf27571ad47d244f519c439400499be021",
+              "f88e46d9fa4b9fc87dd2f56355d7361528a059e17fc8c907ebbe2d6742ab1b4d",
+              "fc40beed13fdf6c3763d22928efc2e9d99f399947cabcaac43a12738449f8648",
+              "fa5227c2eb87241fd9b490c958af2220a44ca1621825d30e245c4e4a81081338",
+              "d6f018ba2de15dc4937ab004a5bdd757eadaf314756e3d4e33139084077e6b0f",
+              "2b3f34d02e2bf89abbc106f4e83d10fac865ac846681647549a1d540c37ba3a4",
+              "6cd6af5385d8bf05908b526ed0c7eef31a1424be9c8b1ac198a51f6032dfddea",
+              "397e0a6aed340285d8ddd45912f71b1527501e21d08a9bc33b6a8874856defab",
+              "01dc79c1978771e5414ce1a24de2a156d84970fbb7de62f153a2d5d0f0f3e758",
+              "759eba929a0466a48d2c2bf57c356e62597752f8cff2b878896e0187e9500c5a",
+              "18a75ac7ac659874b3d7e23b67040342db25e70c4b57aff1220a444019377e77",
+              "e2d3ef2c0af7a48acdbf91fd8b520b04fd1af3d909cbe14681d6cf02cbab6eee",
+              "005a516ad82ba652c1251dc7b84d3911c9c359b80f9acefe987928dc46c318ac",
+              "aecd8f28b5c27fecbd6ff65e14994321015a47502f062e19f8fa2026cf358d03",
+              "6139b2753e413cee4b307269151a154b9af368cd4ef70889eeefa321eeab1849",
+              "ffe383c3d13c8ff9a83df7fcc8005abff4edb7ef50ee6b3e252b17c92c6fa1aa",
+              "8006b91f0182bf235502c44e3f12446b3b36c3d65a3be3bb7a0cd64a22d53c02",
+              "18a7f671ee9f3ce4d26a81ef5b66dc4894ccca3de0a9e4e04bdefc932cc1bebb",
+              "b913c677f85dd49ba74b9a817bee05e0bfea65d55e4636878b407fda542e6d51"
+            ],
+            "k5_ids": [
+              "telstra/pretrain/39407",
+              "telstra/pretrain/3189",
+              "telstra/pretrain/22623",
+              "telstra/pretrain/38048",
+              "telstra/pretrain/31205"
+            ],
+            "k20_ids": [
+              "telstra/pretrain/39407",
+              "telstra/pretrain/3189",
+              "telstra/pretrain/22623",
+              "telstra/pretrain/38048",
+              "telstra/pretrain/31205",
+              "telstra/pretrain/36936",
+              "telstra/pretrain/10818",
+              "telstra/pretrain/27969",
+              "telstra/pretrain/32357",
+              "telstra/pretrain/35380",
+              "telstra/pretrain/44297",
+              "telstra/pretrain/44475",
+              "telstra/pretrain/16778",
+              "telstra/pretrain/29087",
+              "telstra/pretrain/18582",
+              "telstra/pretrain/6574",
+              "telstra/pretrain/20591",
+              "telstra/pretrain/2120",
+              "telstra/pretrain/32303",
+              "telstra/pretrain/12333"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "telstra/pretrain/37044",
+              "telstra/pretrain/21039",
+              "telstra/pretrain/1037",
+              "telstra/pretrain/30602",
+              "telstra/pretrain/47385",
+              "telstra/pretrain/32293",
+              "telstra/pretrain/31671",
+              "telstra/pretrain/44886",
+              "telstra/pretrain/38344",
+              "telstra/pretrain/13980",
+              "telstra/pretrain/15218",
+              "telstra/pretrain/46003",
+              "telstra/pretrain/8892",
+              "telstra/pretrain/27604",
+              "telstra/pretrain/43303",
+              "telstra/pretrain/4163",
+              "telstra/pretrain/8639",
+              "telstra/pretrain/37353",
+              "telstra/pretrain/42933",
+              "telstra/pretrain/14976"
+            ],
+            "hashes": [
+              "e42a05065c73bdeccbccadb48bb62b37d6072339922a04e880d1cac7ba5f75b4",
+              "d0d477780ec5918aa459f2a953729e83d1a4a6a7f9209d0c24ec12c57158ddc0",
+              "e42203da9e441ec621125038750e91bf77cab77d8b39e2ece561c7ae45d679fb",
+              "6c5a6e77171031eab901439e98505691d5f427a109c734f408bf866859060103",
+              "0ee6d1927175bbfa0b3de349865baf7a8dfde75627ea7acb7dd81404a03653fd",
+              "bfa3277378decd3d8ea985a792014af5f4aedf1c39ef54293a1ea54d62d720f2",
+              "b93929c47db48473cceed284c06924c01644dfff14a7d491a8cc58cbb06a5063",
+              "9bc6a5ea38b29b5be9478379a413618dfa5dd77f3435d35ec8f4e06cbbe76ff7",
+              "a9129c886b83e1d472e129f66242f9ce887c6e49c1fab7b7841a12ca3a80d941",
+              "31fd7c114d03d873a79d2d0743de3eade9de4617339ea9539f9cbbd7e83515b5",
+              "a104020361dd5d42c9503c958bc75e7af616b7dd9a65dcad0b629da892857656",
+              "b6f468222b2483a4cd1ebbda95fc8dfa28b272f57d9367f467dd48a5079fe130",
+              "ae1f99928dc6dea3466fa0a118b3dec5eb5094462a907c2debffe4e013efeffd",
+              "da4a95c5efe7abb6567d5c266bf87c29ccbd9843f83407fac75ed1d200a71947",
+              "75bd56b64dbaef2c8f131491afbd5d3219a908f7ef177f6a59ffffa49e3d5fb7",
+              "7545301a3b4474d5d2c4f257bff4eea2cf378c66bf832501e2a4a65ac02dfb98",
+              "111e4bc44ead7650c84ab546071410a479590028eb35a0166f42b44403adbcda",
+              "43301fb68fa510ed3c249d73613d8fa97319ef71aa2df0ffd60395bd4ea34fcc",
+              "edc7148d9eeb373cff260c36a32638602369c2a82511960c18445db6e9e349af",
+              "95637e6588347753976e9f07550ed0bc239b0cdf1bc5d73110f1697cbbf585ec"
+            ],
+            "k5_ids": [
+              "telstra/pretrain/37044",
+              "telstra/pretrain/21039",
+              "telstra/pretrain/1037",
+              "telstra/pretrain/30602",
+              "telstra/pretrain/47385"
+            ],
+            "k20_ids": [
+              "telstra/pretrain/37044",
+              "telstra/pretrain/21039",
+              "telstra/pretrain/1037",
+              "telstra/pretrain/30602",
+              "telstra/pretrain/47385",
+              "telstra/pretrain/32293",
+              "telstra/pretrain/31671",
+              "telstra/pretrain/44886",
+              "telstra/pretrain/38344",
+              "telstra/pretrain/13980",
+              "telstra/pretrain/15218",
+              "telstra/pretrain/46003",
+              "telstra/pretrain/8892",
+              "telstra/pretrain/27604",
+              "telstra/pretrain/43303",
+              "telstra/pretrain/4163",
+              "telstra/pretrain/8639",
+              "telstra/pretrain/37353",
+              "telstra/pretrain/42933",
+              "telstra/pretrain/14976"
+            ]
+          },
+          {
+            "size": 20,
+            "ids": [
+              "telstra/pretrain/34587",
+              "telstra/pretrain/10377",
+              "telstra/pretrain/31249",
+              "telstra/pretrain/39433",
+              "telstra/pretrain/35401",
+              "telstra/pretrain/47345",
+              "telstra/pretrain/39201",
+              "telstra/pretrain/49729",
+              "telstra/pretrain/7978",
+              "telstra/pretrain/13865",
+              "telstra/pretrain/26787",
+              "telstra/pretrain/1968",
+              "telstra/pretrain/34155",
+              "telstra/pretrain/29783",
+              "telstra/pretrain/24570",
+              "telstra/pretrain/1929",
+              "telstra/pretrain/10848",
+              "telstra/pretrain/25232",
+              "telstra/pretrain/19054",
+              "telstra/pretrain/42348"
+            ],
+            "hashes": [
+              "32affcc515fa6d6ae50768f725c48ad85db28698581185fe9bc28829d4d62089",
+              "d644ca71f8411f2e2f68ad5d311f44e40a9f1a987a86893ded56127326cc000e",
+              "5459c61b398c81d3a6bee0298c5b9263edeef6a078b77cf968ae14e422b4ed1c",
+              "8688ab28821258790355473b4443a24d31bf41d1522b203b59c86d59e760d6eb",
+              "8b565975c198d1c1b66ab61a7663ee1c82bae0c1aab58517bc7bdec2439ab222",
+              "6ed23f5c84b83d76a81e89eb4c4a7d0e96cdb0f9961e26480129a49f7996fd9f",
+              "9a6f4b2208fd70b3807579419658a92b0255c15df75eab57d38f55366b4dfb84",
+              "327d9ac8bef88ba43b7f769225c856166c3ea1b8042a6c59d8f83622375f6482",
+              "8416a6d990c3fb0df296abd30035f8a9945ff2a156ac648f6f5455a19362d527",
+              "9c3d34dca1d8458282226c36c80d20b63326e3440f304611fae31a2d5f837dac",
+              "8311fa6e338422726734855a552aeed64d8ae87f92073a7a801da0b8d5794636",
+              "631c8b7f8bd9dbb9cb471634c4c8dae403fef820c91062737375963cc47445f6",
+              "56d6041d2be810e8e174822043d21138925d332d6720cabad964911e2dd9ef37",
+              "fb00d2e5a2e49dc4eeb0f74869ac8c1c8a746c1bc9fdc45ea44699a6958165cf",
+              "3bbd8a6ce01aa1957b13e88ffa302e7dbe25113f65fd1636fd6030d55056791a",
+              "d63060808a32c30961b2e1789392fe365e899af1e8c1d5909acea4179f7680c2",
+              "a20f9137587905eaa24829291e7d0ef5564603d55626ae67c4492a40697eb0e3",
+              "832b0a098d56d69ceb7d9e3a98de3544129a98901c34abffae7c8f487238aeeb",
+              "ac953e45247e1ce083441bb01e536b354504e508561d1fdf6b49f43abb777eb9",
+              "f7dfdf1256b87304584a5b7370d6e478d43438586ce3fbcafe678a5daa2287b6"
+            ],
+            "k5_ids": [
+              "telstra/pretrain/34587",
+              "telstra/pretrain/10377",
+              "telstra/pretrain/31249",
+              "telstra/pretrain/39433",
+              "telstra/pretrain/35401"
+            ],
+            "k20_ids": [
+              "telstra/pretrain/34587",
+              "telstra/pretrain/10377",
+              "telstra/pretrain/31249",
+              "telstra/pretrain/39433",
+              "telstra/pretrain/35401",
+              "telstra/pretrain/47345",
+              "telstra/pretrain/39201",
+              "telstra/pretrain/49729",
+              "telstra/pretrain/7978",
+              "telstra/pretrain/13865",
+              "telstra/pretrain/26787",
+              "telstra/pretrain/1968",
+              "telstra/pretrain/34155",
+              "telstra/pretrain/29783",
+              "telstra/pretrain/24570",
+              "telstra/pretrain/1929",
+              "telstra/pretrain/10848",
+              "telstra/pretrain/25232",
+              "telstra/pretrain/19054",
+              "telstra/pretrain/42348"
+            ]
+          }
+        ],
+        "original_order_unchanged": true
+      }
+    }
+  },
+  "configs": {
+    "A0-ref-seed42.json": {
+      "sha256": "5de0386ffdf04057bf2d5ff49b50a93d71e53d5e145f38bdd7088e3f77190068",
+      "bytes": 992,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 42,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed42.json",
+        "purpose": "research",
+        "fixed_stage": "122-A0-ref",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      }
+    },
+    "A0-ref-seed43.json": {
+      "sha256": "4d8d7f642cc42703ff505b5202e83e306d0510641e1cf6d6a1072f85b273e7fc",
+      "bytes": 992,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 43,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed43.json",
+        "purpose": "research",
+        "fixed_stage": "122-A0-ref",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      }
+    },
+    "A0-ref-seed44.json": {
+      "sha256": "4dce7bad3f5fc58393a4723e53359b3ce889c496b25eb3f1020852e4a560becb",
+      "bytes": 992,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 44,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed44.json",
+        "purpose": "research",
+        "fixed_stage": "122-A0-ref",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum",
+        "layers": 2,
+        "heads": 4
+      }
+    },
+    "A0-seed42.json": {
+      "sha256": "25a44ceb0bb3cbb09cb2ab17aa106055df84b3bed5a8983588909a78af676553",
+      "bytes": 1000,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 42,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed42.json",
+        "purpose": "research",
+        "fixed_stage": "122-A0",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum_anchor_only",
+        "layers": 2,
+        "heads": 4
+      }
+    },
+    "A0-seed43.json": {
+      "sha256": "8abe595a0741a6699907d095b7c5b5c57ae7116e5e2e48f5f3a9e087cfeedc40",
+      "bytes": 1000,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 43,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed43.json",
+        "purpose": "research",
+        "fixed_stage": "122-A0",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum_anchor_only",
+        "layers": 2,
+        "heads": 4
+      }
+    },
+    "A0-seed44.json": {
+      "sha256": "82361c7d6f5f1b6f5bd0a019d45fc71e0a59143a68bca1ea08858a7e49f78b7a",
+      "bytes": 1000,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 44,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed44.json",
+        "purpose": "research",
+        "fixed_stage": "122-A0",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "width": 64,
+        "use_pg": true,
+        "arch": "sum_anchor_only",
+        "layers": 2,
+        "heads": 4
+      }
+    },
+    "A1-seed42.json": {
+      "sha256": "c55aed1663ba2d844632f4cb702cae2fb46637a6d62134f0f36ebe6ea844c3f4",
+      "bytes": 7923,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 42,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed42.json",
+        "purpose": "research",
+        "fixed_stage": "122-A1",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "arch": "price_lite",
+        "d_model": 64,
+        "layers": 2,
+        "heads": 4,
+        "dropout": 0.0,
+        "lora": false,
+        "lora_seed": 42
+      }
+    },
+    "A1-seed43.json": {
+      "sha256": "204db12a29266d3bf7fe1f52df43656990cee56320dc8867df6121bfa664a4f9",
+      "bytes": 7923,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 43,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed43.json",
+        "purpose": "research",
+        "fixed_stage": "122-A1",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "arch": "price_lite",
+        "d_model": 64,
+        "layers": 2,
+        "heads": 4,
+        "dropout": 0.0,
+        "lora": false,
+        "lora_seed": 42
+      }
+    },
+    "A1-seed44.json": {
+      "sha256": "004471ff07469cedf6d98ab5e1fe5de672ddcff511f25efb1acebdcd01974c76",
+      "bytes": 7923,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 44,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed44.json",
+        "purpose": "research",
+        "fixed_stage": "122-A1",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "arch": "price_lite",
+        "d_model": 64,
+        "layers": 2,
+        "heads": 4,
+        "dropout": 0.0,
+        "lora": false,
+        "lora_seed": 42
+      }
+    },
+    "A2-seed42.json": {
+      "sha256": "9028da13755d153295d218c689da8c1c9c7f9070843774fd252619dac957a826",
+      "bytes": 7923,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 42,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed42.json",
+        "purpose": "research",
+        "fixed_stage": "122-A2",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "arch": "price_tiny",
+        "d_model": 32,
+        "layers": 2,
+        "heads": 4,
+        "dropout": 0.0,
+        "lora": false,
+        "lora_seed": 42
+      }
+    },
+    "A2-seed43.json": {
+      "sha256": "132b38ffd814b7b043415462bfe64f1683089e1f15ea057e406db46c37a87cb1",
+      "bytes": 7923,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 43,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed43.json",
+        "purpose": "research",
+        "fixed_stage": "122-A2",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "arch": "price_tiny",
+        "d_model": 32,
+        "layers": 2,
+        "heads": 4,
+        "dropout": 0.0,
+        "lora": false,
+        "lora_seed": 42
+      }
+    },
+    "A2-seed44.json": {
+      "sha256": "88c76bf12429b483876531bdac12be51120f8d4c10f2f1480e56c43e65f32821",
+      "bytes": 7923,
+      "complete_fixed_fields_match": true,
+      "fields": {
+        "data_config": "configs/data.json",
+        "method": "erm",
+        "seed": 44,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 4000,
+        "validation_runs": 1,
+        "validation_seed": 1729,
+        "patience": 1,
+        "min_delta": 0.0,
+        "fixed_budget": true,
+        "meta_objective": "post",
+        "training_plan": "/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans/training_plan_seed44.json",
+        "purpose": "research",
+        "fixed_stage": "122-A2",
+        "source_preflight": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/runs/p0-real-source-20261111/preflight.json",
+        "source_preflight_sha256": "fcd8758f9a4db87538c519da37cda128be7462ed4d186a483062f03369b538a9"
+      },
+      "model_without_capacity": {
+        "arch": "price_tiny",
+        "d_model": 32,
+        "layers": 2,
+        "heads": 4,
+        "dropout": 0.0,
+        "lora": false,
+        "lora_seed": 42
+      }
+    }
+  },
+  "remote_code_sha256": {
+    "configs/data.json": "a9057d65c7cb220bd21e7cd67dacbc15c0c20dcc87f61d9b3e6470c0ea094d90",
+    "configs/fomaml_joint_sum_4k.json": "f4db1e1deaea80ea45bc93529a229bd5a4b9f7b0ee7e1df4e7e45202637bebbb",
+    "scripts/price_meta_p0.py": "142b7e04f952d3677f5bfbdb89224cf98febf06c3552b93412eaa38c40b69749",
+    "spatial_meta_ce/checkpoints.py": "18348efa54eff3e563aa07815876e8a37d76f870bf384b328edb7545d6ddc3f6",
+    "spatial_meta_ce/cli.py": "bda8f55d085a7dc99c1c8105bf2921d2a47a00b3488fc0e83226b7109c18a1e3",
+    "spatial_meta_ce/data.py": "4caf69ea8b43b721e6034a8a15df9c6a31b80f0c041bdd59da9657ed5576c99a",
+    "spatial_meta_ce/evaluate.py": "aea8a268a925a3c7a2f53cea046754c65d5dd817ea5fd18f958203c0c8e897ce",
+    "spatial_meta_ce/meta.py": "d5bb3e236503d7e599bfc53da94aecb821b137b4cdfaa8b6de81df865b51dee0",
+    "spatial_meta_ce/model.py": "7f817bca28e514e34e22c97ecbbff2bb0af27ed155c8374f44c1230dd3e2e217",
+    "spatial_meta_ce/plans.py": "d04de79355bdbed89f3b11ee62ac57b857a2795f547a430d426d436dd7559bd1",
+    "spatial_meta_ce/price_capacity.py": "7903ee0185c72ef9111f6c93c117900d7e0b184d41470a620fb221adb350577e",
+    "spatial_meta_ce/price_model.py": "fcb8ea9f30596d92a7941e18db8366d695a03cf1c57fb270673ddf02a1d8299e",
+    "spatial_meta_ce/price_protocol.py": "ac1a68df252bb10aadc0c9da436c044fe3b156127547111ea0e690a0057cf8d7",
+    "spatial_meta_ce/source_eval.py": "5e9d1619aa2387f5cbd20c7787b119a60c142a71ff01b16ea80029d58d3d2486",
+    "spatial_meta_ce/train.py": "90ecec3d89c2b7aa3ecf09458d64faab645c2f41e35afd9636308de68d162a86",
+    "spatial_meta_ce/metrics.py": "db99399e61df1cf090ebfef0535b3386764737a468713fe2331ee9710ad8c4b3"
+  },
+  "runtime_config_canonical_sha256": "8766c14d1c2e434407de445a8bacc29ff5af3d541d028421c217357feea7b522",
+  "tracked_cache_root": "artifacts/cache",
+  "tracked_cache_root_exists": false,
+  "tracked_cache_root_resolved": "/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code/artifacts/cache",
+  "all_readonly_assertions_passed": true
+}

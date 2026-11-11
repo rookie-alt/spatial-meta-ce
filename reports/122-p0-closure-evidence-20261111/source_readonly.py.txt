@@ -1,0 +1,170 @@
+"""One-off evidence audit: stdlib + NumPy only; no project imports or writes."""
+import hashlib
+import json
+import resource
+import sys
+from collections import Counter
+from pathlib import Path
+
+import numpy as np
+
+resource.setrlimit(resource.RLIMIT_AS, (4 * 1024**3, 4 * 1024**3))
+TRAIN = ('accidents', 'airline', 'baseball', 'basketball', 'carcinogenesis', 'ccs', 'consumer', 'credit', 'employee', 'financial', 'fnhk', 'grants', 'hepatitis', 'hockey', 'movielens', 'sakila', 'sap', 'seznam', 'ssb', 'talkingdata', 'tournament', 'tpc_h', 'tubepricing')
+SOURCE = ('chembl', 'legalacts', 'telstra')
+ROOT = Path('/gly/weilin/spatial-meta-ce-price-meta-lora-p0-20261111-code')
+CACHE = Path('/gly/weilin/spatial-meta-ce/artifacts/cache/pretrain')
+PLANS = Path('/gly/weilin/spatial-meta-ce-fomaml-joint-source-20261028-plans')
+OUTPUT = ROOT / 'runs/p0-real-source-20261111'
+
+
+def sha(path):
+    value = hashlib.sha256()
+    with path.open('rb') as stream:
+        for chunk in iter(lambda: stream.read(4 * 1024 * 1024), b''):
+            value.update(chunk)
+    return value.hexdigest()
+
+
+def digest(obj):
+    return hashlib.sha256(json.dumps(obj, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+
+
+def load(path):
+    return json.loads(path.read_text())
+
+
+def plan_digest(obj):
+    return digest({k: v for k, v in obj.items() if k != 'plan_sha256'})
+
+
+raw = load(OUTPUT / 'preflight.json')
+assert raw['status'] == 'data_preflight_passed'
+assert raw['p0_gate_passed'] is False and raw['formal_training_authorized'] is False
+assert raw['target_databases_read'] == []
+capacity = raw['capacity']
+assert tuple(capacity['databases']) == TRAIN
+assert digest({k: v for k, v in capacity.items() if k != 'capacity_sha256'}) == capacity['capacity_sha256']
+records = {}
+identities = {}
+for db in TRAIN + SOURCE:
+    directory = CACHE / db
+    manifest_path = directory / 'manifest.json'
+    manifest_sha = sha(manifest_path)
+    manifest = load(manifest_path)
+    assert manifest['schema'] == 1
+    assert manifest['transform'] == 'price40-group-logfanout-v1'
+    assert digest({k: v for k, v in manifest.items() if k != 'content_hash'}) == manifest['content_hash']
+    rows = manifest['rows']
+    identities[db] = tuple((row['id'], row['query_hash']) for row in rows)
+    offsets = np.load(directory / 'offsets.npy', mmap_mode='r', allow_pickle=False)
+    assert offsets.shape == (len(rows) + 1, 4)
+    assert offsets.dtype.kind in 'iu' and np.all(offsets[0] == 0)
+    counts = np.diff(offsets, axis=0)
+    assert np.all(counts >= 0)
+    maxima = counts.max(axis=0).tolist()
+    assert maxima == manifest['inspection']['max_counts']
+    unique = len({row['query_hash'] for row in rows})
+    assert unique == manifest['unique_queries']
+    expected = capacity if db in TRAIN else raw['coverage']['databases'][db]
+    assert manifest_sha == (expected['manifest_sha256'][db] if db in TRAIN else expected['manifest_sha256'])
+    assert manifest['content_hash'] == (expected['cache_hashes'][db] if db in TRAIN else expected['cache_hash'])
+    if db in TRAIN:
+        assert maxima == capacity['database_max_counts'][db]
+    else:
+        assert maxima == expected['max_counts']
+    files = {name: sha(directory / name) for name in ('cards.npy', 'offsets.npy', 'group0.npy', 'group1.npy', 'group2.npy', 'group3.npy')}
+    data_sha = digest({'cards': files['cards.npy'], 'offsets': files['offsets.npy'], 'groups': [files[f'group{i}.npy'] for i in range(4)]})
+    assert sha(manifest_path) == manifest_sha
+    records[db] = {'manifest_sha256': manifest_sha, 'content_hash': manifest['content_hash'], 'rows': len(rows), 'unique_queries': unique, 'max_counts': maxima, 'unsupported_rows': int(np.any(counts > np.asarray(capacity['max_counts']), axis=1).sum()), 'array_sha256': files, 'data_sha256': data_sha, 'upstream_provenance_recorded_not_reread': manifest['provenance']}
+    del manifest, rows, offsets, counts
+assert np.max(np.asarray([records[db]['max_counts'] for db in TRAIN]), axis=0).tolist() == capacity['max_counts'] == [12, 12, 7, 10]
+assert sum(records[db]['unsupported_rows'] for db in SOURCE) == 0
+binding_path = PLANS / 'plan_binding.json'
+binding = load(binding_path)
+training = {}
+for seed in (42, 43, 44):
+    path = PLANS / f'training_plan_seed{seed}.json'
+    before = sha(path)
+    plan = load(path)
+    assert before == binding['training_plans'][str(seed)]['file_sha256'] == raw['training_plans'][str(seed)]['file_sha256']
+    assert plan_digest(plan) == plan['plan_sha256'] == binding['training_plans'][str(seed)]['plan_sha256']
+    assert plan['seed'] == seed and plan['steps'] == 4000 and plan['meta_batch'] == 4
+    assert plan['accumulation'] == 1 and plan['query_size'] == 64 and plan['support_sizes'] == [5, 10, 20, 50, 100]
+    assert set(plan['databases']) == set(TRAIN) == set(plan['data_hashes'])
+    for db in TRAIN:
+        assert plan['databases'][db] == records[db]['content_hash']
+        assert plan['data_hashes'][db] == records[db]['data_sha256']
+    assert len(plan['episodes']) == 16000
+    sizes = Counter()
+    databases = Counter()
+    for episode in plan['episodes']:
+        db, k = episode['db'], episode['k']
+        assert db in TRAIN and k in (5, 10, 20, 50, 100)
+        sizes[k] += 1
+        databases[db] += 1
+        for field, expected_size in (('support', k), ('query', 64)):
+            indices, hashes = episode[field], episode[field + '_hashes']
+            assert len(indices) == len(hashes) == expected_size
+            assert len(set(indices)) == len(indices) and len(set(hashes)) == len(hashes)
+            assert all(type(index) is int and 0 <= index < len(identities[db]) for index in indices)
+            assert [identities[db][index][1] for index in indices] == hashes
+        assert not set(episode['support']) & set(episode['query'])
+        assert not set(episode['support_hashes']) & set(episode['query_hashes'])
+    assert sha(path) == before
+    training[str(seed)] = {'file_sha256': before, 'plan_sha256': plan['plan_sha256'], 'bytes': path.stat().st_size, 'episodes_checked': len(plan['episodes']), 'support_sizes_counts': dict(sorted(sizes.items())), 'database_counts': dict(sorted(databases.items())), 'all_index_hash_pairs_match': True, 'support_query_hash_overlap': 0, 'all_data_hashes_match': True}
+    del plan
+original_path = PLANS / 'source_eval_plan.json'
+bound_path = OUTPUT / 'source_eval_plan_122.json'
+original = load(original_path)
+bound = load(bound_path)
+assert sha(original_path) == raw['source_eval_plan']['original_file_sha256'] == binding['source_eval_plan']['file_sha256']
+assert plan_digest(original) == original['plan_sha256'] == raw['source_eval_plan']['original_plan_sha256']
+assert plan_digest(bound) == bound['plan_sha256'] == raw['source_eval_plan']['bound_plan_sha256']
+assert bound['protocol'] == 122 and bound['analysis_role'] == 'population_primary'
+assert 'plan_seed' not in bound and 'shot_seed' not in bound
+assert bound['support_seed'] == 2026 and bound['support_blocks'] == 5 and bound['support_block_size'] == 20
+assert tuple(bound['databases']) == SOURCE == tuple(original['databases'])
+source = {}
+for db in SOURCE:
+    entry, old = bound['databases'][db], original['databases'][db]
+    assert entry['query'] == old['query'] and entry['query_hashes'] == old['query_hashes']
+    assert entry['cache_hash'] == records[db]['content_hash'] and entry['data_sha256'] == records[db]['data_sha256']
+    all_support = []
+    block_records = []
+    for block, old_block in zip(entry['support_blocks'], old['support_blocks']):
+        assert block['support'] == old_block['support'] and block['support_hashes'] == old_block['support_hashes']
+        assert len(block['support']) == len(block['support_hashes']) == len(block['support_ids']) == 20
+        assert [identities[db][index] for index in block['support']] == list(zip(block['support_ids'], block['support_hashes']))
+        all_support.extend(block['support_hashes'])
+        block_records.append({'size': 20, 'ids': block['support_ids'], 'hashes': block['support_hashes'], 'k5_ids': block['support_ids'][:5], 'k20_ids': block['support_ids']})
+    assert len(entry['support_blocks']) == 5 and len(all_support) == len(set(all_support)) == 100
+    assert [identities[db][index] for index in entry['query']] == list(zip(entry['query_ids'], entry['query_hashes']))
+    assert len(set(entry['query_hashes'])) == len(entry['query_hashes']) == entry['query_count']
+    assert not set(all_support) & set(entry['query_hashes'])
+    assert set(all_support) | set(entry['query_hashes']) == {item[1] for item in identities[db]}
+    assert entry['unique_queries'] == records[db]['unique_queries'] == entry['query_count'] + 100
+    assert entry['excluded_unique'] == 100
+    source[db] = {'unique_queries': entry['unique_queries'], 'query_population': entry['query_count'], 'excluded_unique': 100, 'support_query_hash_overlap': 0, 'query_order_ids_hashes_sha256': digest(list(zip(entry['query_ids'], entry['query_hashes']))), 'support_blocks': block_records, 'original_order_unchanged': True}
+common = {'method': 'erm', 'meta_objective': 'post', 'steps': 4000, 'meta_batch': 4, 'query_size': 64, 'accumulation': 1, 'outer_lr': 0.0003, 'inner_lr': 0.001, 'inner_steps': 5, 'adapt_scope': 'all', 'loss': 'smooth_l1', 'support_sizes': [5, 10, 20, 50, 100], 'fixed_budget': True, 'purpose': 'research'}
+configs = {}
+for arm in ('A0-ref', 'A0', 'A1', 'A2'):
+    for seed in (42, 43, 44):
+        path = OUTPUT / f'{arm}-seed{seed}.json'
+        config = load(path)
+        assert all(config[key] == value for key, value in common.items())
+        assert config['seed'] == seed and config['fixed_stage'] == '122-' + arm
+        assert config['training_plan'] == str(PLANS / f'training_plan_seed{seed}.json')
+        assert config['source_preflight'] == str(OUTPUT / 'preflight.json') and config['source_preflight_sha256'] == sha(OUTPUT / 'preflight.json')
+        model = config['model']
+        if arm in ('A0-ref', 'A0'):
+            assert model == {'width': 64, 'use_pg': True, 'arch': 'sum' if arm == 'A0-ref' else 'sum_anchor_only', 'layers': 2, 'heads': 4}
+        else:
+            assert model == {'arch': 'price_lite' if arm == 'A1' else 'price_tiny', 'd_model': 64 if arm == 'A1' else 32, 'layers': 2, 'heads': 4, 'dropout': 0.0, 'capacity': capacity, 'lora': False, 'lora_seed': 42}
+        configs[path.name] = {'sha256': sha(path), 'bytes': path.stat().st_size, 'complete_fixed_fields_match': True, 'fields': {key: value for key, value in config.items() if key != 'model'}, 'model_without_capacity': {key: value for key, value in model.items() if key != 'capacity'}}
+code_paths = ('configs/data.json', 'configs/fomaml_joint_sum_4k.json', 'scripts/price_meta_p0.py', 'spatial_meta_ce/checkpoints.py', 'spatial_meta_ce/cli.py', 'spatial_meta_ce/data.py', 'spatial_meta_ce/evaluate.py', 'spatial_meta_ce/meta.py', 'spatial_meta_ce/model.py', 'spatial_meta_ce/plans.py', 'spatial_meta_ce/price_capacity.py', 'spatial_meta_ce/price_model.py', 'spatial_meta_ce/price_protocol.py', 'spatial_meta_ce/source_eval.py', 'spatial_meta_ce/train.py', 'spatial_meta_ce/metrics.py')
+data_config = load(ROOT / 'configs/data.json')
+assert tuple(data_config['splits']['train']) == TRAIN and tuple(data_config['splits']['validation']) == SOURCE
+runtime = {**data_config, 'cache_root': str(CACHE.parent)}
+cache_path = ROOT / data_config['cache_root']
+result = {'schema': 1, 'purpose': 'readonly-source-evidence-audit-not-smoke-not-research', 'date': '2026-11-11', 'libraries': {'python': sys.version, 'numpy': np.__version__}, 'project_imports': [], 'model_updates': 0, 'gpu_used': False, 'target_databases_read': [], 'remote_writes': [], 'p0_gate_passed': False, 'formal_training_authorized': False, 'raw_preflight': {'sha256': sha(OUTPUT / 'preflight.json'), 'bytes': (OUTPUT / 'preflight.json').stat().st_size}, 'capacity': capacity['max_counts'], 'capacity_sha256': capacity['capacity_sha256'], 'cache_records': records, 'plan_binding_sha256': sha(binding_path), 'training_plans': training, 'source_eval_plan': {'original_file_sha256': sha(original_path), 'bound_file_sha256': sha(bound_path), 'bound_plan_sha256': bound['plan_sha256'], 'databases': source}, 'configs': configs, 'remote_code_sha256': {name: sha(ROOT / name) for name in code_paths}, 'runtime_config_canonical_sha256': digest(runtime), 'tracked_cache_root': data_config['cache_root'], 'tracked_cache_root_exists': cache_path.is_dir(), 'tracked_cache_root_resolved': str(cache_path.resolve()), 'all_readonly_assertions_passed': True}
+print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))

@@ -1,0 +1,51 @@
+"""Inspect existing source-only artifacts without unpickling or importing torch."""
+import hashlib
+import json
+import pickletools
+import zipfile
+from pathlib import Path
+
+ROOT = Path('/gly/weilin/spatial-meta-ce/runs')
+
+
+def sha(path):
+    h = hashlib.sha256()
+    with path.open('rb') as stream:
+        for chunk in iter(lambda: stream.read(4 * 1024 * 1024), b''):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def primitive_evidence(path):
+    with zipfile.ZipFile(path) as archive:
+        names = [n for n in archive.namelist() if n.endswith('/data.pkl')]
+        assert len(names) == 1
+        info = archive.getinfo(names[0])
+        assert info.file_size < 16 * 1024**2
+        data = archive.read(names[0])
+    operations = list(pickletools.genops(data))
+    wanted = ('schema', 'model_type', 'transform', 'next_step', 'best_metric', 'bad_validations', 'purpose', 'selection', 'fixed_budget', 'fixed_steps', 'fixed_stage', 'training_plan', 'training_plan_sha256')
+    evidence = {}
+    for key in wanted:
+        locations = [i for i, (_, arg, _) in enumerate(operations) if type(arg) is str and arg == key]
+        evidence[key] = [{'offset': operations[i][2], 'following_opcodes': [{'offset': pos, 'opcode': op.name, 'argument': arg if isinstance(arg, (str, int, float, bool, type(None))) else repr(arg)} for op, arg, pos in operations[i + 1:i + 5]]} for i in locations]
+    return {'zip_pickle_member': names[0], 'pickle_bytes': len(data), 'pickle_sha256': hashlib.sha256(data).hexdigest(), 'primitive_opcode_evidence': evidence, 'unpickled': False, 'tensor_storage_read': False}
+
+
+seeds = {}
+for seed in (42, 43, 44):
+    directory = ROOT / f'erm-sum-seed{seed}-20260927'
+    config_path = directory / 'config.json'
+    history_path = directory / 'history.json'
+    validation_path = directory / 'validation_manifest.json'
+    config = json.loads(config_path.read_text())
+    history = json.loads(history_path.read_text())
+    validation = json.loads(validation_path.read_text())
+    checkpoints = {}
+    for name in ('last.pt', 'best.pt'):
+        path = directory / name
+        checkpoints[name] = {'path': str(path), 'bytes': path.stat().st_size, 'sha256': sha(path), **primitive_evidence(path)}
+    training = config['training']
+    seeds[str(seed)] = {'path': str(directory), 'config_sha256': sha(config_path), 'training_config': training, 'data_splits': config['data']['splits'], 'history_sha256': sha(history_path), 'history_rows': len(history), 'history_last_step': history[-1].get('step'), 'non_null_validation_score_rows': sum(row.get('validation_macro_log_q95') is not None for row in history), 'history_fields': list(history[0]), 'validation_manifest_sha256': sha(validation_path), 'validation_episodes': len(validation), 'validation_databases': sorted({row.get('db', row.get('database')) for row in validation}), 'checkpoints': checkpoints, 'reuse_decision': 'not_reusable', 'failed_or_missing': ['no sealed training_plan binding in config', 'source-validation selection rather than none', 'validation manifest and non-null validation history exist', 'best.pt exists', 'last update is not 4000']}
+assert all(row['history_last_step'] != 4000 for row in seeds.values())
+print(json.dumps({'schema': 1, 'date': '2026-11-11', 'purpose': 'readonly-historical-source-checkpoint-reuse-audit', 'torch_imported': False, 'unpickled': False, 'gpu_used': False, 'model_updates': 0, 'target_databases_read': [], 'remote_writes': [], 'seeds': seeds, 'all_three_not_reusable': True, 'scope': 'Named historical ERM sum candidates only; no claim that every server checkpoint was exhaustively enumerated.'}, ensure_ascii=False, indent=2, allow_nan=False))

@@ -1,0 +1,1722 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "purpose": "readonly-historical-source-checkpoint-reuse-audit",
+  "torch_imported": false,
+  "unpickled": false,
+  "gpu_used": false,
+  "model_updates": 0,
+  "target_databases_read": [],
+  "remote_writes": [],
+  "seeds": {
+    "42": {
+      "path": "/gly/weilin/spatial-meta-ce/runs/erm-sum-seed42-20260927",
+      "config_sha256": "41182ef8478240418307301c0d266a350763fa94fe86701f6cae377e8c6df760",
+      "training_config": {
+        "data_config": "configs/data.json",
+        "model": {
+          "width": 64,
+          "use_pg": true,
+          "arch": "sum",
+          "layers": 2,
+          "heads": 4
+        },
+        "method": "erm",
+        "seed": 42,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 100,
+        "validation_runs": 5,
+        "validation_seed": 1729,
+        "patience": 10,
+        "min_delta": 0.0001
+      },
+      "data_splits": {
+        "train": [
+          "accidents",
+          "airline",
+          "baseball",
+          "basketball",
+          "carcinogenesis",
+          "ccs",
+          "consumer",
+          "credit",
+          "employee",
+          "financial",
+          "fnhk",
+          "grants",
+          "hepatitis",
+          "hockey",
+          "movielens",
+          "sakila",
+          "sap",
+          "seznam",
+          "ssb",
+          "talkingdata",
+          "tournament",
+          "tpc_h",
+          "tubepricing"
+        ],
+        "validation": [
+          "chembl",
+          "legalacts",
+          "telstra"
+        ],
+        "test": [
+          "imdb",
+          "stats",
+          "genome",
+          "ergastf1"
+        ]
+      },
+      "history_sha256": "bb3bab238ef170bd5d279577af3593bfb9dc4859179abe91b982709aee3005ed",
+      "history_rows": 25,
+      "history_last_step": 2500,
+      "non_null_validation_score_rows": 25,
+      "history_fields": [
+        "step",
+        "train_loss",
+        "validation_macro_log_q95",
+        "validation",
+        "counts"
+      ],
+      "validation_manifest_sha256": "dd46e4b347a38ef566ad30b1fa5289d2630617059bd7bb61d2745e261b2e100c",
+      "validation_episodes": 75,
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoints": {
+        "last.pt": {
+          "path": "/gly/weilin/spatial-meta-ce/runs/erm-sum-seed42-20260927/last.pt",
+          "bytes": 2221832,
+          "sha256": "c04003a77e6d735d0f0d158889bc25bae7c011db9752b5bdb2b25e36ddd99ef4",
+          "zip_pickle_member": "last.pt/data.pkl",
+          "pickle_bytes": 608802,
+          "pickle_sha256": "bcd571585a4a558bc1a7d78cb1254dd6a7ffd652da6ece20ab73dda4b5d04ce0",
+          "primitive_opcode_evidence": {
+            "schema": [
+              {
+                "offset": 6,
+                "following_opcodes": [
+                  {
+                    "offset": 17,
+                    "opcode": "BINPUT",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 19,
+                    "opcode": "BININT1",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 21,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_type"
+                  },
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  }
+                ]
+              }
+            ],
+            "model_type": [
+              {
+                "offset": 21,
+                "following_opcodes": [
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  },
+                  {
+                    "offset": 38,
+                    "opcode": "BINUNICODE",
+                    "argument": "grouped_set_residual"
+                  },
+                  {
+                    "offset": 63,
+                    "opcode": "BINPUT",
+                    "argument": 3
+                  },
+                  {
+                    "offset": 65,
+                    "opcode": "BINUNICODE",
+                    "argument": "transform"
+                  }
+                ]
+              }
+            ],
+            "transform": [
+              {
+                "offset": 65,
+                "following_opcodes": [
+                  {
+                    "offset": 79,
+                    "opcode": "BINPUT",
+                    "argument": 4
+                  },
+                  {
+                    "offset": 81,
+                    "opcode": "BINUNICODE",
+                    "argument": "price40-group-logfanout-v1"
+                  },
+                  {
+                    "offset": 112,
+                    "opcode": "BINPUT",
+                    "argument": 5
+                  },
+                  {
+                    "offset": 114,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_config"
+                  }
+                ]
+              }
+            ],
+            "next_step": [
+              {
+                "offset": 9179,
+                "following_opcodes": [
+                  {
+                    "offset": 9193,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 786
+                  },
+                  {
+                    "offset": 9198,
+                    "opcode": "BININT2",
+                    "argument": 2500
+                  },
+                  {
+                    "offset": 9201,
+                    "opcode": "BINUNICODE",
+                    "argument": "best_metric"
+                  },
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  }
+                ]
+              }
+            ],
+            "best_metric": [
+              {
+                "offset": 9201,
+                "following_opcodes": [
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  },
+                  {
+                    "offset": 9222,
+                    "opcode": "BINFLOAT",
+                    "argument": 2.6753357966585374
+                  },
+                  {
+                    "offset": 9231,
+                    "opcode": "BINUNICODE",
+                    "argument": "bad_validations"
+                  },
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  }
+                ]
+              }
+            ],
+            "bad_validations": [
+              {
+                "offset": 9231,
+                "following_opcodes": [
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  },
+                  {
+                    "offset": 9256,
+                    "opcode": "BININT1",
+                    "argument": 10
+                  },
+                  {
+                    "offset": 9258,
+                    "opcode": "BINUNICODE",
+                    "argument": "metadata"
+                  },
+                  {
+                    "offset": 9271,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 789
+                  }
+                ]
+              }
+            ],
+            "purpose": [
+              {
+                "offset": 12502,
+                "following_opcodes": [
+                  {
+                    "offset": 12514,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 880
+                  },
+                  {
+                    "offset": 12519,
+                    "opcode": "BINUNICODE",
+                    "argument": "research"
+                  },
+                  {
+                    "offset": 12532,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 881
+                  },
+                  {
+                    "offset": 12537,
+                    "opcode": "BINUNICODE",
+                    "argument": "selection"
+                  }
+                ]
+              }
+            ],
+            "selection": [
+              {
+                "offset": 12537,
+                "following_opcodes": [
+                  {
+                    "offset": 12551,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 882
+                  },
+                  {
+                    "offset": 12556,
+                    "opcode": "BINUNICODE",
+                    "argument": "source-validation macro mean log-Q95 after adaptation"
+                  },
+                  {
+                    "offset": 12614,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 883
+                  },
+                  {
+                    "offset": 12619,
+                    "opcode": "SETITEMS",
+                    "argument": null
+                  }
+                ]
+              }
+            ],
+            "fixed_budget": [],
+            "fixed_steps": [],
+            "fixed_stage": [],
+            "training_plan": [],
+            "training_plan_sha256": []
+          },
+          "unpickled": false,
+          "tensor_storage_read": false
+        },
+        "best.pt": {
+          "path": "/gly/weilin/spatial-meta-ce/runs/erm-sum-seed42-20260927/best.pt",
+          "bytes": 1986824,
+          "sha256": "1f58040a326c8b9aad3513f143edf24a504acf840152ac6c5c45bbc3503f305a",
+          "zip_pickle_member": "best.pt/data.pkl",
+          "pickle_bytes": 373774,
+          "pickle_sha256": "07f9c7e513da2edd6c59dff3f970be85d383b47f2a4a5dee86b4bf0395c781f5",
+          "primitive_opcode_evidence": {
+            "schema": [
+              {
+                "offset": 6,
+                "following_opcodes": [
+                  {
+                    "offset": 17,
+                    "opcode": "BINPUT",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 19,
+                    "opcode": "BININT1",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 21,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_type"
+                  },
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  }
+                ]
+              }
+            ],
+            "model_type": [
+              {
+                "offset": 21,
+                "following_opcodes": [
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  },
+                  {
+                    "offset": 38,
+                    "opcode": "BINUNICODE",
+                    "argument": "grouped_set_residual"
+                  },
+                  {
+                    "offset": 63,
+                    "opcode": "BINPUT",
+                    "argument": 3
+                  },
+                  {
+                    "offset": 65,
+                    "opcode": "BINUNICODE",
+                    "argument": "transform"
+                  }
+                ]
+              }
+            ],
+            "transform": [
+              {
+                "offset": 65,
+                "following_opcodes": [
+                  {
+                    "offset": 79,
+                    "opcode": "BINPUT",
+                    "argument": 4
+                  },
+                  {
+                    "offset": 81,
+                    "opcode": "BINUNICODE",
+                    "argument": "price40-group-logfanout-v1"
+                  },
+                  {
+                    "offset": 112,
+                    "opcode": "BINPUT",
+                    "argument": 5
+                  },
+                  {
+                    "offset": 114,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_config"
+                  }
+                ]
+              }
+            ],
+            "next_step": [
+              {
+                "offset": 9179,
+                "following_opcodes": [
+                  {
+                    "offset": 9193,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 786
+                  },
+                  {
+                    "offset": 9198,
+                    "opcode": "BININT2",
+                    "argument": 1500
+                  },
+                  {
+                    "offset": 9201,
+                    "opcode": "BINUNICODE",
+                    "argument": "best_metric"
+                  },
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  }
+                ]
+              }
+            ],
+            "best_metric": [
+              {
+                "offset": 9201,
+                "following_opcodes": [
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  },
+                  {
+                    "offset": 9222,
+                    "opcode": "BINFLOAT",
+                    "argument": 2.6753357966585374
+                  },
+                  {
+                    "offset": 9231,
+                    "opcode": "BINUNICODE",
+                    "argument": "bad_validations"
+                  },
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  }
+                ]
+              }
+            ],
+            "bad_validations": [
+              {
+                "offset": 9231,
+                "following_opcodes": [
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  },
+                  {
+                    "offset": 9256,
+                    "opcode": "BININT1",
+                    "argument": 0
+                  },
+                  {
+                    "offset": 9258,
+                    "opcode": "BINUNICODE",
+                    "argument": "metadata"
+                  },
+                  {
+                    "offset": 9271,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 789
+                  }
+                ]
+              }
+            ],
+            "purpose": [
+              {
+                "offset": 12502,
+                "following_opcodes": [
+                  {
+                    "offset": 12514,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 880
+                  },
+                  {
+                    "offset": 12519,
+                    "opcode": "BINUNICODE",
+                    "argument": "research"
+                  },
+                  {
+                    "offset": 12532,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 881
+                  },
+                  {
+                    "offset": 12537,
+                    "opcode": "BINUNICODE",
+                    "argument": "selection"
+                  }
+                ]
+              }
+            ],
+            "selection": [
+              {
+                "offset": 12537,
+                "following_opcodes": [
+                  {
+                    "offset": 12551,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 882
+                  },
+                  {
+                    "offset": 12556,
+                    "opcode": "BINUNICODE",
+                    "argument": "source-validation macro mean log-Q95 after adaptation"
+                  },
+                  {
+                    "offset": 12614,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 883
+                  },
+                  {
+                    "offset": 12619,
+                    "opcode": "SETITEMS",
+                    "argument": null
+                  }
+                ]
+              }
+            ],
+            "fixed_budget": [],
+            "fixed_steps": [],
+            "fixed_stage": [],
+            "training_plan": [],
+            "training_plan_sha256": []
+          },
+          "unpickled": false,
+          "tensor_storage_read": false
+        }
+      },
+      "reuse_decision": "not_reusable",
+      "failed_or_missing": [
+        "no sealed training_plan binding in config",
+        "source-validation selection rather than none",
+        "validation manifest and non-null validation history exist",
+        "best.pt exists",
+        "last update is not 4000"
+      ]
+    },
+    "43": {
+      "path": "/gly/weilin/spatial-meta-ce/runs/erm-sum-seed43-20260927",
+      "config_sha256": "8b932e2490f2c8036a860eae57a4bb94a57cf18d7f73f7c4e2eb6b83e8408395",
+      "training_config": {
+        "data_config": "configs/data.json",
+        "model": {
+          "width": 64,
+          "use_pg": true,
+          "arch": "sum",
+          "layers": 2,
+          "heads": 4
+        },
+        "method": "erm",
+        "seed": 43,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 100,
+        "validation_runs": 5,
+        "validation_seed": 1729,
+        "patience": 10,
+        "min_delta": 0.0001
+      },
+      "data_splits": {
+        "train": [
+          "accidents",
+          "airline",
+          "baseball",
+          "basketball",
+          "carcinogenesis",
+          "ccs",
+          "consumer",
+          "credit",
+          "employee",
+          "financial",
+          "fnhk",
+          "grants",
+          "hepatitis",
+          "hockey",
+          "movielens",
+          "sakila",
+          "sap",
+          "seznam",
+          "ssb",
+          "talkingdata",
+          "tournament",
+          "tpc_h",
+          "tubepricing"
+        ],
+        "validation": [
+          "chembl",
+          "legalacts",
+          "telstra"
+        ],
+        "test": [
+          "imdb",
+          "stats",
+          "genome",
+          "ergastf1"
+        ]
+      },
+      "history_sha256": "bcff0892ad0e068379bbbba1e49dd3b1f9d93a9677fe244455c642acaaa03a75",
+      "history_rows": 30,
+      "history_last_step": 3000,
+      "non_null_validation_score_rows": 30,
+      "history_fields": [
+        "step",
+        "train_loss",
+        "validation_macro_log_q95",
+        "validation",
+        "counts"
+      ],
+      "validation_manifest_sha256": "dd46e4b347a38ef566ad30b1fa5289d2630617059bd7bb61d2745e261b2e100c",
+      "validation_episodes": 75,
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoints": {
+        "last.pt": {
+          "path": "/gly/weilin/spatial-meta-ce/runs/erm-sum-seed43-20260927/last.pt",
+          "bytes": 2339336,
+          "sha256": "b0506676f73158825a9144b950fd6b34e49792ae86b9b9a91997bbbc9041c1bc",
+          "zip_pickle_member": "last.pt/data.pkl",
+          "pickle_bytes": 726293,
+          "pickle_sha256": "1ee851979c8f4760126ebeeed0ac86f3ce3d452f8d17be290ba1b86d91f465e0",
+          "primitive_opcode_evidence": {
+            "schema": [
+              {
+                "offset": 6,
+                "following_opcodes": [
+                  {
+                    "offset": 17,
+                    "opcode": "BINPUT",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 19,
+                    "opcode": "BININT1",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 21,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_type"
+                  },
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  }
+                ]
+              }
+            ],
+            "model_type": [
+              {
+                "offset": 21,
+                "following_opcodes": [
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  },
+                  {
+                    "offset": 38,
+                    "opcode": "BINUNICODE",
+                    "argument": "grouped_set_residual"
+                  },
+                  {
+                    "offset": 63,
+                    "opcode": "BINPUT",
+                    "argument": 3
+                  },
+                  {
+                    "offset": 65,
+                    "opcode": "BINUNICODE",
+                    "argument": "transform"
+                  }
+                ]
+              }
+            ],
+            "transform": [
+              {
+                "offset": 65,
+                "following_opcodes": [
+                  {
+                    "offset": 79,
+                    "opcode": "BINPUT",
+                    "argument": 4
+                  },
+                  {
+                    "offset": 81,
+                    "opcode": "BINUNICODE",
+                    "argument": "price40-group-logfanout-v1"
+                  },
+                  {
+                    "offset": 112,
+                    "opcode": "BINPUT",
+                    "argument": 5
+                  },
+                  {
+                    "offset": 114,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_config"
+                  }
+                ]
+              }
+            ],
+            "next_step": [
+              {
+                "offset": 9179,
+                "following_opcodes": [
+                  {
+                    "offset": 9193,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 786
+                  },
+                  {
+                    "offset": 9198,
+                    "opcode": "BININT2",
+                    "argument": 3000
+                  },
+                  {
+                    "offset": 9201,
+                    "opcode": "BINUNICODE",
+                    "argument": "best_metric"
+                  },
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  }
+                ]
+              }
+            ],
+            "best_metric": [
+              {
+                "offset": 9201,
+                "following_opcodes": [
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  },
+                  {
+                    "offset": 9222,
+                    "opcode": "BINFLOAT",
+                    "argument": 2.6729326618820743
+                  },
+                  {
+                    "offset": 9231,
+                    "opcode": "BINUNICODE",
+                    "argument": "bad_validations"
+                  },
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  }
+                ]
+              }
+            ],
+            "bad_validations": [
+              {
+                "offset": 9231,
+                "following_opcodes": [
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  },
+                  {
+                    "offset": 9256,
+                    "opcode": "BININT1",
+                    "argument": 10
+                  },
+                  {
+                    "offset": 9258,
+                    "opcode": "BINUNICODE",
+                    "argument": "metadata"
+                  },
+                  {
+                    "offset": 9271,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 789
+                  }
+                ]
+              }
+            ],
+            "purpose": [
+              {
+                "offset": 12502,
+                "following_opcodes": [
+                  {
+                    "offset": 12514,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 880
+                  },
+                  {
+                    "offset": 12519,
+                    "opcode": "BINUNICODE",
+                    "argument": "research"
+                  },
+                  {
+                    "offset": 12532,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 881
+                  },
+                  {
+                    "offset": 12537,
+                    "opcode": "BINUNICODE",
+                    "argument": "selection"
+                  }
+                ]
+              }
+            ],
+            "selection": [
+              {
+                "offset": 12537,
+                "following_opcodes": [
+                  {
+                    "offset": 12551,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 882
+                  },
+                  {
+                    "offset": 12556,
+                    "opcode": "BINUNICODE",
+                    "argument": "source-validation macro mean log-Q95 after adaptation"
+                  },
+                  {
+                    "offset": 12614,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 883
+                  },
+                  {
+                    "offset": 12619,
+                    "opcode": "SETITEMS",
+                    "argument": null
+                  }
+                ]
+              }
+            ],
+            "fixed_budget": [],
+            "fixed_steps": [],
+            "fixed_stage": [],
+            "training_plan": [],
+            "training_plan_sha256": []
+          },
+          "unpickled": false,
+          "tensor_storage_read": false
+        },
+        "best.pt": {
+          "path": "/gly/weilin/spatial-meta-ce/runs/erm-sum-seed43-20260927/best.pt",
+          "bytes": 2104328,
+          "sha256": "23dc4c733acc6b181304511b07296b4869081cb19956113cd9cc70521127d937",
+          "zip_pickle_member": "best.pt/data.pkl",
+          "pickle_bytes": 491262,
+          "pickle_sha256": "07bab7bc48b8238cf0aa07fb88282ef70e4eab4fab146e4e76a2e0d1c2eea18d",
+          "primitive_opcode_evidence": {
+            "schema": [
+              {
+                "offset": 6,
+                "following_opcodes": [
+                  {
+                    "offset": 17,
+                    "opcode": "BINPUT",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 19,
+                    "opcode": "BININT1",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 21,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_type"
+                  },
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  }
+                ]
+              }
+            ],
+            "model_type": [
+              {
+                "offset": 21,
+                "following_opcodes": [
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  },
+                  {
+                    "offset": 38,
+                    "opcode": "BINUNICODE",
+                    "argument": "grouped_set_residual"
+                  },
+                  {
+                    "offset": 63,
+                    "opcode": "BINPUT",
+                    "argument": 3
+                  },
+                  {
+                    "offset": 65,
+                    "opcode": "BINUNICODE",
+                    "argument": "transform"
+                  }
+                ]
+              }
+            ],
+            "transform": [
+              {
+                "offset": 65,
+                "following_opcodes": [
+                  {
+                    "offset": 79,
+                    "opcode": "BINPUT",
+                    "argument": 4
+                  },
+                  {
+                    "offset": 81,
+                    "opcode": "BINUNICODE",
+                    "argument": "price40-group-logfanout-v1"
+                  },
+                  {
+                    "offset": 112,
+                    "opcode": "BINPUT",
+                    "argument": 5
+                  },
+                  {
+                    "offset": 114,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_config"
+                  }
+                ]
+              }
+            ],
+            "next_step": [
+              {
+                "offset": 9179,
+                "following_opcodes": [
+                  {
+                    "offset": 9193,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 786
+                  },
+                  {
+                    "offset": 9198,
+                    "opcode": "BININT2",
+                    "argument": 2000
+                  },
+                  {
+                    "offset": 9201,
+                    "opcode": "BINUNICODE",
+                    "argument": "best_metric"
+                  },
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  }
+                ]
+              }
+            ],
+            "best_metric": [
+              {
+                "offset": 9201,
+                "following_opcodes": [
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  },
+                  {
+                    "offset": 9222,
+                    "opcode": "BINFLOAT",
+                    "argument": 2.6729326618820743
+                  },
+                  {
+                    "offset": 9231,
+                    "opcode": "BINUNICODE",
+                    "argument": "bad_validations"
+                  },
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  }
+                ]
+              }
+            ],
+            "bad_validations": [
+              {
+                "offset": 9231,
+                "following_opcodes": [
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  },
+                  {
+                    "offset": 9256,
+                    "opcode": "BININT1",
+                    "argument": 0
+                  },
+                  {
+                    "offset": 9258,
+                    "opcode": "BINUNICODE",
+                    "argument": "metadata"
+                  },
+                  {
+                    "offset": 9271,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 789
+                  }
+                ]
+              }
+            ],
+            "purpose": [
+              {
+                "offset": 12502,
+                "following_opcodes": [
+                  {
+                    "offset": 12514,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 880
+                  },
+                  {
+                    "offset": 12519,
+                    "opcode": "BINUNICODE",
+                    "argument": "research"
+                  },
+                  {
+                    "offset": 12532,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 881
+                  },
+                  {
+                    "offset": 12537,
+                    "opcode": "BINUNICODE",
+                    "argument": "selection"
+                  }
+                ]
+              }
+            ],
+            "selection": [
+              {
+                "offset": 12537,
+                "following_opcodes": [
+                  {
+                    "offset": 12551,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 882
+                  },
+                  {
+                    "offset": 12556,
+                    "opcode": "BINUNICODE",
+                    "argument": "source-validation macro mean log-Q95 after adaptation"
+                  },
+                  {
+                    "offset": 12614,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 883
+                  },
+                  {
+                    "offset": 12619,
+                    "opcode": "SETITEMS",
+                    "argument": null
+                  }
+                ]
+              }
+            ],
+            "fixed_budget": [],
+            "fixed_steps": [],
+            "fixed_stage": [],
+            "training_plan": [],
+            "training_plan_sha256": []
+          },
+          "unpickled": false,
+          "tensor_storage_read": false
+        }
+      },
+      "reuse_decision": "not_reusable",
+      "failed_or_missing": [
+        "no sealed training_plan binding in config",
+        "source-validation selection rather than none",
+        "validation manifest and non-null validation history exist",
+        "best.pt exists",
+        "last update is not 4000"
+      ]
+    },
+    "44": {
+      "path": "/gly/weilin/spatial-meta-ce/runs/erm-sum-seed44-20260927",
+      "config_sha256": "5fac345397348375b30746beee015cb4c8c20c36b967d8e12817cdb8f795383c",
+      "training_config": {
+        "data_config": "configs/data.json",
+        "model": {
+          "width": 64,
+          "use_pg": true,
+          "arch": "sum",
+          "layers": 2,
+          "heads": 4
+        },
+        "method": "erm",
+        "seed": 44,
+        "steps": 4000,
+        "meta_batch": 4,
+        "accumulation": 1,
+        "outer_lr": 0.0003,
+        "inner_lr": 0.001,
+        "inner_steps": 5,
+        "adapt_scope": "all",
+        "support_sizes": [
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "query_size": 64,
+        "loss": "smooth_l1",
+        "validate_every": 100,
+        "validation_runs": 5,
+        "validation_seed": 1729,
+        "patience": 10,
+        "min_delta": 0.0001
+      },
+      "data_splits": {
+        "train": [
+          "accidents",
+          "airline",
+          "baseball",
+          "basketball",
+          "carcinogenesis",
+          "ccs",
+          "consumer",
+          "credit",
+          "employee",
+          "financial",
+          "fnhk",
+          "grants",
+          "hepatitis",
+          "hockey",
+          "movielens",
+          "sakila",
+          "sap",
+          "seznam",
+          "ssb",
+          "talkingdata",
+          "tournament",
+          "tpc_h",
+          "tubepricing"
+        ],
+        "validation": [
+          "chembl",
+          "legalacts",
+          "telstra"
+        ],
+        "test": [
+          "imdb",
+          "stats",
+          "genome",
+          "ergastf1"
+        ]
+      },
+      "history_sha256": "a51517b2e7a3d06f65f34dc244275f1e6ecf0c422f94babf3e620fea0d4df174",
+      "history_rows": 29,
+      "history_last_step": 2900,
+      "non_null_validation_score_rows": 29,
+      "history_fields": [
+        "step",
+        "train_loss",
+        "validation_macro_log_q95",
+        "validation",
+        "counts"
+      ],
+      "validation_manifest_sha256": "dd46e4b347a38ef566ad30b1fa5289d2630617059bd7bb61d2745e261b2e100c",
+      "validation_episodes": 75,
+      "validation_databases": [
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "checkpoints": {
+        "last.pt": {
+          "path": "/gly/weilin/spatial-meta-ce/runs/erm-sum-seed44-20260927/last.pt",
+          "bytes": 2315848,
+          "sha256": "38433ca8e963c31c2ebc9afba08495d3e0b42bc9a8a9d6aa0b604dd22c9edf01",
+          "zip_pickle_member": "last.pt/data.pkl",
+          "pickle_bytes": 702793,
+          "pickle_sha256": "74cefa07ec0bae389fec7ac09a229000b634b24aa0e77081b84def8e4bc8b8ae",
+          "primitive_opcode_evidence": {
+            "schema": [
+              {
+                "offset": 6,
+                "following_opcodes": [
+                  {
+                    "offset": 17,
+                    "opcode": "BINPUT",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 19,
+                    "opcode": "BININT1",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 21,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_type"
+                  },
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  }
+                ]
+              }
+            ],
+            "model_type": [
+              {
+                "offset": 21,
+                "following_opcodes": [
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  },
+                  {
+                    "offset": 38,
+                    "opcode": "BINUNICODE",
+                    "argument": "grouped_set_residual"
+                  },
+                  {
+                    "offset": 63,
+                    "opcode": "BINPUT",
+                    "argument": 3
+                  },
+                  {
+                    "offset": 65,
+                    "opcode": "BINUNICODE",
+                    "argument": "transform"
+                  }
+                ]
+              }
+            ],
+            "transform": [
+              {
+                "offset": 65,
+                "following_opcodes": [
+                  {
+                    "offset": 79,
+                    "opcode": "BINPUT",
+                    "argument": 4
+                  },
+                  {
+                    "offset": 81,
+                    "opcode": "BINUNICODE",
+                    "argument": "price40-group-logfanout-v1"
+                  },
+                  {
+                    "offset": 112,
+                    "opcode": "BINPUT",
+                    "argument": 5
+                  },
+                  {
+                    "offset": 114,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_config"
+                  }
+                ]
+              }
+            ],
+            "next_step": [
+              {
+                "offset": 9179,
+                "following_opcodes": [
+                  {
+                    "offset": 9193,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 786
+                  },
+                  {
+                    "offset": 9198,
+                    "opcode": "BININT2",
+                    "argument": 2900
+                  },
+                  {
+                    "offset": 9201,
+                    "opcode": "BINUNICODE",
+                    "argument": "best_metric"
+                  },
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  }
+                ]
+              }
+            ],
+            "best_metric": [
+              {
+                "offset": 9201,
+                "following_opcodes": [
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  },
+                  {
+                    "offset": 9222,
+                    "opcode": "BINFLOAT",
+                    "argument": 2.6843834250884693
+                  },
+                  {
+                    "offset": 9231,
+                    "opcode": "BINUNICODE",
+                    "argument": "bad_validations"
+                  },
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  }
+                ]
+              }
+            ],
+            "bad_validations": [
+              {
+                "offset": 9231,
+                "following_opcodes": [
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  },
+                  {
+                    "offset": 9256,
+                    "opcode": "BININT1",
+                    "argument": 10
+                  },
+                  {
+                    "offset": 9258,
+                    "opcode": "BINUNICODE",
+                    "argument": "metadata"
+                  },
+                  {
+                    "offset": 9271,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 789
+                  }
+                ]
+              }
+            ],
+            "purpose": [
+              {
+                "offset": 12502,
+                "following_opcodes": [
+                  {
+                    "offset": 12514,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 880
+                  },
+                  {
+                    "offset": 12519,
+                    "opcode": "BINUNICODE",
+                    "argument": "research"
+                  },
+                  {
+                    "offset": 12532,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 881
+                  },
+                  {
+                    "offset": 12537,
+                    "opcode": "BINUNICODE",
+                    "argument": "selection"
+                  }
+                ]
+              }
+            ],
+            "selection": [
+              {
+                "offset": 12537,
+                "following_opcodes": [
+                  {
+                    "offset": 12551,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 882
+                  },
+                  {
+                    "offset": 12556,
+                    "opcode": "BINUNICODE",
+                    "argument": "source-validation macro mean log-Q95 after adaptation"
+                  },
+                  {
+                    "offset": 12614,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 883
+                  },
+                  {
+                    "offset": 12619,
+                    "opcode": "SETITEMS",
+                    "argument": null
+                  }
+                ]
+              }
+            ],
+            "fixed_budget": [],
+            "fixed_steps": [],
+            "fixed_stage": [],
+            "training_plan": [],
+            "training_plan_sha256": []
+          },
+          "unpickled": false,
+          "tensor_storage_read": false
+        },
+        "best.pt": {
+          "path": "/gly/weilin/spatial-meta-ce/runs/erm-sum-seed44-20260927/best.pt",
+          "bytes": 2080776,
+          "sha256": "dde5c1fa29c29031d5ec11eab827abe3a64c037c0cabb94c3d0eb4143ea1e170",
+          "zip_pickle_member": "best.pt/data.pkl",
+          "pickle_bytes": 467764,
+          "pickle_sha256": "06286eda0bcdd6ce2a1169b574cd88dfabd50fa7c46f6ee1d7def1a64c9125a6",
+          "primitive_opcode_evidence": {
+            "schema": [
+              {
+                "offset": 6,
+                "following_opcodes": [
+                  {
+                    "offset": 17,
+                    "opcode": "BINPUT",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 19,
+                    "opcode": "BININT1",
+                    "argument": 1
+                  },
+                  {
+                    "offset": 21,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_type"
+                  },
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  }
+                ]
+              }
+            ],
+            "model_type": [
+              {
+                "offset": 21,
+                "following_opcodes": [
+                  {
+                    "offset": 36,
+                    "opcode": "BINPUT",
+                    "argument": 2
+                  },
+                  {
+                    "offset": 38,
+                    "opcode": "BINUNICODE",
+                    "argument": "grouped_set_residual"
+                  },
+                  {
+                    "offset": 63,
+                    "opcode": "BINPUT",
+                    "argument": 3
+                  },
+                  {
+                    "offset": 65,
+                    "opcode": "BINUNICODE",
+                    "argument": "transform"
+                  }
+                ]
+              }
+            ],
+            "transform": [
+              {
+                "offset": 65,
+                "following_opcodes": [
+                  {
+                    "offset": 79,
+                    "opcode": "BINPUT",
+                    "argument": 4
+                  },
+                  {
+                    "offset": 81,
+                    "opcode": "BINUNICODE",
+                    "argument": "price40-group-logfanout-v1"
+                  },
+                  {
+                    "offset": 112,
+                    "opcode": "BINPUT",
+                    "argument": 5
+                  },
+                  {
+                    "offset": 114,
+                    "opcode": "BINUNICODE",
+                    "argument": "model_config"
+                  }
+                ]
+              }
+            ],
+            "next_step": [
+              {
+                "offset": 9179,
+                "following_opcodes": [
+                  {
+                    "offset": 9193,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 786
+                  },
+                  {
+                    "offset": 9198,
+                    "opcode": "BININT2",
+                    "argument": 1900
+                  },
+                  {
+                    "offset": 9201,
+                    "opcode": "BINUNICODE",
+                    "argument": "best_metric"
+                  },
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  }
+                ]
+              }
+            ],
+            "best_metric": [
+              {
+                "offset": 9201,
+                "following_opcodes": [
+                  {
+                    "offset": 9217,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 787
+                  },
+                  {
+                    "offset": 9222,
+                    "opcode": "BINFLOAT",
+                    "argument": 2.6843834250884693
+                  },
+                  {
+                    "offset": 9231,
+                    "opcode": "BINUNICODE",
+                    "argument": "bad_validations"
+                  },
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  }
+                ]
+              }
+            ],
+            "bad_validations": [
+              {
+                "offset": 9231,
+                "following_opcodes": [
+                  {
+                    "offset": 9251,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 788
+                  },
+                  {
+                    "offset": 9256,
+                    "opcode": "BININT1",
+                    "argument": 0
+                  },
+                  {
+                    "offset": 9258,
+                    "opcode": "BINUNICODE",
+                    "argument": "metadata"
+                  },
+                  {
+                    "offset": 9271,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 789
+                  }
+                ]
+              }
+            ],
+            "purpose": [
+              {
+                "offset": 12502,
+                "following_opcodes": [
+                  {
+                    "offset": 12514,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 880
+                  },
+                  {
+                    "offset": 12519,
+                    "opcode": "BINUNICODE",
+                    "argument": "research"
+                  },
+                  {
+                    "offset": 12532,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 881
+                  },
+                  {
+                    "offset": 12537,
+                    "opcode": "BINUNICODE",
+                    "argument": "selection"
+                  }
+                ]
+              }
+            ],
+            "selection": [
+              {
+                "offset": 12537,
+                "following_opcodes": [
+                  {
+                    "offset": 12551,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 882
+                  },
+                  {
+                    "offset": 12556,
+                    "opcode": "BINUNICODE",
+                    "argument": "source-validation macro mean log-Q95 after adaptation"
+                  },
+                  {
+                    "offset": 12614,
+                    "opcode": "LONG_BINPUT",
+                    "argument": 883
+                  },
+                  {
+                    "offset": 12619,
+                    "opcode": "SETITEMS",
+                    "argument": null
+                  }
+                ]
+              }
+            ],
+            "fixed_budget": [],
+            "fixed_steps": [],
+            "fixed_stage": [],
+            "training_plan": [],
+            "training_plan_sha256": []
+          },
+          "unpickled": false,
+          "tensor_storage_read": false
+        }
+      },
+      "reuse_decision": "not_reusable",
+      "failed_or_missing": [
+        "no sealed training_plan binding in config",
+        "source-validation selection rather than none",
+        "validation manifest and non-null validation history exist",
+        "best.pt exists",
+        "last update is not 4000"
+      ]
+    }
+  },
+  "all_three_not_reusable": true,
+  "scope": "Named historical ERM sum candidates only; no claim that every server checkpoint was exhaustively enumerated."
+}

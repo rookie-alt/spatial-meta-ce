@@ -1,0 +1,110 @@
+"""Synthetic numerical evidence only; no models, stores, training or adaptation."""
+import importlib
+import json
+import math
+import sys
+from pathlib import Path
+from types import SimpleNamespace
+
+import numpy as np
+
+ROOT = Path('/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/122-p0-closure-20261111')
+sys.path.insert(0, str(ROOT))
+metrics_module = importlib.import_module('spatial_meta_ce.metrics')
+protocol = importlib.import_module('spatial_meta_ce.price_protocol')
+source_eval = importlib.import_module('spatial_meta_ce.source_eval')
+
+
+def independent_error(prediction, truth):
+    return np.abs(np.where(prediction < 0, 0.0, prediction) - np.log(np.where(truth < 1, 1.0, truth)))
+
+
+def independent_metrics(prediction, truth):
+    error = independent_error(prediction, truth)
+    return {'n': len(error), 'log_q95': float(np.quantile(error, 0.95, method='linear')), **{f'q{p}': float(np.quantile(np.exp(error), p / 100, method='linear')) for p in (50, 90, 95, 99)}}
+
+
+pred = np.array([-3., 0., 1., 2., 4., 7., 10.])
+truth = np.array([0., 0.25, 1., math.e, 12., 20., 500.])
+expected = independent_metrics(pred, truth)
+observed = metrics_module.summarize(pred, truth)
+for field in expected:
+    np.testing.assert_allclose(observed[field], expected[field], rtol=1e-14, atol=1e-14)
+assert not np.isclose(expected['log_q95'], math.log(expected['q95']), rtol=1e-12, atol=1e-12)
+counts = np.array([1, 2, 3, 4, 5, 7, 2])
+offsets = np.vstack([np.zeros((1, 4), dtype=np.int64), np.cumsum(np.column_stack([np.ones((7, 2), dtype=np.int64), counts, np.ones(7, dtype=np.int64)]), axis=0)])
+store = SimpleNamespace(cards=np.column_stack([truth, np.ones(7)]), offsets=offsets)
+base = pred - np.array([0., 0., .4, -.3, .7, -.6, .2])
+diag = source_eval._unit_diagnostics(store, np.arange(7), pred, base)
+assert diag['metrics']['n'] == 7
+np.testing.assert_allclose(diag['negative_transfer_delta_log_q95'], expected['log_q95'] - independent_metrics(base, truth)['log_q95'])
+np.testing.assert_allclose(diag['worsened_fraction_vs_same_model_k0'], np.mean(independent_error(pred, truth) > independent_error(base, truth)))
+four_plus = independent_metrics(pred[counts >= 4], truth[counts >= 4])
+for field in four_plus:
+    np.testing.assert_allclose(diag['four_plus'][field], four_plus[field])
+empty_store = SimpleNamespace(cards=store.cards, offsets=np.vstack([np.zeros((1, 4), dtype=int), np.cumsum(np.ones((7, 4), dtype=int), axis=0)]))
+assert source_eval._unit_diagnostics(empty_store, np.arange(7), pred, base)['four_plus'] is None
+for prediction in (pred, base):
+    identical = source_eval._unit_diagnostics(store, np.arange(7), prediction, prediction)
+    assert identical['negative_transfer_delta_log_q95'] == 0.0
+    assert identical['worsened_fraction_vs_same_model_k0'] == 0.0
+# A candidate may pass the macro direction but must fail a single-database guard.
+synthetic_populations = [(np.array([1., 2., 3., 5.]), np.ones(4), np.array([4, 5, 6, 7])), (np.array([.1, .2, .3, .4, .5, .6]), np.ones(6), np.array([1, 2, 3, 1, 2, 3])), (np.array([2., 4., 6.]), np.ones(3), np.array([2, 4, 7]))]
+per_db = [independent_metrics(p, y) for p, y, _ in synthetic_populations]
+macro = float(np.mean([item['log_q95'] for item in per_db]))
+pooled = independent_metrics(np.concatenate([p for p, _, _ in synthetic_populations]), np.concatenate([y for _, y, _ in synthetic_populations]))['log_q95']
+assert not np.isclose(macro, pooled)
+buckets = [independent_metrics(p[t >= 4], y[t >= 4])['q95'] if np.any(t >= 4) else None for p, y, t in synthetic_populations]
+four_macro = float(np.mean([value for value in buckets if value is not None]))
+assert buckets[1] is None
+
+
+def paired_case(deltas):
+    deltas = np.asarray(deltas, dtype=float)
+    mean = float(deltas.sum() / len(deltas))
+    sd = float(np.sqrt(np.sum((deltas - mean) ** 2) / (len(deltas) - 1)))
+    passed = mean < 0 and -mean >= sd and (sd != 0 or np.all(deltas < 0))
+    return {'mean': mean, 'sd_ddof1': sd, 'passed': bool(passed), 'per_seed': deltas.tolist()}
+
+
+paired = {name: paired_case(values) for name, values in {'improvement': [-.3, -.2, -.1], 'inconclusive': [-.4, .1, .2], 'zero_sd_negative': [-.25, -.25, -.25], 'all_zero': [0., 0., 0.]}.items()}
+assert paired['improvement']['passed'] and not paired['inconclusive']['passed']
+assert paired['zero_sd_negative']['passed'] and not paired['all_zero']['passed']
+units = []
+arm_deltas = {'A0-ref': [.25, .25, .25], 'A0': [0., 0., 0.], 'A1': [-.3, -.2, -.1], 'A2': [-.2, -.15, -.1]}
+for arm, deltas in arm_deltas.items():
+    for i, seed in enumerate((42, 43, 44)):
+        for j, db in enumerate(('chembl', 'legalacts', 'telstra')):
+            units.append({'arm': arm, 'seed': seed, 'database': db, 'k': 0, 'run': 0, 'metrics': {'log_q95': 2.0 + .2 * j + .01 * i + deltas[i]}, 'source_eval_plan_sha256': 'a' * 64})
+a_result = protocol.summarize_a(units)
+for arm in ('A1', 'A2'):
+    expected_pair = paired_case(arm_deltas[arm])
+    observed_pair = a_result['comparisons'][arm + '-A0']
+    np.testing.assert_allclose(observed_pair['mean_delta'], expected_pair['mean'])
+    np.testing.assert_allclose(observed_pair['sd_delta'], expected_pair['sd_ddof1'])
+    np.testing.assert_allclose(observed_pair['per_seed_delta'], expected_pair['per_seed'])
+assert a_result['status'] == 'a_passed_source_screen'
+guarded = [{**row, 'metrics': {'log_q95': row['metrics']['log_q95'] + ((.4 if row['database'] == 'telstra' else -.2) if row['arm'] == 'A2' else 0.0)}} for row in units]
+guarded_result = protocol.summarize_a(guarded)
+assert guarded_result['status'] == 'a_no_candidate'
+guarded_pair = guarded_result['comparisons']['A2-A0']
+assert guarded_pair['mean_delta'] < 0 and abs(guarded_pair['mean_delta']) >= guarded_pair['sd_delta']
+assert guarded_pair['database_guard_passed'] is False
+shape = (3, 3, 2, 5)
+seed_axis, db_axis, k_axis, run_axis = np.indices(shape)
+delta_k0 = .04 * (db_axis - 1) - .03 * k_axis + .005 * seed_axis + .02 * (run_axis - 2)
+assert delta_k0.size == 90
+six_cells = delta_k0.mean(axis=3).mean(axis=0)
+negative_cells = int((six_cells > 0).sum())
+assert negative_cells == 3
+support_sd = delta_k0.std(axis=3, ddof=1).mean(axis=0)
+np.testing.assert_allclose(support_sd, np.full((3, 2), np.sqrt(.001)))
+paired_raw = -.2 - .05 * seed_axis + .03 * (db_axis - 1) + .01 * k_axis + .015 * (run_axis - 2)
+per_seed_k = paired_raw.mean(axis=1).mean(axis=2)
+mean_k = per_seed_k.mean(axis=0)
+sd_k = per_seed_k.std(axis=0, ddof=1)
+np.testing.assert_allclose(per_seed_k, [[-.2, -.19], [-.25, -.24], [-.3, -.29]])
+np.testing.assert_allclose(sd_k, [.05, .05])
+assert not np.isclose(paired_raw.std(ddof=1), sd_k[0])
+output = {'schema': 1, 'purpose': 'synthetic-numpy-recomputation-not-research-not-smoke', 'date': '2026-11-11', 'numpy': np.__version__, 'model_updates': 0, 'gpu_used': False, 'target_databases_read': [], 'input': {'log_prediction': pred.tolist(), 'true_cardinality': truth.tolist(), 'table_counts': counts.tolist(), 'k0_log_prediction': base.tolist()}, 'independent_metrics': expected, 'production_metrics_match': True, 'log_of_q95_is_not_log_q95': {'log_q95': expected['log_q95'], 'log_of_q95': math.log(expected['q95'])}, 'unit_diagnostics': {'four_plus': four_plus, 'empty_four_plus': None, 'worsened_fraction': diag['worsened_fraction_vs_same_model_k0'], 'negative_transfer_delta_log_q95': diag['negative_transfer_delta_log_q95'], 'production_match': True}, 'macro': {'per_database_log_q95': [item['log_q95'] for item in per_db], 'equal_database_mean': macro, 'pooled_log_q95_not_used': pooled, 'four_plus_q95_each_database': buckets, 'four_plus_equal_nonempty_database_mean': four_macro}, 'paired_cases': paired, 'a_summary_matches_independent_numpy': True, 'a_database_guard_negative_case_rejected': True, 'support_seed_nesting': {'shape_seed_db_k_run': list(shape), 'raw_cells': int(delta_k0.size), 'six_negative_transfer_cell_means': six_cells.tolist(), 'negative_transfer_cells': negative_cells, 'support_delta_sd_ddof1_averaged_over_training_seeds': support_sd.tolist(), 'paired_per_seed_per_k': per_seed_k.tolist(), 'paired_mean_per_k': mean_k.tolist(), 'paired_sd_ddof1_over_three_training_seeds': sd_k.tolist(), 'b_c_production_gate_not_implemented_or_executed': True}, 'all_assertions_passed': True}
+print(json.dumps(output, indent=2, ensure_ascii=False, allow_nan=False))

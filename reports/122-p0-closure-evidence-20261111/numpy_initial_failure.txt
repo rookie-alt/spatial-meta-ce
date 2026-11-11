@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/122-p0-closure-20261111/runs/122-audit/numpy_recompute.py", line 33, in <module>
+    assert abs(expected['log_q95'] - math.log(expected['q95'])) > 0.01
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

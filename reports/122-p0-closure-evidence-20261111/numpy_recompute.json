@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "purpose": "synthetic-numpy-recomputation-not-research-not-smoke",
+  "date": "2026-11-11",
+  "numpy": "1.26.4",
+  "model_updates": 0,
+  "gpu_used": false,
+  "target_databases_read": [],
+  "input": {
+    "log_prediction": [
+      -3.0,
+      0.0,
+      1.0,
+      2.0,
+      4.0,
+      7.0,
+      10.0
+    ],
+    "true_cardinality": [
+      0.0,
+      0.25,
+      1.0,
+      2.718281828459045,
+      12.0,
+      20.0,
+      500.0
+    ],
+    "table_counts": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      2
+    ],
+    "k0_log_prediction": [
+      -3.0,
+      0.0,
+      0.6,
+      2.3,
+      3.3,
+      7.6,
+      9.8
+    ]
+  },
+  "independent_metrics": {
+    "n": 7,
+    "log_q95": 3.9386049789855493,
+    "q50": 2.718281828459045,
+    "q90": 48.36442212233726,
+    "q95": 51.598040021880095,
+    "q99": 54.184934341514385
+  },
+  "production_metrics_match": true,
+  "log_of_q95_is_not_log_q95": {
+    "log_q95": 3.9386049789855493,
+    "log_of_q95": 3.943483687694013
+  },
+  "unit_diagnostics": {
+    "four_plus": {
+      "n": 3,
+      "log_q95": 3.7553502888226085,
+      "q50": 4.549845836095353,
+      "q90": 44.77529550435744,
+      "q95": 49.803476712890195,
+      "q99": 53.826021679716405
+    },
+    "empty_four_plus": null,
+    "worsened_fraction": 0.42857142857142855,
+    "negative_transfer_delta_log_q95": -0.35999999999999943,
+    "production_match": true
+  },
+  "macro": {
+    "per_database_log_q95": [
+      4.699999999999999,
+      0.575,
+      5.8
+    ],
+    "equal_database_mean": 3.6916666666666664,
+    "pooled_log_q95_not_used": 5.399999999999999,
+    "four_plus_q95_each_database": [
+      129.16401577566822,
+      null,
+      385.98726131975553
+    ],
+    "four_plus_equal_nonempty_database_mean": 257.5756385477119
+  },
+  "paired_cases": {
+    "improvement": {
+      "mean": -0.19999999999999998,
+      "sd_ddof1": 0.09999999999999999,
+      "passed": true,
+      "per_seed": [
+        -0.3,
+        -0.2,
+        -0.1
+      ]
+    },
+    "inconclusive": {
+      "mean": -0.03333333333333335,
+      "sd_ddof1": 0.3214550253664319,
+      "passed": false,
+      "per_seed": [
+        -0.4,
+        0.1,
+        0.2
+      ]
+    },
+    "zero_sd_negative": {
+      "mean": -0.25,
+      "sd_ddof1": 0.0,
+      "passed": true,
+      "per_seed": [
+        -0.25,
+        -0.25,
+        -0.25
+      ]
+    },
+    "all_zero": {
+      "mean": 0.0,
+      "sd_ddof1": 0.0,
+      "passed": false,
+      "per_seed": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "a_summary_matches_independent_numpy": true,
+  "a_database_guard_negative_case_rejected": true,
+  "support_seed_nesting": {
+    "shape_seed_db_k_run": [
+      3,
+      3,
+      2,
+      5
+    ],
+    "raw_cells": 90,
+    "six_negative_transfer_cell_means": [
+      [
+        -0.035,
+        -0.065
+      ],
+      [
+        0.005,
+        -0.025000000000000005
+      ],
+      [
+        0.045000000000000005,
+        0.015000000000000005
+      ]
+    ],
+    "negative_transfer_cells": 3,
+    "support_delta_sd_ddof1_averaged_over_training_seeds": [
+      [
+        0.0316227766016838,
+        0.0316227766016838
+      ],
+      [
+        0.03162277660168379,
+        0.0316227766016838
+      ],
+      [
+        0.03162277660168379,
+        0.03162277660168379
+      ]
+    ],
+    "paired_per_seed_per_k": [
+      [
+        -0.2,
+        -0.19
+      ],
+      [
+        -0.25,
+        -0.24
+      ],
+      [
+        -0.30000000000000004,
+        -0.29000000000000004
+      ]
+    ],
+    "paired_mean_per_k": [
+      -0.25,
+      -0.24
+    ],
+    "paired_sd_ddof1_over_three_training_seeds": [
+      0.05000000000000002,
+      0.05000000000000002
+    ],
+    "b_c_production_gate_not_implemented_or_executed": true
+  },
+  "all_assertions_passed": true
+}
