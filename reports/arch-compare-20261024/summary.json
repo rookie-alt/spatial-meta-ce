@@ -1,0 +1,999 @@
+{
+  "schema": 1,
+  "purpose": "paired architecture comparison on source validation only",
+  "target_databases_read": [],
+  "metric": "four_plus_q95 (macro over databases reporting the bucket)",
+  "rule": "|mean paired delta| < paired delta SD -> inconclusive; no ranking emitted",
+  "archs": [
+    "set",
+    "sum",
+    "attn",
+    "attn_pair"
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "cells": [
+    {
+      "arch": "set",
+      "seed": 42,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 3.2115143958350933,
+            "q95": 256.3180935371897
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.5217629788126894,
+            "q95": 26.521558626461502
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.8830339850623603,
+            "q95": 6.571431187372438
+          }
+        },
+        "macro": 96.47036111700788
+      },
+      "macro_log_q95": 2.7460014577132856,
+      "checkpoint": "runs/archcompare-20261024-gpu1/set-seed42/last.pt",
+      "parameters": 99777,
+      "source": "reports/arch-compare-20261024/select-seed42.json"
+    },
+    {
+      "arch": "sum",
+      "seed": 42,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 3.150685144391771,
+            "q95": 166.19661688450188
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.549415030576818,
+            "q95": 19.062142474452408
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.8122722591925877,
+            "q95": 6.824493177594299
+          }
+        },
+        "macro": 64.0277508455162
+      },
+      "macro_log_q95": 2.7089255651361954,
+      "checkpoint": "runs/archcompare-20261024-gpu1/sum-seed42/last.pt",
+      "parameters": 132545,
+      "source": "reports/arch-compare-20261024/select-seed42.json"
+    },
+    {
+      "arch": "attn",
+      "seed": 42,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.886950244314459,
+            "q95": 138.57384583076717
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.4436290671839034,
+            "q95": 20.51083436402859
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.9751957907409485,
+            "q95": 10.072100173423816
+          }
+        },
+        "macro": 56.385593456073195
+      },
+      "macro_log_q95": 2.673505566664075,
+      "checkpoint": "runs/archcompare-20261024-gpu1/attn-seed42/last.pt",
+      "parameters": 199745,
+      "source": "reports/arch-compare-20261024/select-seed42.json"
+    },
+    {
+      "arch": "attn_pair",
+      "seed": 42,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 3.1837965670813677,
+            "q95": 187.56712886063252
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.4216651776692437,
+            "q95": 21.49924065549226
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 3.0842834316879286,
+            "q95": 8.09380235477688
+          }
+        },
+        "macro": 72.38672395696722
+      },
+      "macro_log_q95": 2.8248562893791593,
+      "checkpoint": "runs/archcompare-20261024-gpu1/attn_pair-seed42/last.pt",
+      "parameters": 200769,
+      "source": "reports/arch-compare-20261024/select-seed42.json"
+    },
+    {
+      "arch": "set",
+      "seed": 43,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.9137809768696226,
+            "q95": 166.73194233784463
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.5261495731869736,
+            "q95": 16.98653579608266
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.7886041284435954,
+            "q95": 8.155881062756322
+          }
+        },
+        "macro": 63.958119732227864
+      },
+      "macro_log_q95": 2.700429010326944,
+      "checkpoint": "runs/archcompare-20261024-gpu1/set-seed43/last.pt",
+      "parameters": 99777,
+      "source": "reports/arch-compare-20261024/select-seed43.json"
+    },
+    {
+      "arch": "sum",
+      "seed": 43,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.963756206326375,
+            "q95": 137.74085081301766
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.5197060474913027,
+            "q95": 14.459305457713043
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.742407771237247,
+            "q95": 7.5712047735659125
+          }
+        },
+        "macro": 53.25712034809887
+      },
+      "macro_log_q95": 2.6542454094000063,
+      "checkpoint": "runs/archcompare-20261024-gpu1/sum-seed43/last.pt",
+      "parameters": 132545,
+      "source": "reports/arch-compare-20261024/select-seed43.json"
+    },
+    {
+      "arch": "attn",
+      "seed": 43,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.740896052333412,
+            "q95": 264.64520151130074
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.243559566895451,
+            "q95": 24.821936517974528
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.7573518224229214,
+            "q95": 6.893755414024401
+          }
+        },
+        "macro": 98.78696448109987
+      },
+      "macro_log_q95": 2.73701613848361,
+      "checkpoint": "runs/archcompare-20261024-gpu1/attn-seed43/last.pt",
+      "parameters": 199745,
+      "source": "reports/arch-compare-20261024/select-seed43.json"
+    },
+    {
+      "arch": "attn_pair",
+      "seed": 43,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.874360556311558,
+            "q95": 200.52055136390138
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.3425522073346317,
+            "q95": 21.472058621502764
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 2.191322416427821,
+            "q95": 15.349427959829116
+          }
+        },
+        "macro": 79.11401264841108
+      },
+      "macro_log_q95": 2.7212335191142047,
+      "checkpoint": "runs/archcompare-20261024-gpu1/attn_pair-seed43/last.pt",
+      "parameters": 200769,
+      "source": "reports/arch-compare-20261024/select-seed43.json"
+    },
+    {
+      "arch": "set",
+      "seed": 44,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 3.025397955517758,
+            "q95": 129.3483441276482
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.391527936979575,
+            "q95": 17.84911207238709
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.7205679106190956,
+            "q95": 7.665614120145498
+          }
+        },
+        "macro": 51.62102344006027
+      },
+      "macro_log_q95": 2.665713827174563,
+      "checkpoint": "runs/archcompare-20261024-gpu1/set-seed44/last.pt",
+      "parameters": 99777,
+      "source": "reports/arch-compare-20261024/select-seed44.json"
+    },
+    {
+      "arch": "sum",
+      "seed": 44,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 3.1936143851064185,
+            "q95": 110.3053991325113
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.49601649481703,
+            "q95": 15.709182300858078
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.8990633177382672,
+            "q95": 8.639769076501134
+          }
+        },
+        "macro": 44.88478350329017
+      },
+      "macro_log_q95": 2.644026053165408,
+      "checkpoint": "runs/archcompare-20261024-gpu1/sum-seed44/last.pt",
+      "parameters": 132545,
+      "source": "reports/arch-compare-20261024/select-seed44.json"
+    },
+    {
+      "arch": "attn",
+      "seed": 44,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.6768162145443606,
+            "q95": 126.48675749349708
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.3952333603789615,
+            "q95": 24.28532165441048
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.7073414752698493,
+            "q95": 8.146935136653422
+          }
+        },
+        "macro": 52.97300476152032
+      },
+      "macro_log_q95": 2.6241155405921877,
+      "checkpoint": "runs/archcompare-20261024-gpu1/attn-seed44/last.pt",
+      "parameters": 199745,
+      "source": "reports/arch-compare-20261024/select-seed44.json"
+    },
+    {
+      "arch": "attn_pair",
+      "seed": 44,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.665507889939537,
+            "q95": 132.1233138595757
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.4480643333520664,
+            "q95": 18.175736761024968
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.7700266743678057,
+            "q95": 7.427406280029787
+          }
+        },
+        "macro": 52.57548563354349
+      },
+      "macro_log_q95": 2.6217050386124834,
+      "checkpoint": "runs/archcompare-20261024-gpu1/attn_pair-seed44/last.pt",
+      "parameters": 200769,
+      "source": "reports/arch-compare-20261024/select-seed44.json"
+    },
+    {
+      "arch": "set",
+      "seed": 45,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.7767829270840068,
+            "q95": 151.35312699824473
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.885456991919278,
+            "q95": 22.043841708916325
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.8101753691866778,
+            "q95": 5.973037518393384
+          }
+        },
+        "macro": 59.790002075184816
+      },
+      "macro_log_q95": 2.661199470369172,
+      "checkpoint": "runs/archcompare-20261024-gpu0/set-seed45/last.pt",
+      "parameters": 99777,
+      "source": "reports/arch-compare-20261024/select-seed45.json"
+    },
+    {
+      "arch": "sum",
+      "seed": 45,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.963950855154859,
+            "q95": 133.26923271399377
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.528940506221013,
+            "q95": 18.85105313440711
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.8156050060354267,
+            "q95": 6.922134113793007
+          }
+        },
+        "macro": 53.01413998739796
+      },
+      "macro_log_q95": 2.725633214412618,
+      "checkpoint": "runs/archcompare-20261024-gpu0/sum-seed45/last.pt",
+      "parameters": 132545,
+      "source": "reports/arch-compare-20261024/select-seed45.json"
+    },
+    {
+      "arch": "attn",
+      "seed": 45,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 3.0028362239523867,
+            "q95": 126.54322854602701
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.713119949756043,
+            "q95": 20.006920336382795
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.848030834198561,
+            "q95": 7.938118272784802
+          }
+        },
+        "macro": 51.49608905173154
+      },
+      "macro_log_q95": 2.7530901027609116,
+      "checkpoint": "runs/archcompare-20261024-gpu0/attn-seed45/last.pt",
+      "parameters": 199745,
+      "source": "reports/arch-compare-20261024/select-seed45.json"
+    },
+    {
+      "arch": "attn_pair",
+      "seed": 45,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.890809783579597,
+            "q95": 125.18951994783163
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.4752192042705614,
+            "q95": 15.934598674509324
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.982953052190048,
+            "q95": 11.288792369251228
+          }
+        },
+        "macro": 50.80430366386406
+      },
+      "macro_log_q95": 2.721159103581095,
+      "checkpoint": "runs/archcompare-20261024-gpu0/attn_pair-seed45/last.pt",
+      "parameters": 200769,
+      "source": "reports/arch-compare-20261024/select-seed45.json"
+    },
+    {
+      "arch": "set",
+      "seed": 46,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 3.1560434702542075,
+            "q95": 257.1095905498066
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.474490456204233,
+            "q95": 29.481469604097764
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 2.0779776792783458,
+            "q95": 9.01410002614519
+          }
+        },
+        "macro": 98.53505339334986
+      },
+      "macro_log_q95": 2.773968578357472,
+      "checkpoint": "runs/archcompare-20261024-gpu0/set-seed46/last.pt",
+      "parameters": 99777,
+      "source": "reports/arch-compare-20261024/select-seed46.json"
+    },
+    {
+      "arch": "sum",
+      "seed": 46,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 3.4047853616657022,
+            "q95": 262.867469902983
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.440002817932877,
+            "q95": 30.420033299938595
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 2.1687088597837683,
+            "q95": 10.147576898208518
+          }
+        },
+        "macro": 101.1450267003767
+      },
+      "macro_log_q95": 2.7976379281487067,
+      "checkpoint": "runs/archcompare-20261024-gpu0/sum-seed46/last.pt",
+      "parameters": 132545,
+      "source": "reports/arch-compare-20261024/select-seed46.json"
+    },
+    {
+      "arch": "attn",
+      "seed": 46,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.9708230677971867,
+            "q95": 133.43599574497114
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.382156888235212,
+            "q95": 39.48296950978695
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.7886362265962727,
+            "q95": 6.492410684921468
+          }
+        },
+        "macro": 59.80379197989319
+      },
+      "macro_log_q95": 2.69818510085407,
+      "checkpoint": "runs/archcompare-20261024-gpu0/attn-seed46/last.pt",
+      "parameters": 199745,
+      "source": "reports/arch-compare-20261024/select-seed46.json"
+    },
+    {
+      "arch": "attn_pair",
+      "seed": 46,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 3.0645104693136407,
+            "q95": 246.56975660062608
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.414564673463789,
+            "q95": 27.014102596288414
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.882862813942954,
+            "q95": 5.98932022709161
+          }
+        },
+        "macro": 93.19105980800202
+      },
+      "macro_log_q95": 2.7329098399443192,
+      "checkpoint": "runs/archcompare-20261024-gpu0/attn_pair-seed46/last.pt",
+      "parameters": 200769,
+      "source": "reports/arch-compare-20261024/select-seed46.json"
+    },
+    {
+      "arch": "set",
+      "seed": 47,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.889404420663074,
+            "q95": 131.6827584654353
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.55156166180235,
+            "q95": 14.88873090714177
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.8445086923504446,
+            "q95": 7.728575824585987
+          }
+        },
+        "macro": 51.433355065721024
+      },
+      "macro_log_q95": 2.639025457642797,
+      "checkpoint": "runs/archcompare-20261024-gpu0/set-seed47/last.pt",
+      "parameters": 99777,
+      "source": "reports/arch-compare-20261024/select-seed47.json"
+    },
+    {
+      "arch": "sum",
+      "seed": 47,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 3.5710346078119226,
+            "q95": 107.74129365165648
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.5064507939680487,
+            "q95": 15.78586155198939
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.7770650870480436,
+            "q95": 7.185949263534663
+          }
+        },
+        "macro": 43.57103482239351
+      },
+      "macro_log_q95": 2.6205216314052593,
+      "checkpoint": "runs/archcompare-20261024-gpu0/sum-seed47/last.pt",
+      "parameters": 132545,
+      "source": "reports/arch-compare-20261024/select-seed47.json"
+    },
+    {
+      "arch": "attn",
+      "seed": 47,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 2.7424048296301216,
+            "q95": 143.33638870656355
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.4161916071928995,
+            "q95": 18.292240248579912
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.7239223824075236,
+            "q95": 8.105665575496953
+          }
+        },
+        "macro": 56.57809817688013
+      },
+      "macro_log_q95": 2.675620860443522,
+      "checkpoint": "runs/archcompare-20261024-gpu0/attn-seed47/last.pt",
+      "parameters": 199745,
+      "source": "reports/arch-compare-20261024/select-seed47.json"
+    },
+    {
+      "arch": "attn_pair",
+      "seed": 47,
+      "four_plus_q95": {
+        "per_database": {
+          "chembl": {
+            "queries": 1108,
+            "reported": true,
+            "q50": 3.044309309271316,
+            "q95": 170.24035866230722
+          },
+          "legalacts": {
+            "queries": 302,
+            "reported": true,
+            "q50": 2.4265043635976866,
+            "q95": 16.219553277973915
+          },
+          "telstra": {
+            "queries": 617,
+            "reported": true,
+            "q50": 1.6857151965212969,
+            "q95": 9.019052614318317
+          }
+        },
+        "macro": 65.15965485153315
+      },
+      "macro_log_q95": 2.78960501683406,
+      "checkpoint": "runs/archcompare-20261024-gpu0/attn_pair-seed47/last.pt",
+      "parameters": 200769,
+      "source": "reports/arch-compare-20261024/select-seed47.json"
+    }
+  ],
+  "comparisons": [
+    {
+      "left": "set",
+      "right": "sum",
+      "metric": "four_plus_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": 10.31800976941305,
+      "sd_delta": 11.731868318620714,
+      "wins_left": 1,
+      "wins_right": 5,
+      "per_seed_delta": [
+        32.44261027149169,
+        10.700999384128991,
+        6.736239936770097,
+        6.775862087786855,
+        -2.6099733070268485,
+        7.862320243327517
+      ]
+    },
+    {
+      "left": "set",
+      "right": "attn",
+      "metric": "four_plus_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": 7.630728819392243,
+      "sd_delta": 28.522498944422964,
+      "wins_left": 3,
+      "wins_right": 3,
+      "per_seed_delta": [
+        40.08476766093469,
+        -34.82884474887201,
+        -1.3519813214600518,
+        8.293913023453278,
+        38.731261413456664,
+        -5.144743111159109
+      ]
+    },
+    {
+      "left": "set",
+      "right": "attn_pair",
+      "metric": "four_plus_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": 1.4294457102051166,
+      "sd_delta": 14.805986127110799,
+      "wins_left": 3,
+      "wins_right": 3,
+      "per_seed_delta": [
+        24.083637160040666,
+        -15.155892916183213,
+        -0.9544621934832165,
+        8.985698411320755,
+        5.343993585347832,
+        -13.726299785812124
+      ]
+    },
+    {
+      "left": "sum",
+      "right": "attn",
+      "metric": "four_plus_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": -2.6872809500208064,
+      "sd_delta": 28.40438554167796,
+      "wins_left": 3,
+      "wins_right": 3,
+      "per_seed_delta": [
+        7.642157389443,
+        -45.529844133001,
+        -8.08822125823015,
+        1.5180509356664231,
+        41.34123472048351,
+        -13.007063354486625
+      ]
+    },
+    {
+      "left": "sum",
+      "right": "attn_pair",
+      "metric": "four_plus_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": -8.888564059207933,
+      "sd_delta": 13.097910250270477,
+      "wins_left": 4,
+      "wins_right": 2,
+      "per_seed_delta": [
+        -8.358973111451022,
+        -25.856892300312204,
+        -7.690702130253314,
+        2.2098363235338994,
+        7.95396689237468,
+        -21.58862002913964
+      ]
+    },
+    {
+      "left": "attn",
+      "right": "attn_pair",
+      "metric": "four_plus_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": -6.201283109187127,
+      "sd_delta": 17.89589391107538,
+      "wins_left": 3,
+      "wins_right": 3,
+      "per_seed_delta": [
+        -16.00113050089402,
+        19.672951832688796,
+        0.3975191279768353,
+        0.6917853878674762,
+        -33.38726782810883,
+        -8.581556674653015
+      ]
+    }
+  ],
+  "reference_comparisons": [
+    {
+      "left": "set",
+      "right": "sum",
+      "metric": "macro_log_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": 0.0058913333193399975,
+      "sd_delta": 0.04200951457274053,
+      "wins_left": 2,
+      "wins_right": 4,
+      "per_seed_delta": [
+        0.03707589257709021,
+        0.04618360092693763,
+        0.021687774009155003,
+        -0.06443374404344615,
+        -0.023669349791234584,
+        0.01850382623753788
+      ]
+    },
+    {
+      "left": "set",
+      "right": "attn",
+      "metric": "macro_log_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": 0.00413408196430957,
+      "sd_delta": 0.06891791218579504,
+      "wins_left": 3,
+      "wins_right": 3,
+      "per_seed_delta": [
+        0.07249589104921084,
+        -0.03658712815666609,
+        0.04159828658237519,
+        -0.09189063239173967,
+        0.07578347750340209,
+        -0.03659540280072493
+      ]
+    },
+    {
+      "left": "set",
+      "right": "attn_pair",
+      "metric": "macro_log_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": -0.037521834313514635,
+      "sd_delta": 0.07496070769857001,
+      "wins_left": 4,
+      "wins_right": 2,
+      "per_seed_delta": [
+        -0.0788548316658737,
+        -0.02080450878726081,
+        0.04400878856207946,
+        -0.05995963321192299,
+        0.041058738413152884,
+        -0.15057955919126265
+      ]
+    },
+    {
+      "left": "sum",
+      "right": "attn",
+      "metric": "macro_log_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": -0.0017572513550304276,
+      "sd_delta": 0.06657948845861554,
+      "wins_left": 3,
+      "wins_right": 3,
+      "per_seed_delta": [
+        0.03541999847212063,
+        -0.08277072908360372,
+        0.019910512573220185,
+        -0.027456888348293518,
+        0.09945282729463667,
+        -0.05509922903826281
+      ]
+    },
+    {
+      "left": "sum",
+      "right": "attn_pair",
+      "metric": "macro_log_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": -0.04341316763285463,
+      "sd_delta": 0.08934907152526377,
+      "wins_left": 3,
+      "wins_right": 3,
+      "per_seed_delta": [
+        -0.11593072424296391,
+        -0.06698810971419844,
+        0.022321014552924456,
+        0.004474110831523159,
+        0.06472808820438747,
+        -0.16908338542880053
+      ]
+    },
+    {
+      "left": "attn",
+      "right": "attn_pair",
+      "metric": "macro_log_q95",
+      "verdict": "inconclusive",
+      "n_pairs": 6,
+      "mean_delta": -0.0416559162778242,
+      "sd_delta": 0.07479095508981201,
+      "wins_left": 3,
+      "wins_right": 3,
+      "per_seed_delta": [
+        -0.15135072271508454,
+        0.015782619369405282,
+        0.0024105019797042715,
+        0.03193099917981668,
+        -0.0347247390902492,
+        -0.11398415639053772
+      ]
+    }
+  ]
+}

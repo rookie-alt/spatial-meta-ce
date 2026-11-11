@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>join 树与结构恒等式</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --fg: #1c1e21;
+    --muted: #6b7280;
+    --line: #d8dbe0;
+    --card: #ffffff;
+    --accent: #2f6feb;
+    --accent-weak: #e8f0ff;
+    --warn: #c0392b;
+    --warn-weak: #fdecea;
+    --ok: #1a7f37;
+    --grid: #e6e8ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131518;
+      --fg: #e6e8ec;
+      --muted: #9aa3ad;
+      --line: #2b3036;
+      --card: #1a1d21;
+      --accent: #5b9bff;
+      --accent-weak: #17243a;
+      --warn: #ff7b72;
+      --warn-weak: #3a1c1a;
+      --ok: #3fb950;
+      --grid: #252a30;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 24px 64px;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+  main { max-width: 1000px; margin: 0 auto; }
+  h1 { font-size: 1.55rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+  h2 { font-size: 1.1rem; margin: 44px 0 6px; }
+  h2 .num { color: var(--muted); font-weight: 400; margin-right: 10px; }
+  p.lead { color: var(--muted); margin: 0 0 8px; }
+  p { margin: 10px 0; }
+  code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  code { background: var(--grid); padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+  pre {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px; overflow-x: auto; font-size: 0.88rem; line-height: 1.55;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  pre .kw { color: var(--accent); }
+  figure {
+    margin: 18px 0 0; background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px 18px 12px;
+  }
+  figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 10px; }
+  svg.diagram { width: 100%; height: auto; display: block; }
+
+  .edge { stroke: var(--line); stroke-width: 2; }
+  .edge-accent { stroke: var(--accent); stroke-width: 2.5; stroke-dasharray: 6 5; }
+  .node-box { fill: var(--card); stroke: var(--fg); stroke-width: 1.6; }
+  .node-box-center { fill: var(--accent-weak); stroke: var(--accent); stroke-width: 2; }
+  .t-name { fill: var(--fg); font-size: 17px; font-weight: 600; text-anchor: middle; }
+  .t-sub { fill: var(--muted); font-size: 12px; text-anchor: middle; }
+  .chip { fill: var(--accent-weak); stroke: var(--accent); stroke-width: 1.4; }
+  .chip-text { fill: var(--accent); font-size: 14px; font-weight: 600; text-anchor: middle; }
+  .factor { fill: var(--fg); font-size: 13px; text-anchor: middle;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .factor-note { fill: var(--muted); font-size: 11px; text-anchor: middle; }
+  .callout { fill: var(--warn); font-size: 12px; font-weight: 600; text-anchor: middle; }
+  .axis { stroke: var(--fg); stroke-width: 1.6; }
+  .tick-a { stroke: var(--accent); stroke-width: 2; }
+  .tick-b { stroke: #d97706; stroke-width: 2; }
+  .tick-s { stroke: var(--ok); stroke-width: 1.6; }
+  .lbl-a { fill: var(--accent); font-size: 12px; }
+  .lbl-b { fill: #d97706; font-size: 12px; }
+  .lbl-s { fill: var(--ok); font-size: 12px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 6px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 500; }
+  td.mono { font-size: 0.86rem; }
+
+  .note {
+    border-left: 3px solid var(--accent); background: var(--accent-weak);
+    padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 0.92rem;
+  }
+  .note.warn { border-left-color: var(--warn); background: var(--warn-weak); }
+</style>
+</head>
+<body>
+<main>
+
+<h1>join 树、变量消除与 160 桶</h1>
+<p class="lead">
+  树由「连接键谓词」构造，与 SQL 里 JOIN 的书写顺序无关。<br>
+  一棵树 = 一张因子图：表是因子，连接键是变量。
+</p>
+
+<h2><span class="num">01</span>链：4 表 3 谓词</h2>
+
+<pre><span class="kw">SELECT</span> count(*) <span class="kw">FROM</span> a
+  <span class="kw">JOIN</span> b <span class="kw">ON</span> a.id    = b.a_id
+  <span class="kw">JOIN</span> c <span class="kw">ON</span> b.id    = c.b_id
+  <span class="kw">JOIN</span> d <span class="kw">ON</span> c.id    = d.c_id
+<span class="kw">WHERE</span> a.x = 5</pre>
+
+<figure>
+<svg class="diagram" viewBox="0 0 960 240" role="img" aria-label="4 表链式 join 树">
+  <line class="edge" x1="190" y1="116" x2="290" y2="116"/>
+  <line class="edge" x1="420" y1="116" x2="520" y2="116"/>
+  <line class="edge" x1="650" y1="116" x2="750" y2="116"/>
+
+  <g>
+    <rect class="chip" x="210" y="86" width="60" height="28" rx="14"/>
+    <text class="chip-text" x="240" y="105">v₁</text>
+  </g>
+  <g>
+    <rect class="chip" x="440" y="86" width="60" height="28" rx="14"/>
+    <text class="chip-text" x="470" y="105">v₂</text>
+  </g>
+  <g>
+    <rect class="chip" x="670" y="86" width="60" height="28" rx="14"/>
+    <text class="chip-text" x="700" y="105">v₃</text>
+  </g>
+
+  <g>
+    <rect class="node-box" x="60" y="80" width="130" height="72" rx="12"/>
+    <text class="t-name" x="125" y="110">表 A</text>
+    <text class="t-sub" x="125" y="132">a</text>
+  </g>
+  <g>
+    <rect class="node-box node-box-center" x="290" y="80" width="130" height="72" rx="12"/>
+    <text class="t-name" x="355" y="110">表 B</text>
+    <text class="t-sub" x="355" y="132">b</text>
+  </g>
+  <g>
+    <rect class="node-box node-box-center" x="520" y="80" width="130" height="72" rx="12"/>
+    <text class="t-name" x="585" y="110">表 C</text>
+    <text class="t-sub" x="585" y="132">c</text>
+  </g>
+  <g>
+    <rect class="node-box" x="750" y="80" width="130" height="72" rx="12"/>
+    <text class="t-name" x="815" y="110">表 D</text>
+    <text class="t-sub" x="815" y="132">d</text>
+  </g>
+
+  <text class="factor" x="125" y="196">f_A(v₁)</text>
+  <text class="factor-note" x="125" y="214">1 维 · 单列计数</text>
+
+  <text class="factor" x="355" y="196">f_B(v₁, v₂)</text>
+  <text class="factor-note" x="355" y="214">2 维 · 跨两个变量</text>
+
+  <text class="factor" x="585" y="196">f_C(v₂, v₃)</text>
+  <text class="factor-note" x="585" y="214">2 维 · 跨两个变量</text>
+
+  <text class="factor" x="815" y="196">f_D(v₃)</text>
+  <text class="factor-note" x="815" y="214">1 维 · 单列计数</text>
+</svg>
+<figcaption>
+  高亮的两张表被两个变量穿过 → 它们的因子是二维联合计数。这就是「单列边缘不够用」的位置。
+</figcaption>
+</figure>
+
+<div class="note">
+  <strong>谓词数必须 = 表数 − 1</strong>，且并查集检测无环，否则 <code>analyze_tree</code> 抛
+  <code>not_a_tree</code>。环、自连接、外连接、子查询、GROUP BY / ORDER BY / LIMIT 全部拒绝。
+</div>
+
+<h2><span class="num">02</span>消元：从叶子往根发消息</h2>
+
+<p>任选 A 为根，D→C→B→A 依次把「不朝父节点走的变量」求和消掉：</p>
+
+<pre>m_DC(v₃) = f_D(v₃)
+m_CB(v₂) = Σ_v₃  f_C(v₂, v₃) · m_DC(v₃)
+m_BA(v₁) = Σ_v₂  f_B(v₁, v₂) · m_CB(v₂)
+join    = Σ_v₁  f_A(v₁) · m_BA(v₁)</pre>
+
+<p>展开后就是</p>
+
+<pre>Σ_v₁ Σ_v₂ Σ_v₃  f_A(v₁)·f_B(v₁,v₂)·f_C(v₂,v₃)·f_D(v₃)</pre>
+
+<p>—— 每个键组合的贡献等于各表在该键上的行数相乘，<strong>没有任何近似</strong>。所以 <code>C_cond</code> 与 workload <code>true_card</code> 的最大相对偏差是 <code>0.0</code>。</p>
+
+<p>图是树 → 每个变量只被消一次、每条消息只传一次，复杂度 <code>O(表数 × 域大小)</code>，不需要 junction tree。</p>
+
+<h2><span class="num">03</span>星与「重复中表列」：并查集在这里起作用</h2>
+
+<pre><span class="kw">SELECT</span> count(*) <span class="kw">FROM</span> mid
+  <span class="kw">JOIN</span> t1 <span class="kw">ON</span> mid.k = t1.id
+  <span class="kw">JOIN</span> t2 <span class="kw">ON</span> mid.k = t2.id
+  <span class="kw">JOIN</span> t3 <span class="kw">ON</span> mid.k = t3.id</pre>
+
+<figure>
+<svg class="diagram" viewBox="0 0 960 380" role="img" aria-label="星形 join 树，三个谓词共享中表同一列">
+  <line class="edge-accent" x1="480" y1="170" x2="215" y2="86"/>
+  <line class="edge-accent" x1="480" y1="170" x2="745" y2="86"/>
+  <line class="edge-accent" x1="480" y1="170" x2="480" y2="286"/>
+
+  <g>
+    <rect class="chip" x="307" y="105" width="76" height="28" rx="14"/>
+    <text class="chip-text" x="345" y="124">v₁</text>
+  </g>
+  <g>
+    <rect class="chip" x="577" y="105" width="76" height="28" rx="14"/>
+    <text class="chip-text" x="615" y="124">v₁</text>
+  </g>
+  <g>
+    <rect class="chip" x="442" y="212" width="76" height="28" rx="14"/>
+    <text class="chip-text" x="480" y="231">v₁</text>
+  </g>
+
+  <g>
+    <rect class="node-box node-box-center" x="410" y="134" width="140" height="72" rx="12"/>
+    <text class="t-name" x="480" y="164">mid</text>
+    <text class="t-sub" x="480" y="186">f_mid(v₁)</text>
+  </g>
+  <g>
+    <rect class="node-box" x="150" y="50" width="130" height="72" rx="12"/>
+    <text class="t-name" x="215" y="80">t1</text>
+    <text class="t-sub" x="215" y="102">f_T1(v₁)</text>
+  </g>
+  <g>
+    <rect class="node-box" x="680" y="50" width="130" height="72" rx="12"/>
+    <text class="t-name" x="745" y="80">t2</text>
+    <text class="t-sub" x="745" y="102">f_T2(v₁)</text>
+  </g>
+  <g>
+    <rect class="node-box" x="415" y="250" width="130" height="72" rx="12"/>
+    <text class="t-name" x="480" y="280">t3</text>
+    <text class="t-sub" x="480" y="302">f_T3(v₁)</text>
+  </g>
+
+  <text class="callout" x="480" y="356">三个谓词共享 (mid, k) → 并查集合并成同一个变量</text>
+</svg>
+<figcaption>
+  这就是 G2a 里 carcinogenesis <strong>100%</strong> 的三表形态。树的形状取决于谓词共享的列，不取决于 JOIN 的书写顺序。
+</figcaption>
+</figure>
+
+<div class="note warn">
+  同一个变量意味着 <code>mid</code> 的因子退化成<strong>一维</strong> <code>f_mid(v₁)</code>；
+  二维联合 <code>F_joint</code> 与独立假设 <code>F_indep</code> 在这种形态上<strong>构造性相等</strong>——
+  条件化在这一形态上可证明没有任何收益。不合并的话，会把它当成两个独立变量相乘，结果偏小几十倍。
+</div>
+
+<p>另外两种被 <code>analyze_tree</code> 直接拒绝的形态：<strong>环</strong>（谓词数 &gt; 表数 − 1，例如 4 表两两相连）与<strong>自连接</strong>（同一张表出现两次）。</p>
+
+<h2><span class="num">04</span>为什么必须「共享边界」</h2>
+
+<figure>
+<svg class="diagram" viewBox="0 0 960 400" role="img" aria-label="各自分位数分桶与共享边界分桶的对比">
+  <line class="axis" x1="80" y1="90" x2="880" y2="90"/>
+  <g class="tick-a">
+    <line x1="80"  y1="72" x2="80"  y2="108"/>
+    <line x1="150" y1="72" x2="150" y2="108"/>
+    <line x1="275" y1="72" x2="275" y2="108"/>
+    <line x1="350" y1="72" x2="350" y2="108"/>
+    <line x1="520" y1="72" x2="520" y2="108"/>
+    <line x1="590" y1="72" x2="590" y2="108"/>
+    <line x1="740" y1="72" x2="740" y2="108"/>
+    <line x1="880" y1="72" x2="880" y2="108"/>
+  </g>
+  <text class="lbl-a" x="80" y="54">表 A 按自己的分位数切桶 → 边界不均匀</text>
+
+  <line class="axis" x1="80" y1="200" x2="880" y2="200"/>
+  <g class="tick-b">
+    <line x1="80"  y1="182" x2="80"  y2="218"/>
+    <line x1="195" y1="182" x2="195" y2="218"/>
+    <line x1="240" y1="182" x2="240" y2="218"/>
+    <line x1="400" y1="182" x2="400" y2="218"/>
+    <line x1="455" y1="182" x2="455" y2="218"/>
+    <line x1="630" y1="182" x2="630" y2="218"/>
+    <line x1="770" y1="182" x2="770" y2="218"/>
+    <line x1="880" y1="182" x2="880" y2="218"/>
+  </g>
+  <text class="lbl-b" x="80" y="164">表 B 按自己的分位数切桶 → 又是另一组边界</text>
+
+  <line class="tick-a" x1="275" y1="90" x2="275" y2="200" stroke-dasharray="4 4" opacity="0.45"/>
+  <line class="tick-b" x1="195" y1="90" x2="195" y2="200" stroke-dasharray="4 4" opacity="0.45"/>
+  <text class="callout" x="235" y="242">
+    A 的第 3 桶 ≠ B 的第 3 桶 → 计数不能直接相乘
+  </text>
+
+  <line class="axis" x1="80" y1="320" x2="880" y2="320"/>
+  <g class="tick-s">
+    <line x1="80"  y1="302" x2="80"  y2="338"/>
+    <line x1="180" y1="302" x2="180" y2="338"/>
+    <line x1="280" y1="302" x2="280" y2="338"/>
+    <line x1="380" y1="302" x2="380" y2="338"/>
+    <line x1="480" y1="302" x2="480" y2="338"/>
+    <line x1="580" y1="302" x2="580" y2="338"/>
+    <line x1="680" y1="302" x2="680" y2="338"/>
+    <line x1="780" y1="302" x2="780" y2="338"/>
+    <line x1="880" y1="302" x2="880" y2="338"/>
+  </g>
+  <text class="lbl-s" x="80" y="284">共享边界：取两侧键值并集，在并集上定边界，两侧各自映射进来</text>
+  <text class="lbl-s" x="80" y="372">同一序号 = 同一个键区间 → 可以相乘</text>
+</svg>
+<figcaption>
+  40 桶：Q95 20.551（越线）。160 桶：Q95 9.736（精确 9.537，退化 1.021×）。320 桶：9.684，不值得翻倍预算。
+</figcaption>
+</figure>
+
+<h2><span class="num">05</span>两种因子构造，同一套消元代码</h2>
+
+<table>
+  <thead>
+    <tr><th>路径</th><th>因子怎么来</th><th>近似</th><th>实测 Q95（600 条 4–7 表）</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>C_cond</code></td>
+      <td>过滤后表的精确分组计数（含二维/三维联合）</td>
+      <td>无</td>
+      <td><strong>1.000</strong>，与 <code>true_card</code> 偏差 0.0</td>
+    </tr>
+    <tr>
+      <td><code>C_uncond</code></td>
+      <td>未过滤单列边缘 × 过滤选择率，表内列间独立</td>
+      <td>独立性 + 过滤独立</td>
+      <td>9.537（精确键）</td>
+    </tr>
+    <tr>
+      <td><code>C_uncond_binned</code></td>
+      <td>同上，但边缘压成 160 桶共享边界</td>
+      <td>再加桶内均匀</td>
+      <td>9.736</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>118 号模型的锚点就是最后一行：<code>log C_struct(q) = log C_uncond_binned</code>，再让一个小网络学残差 <code>g_θ(x)</code>。</p>
+
+<div class="note">
+  只用三件原料：<strong>行数</strong>（含非 NULL 键行数）、<strong>单列键频率</strong>（160 桶）、<strong>过滤选择率</strong>。
+  目标库评估时，<code>C_struct</code> 只读由基表数据算出的摘要，<strong>不读真实基数</strong>。
+</div>
+
+</main>
+</body>
+</html>
