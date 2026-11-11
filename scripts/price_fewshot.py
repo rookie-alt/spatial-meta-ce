@@ -26,16 +26,24 @@ def main():
     p.add_argument('--inner-lr', type=float, default=1e-6)
     p.add_argument('--config', default='configs/evaluation.json')
     p.add_argument('--reference', default='runs/pg_reference_20260926.json')
+    p.add_argument('--targets', default=','.join(TARGETS),
+                   help='comma-separated test databases; default keeps the original three')
+    p.add_argument('--shots', default=None,
+                   help='comma-separated shot list; default uses the config')
     args = p.parse_args()
 
     cfg = read_json(args.config)
     cfg['inner_lr'] = args.inner_lr
+    targets = [name.strip() for name in args.targets.split(',') if name.strip()]
+    if args.shots:
+        cfg['shots'] = [int(value) for value in args.shots.split(',')]
     data = data_settings(cfg, args.config)
-    data['splits']['test'] = TARGETS
+    data['splits']['test'] = targets
+    reference = args.reference or None
     report = evaluate(cfg, data, args.out, args.device, baseline='price', training_seed=42,
-                      reference_manifest=args.reference)
+                      reference_manifest=reference)
     (Path(args.out) / 'run_config.json').write_text(json.dumps(
-        {'inner_lr': args.inner_lr, 'device': args.device, 'targets': TARGETS,
+        {'inner_lr': args.inner_lr, 'device': args.device, 'targets': targets,
          'lr_source': 'runs/price-lr-search-20260926/result.json', 'config': cfg}, indent=2))
 
     print('=== SUMMARY ===')

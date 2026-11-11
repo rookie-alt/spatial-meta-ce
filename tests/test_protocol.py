@@ -1,4 +1,6 @@
 import importlib.util
+import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -124,6 +126,29 @@ class ProtocolTests(unittest.TestCase):
             for row in report["results"]:
                 self.assertEqual(row["metrics"]["n"], 20)
                 self.assertTrue(np.isfinite(row["metrics"]["q95"]))
+
+    def test_zeroshot_does_not_require_finetune_store(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            _, dc = fixtures(root)
+            shutil.rmtree(root / "cache/finetune/t")
+            ec = {
+                "shots": [0],
+                "support_runs": 1,
+                "support_seed": 2026,
+                "inner_lr": 0.0,
+                "inner_steps": 0,
+                "adapt_scope": "all",
+                "loss": "smooth_l1",
+                "batch_size": 8,
+                "latency_repetitions": 1,
+                "model": {"width": 8, "use_pg": True},
+            }
+            report = evaluate(ec, dc, root / "eval", "cpu", baseline="pg")
+            manifest = json.loads((root / "eval/manifest.json").read_text())
+            self.assertIsNone(manifest["databases"]["t"]["support_hash"])
+            self.assertEqual(len(report["results"]), 1)
+            self.assertEqual(report["results"][0]["support_pool_unique"], 0)
 
     def test_erm_runs(self):
         with tempfile.TemporaryDirectory() as d:

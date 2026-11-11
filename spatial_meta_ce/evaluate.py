@@ -228,6 +228,9 @@ def evaluate(
         or config["latency_repetitions"] < 1
     ):
         raise ValueError("Invalid evaluation budgets")
+    # K=0 needs no support pool, so a target without a finetune cache can still
+    # be evaluated zero-shot instead of failing on a missing store.
+    needs_support = max(config["shots"]) > 0
     out = Path(output_dir)
     out.mkdir(parents=True, exist_ok=False)
     seed_all(training_seed)
@@ -254,8 +257,9 @@ def evaluate(
         model = SetEstimator(**config["model"]).to(device)
     elif baseline == "price":
         maxima = np.ones(4, dtype=np.int64)
+        splits = ("test", "finetune") if needs_support else ("test",)
         for db in data_config["splits"]["test"]:
-            for split in ("test", "finetune"):
+            for split in splits:
                 maxima = np.maximum(
                     maxima, pool.get(split, db).manifest["inspection"]["max_counts"]
                 )
@@ -294,9 +298,12 @@ def evaluate(
             ]
         )
         for db in data_config["splits"]["test"]:
-            support_store, test_store = pool.get("finetune", db), pool.get("test", db)
+            support_store = pool.get("finetune", db) if needs_support else None
+            test_store = pool.get("test", db)
             manifest["databases"][db] = {
-                "support_hash": support_store.manifest["content_hash"],
+                "support_hash": (
+                    support_store.manifest["content_hash"] if support_store else None
+                ),
                 "test_hash": test_store.manifest["content_hash"],
             }
             indices = np.arange(len(test_store))
@@ -318,13 +325,20 @@ def evaluate(
                     reference_query_keys[p] for p in unique_positions
                 ]
             for run in range(config["support_runs"]):
-                support_indices, overlap = support_plan(
-                    support_store,
-                    test_store,
-                    max(config["shots"]),
-                    config["support_seed"],
-                    run,
-                )
+                if support_store is not None:
+                    support_indices, overlap = support_plan(
+                        support_store,
+                        test_store,
+                        max(config["shots"]),
+                        config["support_seed"],
+                        run,
+                    )
+                else:
+                    support_indices = []
+                    overlap = {
+                        "support_pool_unique": 0,
+                        "overlapping_unique_removed": 0,
+                    }
                 for k in config["shots"]:
                     chosen = support_indices[:k]
                     ids = [support_store.rows[int(i)]["id"] for i in chosen]
