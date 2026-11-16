@@ -1,0 +1,143 @@
+{
+  "template": "architecture.source.asplos26-066_fig6",
+  "display_code": "VA-043",
+  "source_reference": "architecture.source.asplos26-066_fig6",
+  "files": {
+    "make_figure.py": {
+      "sha256": "ee11ef1ce8787bc90d45adbcad3b3df3d7443246563dd0d98c1c5fcec8789bc1",
+      "source": "architecture/source-assets/asplos26-066_fig6/make_figure.py"
+    },
+    "example.json": {
+      "sha256": "a9bfc7f7fcb8a65dd18f01dca3958e26eba2eaf8f6c2726d3cc17fe5c88af985",
+      "source": "architecture/source-assets/asplos26-066_fig6/example.json"
+    },
+    "check_architecture_connections.py": {
+      "sha256": "16545fee5760dfe5be5ab327c396b88f4e398e7fcd12934c01547a71998c0ec7",
+      "source": "scripts/check_architecture_connections.py"
+    },
+    "render_architecture.py": {
+      "sha256": "edd8e9c49e8a4a7de847391d56ac2d08d5976632f64c130a0e1aa40ee3977d3f",
+      "source": "scripts/render_architecture.py"
+    },
+    "TEMPLATE.md": {
+      "sha256": "973178d8f66abd74055700ab9ccbb1b927b2ee98c22372e50606f792aedb4f20",
+      "source": "architecture/source-assets/asplos26-066_fig6/TEMPLATE.md"
+    },
+    "source_asset.py": {
+      "sha256": "807f8144757fcbeffac8267d61dbd860a2d9ab08aba89551e537f0a5734d1408",
+      "source": "architecture/lib/source_asset.py"
+    },
+    "source_measure.py": {
+      "sha256": "95e764803947fe2b961672575faf758e86a6b29905f722a0f7bf9b3bd692ae3c",
+      "source": "architecture/lib/source_measure.py"
+    },
+    "semantic_palette.py": {
+      "sha256": "57b6a2be8cc2a396f4c2155a61fa3c95151d13ffdd0829f2c15a2bd03c4d8090",
+      "source": "architecture/lib/semantic_palette.py"
+    },
+    "PALETTE.md": {
+      "sha256": "ff35930d4f97aac57d502f13a3a2bec93ff9790494b4be294be22dedc3d41360",
+      "source": "architecture/PALETTE.md"
+    },
+    "PPTX.md": {
+      "sha256": "3632ec9c77ad4f9d804d27d493885e19d6a154c0e775b2fd2a4c6117c41660e4",
+      "source": "architecture/PPTX.md"
+    },
+    "requirements-architecture.txt": {
+      "sha256": "f4728261700e2b2ce08767f8869a40e2e1c80edf91e8473e82dbd183f33db027",
+      "source": "requirements-architecture.txt"
+    },
+    "export_architecture_pptx.py": {
+      "sha256": "8f0b7fcb2d3d011c43a56d67577c79dbecca9d3230613a16eba8f74d541ccfbd",
+      "source": "scripts/export_architecture_pptx.py"
+    },
+    "vivid_config.py": {
+      "sha256": "fcf9a3e8f4dbc5ec1d254574273f18b94fcb0940c3d9aab33bc36123189425e1",
+      "source": "original/resources/assets/shared-scripts/vivid_config.py"
+    },
+    "palettes.json": {
+      "sha256": "3334a19a2c88bd2f8fe6312ac3285fbb0775388a9ac4c0ce8db113bd758bb179",
+      "source": "original/resources/assets/shared-scripts/palettes.json"
+    },
+    "ATTRIBUTION.md": {
+      "sha256": "f582b281b2eabae0f2934582a89a2496aefa7cc2b8d8fb162d562cbc746c857b",
+      "source": "architecture/source-assets/asplos26-066_fig6/ATTRIBUTION.md"
+    },
+    "asset.json": {
+      "sha256": "0d51d61cc08d66ffefde0ace857e3c710e99e70ee589dd21eefc29b867312470",
+      "source": "architecture/source-assets/asplos26-066_fig6/asset.json"
+    },
+    "diagram.svg": {
+      "sha256": "7cc2bb419ad721378a49d8628e3d1faca7838686d88da0a3fccd5ce3b237776f",
+      "source": "architecture/source-assets/asplos26-066_fig6/diagram.svg"
+    },
+    "geometry.json": {
+      "sha256": "3f1351d6c4183c31d5192e0098e92c0586c41219ef2abf82d335a93a10f00ca5",
+      "source": "architecture/source-assets/asplos26-066_fig6/geometry.json"
+    },
+    "guide.json": {
+      "sha256": "5d81685f3aa07fcc82dcce44e99a7edc218dfbd2b8a63a69b44af517a11219f5",
+      "source": "architecture/source-assets/asplos26-066_fig6/guide.json"
+    },
+    "labels.json": {
+      "sha256": "6e0826fa1d0709067182f069551c8bbf6dda049aa05c0bf73800744b81636448",
+      "source": "architecture/source-assets/asplos26-066_fig6/labels.json"
+    },
+    "pptx_runtime/NOTICE-pptx.txt": {
+      "sha256": "6e20f067d6abf3ea8c6c899e638e89818ad63f6ff184d86583956098150722da",
+      "source": "scripts/pptx_runtime/NOTICE-pptx.txt"
+    },
+    "pptx_runtime/font-notices/Inconsolata-OFL.txt": {
+      "sha256": "29bd0cfd0fb2a45f9b057c834a057724bae1f63b525a8ac83d3e7525706d9f80",
+      "source": "scripts/pptx_runtime/font-notices/Inconsolata-OFL.txt"
+    },
+    "pptx_runtime/font-notices/LICENSES.md": {
+      "sha256": "c0b7ddb3a15496690e96c4f4c6189819030d6acfb7a0a98d7b2ea08b0652998a",
+      "source": "scripts/pptx_runtime/font-notices/LICENSES.md"
+    },
+    "pptx_runtime/font-notices/STIXTwoMath-OFL.txt": {
+      "sha256": "0c8825913b60d858aacdb33c4ca6660a7d64b0d6464702efbb19313f5765861a",
+      "source": "scripts/pptx_runtime/font-notices/STIXTwoMath-OFL.txt"
+    },
+    "pptx_runtime/font-notices/STIXTwoMath-provenance.json": {
+      "sha256": "91ebc8f75a185239dd09214d7630b13d5eb8c0bb85cfa87e8507b6dd1a462d17",
+      "source": "scripts/pptx_runtime/font-notices/STIXTwoMath-provenance.json"
+    },
+    "pptx_runtime/font-notices/font-notices.json": {
+      "sha256": "4320d46d52e76f42309a8885621a6e7a9253157e62021c16307106601aeaeb9c",
+      "source": "scripts/pptx_runtime/font-notices/font-notices.json"
+    },
+    "pptx_runtime/install_pptx_fonts.py": {
+      "sha256": "41f91b5a884798467a2f69da65a1dc15ea5015db7e945d31ae3f15efe828e2a6",
+      "source": "scripts/pptx_runtime/install_pptx_fonts.py"
+    },
+    "pptx_runtime/pptx_fonts.py": {
+      "sha256": "668d18ce80bd89ced520a1e2af8e3a00489ad6e78d288116a19d03b141737b8e",
+      "source": "scripts/pptx_runtime/pptx_fonts.py"
+    },
+    "pptx_runtime/pptx_geometry.py": {
+      "sha256": "e0989885943ebbd7f981ff9f5ac8fa2414bb6172b6e6af0d8e9ab93c288f4e52",
+      "source": "scripts/pptx_runtime/pptx_geometry.py"
+    },
+    "pptx_runtime/pptx_groups.py": {
+      "sha256": "90af6d930171ac798dfce665b24c6b18d824450bfb9a9f3a583491b2a23fdd54",
+      "source": "scripts/pptx_runtime/pptx_groups.py"
+    },
+    "pptx_runtime/pptx_markers.py": {
+      "sha256": "515b9832e79d17d7f3b9f85dbb7d7ce0e058b32c72337e5a8ade06d2b4a2a3ce",
+      "source": "scripts/pptx_runtime/pptx_markers.py"
+    },
+    "pptx_runtime/pptx_office.py": {
+      "sha256": "6f6c8499799fd6cb1f20d7b8f19a10708f431581c42196b7710fa4d1f24d464c",
+      "source": "scripts/pptx_runtime/pptx_office.py"
+    },
+    "pptx_runtime/pptx_scene.py": {
+      "sha256": "9d0181ed642bc02ec8a051a077a19f619aa1efb42ffe72a61703754800e8f56e",
+      "source": "scripts/pptx_runtime/pptx_scene.py"
+    },
+    "pptx_runtime/pptx_text.py": {
+      "sha256": "392b817d16f420b8bed7063bc61a3b6afa64811c1dd84d26309cc43614e5db8b",
+      "source": "scripts/pptx_runtime/pptx_text.py"
+    }
+  }
+}
