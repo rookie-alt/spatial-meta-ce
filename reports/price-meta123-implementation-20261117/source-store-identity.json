@@ -1,0 +1,136 @@
+{
+  "purpose": "read-only-cache-identity-check-not-research",
+  "databases": [
+    {
+      "database": "accidents",
+      "rows": 50000,
+      "cache_hash": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e"
+    },
+    {
+      "database": "airline",
+      "rows": 50000,
+      "cache_hash": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29"
+    },
+    {
+      "database": "baseball",
+      "rows": 50000,
+      "cache_hash": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782"
+    },
+    {
+      "database": "basketball",
+      "rows": 50000,
+      "cache_hash": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02"
+    },
+    {
+      "database": "carcinogenesis",
+      "rows": 50000,
+      "cache_hash": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09"
+    },
+    {
+      "database": "ccs",
+      "rows": 50000,
+      "cache_hash": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2"
+    },
+    {
+      "database": "consumer",
+      "rows": 50000,
+      "cache_hash": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3"
+    },
+    {
+      "database": "credit",
+      "rows": 50000,
+      "cache_hash": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062"
+    },
+    {
+      "database": "employee",
+      "rows": 50000,
+      "cache_hash": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54"
+    },
+    {
+      "database": "financial",
+      "rows": 50000,
+      "cache_hash": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7"
+    },
+    {
+      "database": "fnhk",
+      "rows": 50000,
+      "cache_hash": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd"
+    },
+    {
+      "database": "grants",
+      "rows": 50000,
+      "cache_hash": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8"
+    },
+    {
+      "database": "hepatitis",
+      "rows": 50000,
+      "cache_hash": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe"
+    },
+    {
+      "database": "hockey",
+      "rows": 50000,
+      "cache_hash": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220"
+    },
+    {
+      "database": "movielens",
+      "rows": 50000,
+      "cache_hash": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7"
+    },
+    {
+      "database": "sakila",
+      "rows": 50000,
+      "cache_hash": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da"
+    },
+    {
+      "database": "sap",
+      "rows": 50000,
+      "cache_hash": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f"
+    },
+    {
+      "database": "seznam",
+      "rows": 50000,
+      "cache_hash": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9"
+    },
+    {
+      "database": "ssb",
+      "rows": 50000,
+      "cache_hash": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c"
+    },
+    {
+      "database": "talkingdata",
+      "rows": 50000,
+      "cache_hash": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797"
+    },
+    {
+      "database": "tournament",
+      "rows": 50000,
+      "cache_hash": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e"
+    },
+    {
+      "database": "tpc_h",
+      "rows": 50000,
+      "cache_hash": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb"
+    },
+    {
+      "database": "tubepricing",
+      "rows": 50000,
+      "cache_hash": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295"
+    },
+    {
+      "database": "chembl",
+      "rows": 50000,
+      "cache_hash": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061"
+    },
+    {
+      "database": "legalacts",
+      "rows": 50000,
+      "cache_hash": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6"
+    },
+    {
+      "database": "telstra",
+      "rows": 50000,
+      "cache_hash": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822"
+    }
+  ],
+  "target_databases_read": []
+}

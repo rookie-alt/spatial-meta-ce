@@ -1,0 +1,8 @@
+{
+  "purpose": "engineering-forward-equivalence-not-research",
+  "database": "accidents",
+  "rows": 2,
+  "max_abs_difference": 0.0,
+  "parameters": 10709330,
+  "target_databases_read": []
+}
