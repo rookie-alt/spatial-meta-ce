@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "purpose": "local_read_only_evidence_excerpt_for_design_123",
+  "observed_date": "2026-11-16",
+  "remote_reverified_this_turn": false,
+  "current_task_authorization": "design_only",
+  "source_worktree": "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/122-p0-closure-20261111",
+  "source_head": "c777536b73ca4186b849c6aae113f71b56f82662",
+  "source_files_uncommitted": true,
+  "price_23db_v2": {
+    "source_file": "reports/122-official-price-20261115/v2-training-completion.json",
+    "source_file_sha256": "3b3d3f16bdb120d28013e0b8dcb856f06c73facd1a07cc6dc80d89a10e9c2f85",
+    "status": "training_completed",
+    "checkpoint": "/gly/weilin/122-official-price-seed42-20261115/output-v2/last.pt",
+    "checkpoint_sha256": "dee83c462944db8c5901ac32da9c844c61df6175dcb04bc50923f96babff070f",
+    "train_databases": [
+      "accidents", "airline", "baseball", "basketball", "carcinogenesis",
+      "ccs", "consumer", "credit", "employee", "financial", "fnhk",
+      "grants", "hepatitis", "hockey", "movielens", "sakila", "sap",
+      "seznam", "ssb", "talkingdata", "tournament", "tpc_h", "tubepricing"
+    ],
+    "validation_databases": ["chembl", "legalacts", "telstra"],
+    "target_databases_read_during_training": [],
+    "steps": 4000,
+    "batch_size": 128,
+    "presentations": 512000,
+    "wall_seconds": 640.752051350195,
+    "parameters": 10709330,
+    "max_counts": [12, 12, 7, 10],
+    "encoder_sha256": "94f3060996cd9a9b3d60da08d525cc4ab8e1666c1eb4d53b3f610f5c248c6bce",
+    "learning_rate": 0.0000285,
+    "step_lr": "disabled in v2 fixed-step budget"
+  },
+  "price_26db_65k_excluded_initialization": {
+    "source_file": "reports/122-official-price-26db-20261116/training_completion.json",
+    "source_file_sha256": "e971f9fde3ded5a9cddf31e34e601024665151afea11c4a9887600187c069c84",
+    "status": "training_completed",
+    "checkpoint_sha256": "48f82a47f0bd3205c02cad1019f82534797d1c42b690e352bd49275cba7000b0",
+    "in_sample_source_databases": ["chembl", "legalacts", "telstra"],
+    "steps": 65000,
+    "estimated_epochs": 6.399527419513636,
+    "exclusion_reason": "all three source validation databases were used for pretraining"
+  },
+  "native_price_training_entry": {
+    "source_file": "scripts/official_price_pretrain.py",
+    "source_file_sha256": "4bcd4273a2aaf8488c0f9f8fd01c018ef8caf5767474df747e748837f2205d69",
+    "role": "historical implementation evidence; not delivered or authorized for this new experiment"
+  },
+  "evidence_limits": [
+    "checkpoint bytes and remote state must be revalidated before execution",
+    "validation_databases is a metadata role list, not a verified access log",
+    "historical timing has no FOMAML inner loop and is not a current cost prediction",
+    "later target evaluation of a frozen historical checkpoint does not add target gradients but prevents calling the project targets untouched blind tests",
+    "no target accuracy values were used to select this plan"
+  ]
+}
