@@ -1,0 +1,61 @@
+{
+  "budget": {
+    "max_output_bytes": 5755739631.0,
+    "max_rss_bytes": 25769803776.0,
+    "max_vram_bytes": 12884901888.0,
+    "max_wall_seconds": 21600.0,
+    "poll_seconds": 1.0
+  },
+  "cleanup": {
+    "attempted": true,
+    "error": null,
+    "escaped_pids": [],
+    "residual_pids": [],
+    "signals": [
+      "SIGTERM"
+    ],
+    "verified": true
+  },
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/code/scripts/run_price_meta123.py",
+    "worker",
+    "--binding",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/inputs/binding.json",
+    "--authorization",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/inputs/authorization-train-M-42.json",
+    "--action",
+    "train:M:42",
+    "--output",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/train-M-42",
+    "--device",
+    "cuda"
+  ],
+  "completion": null,
+  "cwd": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/code",
+  "elapsed_seconds": 2048.7179694070946,
+  "failure": {
+    "message": "supervisor received signal 15",
+    "stage": "signal",
+    "traceback": null,
+    "type": "parent_signal"
+  },
+  "gpu_index": 2,
+  "gpu_uuid": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7",
+  "output": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/train-M-42",
+  "output_bytes": 32957,
+  "peak_rss_bytes": 3185672192,
+  "peak_vram_bytes": 1260388352,
+  "pgid": 62831,
+  "pid": 62831,
+  "returncode": -15,
+  "samples": 1895,
+  "schema": 1,
+  "status": "failed",
+  "supervisor_json": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/train-M-42.supervisor.json",
+  "supervisor_log": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/train-M-42.supervisor.log",
+  "supervisor_pid": 7151,
+  "vram_accounting": "device_total",
+  "vram_baseline_bytes": 1048576
+}

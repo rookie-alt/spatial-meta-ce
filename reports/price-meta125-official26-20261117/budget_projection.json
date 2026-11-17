@@ -1,0 +1,14 @@
+{
+  "projected_seconds": 72457.76640154627,
+  "projected_output_bytes": 1313330810,
+  "checks": {
+    "total_time": true,
+    "e_run_time": true,
+    "m_run_time": true,
+    "rss": true,
+    "vram": true,
+    "output": true
+  },
+  "feasible": true,
+  "scope": "six_training_runs_and_seal_only_no_evaluation"
+}

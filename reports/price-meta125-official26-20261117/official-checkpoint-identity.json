@@ -1,0 +1,13 @@
+{
+  "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+  "sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92",
+  "github_blob_sha1": "95ad4f8096cf8520ba2b313269799d8914146ae0",
+  "bytes": 43092427,
+  "parameters": 10709330,
+  "native_adapter_equal": true,
+  "max_abs_difference": 0.0,
+  "sample_database": "chembl",
+  "sample_count": 2,
+  "github_source": "https://github.com/StCarmen/PRICE/blob/master/results/model_params.pth",
+  "target_databases_read": []
+}

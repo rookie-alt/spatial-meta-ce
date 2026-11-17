@@ -1,0 +1,75 @@
+{
+  "budget": {
+    "max_output_bytes": 536870912.0,
+    "max_rss_bytes": 25769803776.0,
+    "max_vram_bytes": 0.0,
+    "max_wall_seconds": 600.0,
+    "poll_seconds": 1.0
+  },
+  "cleanup": {
+    "attempted": false,
+    "error": null,
+    "residual_pids": [],
+    "signals": [],
+    "verified": false
+  },
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/price-meta-125-official26-20261117/code/scripts/run_price_meta125.py",
+    "worker",
+    "--binding",
+    "/gly/weilin/price-meta-125-official26-20261117/inputs/binding.json",
+    "--authorization",
+    "/gly/weilin/price-meta-125-official26-20261117/inputs/authorization-prepare-training.json",
+    "--action",
+    "prepare-training",
+    "--device",
+    "cpu",
+    "--output",
+    "/gly/weilin/price-meta-125-official26-20261117/outputs/prepare-training"
+  ],
+  "completion": {
+    "action": "prepare-training",
+    "alpha": 1e-06,
+    "binding_sha256": "220400d2d1a8797d3124e084caba4f1d7e1baac5ea953274884899c3206f0e17",
+    "plans": {
+      "42": {
+        "file": "training-42.json",
+        "sha256": "75674971ce2bf0405c06b7c5c2b19941119eb9d6c5b62c492c1d08d2364400d5"
+      },
+      "43": {
+        "file": "training-43.json",
+        "sha256": "fee16b063732875c949996a8bf1d067a813c67d197a97b061913c018e1e02c11"
+      },
+      "44": {
+        "file": "training-44.json",
+        "sha256": "2baf7fe1ff23cb6f0bf9aa856099391fe3d0b9c835c5ce21f420c70e6c859a9c"
+      }
+    },
+    "protocol": 125,
+    "schema": 1,
+    "status": "completed",
+    "target_databases_read": []
+  },
+  "cwd": "/gly/weilin/price-meta-125-official26-20261117/code",
+  "elapsed_seconds": 117.2959150399547,
+  "failure": null,
+  "gpu_index": null,
+  "gpu_uuid": null,
+  "output": "/gly/weilin/price-meta-125-official26-20261117/outputs/prepare-training",
+  "output_bytes": 270430806,
+  "peak_rss_bytes": 1550393344,
+  "peak_vram_bytes": 0,
+  "pgid": 95331,
+  "pid": 95331,
+  "returncode": 0,
+  "samples": 117,
+  "schema": 1,
+  "status": "completed",
+  "supervisor_json": "/gly/weilin/price-meta-125-official26-20261117/outputs/prepare-training.supervisor.json",
+  "supervisor_log": "/gly/weilin/price-meta-125-official26-20261117/outputs/prepare-training.supervisor.log",
+  "supervisor_pid": 95229,
+  "vram_accounting": "none",
+  "vram_baseline_bytes": 0
+}

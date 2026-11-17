@@ -1,0 +1,13 @@
+{
+  "status": "launched",
+  "protocol": 125,
+  "pid": 87746,
+  "start_time": "121177250",
+  "binding_sha256": "220400d2d1a8797d3124e084caba4f1d7e1baac5ea953274884899c3206f0e17",
+  "at": "2026-11-17T09:01:50.149751+00:00",
+  "gpu_index": 2,
+  "gpu_uuid": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7",
+  "script_sha256": "8277b6a8e5eac34b68c0189841c570a079b29f71234c130105bb9ff0706da473",
+  "root": "/gly/weilin/price-meta-125-official26-20261117",
+  "target_databases_read": []
+}

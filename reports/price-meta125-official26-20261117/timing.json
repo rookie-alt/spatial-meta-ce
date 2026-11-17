@@ -1,0 +1,9 @@
+{
+  "e_update_seconds": 1.04666692414321,
+  "m_update_seconds": 8.160306792939082,
+  "setup_io_seconds": 434.90108331106603,
+  "verification_seconds": 60.0,
+  "checkpoint_pair_bytes": 258819966,
+  "peak_rss_bytes": 4042117120,
+  "peak_vram_bytes": 1021568512
+}

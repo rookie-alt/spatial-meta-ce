@@ -1,0 +1,34 @@
+{
+  "status": "verified",
+  "protocol": 125,
+  "binding_sha256": "220400d2d1a8797d3124e084caba4f1d7e1baac5ea953274884899c3206f0e17",
+  "checkpoints": {
+    "E": {
+      "optimizer_steps": [
+        52
+      ],
+      "finite": true,
+      "loss_rows": 52,
+      "checkpoint_sha256": "7d76ab7227de39405dbd2c888402409a1335005fa0a65bf28b53657a7b913d24"
+    },
+    "M": {
+      "optimizer_steps": [
+        52
+      ],
+      "finite": true,
+      "loss_rows": 52,
+      "checkpoint_sha256": "52497b15ccdd8e7a345de507fa2d404c2530d3b3508065cf288cc591402dfde5"
+    }
+  },
+  "combined_d2_seconds": 554.6326944869943,
+  "combined_d2_bytes": 529276413,
+  "external_peak_vram_bytes": 1627389952,
+  "allocator_peak_vram_bytes": 1021568512,
+  "projected_training_hours": 20.127157333762852,
+  "projected_e_run_hours": 0.7559261118812073,
+  "projected_m_run_hours": 5.893554906011559,
+  "projected_output_bytes": 1313330810,
+  "gpu_after": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7, 1, 0",
+  "validation_databases": [],
+  "target_databases_read": []
+}

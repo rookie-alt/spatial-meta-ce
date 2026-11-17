@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "protocol": 125,
+  "authorized": true,
+  "root": "/gly/weilin/price-meta-125-official26-20261117",
+  "binding_sha256": "220400d2d1a8797d3124e084caba4f1d7e1baac5ea953274884899c3206f0e17",
+  "actions": [
+    "train:E:43"
+  ],
+  "granted_by": "user",
+  "granted_at": "2026-11-17T09:01:32.007215+00:00",
+  "user_instruction": "不要三源验证了，改成和官方一样的",
+  "prior_authorization": "那就先修复显存计量，预算可以适当放宽，继续推进吧",
+  "scope": "Official26 training only. P published weight, E/M paired three streams each2000 updates. No validation calibration or target access, no retry/resume/escalation. Final seal of six last. Cumulative24h/6GiB, E2h/M6h, RSS24GiB/VRAM12GiB.",
+  "attempts": 1,
+  "continuation_sha256": "8277b6a8e5eac34b68c0189841c570a079b29f71234c130105bb9ff0706da473",
+  "budget": {
+    "max_wall_seconds": 7200,
+    "max_rss_bytes": 25769803776,
+    "max_vram_bytes": 12884901888,
+    "max_output_bytes": 6442450944,
+    "poll_seconds": 1
+  },
+  "cuda_device": 2,
+  "cuda_uuid": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7"
+}

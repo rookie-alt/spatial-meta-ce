@@ -1,0 +1,34 @@
+======================================================================
+ERROR: test_cost_gate_refuses_zero_external_vram_even_when_worker_nonzero (test_price_meta123_runtime.RuntimeContractTests.test_cost_gate_refuses_zero_external_vram_even_when_worker_nonzero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/gly/weilin/price-meta-125-official26-20261117/code/tests/test_price_meta123_runtime.py", line 139, in test_cost_gate_refuses_zero_external_vram_even_when_worker_nonzero
+    ).read_text()
+      ^^^^^^^^^^^
+  File "/gly/miniconda3/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/miniconda3/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/gly/weilin/price-meta-125-official26-20261117/code/reports/price-meta123-d2-20261117/timing.json'
+
+======================================================================
+ERROR: test_revised_budget_covers_d2_with_six_hour_meta_run_cap (test_price_meta123_runtime.RuntimeContractTests.test_revised_budget_covers_d2_with_six_hour_meta_run_cap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/gly/weilin/price-meta-125-official26-20261117/code/tests/test_price_meta123_runtime.py", line 125, in test_revised_budget_covers_d2_with_six_hour_meta_run_cap
+    ).read_text()
+      ^^^^^^^^^^^
+  File "/gly/miniconda3/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gly/miniconda3/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/gly/weilin/price-meta-125-official26-20261117/code/reports/price-meta123-d2-20261117/timing.json'
+
+----------------------------------------------------------------------
+Ran 130 tests in 91.166s
+
+FAILED (errors=2)

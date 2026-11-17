@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "protocol": 125,
+  "status": "running",
+  "pid": 87746,
+  "binding_sha256": "220400d2d1a8797d3124e084caba4f1d7e1baac5ea953274884899c3206f0e17",
+  "continuation_sha256": "8277b6a8e5eac34b68c0189841c570a079b29f71234c130105bb9ff0706da473",
+  "started_at": "2026-11-17T09:01:50.363350+00:00",
+  "actions": [
+    "train:E:42",
+    "train:M:42",
+    "train:E:43",
+    "train:M:43",
+    "train:E:44",
+    "train:M:44",
+    "seal-training"
+  ],
+  "completed": [],
+  "current_action": null,
+  "authorization_sha256": {
+    "train:E:42": "f2bc1ed72a72c42fe835e4ea02e34e57750d01f076d687318e24d1276bbf597e",
+    "train:M:42": "9ca90123cc56c978c50ff02775c8c1c18bbef743021727015b8711429e920256",
+    "train:E:43": "995d86bedead1111a98103ee385d937a9a456eed1f11d2580a561cee5d2c4ca3",
+    "train:M:43": "608add365f4f93a47a5136fbd19cf038751bab95d37edc7ecf46aa0b665a54ae",
+    "train:E:44": "6e90c255e6228aebfe31f27f81e119cb00fa685e3928c52430115af673eb6fa8",
+    "train:M:44": "d7ab96a3c5db9a64e7f95c3696e5ac8b605e48d798d2645d96cc83fd11b344bb",
+    "seal-training": "0bdda02505d6f7ebb88a823569d63a1549dd110dc23f883561577317f2855c26"
+  },
+  "target_databases_read": []
+}

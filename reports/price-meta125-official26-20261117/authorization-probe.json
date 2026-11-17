@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "protocol": 125,
+  "authorized": true,
+  "root": "/gly/weilin/price-meta-125-official26-20261117",
+  "binding_sha256": "220400d2d1a8797d3124e084caba4f1d7e1baac5ea953274884899c3206f0e17",
+  "actions": [
+    "probe"
+  ],
+  "granted_by": "user",
+  "granted_at": "2026-11-17T08:52:13.171198+00:00",
+  "user_instruction": "不要三源验证了，改成和官方一样的",
+  "prior_authorization": "那就先修复显存计量，预算可以适当放宽，继续推进吧",
+  "scope": "One official26 cost probe, each E/M 2 closure plus50 timed updates, official P, fixed alpha1e-6. Training databases only; no source calibration/target reads. Runtime deducts preparation from combined1800s/512MiB.",
+  "attempts": 1,
+  "cuda_device": 2,
+  "cuda_uuid": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7",
+  "budget": {
+    "max_wall_seconds": 1800,
+    "max_rss_bytes": 25769803776,
+    "max_vram_bytes": 12884901888,
+    "max_output_bytes": 536870912,
+    "poll_seconds": 1
+  }
+}

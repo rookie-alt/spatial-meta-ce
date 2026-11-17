@@ -931,7 +931,9 @@ def _terminate_owned_group(
             cleanup["verified"] = not residual
 
 
-def _read_completion(output: Path) -> tuple[dict[str, Any] | None, str, str]:
+def _read_completion(
+    output: Path, completion_protocol: int = COMPLETION_PROTOCOL
+) -> tuple[dict[str, Any] | None, str, str]:
     """Read the worker completion marker; missing or partial markers fail."""
     path = output / "completion.json"
     if path.is_symlink():
@@ -957,7 +959,7 @@ def _read_completion(output: Path) -> tuple[dict[str, Any] | None, str, str]:
             "incomplete_completion",
             f"completion status is {value.get('status')!r}",
         )
-    if value.get("protocol") != COMPLETION_PROTOCOL:
+    if value.get("protocol") != completion_protocol:
         return (
             None,
             "incomplete_completion",
@@ -1043,6 +1045,7 @@ def supervise(
     env: dict[str, str] | None = None,
     root: Path | None = None,
     gpu_uuid: str | None = None,
+    completion_protocol: int = COMPLETION_PROTOCOL,
 ) -> dict[str, Any]:
     """Run one worker under a hard resource budget and return the evidence record.
 
@@ -1058,6 +1061,8 @@ def supervise(
     """
     if not _is_linux():
         raise UnsupportedPlatformError("resource supervision requires Linux /proc")
+    if type(completion_protocol) is not int or completion_protocol not in (123, 125):
+        raise ValueError("Unsupported worker completion protocol")
     limits = _validate_budget(budget)
     argv = _validate_command(command)
     child_env = _build_child_env(env)
@@ -1326,7 +1331,9 @@ def supervise(
                     f"worker exited with code {record['returncode']}",
                 )
             if record["failure"] is None:
-                completion, failure_type, message = _read_completion(output)
+                completion, failure_type, message = _read_completion(
+                    output, completion_protocol
+                )
                 if completion is None:
                     _fail("completion", failure_type, message)
                 else:

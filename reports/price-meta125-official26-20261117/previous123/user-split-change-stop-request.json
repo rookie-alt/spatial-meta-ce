@@ -1,0 +1,55 @@
+{
+  "at": "2026-11-17T08:15:46.587649+00:00",
+  "reason": "user_replaced_23_3_4_with_official_26_4_split",
+  "user_instruction": "不要三源验证了，改成和官方一样的",
+  "binding_sha256": "5d81667b8ad958c92f15fab4b28dbd5c421e7fe8fe02796846298f200d8934f3",
+  "continuation_pid": 7151,
+  "continuation_start_time": "120556879",
+  "current_action": "train:M:42",
+  "worker": {
+    "pid": 62831,
+    "start_time": "120696088",
+    "pgid": 62831
+  },
+  "previous_status": {
+    "schema": 1,
+    "status": "running",
+    "binding_sha256": "5d81667b8ad958c92f15fab4b28dbd5c421e7fe8fe02796846298f200d8934f3",
+    "continuation_sha256": "0f6e1c521a72c9da383f09f52bac44b96fcef3e4bcdb70a62262d55a8a513d14",
+    "pid": 7151,
+    "started_at": "2026-11-17T07:18:26.623406+00:00",
+    "actions": [
+      "train:E:42",
+      "train:M:42",
+      "train:E:43",
+      "train:M:43",
+      "train:E:44",
+      "train:M:44",
+      "seal-training",
+      "calibrate-e",
+      "report"
+    ],
+    "authorization_sha256": {
+      "train:E:42": "f60816e89612213092a1cb9a1eabf46fdc9192c1cb56895153824428990f2774",
+      "train:M:42": "e7eb77364e0533d681e8a5878e5d59b869747deb3a096a8ed73476eb94d765fe",
+      "train:E:43": "1aa9ea17b3b8b14e6f05acaa0ac604ebeb7960e800e2973d0fae3c757268e026",
+      "train:M:43": "198354d29d03a0112c26c06e8fafcd68130249bc6ac0184b95fd20161f488460",
+      "train:E:44": "62b99e35212c6cf1b731264423621ac5c714b51e150b4732ccf486f6350aa238",
+      "train:M:44": "2db095474bef5b860ce88209ae728517130ea028a6e00edd9167aa1735524aa1",
+      "seal-training": "cf5a3e39b0ae27268a4517b5534477a5d68fe6e55c02c11f5839d0ab8bf88a8e",
+      "calibrate-e": "d5feebb16b31fbe3c20e5ee81c539527b592381b67246ce4534c1e1d9e5b53d0",
+      "report": "3c3824bef14274a38fa10d5a767b5fa43423d38af707d64855990818f98b3a70"
+    },
+    "completed": [
+      {
+        "action": "train:E:42",
+        "completion_sha256": "0b6f3bfa69d35ae77aa4e0d3313db0046a8c836aff0691bab57f0d475ddbe910",
+        "elapsed_seconds": 1390.9341448000632
+      }
+    ],
+    "current_action": "train:M:42",
+    "target_databases_read": []
+  },
+  "signal": "SIGTERM to verified owning supervisor only",
+  "target_databases_read": []
+}

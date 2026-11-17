@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-17T09:03:00.234409+00:00",
+  "pid": 87746,
+  "process_identity_alive": true,
+  "status": "running",
+  "current_action": "train:E:42",
+  "completed": [],
+  "training_progress": {
+    "stage": "training",
+    "arm": "E",
+    "stream": 42,
+    "updates": 51,
+    "elapsed_seconds": 36.9556836001575
+  },
+  "failure_exists": false,
+  "target_databases_read": []
+}
