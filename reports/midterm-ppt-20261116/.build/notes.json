@@ -1,0 +1,93 @@
+[
+  {
+    "page": 1,
+    "spoken": "各位老师好，我的论文题目是《面向数据漂移的自适应基数估计方法研究与实现》。本次汇报分为研究背景、当前进度和未来规划三个部分。现阶段的实验重点是空间漂移条件下的跨数据库少样本估计。",
+    "sources": [
+      "/Users/williamlin/Downloads/东北大学学位论文活实践成果中期考核报告/东北大学硕士学位论文或实践成果中期考核报告.doc"
+    ]
+  },
+  {
+    "page": 2,
+    "spoken": "基数估计是查询优化的基础环节。优化器根据中间结果规模选择连接顺序和算法，估计偏差可能导致不合适的计划。我的研究关注两类变化：空间漂移是数据库之间的结构与分布差异，时间漂移是同一数据库在运行过程中的持续变化。",
+    "sources": [
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/memory/spatial-meta-ce-project.md",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/docs/protocol.md",
+      "/Users/williamlin/Downloads/东北大学学位论文活实践成果中期考核报告/东北大学硕士学位论文或实践成果中期考核报告.doc"
+    ]
+  },
+  {
+    "page": 3,
+    "spoken": "第一个问题是如何把多个源数据库中学到的经验用于新数据库，并减少所需标注查询。第二个问题是如何利用数据库运行中不断积累的查询反馈。当前先完成跨数据库方法和实验基础，时间漂移校准作为后续研究。目标是改善精度，同时控制标注与适应开销。",
+    "sources": [
+      "/Users/williamlin/Downloads/东北大学学位论文活实践成果中期考核报告/东北大学硕士学位论文或实践成果中期考核报告.doc",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/memory/spatial-meta-ce-project.md"
+    ]
+  },
+  {
+    "page": 4,
+    "spoken": "目前已经建立从数据处理、模型训练到独立评估的完整流程。模型方面实现了普通监督训练与FOMAML，评估方面已有四个目标库的零样本结果和三个目标库的少样本结果。现阶段正在完善精度与适应效果，时间漂移部分仍停留在方案设计，尚无实现与精度结果。",
+    "sources": [
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/实验文档/14-离线实验统一对照与论文结论.md",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/实验文档/108-四目标库K0三seed补测.md",
+      "/Users/williamlin/Downloads/东北大学学位论文活实践成果中期考核报告/东北大学硕士学位论文或实践成果中期考核报告.doc"
+    ]
+  },
+  {
+    "page": 5,
+    "spoken": "模型将查询分为连接列直方图、fanout、表级统计和过滤条件四组特征，各组使用独立的MLP。sum架构包含均值、最大值和求和三种掩码池化，再输出对PG对数估计的修正量。该版本参数量为132,545，PRICE为10,709,330，比例约1/80.8，这个比较只描述参数数量。FOMAML在每个源数据库任务的支持集上做梯度更新，用适应后的查询集误差更新共享初始化；ERM使用同结构、但不做内循环。评估适应的每个episode独立从初始化开始。",
+    "sources": [
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/spatial_meta_ce/model.py",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/spatial_meta_ce/meta.py",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/实验文档/14-离线实验统一对照与论文结论.md"
+    ]
+  },
+  {
+    "page": 6,
+    "spoken": "实验使用23个源训练库、3个源验证库和4个目标测试库。源验证库用于配置与策略选择，目标库只用于冻结方案后的评估；目标适应允许读取规定支持集标签，但目标测试结果不用于选型。K表示带标签支持查询数，K=0是零样本。目前四库零样本评估已经完成，少样本覆盖STATS、Genome和ErgastF1，IMDB完整少样本结果仍缺失。主指标为唯一查询的Q95，即Q-error分布的95分位。PRICE官方预训练权重使用26个源库，是补充参考，不能解释为完全匹配训练条件的因果对照。",
+    "sources": [
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/configs/data.json",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/docs/protocol.md",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/实验文档/14-离线实验统一对照与论文结论.md"
+    ]
+  },
+  {
+    "page": 7,
+    "spoken": "这张表展示固定历史轻量参考模型ERM-sum的零样本结果，不代表最新PRICE式编码器，也不证明元学习收益。数值从p2-2-target-3seed-20261023/summary.json逐库读取。相较PG，IMDB、Genome和ErgastF1三个库的Q95更低，STATS更高。与PRICE参考相比，四库仍存在尾部精度差距。右侧图为逐库Q95除以该库PG值，1表示与PG相同，越低越好。表中均值和标准差来自三次训练，尤其Genome的离散程度较大，不能只取最优结果。PRICE仅有一个官方预训练checkpoint，训练数据与预算不同，属于补充参考。",
+    "sources": [
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/实验文档/results/p2-2-target-3seed-20261023/summary.json",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/实验文档/108-四目标库K0三seed补测.md"
+    ]
+  },
+  {
+    "page": 8,
+    "spoken": "当前已形成可用于比较不同方案的模型和实验基础。既有少样本对照表明，Genome在适应后尾部误差下降，但STATS存在负迁移，这一现象的原因尚未被独立分离。FOMAML相对ERM的收益依赖架构和支持样本预算，不能写成普遍有效或无效。最新A0/A1源侧同条件比较是单次训练的描述性结果，尚无正式阶段判定，完整矩阵未完成。已有运行开销分析也提示需要区分模型前向、特征提取与数据库执行。",
+    "sources": [
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/实验文档/14-离线实验统一对照与论文结论.md",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/.claude/worktrees/122-p0-closure-20261111/reports/122-a0-control-20261115/README.md",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/实验文档/110-推理延迟与估计延迟实测.md"
+    ]
+  },
+  {
+    "page": 9,
+    "spoken": "第二部分是面向时间漂移的上下文学习在线校准，目前完成方案设计，约占该部分工作的30%。框架上，离线阶段用元学习在源库上得到通用初始化参数，对应空间漂移；在线阶段把近期查询及其真实基数作为上下文示例，与当前查询一并输入模型，由注意力机制感知当前分布并校正估计，在不更新参数的前提下适应时序漂移，两阶段共用同一套查询特征与评估指标。已确定的是上下文示例的输入形式，以及按时序截断与回放构造训练测试切分的仿真管道方案；上下文池构建、示例选取策略与注意力校准模块尚未实现，暂无代码与精度结果。已知边界有三条：示例选取策略与长度直接决定推理延迟，目前尚未量化；目前只有仿真切分的方案，缺少真实时序负载的验证；两部分共用一个模型时，上下文校准可能干扰元学习得到的初始化，耦合方式仍需实验确认。",
+    "sources": [
+      "/Users/williamlin/Downloads/东北大学学位论文活实践成果中期考核报告/东北大学硕士学位论文或实践成果中期考核报告.doc",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/docs/protocol.md"
+    ]
+  },
+  {
+    "page": 10,
+    "spoken": "后续沿两条路线推进。跨数据库方向继续围绕查询表示和适应机制开展源侧对照，所有方案与选择规则冻结后再进入目标评估。时间漂移方向从实际分布变化的场景和简单校准基线开始，不能仅把查询按时间排序就视为数据漂移。所有上下文反馈必须在预测时刻之前已获得。评价同时关注精度、反馈需求、适应开销，并单独检验数据库执行效果。时间漂移属于后续研究规划，当前尚无实现与效果结论。",
+    "sources": [
+      "/Users/williamlin/Downloads/东北大学学位论文活实践成果中期考核报告/东北大学硕士学位论文或实践成果中期考核报告.doc",
+      "/Users/williamlin/Downloads/13/spatial-meta-ce/docs/protocol.md"
+    ]
+  },
+  {
+    "page": 11,
+    "spoken": "后续按照跨库方法完善、时间漂移验证和论文整理三个阶段推进。时间安排是当前计划，将结合实验进展和导师意见调整。每阶段分别形成实验报告、结果图表或章节稿，最终完成学位论文及可复现实现。以上是我的中期汇报，请各位老师批评指正。",
+    "sources": [
+      "/Users/williamlin/Downloads/东北大学学位论文活实践成果中期考核报告/东北大学硕士学位论文或实践成果中期考核报告.doc"
+    ]
+  }
+]

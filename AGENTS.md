@@ -62,7 +62,7 @@
 - 修改应最小化，与既有风格一致；不借审计或记忆维护批量重构邻近代码。
 - 较大改动在实现及本轮验证完成后、最终交付或提交/推送前，必须启动至少 1 个未参与本轮实现的独立只读子 agent 审查实际 diff、相关上下文和验证证据；触发条件、发现闭环及不可用时的处理见[完成后独立审查门槛](memory/spatial-meta-ce-agent-delegation.md#完成后独立审查门槛)。主代理自查或测试通过不能替代独立审查。
 - 提交信息用 `feat:` / `fix:` / `docs:` / `test:` / `chore:`，正文说明实际验证方式。
-- 在主执行任务的授权范围内及时提交并同步 Gitee；只纳入本任务的修改。仅完成本地文件编写，不等于已提交或已推送。
+- 在主执行任务的授权范围内及时提交并同步远端；只纳入本任务的修改。仅完成本地文件编写，不等于已提交或已推送。`origin` 是双推远端：fetch 只走 Gitee（`gitee.com/william-forest/spatial-meta-ce`），`git push origin <branch>` 会同时推到 Gitee 和 GitHub（`github.com/rookie-alt/spatial-meta-ce`，私有）。`git push --dry-run origin <branch>` 可先验证两条 pushurl 都通。
 - 会话收尾更新进度与下一步；若该文件正被另一窗口编辑，先协调，不覆盖其未完成内容。
 - 不把密钥、密码、数据库凭据、访问 token 或含凭据的命令复制到记忆、文档、日志或提交中。
 
