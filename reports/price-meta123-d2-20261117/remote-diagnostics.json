@@ -1,0 +1,33 @@
+{
+  "purpose": "D2-postrun-diagnostics-no-new-GPU-work",
+  "observed_at": "2026-11-17T03:12:01.960990+00:00",
+  "binding_sha256": "c990d72a98229fcac5c4f98fc9c2f54036c099aa9a6ae8201dc95618abaf5ed1",
+  "sealed_training_plan_hashes_match": {
+    "42": true,
+    "43": true,
+    "44": true
+  },
+  "nvml_processes": [
+    {
+      "gpu_uuid": "GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed",
+      "pid": 82894,
+      "used_mib": 732,
+      "pid_visible_in_proc": false
+    },
+    {
+      "gpu_uuid": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7",
+      "pid": 95566,
+      "used_mib": 1874,
+      "pid_visible_in_proc": false
+    },
+    {
+      "gpu_uuid": "GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f",
+      "pid": 23013,
+      "used_mib": 1874,
+      "pid_visible_in_proc": false
+    }
+  ],
+  "nspid_line": [],
+  "interpretation": "Other active NVML PIDs are checked after the probe; this is evidence of a PID-visibility mismatch, not a proven unique cause of the completed probe VRAM discrepancy.",
+  "target_databases_read": []
+}

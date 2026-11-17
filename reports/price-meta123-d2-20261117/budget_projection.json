@@ -1,0 +1,16 @@
+{
+  "projected_seconds": 62414.64740284812,
+  "projected_output_bytes": 2141426750.781349,
+  "max_prediction_rows": 13558768,
+  "checks": {
+    "total_time": false,
+    "e_run_time": true,
+    "m_run_time": false,
+    "cell_time": true,
+    "rss": true,
+    "vram": true,
+    "output": true
+  },
+  "feasible": false,
+  "purpose": "cost_projection_only_not_execution_authorization"
+}

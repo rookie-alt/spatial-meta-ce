@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "protocol": 123,
+  "authorized": true,
+  "root": "/gly/weilin/price-meta-123-impl-20261116",
+  "binding_sha256": "c990d72a98229fcac5c4f98fc9c2f54036c099aa9a6ae8201dc95618abaf5ed1",
+  "actions": ["prepare-training"],
+  "granted_by": "user",
+  "granted_at": "2026-11-17T02:51:51+00:00",
+  "user_instruction": "那就开始 D2 单卡成本探针吧，找一张空闲卡执行。",
+  "scope": "Generate the source-training-only frozen task plans required by D2; no model optimization, source validation, calibration, target access or subsequent research stages.",
+  "attempts": 1,
+  "budget": {
+    "max_wall_seconds": 600,
+    "max_rss_bytes": 25769803776,
+    "max_vram_bytes": 0,
+    "max_output_bytes": 536870912,
+    "poll_seconds": 1
+  },
+  "d2_combined_wall_seconds_limit": 1800,
+  "probe_budget_rule": "Subtract preparation elapsed wall time from 1800 seconds before authorizing the GPU probe. Never increase the combined limit or retry automatically."
+}

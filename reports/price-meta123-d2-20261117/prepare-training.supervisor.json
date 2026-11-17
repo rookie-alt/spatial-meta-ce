@@ -1,0 +1,70 @@
+{
+  "budget": {
+    "max_output_bytes": 536870912.0,
+    "max_rss_bytes": 25769803776.0,
+    "max_vram_bytes": 0.0,
+    "max_wall_seconds": 600.0,
+    "poll_seconds": 1.0
+  },
+  "cleanup": {
+    "attempted": false,
+    "error": null,
+    "residual_pids": [],
+    "signals": [],
+    "verified": false
+  },
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/price-meta-123-impl-20261116/code/scripts/run_price_meta123.py",
+    "worker",
+    "--binding",
+    "/gly/weilin/price-meta-123-impl-20261116/inputs/binding.json",
+    "--authorization",
+    "/gly/weilin/price-meta-123-impl-20261116/inputs/d2-authorization-prepare-20261117.json",
+    "--action",
+    "prepare-training",
+    "--output",
+    "/gly/weilin/price-meta-123-impl-20261116/outputs/prepare-training",
+    "--device",
+    "cpu"
+  ],
+  "completion": {
+    "action": "prepare-training",
+    "binding_sha256": "c990d72a98229fcac5c4f98fc9c2f54036c099aa9a6ae8201dc95618abaf5ed1",
+    "plans": {
+      "42": {
+        "file": "training-42.json",
+        "sha256": "d2c027dfa551019ff69bce8bbd4c529e2c18d9b8175b4217c769789706c41a25"
+      },
+      "43": {
+        "file": "training-43.json",
+        "sha256": "a41f48df0db6c2423cfe1ccc3bff633a2e45bafac0330fc59a2ae0de2052bebf"
+      },
+      "44": {
+        "file": "training-44.json",
+        "sha256": "52641b94b1347887af91224fe88c7fcf82f9df9e7e7a6c8142255fc54c836fd7"
+      }
+    },
+    "protocol": 123,
+    "schema": 1,
+    "status": "completed",
+    "target_databases_read": []
+  },
+  "cwd": "/gly/weilin/price-meta-123-impl-20261116/code",
+  "elapsed_seconds": 99.95109669305384,
+  "failure": null,
+  "output": "/gly/weilin/price-meta-123-impl-20261116/outputs/prepare-training",
+  "output_bytes": 270438492,
+  "peak_rss_bytes": 2314911744,
+  "peak_vram_bytes": 0,
+  "pgid": 12349,
+  "pid": 12349,
+  "returncode": 0,
+  "samples": 100,
+  "schema": 1,
+  "status": "completed",
+  "supervisor_json": "/gly/weilin/price-meta-123-impl-20261116/outputs/prepare-training.supervisor.json",
+  "supervisor_log": "/gly/weilin/price-meta-123-impl-20261116/outputs/prepare-training.supervisor.log",
+  "supervisor_pid": 12240
+}

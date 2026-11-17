@@ -1,0 +1,59 @@
+{
+  "purpose": "D2-postrun-readonly-verification",
+  "checkpoint_steps": {
+    "E": [
+      52
+    ],
+    "M": [
+      52
+    ]
+  },
+  "checkpoint_finite": {
+    "E": true,
+    "M": true
+  },
+  "checkpoint_sha256": {
+    "E": "72329fa2290e57b6e490e89e222b821ada1ec4c89a0eec7bc5fbcd68a520ba11",
+    "M": "188cdc08f90a6b66f917aaecf8491ef02d5244843d6a0460de5cd25dd767362f"
+  },
+  "csv_rows": {
+    "calibration": 2000,
+    "report": 49900
+  },
+  "probe_files": {
+    "timing.json": {
+      "bytes": 364,
+      "sha256": "e99a84901c5c2b12325d64c66d9afa7e0aaa6478b098110479075db526b5aa2c"
+    },
+    "budget_projection.json": {
+      "bytes": 383,
+      "sha256": "9cef9d8777e3a4b3b9997d54dceb2f932e43d17e8505bdd18bcfb04f366a7884"
+    },
+    "progress.json": {
+      "bytes": 58,
+      "sha256": "719cf3687e894caef58999a0052f1be1aceafbfd4af896ab13c21954a5b0fee1"
+    },
+    "probe-calibration.csv.gz": {
+      "bytes": 108950,
+      "sha256": "7293fdb56c16d47108972c2b0ee936df2f9777952a83d7eea32168be94c65317"
+    },
+    "probe-M.pt": {
+      "bytes": 129407150,
+      "sha256": "188cdc08f90a6b66f917aaecf8491ef02d5244843d6a0460de5cd25dd767362f"
+    },
+    "probe-E.pt": {
+      "bytes": 129407150,
+      "sha256": "72329fa2290e57b6e490e89e222b821ada1ec4c89a0eec7bc5fbcd68a520ba11"
+    },
+    "completion.json": {
+      "bytes": 755,
+      "sha256": "cad50c9b4ca684fe549f441a115b8445ff32e77707a64aad810ed693da933d26"
+    },
+    "probe-report.csv.gz": {
+      "bytes": 2711339,
+      "sha256": "db21ab39b932c465281daeea9549173e9be2686943971f0fff050c9bd505d463"
+    }
+  },
+  "gpu6_after": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0, 1, 0",
+  "target_databases_read": []
+}
