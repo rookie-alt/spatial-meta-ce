@@ -1,0 +1,22 @@
+{
+  "projected_seconds": 75551.42999605728,
+  "projected_output_bytes": 2141426750.781349,
+  "max_prediction_rows": 13558768,
+  "checks": {
+    "total_time": true,
+    "e_run_time": true,
+    "m_run_time": true,
+    "cell_time": true,
+    "rss": true,
+    "vram": true,
+    "output": true
+  },
+  "feasible": true,
+  "limits": {
+    "total_seconds": 86400,
+    "e_run_seconds": 7200,
+    "m_run_seconds": 21600
+  },
+  "resource_revision": "price_meta123_resource_revision_1",
+  "purpose": "cost_projection_only_not_execution_authorization"
+}

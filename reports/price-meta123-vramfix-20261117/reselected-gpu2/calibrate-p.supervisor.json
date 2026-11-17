@@ -1,0 +1,68 @@
+{
+  "budget": {
+    "max_output_bytes": 536870912.0,
+    "max_rss_bytes": 25769803776.0,
+    "max_vram_bytes": 12884901888.0,
+    "max_wall_seconds": 3600.0,
+    "poll_seconds": 1.0
+  },
+  "cleanup": {
+    "attempted": false,
+    "error": null,
+    "residual_pids": [],
+    "signals": [],
+    "verified": false
+  },
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/code/scripts/run_price_meta123.py",
+    "worker",
+    "--binding",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/inputs/binding.json",
+    "--authorization",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/inputs/authorization-calibrate-p.json",
+    "--action",
+    "calibrate-p",
+    "--output",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/calibrate-p",
+    "--device",
+    "cuda"
+  ],
+  "completion": {
+    "action": "calibrate-p",
+    "binding_sha256": "5d81667b8ad958c92f15fab4b28dbd5c421e7fe8fe02796846298f200d8934f3",
+    "calibration_sha256": "99d2cc293d5f648e037561f7bf969758d7de43a3a35d3e3eee0a7b775f0468ac",
+    "opened_databases": [
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "protocol": 123,
+    "schema": 1,
+    "status": "completed",
+    "target_databases_read": [],
+    "units": 48,
+    "units_sha256": "7ef7b5e81ebb0f22cf52ccf844f72eb28f770de36a825cecade2f33beb032b2e"
+  },
+  "cwd": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/code",
+  "elapsed_seconds": 121.24642952508293,
+  "failure": null,
+  "gpu_index": 2,
+  "gpu_uuid": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7",
+  "output": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/calibrate-p",
+  "output_bytes": 5456392,
+  "peak_rss_bytes": 1135792128,
+  "peak_vram_bytes": 740294656,
+  "pgid": 50032,
+  "pid": 50032,
+  "returncode": 0,
+  "samples": 113,
+  "schema": 1,
+  "status": "completed",
+  "supervisor_json": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/calibrate-p.supervisor.json",
+  "supervisor_log": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/calibrate-p.supervisor.log",
+  "supervisor_pid": 49849,
+  "vram_accounting": "device_total",
+  "vram_baseline_bytes": 1048576
+}

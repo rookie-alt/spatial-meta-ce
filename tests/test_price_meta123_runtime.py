@@ -116,6 +116,51 @@ class RuntimeContractTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "limit|budget"):
                 runtime.validate_authorization(auth, binding, "train:E:42")
 
+    def test_revised_budget_covers_d2_with_six_hour_meta_run_cap(self):
+        runtime = self.runtime()
+        timing = json.loads(
+            (
+                Path(__file__).resolve().parents[1]
+                / "reports/price-meta123-d2-20261117/timing.json"
+            ).read_text()
+        )
+        budget = runtime.project_budget(timing)
+        self.assertTrue(budget["checks"]["total_time"])
+        self.assertTrue(budget["checks"]["m_run_time"])
+        self.assertEqual(budget["limits"]["total_seconds"], 24 * 3600)
+        self.assertEqual(budget["limits"]["m_run_seconds"], 6 * 3600)
+
+    def test_cost_gate_refuses_zero_external_vram_even_when_worker_nonzero(self):
+        runtime = self.runtime()
+        timing = json.loads(
+            (
+                Path(__file__).resolve().parents[1]
+                / "reports/price-meta123-d2-20261117/timing.json"
+            ).read_text()
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            probe = root / "probe"
+            probe.mkdir()
+            runtime.write_json(probe / "timing.json", timing)
+            record = {"timing_sha256": runtime.file_sha(probe / "timing.json")}
+            with (
+                mock.patch.object(runtime, "_completed", return_value=(probe, record)),
+                mock.patch.object(
+                    runtime,
+                    "read_json",
+                    side_effect=lambda p: timing
+                    if Path(p).name == "timing.json"
+                    else {
+                        "status": "completed",
+                        "vram_accounting": "device_total",
+                        "peak_vram_bytes": 0,
+                    },
+                ),
+            ):
+                with self.assertRaisesRegex(ValueError, "VRAM|显存|external"):
+                    runtime._cost_gate({}, "prepare-source")
+
     def test_csv_unit_calls_independent_verifier_and_keeps_population(self):
         runtime = self.runtime()
         import torch

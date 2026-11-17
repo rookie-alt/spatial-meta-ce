@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "protocol": 123,
+  "authorized": true,
+  "root": "/gly/weilin/price-meta-123-vramfix-reselect-20261117",
+  "binding_sha256": "5d81667b8ad958c92f15fab4b28dbd5c421e7fe8fe02796846298f200d8934f3",
+  "actions": [
+    "probe"
+  ],
+  "granted_by": "user",
+  "granted_at": "2026-11-17T06:57:41.025051+00:00",
+  "user_instruction": "那就先修复显存计量，预算可以适当放宽，继续推进吧",
+  "scope": "One repaired D2 probe, E and M each 2 closure updates plus 50 timed updates; training databases only. Probe weights are forbidden for research. No target database access.",
+  "attempts": 1,
+  "cuda_device": 2,
+  "cuda_uuid": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7",
+  "budget": {
+    "max_wall_seconds": 1729,
+    "max_rss_bytes": 25769803776,
+    "max_vram_bytes": 12884901888,
+    "max_output_bytes": 266400000,
+    "poll_seconds": 1
+  },
+  "combined_d2_limits": {
+    "wall_seconds": 1800,
+    "output_bytes": 536870912,
+    "preparation_elapsed_seconds": 70.84366262308322,
+    "preparation_output_bytes": 270438682
+  },
+  "preflight_history": {
+    "root": "/gly/weilin/price-meta-123-vramfix-20261117",
+    "type": "gpu_not_idle",
+    "worker_started": false,
+    "research_updates": 0
+  }
+}

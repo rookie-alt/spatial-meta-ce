@@ -1,0 +1,20 @@
+{
+  "status": "verified",
+  "binding_sha256": "5d81667b8ad958c92f15fab4b28dbd5c421e7fe8fe02796846298f200d8934f3",
+  "cells": 48,
+  "prediction_rows_verified": 96000,
+  "q50_q95_recomputed_cells": 48,
+  "selected_alpha": 1e-06,
+  "independent_J": {
+    "1e-07": 2.869820896963491,
+    "1e-06": 2.8656057708947476,
+    "1e-05": 123.14291849292225
+  },
+  "report_model_forward": false,
+  "source_databases": [
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "target_databases_read": []
+}

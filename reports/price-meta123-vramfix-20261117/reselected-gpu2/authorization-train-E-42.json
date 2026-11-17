@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "protocol": 123,
+  "authorized": true,
+  "root": "/gly/weilin/price-meta-123-vramfix-reselect-20261117",
+  "binding_sha256": "5d81667b8ad958c92f15fab4b28dbd5c421e7fe8fe02796846298f200d8934f3",
+  "actions": [
+    "train:E:42"
+  ],
+  "granted_by": "user",
+  "granted_at": "2026-11-17T07:16:48.961641+00:00",
+  "user_instruction": "那就先修复显存计量，预算可以适当放宽，继续推进吧",
+  "scope": "Frozen experiment 123 plus resource revision124, source-only continuation. E/M 3 paired streams x2000 updates; all six last sealed before E calibration144 and R report max276. No target access, retries, recipe changes or limit escalation. Runtime enforces cumulative24h/6GiB and per-cell120s.",
+  "attempts": 1,
+  "continuation_sha256": "0f6e1c521a72c9da383f09f52bac44b96fcef3e4bcdb70a62262d55a8a513d14",
+  "budget": {
+    "max_wall_seconds": 7200,
+    "max_rss_bytes": 25769803776,
+    "max_vram_bytes": 12884901888,
+    "max_output_bytes": 6442450944,
+    "poll_seconds": 1
+  },
+  "cuda_device": 2,
+  "cuda_uuid": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7"
+}

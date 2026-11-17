@@ -1,0 +1,62 @@
+{
+  "budget": {
+    "max_output_bytes": 536870912.0,
+    "max_rss_bytes": 25769803776.0,
+    "max_vram_bytes": 0.0,
+    "max_wall_seconds": 600.0,
+    "poll_seconds": 1.0
+  },
+  "cleanup": {
+    "attempted": false,
+    "error": null,
+    "residual_pids": [],
+    "signals": [],
+    "verified": false
+  },
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/code/scripts/run_price_meta123.py",
+    "worker",
+    "--binding",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/inputs/binding.json",
+    "--authorization",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/inputs/authorization-prepare-source.json",
+    "--action",
+    "prepare-source",
+    "--output",
+    "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/prepare-source",
+    "--device",
+    "cpu"
+  ],
+  "completion": {
+    "action": "prepare-source",
+    "binding_sha256": "5d81667b8ad958c92f15fab4b28dbd5c421e7fe8fe02796846298f200d8934f3",
+    "plan_file": "source-plan.json",
+    "plan_sha256": "9e1ac3c2280b278bd6830fa036bec39ebf837cdb3b0974d0a5a68e29de40f687",
+    "protocol": 123,
+    "schema": 1,
+    "status": "completed",
+    "target_databases_read": []
+  },
+  "cwd": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/code",
+  "elapsed_seconds": 11.130028703948483,
+  "failure": null,
+  "gpu_index": null,
+  "gpu_uuid": null,
+  "output": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/prepare-source",
+  "output_bytes": 19616589,
+  "peak_rss_bytes": 545247232,
+  "peak_vram_bytes": 0,
+  "pgid": 29633,
+  "pid": 29633,
+  "returncode": 0,
+  "samples": 12,
+  "schema": 1,
+  "status": "completed",
+  "supervisor_json": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/prepare-source.supervisor.json",
+  "supervisor_log": "/gly/weilin/price-meta-123-vramfix-reselect-20261117/outputs/prepare-source.supervisor.log",
+  "supervisor_pid": 29536,
+  "vram_accounting": "none",
+  "vram_baseline_bytes": 0
+}

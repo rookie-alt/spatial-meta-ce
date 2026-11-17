@@ -1,0 +1,12 @@
+{
+  "status": "launched",
+  "pid": 7151,
+  "start_time": "120556879",
+  "root": "/gly/weilin/price-meta-123-vramfix-reselect-20261117",
+  "binding_sha256": "5d81667b8ad958c92f15fab4b28dbd5c421e7fe8fe02796846298f200d8934f3",
+  "gpu_index": 2,
+  "gpu_uuid": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7",
+  "script_sha256": "0f6e1c521a72c9da383f09f52bac44b96fcef3e4bcdb70a62262d55a8a513d14",
+  "at": "2026-11-17T07:18:26.445669+00:00",
+  "target_databases_read": []
+}

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "protocol": 123,
+  "authorized": true,
+  "root": "/gly/weilin/price-meta-123-vramfix-reselect-20261117",
+  "binding_sha256": "5d81667b8ad958c92f15fab4b28dbd5c421e7fe8fe02796846298f200d8934f3",
+  "actions": [
+    "prepare-training"
+  ],
+  "granted_by": "user",
+  "granted_at": "2026-11-17T06:42:30Z",
+  "user_instruction": "那就先修复显存计量，预算可以适当放宽，继续推进吧",
+  "scope": "Generate the frozen 23-training-database plans in the new root; CPU only. This preparation and one repaired D2 probe jointly remain within 1800 seconds and 512 MiB. No target database access.",
+  "attempts": 1,
+  "budget": {
+    "max_wall_seconds": 600,
+    "max_rss_bytes": 25769803776,
+    "max_vram_bytes": 0,
+    "max_output_bytes": 536870912,
+    "poll_seconds": 1
+  },
+  "preflight_history": {
+    "root": "/gly/weilin/price-meta-123-vramfix-20261117",
+    "type": "gpu_not_idle",
+    "worker_started": false,
+    "research_updates": 0
+  }
+}

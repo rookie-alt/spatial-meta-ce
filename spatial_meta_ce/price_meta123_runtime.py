@@ -20,6 +20,12 @@ from pathlib import Path
 PROTOCOL_SHA = "9cc0a17cf5b6b97a4544965bbde5f45685a7e9f1dcdf2284b4303e548784d1fb"
 INITIAL_SHA = "dee83c462944db8c5901ac32da9c844c61df6175dcb04bc50923f96babff070f"
 PLAN_FILE = "实验文档/123-原版PRICE元学习增量实验方案.md"
+RESOURCE_FILE = "实验文档/124-原版PRICE显存监督与预算修订.md"
+RESOURCE_SHA = "92499705964f20e7ecada182cd21fb1efe82498cb59b0cb8727e947ce087994d"
+RESOURCE_REVISION = "price_meta123_resource_revision_1"
+TOTAL_SECONDS = 24 * 3600
+E_RUN_SECONDS = 2 * 3600
+M_RUN_SECONDS = 6 * 3600
 GIB = 1024**3
 MAX_PREDICTION_ROWS = 13_558_768
 SEEDS = (42, 43, 44)
@@ -111,7 +117,7 @@ def output_path(root, name):
 
 def code_closure(code_root):
     root = Path(code_root).resolve()
-    paths = [root / PLAN_FILE, root / "vendor/PROVENANCE.json"]
+    paths = [root / PLAN_FILE, root / RESOURCE_FILE, root / "vendor/PROVENANCE.json"]
     for directory in ("spatial_meta_ce", "vendor/price_baseline"):
         paths.extend(sorted((root / directory).rglob("*.py")))
     paths.append(root / "scripts/run_price_meta123.py")
@@ -133,6 +139,8 @@ def bind(root, data_config, checkpoint, code_root):
     closure = code_closure(code_root)
     if closure[PLAN_FILE] != PROTOCOL_SHA:
         raise ValueError("Reviewed protocol changed")
+    if closure[RESOURCE_FILE] != RESOURCE_SHA:
+        raise ValueError("Authorized resource revision changed")
     checkpoint = Path(checkpoint).resolve()
     if file_sha(checkpoint) != INITIAL_SHA:
         raise ValueError("Initial checkpoint differs from the frozen 23-db model")
@@ -149,6 +157,8 @@ def bind(root, data_config, checkpoint, code_root):
         "initial_checkpoint": str(checkpoint),
         "initial_sha256": INITIAL_SHA,
         "protocol_sha256": PROTOCOL_SHA,
+        "resource_revision": RESOURCE_REVISION,
+        "resource_revision_sha256": RESOURCE_SHA,
         "target_databases_read": [],
         "source_pretraining_initializations": 1,
     }
@@ -174,6 +184,11 @@ def load_binding(path):
         raise ValueError("Bound code closure changed")
     if value["protocol_sha256"] != PROTOCOL_SHA:
         raise ValueError("Protocol binding changed")
+    if (
+        value.get("resource_revision") != RESOURCE_REVISION
+        or value.get("resource_revision_sha256") != RESOURCE_SHA
+    ):
+        raise ValueError("Resource revision binding changed")
     if file_sha(value["data_config"]) != value["data_config_sha256"]:
         raise ValueError("Bound data configuration changed")
     if (
@@ -219,7 +234,11 @@ def validate_authorization(auth, binding, action):
     wall_limit = (
         1800
         if action in ("probe", "confirm-alpha")
-        else (7200 if action.startswith("train:") else 16 * 3600)
+        else (
+            M_RUN_SECONDS
+            if action.startswith("train:M:")
+            else (E_RUN_SECONDS if action.startswith("train:E:") else TOTAL_SECONDS)
+        )
     )
     if (
         not 0 < budget["max_wall_seconds"] <= wall_limit
@@ -273,9 +292,9 @@ def project_budget(timing):
     )
     output_bytes = MAX_PREDICTION_ROWS * timing["bytes_per_prediction"] + 512 * 1024**2
     checks = {
-        "total_time": seconds <= 16 * 3600,
-        "e_run_time": 1.3 * 2000 * timing["e_update_seconds"] <= 7200,
-        "m_run_time": 1.3 * 2000 * timing["m_update_seconds"] <= 7200,
+        "total_time": seconds <= TOTAL_SECONDS,
+        "e_run_time": 1.3 * 2000 * timing["e_update_seconds"] <= E_RUN_SECONDS,
+        "m_run_time": 1.3 * 2000 * timing["m_update_seconds"] <= M_RUN_SECONDS,
         "cell_time": max(
             timing["calibration_cell_seconds"], timing["report_cell_seconds"]
         )
@@ -291,6 +310,12 @@ def project_budget(timing):
         "max_prediction_rows": MAX_PREDICTION_ROWS,
         "checks": checks,
         "feasible": all(checks.values()),
+        "limits": {
+            "total_seconds": TOTAL_SECONDS,
+            "e_run_seconds": E_RUN_SECONDS,
+            "m_run_seconds": M_RUN_SECONDS,
+        },
+        "resource_revision": RESOURCE_REVISION,
         "purpose": "cost_projection_only_not_execution_authorization",
     }
 
@@ -329,7 +354,10 @@ def _torch_setup(device):
 
     torch.set_num_threads(1)
     if device == "cuda":
-        if not os.environ.get("CUDA_VISIBLE_DEVICES", "").isdigit():
+        selected = os.environ.get("CUDA_VISIBLE_DEVICES", "")
+        if not selected.isdigit() and not re.fullmatch(
+            r"GPU-[0-9a-fA-F-]{36}", selected
+        ):
             raise ValueError("Exactly one physical GPU must be selected")
         if not torch.cuda.is_available():
             raise ValueError("Authorized CUDA device unavailable")
@@ -397,6 +425,15 @@ def _cost_gate(binding, action):
     if file_sha(path / "timing.json") != record["timing_sha256"]:
         raise ValueError("Sealed cost timing changed")
     timing = read_json(path / "timing.json")
+    supervisor = read_json(path.with_name(path.name + ".supervisor.json"))
+    external_peak = supervisor.get("peak_vram_bytes", 0)
+    if (
+        supervisor.get("vram_accounting") != "device_total"
+        or supervisor.get("gpu_uuid") is None
+        or not 16 * 1024**2 < external_peak <= 12 * GIB
+        or external_peak <= supervisor.get("vram_baseline_bytes", external_peak)
+    ):
+        raise ValueError("Probe external VRAM measurement has not been certified")
     if not project_budget(timing)["feasible"]:
         raise ValueError("Measured full experiment cost exceeds the design budget")
     if action.startswith("train:") and _calibration(binding) != 1e-6:
@@ -439,7 +476,7 @@ def _experiment_usage(binding):
                 ):
                     raise ValueError("Invalid cumulative resource evidence")
                 total_seconds += elapsed
-    if total_seconds > 16 * 3600 or total_bytes > 6 * GIB:
+    if total_seconds > TOTAL_SECONDS or total_bytes > 6 * GIB:
         raise ValueError("Cumulative experiment budget exhausted")
     return total_seconds, total_bytes
 
@@ -1046,7 +1083,7 @@ def run_stage(binding_path, authorization_path, action, device):
     used_seconds, used_bytes = _experiment_usage(binding)
     if action not in ("probe", "prepare-training"):
         budget["max_wall_seconds"] = min(
-            budget["max_wall_seconds"], 16 * 3600 - used_seconds
+            budget["max_wall_seconds"], TOTAL_SECONDS - used_seconds
         )
         budget["max_output_bytes"] = min(
             budget["max_output_bytes"], 6 * GIB - used_bytes
@@ -1055,11 +1092,17 @@ def run_stage(binding_path, authorization_path, action, device):
         gpu = auth.get("cuda_device")
         if type(gpu) is not int or not 0 <= gpu <= 7:
             raise ValueError("CUDA execution requires one authorized GPU index")
+        gpu_uuid = auth.get("cuda_uuid")
+        if not isinstance(gpu_uuid, str) or not re.fullmatch(
+            r"GPU-[0-9a-fA-F-]{36}", gpu_uuid
+        ):
+            raise ValueError("CUDA execution requires its authorized physical GPU UUID")
         env = {"CUDA_VISIBLE_DEVICES": str(gpu)}
     elif device == "cpu":
         if budget["max_vram_bytes"] != 0:
             raise ValueError("CPU action must reserve zero GPU bytes")
         env = {"CUDA_VISIBLE_DEVICES": ""}
+        gpu_uuid = None
     else:
         raise ValueError("Unknown execution device")
     for name in (
@@ -1101,6 +1144,7 @@ def run_stage(binding_path, authorization_path, action, device):
             cwd=Path(binding["code_root"]),
             budget=budget,
             env=env,
+            gpu_uuid=gpu_uuid,
         )
         return result
 

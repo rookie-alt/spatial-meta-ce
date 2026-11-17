@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "protocol": 123,
+  "status": "completed",
+  "action": "prepare-training",
+  "binding_sha256": "48204dfc5f5911b611ae04a8d2c777baef0ec85d540d7d492fcfe7bee63123bb",
+  "target_databases_read": [],
+  "plans": {
+    "42": {
+      "file": "training-42.json",
+      "sha256": "d2c027dfa551019ff69bce8bbd4c529e2c18d9b8175b4217c769789706c41a25"
+    },
+    "43": {
+      "file": "training-43.json",
+      "sha256": "a41f48df0db6c2423cfe1ccc3bff633a2e45bafac0330fc59a2ae0de2052bebf"
+    },
+    "44": {
+      "file": "training-44.json",
+      "sha256": "52641b94b1347887af91224fe88c7fcf82f9df9e7e7a6c8142255fc54c836fd7"
+    }
+  }
+}

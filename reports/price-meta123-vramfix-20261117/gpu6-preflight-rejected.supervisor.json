@@ -1,0 +1,58 @@
+{
+  "budget": {
+    "max_output_bytes": 266400000.0,
+    "max_rss_bytes": 25769803776.0,
+    "max_vram_bytes": 12884901888.0,
+    "max_wall_seconds": 1678.0,
+    "poll_seconds": 1.0
+  },
+  "cleanup": {
+    "attempted": false,
+    "error": null,
+    "residual_pids": [],
+    "signals": [],
+    "verified": false
+  },
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/price-meta-123-vramfix-20261117/code/scripts/run_price_meta123.py",
+    "worker",
+    "--binding",
+    "/gly/weilin/price-meta-123-vramfix-20261117/inputs/binding.json",
+    "--authorization",
+    "/gly/weilin/price-meta-123-vramfix-20261117/inputs/authorization-probe.json",
+    "--action",
+    "probe",
+    "--output",
+    "/gly/weilin/price-meta-123-vramfix-20261117/outputs/probe",
+    "--device",
+    "cuda"
+  ],
+  "completion": null,
+  "cwd": "/gly/weilin/price-meta-123-vramfix-20261117/code",
+  "elapsed_seconds": 0.20301206992007792,
+  "failure": {
+    "message": "authorized GPU GPU-0050e82c-8c24-d85d-00d3-b73f12638df0 runs compute apps [11330]",
+    "stage": "preflight",
+    "traceback": "Traceback (most recent call last):\n  File \"/gly/weilin/price-meta-123-vramfix-20261117/code/spatial_meta_ce/price_meta123_supervisor.py\", line 1166, in supervise\n    vram_baseline_bytes = _assert_gpu_idle(authorized_uuid)\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/gly/weilin/price-meta-123-vramfix-20261117/code/spatial_meta_ce/price_meta123_supervisor.py\", line 545, in _assert_gpu_idle\n    raise GpuNotIdleError(\nspatial_meta_ce.price_meta123_supervisor.GpuNotIdleError: authorized GPU GPU-0050e82c-8c24-d85d-00d3-b73f12638df0 runs compute apps [11330]\n",
+    "type": "gpu_not_idle"
+  },
+  "gpu_index": 6,
+  "gpu_uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+  "output": "/gly/weilin/price-meta-123-vramfix-20261117/outputs/probe",
+  "output_bytes": 0,
+  "peak_rss_bytes": 0,
+  "peak_vram_bytes": 0,
+  "pgid": null,
+  "pid": null,
+  "returncode": null,
+  "samples": 0,
+  "schema": 1,
+  "status": "failed",
+  "supervisor_json": "/gly/weilin/price-meta-123-vramfix-20261117/outputs/probe.supervisor.json",
+  "supervisor_log": "/gly/weilin/price-meta-123-vramfix-20261117/outputs/probe.supervisor.log",
+  "supervisor_pid": 65323,
+  "vram_accounting": "device_total",
+  "vram_baseline_bytes": 0
+}

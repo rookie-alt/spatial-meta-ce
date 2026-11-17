@@ -1,0 +1,37 @@
+{
+  "arm": "P",
+  "lr": 1e-06,
+  "lr_boundary_selected": false,
+  "candidates": {
+    "1e-07": {
+      "status": "valid",
+      "J": 2.869820896963491,
+      "cbar": {
+        "0/chembl": 66.15178511228332,
+        "0/legalacts": 14.328101459425344,
+        "0/telstra": 5.785114013585942
+      }
+    },
+    "1e-06": {
+      "status": "valid",
+      "J": 2.8656057708947476,
+      "cbar": {
+        "0/chembl": 67.33232743220461,
+        "0/legalacts": 13.830054864764929,
+        "0/telstra": 5.814371691013493
+      }
+    },
+    "1e-05": {
+      "status": "valid",
+      "J": 123.14291849292225,
+      "cbar": {
+        "0/chembl": 3.157922975367508e+158,
+        "0/legalacts": 14.557616974739569,
+        "0/telstra": 6.003135406194684
+      }
+    }
+  },
+  "tie_tolerance": 1e-08,
+  "cells_expected": 48,
+  "cells_present": 48
+}

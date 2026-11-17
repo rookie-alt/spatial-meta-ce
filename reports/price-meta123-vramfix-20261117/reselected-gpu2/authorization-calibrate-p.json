@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "protocol": 123,
+  "authorized": true,
+  "root": "/gly/weilin/price-meta-123-vramfix-reselect-20261117",
+  "binding_sha256": "5d81667b8ad958c92f15fab4b28dbd5c421e7fe8fe02796846298f200d8934f3",
+  "actions": [
+    "calibrate-p"
+  ],
+  "granted_by": "user",
+  "granted_at": "2026-11-17T07:07:45.995576+00:00",
+  "user_instruction": "那就先修复显存计量，预算可以适当放宽，继续推进吧",
+  "scope": "P source calibration: exactly 48 S/C cells across chembl/legalacts/telstra, no model forward on report R, no target access. Native PRICE MSE, frozen LR grid.",
+  "attempts": 1,
+  "cuda_device": 2,
+  "cuda_uuid": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7",
+  "budget": {
+    "max_wall_seconds": 3600,
+    "max_rss_bytes": 25769803776,
+    "max_vram_bytes": 12884901888,
+    "max_output_bytes": 536870912,
+    "poll_seconds": 1
+  },
+  "preflight_history": {
+    "root": "/gly/weilin/price-meta-123-vramfix-20261117",
+    "type": "gpu_not_idle",
+    "worker_started": false,
+    "research_updates": 0
+  }
+}

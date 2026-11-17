@@ -14,6 +14,10 @@ from unittest import mock
 from spatial_meta_ce import price_meta123_supervisor as supervisor
 
 
+_GPU_UUID = "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0"
+_OTHER_GPU_UUID = "GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed"
+
+
 def _budget(**overrides):
     budget = {
         "max_wall_seconds": 30.0,
@@ -86,21 +90,127 @@ def _kill_quietly(pid):
 
 
 @contextlib.contextmanager
-def _mocked_platform(*, rows=None, vram_bytes=0, vram_error=None):
+def _mocked_platform(*, rows=None, nvidia=None):
     with mock.patch.object(supervisor, "_is_linux", return_value=True):
         with mock.patch.object(
             supervisor,
             "_read_proc_rows",
             side_effect=rows if rows is not None else _process_table,
         ):
-            with mock.patch.object(
-                supervisor,
-                "_query_vram_bytes",
-                side_effect=vram_error
-                if vram_error is not None
-                else (lambda pids: vram_bytes),
-            ):
+            if nvidia is None:
                 yield
+            else:
+                with mock.patch.object(
+                    supervisor,
+                    "_run_nvidia_smi",
+                    side_effect=nvidia,
+                    create=True,
+                ):
+                    yield
+
+
+def _argument_after(args, flag):
+    """Return the argument that follows a flag in an argv list."""
+    for index, item in enumerate(args):
+        if item == flag and index + 1 < len(args):
+            return args[index + 1]
+    return None
+
+
+class _FakeNvidiaSmi:
+    """Scripted nvidia-smi stand-in for the device-total accounting tests."""
+
+    def __init__(
+        self,
+        *,
+        devices=None,
+        compute=None,
+        indices=None,
+        error=None,
+        device_states=None,
+        compute_states=None,
+        fail_from_call=None,
+    ):
+        self.devices = dict(devices or {})
+        self.compute = dict(compute or {})
+        self.indices = list(indices or [])
+        self.error = error
+        self.device_states = {
+            key: list(value) for key, value in (device_states or {}).items()
+        }
+        self.compute_states = {
+            key: list(value) for key, value in (compute_states or {}).items()
+        }
+        self.fail_from_call = fail_from_call
+        self.calls = []
+
+    def _next_state(self, uuid):
+        states = self.device_states.get(uuid)
+        if states:
+            if len(states) > 1:
+                return states.pop(0)
+            return states[0]
+        return self.devices.get(uuid)
+
+    def _next_compute(self, uuid):
+        states = self.compute_states.get(uuid)
+        if states:
+            if len(states) > 1:
+                return states.pop(0)
+            return states[0]
+        return self.compute.get(uuid, [])
+
+    def __call__(self, args, **_kwargs):
+        self.calls.append(list(args))
+        if self.fail_from_call is not None and len(self.calls) >= self.fail_from_call:
+            raise supervisor.MonitoringError("nvidia-smi failed")
+        if self.error is not None:
+            raise self.error
+        joined = " ".join(args)
+        if "--query-compute-apps=pid,gpu_uuid" in joined:
+            rows = []
+            sources = dict(self.compute)
+            sources.update(self.compute_states)
+            for uuid, pids in sources.items():
+                if uuid in self.compute_states:
+                    pids = self._next_compute(uuid)
+                for pid in pids:
+                    rows.append(f"{pid}, {uuid}")
+            return "".join(f"{row}\n" for row in rows)
+        if "--query-gpu=index,uuid" in joined:
+            return "".join(f"{index}, {uuid}\n" for index, uuid in self.indices)
+        if "--query-gpu=uuid,memory.used,utilization.gpu" in joined:
+            uuid = _argument_after(args, "-i")
+            value = self._next_state(uuid)
+            if value is None:
+                return ""
+            if isinstance(value, str):
+                return value
+            used_mib, utilization = value
+            return f"{uuid}, {used_mib}, {utilization}\n"
+        raise AssertionError(f"unexpected nvidia-smi query: {joined}")
+
+
+def _idle_nvidia(*, busy_after=None, compute_after=None, **overrides):
+    """An nvidia-smi stand-in whose authorized device starts idle.
+
+    ``busy_after`` is the device reading that replaces the idle one once the
+    worker has started, which mirrors a real run: the card is empty before
+    the launch and carries the workload afterwards.  ``compute_after`` is the
+    compute-app list that appears after the idle preflight.
+    """
+    settings = {
+        "devices": {_GPU_UUID: (1, 0)},
+        "compute": {},
+        "indices": [(6, _GPU_UUID)],
+    }
+    settings.update(overrides)
+    nvidia = _FakeNvidiaSmi(**settings)
+    if busy_after is not None:
+        nvidia.device_states[_GPU_UUID] = [(1, 0), busy_after]
+    if compute_after is not None:
+        nvidia.compute_states[_GPU_UUID] = [[], list(compute_after)]
+    return nvidia
 
 
 def _worker_code(body):
@@ -249,12 +359,19 @@ class SupervisionTests(unittest.TestCase):
         self.root = Path(directory.name)
 
     def _run(self, argv, output, budget=None, **kwargs):
+        budget = budget if budget is not None else _budget()
+        env = kwargs.pop("env", None)
+        if budget["max_vram_bytes"] > 0:
+            kwargs.setdefault("nvidia", _idle_nvidia())
+            env = env if env is not None else {"CUDA_VISIBLE_DEVICES": "6"}
         with _mocked_platform(**kwargs):
             return supervisor.supervise(
                 argv,
                 output,
                 cwd=self.root,
-                budget=budget if budget is not None else _budget(),
+                budget=budget,
+                env=env,
+                gpu_uuid=_GPU_UUID if budget["max_vram_bytes"] > 0 else None,
             )
 
     def _completed_worker(self, output, extra=""):
@@ -360,7 +477,7 @@ class SupervisionTests(unittest.TestCase):
             [sys.executable, "-B", "-c", code, str(output)],
             output,
             budget=_budget(max_vram_bytes=1024),
-            vram_bytes=4096,
+            nvidia=_idle_nvidia(busy_after=(4096, 80)),
         )
         self.assertEqual(record["failure"]["type"], "vram_limit")
 
@@ -390,11 +507,15 @@ class SupervisionTests(unittest.TestCase):
     def test_vram_query_failure_is_not_treated_as_zero(self):
         output = self.root / "run"
         code = _worker_code("time.sleep(60)\n")
+
+        def _explode(*_args, **_kwargs):
+            raise supervisor.MonitoringError("nvidia-smi failed")
+
         record = self._run(
             [sys.executable, "-B", "-c", code, str(output)],
             output,
             budget=_budget(max_vram_bytes=1024**3),
-            vram_error=_raise_monitoring_error,
+            nvidia=_explode,
         )
         self.assertEqual(record["status"], "failed")
         self.assertEqual(record["failure"]["type"], "monitoring_error")
@@ -410,7 +531,6 @@ class SupervisionTests(unittest.TestCase):
             [sys.executable, "-B", "-c", code, str(output)],
             output,
             budget=_budget(max_vram_bytes=0),
-            vram_error=_explode,
         )
         self.assertEqual(record["status"], "completed")
         self.assertEqual(record["peak_vram_bytes"], 0)
@@ -595,6 +715,319 @@ class SupervisionTests(unittest.TestCase):
         # A descendant whose pid was recycled is ignored, never counted as owned.
         owned = supervisor._owned_pids(rows, 10, identity=identity)
         self.assertEqual(owned, {10, 11})
+
+
+class DeviceTotalVramTests(unittest.TestCase):
+    """The supervisor must measure the whole authorized card, not a PID set."""
+
+    def setUp(self):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        self.root = Path(directory.name)
+
+    def _completed_worker(self, output, hold=0.5):
+        """A worker that stays alive long enough to be sampled."""
+        code = _worker_code(
+            "time.sleep(%r)\n" % hold
+            + f"(out/'completion.json').write_text({_completion()!r})\n"
+        )
+        return [sys.executable, "-B", "-c", code, str(output)]
+
+    def _run(self, argv, output, *, nvidia, budget=None, env=None, gpu_uuid=_GPU_UUID):
+        def _no_pid_path(_pids):
+            raise AssertionError(
+                "the pid-based NVML path must not be used for device accounting"
+            )
+
+        with mock.patch.object(
+            supervisor, "_query_vram_bytes", side_effect=_no_pid_path
+        ):
+            with _mocked_platform(nvidia=nvidia):
+                return supervisor.supervise(
+                    argv,
+                    output,
+                    cwd=self.root,
+                    budget=budget if budget is not None else _budget(),
+                    env=env,
+                    gpu_uuid=gpu_uuid,
+                )
+
+    def test_gpu_budget_requires_an_explicit_gpu_uuid(self):
+        output = self.root / "run"
+        with _mocked_platform(nvidia=_idle_nvidia()):
+            with self.assertRaises(ValueError):
+                supervisor.supervise(
+                    self._completed_worker(output),
+                    output,
+                    cwd=self.root,
+                    budget=_budget(max_vram_bytes=1024**3),
+                    env={"CUDA_VISIBLE_DEVICES": "6"},
+                    gpu_uuid=None,
+                )
+
+    def test_gpu_uuid_must_match_the_selected_device(self):
+        """A UUID that is not the selected physical index must be refused."""
+        output = self.root / "run"
+        nvidia = _idle_nvidia(indices=[(6, _GPU_UUID)])
+        with _mocked_platform(nvidia=nvidia):
+            with self.assertRaises(ValueError):
+                supervisor.supervise(
+                    self._completed_worker(output),
+                    output,
+                    cwd=self.root,
+                    budget=_budget(max_vram_bytes=1024**3),
+                    env={"CUDA_VISIBLE_DEVICES": "6"},
+                    gpu_uuid=_OTHER_GPU_UUID,
+                )
+
+    def test_env_must_select_exactly_one_physical_index(self):
+        output = self.root / "run"
+        nvidia = _idle_nvidia(indices=[(6, _GPU_UUID)])
+        with _mocked_platform(nvidia=nvidia):
+            with self.assertRaises(ValueError):
+                supervisor.supervise(
+                    self._completed_worker(output),
+                    output,
+                    cwd=self.root,
+                    budget=_budget(max_vram_bytes=1024**3),
+                    env={"CUDA_VISIBLE_DEVICES": ""},
+                    gpu_uuid=_GPU_UUID,
+                )
+
+    def test_env_may_name_the_authorized_card_by_uuid(self):
+        """The caller may pin the card by UUID instead of by physical index."""
+        output = self.root / "run"
+        nvidia = _idle_nvidia(indices=[(6, _GPU_UUID)])
+        with _mocked_platform(nvidia=nvidia):
+            record = supervisor.supervise(
+                self._completed_worker(output),
+                output,
+                cwd=self.root,
+                budget=_budget(max_vram_bytes=4 * 1024**3),
+                env={"CUDA_VISIBLE_DEVICES": _GPU_UUID},
+                gpu_uuid=_GPU_UUID,
+            )
+        self.assertEqual(record["status"], "completed")
+        self.assertEqual(record["gpu_uuid"], _GPU_UUID)
+        self.assertEqual(record["gpu_index"], 6)
+
+    def test_worker_is_pinned_to_the_authorized_uuid(self):
+        """The child must see the authorized UUID, not a bare index."""
+        output = self.root / "run"
+        code = _worker_code(
+            "(out/'env.json').write_text(json.dumps(dict(os.environ)))\n"
+            "time.sleep(0.5)\n"
+            f"(out/'completion.json').write_text({_completion()!r})\n"
+        )
+        nvidia = _idle_nvidia(busy_after=(700, 30))
+        with mock.patch.object(
+            supervisor,
+            "_query_vram_bytes",
+            side_effect=AssertionError("the pid-based NVML path must not be used"),
+        ):
+            with _mocked_platform(nvidia=nvidia):
+                record = supervisor.supervise(
+                    [sys.executable, "-B", "-c", code, str(output)],
+                    output,
+                    cwd=self.root,
+                    budget=_budget(max_vram_bytes=4 * 1024**3),
+                    env={"CUDA_VISIBLE_DEVICES": "6"},
+                    gpu_uuid=_GPU_UUID,
+                )
+        self.assertEqual(record["status"], "completed")
+        environ = json.loads((output / "env.json").read_text(encoding="utf-8"))
+        self.assertEqual(environ["CUDA_VISIBLE_DEVICES"], _GPU_UUID)
+
+    def test_env_uuid_that_is_not_authorized_is_refused(self):
+        output = self.root / "run"
+        nvidia = _idle_nvidia(indices=[(6, _GPU_UUID)])
+        with _mocked_platform(nvidia=nvidia):
+            with self.assertRaises(ValueError):
+                supervisor.supervise(
+                    self._completed_worker(output),
+                    output,
+                    cwd=self.root,
+                    budget=_budget(max_vram_bytes=4 * 1024**3),
+                    env={"CUDA_VISIBLE_DEVICES": _OTHER_GPU_UUID},
+                    gpu_uuid=_GPU_UUID,
+                )
+
+    def test_busy_card_is_refused_before_the_worker_starts(self):
+        """A card with compute apps or memory in use must not host a run."""
+        output = self.root / "run"
+        busy = _idle_nvidia(
+            devices={_GPU_UUID: (4096, 55)},
+            compute={_GPU_UUID: [4242]},
+        )
+        with _mocked_platform(nvidia=busy):
+            record = supervisor.supervise(
+                self._completed_worker(output),
+                output,
+                cwd=self.root,
+                budget=_budget(max_vram_bytes=1024**3),
+                env={"CUDA_VISIBLE_DEVICES": "6"},
+                gpu_uuid=_GPU_UUID,
+            )
+        self.assertEqual(record["status"], "failed")
+        self.assertEqual(record["failure"]["type"], "gpu_not_idle")
+        self.assertIsNone(record["pid"])
+        self.assertFalse(output.exists())
+
+    def test_device_memory_is_counted_even_without_pid_overlap(self):
+        """The D2 failure: the NVML pids are invisible but the card is used."""
+        output = self.root / "run"
+        nvidia = _idle_nvidia(
+            busy_after=(1500, 40),
+            compute_after=[82894],
+        )
+        record = self._run(
+            self._completed_worker(output),
+            output,
+            nvidia=nvidia,
+            budget=_budget(max_vram_bytes=4 * 1024**3),
+            env={"CUDA_VISIBLE_DEVICES": "6"},
+        )
+        self.assertEqual(record["status"], "completed")
+        self.assertEqual(record["vram_accounting"], "device_total")
+        self.assertEqual(record["gpu_uuid"], _GPU_UUID)
+        self.assertEqual(record["peak_vram_bytes"], 1500 * 1024**2)
+        self.assertEqual(record["vram_baseline_bytes"], 1 * 1024**2)
+
+    def test_other_cards_do_not_influence_the_measurement(self):
+        """Only the authorized UUID may contribute to the accounted bytes."""
+        output = self.root / "run"
+        nvidia = _idle_nvidia(
+            busy_after=(700, 30),
+            devices={
+                _GPU_UUID: (700, 30),
+                _OTHER_GPU_UUID: (12000, 90),
+            },
+            compute={_OTHER_GPU_UUID: [95566]},
+            indices=[(6, _GPU_UUID), (3, _OTHER_GPU_UUID)],
+        )
+        record = self._run(
+            self._completed_worker(output),
+            output,
+            nvidia=nvidia,
+            budget=_budget(max_vram_bytes=1024**3),
+            env={"CUDA_VISIBLE_DEVICES": "6"},
+        )
+        self.assertEqual(record["status"], "completed")
+        self.assertEqual(record["peak_vram_bytes"], 700 * 1024**2)
+
+    def test_cpu_budget_never_queries_the_device(self):
+        output = self.root / "run"
+
+        def _explode(*_args, **_kwargs):
+            raise AssertionError("nvidia-smi must not be queried for a CPU budget")
+
+        record = self._run(
+            self._completed_worker(output),
+            output,
+            nvidia=_explode,
+            budget=_budget(max_vram_bytes=0),
+            env={"CUDA_VISIBLE_DEVICES": ""},
+            gpu_uuid=None,
+        )
+        self.assertEqual(record["status"], "completed")
+        self.assertEqual(record["peak_vram_bytes"], 0)
+        self.assertIsNone(record["gpu_uuid"])
+
+    def test_missing_device_row_fails_closed(self):
+        """A query that returns no row must stop the run, not report zero."""
+        output = self.root / "run"
+        nvidia = _idle_nvidia(devices={})
+        record = self._run(
+            self._completed_worker(output),
+            output,
+            nvidia=nvidia,
+            budget=_budget(max_vram_bytes=1024**3),
+            env={"CUDA_VISIBLE_DEVICES": "6"},
+        )
+        self.assertEqual(record["status"], "failed")
+        self.assertEqual(record["failure"]["type"], "monitoring_error")
+
+    def test_unavailable_device_value_fails_closed(self):
+        """An N/A or unparsable device reading must stop the run."""
+        output = self.root / "run"
+        nvidia = _idle_nvidia(devices={_GPU_UUID: "N/A, N/A"})
+        record = self._run(
+            self._completed_worker(output),
+            output,
+            nvidia=nvidia,
+            budget=_budget(max_vram_bytes=1024**3),
+            env={"CUDA_VISIBLE_DEVICES": "6"},
+        )
+        self.assertEqual(record["status"], "failed")
+        self.assertEqual(record["failure"]["type"], "monitoring_error")
+
+    def test_uuid_mismatch_in_the_query_fails_closed(self):
+        output = self.root / "run"
+        nvidia = _idle_nvidia(devices={_OTHER_GPU_UUID: (10, 0)})
+        record = self._run(
+            self._completed_worker(output),
+            output,
+            nvidia=nvidia,
+            budget=_budget(max_vram_bytes=1024**3),
+            env={"CUDA_VISIBLE_DEVICES": "6"},
+        )
+        self.assertEqual(record["status"], "failed")
+        self.assertEqual(record["failure"]["type"], "monitoring_error")
+
+    def test_query_failure_is_not_treated_as_zero(self):
+        output = self.root / "run"
+
+        def _explode(*_args, **_kwargs):
+            raise supervisor.MonitoringError("nvidia-smi failed")
+
+        record = self._run(
+            self._completed_worker(output),
+            output,
+            nvidia=_explode,
+            budget=_budget(max_vram_bytes=1024**3),
+            env={"CUDA_VISIBLE_DEVICES": "6"},
+        )
+        self.assertEqual(record["status"], "failed")
+        self.assertEqual(record["failure"]["type"], "monitoring_error")
+
+    def test_device_total_above_the_limit_kills_only_the_owned_group(self):
+        """A whole-card overrun must stop the run without killing foreign pids."""
+        output = self.root / "run"
+        nvidia = _idle_nvidia(
+            busy_after=(4096, 80),
+            compute_after=[82894, 95566],
+        )
+        code = _worker_code("time.sleep(60)\n")
+        record = self._run(
+            [sys.executable, "-B", "-c", code, str(output)],
+            output,
+            nvidia=nvidia,
+            budget=_budget(max_vram_bytes=1024**3),
+            env={"CUDA_VISIBLE_DEVICES": "6"},
+        )
+        self.assertEqual(record["status"], "failed")
+        self.assertEqual(record["failure"]["type"], "vram_limit")
+        self.assertTrue(record["cleanup"]["attempted"])
+        self.assertEqual(record["cleanup"]["residual_pids"], [])
+        # The foreign NVML pids are never signalled by the supervisor.
+        for call in nvidia.calls:
+            self.assertNotIn("--query-compute-apps=pid,used_memory", call)
+
+    def test_idle_check_and_sampling_use_the_authorized_uuid(self):
+        output = self.root / "run"
+        nvidia = _idle_nvidia(busy_after=(12, 5))
+        record = self._run(
+            self._completed_worker(output),
+            output,
+            nvidia=nvidia,
+            budget=_budget(max_vram_bytes=1024**3),
+            env={"CUDA_VISIBLE_DEVICES": "6"},
+        )
+        self.assertEqual(record["status"], "completed")
+        queries = [call for call in nvidia.calls if "-i" in call]
+        self.assertTrue(queries)
+        for call in queries:
+            self.assertEqual(_argument_after(call, "-i"), _GPU_UUID)
 
 
 class OutputScanTests(unittest.TestCase):

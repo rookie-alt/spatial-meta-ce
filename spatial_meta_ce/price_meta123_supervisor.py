@@ -53,6 +53,8 @@ _BUDGET_FIELDS = (
 _MIB = 1024**2
 _KILL_GRACE_SECONDS = 5.0
 _LEADER_WAIT_SECONDS = 5.0
+_IDLE_VRAM_BYTES = 16 * _MIB
+_IDLE_UTILIZATION_PERCENT = 0
 
 
 class SupervisorError(RuntimeError):
@@ -77,6 +79,10 @@ class PidReuseError(MonitoringError):
 
 class UnsupportedPlatformError(SupervisorError):
     """Raised when supervision is requested on a platform without /proc."""
+
+
+class GpuNotIdleError(SupervisorError):
+    """Raised when the authorized GPU is busy before the worker is started."""
 
 
 @dataclass(frozen=True)
@@ -356,6 +362,200 @@ def _query_vram_bytes(pids: set[int]) -> int:
     return total
 
 
+def _run_nvidia_smi(args: list[str], *, timeout: int = 10) -> str:
+    """Run one nvidia-smi query and return its standard output."""
+    try:
+        query = subprocess.run(
+            ["nvidia-smi", *args],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+        )
+    except (OSError, subprocess.SubprocessError) as exc:
+        raise MonitoringError(f"nvidia-smi query failed: {exc}") from exc
+    return query.stdout
+
+
+def _gpu_index_uuid_map() -> dict[int, str]:
+    """Map every physical GPU index to its full UUID."""
+    output = _run_nvidia_smi(
+        ["--query-gpu=index,uuid", "--format=csv,noheader,nounits"]
+    )
+    mapping: dict[int, str] = {}
+    for line in output.splitlines():
+        fields = [item.strip() for item in line.split(",")]
+        if len(fields) != 2:
+            raise MonitoringError(f"invalid nvidia-smi index row: {line!r}")
+        try:
+            index = int(fields[0])
+        except ValueError as exc:
+            raise MonitoringError(f"invalid nvidia-smi index values: {line!r}") from exc
+        if index < 0 or not fields[1]:
+            raise MonitoringError(f"invalid nvidia-smi index values: {line!r}")
+        mapping[index] = fields[1]
+    if not mapping:
+        raise MonitoringError("nvidia-smi reported no GPU index")
+    return mapping
+
+
+def _device_state(gpu_uuid: str) -> tuple[int, int]:
+    """Read the whole-card memory use and utilization of one authorized GPU.
+
+    The device total is a conservative upper bound: it also covers contexts,
+    caches and any unrelated workload that lands on the same card.  A query
+    that fails, returns no row or returns an unusable value is an error, never
+    a zero measurement.
+    """
+    output = _run_nvidia_smi(
+        [
+            "-i",
+            gpu_uuid,
+            "--query-gpu=uuid,memory.used,utilization.gpu",
+            "--format=csv,noheader,nounits",
+        ]
+    )
+    rows = [line for line in output.splitlines() if line.strip()]
+    if len(rows) != 1:
+        raise MonitoringError(
+            f"nvidia-smi device query for {gpu_uuid} did not return one row"
+        )
+    fields = [item.strip() for item in rows[0].split(",")]
+    if len(fields) != 3:
+        raise MonitoringError(f"invalid nvidia-smi device row: {rows[0]!r}")
+    if fields[0] != gpu_uuid:
+        raise MonitoringError(
+            f"nvidia-smi reported {fields[0]!r} instead of {gpu_uuid!r}"
+        )
+    try:
+        used_mib = int(fields[1])
+    except ValueError as exc:
+        raise MonitoringError(
+            f"invalid nvidia-smi device memory value: {rows[0]!r}"
+        ) from exc
+    if used_mib < 0:
+        raise MonitoringError(f"invalid nvidia-smi device memory value: {rows[0]!r}")
+    try:
+        utilization = int(fields[2])
+    except ValueError as exc:
+        raise MonitoringError(
+            f"invalid nvidia-smi utilization value: {rows[0]!r}"
+        ) from exc
+    if utilization < 0:
+        raise MonitoringError(f"invalid nvidia-smi utilization value: {rows[0]!r}")
+    return used_mib * _MIB, utilization
+
+
+def _device_used_bytes(gpu_uuid: str) -> int:
+    """Read the whole-card memory use of one authorized GPU."""
+    used_bytes, _ = _device_state(gpu_uuid)
+    return used_bytes
+
+
+def _device_compute_pids(gpu_uuid: str) -> list[int]:
+    """List the compute-app pids that NVML reports for one authorized GPU.
+
+    The rows are filtered on the reported ``gpu_uuid`` instead of trusting the
+    ``-i`` selector, because the compute-apps query does not honour that
+    selector on every driver, and a busy neighbour card must never be read as
+    a busy authorized card.
+    """
+    output = _run_nvidia_smi(
+        [
+            "--query-compute-apps=pid,gpu_uuid",
+            "--format=csv,noheader,nounits",
+        ]
+    )
+    pids = []
+    for line in output.splitlines():
+        fields = [item.strip() for item in line.split(",")]
+        if len(fields) != 2:
+            if not line.strip():
+                continue
+            raise MonitoringError(f"invalid nvidia-smi compute-app row: {line!r}")
+        if fields[1] != gpu_uuid:
+            continue
+        try:
+            pid = int(fields[0])
+        except ValueError as exc:
+            raise MonitoringError(
+                f"invalid nvidia-smi compute-app pid: {line!r}"
+            ) from exc
+        if pid <= 0:
+            raise MonitoringError(f"invalid nvidia-smi compute-app pid: {line!r}")
+        pids.append(pid)
+    return pids
+
+
+def _authorize_gpu(gpu_uuid: str | None, env: dict[str, str] | None) -> tuple[int, str]:
+    """Bind one authorized GPU UUID to the physical index the worker selects.
+
+    The caller may name the card by physical index or by its full UUID; both
+    must resolve to the authorized UUID.  The worker is then pinned to that
+    UUID, so the card it sees is the card the supervisor accounts even when
+    the CUDA enumeration order differs from the physical order.
+    """
+    if not isinstance(gpu_uuid, str) or not gpu_uuid.strip():
+        raise ValueError("A GPU budget requires an explicit gpu_uuid")
+    selected = (env or {}).get("CUDA_VISIBLE_DEVICES")
+    if selected is None or not selected.strip():
+        raise ValueError(
+            "A GPU budget requires CUDA_VISIBLE_DEVICES to name one physical index"
+        )
+    mapping = _gpu_index_uuid_map()
+    selected = selected.strip()
+    if selected.isdigit():
+        index = int(selected)
+        if index not in mapping:
+            raise ValueError(f"CUDA_VISIBLE_DEVICES index {index} does not exist")
+        if mapping[index] != gpu_uuid:
+            raise ValueError(
+                f"authorized gpu_uuid {gpu_uuid!r} is not physical index {index} "
+                f"({mapping[index]!r})"
+            )
+        return index, gpu_uuid
+    if selected != gpu_uuid:
+        raise ValueError(
+            f"CUDA_VISIBLE_DEVICES {selected!r} does not name the authorized "
+            f"gpu_uuid {gpu_uuid!r}"
+        )
+    matches = [index for index, value in mapping.items() if value == gpu_uuid]
+    if not matches:
+        raise ValueError(f"authorized gpu_uuid {gpu_uuid!r} is not a visible GPU")
+    if len(matches) > 1:
+        raise ValueError(
+            f"authorized gpu_uuid {gpu_uuid!r} matches several physical indices"
+        )
+    index = matches[0]
+    if index not in mapping:
+        raise ValueError(f"CUDA_VISIBLE_DEVICES index {index} does not exist")
+    if mapping[index] != gpu_uuid:
+        raise ValueError(
+            f"authorized gpu_uuid {gpu_uuid!r} is not physical index {index} "
+            f"({mapping[index]!r})"
+        )
+    return index, gpu_uuid
+
+
+def _assert_gpu_idle(gpu_uuid: str) -> int:
+    """Require an idle, unused card before the worker is started."""
+    used_bytes, utilization = _device_state(gpu_uuid)
+    compute_pids = _device_compute_pids(gpu_uuid)
+    if compute_pids:
+        raise GpuNotIdleError(
+            f"authorized GPU {gpu_uuid} runs compute apps {compute_pids}"
+        )
+    if used_bytes > _IDLE_VRAM_BYTES:
+        raise GpuNotIdleError(
+            f"authorized GPU {gpu_uuid} holds {used_bytes} bytes before the run"
+        )
+    if utilization > _IDLE_UTILIZATION_PERCENT:
+        raise GpuNotIdleError(
+            f"authorized GPU {gpu_uuid} is {utilization}% busy before the run"
+        )
+    return used_bytes
+
+
 def _safe_stat(path: Path) -> os.stat_result:
     """Stat one path without following symlinks."""
     try:
@@ -427,6 +627,7 @@ def _sample_usage(
     *,
     max_vram_bytes: float,
     identity: dict[int, str] | None = None,
+    gpu_uuid: str | None = None,
 ) -> dict[str, int]:
     """Sample the owned process group; device memory is only queried when budgeted."""
     deadline = time.monotonic() + _LEADER_WAIT_SECONDS
@@ -459,7 +660,12 @@ def _sample_usage(
     rss = sum(rows[pid].rss_bytes for pid in owned if rows[pid].state != "Z")
     vram = 0
     if max_vram_bytes > 0:
-        vram = _query_vram_bytes(owned)
+        if gpu_uuid is None:
+            raise MonitoringError("a GPU budget requires an authorized gpu_uuid")
+        # The whole-card total is used on purpose: the container's process
+        # table cannot see the NVML pids, so a pid intersection would report
+        # zero for a card that is really in use.
+        vram = _device_used_bytes(gpu_uuid)
     return {"rss_bytes": int(rss), "vram_bytes": int(vram)}
 
 
@@ -468,12 +674,18 @@ def _sample_usage_if_running(
     *,
     max_vram_bytes: float,
     identity: dict[int, str] | None = None,
+    gpu_uuid: str | None = None,
 ) -> dict[str, int] | None:
     """Sample the worker group, or report that the leader already exited."""
     rows = _read_proc_rows()
     if child.pid not in rows and _peek_exit(child) is not None:
         return None
-    return _sample_usage(child, max_vram_bytes=max_vram_bytes, identity=identity)
+    return _sample_usage(
+        child,
+        max_vram_bytes=max_vram_bytes,
+        identity=identity,
+        gpu_uuid=gpu_uuid,
+    )
 
 
 def _group_alive(pgid: int) -> bool:
@@ -830,6 +1042,7 @@ def supervise(
     budget: dict[str, Any],
     env: dict[str, str] | None = None,
     root: Path | None = None,
+    gpu_uuid: str | None = None,
 ) -> dict[str, Any]:
     """Run one worker under a hard resource budget and return the evidence record.
 
@@ -837,6 +1050,11 @@ def supervise(
     with ``{"status": "completed"}``.  A run counts as completed only when the
     worker exits with code zero, leaves no owned descendant behind and reports
     that completion marker.
+
+    A GPU budget requires an explicit ``gpu_uuid`` that is proven to be the
+    physical index the worker selects.  Device memory is then accounted as the
+    whole-card total of that GPU, because the container's process table cannot
+    be intersected with the NVML pids reliably.
     """
     if not _is_linux():
         raise UnsupportedPlatformError("resource supervision requires Linux /proc")
@@ -861,6 +1079,22 @@ def supervise(
 
     started = time.monotonic()
     deadline = started + limits["max_wall_seconds"]
+    authorized_uuid: str | None = None
+    gpu_index: int | None = None
+    vram_baseline_bytes = 0
+    preflight_failure: tuple[str, str, str] | None = None
+    if limits["max_vram_bytes"] > 0:
+        try:
+            gpu_index, authorized_uuid = _authorize_gpu(gpu_uuid, env)
+        except MonitoringError as exc:
+            # A missing or unusable index map is a monitoring failure; it must
+            # stop the run and leave evidence instead of guessing a card.
+            preflight_failure = ("preflight", "monitoring_error", str(exc))
+        if authorized_uuid is not None:
+            # Pin the worker to the authorized card by UUID: the CUDA
+            # enumeration order need not match the physical order, so the
+            # worker and the supervisor must name the device the same way.
+            child_env["CUDA_VISIBLE_DEVICES"] = authorized_uuid
     record: dict[str, Any] = {
         "schema": 1,
         "status": "running",
@@ -877,6 +1111,10 @@ def supervise(
         "peak_vram_bytes": 0,
         "output_bytes": 0,
         "samples": 0,
+        "vram_accounting": "device_total" if authorized_uuid else "none",
+        "gpu_uuid": authorized_uuid,
+        "gpu_index": gpu_index,
+        "vram_baseline_bytes": 0,
         "failure": None,
         "completion": None,
         "cleanup": {
@@ -912,6 +1150,46 @@ def supervise(
 
     try:
         with log_path.open("x", encoding="utf-8") as log:
+            if preflight_failure is not None:
+                _set_failure(
+                    record,
+                    preflight_failure[0],
+                    preflight_failure[1],
+                    preflight_failure[2],
+                )
+                record["status"] = "failed"
+                record["elapsed_seconds"] = time.monotonic() - started
+                _write_record(record_path, record)
+                return record
+            if authorized_uuid is not None:
+                try:
+                    vram_baseline_bytes = _assert_gpu_idle(authorized_uuid)
+                except GpuNotIdleError as exc:
+                    _set_failure(
+                        record,
+                        "preflight",
+                        "gpu_not_idle",
+                        str(exc),
+                        traceback.format_exc(),
+                    )
+                    record["status"] = "failed"
+                    record["elapsed_seconds"] = time.monotonic() - started
+                    _write_record(record_path, record)
+                    return record
+                except MonitoringError as exc:
+                    _set_failure(
+                        record,
+                        "preflight",
+                        "monitoring_error",
+                        str(exc),
+                        traceback.format_exc(),
+                    )
+                    record["status"] = "failed"
+                    record["elapsed_seconds"] = time.monotonic() - started
+                    _write_record(record_path, record)
+                    return record
+                record["vram_baseline_bytes"] = vram_baseline_bytes
+                _write_record(record_path, record)
             try:
                 child = subprocess.Popen(
                     argv,
@@ -961,6 +1239,7 @@ def supervise(
                         child,
                         max_vram_bytes=limits["max_vram_bytes"],
                         identity=identity,
+                        gpu_uuid=authorized_uuid,
                     )
                     if usage is None:
                         # The leader exited between two samples; the exit status

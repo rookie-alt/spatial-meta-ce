@@ -1,0 +1,42 @@
+{
+  "status": "verified",
+  "binding_sha256": "5d81667b8ad958c92f15fab4b28dbd5c421e7fe8fe02796846298f200d8934f3",
+  "checkpoint_validation": {
+    "E": {
+      "optimizer_steps": [
+        52
+      ],
+      "finite": true,
+      "sha256": "72329fa2290e57b6e490e89e222b821ada1ec4c89a0eec7bc5fbcd68a520ba11"
+    },
+    "M": {
+      "optimizer_steps": [
+        52
+      ],
+      "finite": true,
+      "sha256": "188cdc08f90a6b66f917aaecf8491ef02d5244843d6a0460de5cd25dd767362f"
+    }
+  },
+  "csv_rows": {
+    "calibration": 2000,
+    "report": 49900
+  },
+  "external_peak_vram_bytes": 1409286144,
+  "worker_allocator_peak_bytes": 938945536,
+  "combined_d2_seconds": 504.7844125109259,
+  "combined_d2_bytes": 532078126,
+  "projected_total_hours": 20.986508332238134,
+  "projected_m_run_hours": 5.481528067275779,
+  "cost_feasible": true,
+  "checks": {
+    "total_time": true,
+    "e_run_time": true,
+    "m_run_time": true,
+    "cell_time": true,
+    "rss": true,
+    "vram": true,
+    "output": true
+  },
+  "gpu_after": "GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7, 1, 0",
+  "target_databases_read": []
+}

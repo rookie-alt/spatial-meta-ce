@@ -1,0 +1,11 @@
+{
+  "e_update_seconds": 0.7340180780738592,
+  "m_update_seconds": 7.589808093151078,
+  "calibration_cell_seconds": 2.5416948199272156,
+  "report_cell_seconds": 26.18377219699323,
+  "setup_io_seconds": 398.8010532059707,
+  "verification_seconds": 60.0,
+  "bytes_per_prediction": 118.34082851637766,
+  "peak_rss_bytes": 2559414272,
+  "peak_vram_bytes": 938945536
+}
