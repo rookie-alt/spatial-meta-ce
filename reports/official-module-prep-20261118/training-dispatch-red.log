@@ -1,0 +1,20 @@
+test_arbitrary_stage_cannot_use_the_module_dispatch (test_module_training_integration.ModuleTrainingIntegrationTests.test_arbitrary_stage_cannot_use_the_module_dispatch) ... ok
+test_existing_official_stage_keeps_the_old_fixed_model_guard (test_module_training_integration.ModuleTrainingIntegrationTests.test_existing_official_stage_keeps_the_old_fixed_model_guard) ... ok
+test_new_stage_calls_bound_execution_validator_before_io (test_module_training_integration.ModuleTrainingIntegrationTests.test_new_stage_calls_bound_execution_validator_before_io) ... FAIL
+
+======================================================================
+FAIL: test_new_stage_calls_bound_execution_validator_before_io (test_module_training_integration.ModuleTrainingIntegrationTests.test_new_stage_calls_bound_execution_validator_before_io)
+----------------------------------------------------------------------
+ValueError: 122 candidate training requires its frozen fixed_stage
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_module_training_integration.py", line 34, in test_new_stage_calls_bound_execution_validator_before_io
+    with (
+AssertionError: "unsigned module evidence" does not match "122 candidate training requires its frozen fixed_stage"
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.006s
+
+FAILED (failures=1)

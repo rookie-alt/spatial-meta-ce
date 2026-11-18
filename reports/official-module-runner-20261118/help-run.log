@@ -1,0 +1,13 @@
+usage: run_official_module_experiment.py run [-h] --spec SPEC --spec-sha256
+                                             SPEC_SHA256
+                                             [--authorization AUTHORIZATION]
+                                             [--authorization-sha256 AUTHORIZATION_SHA256]
+                                             [--execute]
+
+options:
+  -h, --help            show this help message and exit
+  --spec SPEC
+  --spec-sha256 SPEC_SHA256
+  --authorization AUTHORIZATION
+  --authorization-sha256 AUTHORIZATION_SHA256
+  --execute

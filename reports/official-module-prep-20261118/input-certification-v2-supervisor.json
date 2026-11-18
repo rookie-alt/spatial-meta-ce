@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-I",
+    "-B",
+    "-c",
+    "import json,sys; from pathlib import Path; sys.path.insert(0,\"/gly/weilin/module26-prep-20261118/code\"); from scripts.prepare_official_module_inputs import prepare_inputs; out=Path(\"/gly/weilin/module26-prep-20261118/inputs-v2\"); result=prepare_inputs(\"/gly/weilin/official-split-20261117/plans-24k/data_config_official_26.json\",out,\"/gly/weilin/spatial-meta-ce/runs/mapping-sidecars-source26-20261004\",True,\"/gly/weilin/module26-prep-20261118/evidence/historical_mapping_builder.py.txt\"); (out/\"phase.json\").write_text(json.dumps({\"phase\":\"certification\"})); (out/\"status.json\").write_text(json.dumps({\"status\":\"worker_complete\",\"mode\":\"cpu_preflight\",\"cells\":0,\"micro_cells\":1,\"model_predictions_run\":False,\"training_run\":False})); print(json.dumps({\"state\":result[\"state\"],\"databases\":30,\"unsupported\":result[\"unsupported_count\"]}))"
+  ],
+  "elapsed": 3473.1650096001104,
+  "failure": "parent_signal",
+  "mode": "cpu_preflight",
+  "output": "/gly/weilin/module26-prep-20261118/inputs-v2",
+  "outputbytes": 717668069,
+  "peak_rss_bytes": 3123605504,
+  "peak_vram_bytes": 0,
+  "pgid": 11239,
+  "phase": "preparation",
+  "pid": 11239,
+  "received_signals": [
+    2
+  ],
+  "returncode": -15,
+  "schema": 1,
+  "signals": [
+    15
+  ],
+  "status": "failed",
+  "supervisor_json": "/gly/weilin/module26-prep-20261118/inputs-v2.supervisor.json"
+}

@@ -302,6 +302,11 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
     if stage is not None and not isinstance(stage, str):
         raise ValueError("fixed_stage must be a string or null")
     stage = stage or ""
+    module_stage = stage == "132-module26"
+    if module_stage:
+        from .module_experiment import validate_training_config
+
+        validate_training_config(config, data_config, resume, output_dir=output_dir, device=device)
     s6 = "tail_risk_mode" in config
     s5 = "complex_query_weight" in config
     if s6:
@@ -375,11 +380,15 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         raise ValueError("joint objective requires method=fomaml")
     if meta_objective == "joint" and not fixed_budget:
         raise ValueError("joint objective requires fixed_budget")
-    if config.get("model", {}).get("arch") in ("sum_anchor_only", "price_lite", "price_tiny") and not stage.startswith("122-"):
+    if (
+        config.get("model", {}).get("arch") in ("sum_anchor_only", "price_lite", "price_tiny")
+        and not stage.startswith("122-")
+        and not module_stage
+    ):
         raise ValueError("122 candidate training requires its frozen fixed_stage")
     if config.get("fixed_stage") is not None and not fixed_budget:
         raise ValueError("fixed_stage requires fixed_budget")
-    if fixed_budget:
+    if fixed_budget and not module_stage:
         _validate_fixed_budget({**config, "meta_objective": meta_objective})
     if stage.startswith("122-"):
         if tuple(data_config["splits"]["train"]) == OFFICIAL_TRAIN_DATABASES:
@@ -398,12 +407,14 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         raise ValueError("training_plan requires fixed_budget")
     if fixed_budget and resume:
         raise ValueError("fixed_budget does not authorize resume")
-    mapped = config.get("model", {}).get("arch") == "sum_map"
+    mapped = config.get("model", {}).get("arch") == "sum_map" or (
+        module_stage and config["model"].get("relation_attention") is True
+    )
     mapping_config = config.get("mapping")
     if mapped and not mapping_config:
         raise ValueError("sum_map training requires mapping configuration")
     if not mapped and mapping_config:
-        raise ValueError("Mapping configuration requires sum_map architecture")
+        raise ValueError("Mapping configuration requires an authorized mapped architecture")
     if mapping_config and mapping_config.get("mode") not in (
         "mapping",
         "shuffled_mapping",
@@ -418,12 +429,20 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
     sources = splits["train"] if fixed_budget else splits["train"] + splits["validation"]
     # Opening a mapped store parses its whole sidecar (~3.5s). Keep every source
     # store resident so uniform database sampling cannot thrash the LRU.
-    pool = StorePool(
-        data_config["cache_root"],
-        max_open=len(sources),
-        mapping_root=mapping_config["root"] if mapping_config else None,
-        mapping_mode=mapping_config["mode"] if mapping_config else "mapping",
-    )
+    if module_stage and mapping_config:
+        from .official_mappings import OfficialStorePool
+
+        pool = OfficialStorePool(
+            data_config["cache_root"], mapping_config["root"],
+            max_open=len(sources), mapping_mode=mapping_config["mode"],
+        )
+    else:
+        pool = StorePool(
+            data_config["cache_root"],
+            max_open=len(sources),
+            mapping_root=mapping_config["root"] if mapping_config else None,
+            mapping_mode=mapping_config["mode"] if mapping_config else "mapping",
+        )
     hashes = {}
     pools = {}
     stores = {}
@@ -465,6 +484,10 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         }
     if mapping_config:
         metadata = {**metadata, "mapping_provenance": mapping_provenance}
+    if module_stage:
+        from .module_experiment import checkpoint_metadata
+
+        metadata.update(checkpoint_metadata(config))
     rng = np.random.default_rng(config["seed"] + 1)
     model = create_model(config["model"]).to(device)
     if config.get("fixed_stage"):

@@ -1,0 +1,8 @@
+test_arbitrary_stage_cannot_use_the_module_dispatch (test_module_training_integration.ModuleTrainingIntegrationTests.test_arbitrary_stage_cannot_use_the_module_dispatch) ... ok
+test_existing_official_stage_keeps_the_old_fixed_model_guard (test_module_training_integration.ModuleTrainingIntegrationTests.test_existing_official_stage_keeps_the_old_fixed_model_guard) ... ok
+test_new_stage_calls_bound_execution_validator_before_io (test_module_training_integration.ModuleTrainingIntegrationTests.test_new_stage_calls_bound_execution_validator_before_io) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
+
+OK

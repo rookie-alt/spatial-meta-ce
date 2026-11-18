@@ -1,0 +1,14 @@
+test_certified_absence_rejects_new_optional_cache_files (test_official_mappings.OfficialPreparationTests.test_certified_absence_rejects_new_optional_cache_files) ... FAIL
+
+======================================================================
+FAIL: test_certified_absence_rejects_new_optional_cache_files (test_official_mappings.OfficialPreparationTests.test_certified_absence_rejects_new_optional_cache_files)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_official_mappings.py", line 495, in test_certified_absence_rejects_new_optional_cache_files
+    with self.assertRaisesRegex(ValueError, "inventory|presence|changed"):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 2.343s
+
+FAILED (failures=1)

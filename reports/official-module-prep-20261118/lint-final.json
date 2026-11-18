@@ -1,0 +1,62 @@
+{
+  "ruff-0.11.2": {
+    "command": [
+      "/Users/williamlin/.pyenv/versions/3.9.9/bin/ruff",
+      "check",
+      "scripts",
+      "tests",
+      "spatial_meta_ce"
+    ],
+    "returncode": 0,
+    "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "changed-fe-0.17.5": {
+    "command": [
+      "/opt/anaconda3/bin/ruff",
+      "check",
+      "spatial_meta_ce/checkpoints.py",
+      "spatial_meta_ce/model.py",
+      "spatial_meta_ce/price_model.py",
+      "spatial_meta_ce/price_relations.py",
+      "spatial_meta_ce/train.py",
+      "spatial_meta_ce/module_experiment.py",
+      "spatial_meta_ce/official_mappings.py",
+      "scripts/prepare_official_module_inputs.py",
+      "scripts/prepare_official_module_inputs_parallel.py",
+      "scripts/run_official_module_experiment.py",
+      "tests/test_module_experiment.py",
+      "tests/test_module_model_integration.py",
+      "tests/test_module_training_integration.py",
+      "tests/test_official_mappings.py",
+      "tests/test_official_module_inputs_parallel.py",
+      "tests/test_price_group_pooling.py",
+      "tests/test_price_relation_attention.py",
+      "--select",
+      "F,E",
+      "--ignore",
+      "E501"
+    ],
+    "returncode": 0,
+    "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "ruff-0.17.5": {
+    "command": [
+      "/opt/anaconda3/bin/ruff",
+      "check",
+      "scripts",
+      "tests",
+      "spatial_meta_ce"
+    ],
+    "returncode": 1,
+    "log_sha256": "7cb73e07ac06bf2ea107e856e438917586ee7f3a19b49fb81089571d48793953"
+  },
+  "diff": {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "returncode": 0,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

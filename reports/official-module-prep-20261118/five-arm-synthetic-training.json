@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/opt/anaconda3/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_module_training_integration.py",
+    "-v"
+  ],
+  "returncode": 0,
+  "purpose": "synthetic-2-step-smoke-not-research"
+}

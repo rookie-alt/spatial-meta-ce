@@ -37,6 +37,12 @@ def save_checkpoint(
     metadata,
     extra=None,
 ):
+    from .price_model import PriceResidualEstimator
+
+    if isinstance(model, PriceResidualEstimator) and hasattr(model, "_pooling_config"):
+        model.validate_pooling_identity()
+    if isinstance(model, PriceResidualEstimator) and hasattr(model, "_relation_config"):
+        model.validate_relation_identity()
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     state = {
@@ -62,12 +68,20 @@ def save_checkpoint(
 
 
 def _validate_candidate_binding(model, state):
+    from .price_model import GROUP_POOLING_MODEL_TYPES
+    from .price_relations import RELATION_MODEL_TYPES
+
     if model.model_type == "grouped_set_residual":
         return
     if state.get("model_config_sha256") != digest(state["model_config"]):
         raise ValueError("Checkpoint model configuration hash mismatch")
     if model.config != state["model_config"]:
         raise ValueError("Checkpoint candidate config is not canonical")
+    if (
+        model.model_type in (*GROUP_POOLING_MODEL_TYPES, *RELATION_MODEL_TYPES)
+        and digest(model.config) != state["model_config_sha256"]
+    ):
+        raise ValueError("Checkpoint module config is not canonical")
     if hasattr(model, "capacity"):
         from .price_capacity import validate_capacity
 
@@ -80,6 +94,9 @@ def _validate_candidate_binding(model, state):
 
 
 def load_checkpoint(path, device="cpu"):
+    from .price_model import GROUP_POOLING_MODEL_TYPES
+    from .price_relations import RELATION_MODEL_TYPES
+
     # Only use trusted locally-produced checkpoints: torch pickle can execute code.
     state = torch.load(path, map_location="cpu", weights_only=False)
     required = {
@@ -100,9 +117,15 @@ def load_checkpoint(path, device="cpu"):
         raise ValueError("Not a versioned spatial-meta-ce checkpoint")
     if (
         state["schema"] != 1
-        or state["model_type"] not in (
-            "grouped_set_residual", "sum_anchor_only_residual",
-            "price_lite_residual", "price_lite_pg_residual", "price_tiny_residual",
+        or state["model_type"]
+        not in (
+            "grouped_set_residual",
+            "sum_anchor_only_residual",
+            "price_lite_residual",
+            "price_lite_pg_residual",
+            "price_tiny_residual",
+            *GROUP_POOLING_MODEL_TYPES,
+            *RELATION_MODEL_TYPES,
         )
         or state["transform"] != TRANSFORM_VERSION
     ):

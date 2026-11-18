@@ -1,0 +1,10 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+1, GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed, 1 MiB, 24576 MiB, 0 %
+2, GPU-cf1ca2b2-761c-66cb-7b36-221d730920c7, 1 MiB, 24576 MiB, 0 %
+3, GPU-39f3e79a-da06-3e63-6bf0-c02766b5d72d, 1 MiB, 24576 MiB, 0 %
+4, GPU-7d8716b9-a0be-896c-c7fc-5cc0ebad7b7f, 1 MiB, 24576 MiB, 0 %
+5, GPU-9c97317f-e01f-4906-7d6d-a2875e6ed792, 1 MiB, 24576 MiB, 0 %
+6, GPU-0050e82c-8c24-d85d-00d3-b73f12638df0, 1 MiB, 24576 MiB, 0 %
+7, GPU-42e7d4ca-13de-5dfe-e7f3-6c6b232c5b1f, 1 MiB, 24576 MiB, 0 %

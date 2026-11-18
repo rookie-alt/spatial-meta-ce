@@ -1,0 +1,26 @@
+usage: run_official_module_experiment.py evaluate-ready [-h] --data-config
+                                                        DATA_CONFIG
+                                                        --mapping-report
+                                                        MAPPING_REPORT
+                                                        --output-dir
+                                                        OUTPUT_DIR --out OUT
+                                                        --budget BUDGET
+                                                        [--device {cuda,cpu}]
+                                                        [--cuda-device CUDA_DEVICE]
+                                                        [--threads THREADS]
+                                                        --training-records
+                                                        TRAINING_RECORDS
+                                                        [--batch-size BATCH_SIZE]
+
+options:
+  -h, --help            show this help message and exit
+  --data-config DATA_CONFIG
+  --mapping-report MAPPING_REPORT
+  --output-dir OUTPUT_DIR
+  --out OUT             New preparation artifact directory
+  --budget BUDGET       Explicit resource budget JSON; never estimated here
+  --device {cuda,cpu}
+  --cuda-device CUDA_DEVICE
+  --threads THREADS
+  --training-records TRAINING_RECORDS
+  --batch-size BATCH_SIZE

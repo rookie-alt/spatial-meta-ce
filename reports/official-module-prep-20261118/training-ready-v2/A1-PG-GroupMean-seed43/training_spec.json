@@ -1,0 +1,210 @@
+{
+  "schema": 1,
+  "protocol": "official-module-26-4-v1",
+  "purpose": "official-module-training",
+  "action": "train",
+  "status": "unsigned",
+  "stage": "132-module26",
+  "arms": [
+    "A1-PG",
+    "A1-PG-GroupMean",
+    "A1-PG-GroupAttention",
+    "A1-PG-RelationTrue",
+    "A1-PG-RelationShuffled"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "steps": 24000,
+  "selection": "none (fixed 24000 updates, last.pt only)",
+  "k": 0,
+  "selection_use": "none",
+  "execution": {
+    "mode": "single_run",
+    "arm": "A1-PG-GroupMean",
+    "seed": 43
+  },
+  "train_databases": [
+    "accidents",
+    "airline",
+    "baseball",
+    "basketball",
+    "carcinogenesis",
+    "ccs",
+    "consumer",
+    "credit",
+    "employee",
+    "financial",
+    "fnhk",
+    "grants",
+    "hepatitis",
+    "hockey",
+    "movielens",
+    "sakila",
+    "sap",
+    "seznam",
+    "ssb",
+    "talkingdata",
+    "tournament",
+    "tpc_h",
+    "tubepricing",
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "validation_databases": [],
+  "test_databases": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "target_databases_read": [],
+  "source_databases_read": [
+    "accidents",
+    "airline",
+    "baseball",
+    "basketball",
+    "carcinogenesis",
+    "ccs",
+    "consumer",
+    "credit",
+    "employee",
+    "financial",
+    "fnhk",
+    "grants",
+    "hepatitis",
+    "hockey",
+    "movielens",
+    "sakila",
+    "sap",
+    "seznam",
+    "ssb",
+    "talkingdata",
+    "tournament",
+    "tpc_h",
+    "tubepricing",
+    "chembl",
+    "legalacts",
+    "telstra"
+  ],
+  "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-GroupMean-seed43",
+  "budget": {
+    "total_seconds": 30000.0,
+    "phase_seconds": {
+      "preparation": 29000.0,
+      "evaluation": 1.0,
+      "certification": 999.0
+    },
+    "rss_bytes": 25769803776,
+    "vram_bytes": 2147483648,
+    "output_bytes": 2147483648,
+    "poll_seconds": 1.0,
+    "cpu_core_seconds": 30000,
+    "gpu_allocated_seconds": 24000,
+    "run_deadline_seconds": 18000.0,
+    "eval_deadline_seconds": 600.0
+  },
+  "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5",
+  "device": "cuda",
+  "cuda_device": 1,
+  "threads": 1,
+  "batch_size": 128,
+  "bindings": {
+    "code_dir": "/gly/weilin/module26-prep-20261118/code-training",
+    "code_sha256": {
+      "scripts/run_official_module_experiment.py": "57bdc61fa4ab13cd7f9eabc72d1e20e38bebb4c8eafcc9951c5fe0b2105d9d64",
+      "scripts/run_price_meta_a.py": "13cbbec8258b6eb5f845343d719a75ac182defb294705287218b88a40de9c228",
+      "scripts/meta65_joint_supervisor.py": "403e7c26746291a9ceb1446c602d33a32d35c82c58e35427da491c0da8115b48",
+      "scripts/verify_p0_certificate.py": "c59e3c6111f5a85a1ab506e7b4d2de8c71ab377da6c3e29520b82d4df1787bae",
+      "scripts/prepare_official_module_inputs.py": "4f35fb98326f139896c90308c4379116f05e8bd92410525837760272fe02157d",
+      "scripts/prepare_official_module_inputs_parallel.py": "2de91bd4717b32098ef17e1d3d36b929196ecc4a3ce9434a193f086f81d2a24c",
+      "scripts/build_official_split_plans.py": "79a3041e2b2fdcc03400bd116559b23d3fcca8f1e04dfe2066af580f29156702",
+      "scripts/audit_input_mapping.py": "f705d000a03ff866f426a1826abea5ec561ecad29cdd6254ad10fd8c24e8d255",
+      "scripts/build_mapping_sidecar.py": "a34ca69a5793c295f900652ff8b0a7764b63b52b4fa18ace64bbe32356bc244b",
+      "spatial_meta_ce/__init__.py": "55a36a2626f6a72992dd15a308304598a4f2e1007f6b06946f6810f2c4c0501f",
+      "spatial_meta_ce/module_experiment.py": "61068dac5a82641fd9a64a5bdf09c8442f9ad6599e13c2c1a4f3becf9fd32419",
+      "spatial_meta_ce/official_mappings.py": "134ed8f9ab81dae844a67a90723093db692d0a8fef164bf6952ff10bfb397da3",
+      "spatial_meta_ce/official_split.py": "8f004621220e23bdb99c424379850b13e4a38b1611969daba14f5f6e18bed9b7",
+      "spatial_meta_ce/train.py": "25add0a191357f8d86d623c285685ac94add87e5a8d2395cf3de67605655d0d4",
+      "spatial_meta_ce/model.py": "879659d2f5f7a77cdf7858c0e5bd7cd8b7d206106427f9fbe9ec3365caf4746f",
+      "spatial_meta_ce/price_model.py": "4d9cf20f727530daf89fcdc027e42ed38a647f9712f68aa9ecc6cd67a123c7c1",
+      "spatial_meta_ce/price_relations.py": "7e2b08c545753595badaa4f137594f825aa3df54ffdad1f74dba4bddffc7e307",
+      "spatial_meta_ce/checkpoints.py": "5bbeb14e2c285c3241fb983e43b1432e3c8440f0aa677529108efa795a8b231d",
+      "spatial_meta_ce/price_protocol.py": "56233fa830a991441abe829c2fdf53c8134bf9cb0ec35d07888f420f05750361",
+      "spatial_meta_ce/price_capacity.py": "ffcfaaeae92b30cafa06832a25e0cd769b6fef0a0db12583631af0589a400a94",
+      "spatial_meta_ce/source_eval.py": "1913066c78f0e3640bcd6ad957753255a7914b8fa1765a5baf4cc3483a5aa6e7",
+      "spatial_meta_ce/data.py": "4caf69ea8b43b721e6034a8a15df9c6a31b80f0c041bdd59da9657ed5576c99a",
+      "spatial_meta_ce/meta.py": "d5bb3e236503d7e599bfc53da94aecb821b137b4cdfaa8b6de81df865b51dee0",
+      "spatial_meta_ce/plans.py": "25f319854bd448fc8feedf61f771e76da5e3692cfe40ae9669808cd9774534f7",
+      "spatial_meta_ce/metrics.py": "db99399e61df1cf090ebfef0535b3386764737a468713fe2331ee9710ad8c4b3",
+      "spatial_meta_ce/manifests.py": "6ca529a1a774a215b141ec2d5fd8e0b929a919448bd7cf62ffa084ab8cd70f65",
+      "spatial_meta_ce/mappings.py": "fa52a3cc64b23cb14f704573bdb079569dab22ef18c137eab2800765d1ff07fe",
+      "spatial_meta_ce/tail_risk.py": "108eee6fb0c6d2d2c8bd1a435ea94a3d3a9228e06d86854adb8a30f2065a35df",
+      "spatial_meta_ce/features.py": "5a11b0fdb0a684900294611c6ea6ffe62f5ac5763a9d1166137f26f0641fed1a",
+      "spatial_meta_ce/cli.py": "bda8f55d085a7dc99c1c8105bf2921d2a47a00b3488fc0e83226b7109c18a1e3",
+      "spatial_meta_ce/evaluate.py": "aea8a268a925a3c7a2f53cea046754c65d5dd817ea5fd18f958203c0c8e897ce",
+      "spatial_meta_ce/baselines.py": "2fbbeed786b0c8224d9e99ad3eb607eae056db363877b1b6f92d023f9dd2f6ae",
+      "vendor/price_baseline/module.py": "15d98eb2f1aed939dc53002302016098394e0602719e0d56df6c351a29f4f66e",
+      "vendor/price_baseline/encoder.py": "94f3060996cd9a9b3d60da08d525cc4ab8e1666c1eb4d53b3f610f5c248c6bce",
+      "vendor/price_features/features_tool.py": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+      "reports/official-module-prep-20261118/input-producer-official-mappings.py.txt": "9b70883188be122ae101aa2e30e663f67b3fcbb87a66492e9b7ba201831172a4",
+      "reports/official-module-prep-20261118/input-producer-parallel-v3-mappings.py.txt": "79b9ff74eefec4ed47f8c5e19f8e0530ac8571dbf65a19d741442be54e339804"
+    },
+    "data_config": {
+      "path": "/gly/weilin/official-split-20261117/plans-24k/data_config_official_26.json",
+      "sha256": "84c5ac6b94bdbf7ada869b5e519f62469a96cdf365423d18099fb1385590f67a"
+    },
+    "capacity": {
+      "path": "/gly/weilin/official-split-20261117/plans-24k/capacity_official_26.json",
+      "sha256": "134ba295bc87d4702245b4f094f6a3e0e10fd12c61536b730416fa2f6057d3bf"
+    },
+    "split_manifest": {
+      "path": "/gly/weilin/official-split-20261117/plans-24k/official_split_manifest.json",
+      "sha256": "fe6808230602b5583dfa4b89ad18c5e332b07808809009ff27f12cbd4e7539e2"
+    },
+    "mapping_report": {
+      "path": "/gly/weilin/module26-prep-20261118/inputs-parallel-v3/official_module_inputs.json",
+      "sha256": "9a7f2cb8b3a3f9f9487b195a59891c1dd5cab5422ca2a144f234bdbeec06959a"
+    },
+    "training_plans": {
+      "42": {
+        "path": "/gly/weilin/official-split-20261117/plans-24k/training_plan_seed42.json",
+        "sha256": "7036e34b0a6a1fee486273fb7f37904af5be742385c422ec77e2fb4bc8c6edb7",
+        "plan_sha256": "86bba249e13db3b11faf60e06cff96e9721695dabcea88fb9224da883dc1a341"
+      },
+      "43": {
+        "path": "/gly/weilin/official-split-20261117/plans-24k/training_plan_seed43.json",
+        "sha256": "b46ba078b37edd49578c47523651b3997ec7253f15477c42daa6594a8588e092",
+        "plan_sha256": "5aa56f0a12290110d391985342a7cd8f8a7e7126e87cb293df233d21facc437d"
+      },
+      "44": {
+        "path": "/gly/weilin/official-split-20261117/plans-24k/training_plan_seed44.json",
+        "sha256": "931f6a2e50592020abca0ed754695bc6bac254baf9c81ca6df40af3d4e7bced6",
+        "plan_sha256": "0ff11853d6c166c24ad4add89845a9c51de827d94888bcfc4f9308e772192622"
+      }
+    }
+  },
+  "config_sha256": {
+    "A1-PG-seed42": "9631d6e51de7baab9d410979a116822b298cdc5fbab33ee5be36fde08ad00091",
+    "A1-PG-seed43": "da45250b752e9fdea427cc471acb04854477f120c2467bff152e30512e0f502c",
+    "A1-PG-seed44": "c522a49116fc38a29a4025cddf01141221821cf1fe2c88bac47e95238364b324",
+    "A1-PG-GroupMean-seed42": "95740ca29f6bc6aa85978ce6003298fa82169a9e0d5ca4b2267a41d1ea08606e",
+    "A1-PG-GroupMean-seed43": "dc3b468bf450ad4bf120a9b93b2e98cc093f65b35b39513d5d429ed1866ac529",
+    "A1-PG-GroupMean-seed44": "8cb868a9958d58206040d2052dd794c1305ea01dba8c566223b62f075fd6e862",
+    "A1-PG-GroupAttention-seed42": "1574e11c8e3cebc9121bb7827fcd1c20ca58a366ef20c4ef13230e12ac69069a",
+    "A1-PG-GroupAttention-seed43": "276b9f9a427de8e8830320aa2260190413a5cadb55fc275139327a8362b0de8b",
+    "A1-PG-GroupAttention-seed44": "b5fc635a7d62a27523092758889b4a82c783c87289544f02e4e338e952b6665e",
+    "A1-PG-RelationTrue-seed42": "1b4b6806380f46c6dd01f9b38150d4be074ca3b6bdc76555e51e7a8956a1b507",
+    "A1-PG-RelationTrue-seed43": "380c9d904e35c50aa0a033f11e08ad953aa8cda9955b5ab3c7cd15915ab06c87",
+    "A1-PG-RelationTrue-seed44": "53f580c242eb63c47f81f88aa91c09756e641476ac014d9b4782eb0c109814e6",
+    "A1-PG-RelationShuffled-seed42": "56bf68a0bad5fb00aa97f0eeb48f1300bac52a0861617241cbbad85cb2e17b5c",
+    "A1-PG-RelationShuffled-seed43": "2549e75594c9b846f0e0913b5d33a13c922c4d35b80597d58fc4d4276f6db786",
+    "A1-PG-RelationShuffled-seed44": "452ff576e8cbb26c4425182e84223354d72ce835026329e1547cf7d4d611943f"
+  },
+  "outputs": {
+    "A1-PG-GroupMean-seed43": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-GroupMean-seed43/worker/runs/A1-PG-GroupMean-seed43"
+  }
+}

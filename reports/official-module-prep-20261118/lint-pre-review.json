@@ -1,0 +1,58 @@
+{
+  "changed-fe": {
+    "command": [
+      "/opt/anaconda3/bin/ruff",
+      "check",
+      "--select",
+      "F,E",
+      "--ignore",
+      "E501",
+      "spatial_meta_ce/checkpoints.py",
+      "spatial_meta_ce/model.py",
+      "spatial_meta_ce/price_model.py",
+      "spatial_meta_ce/price_relations.py",
+      "spatial_meta_ce/train.py",
+      "spatial_meta_ce/module_experiment.py",
+      "spatial_meta_ce/official_mappings.py",
+      "scripts/prepare_official_module_inputs.py",
+      "scripts/run_official_module_experiment.py",
+      "tests/test_module_experiment.py",
+      "tests/test_module_model_integration.py",
+      "tests/test_module_training_integration.py",
+      "tests/test_official_mappings.py",
+      "tests/test_price_group_pooling.py",
+      "tests/test_price_relation_attention.py"
+    ],
+    "returncode": 0
+  },
+  "ruff-old": {
+    "command": [
+      "/Users/williamlin/.pyenv/versions/3.9.9/bin/ruff",
+      "check",
+      "scripts",
+      "tests",
+      "spatial_meta_ce"
+    ],
+    "returncode": 0
+  },
+  "ruff-new": {
+    "command": [
+      "/opt/anaconda3/bin/ruff",
+      "check",
+      "scripts",
+      "tests",
+      "spatial_meta_ce",
+      "--output-format=json"
+    ],
+    "returncode": 1,
+    "issues": 653
+  },
+  "diff": {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "returncode": 0
+  }
+}

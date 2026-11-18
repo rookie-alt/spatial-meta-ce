@@ -1,0 +1,16 @@
+test_bound_producer_paths_survive_training_code_relocation (test_official_mappings.OfficialPreparationTests.test_bound_producer_paths_survive_training_code_relocation) ... ERROR
+
+======================================================================
+ERROR: test_bound_producer_paths_survive_training_code_relocation (test_official_mappings.OfficialPreparationTests.test_bound_producer_paths_survive_training_code_relocation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_official_mappings.py", line 486, in test_bound_producer_paths_survive_training_code_relocation
+    verify_input_report(report, splits=("pretrain",))
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/official_mappings.py", line 561, in verify_input_report
+    raise ValueError(
+ValueError: Official input provenance path split/database mismatch
+
+----------------------------------------------------------------------
+Ran 1 test in 1.959s
+
+FAILED (errors=1)

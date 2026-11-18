@@ -1,0 +1,8 @@
+test_explicit_test_preparation_records_worker_failures_and_rows (test_official_module_inputs_parallel.ParallelOfficialPreparationTests.test_explicit_test_preparation_records_worker_failures_and_rows) ... ok
+test_parallel_sidecars_match_serial_with_fixed_report_closure (test_official_module_inputs_parallel.ParallelOfficialPreparationTests.test_parallel_sidecars_match_serial_with_fixed_report_closure) ... ok
+test_workers_are_strict_and_output_protection_leaves_bytes_untouched (test_official_module_inputs_parallel.ParallelOfficialPreparationTests.test_workers_are_strict_and_output_protection_leaves_bytes_untouched) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 8.315s
+
+OK

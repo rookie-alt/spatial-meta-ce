@@ -1,0 +1,84 @@
+test_grouped_and_baseline_paths_still_use_unmapped_inputs (test_module_model_integration.ModuleModelIntegrationTests.test_grouped_and_baseline_paths_still_use_unmapped_inputs) ... ok
+test_joint_registration_preserves_independent_candidate_types (test_module_model_integration.ModuleModelIntegrationTests.test_joint_registration_preserves_independent_candidate_types) ... 
+  test_joint_registration_preserves_independent_candidate_types (test_module_model_integration.ModuleModelIntegrationTests.test_joint_registration_preserves_independent_candidate_types) (extra={'relation_attention': True}) ... ERROR
+  test_joint_registration_preserves_independent_candidate_types (test_module_model_integration.ModuleModelIntegrationTests.test_joint_registration_preserves_independent_candidate_types) (extra={'relation_attention': True, 'relation_scope': 'official_26_4'}) ... ERROR
+test_official_relation_live_output_and_checkpoint_roundtrip (test_module_model_integration.ModuleModelIntegrationTests.test_official_relation_live_output_and_checkpoint_roundtrip) ... ERROR
+test_official_relation_requires_explicit_matching_database_and_split (test_module_model_integration.ModuleModelIntegrationTests.test_official_relation_requires_explicit_matching_database_and_split) ... ERROR
+test_official_scope_rejects_nonofficial_capacity (test_module_model_integration.ModuleModelIntegrationTests.test_official_scope_rejects_nonofficial_capacity) ... ok
+
+======================================================================
+ERROR: test_joint_registration_preserves_independent_candidate_types (test_module_model_integration.ModuleModelIntegrationTests.test_joint_registration_preserves_independent_candidate_types) (extra={'relation_attention': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/model.py", line 293, in create_model
+    PriceResidualEstimator(**config)
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_module_model_integration.py", line 49, in test_joint_registration_preserves_independent_candidate_types
+    model = create_model({**self.config, **extra})
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/model.py", line 298, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_joint_registration_preserves_independent_candidate_types (test_module_model_integration.ModuleModelIntegrationTests.test_joint_registration_preserves_independent_candidate_types) (extra={'relation_attention': True, 'relation_scope': 'official_26_4'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/model.py", line 293, in create_model
+    PriceResidualEstimator(**config)
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_module_model_integration.py", line 49, in test_joint_registration_preserves_independent_candidate_types
+    model = create_model({**self.config, **extra})
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/model.py", line 298, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_official_relation_live_output_and_checkpoint_roundtrip (test_module_model_integration.ModuleModelIntegrationTests.test_official_relation_live_output_and_checkpoint_roundtrip)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/model.py", line 293, in create_model
+    PriceResidualEstimator(**config)
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_module_model_integration.py", line 91, in test_official_relation_live_output_and_checkpoint_roundtrip
+    model = create_model({**self.config, "relation_attention": True, "relation_scope": "official_26_4"})
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/model.py", line 298, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_official_relation_requires_explicit_matching_database_and_split (test_module_model_integration.ModuleModelIntegrationTests.test_official_relation_requires_explicit_matching_database_and_split)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/model.py", line 293, in create_model
+    PriceResidualEstimator(**config)
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_module_model_integration.py", line 62, in test_official_relation_requires_explicit_matching_database_and_split
+    model = create_model({**self.config, "relation_attention": True, "relation_scope": "official_26_4"})
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/model.py", line 298, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.176s
+
+FAILED (errors=4)

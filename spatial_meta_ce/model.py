@@ -61,7 +61,8 @@ class SetEstimator(nn.Module):
         ):
             raise ValueError("sum_anchor_only requires the ungated PG residual anchor")
         self.model_type = (
-            "sum_anchor_only_residual" if arch == "sum_anchor_only"
+            "sum_anchor_only_residual"
+            if arch == "sum_anchor_only"
             else "grouped_set_residual"
         )
         self.use_pg = use_pg
@@ -104,7 +105,11 @@ class SetEstimator(nn.Module):
             )
         per_group = 2 if arch == "set" else 3
         self.head = nn.Sequential(
-            nn.Linear(per_group * len(GROUP_DIMS) * width + (5 if arch == "sum_anchor_only" else 6), 128),
+            nn.Linear(
+                per_group * len(GROUP_DIMS) * width
+                + (5 if arch == "sum_anchor_only" else 6),
+                128,
+            ),
             nn.ReLU(),
             nn.Linear(128, 64),
             nn.ReLU(),
@@ -272,21 +277,31 @@ class SetEstimator(nn.Module):
 
 def create_model(config: dict, model_type: str | None = None) -> nn.Module:
     """Dispatch explicitly; legacy grouped_set_residual keeps its strict keys."""
-    from .price_model import PRICE_ARCHES, PriceResidualEstimator
+    from .price_model import PRICE_ARCHES, PriceResidualEstimator, price_model_type
 
     if not isinstance(config, dict):
         raise ValueError("Model config must be a dictionary")
     arch = config.get("arch", "set")
     expected = (
-        "price_lite_pg_residual"
-        if arch == "price_lite" and config.get("pg_head_input") is True
+        price_model_type(
+            arch,
+            config.get("pg_head_input", False),
+            config.get("group_pooling", "none"),
+            config.get("relation_attention", False),
+            config.get("relation_scope", "source"),
+        )
+        if arch in PRICE_ARCHES
         else f"{arch}_residual"
-        if arch in (*PRICE_ARCHES, "sum_anchor_only")
+        if arch == "sum_anchor_only"
         else "grouped_set_residual"
     )
     if model_type is not None and model_type != expected:
         raise ValueError("Checkpoint model_type/config mismatch")
     try:
-        return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+        return (
+            PriceResidualEstimator(**config)
+            if arch in PRICE_ARCHES
+            else SetEstimator(**config)
+        )
     except TypeError as error:
         raise ValueError(f"Invalid model configuration: {error}") from error

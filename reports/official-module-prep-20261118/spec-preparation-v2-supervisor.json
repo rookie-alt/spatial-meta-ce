@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-I",
+    "-B",
+    "/gly/weilin/module26-prep-20261118/evidence/prepare_training_files.py",
+    "--worker"
+  ],
+  "elapsed": 637.2328963999171,
+  "failure": null,
+  "mode": "cpu_preflight",
+  "output": "/gly/weilin/module26-prep-20261118/spec-preparation-v2",
+  "outputbytes": 1113,
+  "peak_rss_bytes": 1351983104,
+  "peak_vram_bytes": 0,
+  "pgid": 12172,
+  "phase": "certification",
+  "pid": 12172,
+  "received_signals": [],
+  "returncode": 0,
+  "schema": 1,
+  "signals": [],
+  "status": "preflight_completed",
+  "supervisor_json": "/gly/weilin/module26-prep-20261118/spec-preparation-v2.supervisor.json"
+}

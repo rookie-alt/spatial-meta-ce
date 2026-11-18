@@ -1,0 +1,29 @@
+usage: run_official_module_experiment.py prepare [-h] --data-config
+                                                 DATA_CONFIG --mapping-report
+                                                 MAPPING_REPORT --output-dir
+                                                 OUTPUT_DIR --out OUT --budget
+                                                 BUDGET [--device {cuda,cpu}]
+                                                 [--cuda-device CUDA_DEVICE]
+                                                 [--threads THREADS]
+                                                 --capacity CAPACITY
+                                                 --split-manifest
+                                                 SPLIT_MANIFEST
+                                                 --training-plan SEED=PATH
+                                                 [--arm {A1-PG,A1-PG-GroupMean,A1-PG-GroupAttention,A1-PG-RelationTrue,A1-PG-RelationShuffled}]
+                                                 [--seed {42,43,44}]
+
+options:
+  -h, --help            show this help message and exit
+  --data-config DATA_CONFIG
+  --mapping-report MAPPING_REPORT
+  --output-dir OUTPUT_DIR
+  --out OUT             New preparation artifact directory
+  --budget BUDGET       Explicit resource budget JSON; never estimated here
+  --device {cuda,cpu}
+  --cuda-device CUDA_DEVICE
+  --threads THREADS
+  --capacity CAPACITY
+  --split-manifest SPLIT_MANIFEST
+  --training-plan SEED=PATH
+  --arm {A1-PG,A1-PG-GroupMean,A1-PG-GroupAttention,A1-PG-RelationTrue,A1-PG-RelationShuffled}
+  --seed {42,43,44}

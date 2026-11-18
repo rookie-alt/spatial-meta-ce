@@ -1,0 +1,15 @@
+test_legacy_builder_requires_hash_bound_ast_equivalent_source (test_official_mappings.OfficialPreparationTests.test_legacy_builder_requires_hash_bound_ast_equivalent_source) ... ERROR
+
+======================================================================
+ERROR: test_legacy_builder_requires_hash_bound_ast_equivalent_source (test_official_mappings.OfficialPreparationTests.test_legacy_builder_requires_hash_bound_ast_equivalent_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_official_mappings.py", line 433, in test_legacy_builder_requires_hash_bound_ast_equivalent_source
+    report = prepare_inputs(data, root / "official", root / "legacy", legacy_builder_source=builder)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: prepare_inputs() got an unexpected keyword argument 'legacy_builder_source'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.838s
+
+FAILED (errors=1)

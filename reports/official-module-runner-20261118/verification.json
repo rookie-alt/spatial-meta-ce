@@ -1,0 +1,124 @@
+{
+  "purpose": "synthetic-only contract/runner validation; no research execution",
+  "python": "3.11.7 (main, Dec 15 2023, 12:09:04) [Clang 14.0.6 ]",
+  "source_before": {
+    "spatial_meta_ce/module_experiment.py": "e231a47935f08f78bd07da1ad9f100c82479df93eac14eab9cc77f398b70dd94",
+    "scripts/run_official_module_experiment.py": "eb9523892bdf93ec65677c8daded9e1f2cf94902402d6c834aece1c60010cf19",
+    "tests/test_module_experiment.py": "4db3683bc789a9ae8078dba69936596b315dab3ba692f0212c3ad0d774e9feab"
+  },
+  "source_after": {
+    "spatial_meta_ce/module_experiment.py": "e231a47935f08f78bd07da1ad9f100c82479df93eac14eab9cc77f398b70dd94",
+    "scripts/run_official_module_experiment.py": "eb9523892bdf93ec65677c8daded9e1f2cf94902402d6c834aece1c60010cf19",
+    "tests/test_module_experiment.py": "4db3683bc789a9ae8078dba69936596b315dab3ba692f0212c3ad0d774e9feab"
+  },
+  "source_unchanged": true,
+  "commands": [
+    {
+      "log": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/reports/official-module-runner-20261118/unittest.log",
+      "command": [
+        "/opt/anaconda3/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_module_experiment.py",
+        "-v"
+      ],
+      "returncode": 0
+    },
+    {
+      "log": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/reports/official-module-runner-20261118/ruff-fe.log",
+      "command": [
+        "/opt/anaconda3/bin/ruff",
+        "check",
+        "--select",
+        "F,E",
+        "--ignore",
+        "E501",
+        "spatial_meta_ce/module_experiment.py",
+        "scripts/run_official_module_experiment.py",
+        "tests/test_module_experiment.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "log": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/reports/official-module-runner-20261118/ruff-format.log",
+      "command": [
+        "/opt/anaconda3/bin/ruff",
+        "format",
+        "--check",
+        "spatial_meta_ce/module_experiment.py",
+        "scripts/run_official_module_experiment.py",
+        "tests/test_module_experiment.py"
+      ],
+      "returncode": 0
+    },
+    {
+      "log": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/reports/official-module-runner-20261118/diff-check.log",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0
+    },
+    {
+      "log": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/reports/official-module-runner-20261118/help-prepare.log",
+      "command": [
+        "/opt/anaconda3/bin/python",
+        "-B",
+        "scripts/run_official_module_experiment.py",
+        "prepare",
+        "--help"
+      ],
+      "returncode": 0
+    },
+    {
+      "log": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/reports/official-module-runner-20261118/help-verify.log",
+      "command": [
+        "/opt/anaconda3/bin/python",
+        "-B",
+        "scripts/run_official_module_experiment.py",
+        "verify",
+        "--help"
+      ],
+      "returncode": 0
+    },
+    {
+      "log": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/reports/official-module-runner-20261118/help-run.log",
+      "command": [
+        "/opt/anaconda3/bin/python",
+        "-B",
+        "scripts/run_official_module_experiment.py",
+        "run",
+        "--help"
+      ],
+      "returncode": 0
+    },
+    {
+      "log": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/reports/official-module-runner-20261118/help-worker.log",
+      "command": [
+        "/opt/anaconda3/bin/python",
+        "-B",
+        "scripts/run_official_module_experiment.py",
+        "worker",
+        "--help"
+      ],
+      "returncode": 0
+    },
+    {
+      "log": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/reports/official-module-runner-20261118/help-evaluate-ready.log",
+      "command": [
+        "/opt/anaconda3/bin/python",
+        "-B",
+        "scripts/run_official_module_experiment.py",
+        "evaluate-ready",
+        "--help"
+      ],
+      "returncode": 0
+    }
+  ]
+}

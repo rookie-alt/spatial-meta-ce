@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "protocol": "official-module-26-4-v1",
+  "purpose": "official-module-training",
+  "action": "train",
+  "authorized": false,
+  "formal_training_authorized": false,
+  "formal_evaluation_authorized": false,
+  "spec_sha256": "135fe4d456815d542cd4a6c076004e1d29855e5e8e4f076cab77d1600deff168",
+  "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5",
+  "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-RelationTrue-seed42",
+  "execution_keys": [
+    "A1-PG-RelationTrue-seed42"
+  ],
+  "target_databases_read": [],
+  "selection_use": "none",
+  "granted_by": null,
+  "granted_at": null
+}

@@ -1,0 +1,16 @@
+{
+  "total_seconds": 30000.0,
+  "phase_seconds": {
+    "preparation": 29000.0,
+    "evaluation": 1.0,
+    "certification": 999.0
+  },
+  "rss_bytes": 25769803776,
+  "vram_bytes": 2147483648,
+  "output_bytes": 2147483648,
+  "poll_seconds": 1.0,
+  "cpu_core_seconds": 30000,
+  "gpu_allocated_seconds": 24000,
+  "run_deadline_seconds": 18000.0,
+  "eval_deadline_seconds": 600.0
+}

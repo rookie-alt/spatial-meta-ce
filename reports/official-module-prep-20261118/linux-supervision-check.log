@@ -1,0 +1,15 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+test_module_sampler_uses_owned_rss_and_fresh_worker_telemetry (test_module_experiment.ModuleRunnerGateTests.test_module_sampler_uses_owned_rss_and_fresh_worker_telemetry) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.011s
+
+OK
+Traceback (most recent call last):
+  File "/gly/weilin/module26-prep-20261118/evidence/linux_supervision_check.py", line 96, in <module>
+    main()
+  File "/gly/weilin/module26-prep-20261118/evidence/linux_supervision_check.py", line 78, in main
+    raise AssertionError(records["valid"])
+AssertionError: {'schema': 1, 'status': 'preflight_completed', 'mode': 'cpu_preflight', 'command': ['/gly/weilin/PRICE-master/venv/bin/python', '-I', '-B', '-c', "\nimport json,sys,time\nfrom pathlib import Path\noutput=Path(sys.argv[1]); output.mkdir()\n(output/'phase.json').write_text(json.dumps({'phase':'preparation'}))\nif sys.argv[2]=='valid':\n    for _ in range(12):\n        value={'allocated_bytes':20,'reserved_bytes':30,\n               'max_allocated_bytes':40,'max_reserved_bytes':50,\n               'interval_seconds':0.2}\n        temporary=output/'memory.tmp'; temporary.write_text(json.dumps(value))\n        temporary.replace(output/'memory.json'); time.sleep(0.2)\nelse:\n    time.sleep(3)\n(output/'phase.json').write_text(json.dumps({'phase':'certification'}))\n(output/'status.json').write_text(json.dumps({'status':'worker_complete',\n    'mode':'cpu_preflight','cells':0,'micro_cells':1}))\n", '/gly/weilin/module26-prep-20261118/linux-sampler-check/valid', 'valid'], 'output': '/gly/weilin/module26-prep-20261118/linux-sampler-check/valid', 'pid': 32456, 'pgid': 32456, 'returncode': 0, 'elapsed': 2.538599996129051, 'peak_rss_bytes': 28512256, 'peak_vram_bytes': 50, 'outputbytes': 1698, 'phase': 'certification', 'signals': [], 'received_signals': [], 'failure': None, 'supervisor_json': '/gly/weilin/module26-prep-20261118/linux-sampler-check/valid.supervisor.json'}

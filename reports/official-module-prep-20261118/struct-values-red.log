@@ -1,0 +1,14 @@
+test_preexisting_nonfinite_structural_values_never_certify_or_load (test_official_mappings.OfficialPreparationTests.test_preexisting_nonfinite_structural_values_never_certify_or_load) ... ERROR
+
+======================================================================
+ERROR: test_preexisting_nonfinite_structural_values_never_certify_or_load (test_official_mappings.OfficialPreparationTests.test_preexisting_nonfinite_structural_values_never_certify_or_load)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_official_mappings.py", line 504, in test_preexisting_nonfinite_structural_values_never_certify_or_load
+    from spatial_meta_ce.official_mappings import validate_optional_structural_values
+ImportError: cannot import name 'validate_optional_structural_values' from 'spatial_meta_ce.official_mappings' (/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/official_mappings.py)
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

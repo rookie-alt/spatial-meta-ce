@@ -1,0 +1,6 @@
+test_gpu_query_timeout_terminates_live_worker_without_waiting_for_deadline (test_meta65_joint_supervisor.SupervisorTests.test_gpu_query_timeout_terminates_live_worker_without_waiting_for_deadline) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.146s
+
+OK

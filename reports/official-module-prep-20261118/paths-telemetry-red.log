@@ -1,0 +1,15 @@
+test_module_sampler_uses_owned_rss_and_fresh_worker_telemetry (test_module_experiment.ModuleRunnerGateTests.test_module_sampler_uses_owned_rss_and_fresh_worker_telemetry) ... ERROR
+
+======================================================================
+ERROR: test_module_sampler_uses_owned_rss_and_fresh_worker_telemetry (test_module_experiment.ModuleRunnerGateTests.test_module_sampler_uses_owned_rss_and_fresh_worker_telemetry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_module_experiment.py", line 321, in test_module_sampler_uses_owned_rss_and_fresh_worker_telemetry
+    self.assertEqual(runner.module_resource_sample(child, output, "cuda"), {"rss_bytes": 100, "vram_bytes": 50})
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'scripts.run_official_module_experiment' has no attribute 'module_resource_sample'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.015s
+
+FAILED (errors=1)

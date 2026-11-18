@@ -1,0 +1,33 @@
+{
+  "base": "2d1f76637c5b97ca07c42344084ef5b11a9f259e",
+  "branch": "feat/official-module-training-prep-20261118",
+  "purpose": "prepare-only-no-research-training",
+  "file_sha256": {
+    "spatial_meta_ce/checkpoints.py": "5bbeb14e2c285c3241fb983e43b1432e3c8440f0aa677529108efa795a8b231d",
+    "spatial_meta_ce/model.py": "879659d2f5f7a77cdf7858c0e5bd7cd8b7d206106427f9fbe9ec3365caf4746f",
+    "spatial_meta_ce/price_model.py": "4d9cf20f727530daf89fcdc027e42ed38a647f9712f68aa9ecc6cd67a123c7c1",
+    "spatial_meta_ce/price_relations.py": "7e2b08c545753595badaa4f137594f825aa3df54ffdad1f74dba4bddffc7e307",
+    "spatial_meta_ce/train.py": "540f2052d42b39f330d2c18a6f1abdd0f1e8f2e9be94cdd614028203eb97cee2",
+    "spatial_meta_ce/module_experiment.py": "e231a47935f08f78bd07da1ad9f100c82479df93eac14eab9cc77f398b70dd94",
+    "spatial_meta_ce/official_mappings.py": "9b70883188be122ae101aa2e30e663f67b3fcbb87a66492e9b7ba201831172a4",
+    "scripts/prepare_official_module_inputs.py": "4f35fb98326f139896c90308c4379116f05e8bd92410525837760272fe02157d",
+    "scripts/run_official_module_experiment.py": "eb9523892bdf93ec65677c8daded9e1f2cf94902402d6c834aece1c60010cf19",
+    "tests/test_module_experiment.py": "4db3683bc789a9ae8078dba69936596b315dab3ba692f0212c3ad0d774e9feab",
+    "tests/test_module_model_integration.py": "400046434a26abc716077605ce5c936d09f887d407509a2f9bb7fba690af2457",
+    "tests/test_module_training_integration.py": "7abbca6c53b4e51cd98d082dca222c1ea8e8159338b5393dc77d1a61f561893f",
+    "tests/test_official_mappings.py": "b82b43f0988feb4ee2754e7b6b4632b327419d45c52ec3f92a00a5fb5ae33fcf",
+    "tests/test_price_group_pooling.py": "3fd68364eace8f3a2e38225faf473d644b65a938104110cd0b879797757ab71a",
+    "tests/test_price_relation_attention.py": "283de9519d629dfbda8186b0869fdce4ad1c1827bd4def846e9661a8689c5bf3"
+  },
+  "validation": {
+    "five_arm_two_update_synthetic": "passed",
+    "PRICE_model_regression": 127,
+    "official_model_integration": 5,
+    "training_gate_tests": 3,
+    "official_mapping_tests": 20,
+    "runner_contract_tests": 21,
+    "full_suite": "running-frozen-version"
+  },
+  "server_inputs": "v1 refused optional struct provenance, stopped; v2 running with targeted correction",
+  "training_authorized": false
+}

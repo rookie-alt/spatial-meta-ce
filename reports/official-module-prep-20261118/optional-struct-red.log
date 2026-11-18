@@ -1,0 +1,17 @@
+test_optional_structural_sidecars_added_after_legacy_are_bound_in_new_report (test_official_mappings.OfficialPreparationTests.test_optional_structural_sidecars_added_after_legacy_are_bound_in_new_report) ... ERROR
+
+======================================================================
+ERROR: test_optional_structural_sidecars_added_after_legacy_are_bound_in_new_report (test_official_mappings.OfficialPreparationTests.test_optional_structural_sidecars_added_after_legacy_are_bound_in_new_report)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_official_mappings.py", line 468, in test_optional_structural_sidecars_added_after_legacy_are_bound_in_new_report
+    report = prepare_inputs(data, root / "official", root / "legacy")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/scripts/prepare_official_module_inputs.py", line 601, in prepare_inputs
+    raise InputPreparationError(report)
+scripts.prepare_official_module_inputs.InputPreparationError: Official mapping input certification failed: pretrain/accidents, pretrain/airline, pretrain/baseball, pretrain/basketball, pretrain/carcinogenesis, pretrain/ccs, pretrain/consumer, pretrain/credit, pretrain/employee, pretrain/financial, pretrain/fnhk, pretrain/grants, pretrain/hepatitis, pretrain/hockey, pretrain/movielens, pretrain/sakila, pretrain/sap, pretrain/seznam, pretrain/ssb, pretrain/talkingdata, pretrain/tournament, pretrain/tpc_h, pretrain/tubepricing, pretrain/chembl, pretrain/legalacts, pretrain/telstra
+
+----------------------------------------------------------------------
+Ran 1 test in 1.547s
+
+FAILED (errors=1)

@@ -1,0 +1,10 @@
+test_grouped_and_baseline_paths_still_use_unmapped_inputs (test_module_model_integration.ModuleModelIntegrationTests.test_grouped_and_baseline_paths_still_use_unmapped_inputs) ... ok
+test_joint_registration_preserves_independent_candidate_types (test_module_model_integration.ModuleModelIntegrationTests.test_joint_registration_preserves_independent_candidate_types) ... ok
+test_official_relation_live_output_and_checkpoint_roundtrip (test_module_model_integration.ModuleModelIntegrationTests.test_official_relation_live_output_and_checkpoint_roundtrip) ... ok
+test_official_relation_requires_explicit_matching_database_and_split (test_module_model_integration.ModuleModelIntegrationTests.test_official_relation_requires_explicit_matching_database_and_split) ... ok
+test_official_scope_rejects_nonofficial_capacity (test_module_model_integration.ModuleModelIntegrationTests.test_official_scope_rejects_nonofficial_capacity) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.296s
+
+OK

@@ -1,0 +1,14 @@
+test_prepare_verify_unsigned_refusal_and_bound_training_directory (test_module_experiment.ModuleRunnerGateTests.test_prepare_verify_unsigned_refusal_and_bound_training_directory) ... ERROR
+
+======================================================================
+ERROR: test_prepare_verify_unsigned_refusal_and_bound_training_directory (test_module_experiment.ModuleRunnerGateTests.test_prepare_verify_unsigned_refusal_and_bound_training_directory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_module_experiment.py", line 594, in test_prepare_verify_unsigned_refusal_and_bound_training_directory
+    contract.validate_training_config(
+TypeError: validate_training_config() got an unexpected keyword argument 'device'
+
+----------------------------------------------------------------------
+Ran 1 test in 2.735s
+
+FAILED (errors=1)

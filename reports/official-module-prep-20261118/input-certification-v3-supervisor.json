@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-I",
+    "-B",
+    "/gly/weilin/module26-prep-20261118/evidence/run_input_certification.py",
+    "--worker"
+  ],
+  "elapsed": 2237.530619365163,
+  "failure": null,
+  "mode": "cpu_preflight",
+  "output": "/gly/weilin/module26-prep-20261118/inputs-parallel-v3",
+  "outputbytes": 1706345887,
+  "peak_rss_bytes": 10636161024,
+  "peak_vram_bytes": 0,
+  "pgid": 95378,
+  "phase": "certification",
+  "pid": 95378,
+  "received_signals": [],
+  "returncode": 0,
+  "schema": 1,
+  "signals": [],
+  "status": "preflight_completed",
+  "supervisor_json": "/gly/weilin/module26-prep-20261118/inputs-parallel-v3.supervisor.json"
+}

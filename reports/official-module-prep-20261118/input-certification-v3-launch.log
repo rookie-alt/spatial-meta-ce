@@ -1,0 +1,28 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+{
+  "schema": 1,
+  "status": "preflight_completed",
+  "mode": "cpu_preflight",
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-I",
+    "-B",
+    "/gly/weilin/module26-prep-20261118/evidence/run_input_certification.py",
+    "--worker"
+  ],
+  "output": "/gly/weilin/module26-prep-20261118/inputs-parallel-v3",
+  "pid": 95378,
+  "pgid": 95378,
+  "returncode": 0,
+  "elapsed": 2237.530619365163,
+  "peak_rss_bytes": 10636161024,
+  "peak_vram_bytes": 0,
+  "outputbytes": 1706345887,
+  "phase": "certification",
+  "signals": [],
+  "received_signals": [],
+  "failure": null,
+  "supervisor_json": "/gly/weilin/module26-prep-20261118/inputs-parallel-v3.supervisor.json"
+}

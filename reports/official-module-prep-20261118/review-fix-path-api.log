@@ -1,0 +1,6 @@
+test_prepare_cli_and_evaluation_api_refuse_input_tree_writes (test_module_experiment.ModuleRunnerGateTests.test_prepare_cli_and_evaluation_api_refuse_input_tree_writes) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.757s
+
+OK

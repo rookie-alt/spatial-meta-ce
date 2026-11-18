@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "protocol": "official-module-26-4-v1",
+  "purpose": "official-module-training",
+  "action": "train",
+  "authorized": false,
+  "formal_training_authorized": false,
+  "formal_evaluation_authorized": false,
+  "spec_sha256": "eaa2704948fe3ad3db54bdbdfcb9e1126365fb6a9ef2bc4f5d12ba99296b0673",
+  "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5",
+  "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-seed42",
+  "execution_keys": [
+    "A1-PG-seed42"
+  ],
+  "target_databases_read": [],
+  "selection_use": "none",
+  "granted_by": null,
+  "granted_at": null
+}

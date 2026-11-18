@@ -1,0 +1,42 @@
+{
+  "old": {
+    "command": [
+      "/Users/williamlin/.pyenv/versions/3.9.9/bin/ruff",
+      "check",
+      "scripts",
+      "tests",
+      "spatial_meta_ce"
+    ],
+    "returncode": 0,
+    "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "fe": {
+    "command": [
+      "/opt/anaconda3/bin/ruff",
+      "check",
+      "spatial_meta_ce/official_mappings.py",
+      "tests/test_official_mappings.py",
+      "scripts/run_official_module_experiment.py",
+      "--select",
+      "F,E",
+      "--ignore",
+      "E501"
+    ],
+    "returncode": 0,
+    "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "diff": {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "returncode": 0,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "ruff0.17.5_full": {
+    "returncode": 1,
+    "diagnostics": 668,
+    "log": "ruff-final-current.json"
+  }
+}

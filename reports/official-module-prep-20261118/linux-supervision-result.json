@@ -1,0 +1,72 @@
+{
+  "kind": "linux-real-process-synthetic-cuda-telemetry",
+  "passed": true,
+  "model_run": false,
+  "cuda_used": false,
+  "global_gpu_queries": 0,
+  "records": {
+    "valid": {
+      "schema": 1,
+      "status": "preflight_completed",
+      "mode": "cpu_preflight",
+      "command": [
+        "/gly/weilin/PRICE-master/venv/bin/python",
+        "-I",
+        "-B",
+        "-c",
+        "\nimport json,sys,time\nfrom pathlib import Path\noutput=Path(sys.argv[1]); output.mkdir()\n(output/'phase.json').write_text(json.dumps({'phase':'preparation'}))\nif sys.argv[2]=='valid':\n    for _ in range(12):\n        value={'allocated_bytes':20,'reserved_bytes':30,\n               'max_allocated_bytes':40,'max_reserved_bytes':50,\n               'interval_seconds':0.2}\n        temporary=output/'memory.tmp'; temporary.write_text(json.dumps(value))\n        temporary.replace(output/'memory.json'); time.sleep(0.2)\nelse:\n    time.sleep(3)\n(output/'phase.json').write_text(json.dumps({'phase':'certification'}))\n(output/'status.json').write_text(json.dumps({'status':'worker_complete',\n    'mode':'cpu_preflight','cells':0,'micro_cells':1}))\n",
+        "/gly/weilin/module26-prep-20261118/linux-sampler-check-v2/valid",
+        "valid"
+      ],
+      "output": "/gly/weilin/module26-prep-20261118/linux-sampler-check-v2/valid",
+      "pid": 68654,
+      "pgid": 68654,
+      "returncode": 0,
+      "elapsed": 2.6069850749336183,
+      "peak_rss_bytes": 10313728,
+      "peak_vram_bytes": 50,
+      "outputbytes": 1708,
+      "phase": "certification",
+      "signals": [],
+      "received_signals": [],
+      "failure": null,
+      "supervisor_json": "/gly/weilin/module26-prep-20261118/linux-sampler-check-v2/valid.supervisor.json"
+    },
+    "missing": {
+      "schema": 1,
+      "status": "failed",
+      "mode": "cpu_preflight",
+      "command": [
+        "/gly/weilin/PRICE-master/venv/bin/python",
+        "-I",
+        "-B",
+        "-c",
+        "\nimport json,sys,time\nfrom pathlib import Path\noutput=Path(sys.argv[1]); output.mkdir()\n(output/'phase.json').write_text(json.dumps({'phase':'preparation'}))\nif sys.argv[2]=='valid':\n    for _ in range(12):\n        value={'allocated_bytes':20,'reserved_bytes':30,\n               'max_allocated_bytes':40,'max_reserved_bytes':50,\n               'interval_seconds':0.2}\n        temporary=output/'memory.tmp'; temporary.write_text(json.dumps(value))\n        temporary.replace(output/'memory.json'); time.sleep(0.2)\nelse:\n    time.sleep(3)\n(output/'phase.json').write_text(json.dumps({'phase':'certification'}))\n(output/'status.json').write_text(json.dumps({'status':'worker_complete',\n    'mode':'cpu_preflight','cells':0,'micro_cells':1}))\n",
+        "/gly/weilin/module26-prep-20261118/linux-sampler-check-v2/missing",
+        "missing"
+      ],
+      "output": "/gly/weilin/module26-prep-20261118/linux-sampler-check-v2/missing",
+      "pid": 69862,
+      "pgid": 69862,
+      "returncode": -15,
+      "elapsed": 2.589814183069393,
+      "peak_rss_bytes": 10309632,
+      "peak_vram_bytes": 0,
+      "outputbytes": 2520,
+      "phase": "preparation",
+      "signals": [
+        15
+      ],
+      "received_signals": [],
+      "failure": "sample_error",
+      "supervisor_json": "/gly/weilin/module26-prep-20261118/linux-sampler-check-v2/missing.supervisor.json",
+      "error": {
+        "stage": "sampler",
+        "type": "ValueError",
+        "message": "Worker CUDA telemetry is missing",
+        "traceback": "Traceback (most recent call last):\n  File \"/gly/weilin/module26-prep-20261118/code-ready/scripts/meta65_joint_supervisor.py\", line 682, in supervise\n    sample = sample_fn(child)\n             ^^^^^^^^^^^^^^^^\n  File \"/gly/weilin/module26-prep-20261118/evidence/linux_supervision_check.py\", line 79, in <lambda>\n    sample_fn=lambda child: module_resource_sample(\n                            ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/gly/weilin/module26-prep-20261118/code-ready/scripts/run_official_module_experiment.py\", line 419, in module_resource_sample\n    raise ValueError(\"Worker CUDA telemetry is missing\")\nValueError: Worker CUDA telemetry is missing\n"
+      }
+    }
+  },
+  "script_sha256": "643d912fec1ee5b94af9dccceb4b60251cb96bfc36afc34912190b40bd260b0c"
+}

@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "scope": "official_26_4",
+  "state": "running",
+  "data_config_path": "/gly/weilin/official-split-20261117/plans-24k/data_config_official_26.json",
+  "data_config_sha256": "84c5ac6b94bdbf7ada869b5e519f62469a96cdf365423d18099fb1385590f67a",
+  "data_config_hash": "333e855689a82d896fb2e09afa08d2bb79fe5c6b4d280b4340e4635127a0b3f0",
+  "resolved_data_config_hash": "333e855689a82d896fb2e09afa08d2bb79fe5c6b4d280b4340e4635127a0b3f0",
+  "mapping_root": "/gly/weilin/module26-prep-20261118/inputs",
+  "cache_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+  "data_root": "/gly/weilin/PRICE-master",
+  "splits": {
+    "test": [
+      "imdb",
+      "stats",
+      "genome",
+      "ergastf1"
+    ],
+    "train": [
+      "accidents",
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hepatitis",
+      "hockey",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing",
+      "chembl",
+      "legalacts",
+      "telstra"
+    ],
+    "validation": []
+  },
+  "include_test": true,
+  "source_mapping_root": "/gly/weilin/spatial-meta-ce/runs/mapping-sidecars-source26-20261004",
+  "databases": {
+    "pretrain": {
+      "accidents": {
+        "database": "accidents",
+        "split": "pretrain",
+        "state": "failed",
+        "error": "ValueError: Legacy source sidecar current input provenance mismatch",
+        "unsupported_count": 0,
+        "dedup_conflict_count": 0,
+        "unsupported_count_complete": false
+      },
+      "airline": {
+        "database": "airline",
+        "split": "pretrain",
+        "state": "failed",
+        "error": "ValueError: Legacy source sidecar current input provenance mismatch",
+        "unsupported_count": 0,
+        "dedup_conflict_count": 0,
+        "unsupported_count_complete": false
+      }
+    },
+    "test": {}
+  },
+  "failed_databases": [
+    "pretrain/accidents",
+    "pretrain/airline"
+  ],
+  "unsupported_count": 0,
+  "dedup_conflict_count": 0,
+  "unsupported_count_complete": false,
+  "target_data_read": [],
+  "target_files_read": [],
+  "model_predictions_run": false,
+  "training_run": false,
+  "code_sha256": {
+    "scripts/prepare_official_module_inputs.py": "ca29c06d73b71757daf539a2978466f2ce0e6785054333b2b930e6bafdd507c4",
+    "spatial_meta_ce/official_mappings.py": "9b70883188be122ae101aa2e30e663f67b3fcbb87a66492e9b7ba201831172a4",
+    "scripts/audit_input_mapping.py": "f705d000a03ff866f426a1826abea5ec561ecad29cdd6254ad10fd8c24e8d255",
+    "scripts/build_mapping_sidecar.py": "a34ca69a5793c295f900652ff8b0a7764b63b52b4fa18ace64bbe32356bc244b",
+    "spatial_meta_ce/data.py": "4caf69ea8b43b721e6034a8a15df9c6a31b80f0c041bdd59da9657ed5576c99a",
+    "spatial_meta_ce/features.py": "5a11b0fdb0a684900294611c6ea6ffe62f5ac5763a9d1166137f26f0641fed1a",
+    "spatial_meta_ce/manifests.py": "6ca529a1a774a215b141ec2d5fd8e0b929a919448bd7cf62ffa084ab8cd70f65",
+    "spatial_meta_ce/mappings.py": "fa52a3cc64b23cb14f704573bdb079569dab22ef18c137eab2800765d1ff07fe",
+    "spatial_meta_ce/official_split.py": "8f004621220e23bdb99c424379850b13e4a38b1611969daba14f5f6e18bed9b7",
+    "spatial_meta_ce/price_capacity.py": "ffcfaaeae92b30cafa06832a25e0cd769b6fef0a0db12583631af0589a400a94",
+    "vendor/price_features/features_tool.py": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4"
+  },
+  "interpretation": "Query-local token structure and frozen extractor/source/cache encoding only; no SQL selectivity/semantic truth certification, model prediction, training, adaptation, checkpoint selection or target-label optimization."
+}

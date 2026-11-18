@@ -1,0 +1,33 @@
+test_preexisting_nonfinite_structural_values_never_certify_or_load (test_official_mappings.OfficialPreparationTests.test_preexisting_nonfinite_structural_values_never_certify_or_load) ... 
+  test_preexisting_nonfinite_structural_values_never_certify_or_load (test_official_mappings.OfficialPreparationTests.test_preexisting_nonfinite_structural_values_never_certify_or_load) (value=numpy.timedelta64(1,'D')) ... FAIL
+  test_preexisting_nonfinite_structural_values_never_certify_or_load (test_official_mappings.OfficialPreparationTests.test_preexisting_nonfinite_structural_values_never_certify_or_load) (value=1e+400) ... FAIL
+  test_preexisting_nonfinite_structural_values_never_certify_or_load (test_official_mappings.OfficialPreparationTests.test_preexisting_nonfinite_structural_values_never_certify_or_load) (value=1e+100) ... FAIL
+
+======================================================================
+FAIL: test_preexisting_nonfinite_structural_values_never_certify_or_load (test_official_mappings.OfficialPreparationTests.test_preexisting_nonfinite_structural_values_never_certify_or_load) (value=numpy.timedelta64(1,'D'))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_official_mappings.py", line 581, in test_preexisting_nonfinite_structural_values_never_certify_or_load
+    with self.assertRaisesRegex(ValueError, "finite"):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_preexisting_nonfinite_structural_values_never_certify_or_load (test_official_mappings.OfficialPreparationTests.test_preexisting_nonfinite_structural_values_never_certify_or_load) (value=1e+400)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_official_mappings.py", line 581, in test_preexisting_nonfinite_structural_values_never_certify_or_load
+    with self.assertRaisesRegex(ValueError, "finite"):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_preexisting_nonfinite_structural_values_never_certify_or_load (test_official_mappings.OfficialPreparationTests.test_preexisting_nonfinite_structural_values_never_certify_or_load) (value=1e+100)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_official_mappings.py", line 581, in test_preexisting_nonfinite_structural_values_never_certify_or_load
+    with self.assertRaisesRegex(ValueError, "finite"):
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 20.512s
+
+FAILED (failures=3)

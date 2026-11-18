@@ -1,0 +1,16 @@
+test_original_producer_bytes_allow_verifier_only_upgrade (test_official_mappings.OfficialPreparationTests.test_original_producer_bytes_allow_verifier_only_upgrade) ... ERROR
+
+======================================================================
+ERROR: test_original_producer_bytes_allow_verifier_only_upgrade (test_official_mappings.OfficialPreparationTests.test_original_producer_bytes_allow_verifier_only_upgrade)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_official_mappings.py", line 516, in test_original_producer_bytes_allow_verifier_only_upgrade
+    verify_input_report(report, splits=("pretrain",))
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/official_mappings.py", line 345, in verify_input_report
+    raise ValueError(f"Official input code hash changed: {name}")
+ValueError: Official input code hash changed: spatial_meta_ce/official_mappings.py
+
+----------------------------------------------------------------------
+Ran 1 test in 1.930s
+
+FAILED (errors=1)

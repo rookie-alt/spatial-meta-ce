@@ -1,0 +1,16 @@
+test_parallel_sidecars_match_serial_with_fixed_report_closure (test_official_module_inputs_parallel.ParallelOfficialPreparationTests.test_parallel_sidecars_match_serial_with_fixed_report_closure) ... ERROR
+
+======================================================================
+ERROR: test_parallel_sidecars_match_serial_with_fixed_report_closure (test_official_module_inputs_parallel.ParallelOfficialPreparationTests.test_parallel_sidecars_match_serial_with_fixed_report_closure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/tests/test_official_module_inputs_parallel.py", line 94, in test_parallel_sidecars_match_serial_with_fixed_report_closure
+    verify_input_report(parallel, splits=("pretrain",))
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585/spatial_meta_ce/official_mappings.py", line 342, in verify_input_report
+    raise ValueError("Official input report code closure mismatch")
+ValueError: Official input report code closure mismatch
+
+----------------------------------------------------------------------
+Ran 1 test in 3.769s
+
+FAILED (errors=1)

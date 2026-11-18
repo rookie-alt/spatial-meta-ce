@@ -1,0 +1,9 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+test_preexisting_nonfinite_structural_values_never_certify_or_load (test_official_mappings.OfficialPreparationTests.test_preexisting_nonfinite_structural_values_never_certify_or_load) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.177s
+
+OK
