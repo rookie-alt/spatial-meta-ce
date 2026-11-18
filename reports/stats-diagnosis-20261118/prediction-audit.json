@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "date": "2026-11-18",
+  "kind": "descriptive_existing_prediction_audit",
+  "population": "canonical unique-query; STATS test; K=0; no new inference",
+  "source_root": "/gly/weilin/official-split-20261117",
+  "prediction_transform": "original protocol floor max(log_prediction,0) only",
+  "selection_use": "none",
+  "bindings": [
+    {
+      "name": "pg",
+      "source": "target-baselines/worker/baseline/pg/predictions.csv",
+      "sha256": "973ab06d06372eaee247ae37efadb7b582b246e4517b5e08eedd5e018baf48bc"
+    },
+    {
+      "name": "price",
+      "source": "target-baselines/worker/baseline/price/predictions.csv",
+      "sha256": "4d9a7e7d5470f4725c266932e44126456847a44bf63bba8db645527c5aa85f49"
+    },
+    {
+      "name": "4000_seed42",
+      "source": "target-eval/worker/eval/A1-PG-seed42/predictions.csv",
+      "sha256": "c7a873705600c9c42650b92c466b965edc2dbee40d3abf6da938f4a5c1d07767"
+    },
+    {
+      "name": "4000_seed43",
+      "source": "target-eval/worker/eval/A1-PG-seed43/predictions.csv",
+      "sha256": "919967261cb99ddb781cd60119e7330cba4b4500718b7b11ad4ab4e25395010c"
+    },
+    {
+      "name": "4000_seed44",
+      "source": "target-eval/worker/eval/A1-PG-seed44/predictions.csv",
+      "sha256": "3bb013b03311b78eaf66084786331906b58b5fe16049e482eb2919887cba1515"
+    },
+    {
+      "name": "24000_seed42",
+      "source": "target-eval-24k/worker/eval/A1-PG-seed42/predictions.csv",
+      "sha256": "00eb3ab708fda993c181c5c3e4f054bc7fd4c974dd90ac5ba7ae1dcbc2f4523b"
+    },
+    {
+      "name": "24000_seed43",
+      "source": "target-eval-24k/worker/eval/A1-PG-seed43/predictions.csv",
+      "sha256": "2bdd8d136750697daca0cf310f928f17753c550fcec302c1cef0c274a4de674f"
+    },
+    {
+      "name": "24000_seed44",
+      "source": "target-eval-24k/worker/eval/A1-PG-seed44/predictions.csv",
+      "sha256": "9ba690435e60279984826fc09a32f541a985e38f0f1a65d62d98a1c0aeed5a41"
+    }
+  ],
+  "stats": {
+    "pg": {
+      "n": 2603,
+      "q50": 1.9838989479238796,
+      "q95": 75.65001568267913,
+      "log_q95": 4.326117647540082,
+      "worse_than_pg": 0,
+      "mean_abs_residual": 0.0,
+      "mean_signed_residual": 0.0,
+      "pg_log_error_le_0_5": {
+        "n": 1089,
+        "worsened": 0,
+        "fraction_worsened": 0.0
+      },
+      "worsened_further_overestimate": 0,
+      "worsened_further_underestimate": 0,
+      "worsened_after_moving_toward_truth": 0
+    },
+    "price": {
+      "n": 2603,
+      "q50": 1.953794516397377,
+      "q95": 39.520592438960115,
+      "log_q95": 3.6768097325949642,
+      "worse_than_pg": 1320,
+      "mean_abs_residual": 0.46442699084352757,
+      "mean_signed_residual": 0.03128949930991041,
+      "pg_log_error_le_0_5": {
+        "n": 1089,
+        "worsened": 840,
+        "fraction_worsened": 0.7713498622589532
+      },
+      "worsened_further_overestimate": 784,
+      "worsened_further_underestimate": 264,
+      "worsened_after_moving_toward_truth": 256
+    },
+    "4000_seed42": {
+      "n": 2603,
+      "q50": 1.8747204045887782,
+      "q95": 89.93316829567915,
+      "log_q95": 4.499064753572528,
+      "worse_than_pg": 1212,
+      "mean_abs_residual": 0.388092661010034,
+      "mean_signed_residual": 0.273787113387582,
+      "pg_log_error_le_0_5": {
+        "n": 1089,
+        "worsened": 623,
+        "fraction_worsened": 0.5720844811753902
+      },
+      "worsened_further_overestimate": 620,
+      "worsened_further_underestimate": 429,
+      "worsened_after_moving_toward_truth": 147
+    },
+    "4000_seed43": {
+      "n": 2603,
+      "q50": 2.1056535267916474,
+      "q95": 243.14775121500034,
+      "log_q95": 5.4936690360112745,
+      "worse_than_pg": 1496,
+      "mean_abs_residual": 0.7738405634821391,
+      "mean_signed_residual": 0.7139908374122927,
+      "pg_log_error_le_0_5": {
+        "n": 1089,
+        "worsened": 809,
+        "fraction_worsened": 0.7428833792470156
+      },
+      "worsened_further_overestimate": 921,
+      "worsened_further_underestimate": 309,
+      "worsened_after_moving_toward_truth": 250
+    },
+    "4000_seed44": {
+      "n": 2603,
+      "q50": 1.878584521211679,
+      "q95": 101.15420474366158,
+      "log_q95": 4.616617847863765,
+      "worse_than_pg": 1192,
+      "mean_abs_residual": 0.4775412042477635,
+      "mean_signed_residual": 0.38338900305905715,
+      "pg_log_error_le_0_5": {
+        "n": 1089,
+        "worsened": 640,
+        "fraction_worsened": 0.5876951331496786
+      },
+      "worsened_further_overestimate": 725,
+      "worsened_further_underestimate": 296,
+      "worsened_after_moving_toward_truth": 155
+    },
+    "24000_seed42": {
+      "n": 2603,
+      "q50": 2.375024665630959,
+      "q95": 265.5966903770358,
+      "log_q95": 5.5819425583859985,
+      "worse_than_pg": 1624,
+      "mean_abs_residual": 0.9685390813236017,
+      "mean_signed_residual": 0.5354941179522872,
+      "pg_log_error_le_0_5": {
+        "n": 1089,
+        "worsened": 860,
+        "fraction_worsened": 0.7897153351698806
+      },
+      "worsened_further_overestimate": 668,
+      "worsened_further_underestimate": 513,
+      "worsened_after_moving_toward_truth": 427
+    },
+    "24000_seed43": {
+      "n": 2603,
+      "q50": 2.1615276790893065,
+      "q95": 182.7517935712939,
+      "log_q95": 5.208121921705923,
+      "worse_than_pg": 1400,
+      "mean_abs_residual": 0.7128302650619818,
+      "mean_signed_residual": 0.5668082439402513,
+      "pg_log_error_le_0_5": {
+        "n": 1089,
+        "worsened": 700,
+        "fraction_worsened": 0.642791551882461
+      },
+      "worsened_further_overestimate": 792,
+      "worsened_further_underestimate": 339,
+      "worsened_after_moving_toward_truth": 253
+    },
+    "24000_seed44": {
+      "n": 2603,
+      "q50": 1.943212615831726,
+      "q95": 118.05484933405022,
+      "log_q95": 4.771149245200831,
+      "worse_than_pg": 1394,
+      "mean_abs_residual": 0.4981293904013082,
+      "mean_signed_residual": 0.4516583080446047,
+      "pg_log_error_le_0_5": {
+        "n": 1089,
+        "worsened": 702,
+        "fraction_worsened": 0.6446280991735537
+      },
+      "worsened_further_overestimate": 932,
+      "worsened_further_underestimate": 269,
+      "worsened_after_moving_toward_truth": 177
+    }
+  },
+  "limits": [
+    "Descriptive target analysis does not identify causal training defects.",
+    "PG accuracy uses true labels and cannot serve as an inference feature.",
+    "No clipping, blending, threshold scan, checkpoint selection or training."
+  ]
+}

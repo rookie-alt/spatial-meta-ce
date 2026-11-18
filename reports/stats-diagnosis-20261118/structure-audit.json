@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "date": "2026-11-18",
+  "kind": "descriptive_cached_structure_audit",
+  "source_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+  "count_semantics": [
+    "join_hist_tokens",
+    "fanout_tokens",
+    "tables",
+    "filter_column_tokens"
+  ],
+  "stats": {
+    "n_unique": 2603,
+    "filter_ge_5": 890,
+    "fraction_filter_ge_5": 0.3419131771033423,
+    "max_counts": [
+      8,
+      12,
+      7,
+      10
+    ]
+  },
+  "train": {
+    "databases": 26,
+    "n_unique": 1279218,
+    "filter_ge_5": 187375,
+    "pooled_fraction_filter_ge_5": 0.1464762065574437,
+    "macro_fraction_filter_ge_5": 0.15115741860333826,
+    "per_database": [
+      {
+        "database": "accidents",
+        "n_unique": 50000,
+        "filter_ge_5": 16089,
+        "fraction_filter_ge_5": 0.32178
+      },
+      {
+        "database": "airline",
+        "n_unique": 50000,
+        "filter_ge_5": 10929,
+        "fraction_filter_ge_5": 0.21858
+      },
+      {
+        "database": "baseball",
+        "n_unique": 50000,
+        "filter_ge_5": 2634,
+        "fraction_filter_ge_5": 0.05268
+      },
+      {
+        "database": "basketball",
+        "n_unique": 50000,
+        "filter_ge_5": 4535,
+        "fraction_filter_ge_5": 0.0907
+      },
+      {
+        "database": "carcinogenesis",
+        "n_unique": 50000,
+        "filter_ge_5": 605,
+        "fraction_filter_ge_5": 0.0121
+      },
+      {
+        "database": "ccs",
+        "n_unique": 50000,
+        "filter_ge_5": 5714,
+        "fraction_filter_ge_5": 0.11428
+      },
+      {
+        "database": "consumer",
+        "n_unique": 50000,
+        "filter_ge_5": 10214,
+        "fraction_filter_ge_5": 0.20428
+      },
+      {
+        "database": "credit",
+        "n_unique": 50000,
+        "filter_ge_5": 5673,
+        "fraction_filter_ge_5": 0.11346
+      },
+      {
+        "database": "employee",
+        "n_unique": 50000,
+        "filter_ge_5": 0,
+        "fraction_filter_ge_5": 0.0
+      },
+      {
+        "database": "financial",
+        "n_unique": 50000,
+        "filter_ge_5": 5256,
+        "fraction_filter_ge_5": 0.10512
+      },
+      {
+        "database": "fnhk",
+        "n_unique": 50000,
+        "filter_ge_5": 7592,
+        "fraction_filter_ge_5": 0.15184
+      },
+      {
+        "database": "grants",
+        "n_unique": 50000,
+        "filter_ge_5": 3858,
+        "fraction_filter_ge_5": 0.07716
+      },
+      {
+        "database": "hepatitis",
+        "n_unique": 50000,
+        "filter_ge_5": 8215,
+        "fraction_filter_ge_5": 0.1643
+      },
+      {
+        "database": "hockey",
+        "n_unique": 50000,
+        "filter_ge_5": 454,
+        "fraction_filter_ge_5": 0.00908
+      },
+      {
+        "database": "movielens",
+        "n_unique": 50000,
+        "filter_ge_5": 9618,
+        "fraction_filter_ge_5": 0.19236
+      },
+      {
+        "database": "sakila",
+        "n_unique": 50000,
+        "filter_ge_5": 19707,
+        "fraction_filter_ge_5": 0.39414
+      },
+      {
+        "database": "sap",
+        "n_unique": 29714,
+        "filter_ge_5": 13311,
+        "fraction_filter_ge_5": 0.4479706535639766
+      },
+      {
+        "database": "seznam",
+        "n_unique": 50000,
+        "filter_ge_5": 6509,
+        "fraction_filter_ge_5": 0.13018
+      },
+      {
+        "database": "ssb",
+        "n_unique": 50000,
+        "filter_ge_5": 8032,
+        "fraction_filter_ge_5": 0.16064
+      },
+      {
+        "database": "talkingdata",
+        "n_unique": 50000,
+        "filter_ge_5": 15560,
+        "fraction_filter_ge_5": 0.3112
+      },
+      {
+        "database": "tournament",
+        "n_unique": 50000,
+        "filter_ge_5": 3405,
+        "fraction_filter_ge_5": 0.0681
+      },
+      {
+        "database": "tpc_h",
+        "n_unique": 50000,
+        "filter_ge_5": 11999,
+        "fraction_filter_ge_5": 0.23998
+      },
+      {
+        "database": "tubepricing",
+        "n_unique": 50000,
+        "filter_ge_5": 3178,
+        "fraction_filter_ge_5": 0.06356
+      },
+      {
+        "database": "chembl",
+        "n_unique": 50000,
+        "filter_ge_5": 9592,
+        "fraction_filter_ge_5": 0.19184
+      },
+      {
+        "database": "legalacts",
+        "n_unique": 49504,
+        "filter_ge_5": 4203,
+        "fraction_filter_ge_5": 0.08490223012281836
+      },
+      {
+        "database": "telstra",
+        "n_unique": 50000,
+        "filter_ge_5": 493,
+        "fraction_filter_ge_5": 0.00986
+      }
+    ]
+  },
+  "input_sha256": {
+    "stats_counts.npy": "04fb1b2625a61972b613ef2288411c2bc715dedbe48ce94f65474a5655b566ff",
+    "stats_hash_order.json": "e4303d471b4b5431eac6274a9a777f877f1f4549df86c6a48f93994cc81d7ece",
+    "train_struct.json": "ccd0e89543a5c645554fbeb6be4347a2b89796763a84845e300569a2ba5eacf5"
+  },
+  "limits": [
+    "The source population is pooled unique queries, not actual training presentations.",
+    "Token counts do not identify SQL join graph topology or predicate semantics.",
+    "Source extraction read existing offsets/manifests; original cache-byte binding was not independently certified by this audit.",
+    "No causal conclusion or target-driven sampling weights follow from these counts."
+  ]
+}
