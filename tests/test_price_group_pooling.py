@@ -549,6 +549,38 @@ class PriceGroupPoolingTests(unittest.TestCase):
                         {"manifest_hashes": self.binding["cache_hashes"]},
                     )
 
+    def test_container_aliases_rejected_before_checkpoint_or_directory_creation(self):
+        for mode in MODEL_TYPES:
+            for lora in (False, True):
+                with tempfile.TemporaryDirectory() as directory:
+                    root = Path(directory)
+                    path = root / "existing.pt"
+                    metadata = {"manifest_hashes": self.binding["cache_hashes"]}
+                    config = {**self.model(mode).config, "lora": lora}
+                    save_checkpoint(path, create_model(config), None, 0, None, 0, metadata)
+                    original_bytes = path.read_bytes()
+                    for location in ("config", "capacity"):
+                        for field in ("max_counts", "databases", "database_max_counts"):
+                            model = create_model(config)
+                            binding = model.config["capacity"] if location == "config" else model.capacity
+                            original_digest = digest(binding)
+                            if field == "database_max_counts":
+                                database = next(iter(binding[field]))
+                                binding[field][database] = tuple(binding[field][database])
+                            else:
+                                binding[field] = tuple(binding[field])
+                            self.assertEqual(digest(binding), original_digest)
+                            fresh = root / f"new-{location}-{field}" / "candidate.pt"
+                            for target in (path, fresh):
+                                with (
+                                    self.subTest(mode=mode, lora=lora, location=location, field=field, target=target.name),
+                                    self.assertRaisesRegex(ValueError, "canonical|identity|pooling"),
+                                ):
+                                    save_checkpoint(target, model, None, 0, None, 0, metadata)
+                                self.assertEqual(path.read_bytes(), original_bytes)
+                                self.assertFalse(target.with_suffix(".pt.tmp").exists())
+                                self.assertFalse(fresh.parent.exists())
+
     def test_old_122_and_pg_training_authorizations_reject_pooling_before_cache_io(
         self,
     ):

@@ -164,7 +164,9 @@ class PriceResidualEstimator(nn.Module):
             self.model_type != expected
             or self.group_pooling != self._pooling_config["group_pooling"]
             or self.pg_head_input is not True
+            or self.config != self._pooling_config
             or digest(self.config) != digest(self._pooling_config)
+            or self.capacity != self._pooling_config["capacity"]
             or digest(self.capacity) != digest(self._pooling_config["capacity"])
             or self.counts != tuple(self._pooling_config["capacity"]["max_counts"])
             or self.head[0].in_features != 338

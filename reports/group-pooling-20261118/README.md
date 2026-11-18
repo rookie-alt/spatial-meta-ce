@@ -1,6 +1,6 @@
 # A1-PG grouped pooling 实现与合成验证
 
-日期：2026-11-18。用途：`smoke-not-research`。只实现 grouped pooling；没有真实训练、GPU、SSH、真实缓存或目标库分析，没有精度收益结论。首次独立审查发现加载端规范配置哈希阻塞，主代理已复现、修复并回归；修复后独立复审已通过，无未解决阻塞。候选按此最终源码保存本地提交，未推送或合并。
+日期：2026-11-18。用途：`smoke-not-research`。只实现 grouped pooling；没有真实训练、GPU、SSH、真实缓存或目标库分析，没有精度收益结论。首次哈希修复曾通过独立复审并保存本地提交 `e432454`；随后追加容器身份修复，最终独立复审同样通过，无未解决阻塞。未推送或合并。
 
 工作目录：`/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df`。分支：`feat/a1-pg-group-pooling-20261118`。起始与复审基准 HEAD 均为 `11069d8060e99df4e96a276d3462a692ef378a95`，审查对象为相对此基准的候选 diff。未修改父任务的 130/99 号文档、vendor、训练门禁或冻结 spec。
 
@@ -67,10 +67,24 @@ baseline 修改前后，5 个 lite/tiny、PG、LoRA 合成配置的 config、mod
 
 首次 [review-input.json](review-input.json) 保留为修复前证据，已被新修复版本取代；修复后待审版本见 [review-fix-input.json](review-fix-input.json)。该清单保留复审时 README 的摘要；本段追加结论后 README 字节改变，四个源码/测试摘要保持一致，不改写历史清单。
 
-## 独立复审结论
+## 首次修复版本的独立复审结论
 
 [修复后独立复审](t3-thread://v2/64920c42-55dd-48e3-bc10-fb310e06e3e4/thread:delegated-task:command%3Amcp%3A29ca037a-4fc9-4fdb-a239-38f6b3e01754%3Adelegate-task%3A09ce4d3f-3604-4a13-b8ae-79f636539c46) 于 2026-11-18 返回 **passed（无未解决阻塞）**。复审自行核对 9 份文件/证据摘要、实际 diff 和调用方，独立重跑 PRICE 103 项通过；另有 28/28 组适应→保存→重载、6/6 旧模型数值别名兼容、5/5 原始模型直接比较通过。首次哈希阻塞与四条 lint 关注点均关闭，无新增重要缺陷。
 
 复审清单 SHA256 为 `d7c5ed29900b2dc456d9b562741263d120049679a6842ba24cc96db7aee30e1d`。源码摘要：`price_model.py=d4eec4b77451b1bd6e0b4b0b82cb5fb236fb083224e815f84d87f717a39fa1b6`；`model.py=d60077ed891d61cada60932cfb5d3aa07b84c419457bc0e1eeb08ab2db29cb12`；`checkpoints.py=8cb14d2ccfcd45a06b2c0aa89db831362ec2f20e9f5bb3154bae364ab81cf788`；`test_price_group_pooling.py=e87fe163c6589a4cc091c3a1f06c9b9d3a317ff00ffefcda2b49b80f3c767a39`。
 
 本结论为工程验收；精度、真实源数据认证及运行器执行授权仍待后续，不能用此记录启动真实实验。
+
+## 容器身份补充修复
+
+关系分支复审发现 list→tuple 虽改变配置结构，JSON digest 却相同。主代理对本分支同步复现该问题，见 [容器反例 red](container-red.log)。现保存前同时要求配置与独立构造配置结构相等、digest 相等；对 `model.capacity` 也作相同检查。结构比较捕获容器别名，摘要比较继续区分数值/boolean 别名，两者缺一不可。
+
+新增测试覆盖 mean/attention × 普通/LoRA × 配置/运行时容量 × 三类 list→tuple 修改，验证保存拒绝、既有文件字节不变、无临时文件及新父目录未创建。PRICE 回归现 **104 项通过，rc=0**，见 [green 日志](container-green.log)。本修复相对 `e432454` 为追加差异，旧 passed 仅对应旧源码；最终版本的独立结论见下段。
+
+本次全量 **1844 项，OK（16 skipped），rc=0**，见 [全量日志](container-full-unittest.log) 和 [命令记录](container-full-unittest.json)。记录分别保存 `source_sha256_before`、`source_sha256_after`，并记录 `source_unchanged=true`，不以单组摘要替代 before/after 留证。[最终静态检查](container-checks.json) 为 Ruff 0.11.2 全仓 rc=0，0.17.5 全仓仍 624 条既有告警、rc=1，改动 F/E 和 diff/protected rc=0。最终待审清单为 `container-review-input.json`，旧清单保留各自历史版本。
+
+## 最终独立复审通过
+
+[双分支容器身份修复复审](t3-thread://v2/64920c42-55dd-48e3-bc10-fb310e06e3e4/thread:delegated-task:command%3Amcp%3A29ca037a-4fc9-4fdb-a239-38f6b3e01754%3Adelegate-task%3Acd6cd0eb-3c5d-4068-9d79-484315f90f96) 返回 **passed（无未解决阻塞）**，关闭本分支同步发现的容器身份问题。审查核对实际 diff、全部清单绑定和 before/after 记录，独立重跑 PRICE **104 项**，另有两步适应后不同 dtype 保存/重载 **28 组**、无效保存保护 **96 次**、旧路径别名 **6 组**、原实现直接比较 **5 组**，全部通过。最终全量日志 **1844 项、16 skipped、rc=0** 已核验，复审未重复全量。
+
+审查绑定清单 [container-review-input.json](container-review-input.json) 的 SHA256 为 `1ccc0fc66a693b0a699f51c00c68a78fe15fcdc34ca06e4dd94ab215cd124f4c`。本次只追加复审结论，源码和测试与该清单保持一致；README 的历史摘要不改写。工程通过不提供精度证据，真实源侧训练比较仍待授权与绑定。

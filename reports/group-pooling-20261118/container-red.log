@@ -1,0 +1,24 @@
+test_container_aliases_rejected_before_checkpoint_or_directory_creation (test_price_group_pooling.PriceGroupPoolingTests.test_container_aliases_rejected_before_checkpoint_or_directory_creation) ... 
+  test_container_aliases_rejected_before_checkpoint_or_directory_creation (test_price_group_pooling.PriceGroupPoolingTests.test_container_aliases_rejected_before_checkpoint_or_directory_creation) (mode='mean', lora=False, location='config', field='max_counts', target='existing.pt') ... FAIL
+test_container_aliases_rejected_before_checkpoint_or_directory_creation (test_price_group_pooling.PriceGroupPoolingTests.test_container_aliases_rejected_before_checkpoint_or_directory_creation) ... FAIL
+
+======================================================================
+FAIL: test_container_aliases_rejected_before_checkpoint_or_directory_creation (test_price_group_pooling.PriceGroupPoolingTests.test_container_aliases_rejected_before_checkpoint_or_directory_creation) (mode='mean', lora=False, location='config', field='max_counts', target='existing.pt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df/tests/test_price_group_pooling.py", line 575, in test_container_aliases_rejected_before_checkpoint_or_directory_creation
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_container_aliases_rejected_before_checkpoint_or_directory_creation (test_price_group_pooling.PriceGroupPoolingTests.test_container_aliases_rejected_before_checkpoint_or_directory_creation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df/tests/test_price_group_pooling.py", line 580, in test_container_aliases_rejected_before_checkpoint_or_directory_creation
+    self.assertEqual(path.read_bytes(), original_bytes)
+AssertionError: b'PK\[1477 chars]ntsq-(K\x03K\x02K\x02K\x04tq.X\x13\x00\x00\x00[3855036 chars]\x00' != b'PK\[1477 chars]ntsq-]q.(K\x03K\x02K\x02K\x04eX\x13\x00\x00\x0[3851140 chars]\x00'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.109s
+
+FAILED (failures=2)

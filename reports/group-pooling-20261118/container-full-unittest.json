@@ -1,0 +1,38 @@
+{
+  "command": [
+    "/opt/anaconda3/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df",
+  "python_version": "Python 3.11.7",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "source_sha256_before": {
+    "spatial_meta_ce/price_model.py": "5966d6a62801bdbc26995d190174e64718b9cd24679c89c17ea4cbd64a06652b",
+    "spatial_meta_ce/model.py": "d60077ed891d61cada60932cfb5d3aa07b84c419457bc0e1eeb08ab2db29cb12",
+    "spatial_meta_ce/checkpoints.py": "8cb14d2ccfcd45a06b2c0aa89db831362ec2f20e9f5bb3154bae364ab81cf788",
+    "tests/test_price_group_pooling.py": "3fd68364eace8f3a2e38225faf473d644b65a938104110cd0b879797757ab71a"
+  },
+  "source_sha256_after": {
+    "spatial_meta_ce/price_model.py": "5966d6a62801bdbc26995d190174e64718b9cd24679c89c17ea4cbd64a06652b",
+    "spatial_meta_ce/model.py": "d60077ed891d61cada60932cfb5d3aa07b84c419457bc0e1eeb08ab2db29cb12",
+    "spatial_meta_ce/checkpoints.py": "8cb14d2ccfcd45a06b2c0aa89db831362ec2f20e9f5bb3154bae364ab81cf788",
+    "tests/test_price_group_pooling.py": "3fd68364eace8f3a2e38225faf473d644b65a938104110cd0b879797757ab71a"
+  },
+  "source_unchanged": true,
+  "returncode": 0,
+  "elapsed_seconds": 199.271,
+  "log_sha256": "7f9e2d7c45579d99898fee1abab9c246f5be4e727c3463266dcdfa25a9ad674c",
+  "purpose": "synthetic-smoke-not-research"
+}

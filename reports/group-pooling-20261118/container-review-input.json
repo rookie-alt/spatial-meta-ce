@@ -1,0 +1,26 @@
+{
+  "purpose": "synthetic-smoke-not-research",
+  "head": "e43245496bdff0b17c946cb2fdc2ee395c562ad9",
+  "baseline": "11069d8060e99df4e96a276d3462a692ef378a95",
+  "worktree": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df",
+  "file_sha256": {
+    "spatial_meta_ce/price_model.py": "5966d6a62801bdbc26995d190174e64718b9cd24679c89c17ea4cbd64a06652b",
+    "spatial_meta_ce/model.py": "d60077ed891d61cada60932cfb5d3aa07b84c419457bc0e1eeb08ab2db29cb12",
+    "spatial_meta_ce/checkpoints.py": "8cb14d2ccfcd45a06b2c0aa89db831362ec2f20e9f5bb3154bae364ab81cf788",
+    "tests/test_price_group_pooling.py": "3fd68364eace8f3a2e38225faf473d644b65a938104110cd0b879797757ab71a",
+    "reports/group-pooling-20261118/README.md": "a9ef35f36ce5fdbfee986eca1241c00ff4b9f6b4c2bab6386719a66cc204139f"
+  },
+  "evidence_sha256": {
+    "container-red.log": "86aaff4a22ea5c8c8a500f15c70889dc15f37b4a3b20a7525fc491b23a4477e9",
+    "container-green.log": "2a622cccafdd8883973d111ab4aea91441c10714039e2b3f6a450c744f66aa84",
+    "container-full-unittest.log": "7f9e2d7c45579d99898fee1abab9c246f5be4e727c3463266dcdfa25a9ad674c",
+    "container-full-unittest.json": "9c04ef57080adc832954319e0bdac5d0b26998688e75c4478cdeaa99a4eeb2da",
+    "container-checks.json": "d7293315280aad6421e5d6263090ccbdfc75078aeecf49a5a734aa00172d5061"
+  },
+  "full_tests": 1844,
+  "focused_tests": 104,
+  "skipped": 16,
+  "returncode": 0,
+  "source_unchanged": true,
+  "recheck": "pending"
+}
