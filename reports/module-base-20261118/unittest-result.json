@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/opt/anaconda3/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/experiment-a1-pg-module-54c5e06bc369f585",
+  "returncode": 0,
+  "wall_seconds": 218.86214113235474,
+  "log": "reports/module-base-20261118/unittest.log",
+  "purpose": "preserved-baseline-regression-not-research"
+}

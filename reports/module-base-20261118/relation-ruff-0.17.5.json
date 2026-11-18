@@ -1,0 +1,35 @@
+{
+  "command": [
+    "/opt/anaconda3/bin/ruff",
+    "check",
+    "--output-format=json",
+    "spatial_meta_ce/price_model.py",
+    "spatial_meta_ce/price_relations.py",
+    "spatial_meta_ce/model.py",
+    "spatial_meta_ce/checkpoints.py",
+    "tests/test_price_relation_attention.py"
+  ],
+  "cwd": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9",
+  "returncode": 1,
+  "issues": [
+    {
+      "cell": null,
+      "code": "TRY004",
+      "end_location": {
+        "column": 62,
+        "row": 278
+      },
+      "filename": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py",
+      "fix": null,
+      "location": {
+        "column": 9,
+        "row": 278
+      },
+      "message": "Prefer `TypeError` exception for invalid type",
+      "name": "type-check-without-type-error",
+      "noqa_row": 278,
+      "severity": "error",
+      "url": "https://docs.astral.sh/ruff/rules/type-check-without-type-error"
+    }
+  ]
+}

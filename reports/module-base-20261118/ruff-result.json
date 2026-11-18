@@ -1,0 +1,14 @@
+{
+  "command": [
+    "ruff",
+    "check",
+    "scripts",
+    "tests",
+    "spatial_meta_ce",
+    "--output-format=json"
+  ],
+  "returncode": 0,
+  "issue_count": 0,
+  "by_code": {},
+  "stderr": ""
+}

@@ -1,0 +1,142 @@
+{
+  "command": [
+    "/opt/anaconda3/bin/ruff",
+    "check",
+    "--output-format=json",
+    "spatial_meta_ce/price_model.py",
+    "spatial_meta_ce/model.py",
+    "spatial_meta_ce/checkpoints.py",
+    "tests/test_price_group_pooling.py"
+  ],
+  "cwd": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df",
+  "returncode": 1,
+  "issues": [
+    {
+      "cell": null,
+      "code": "TRY004",
+      "end_location": {
+        "column": 62,
+        "row": 278
+      },
+      "filename": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df/spatial_meta_ce/model.py",
+      "fix": null,
+      "location": {
+        "column": 9,
+        "row": 278
+      },
+      "message": "Prefer `TypeError` exception for invalid type",
+      "name": "type-check-without-type-error",
+      "noqa_row": 278,
+      "severity": "error",
+      "url": "https://docs.astral.sh/ruff/rules/type-check-without-type-error"
+    },
+    {
+      "cell": null,
+      "code": "I001",
+      "end_location": {
+        "column": 46,
+        "row": 22
+      },
+      "filename": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df/tests/test_price_group_pooling.py",
+      "fix": {
+        "applicability": "safe",
+        "edits": [
+          {
+            "content": "import copy\nimport json\nimport tempfile\nimport unittest\nfrom collections import OrderedDict\nfrom pathlib import Path\nfrom unittest.mock import patch\n\nimport torch\nfrom test_price_model import capacity, sample\nfrom torch import nn\n\nfrom spatial_meta_ce.checkpoints import load_checkpoint, save_checkpoint\nfrom spatial_meta_ce.data import GROUP_DIMS, batch_samples\nfrom spatial_meta_ce.manifests import digest\nfrom spatial_meta_ce.meta import adapt, forward, meta_loss\nfrom spatial_meta_ce.model import create_model\nfrom spatial_meta_ce.price_model import PriceResidualEstimator\nfrom spatial_meta_ce.price_protocol import a_model_config, exploratory_model_config\nfrom spatial_meta_ce.train import _validate_fixed_budget, train\n\n",
+            "end_location": {
+              "column": 1,
+              "row": 24
+            },
+            "location": {
+              "column": 1,
+              "row": 3
+            }
+          }
+        ],
+        "message": "Organize imports"
+      },
+      "location": {
+        "column": 1,
+        "row": 3
+      },
+      "message": "Import block is un-sorted or un-formatted",
+      "name": "unsorted-imports",
+      "noqa_row": 3,
+      "severity": "error",
+      "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+    },
+    {
+      "cell": null,
+      "code": "B023",
+      "end_location": {
+        "column": 44,
+        "row": 259
+      },
+      "filename": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df/tests/test_price_group_pooling.py",
+      "fix": null,
+      "location": {
+        "column": 38,
+        "row": 259
+      },
+      "message": "Function definition does not bind loop variable `values`",
+      "name": "function-uses-loop-variable",
+      "noqa_row": 259,
+      "severity": "error",
+      "url": "https://docs.astral.sh/ruff/rules/function-uses-loop-variable"
+    },
+    {
+      "cell": null,
+      "code": "PLC0206",
+      "end_location": {
+        "column": 36,
+        "row": 413
+      },
+      "filename": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df/tests/test_price_group_pooling.py",
+      "fix": null,
+      "location": {
+        "column": 17,
+        "row": 413
+      },
+      "message": "Extracting value from dictionary without calling `.items()`",
+      "name": "dict-index-missing-items",
+      "noqa_row": 413,
+      "severity": "error",
+      "url": "https://docs.astral.sh/ruff/rules/dict-index-missing-items"
+    },
+    {
+      "cell": null,
+      "code": "SIM117",
+      "end_location": {
+        "column": 77,
+        "row": 563
+      },
+      "filename": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df/tests/test_price_group_pooling.py",
+      "fix": {
+        "applicability": "safe",
+        "edits": [
+          {
+            "content": "                with patch(\n                    \"spatial_meta_ce.train.StorePool\",\n                    side_effect=AssertionError(\"cache accessed\"),\n                ), self.assertRaisesRegex(ValueError, \"frozen model\"):\n                    train(changed, data, \"unused\")",
+            "end_location": {
+              "column": 55,
+              "row": 564
+            },
+            "location": {
+              "column": 1,
+              "row": 559
+            }
+          }
+        ],
+        "message": "Combine `with` statements"
+      },
+      "location": {
+        "column": 17,
+        "row": 559
+      },
+      "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements",
+      "name": "multiple-with-statements",
+      "noqa_row": 559,
+      "severity": "error",
+      "url": "https://docs.astral.sh/ruff/rules/multiple-with-statements"
+    }
+  ]
+}
