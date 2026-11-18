@@ -99,6 +99,10 @@ def main():
     fig.tight_layout(rect=(0, 0.05, 1, 0.94), w_pad=3)
     fig.savefig(ROOT / "target-q95.png", dpi=180, facecolor="white")
     fig.savefig(ROOT / "target-q95.svg", facecolor="white")
+    svg_path = ROOT / "target-q95.svg"
+    svg_path.write_text(
+        "\n".join(line.rstrip() for line in svg_path.read_text().splitlines()) + "\n"
+    )
     print(ROOT / "target-q95.png")
 
 
