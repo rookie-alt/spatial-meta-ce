@@ -1,0 +1,45 @@
+test_decode_diagnostics_report_overflow_and_zero_denominator (test_price_meta127_metrics.OfficialQErrorTest.test_decode_diagnostics_report_overflow_and_zero_denominator) ... ok
+test_duplicate_rows_are_counted_with_multiplicity (test_price_meta127_metrics.OfficialQErrorTest.test_duplicate_rows_are_counted_with_multiplicity) ... ok
+test_encode_labels_matches_the_torch_reference (test_price_meta127_metrics.OfficialQErrorTest.test_encode_labels_matches_the_torch_reference) ... ok
+test_float32_overflow_input_follows_upstream_semantics (test_price_meta127_metrics.OfficialQErrorTest.test_float32_overflow_input_follows_upstream_semantics) ... ok
+test_infinite_ratio_becomes_float64_maximum (test_price_meta127_metrics.OfficialQErrorTest.test_infinite_ratio_becomes_float64_maximum) ... ok
+test_matches_literal_upstream_expression (test_price_meta127_metrics.OfficialQErrorTest.test_matches_literal_upstream_expression) ... ok
+test_matches_upstream_get_qerror_round_four (test_price_meta127_metrics.OfficialQErrorTest.test_matches_upstream_get_qerror_round_four) ... ok
+test_nan_ratio_becomes_positive_infinity (test_price_meta127_metrics.OfficialQErrorTest.test_nan_ratio_becomes_positive_infinity) ... ok
+test_no_clipping_of_extreme_predictions (test_price_meta127_metrics.OfficialQErrorTest.test_no_clipping_of_extreme_predictions) ... ok
+test_official_arithmetic_is_float32 (test_price_meta127_metrics.OfficialQErrorTest.test_official_arithmetic_is_float32) ... ok
+test_official_comparable_is_true_for_a_clean_sample (test_price_meta127_metrics.OfficialQErrorTest.test_official_comparable_is_true_for_a_clean_sample) ... ok
+test_percentiles_are_linear_and_rounded_to_four_decimals (test_price_meta127_metrics.OfficialQErrorTest.test_percentiles_are_linear_and_rounded_to_four_decimals) ... ok
+test_standard_companion_matches_the_126_protocol_formula (test_price_meta127_metrics.OfficialQErrorTest.test_standard_companion_matches_the_126_protocol_formula) ... ok
+test_standard_decode_matches_the_project_baseline (test_price_meta127_metrics.OfficialQErrorTest.test_standard_decode_matches_the_project_baseline) ... ok
+test_summary_exposes_unrounded_percentiles (test_price_meta127_metrics.OfficialQErrorTest.test_summary_exposes_unrounded_percentiles) ... ok
+test_summary_flags_nonfinite_values_and_stays_json_serializable (test_price_meta127_metrics.OfficialQErrorTest.test_summary_flags_nonfinite_values_and_stays_json_serializable) ... ok
+test_summary_reports_the_uncapped_difference_to_the_standard_metric (test_price_meta127_metrics.OfficialQErrorTest.test_summary_reports_the_uncapped_difference_to_the_standard_metric) ... ok
+test_summary_stays_json_safe_for_every_nonfinite_case (test_price_meta127_metrics.OfficialQErrorTest.test_summary_stays_json_safe_for_every_nonfinite_case) ... /gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/numpy/core/_methods.py:118: RuntimeWarning: overflow encountered in reduce
+  ret = umr_sum(arr, axis, dtype, out, keepdims, where=where)
+ok
+test_unrounded_mapping_is_json_safe (test_price_meta127_metrics.OfficialQErrorTest.test_unrounded_mapping_is_json_safe) ... ok
+test_upstream_rounding_overflows_to_infinity_like_numpy (test_price_meta127_metrics.OfficialQErrorTest.test_upstream_rounding_overflows_to_infinity_like_numpy) ... ok
+test_validation_rejects_invalid_inputs (test_price_meta127_metrics.OfficialQErrorTest.test_validation_rejects_invalid_inputs) ... ok
+test_zero_true_cardinalities (test_price_meta127_metrics.OfficialQErrorTest.test_zero_true_cardinalities) ... ok
+test_matches_pinned_upstream_on_extreme_inputs (test_price_meta127_metrics.PinnedUpstreamOracleTest.test_matches_pinned_upstream_on_extreme_inputs) ... /gly/weilin/price-meta-127-official-eval-20261118/code/reports/price-meta127-official-eval-20261118/upstream/utils/model/qerror.py:19: RuntimeWarning: overflow encountered in exp
+  preds = np.exp(preds - 1) - 1
+/gly/weilin/price-meta-127-official-eval-20261118/code/reports/price-meta127-official-eval-20261118/upstream/utils/model/qerror.py:24: RuntimeWarning: invalid value encountered in divide
+  q_errors = np.maximum(labels / preds, preds / labels)
+/gly/weilin/price-meta-127-official-eval-20261118/code/reports/price-meta127-official-eval-20261118/upstream/utils/model/qerror.py:43: RuntimeWarning: overflow encountered in multiply
+  q_list.append(round(qerror, 4))
+/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/numpy/lib/function_base.py:4657: RuntimeWarning: invalid value encountered in multiply
+  lerp_interpolation = asanyarray(add(a, diff_b_a * t, out=out))
+/gly/weilin/PRICE-master/venv/lib/python3.11/site-packages/numpy/lib/function_base.py:4658: RuntimeWarning: invalid value encountered in subtract
+  subtract(b, diff_b_a * (1 - t), out=lerp_interpolation, where=t >= 0.5)
+/gly/weilin/price-meta-127-official-eval-20261118/code/tests/test_price_meta127_metrics.py:412: RuntimeWarning: overflow encountered in cast
+  predictions = np.asarray(encoded).astype(np.float32)
+ok
+test_matches_pinned_upstream_on_random_inputs (test_price_meta127_metrics.PinnedUpstreamOracleTest.test_matches_pinned_upstream_on_random_inputs) ... ok
+test_verifier_accepts_a_consistent_fixture (test_price_meta127_metrics.VerifierScriptTest.test_verifier_accepts_a_consistent_fixture) ... ok
+test_verifier_detects_a_tampered_metric (test_price_meta127_metrics.VerifierScriptTest.test_verifier_detects_a_tampered_metric) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 5.418s
+
+OK

@@ -1,0 +1,2274 @@
+[
+  {
+    "model": "PG",
+    "database": "imdb",
+    "n": 766,
+    "official": {
+      "q50": 1.9459,
+      "q80": 5.9873,
+      "q90": 19.0421,
+      "q95": 49.437,
+      "q99": 874.8446,
+      "n": 766,
+      "unrounded": {
+        "q50": 1.94591533929177,
+        "q80": 5.987322286346019,
+        "q90": 19.042063652832198,
+        "q95": 49.43702604025555,
+        "q99": 874.844631896452
+      },
+      "metadata": {
+        "n": 766,
+        "n_finite": 766,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 35.2399,
+        "max_finite": 3421.4633
+      },
+      "standard_companion": {
+        "n": 766,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.9568,
+          "q90": 19.0421,
+          "q95": 49.437,
+          "q99": 879.6461
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 35.4754,
+        "n_nonfinite": 0,
+        "n_differing": 766,
+        "max_abs_difference": 26.541049123388802
+      }
+    },
+    "prediction_file": "PG-imdb.csv.gz",
+    "prediction_sha256": "5d6e86b66add70f4a19477a23d257a0c3e1eb63e1bb1689c7038e50c39b0de84"
+  },
+  {
+    "model": "P-0",
+    "database": "imdb",
+    "n": 766,
+    "official": {
+      "q50": 1.7771,
+      "q80": 4.0716,
+      "q90": 8.3952,
+      "q95": 15.4516,
+      "q99": 70.8889,
+      "n": 766,
+      "unrounded": {
+        "q50": 1.7771142950686456,
+        "q80": 4.071588228679163,
+        "q90": 8.395242787613622,
+        "q95": 15.451626150437034,
+        "q99": 70.88888419934638
+      },
+      "metadata": {
+        "n": 766,
+        "n_finite": 766,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 5.4796,
+        "max_finite": 235.1479
+      },
+      "standard_companion": {
+        "n": 766,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.7771,
+          "q90": 8.3952,
+          "q95": 16.1527,
+          "q99": 70.8985
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 5.5107,
+        "n_nonfinite": 0,
+        "n_differing": 766,
+        "max_abs_difference": 4.081346355156082
+      }
+    },
+    "prediction_file": "P-0-imdb.csv.gz",
+    "prediction_sha256": "9eff5885f38d849c7d152b91b8e051940c30d437a57a213ce794bc8925fa6ade"
+  },
+  {
+    "model": "E-42",
+    "database": "imdb",
+    "n": 766,
+    "official": {
+      "q50": 1.9176,
+      "q80": 4.8055,
+      "q90": 14.5156,
+      "q95": 25.2889,
+      "q99": 141.3239,
+      "n": 766,
+      "unrounded": {
+        "q50": 1.9176333525919156,
+        "q80": 4.805487087528657,
+        "q90": 14.515632450595005,
+        "q95": 25.28891366231871,
+        "q99": 141.3239378256595
+      },
+      "metadata": {
+        "n": 766,
+        "n_finite": 766,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 10.074,
+        "max_finite": 776.5118
+      },
+      "standard_companion": {
+        "n": 766,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.9176,
+          "q90": 15.2374,
+          "q95": 25.2889,
+          "q99": 141.3499
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 10.1049,
+        "n_nonfinite": 0,
+        "n_differing": 766,
+        "max_abs_difference": 4.424576048631717
+      }
+    },
+    "prediction_file": "E-42-imdb.csv.gz",
+    "prediction_sha256": "cffe58b040719c4c28a315fab36d0781ccdb61abd6e07a7c9ec40cad3264f6bf"
+  },
+  {
+    "model": "E-43",
+    "database": "imdb",
+    "n": 766,
+    "official": {
+      "q50": 1.7856,
+      "q80": 4.2607,
+      "q90": 11.007,
+      "q95": 19.2693,
+      "q99": 115.7835,
+      "n": 766,
+      "unrounded": {
+        "q50": 1.7855533311443121,
+        "q80": 4.260740025420178,
+        "q90": 11.006995310340336,
+        "q95": 19.26932579716268,
+        "q99": 115.78347297467184
+      },
+      "metadata": {
+        "n": 766,
+        "n_finite": 766,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 8.0331,
+        "max_finite": 532.6926
+      },
+      "standard_companion": {
+        "n": 766,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.7856,
+          "q90": 11.188,
+          "q95": 21.1685,
+          "q99": 115.808
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 8.0676,
+        "n_nonfinite": 0,
+        "n_differing": 766,
+        "max_abs_difference": 5.055294950808744
+      }
+    },
+    "prediction_file": "E-43-imdb.csv.gz",
+    "prediction_sha256": "a7597c30202380dc9b21ae9cf8e7d29d6a17f768b8f8d3a1e8974acedfd2eeda"
+  },
+  {
+    "model": "E-44",
+    "database": "imdb",
+    "n": 766,
+    "official": {
+      "q50": 1.6347,
+      "q80": 4.0267,
+      "q90": 8.6857,
+      "q95": 17.704,
+      "q99": 93.3771,
+      "n": 766,
+      "unrounded": {
+        "q50": 1.634748466892228,
+        "q80": 4.026703872754117,
+        "q90": 8.685653720249123,
+        "q95": 17.704004358999086,
+        "q99": 93.37714818553474
+      },
+      "metadata": {
+        "n": 766,
+        "n_finite": 766,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 6.3325,
+        "max_finite": 330.9652
+      },
+      "standard_companion": {
+        "n": 766,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.6348,
+          "q90": 8.6857,
+          "q95": 18.8075,
+          "q99": 93.4503
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 6.3733,
+        "n_nonfinite": 0,
+        "n_differing": 766,
+        "max_abs_difference": 6.058857289823795
+      }
+    },
+    "prediction_file": "E-44-imdb.csv.gz",
+    "prediction_sha256": "d847c66427b5896897fa199d973778989a5108c2ce513a8577e9e2005f7c9a7e"
+  },
+  {
+    "model": "M-42",
+    "database": "imdb",
+    "n": 766,
+    "official": {
+      "q50": 1.7986,
+      "q80": 3.9788,
+      "q90": 6.7347,
+      "q95": 13.9493,
+      "q99": 64.9981,
+      "n": 766,
+      "unrounded": {
+        "q50": 1.7985501230023415,
+        "q80": 3.9788241581140382,
+        "q90": 6.734712270064108,
+        "q95": 13.949344675872819,
+        "q99": 64.99808759111512
+      },
+      "metadata": {
+        "n": 766,
+        "n_finite": 766,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 4.7861,
+        "max_finite": 179.0075
+      },
+      "standard_companion": {
+        "n": 766,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.7986,
+          "q90": 6.7347,
+          "q95": 15.0799,
+          "q99": 65.0068
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 4.818,
+        "n_nonfinite": 0,
+        "n_differing": 766,
+        "max_abs_difference": 4.324546320075662
+      }
+    },
+    "prediction_file": "M-42-imdb.csv.gz",
+    "prediction_sha256": "d2302767f81df67402b704349481807d1bc4b43a09b793e58574ba1a6d2e9965"
+  },
+  {
+    "model": "M-43",
+    "database": "imdb",
+    "n": 766,
+    "official": {
+      "q50": 1.7683,
+      "q80": 4.623,
+      "q90": 10.9671,
+      "q95": 25.8111,
+      "q99": 191.9806,
+      "n": 766,
+      "unrounded": {
+        "q50": 1.7682867904467239,
+        "q80": 4.623049499491072,
+        "q90": 10.967122501769284,
+        "q95": 25.811130894852848,
+        "q99": 191.980629353698
+      },
+      "metadata": {
+        "n": 766,
+        "n_finite": 766,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 9.2973,
+        "max_finite": 586.1514
+      },
+      "standard_companion": {
+        "n": 766,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.7683,
+          "q90": 11.1453,
+          "q95": 25.8112,
+          "q99": 192.0583
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 9.3233,
+        "n_nonfinite": 0,
+        "n_differing": 766,
+        "max_abs_difference": 3.159972524643335
+      }
+    },
+    "prediction_file": "M-43-imdb.csv.gz",
+    "prediction_sha256": "0a0aede763ac0758a6b2a4b90a556754c8d24c97e912e9cfb8f8bffb478df7ed"
+  },
+  {
+    "model": "M-44",
+    "database": "imdb",
+    "n": 766,
+    "official": {
+      "q50": 1.897,
+      "q80": 5.1801,
+      "q90": 14.6727,
+      "q95": 28.2061,
+      "q99": 201.7774,
+      "n": 766,
+      "unrounded": {
+        "q50": 1.8969989205837736,
+        "q80": 5.18010293957716,
+        "q90": 14.672748950947696,
+        "q95": 28.20607402917345,
+        "q99": 201.77741611479274
+      },
+      "metadata": {
+        "n": 766,
+        "n_finite": 766,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 11.2582,
+        "max_finite": 720.1999
+      },
+      "standard_companion": {
+        "n": 766,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.897,
+          "q90": 15.42,
+          "q95": 28.2063,
+          "q99": 201.963
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 11.2883,
+        "n_nonfinite": 0,
+        "n_differing": 766,
+        "max_abs_difference": 4.019876958214873
+      }
+    },
+    "prediction_file": "M-44-imdb.csv.gz",
+    "prediction_sha256": "e12a001994282a3f4487b3ea08bf75d799345265b1065731b6c4f2812c1c42a1"
+  },
+  {
+    "model": "PG",
+    "database": "stats",
+    "n": 2749,
+    "official": {
+      "q50": 1.8745,
+      "q80": 7.1126,
+      "q90": 20.2718,
+      "q95": 73.3495,
+      "q99": 1599.7727,
+      "n": 2749,
+      "unrounded": {
+        "q50": 1.8745101868885905,
+        "q80": 7.112554941664401,
+        "q90": 20.271810969887866,
+        "q95": 73.34946848013385,
+        "q99": 1599.772693828847
+      },
+      "metadata": {
+        "n": 2749,
+        "n_finite": 2749,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 824.4788,
+        "max_finite": 765018.333
+      },
+      "standard_companion": {
+        "n": 2749,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.8745,
+          "q90": 20.2718,
+          "q95": 73.3498,
+          "q99": 1600.2274
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 826.7364,
+        "n_nonfinite": 0,
+        "n_differing": 2749,
+        "max_abs_difference": 4671.716706858191
+      }
+    },
+    "prediction_file": "PG-stats.csv.gz",
+    "prediction_sha256": "1945c3dfcc68eff842f12bd75ba274e1849fa898ff2f2c1d33a80adaa6e92dd3"
+  },
+  {
+    "model": "P-0",
+    "database": "stats",
+    "n": 2749,
+    "official": {
+      "q50": 1.8709,
+      "q80": 5.4934,
+      "q90": 12.4606,
+      "q95": 35.5513,
+      "q99": 579.6716,
+      "n": 2749,
+      "unrounded": {
+        "q50": 1.870904426305042,
+        "q80": 5.493368506382168,
+        "q90": 12.460640846761642,
+        "q95": 35.551294048818455,
+        "q99": 579.6715526784369
+      },
+      "metadata": {
+        "n": 2749,
+        "n_finite": 2749,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 145.1503,
+        "max_finite": 74742.7494
+      },
+      "standard_companion": {
+        "n": 2749,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.8709,
+          "q90": 12.4607,
+          "q95": 35.5513,
+          "q99": 580.0156
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 145.8676,
+        "n_nonfinite": 0,
+        "n_differing": 2749,
+        "max_abs_difference": 1288.6572350603383
+      }
+    },
+    "prediction_file": "P-0-stats.csv.gz",
+    "prediction_sha256": "70c185cbbef4e857f5c9d567989218b7febb8374dff05854b3cfdf7b0a4bbcab"
+  },
+  {
+    "model": "E-42",
+    "database": "stats",
+    "n": 2749,
+    "official": {
+      "q50": 1.8169,
+      "q80": 5.7984,
+      "q90": 14.508,
+      "q95": 38.6389,
+      "q99": 525.97,
+      "n": 2749,
+      "unrounded": {
+        "q50": 1.816948233077049,
+        "q80": 5.798433260039629,
+        "q90": 14.508034382340218,
+        "q95": 38.638935647124555,
+        "q99": 525.9699679555737
+      },
+      "metadata": {
+        "n": 2749,
+        "n_finite": 2749,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 199.8434,
+        "max_finite": 97237.9001
+      },
+      "standard_companion": {
+        "n": 2749,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.8171,
+          "q90": 14.508,
+          "q95": 38.6395,
+          "q99": 543.6296
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 200.7138,
+        "n_nonfinite": 0,
+        "n_differing": 2749,
+        "max_abs_difference": 1548.0691623054445
+      }
+    },
+    "prediction_file": "E-42-stats.csv.gz",
+    "prediction_sha256": "d621af568a36c810e657def4953cd55cb209386b17fe55795994ef639dc63b7e"
+  },
+  {
+    "model": "E-43",
+    "database": "stats",
+    "n": 2749,
+    "official": {
+      "q50": 1.983,
+      "q80": 5.0818,
+      "q90": 13.2863,
+      "q95": 40.1889,
+      "q99": 523.8709,
+      "n": 2749,
+      "unrounded": {
+        "q50": 1.9830008946625746,
+        "q80": 5.081763233576483,
+        "q90": 13.286298517249186,
+        "q95": 40.18887007686859,
+        "q99": 523.8709177361135
+      },
+      "metadata": {
+        "n": 2749,
+        "n_finite": 2749,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 230.1593,
+        "max_finite": 128697.8367
+      },
+      "standard_companion": {
+        "n": 2749,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.983,
+          "q90": 13.2866,
+          "q95": 40.1898,
+          "q99": 538.3773
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 230.9654,
+        "n_nonfinite": 0,
+        "n_differing": 2749,
+        "max_abs_difference": 1400.2829107333673
+      }
+    },
+    "prediction_file": "E-43-stats.csv.gz",
+    "prediction_sha256": "160a6a3146dacde8d658b754c2db9f70af9b26ea1f2af63ee74810597b20bf42"
+  },
+  {
+    "model": "E-44",
+    "database": "stats",
+    "n": 2749,
+    "official": {
+      "q50": 1.9727,
+      "q80": 5.1567,
+      "q90": 13.1378,
+      "q95": 45.3172,
+      "q99": 1122.2947,
+      "n": 2749,
+      "unrounded": {
+        "q50": 1.972702172737108,
+        "q80": 5.156745828529191,
+        "q90": 13.137784934463218,
+        "q95": 45.317235283639526,
+        "q99": 1122.2946681629026
+      },
+      "metadata": {
+        "n": 2749,
+        "n_finite": 2749,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 459.1165,
+        "max_finite": 215775.5284
+      },
+      "standard_companion": {
+        "n": 2749,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.9727,
+          "q90": 13.138,
+          "q95": 45.3308,
+          "q99": 1122.2953
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 461.1465,
+        "n_nonfinite": 0,
+        "n_differing": 2749,
+        "max_abs_difference": 3682.3052520979254
+      }
+    },
+    "prediction_file": "E-44-stats.csv.gz",
+    "prediction_sha256": "848c46ecda08580f79f57b9b01420ad8566fd24ec63f5d695c10607de162c361"
+  },
+  {
+    "model": "M-42",
+    "database": "stats",
+    "n": 2749,
+    "official": {
+      "q50": 2.2054,
+      "q80": 5.7769,
+      "q90": 15.0306,
+      "q95": 49.6541,
+      "q99": 1129.6264,
+      "n": 2749,
+      "unrounded": {
+        "q50": 2.205429142381904,
+        "q80": 5.776881148298343,
+        "q90": 15.030606094859003,
+        "q95": 49.65413981065453,
+        "q99": 1129.6263567020592
+      },
+      "metadata": {
+        "n": 2749,
+        "n_finite": 2749,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 689.3273,
+        "max_finite": 468948.1682
+      },
+      "standard_companion": {
+        "n": 2749,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 2.2054,
+          "q90": 15.0319,
+          "q95": 49.8975,
+          "q99": 1129.6607
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 692.2074,
+        "n_nonfinite": 0,
+        "n_differing": 2749,
+        "max_abs_difference": 4225.505604795966
+      }
+    },
+    "prediction_file": "M-42-stats.csv.gz",
+    "prediction_sha256": "9ac1153202448926ae36e8552671220cb985a421c2c71440b9530eb5a37e3be9"
+  },
+  {
+    "model": "M-43",
+    "database": "stats",
+    "n": 2749,
+    "official": {
+      "q50": 1.8959,
+      "q80": 6.1066,
+      "q90": 13.8185,
+      "q95": 33.5556,
+      "q99": 474.8567,
+      "n": 2749,
+      "unrounded": {
+        "q50": 1.8959264695928797,
+        "q80": 6.1066371811513624,
+        "q90": 13.81848757362381,
+        "q95": 33.55564256930982,
+        "q99": 474.85668915496666
+      },
+      "metadata": {
+        "n": 2749,
+        "n_finite": 2749,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 144.7681,
+        "max_finite": 69609.7233
+      },
+      "standard_companion": {
+        "n": 2749,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.8959,
+          "q90": 13.9121,
+          "q95": 33.5557,
+          "q99": 474.8565
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 145.2745,
+        "n_nonfinite": 0,
+        "n_differing": 2749,
+        "max_abs_difference": 873.6731015506302
+      }
+    },
+    "prediction_file": "M-43-stats.csv.gz",
+    "prediction_sha256": "02f3976fba16cb30d17f372e9bfcf54a319b4832b3f97f5c02104fa99122679e"
+  },
+  {
+    "model": "M-44",
+    "database": "stats",
+    "n": 2749,
+    "official": {
+      "q50": 1.8547,
+      "q80": 5.5889,
+      "q90": 13.4535,
+      "q95": 40.3072,
+      "q99": 868.0977,
+      "n": 2749,
+      "unrounded": {
+        "q50": 1.8546514575360304,
+        "q80": 5.588864739410592,
+        "q90": 13.453477513190698,
+        "q95": 40.30723542055111,
+        "q99": 868.0977418371689
+      },
+      "metadata": {
+        "n": 2749,
+        "n_finite": 2749,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 697.8424,
+        "max_finite": 904376.5476
+      },
+      "standard_companion": {
+        "n": 2749,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.8547,
+          "q90": 13.4535,
+          "q95": 40.3749,
+          "q99": 868.599
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 700.3643,
+        "n_nonfinite": 0,
+        "n_differing": 2749,
+        "max_abs_difference": 4037.4984989995137
+      }
+    },
+    "prediction_file": "M-44-stats.csv.gz",
+    "prediction_sha256": "ef3a17e3ea709cd7f8a44c7dce8ad2017530196339e2f9ff81ede74ce643875c"
+  },
+  {
+    "model": "PG",
+    "database": "ergastf1",
+    "n": 1422,
+    "official": {
+      "q50": 1.5984,
+      "q80": 4.2536,
+      "q90": 11.266,
+      "q95": 27.4723,
+      "q99": 114.2401,
+      "n": 1422,
+      "unrounded": {
+        "q50": 1.598400941811409,
+        "q80": 4.25355844577756,
+        "q90": 11.266019873508773,
+        "q95": 27.472266596536805,
+        "q99": 114.24008087738568
+      },
+      "metadata": {
+        "n": 1422,
+        "n_finite": 1422,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 7.4048,
+        "max_finite": 533.0143
+      },
+      "standard_companion": {
+        "n": 1422,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.5988,
+          "q90": 11.3036,
+          "q95": 27.4797,
+          "q99": 114.2408
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 7.4328,
+        "n_nonfinite": 0,
+        "n_differing": 1422,
+        "max_abs_difference": 8.500000101709237
+      }
+    },
+    "prediction_file": "PG-ergastf1.csv.gz",
+    "prediction_sha256": "7876170fd050cd7f2be75eb8c35b177a87cf370561958ee26770f0b53895a9ea"
+  },
+  {
+    "model": "P-0",
+    "database": "ergastf1",
+    "n": 1422,
+    "official": {
+      "q50": 1.4315,
+      "q80": 3.1244,
+      "q90": 6.4412,
+      "q95": 14.3196,
+      "q99": 67.9744,
+      "n": 1422,
+      "unrounded": {
+        "q50": 1.431499654329118,
+        "q80": 3.1244454883031105,
+        "q90": 6.4411678735195155,
+        "q95": 14.319612364257654,
+        "q99": 67.97441970788866
+      },
+      "metadata": {
+        "n": 1422,
+        "n_finite": 1422,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 5.0343,
+        "max_finite": 830.4333
+      },
+      "standard_companion": {
+        "n": 1422,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.4315,
+          "q90": 6.4486,
+          "q95": 14.5751,
+          "q99": 67.9745
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 5.0712,
+        "n_nonfinite": 0,
+        "n_differing": 1422,
+        "max_abs_difference": 19.141845143921955
+      }
+    },
+    "prediction_file": "P-0-ergastf1.csv.gz",
+    "prediction_sha256": "a15feb8b12ffceb493fb2d1aead1eedcc93de17132543b330c816fce12cc22a1"
+  },
+  {
+    "model": "E-42",
+    "database": "ergastf1",
+    "n": 1422,
+    "official": {
+      "q50": 1.4748,
+      "q80": 3.6778,
+      "q90": 9.4669,
+      "q95": 19.5523,
+      "q99": 134.4038,
+      "n": 1422,
+      "unrounded": {
+        "q50": 1.4748194665764727,
+        "q80": 3.6777562838196824,
+        "q90": 9.466935561893827,
+        "q95": 19.55228995245568,
+        "q99": 134.40378086312668
+      },
+      "metadata": {
+        "n": 1422,
+        "n_finite": 1422,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 8.5389,
+        "max_finite": 1069.1619
+      },
+      "standard_companion": {
+        "n": 1422,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.4748,
+          "q90": 9.6247,
+          "q95": 21.3398,
+          "q99": 134.4109
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 8.5758,
+        "n_nonfinite": 0,
+        "n_differing": 1422,
+        "max_abs_difference": 17.736210306390227
+      }
+    },
+    "prediction_file": "E-42-ergastf1.csv.gz",
+    "prediction_sha256": "e2e57cade55aff3b4790c2d548061996995f635b7b6e6390c1fb362cd647ab9c"
+  },
+  {
+    "model": "E-43",
+    "database": "ergastf1",
+    "n": 1422,
+    "official": {
+      "q50": 1.6329,
+      "q80": 3.2483,
+      "q90": 6.4076,
+      "q95": 15.0418,
+      "q99": 59.8873,
+      "n": 1422,
+      "unrounded": {
+        "q50": 1.6329184024048808,
+        "q80": 3.2483105854699854,
+        "q90": 6.407577838825322,
+        "q95": 15.041761023569059,
+        "q99": 59.88733037582326
+      },
+      "metadata": {
+        "n": 1422,
+        "n_finite": 1422,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 4.6405,
+        "max_finite": 460.3375
+      },
+      "standard_companion": {
+        "n": 1422,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.6329,
+          "q90": 6.4153,
+          "q95": 15.6551,
+          "q99": 59.8876
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 4.6839,
+        "n_nonfinite": 0,
+        "n_differing": 1422,
+        "max_abs_difference": 22.313825018607673
+      }
+    },
+    "prediction_file": "E-43-ergastf1.csv.gz",
+    "prediction_sha256": "f6679d5a95fb3c714f0482834fde377ad9d3f4e0933171b55004bf0d7e89b564"
+  },
+  {
+    "model": "E-44",
+    "database": "ergastf1",
+    "n": 1422,
+    "official": {
+      "q50": 1.5738,
+      "q80": 3.2609,
+      "q90": 6.4915,
+      "q95": 15.2815,
+      "q99": 55.4801,
+      "n": 1422,
+      "unrounded": {
+        "q50": 1.5737849232557588,
+        "q80": 3.2608730294345345,
+        "q90": 6.491534182141849,
+        "q95": 15.281493757894395,
+        "q99": 55.480111437909926
+      },
+      "metadata": {
+        "n": 1422,
+        "n_finite": 1422,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 4.6366,
+        "max_finite": 517.1204
+      },
+      "standard_companion": {
+        "n": 1422,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.5738,
+          "q90": 6.4915,
+          "q95": 15.4294,
+          "q99": 55.4895
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 4.6813,
+        "n_nonfinite": 0,
+        "n_differing": 1422,
+        "max_abs_difference": 23.06734193563198
+      }
+    },
+    "prediction_file": "E-44-ergastf1.csv.gz",
+    "prediction_sha256": "d2c8040380fed274905f727394e296e4312f69f2e377e7b6950dbcc5c8f080ba"
+  },
+  {
+    "model": "M-42",
+    "database": "ergastf1",
+    "n": 1422,
+    "official": {
+      "q50": 1.6578,
+      "q80": 3.2666,
+      "q90": 6.3058,
+      "q95": 17.0543,
+      "q99": 64.5928,
+      "n": 1422,
+      "unrounded": {
+        "q50": 1.6577801318326704,
+        "q80": 3.266585668380019,
+        "q90": 6.305847133962901,
+        "q95": 17.054310415379366,
+        "q99": 64.59275609278639
+      },
+      "metadata": {
+        "n": 1422,
+        "n_finite": 1422,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 5.1499,
+        "max_finite": 486.3097
+      },
+      "standard_companion": {
+        "n": 1422,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.6578,
+          "q90": 6.3598,
+          "q95": 17.0544,
+          "q99": 65.1364
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 5.1838,
+        "n_nonfinite": 0,
+        "n_differing": 1422,
+        "max_abs_difference": 16.898340196292928
+      }
+    },
+    "prediction_file": "M-42-ergastf1.csv.gz",
+    "prediction_sha256": "725ba2f6e5c56fd0f0e603eae0390f8cdd9dfdb99da21b5ef10722650d4c6dbc"
+  },
+  {
+    "model": "M-43",
+    "database": "ergastf1",
+    "n": 1422,
+    "official": {
+      "q50": 1.4728,
+      "q80": 3.7468,
+      "q90": 8.7147,
+      "q95": 21.6038,
+      "q99": 106.5415,
+      "n": 1422,
+      "unrounded": {
+        "q50": 1.4727808976294448,
+        "q80": 3.7468440826851035,
+        "q90": 8.714711534384593,
+        "q95": 21.603767200540783,
+        "q99": 106.54150583161325
+      },
+      "metadata": {
+        "n": 1422,
+        "n_finite": 1422,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 7.37,
+        "max_finite": 1004.3799
+      },
+      "standard_companion": {
+        "n": 1422,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.4743,
+          "q90": 8.7237,
+          "q95": 21.6719,
+          "q99": 106.5479
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 7.4012,
+        "n_nonfinite": 0,
+        "n_differing": 1422,
+        "max_abs_difference": 14.599861776920537
+      }
+    },
+    "prediction_file": "M-43-ergastf1.csv.gz",
+    "prediction_sha256": "18a2c25b933dabc5b428e32cba7a31a4d8ee16e0ea27c43b85e04d7bdd1cfbd3"
+  },
+  {
+    "model": "M-44",
+    "database": "ergastf1",
+    "n": 1422,
+    "official": {
+      "q50": 1.4639,
+      "q80": 3.3747,
+      "q90": 6.5814,
+      "q95": 15.2162,
+      "q99": 44.2035,
+      "n": 1422,
+      "unrounded": {
+        "q50": 1.4638949299545994,
+        "q80": 3.3747101158140436,
+        "q90": 6.58143408887274,
+        "q95": 15.216246337759125,
+        "q99": 44.20345422863828
+      },
+      "metadata": {
+        "n": 1422,
+        "n_finite": 1422,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 4.2499,
+        "max_finite": 288.3841
+      },
+      "standard_companion": {
+        "n": 1422,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.4639,
+          "q90": 6.6492,
+          "q95": 15.381,
+          "q99": 44.2087
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 4.2846,
+        "n_nonfinite": 0,
+        "n_differing": 1422,
+        "max_abs_difference": 18.58228033075246
+      }
+    },
+    "prediction_file": "M-44-ergastf1.csv.gz",
+    "prediction_sha256": "b601bd3452360fe333220eae04c717c9752b307ef53ec9a7ff67ead8f77f77f7"
+  },
+  {
+    "model": "PG",
+    "database": "genome",
+    "n": 2302,
+    "official": {
+      "q50": 1.1685,
+      "q80": 4.3348,
+      "q90": 15.1186,
+      "q95": 373.2727,
+      "q99": 11125.8982,
+      "n": 2302,
+      "unrounded": {
+        "q50": 1.168462225308001,
+        "q80": 4.33476061713904,
+        "q90": 15.118562291171356,
+        "q95": 373.27273930005686,
+        "q99": 11125.898157701668
+      },
+      "metadata": {
+        "n": 2302,
+        "n_finite": 2302,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 314.5672,
+        "max_finite": 15941.8496
+      },
+      "standard_companion": {
+        "n": 2302,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.1685,
+          "q90": 15.1189,
+          "q95": 383.0942,
+          "q99": 11711.4206
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 331.3201,
+        "n_nonfinite": 0,
+        "n_differing": 2302,
+        "max_abs_difference": 1972.4996187575284
+      }
+    },
+    "prediction_file": "PG-genome.csv.gz",
+    "prediction_sha256": "b1e4b218e52f5348fcabae8582ed96f5222d14b21deb43028bf2a0bb0ca5400b"
+  },
+  {
+    "model": "P-0",
+    "database": "genome",
+    "n": 2302,
+    "official": {
+      "q50": 1.6545,
+      "q80": 3.5951,
+      "q90": 5.1724,
+      "q95": 15.6697,
+      "q99": 114.4227,
+      "n": 2302,
+      "unrounded": {
+        "q50": 1.6544733127954314,
+        "q80": 3.595121036988214,
+        "q90": 5.172412498790005,
+        "q95": 15.66974633630352,
+        "q99": 114.42271452315634
+      },
+      "metadata": {
+        "n": 2302,
+        "n_finite": 2302,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 6.4104,
+        "max_finite": 457.7931
+      },
+      "standard_companion": {
+        "n": 2302,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.6545,
+          "q90": 5.1724,
+          "q95": 15.6701,
+          "q99": 116.8193
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 6.472,
+        "n_nonfinite": 0,
+        "n_differing": 2302,
+        "max_abs_difference": 48.839608784879545
+      }
+    },
+    "prediction_file": "P-0-genome.csv.gz",
+    "prediction_sha256": "ed62141dc767f403cd3c6d3cecfbb994d134185bf01655092f60cac65782aaca"
+  },
+  {
+    "model": "E-42",
+    "database": "genome",
+    "n": 2302,
+    "official": {
+      "q50": 1.3458,
+      "q80": 2.2518,
+      "q90": 5.1123,
+      "q95": 38.7219,
+      "q99": 210.5839,
+      "n": 2302,
+      "unrounded": {
+        "q50": 1.3457549686588326,
+        "q80": 2.2517553681059788,
+        "q90": 5.112300744151536,
+        "q95": 38.721882686483696,
+        "q99": 210.5839462536044
+      },
+      "metadata": {
+        "n": 2302,
+        "n_finite": 2302,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 9.1101,
+        "max_finite": 520.4428
+      },
+      "standard_companion": {
+        "n": 2302,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.3458,
+          "q90": 5.1128,
+          "q95": 38.7325,
+          "q99": 210.7065
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 9.2102,
+        "n_nonfinite": 0,
+        "n_differing": 2302,
+        "max_abs_difference": 46.047747143229856
+      }
+    },
+    "prediction_file": "E-42-genome.csv.gz",
+    "prediction_sha256": "0ed1e1f858b78d296dd1197b25c5eb4fb13ffd5bfe46f490f17e3fc51bae81b4"
+  },
+  {
+    "model": "E-43",
+    "database": "genome",
+    "n": 2302,
+    "official": {
+      "q50": 1.5186,
+      "q80": 3.6731,
+      "q90": 10.7919,
+      "q95": 81.5476,
+      "q99": 1013.351,
+      "n": 2302,
+      "unrounded": {
+        "q50": 1.51857777667354,
+        "q80": 3.673064117218392,
+        "q90": 10.791865696800173,
+        "q95": 81.5476029164974,
+        "q99": 1013.3509939726332
+      },
+      "metadata": {
+        "n": 2302,
+        "n_finite": 2302,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 48.7693,
+        "max_finite": 8549.752
+      },
+      "standard_companion": {
+        "n": 2302,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.5186,
+          "q90": 10.792,
+          "q95": 81.5571,
+          "q99": 1015.4711
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 49.8186,
+        "n_nonfinite": 0,
+        "n_differing": 2302,
+        "max_abs_difference": 253.16370502152222
+      }
+    },
+    "prediction_file": "E-43-genome.csv.gz",
+    "prediction_sha256": "37d96c708df0293708f76bf176570a2b32fb3b198b33b64c4bcfeede05687e08"
+  },
+  {
+    "model": "E-44",
+    "database": "genome",
+    "n": 2302,
+    "official": {
+      "q50": 1.4935,
+      "q80": 2.4407,
+      "q90": 3.7887,
+      "q95": 21.7171,
+      "q99": 128.1406,
+      "n": 2302,
+      "unrounded": {
+        "q50": 1.4935179556881608,
+        "q80": 2.440708235060656,
+        "q90": 3.7886658658471184,
+        "q95": 21.71707276818809,
+        "q99": 128.14064092519106
+      },
+      "metadata": {
+        "n": 2302,
+        "n_finite": 2302,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 6.2046,
+        "max_finite": 304.3844
+      },
+      "standard_companion": {
+        "n": 2302,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.4935,
+          "q90": 3.7978,
+          "q95": 21.8086,
+          "q99": 128.1786
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 6.2457,
+        "n_nonfinite": 0,
+        "n_differing": 2302,
+        "max_abs_difference": 27.4403270666989
+      }
+    },
+    "prediction_file": "E-44-genome.csv.gz",
+    "prediction_sha256": "5bd33342f800a9a36b6cccef8644c19036c7c589989bbb82ed65430f42458433"
+  },
+  {
+    "model": "M-42",
+    "database": "genome",
+    "n": 2302,
+    "official": {
+      "q50": 1.7483,
+      "q80": 3.8062,
+      "q90": 4.4715,
+      "q95": 10.1502,
+      "q99": 50.7349,
+      "n": 2302,
+      "unrounded": {
+        "q50": 1.7482790116363085,
+        "q80": 3.806235122696007,
+        "q90": 4.471451620609752,
+        "q95": 10.150247255519899,
+        "q99": 50.734890199403075
+      },
+      "metadata": {
+        "n": 2302,
+        "n_finite": 2302,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 3.8624,
+        "max_finite": 218.1133
+      },
+      "standard_companion": {
+        "n": 2302,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.7483,
+          "q90": 4.4715,
+          "q95": 10.5513,
+          "q99": 50.7457
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 3.8804,
+        "n_nonfinite": 0,
+        "n_differing": 2302,
+        "max_abs_difference": 13.867317890221273
+      }
+    },
+    "prediction_file": "M-42-genome.csv.gz",
+    "prediction_sha256": "c85d03f8c62b94e101fda2cd4ea0b7a1e7947e605c84fe7a3c5943e165033f3e"
+  },
+  {
+    "model": "M-43",
+    "database": "genome",
+    "n": 2302,
+    "official": {
+      "q50": 1.3514,
+      "q80": 2.6839,
+      "q90": 9.7077,
+      "q95": 59.1832,
+      "q99": 790.2253,
+      "n": 2302,
+      "unrounded": {
+        "q50": 1.351405930205284,
+        "q80": 2.6839219677271156,
+        "q90": 9.707711025485287,
+        "q95": 59.18316032153434,
+        "q99": 790.2253412120955
+      },
+      "metadata": {
+        "n": 2302,
+        "n_finite": 2302,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 27.5661,
+        "max_finite": 2692.5356
+      },
+      "standard_companion": {
+        "n": 2302,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.3514,
+          "q90": 9.708,
+          "q95": 59.4064,
+          "q99": 791.9733
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 27.9195,
+        "n_nonfinite": 0,
+        "n_differing": 2302,
+        "max_abs_difference": 147.7389936527586
+      }
+    },
+    "prediction_file": "M-43-genome.csv.gz",
+    "prediction_sha256": "a1462ddee0d940e028e72f804599d5ec2bb4d745dd730b7fafe92d769308fde3"
+  },
+  {
+    "model": "M-44",
+    "database": "genome",
+    "n": 2302,
+    "official": {
+      "q50": 1.276,
+      "q80": 2.4226,
+      "q90": 4.8673,
+      "q95": 23.6677,
+      "q99": 300.3661,
+      "n": 2302,
+      "unrounded": {
+        "q50": 1.275954409225513,
+        "q80": 2.4226290040339835,
+        "q90": 4.867268086022081,
+        "q95": 23.66771430564229,
+        "q99": 300.3660927485292
+      },
+      "metadata": {
+        "n": 2302,
+        "n_finite": 2302,
+        "nonfinite_q": {
+          "inf": 0,
+          "nan": 0
+        },
+        "float32_overflow_inputs": 0,
+        "decode": {
+          "n_overflow": 0,
+          "n_prediction_overflow": 0,
+          "n_label_overflow": 0,
+          "n_zero_denominator": 0,
+          "n_nonfinite_decoded": 0,
+          "note": "the upstream applies no exponent clipping; an overflowing prediction decodes to +inf and a vanishing one to 0"
+        },
+        "nonfinite_percentiles": [],
+        "percentiles_finite": true,
+        "official_comparable": true,
+        "clipping": "none; the pinned upstream applies no exponent clipping",
+        "arithmetic": "float32 exp and subtraction, widened to float64 afterwards",
+        "nan_to_num": "nan=np.inf; a genuine +inf ratio is mapped onto the float64 maximum, so it is finite and not counted as non-finite",
+        "percentiles": [
+          50,
+          80,
+          90,
+          95,
+          99
+        ],
+        "percentile_method": "numpy linear interpolation",
+        "rounding": 4,
+        "mean_finite": 10.6599,
+        "max_finite": 1030.828
+      },
+      "standard_companion": {
+        "n": 2302,
+        "definition": "exp(abs(max(log_pred, 0) - log(max(true, 1)))) with the 126-protocol decode; uncapped",
+        "percentiles": {
+          "q50": 1.276,
+          "q90": 4.8684,
+          "q95": 23.705,
+          "q99": 300.446
+        },
+        "nonfinite_percentiles": [],
+        "mean_finite": 10.8689,
+        "n_nonfinite": 0,
+        "n_differing": 2302,
+        "max_abs_difference": 154.5190864606734
+      }
+    },
+    "prediction_file": "M-44-genome.csv.gz",
+    "prediction_sha256": "c24ffaedaf6575601d98669ed9fd4b787ebef07610af938c6be5220c67900d15"
+  }
+]

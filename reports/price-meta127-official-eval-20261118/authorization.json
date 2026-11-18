@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "protocol": 127,
+  "authorized": true,
+  "root": "/gly/weilin/price-meta-127-official-eval-20261118",
+  "binding_sha256": "903c1f2f8832a46d82537a5f8412471b2c4ef4c148789a794c1c25d407ab8cf4",
+  "actions": [
+    "zero", "probe",
+    "finetune-P-0-stats", "finetune-P-0-ergastf1", "finetune-P-0-genome",
+    "finetune-E-42-stats", "finetune-E-42-ergastf1", "finetune-E-42-genome",
+    "finetune-E-43-stats", "finetune-E-43-ergastf1", "finetune-E-43-genome",
+    "finetune-E-44-stats", "finetune-E-44-ergastf1", "finetune-E-44-genome",
+    "finetune-M-42-stats", "finetune-M-42-ergastf1", "finetune-M-42-genome",
+    "finetune-M-43-stats", "finetune-M-43-ergastf1", "finetune-M-43-genome",
+    "finetune-M-44-stats", "finetune-M-44-ergastf1", "finetune-M-44-genome",
+    "report"
+  ],
+  "allowed_targets": ["imdb", "stats", "ergastf1", "genome"],
+  "recipe": {
+    "epochs": 100,
+    "effective_batch": 15000,
+    "microbatch": 512,
+    "lr": 0.00001,
+    "weight_decay": 0.00005,
+    "optimizer": "Adam",
+    "scheduler_step": "epoch",
+    "scheduler": "OneCycleLR(steps_per_epoch=10,epochs=10,pct_start=.3,div_factor=2,cos)",
+    "rng": 42,
+    "precision": "float32",
+    "topology": "single_gpu_gradient_accumulation",
+    "known_support_test_overlap": true
+  },
+  "selection_forbidden": true,
+  "cuda_device": 0,
+  "cuda_uuid": "GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d",
+  "granted_by": "user: 那就按照官方的设置和统计口径重新评估吧",
+  "granted_at": "2026-11-18T00:00:00-05:00",
+  "granted_at_precision": "session date; exact user-message time unavailable",
+  "attempts": 1,
+  "limits": {
+    "total_wall_seconds": 259200,
+    "total_output_bytes": 2147483648,
+    "run_wall_seconds": 28800,
+    "probe_wall_seconds": 1800,
+    "vram_bytes": 12884901888,
+    "rss_bytes": 25769803776
+  },
+  "imdb_finetune_status": "blocked_missing_official_features"
+}

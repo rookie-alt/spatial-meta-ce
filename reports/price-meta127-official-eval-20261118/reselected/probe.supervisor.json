@@ -1,0 +1,70 @@
+{
+  "budget": {
+    "max_output_bytes": 67108864.0,
+    "max_rss_bytes": 25769803776.0,
+    "max_vram_bytes": 12884901888.0,
+    "max_wall_seconds": 1800.0,
+    "poll_seconds": 0.5
+  },
+  "cleanup": {
+    "attempted": false,
+    "error": null,
+    "residual_pids": [],
+    "signals": [],
+    "verified": false
+  },
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/price-meta-127-official-reselect-20261118/code/scripts/run_price_meta127.py",
+    "worker",
+    "--binding",
+    "/gly/weilin/price-meta-127-official-reselect-20261118/inputs/binding.json",
+    "--authorization",
+    "/gly/weilin/price-meta-127-official-reselect-20261118/inputs/authorization.json",
+    "--stage",
+    "probe"
+  ],
+  "completion": {
+    "binding_sha256": "c7f123f9a8e9a1696c7c38ec1512ee1ef70d0376f84791c93beee38c3090fc0c",
+    "cost": {
+      "feasible": true,
+      "projected_run_seconds": 3212.5313728554643,
+      "projected_total_seconds": 71663.15882996476,
+      "run_limit_seconds": 28800,
+      "total_limit_seconds": 259200
+    },
+    "examples": 50000,
+    "files": {
+      "cost.json": "7c41e058cdbcb530227494379ef624081c59280fa58d70e3b745bec872b44f11",
+      "epochs.jsonl": "e8c6e974e7ba31c9ecd18820b5830ea8e9aa52fe5336d3b7ac58bd5d6ecd31fc"
+    },
+    "protocol": 127,
+    "research": false,
+    "schema": 1,
+    "selection_forbidden": true,
+    "stage": "probe",
+    "status": "completed",
+    "updates": 4
+  },
+  "cwd": "/gly/weilin/price-meta-127-official-reselect-20261118/code",
+  "elapsed_seconds": 55.6487108040601,
+  "failure": null,
+  "gpu_index": 6,
+  "gpu_uuid": "GPU-0050e82c-8c24-d85d-00d3-b73f12638df0",
+  "output": "/gly/weilin/price-meta-127-official-reselect-20261118/outputs/probe",
+  "output_bytes": 3993,
+  "peak_rss_bytes": 2266316800,
+  "peak_vram_bytes": 5802819584,
+  "pgid": 89916,
+  "pid": 89916,
+  "returncode": 0,
+  "samples": 97,
+  "schema": 1,
+  "status": "completed",
+  "supervisor_json": "/gly/weilin/price-meta-127-official-reselect-20261118/outputs/probe.supervisor.json",
+  "supervisor_log": "/gly/weilin/price-meta-127-official-reselect-20261118/outputs/probe.supervisor.log",
+  "supervisor_pid": 50613,
+  "vram_accounting": "device_total",
+  "vram_baseline_bytes": 1048576
+}

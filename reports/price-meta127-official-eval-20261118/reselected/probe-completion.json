@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "protocol": 127,
+  "stage": "probe",
+  "status": "completed",
+  "binding_sha256": "c7f123f9a8e9a1696c7c38ec1512ee1ef70d0376f84791c93beee38c3090fc0c",
+  "selection_forbidden": true,
+  "research": false,
+  "updates": 4,
+  "examples": 50000,
+  "cost": {
+    "projected_run_seconds": 3212.5313728554643,
+    "projected_total_seconds": 71663.15882996476,
+    "run_limit_seconds": 28800,
+    "total_limit_seconds": 259200,
+    "feasible": true
+  },
+  "files": {
+    "cost.json": "7c41e058cdbcb530227494379ef624081c59280fa58d70e3b745bec872b44f11",
+    "epochs.jsonl": "e8c6e974e7ba31c9ecd18820b5830ea8e9aa52fe5336d3b7ac58bd5d6ecd31fc"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "pid": 26147,
+  "starttime": "129757301",
+  "binding_sha256": "c7f123f9a8e9a1696c7c38ec1512ee1ef70d0376f84791c93beee38c3090fc0c",
+  "launched_at": "2026-11-18T08:51:50.665126+00:00",
+  "command": [
+    "timeout",
+    "--signal=TERM",
+    "--kill-after=15s",
+    "259080",
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/price-meta-127-official-reselect-20261118/code/scripts/run_price_meta127.py",
+    "sequence",
+    "--binding",
+    "/gly/weilin/price-meta-127-official-reselect-20261118/inputs/binding.json",
+    "--authorization",
+    "/gly/weilin/price-meta-127-official-reselect-20261118/inputs/authorization.json"
+  ],
+  "log": "/gly/weilin/price-meta-127-official-reselect-20261118/evidence/sequence-console.log",
+  "expected_total_hours": 19.906433008323543,
+  "hard_timeout_seconds": 259080,
+  "gpu": 6
+}

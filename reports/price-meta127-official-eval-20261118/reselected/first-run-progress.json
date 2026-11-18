@@ -1,0 +1,7 @@
+{
+  "stage": "finetune-P-0-stats",
+  "epoch": 7,
+  "epochs": 100,
+  "updates": 28,
+  "seconds": 170.1616102089174
+}

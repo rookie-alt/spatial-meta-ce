@@ -1,0 +1,17 @@
+{
+  "status": "verified",
+  "binding_sha256": "c7f123f9a8e9a1696c7c38ec1512ee1ef70d0376f84791c93beee38c3090fc0c",
+  "step_seconds": [
+    5.800563851138577,
+    5.154032820137218,
+    5.057495259912685,
+    1.7203553880099207
+  ],
+  "updates": 4,
+  "examples": 50000,
+  "projected_run_seconds": 3212.5313728554643,
+  "projected_total_seconds": 71663.15882996476,
+  "peak_vram_bytes": 5802819584,
+  "setup_allowance_seconds": 30.952438664156944,
+  "scientific_result": false
+}

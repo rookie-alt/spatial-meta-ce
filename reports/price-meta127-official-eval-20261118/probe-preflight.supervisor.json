@@ -1,0 +1,54 @@
+{
+  "budget": {
+    "max_output_bytes": 67108864.0,
+    "max_rss_bytes": 25769803776.0,
+    "max_vram_bytes": 12884901888.0,
+    "max_wall_seconds": 1800.0,
+    "poll_seconds": 0.5
+  },
+  "cleanup": {
+    "attempted": false,
+    "error": null,
+    "residual_pids": [],
+    "signals": [],
+    "verified": false
+  },
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/price-meta-127-official-eval-20261118/code/scripts/run_price_meta127.py",
+    "worker",
+    "--binding",
+    "/gly/weilin/price-meta-127-official-eval-20261118/inputs/binding.json",
+    "--authorization",
+    "/gly/weilin/price-meta-127-official-eval-20261118/inputs/authorization.json",
+    "--stage",
+    "probe"
+  ],
+  "completion": null,
+  "cwd": "/gly/weilin/price-meta-127-official-eval-20261118/code",
+  "elapsed_seconds": 0.19954474293626845,
+  "failure": {
+    "message": "authorized GPU GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d runs compute apps [75017]",
+    "stage": "preflight",
+    "traceback": "Traceback (most recent call last):\n  File \"/gly/weilin/price-meta-127-official-eval-20261118/code/spatial_meta_ce/price_meta123_supervisor.py\", line 1176, in supervise\n    vram_baseline_bytes = _assert_gpu_idle(authorized_uuid)\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/gly/weilin/price-meta-127-official-eval-20261118/code/spatial_meta_ce/price_meta123_supervisor.py\", line 545, in _assert_gpu_idle\n    raise GpuNotIdleError(\nspatial_meta_ce.price_meta123_supervisor.GpuNotIdleError: authorized GPU GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d runs compute apps [75017]\n",
+    "type": "gpu_not_idle"
+  },
+  "gpu_index": 0,
+  "gpu_uuid": "GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d",
+  "output": "/gly/weilin/price-meta-127-official-eval-20261118/outputs/probe",
+  "output_bytes": 0,
+  "peak_rss_bytes": 0,
+  "peak_vram_bytes": 0,
+  "pgid": null,
+  "pid": null,
+  "returncode": null,
+  "samples": 0,
+  "schema": 1,
+  "status": "failed",
+  "supervisor_json": "/gly/weilin/price-meta-127-official-eval-20261118/outputs/probe.supervisor.json",
+  "supervisor_log": "/gly/weilin/price-meta-127-official-eval-20261118/outputs/probe.supervisor.log",
+  "supervisor_pid": 28957,
+  "vram_accounting": "device_total",
+  "vram_baseline_bytes": 0
+}

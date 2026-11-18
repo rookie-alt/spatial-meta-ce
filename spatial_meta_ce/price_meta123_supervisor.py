@@ -1065,6 +1065,7 @@ def supervise(
         123,
         125,
         126,
+        127,
     ):
         raise ValueError("Unsupported worker completion protocol")
     limits = _validate_budget(budget)

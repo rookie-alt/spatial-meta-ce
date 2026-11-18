@@ -1,0 +1,20 @@
+{
+  "protocol": 127,
+  "finetune_imdb_features_exists": false,
+  "finetune_imdb_workload": {
+    "path": "/gly/weilin/PRICE-master/datas/workloads/finetune/imdb/workloads.sql",
+    "rows": 50000
+  },
+  "historical_generation_error": "2026-01-03 16:45:19\nTraceback (most recent call last):\n  File \"/gly/weilin/PRICE-master/setup/features_generate.py\", line 88, in <module>\n    data_features, true_cards, pg_est_cards, n_join_cols, n_fanouts, n_tables, n_filter_cols = create_workloads_features(path, database=db, bin_size=bin_size, usage=usage)\n                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/gly/weilin/PRICE-master/setup/features_generate.py\", line 50, in create_workloads_features\n    ret = sql2feature.create_sql_features(lower_except_quotes(sql))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/gly/weilin/PRICE-master/setup/features_tool.py\", line 372, in create_sql_features\n    join_column_histogram = self.get_column_histograms(join_column)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/gly/weilin/PRICE-master/setup/features_tool.py\", line 144, in get_column_histograms\n    hist, bin_edges = self.information_histogram[column_t][column_c]['hist'], self.information_histogram[column_t][column_c]['bin_edges']\n                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^\nKeyError: 'movie_id'\n",
+  "datasets_archive": {
+    "path": "/gly/weilin/datasets.tar.gz",
+    "bytes": 3870918542
+  },
+  "status": "blocked_missing_official_features",
+  "inspected_archives": [
+    "PRICE-master.zip",
+    "PRICE-master-new.zip",
+    "PRICE-master 2.zip"
+  ],
+  "archive_finetune_imdb_features_found": false
+}

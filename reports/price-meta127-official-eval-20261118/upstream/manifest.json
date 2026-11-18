@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/StCarmen/PRICE",
+  "commit": "487f8d8669b5592b537ce294b6902378a500c256",
+  "files": {
+    "README.md": "8d5c4aa84b307a9f63c3c0b196e993f0f85f1b953a9d5f5a036e64457f113866",
+    "finetune.py": "fb49163ce8526a856b213e74f4bfa64f1621bac09ebb9b60d7d3bec95033d119",
+    "evaluate.py": "b519344d4104103635b7fc010bd55c7b3453a95efd57d008506560f4cf099735",
+    "utils/model/args.py": "3167e929124d7bae2bb04ae86245aeba63b54566a0ab572390d83cd5231a711b",
+    "utils/model/dataset.py": "fe5afdb2b400da89df59bfe581feac407eb2c42d045f78248d8cc541180fc830",
+    "utils/model/padding.py": "cfb155402e831e457366b22c93f377f741acdba3f115a57228ec6be419bfe537",
+    "utils/model/qerror.py": "a1366824cf269992e358aee783c8c9b9c819ff627c756de5470aeb9b91dd3f2b"
+  }
+}
