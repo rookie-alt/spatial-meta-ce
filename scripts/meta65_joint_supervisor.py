@@ -14,9 +14,11 @@ import math
 import os
 import resource
 import signal
+import stat
 import subprocess
 import sys
 import time
+import traceback
 from collections.abc import Callable, Iterable
 from pathlib import Path
 from typing import Any
@@ -25,6 +27,9 @@ GiB = 1024**3
 MiB = 1024**2
 PHASES = ("preparation", "evaluation", "certification")
 MODES = ("formal", "cpu_preflight", "gpu_preflight")
+# The worker rewrites memory.json every sampling interval; a file older than
+# this means telemetry died and its last value must not be certified.
+TELEMETRY_STALE_SECONDS = 30.0
 
 _DEFAULTS = {
     "formal": {
@@ -146,35 +151,36 @@ def _json_path(path: Path) -> dict[str, Any] | None:
     return value if isinstance(value, dict) else None
 
 
-def _reject_symlinks(path: Path) -> None:
-    if path.is_symlink():
+def _output_tree_bytes(path: Path) -> int:
+    try:
+        metadata = path.lstat()
+    except FileNotFoundError:
+        return 0
+    if stat.S_ISLNK(metadata.st_mode):
         raise UnsafeOutputError(f"symlink is not allowed: {path}")
-    if not path.exists():
-        return
-    if path.is_dir():
-        for child in path.iterdir():
-            _reject_symlinks(child)
+    if stat.S_ISREG(metadata.st_mode):
+        return metadata.st_size
+    if stat.S_ISDIR(metadata.st_mode):
+        try:
+            children = list(path.iterdir())
+        except FileNotFoundError:
+            return 0
+        return sum(_output_tree_bytes(child) for child in children)
+    return 0
 
 
-def output_bytes(output: str | os.PathLike[str], log_path: str | os.PathLike[str]) -> int:
+def _reject_symlinks(path: Path) -> None:
+    _output_tree_bytes(path)
+
+
+def output_bytes(
+    output: str | os.PathLike[str], log_path: str | os.PathLike[str]
+) -> int:
     """Count worker files and supervisor sidecars, rejecting symlink traversal."""
     output = Path(output)
     log_path = Path(log_path)
     record_path, _ = artifact_paths(output)
-    _reject_symlinks(output)
-    total = 0
-    if output.exists():
-        for path in output.rglob("*"):
-            if path.is_symlink():
-                raise UnsafeOutputError(f"symlink is not allowed: {path}")
-            if path.is_file():
-                total += path.stat().st_size
-    for path in (log_path, record_path):
-        if path.is_symlink():
-            raise UnsafeOutputError(f"symlink is not allowed: {path}")
-        if path.exists():
-            total += path.stat().st_size
-    return total
+    return sum(_output_tree_bytes(path) for path in (output, log_path, record_path))
 
 
 def _linux_rows(proc_root: Path = Path("/proc")) -> dict[int, tuple[int, int, int, int, str]]:
@@ -315,6 +321,21 @@ def _worker_reported_vram(output: Path) -> int:
     memory = status.get("memory")
     if isinstance(memory, dict):
         values.extend((memory.get("allocated_bytes", 0), memory.get("reserved_bytes", 0)))
+    telemetry_path = output / "memory.json"
+    telemetry = _json_path(telemetry_path)
+    if telemetry is None and telemetry_path.exists():
+        raise ValueError("worker CUDA memory telemetry is unreadable")
+    if telemetry is not None:
+        age = time.time() - telemetry_path.stat().st_mtime
+        if age > TELEMETRY_STALE_SECONDS:
+            raise ValueError(
+                f"worker CUDA memory telemetry is stale ({age:.0f}s > "
+                f"{TELEMETRY_STALE_SECONDS:.0f}s)"
+            )
+        reported = [value for key, value in telemetry.items() if key.endswith("_bytes")]
+        if not reported:
+            raise ValueError("worker CUDA memory telemetry lacks byte counters")
+        values.extend(reported)
     valid = []
     for value in values:
         if isinstance(value, bool) or not isinstance(value, (int, float)) or value < 0:
@@ -323,8 +344,10 @@ def _worker_reported_vram(output: Path) -> int:
     return max(valid, default=0)
 
 
-def sample_process(child: Any, *, mode: str, output: Path | None = None) -> dict[str, int]:
-    """Sample only the child group/tree; CPU preflight never calls nvidia-smi."""
+def sample_process(
+    child: Any, *, mode: str, output: Path | None = None
+) -> dict[str, int]:
+    """Sample owned RSS and VRAM; worker CUDA telemetry covers namespace gaps."""
     rows = _process_rows()
     pids = _owned_pids(rows, int(child.pid))
     for _ in range(2):
@@ -584,6 +607,19 @@ def supervise(
     def persist() -> None:
         _write_json(record_path, record)
 
+    def record_error(stage: str, error: BaseException) -> None:
+        record.setdefault(
+            "error",
+            {
+                "stage": stage,
+                "type": type(error).__name__,
+                "message": str(error),
+                "traceback": "".join(
+                    traceback.format_exception(type(error), error, error.__traceback__)
+                ),
+            },
+        )
+
     def persist_measured() -> int:
         # The record contains its own byte count; settle the digit count after
         # every write so the reported value includes the final evidence file.
@@ -638,6 +674,7 @@ def supervise(
                     record["phase"] = current_phase
                     phase_started = transition_now
 
+                sample_stage = "sampler"
                 try:
                     if sample_fn is None:
                         sample = sample_process(child, mode=mode, output=output)
@@ -646,18 +683,22 @@ def supervise(
                     rss, vram = _sample_value(sample)
                     record["peak_rss_bytes"] = max(record["peak_rss_bytes"], rss)
                     record["peak_vram_bytes"] = max(record["peak_vram_bytes"], vram)
+                    sample_stage = "output_scan"
                     record["outputbytes"] = output_bytes(output, log_path)
                     _reject_symlinks(output)
-                except UnsafeOutputError:
+                except UnsafeOutputError as exc:
+                    record_error(sample_stage, exc)
                     record["failure"] = "unsafe_output"
                     _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                     break
-                except GPUQueryError:
+                except GPUQueryError as exc:
+                    record_error(sample_stage, exc)
                     record["failure"] = "sample_error"
                     _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                     break
-                except Exception:  # noqa: BLE001 - sampler boundary must fail closed
+                except Exception as exc:  # noqa: BLE001 - sampler boundary must fail closed
                     if _peek_exit(child) is None:
+                        record_error(sample_stage, exc)
                         record["failure"] = "sample_error"
                         _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
                         break
@@ -670,8 +711,10 @@ def supervise(
                         pass
                     final_now = time.monotonic()
                     if final_now > total_deadline:
+                        record_error(sample_stage, exc)
                         record["failure"] = "total_timeout"
                     elif _peek_exit(child) != 0:
+                        record_error(sample_stage, exc)
                         record["failure"] = "sample_error"
                     break
 
@@ -735,7 +778,8 @@ def supervise(
                         record["failure"] = ("orphan_descendant" if record["returncode"] == 0
                                              else "child_exit")
                     _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
-            except GPUQueryError:
+            except GPUQueryError as exc:
+                record_error("process_cleanup", exc)
                 record["failure"] = record["failure"] or "sample_error"
                 if child.returncode is None and sys.platform.startswith("linux"):
                     _kill_group(child, grace, record["signals"], owned_pgid=record["pgid"])
@@ -798,6 +842,7 @@ def supervise(
                 record["elapsed"] = time.monotonic() - started
                 persist_measured()
     except BaseException as exc:
+        record_error("supervisor", exc)
         if child is not None:
             record["failure"] = record["failure"] or "supervisor_error"
             try:

@@ -160,8 +160,21 @@ def _validate_fixed_budget(config):
         raise ValueError("ERM requires meta_objective=post")
     if config["method"] == "fomaml" and config["meta_objective"] not in OBJECTIVES:
         raise ValueError("Unknown meta_objective")
-    if config["steps"] != FIXED_STEPS:
-        raise ValueError(f"fixed_budget requires steps={FIXED_STEPS}")
+    declared = config.get("preregistered_step_budget")
+    if declared is None:
+        if config["steps"] != FIXED_STEPS:
+            raise ValueError(f"fixed_budget requires steps={FIXED_STEPS}")
+    elif (
+        type(declared) is not int
+        or declared != config["steps"]
+        or declared <= FIXED_STEPS
+        or not isinstance(config.get("preregistration"), str)
+        or not config["preregistration"].strip()
+    ):
+        raise ValueError(
+            "fixed_budget accepts a longer step budget only when the config "
+            "declares matching preregistered_step_budget and preregistration"
+        )
     if config["meta_batch"] != FIXED_META_BATCH:
         raise ValueError(f"fixed_budget requires meta_batch={FIXED_META_BATCH}")
     if config["accumulation"] != FIXED_ACCUMULATION:
@@ -334,7 +347,13 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         raise ValueError("pinball_tau config requires loss=pinball_tau")
     if (s5 or s6) and config["loss"] != "smooth_l1":
         raise ValueError("complex_query_weight/tail_risk_mode requires loss=smooth_l1")
-    validate_splits(data_config["splits"])
+    from .price_capacity import OFFICIAL_TRAIN_DATABASES
+
+    validate_splits(
+        data_config["splits"],
+        allow_empty_validation=tuple(data_config["splits"]["train"])
+        == OFFICIAL_TRAIN_DATABASES,
+    )
     for key in [
         "steps",
         "meta_batch",
@@ -363,11 +382,18 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
     if fixed_budget:
         _validate_fixed_budget({**config, "meta_objective": meta_objective})
     if stage.startswith("122-"):
-        from .price_capacity import validate_source_splits
-        from .price_protocol import validate_training_preflight
+        if tuple(data_config["splits"]["train"]) == OFFICIAL_TRAIN_DATABASES:
+            from .official_split import build_official_capacity, validate_official_splits
 
-        validate_source_splits(data_config)
-        validate_training_preflight(config, data_config)
+            validate_official_splits(data_config["splits"])
+            if config["model"].get("capacity") != build_official_capacity(data_config):
+                raise ValueError("Official split capacity differs from the 26 caches")
+        else:
+            from .price_capacity import validate_source_splits
+            from .price_protocol import validate_training_preflight
+
+            validate_source_splits(data_config)
+            validate_training_preflight(config, data_config)
     if config.get("training_plan") and not fixed_budget:
         raise ValueError("training_plan requires fixed_budget")
     if fixed_budget and resume:
@@ -496,7 +522,12 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         optimizer.load_state_dict(state["optimizer"])
         restore_rng(state["rng"])
     if fixed_budget:
-        training_plan = load_training_plan(config["training_plan"], data_config)
+        training_plan = load_training_plan(
+            config["training_plan"],
+            data_config,
+            allow_empty_validation=tuple(data_config["splits"]["train"])
+            == OFFICIAL_TRAIN_DATABASES,
+        )
         validate_plan_matches_config(training_plan, config)
         verify_plan_against_stores(training_plan, stores)
         sample_plan_digest = training_plan["plan_sha256"]

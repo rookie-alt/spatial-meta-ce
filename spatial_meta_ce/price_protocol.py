@@ -10,6 +10,7 @@ from .plans import validate_source_eval_plan
 from .price_capacity import validate_capacity, validate_source_splits
 
 A_ARMS = ("A0-ref", "A0", "A1", "A2")
+EXPLORATORY_ARM = "A1-PG"
 A_SEEDS = (42, 43, 44)
 SUM_MODEL = {"width": 64, "use_pg": True, "arch": "sum", "layers": 2, "heads": 4}
 
@@ -32,22 +33,31 @@ def a_model_config(arm: str, capacity: dict | None = None) -> dict:
     }
 
 
+def exploratory_model_config(capacity: dict) -> dict:
+    """PG-head-input ablation; never part of the frozen 122 A matrix."""
+    return {**a_model_config("A1", capacity), "pg_head_input": True}
+
+
 def fixed_model_scope(
     config: dict, default_model: dict, default_scope: str
 ) -> tuple[dict, str]:
     stage = config.get("fixed_stage")
     if stage is None:
         return default_model, default_scope
-    if stage not in tuple(f"122-{arm}" for arm in A_ARMS):
+    if stage not in tuple(f"122-{arm}" for arm in (*A_ARMS, EXPLORATORY_ARM)):
         raise ValueError(
-            "Unsupported fixed_stage; only 122 A infrastructure is implemented"
+            "Unsupported fixed_stage; only 122 A or its PG-head-input ablation is implemented"
         )
     if config["method"] != "erm" or config["meta_objective"] != "post":
         raise ValueError(
             "122 A requires ERM with no training inner loop (post signature)"
         )
     arm = stage.removeprefix("122-")
-    expected = a_model_config(arm, config["model"].get("capacity"))
+    expected = (
+        exploratory_model_config(config["model"].get("capacity"))
+        if arm == EXPLORATORY_ARM
+        else a_model_config(arm, config["model"].get("capacity"))
+    )
     return expected, "all"
 
 
@@ -75,17 +85,58 @@ def validate_a_plan(plan: dict, data_config: dict) -> dict:
     return plan
 
 
+def _validate_data_config_binding(
+    config: dict, report: dict, data_config: dict
+) -> None:
+    import hashlib
+    import json
+    from pathlib import Path
+
+    location = config.get("data_config")
+    recorded = report.get("data_config")
+    if (
+        not isinstance(location, str)
+        or not location
+        or not isinstance(recorded, str)
+        or not recorded
+        or not Path(location).is_absolute()
+        or not Path(recorded).is_absolute()
+    ):
+        raise ValueError("122 requires an absolute hash-bound data_config")
+    try:
+        snapshot = Path(location).resolve()
+        if snapshot != Path(recorded).resolve():
+            raise ValueError("122 data_config path differs from source preflight")
+        raw = snapshot.read_bytes()
+        actual_sha = hashlib.sha256(raw).hexdigest()
+        if actual_sha != config.get("data_config_sha256") or actual_sha != report.get(
+            "data_config_sha256"
+        ):
+            raise ValueError("122 data_config SHA changed since preflight")
+        saved = json.loads(raw)
+    except (OSError, RuntimeError, json.JSONDecodeError, UnicodeDecodeError) as error:
+        raise ValueError("122 data_config snapshot is unreadable or invalid") from error
+    if not isinstance(saved, dict) or saved != data_config:
+        raise ValueError("122 runtime data_config differs from its bound snapshot")
+
+
 def validate_training_preflight(config: dict, data_config: dict) -> dict:
     """Training consumes source-only preflight evidence, never validation stores."""
+    import hashlib
     import json
     from pathlib import Path
     from .manifests import file_hash
     from .price_capacity import build_capacity
 
     path = config.get("source_preflight")
-    if not path or file_hash(path) != config.get("source_preflight_sha256"):
+    if not path:
         raise ValueError("122 training requires a hash-bound source_preflight")
-    report = json.loads(Path(path).read_text())
+    raw = Path(path).read_bytes()
+    if hashlib.sha256(raw).hexdigest() != config.get("source_preflight_sha256"):
+        raise ValueError("122 training requires a hash-bound source_preflight")
+    report = json.loads(raw)
+    if not isinstance(report, dict):
+        raise ValueError("122 source_preflight must contain a JSON object")
     if (
         report.get("protocol") != 122
         or report.get("status") != "data_preflight_passed"
@@ -98,6 +149,17 @@ def validate_training_preflight(config: dict, data_config: dict) -> dict:
         raise ValueError(
             "122 P0 gate is incomplete; data preflight alone cannot authorize A"
         )
+    if (
+        config.get("fixed_stage") == "122-A1-PG"
+        and report.get("exploratory_pg_head_input_authorized") is not True
+    ):
+        raise ValueError("122 PG-input exploratory training is not authorized")
+    if report.get("formal_training_authorized") is not True:
+        raise ValueError("122 formal training authorization is incomplete")
+    from scripts.run_price_meta_a import validate_execution_snapshot
+
+    _validate_data_config_binding(config, report, data_config)
+    validate_execution_snapshot(report, config)
     actual = build_capacity(data_config)
     if report.get("capacity") != actual:
         raise ValueError("122 training capacity/cache binding changed")
@@ -109,11 +171,11 @@ def validate_training_preflight(config: dict, data_config: dict) -> dict:
     return report
 
 
-def validate_a_checkpoint(state: dict, arm: str, seed: int) -> dict:
+def _validate_candidate_checkpoint(state: dict, arm: str, seed: int) -> dict:
     from .train import FIXED_SELECTION, FIXED_STEPS, _validate_fixed_budget
     from .price_capacity import TRAIN_DATABASES
 
-    if arm not in A_ARMS or seed not in A_SEEDS:
+    if arm not in (*A_ARMS, EXPLORATORY_ARM) or seed not in A_SEEDS:
         raise ValueError("Unknown 122 A arm/seed")
     metadata = state.get("metadata")
     if not isinstance(metadata, dict):
@@ -146,7 +208,11 @@ def validate_a_checkpoint(state: dict, arm: str, seed: int) -> dict:
             "meta_objective": signature.get("meta_objective", "post"),
         }
     )
-    expected = a_model_config(arm, state.get("model_config", {}).get("capacity"))
+    expected = (
+        exploratory_model_config(state.get("model_config", {}).get("capacity"))
+        if arm == EXPLORATORY_ARM
+        else a_model_config(arm, state.get("model_config", {}).get("capacity"))
+    )
     if state.get("model_config") != expected or signature.get("model") != expected:
         raise ValueError("122 A checkpoint model configuration mismatch")
     if (
@@ -186,6 +252,19 @@ def validate_a_checkpoint(state: dict, arm: str, seed: int) -> dict:
     ):
         raise ValueError("122 A requires an independent sealed training initialization")
     return metadata
+
+
+def validate_a_checkpoint(state: dict, arm: str, seed: int) -> dict:
+    if arm not in A_ARMS:
+        raise ValueError("Unknown formal 122 A arm")
+    return _validate_candidate_checkpoint(state, arm, seed)
+
+
+def validate_exploratory_checkpoint(state: dict, seed: int) -> dict:
+    """Validate without admitting the ablation to the formal A decision."""
+    if state.get("model_type") != "price_lite_pg_residual":
+        raise ValueError("Exploratory PG checkpoint model_type mismatch")
+    return _validate_candidate_checkpoint(state, EXPLORATORY_ARM, seed)
 
 
 def summarize_a(units: list[dict]) -> dict:

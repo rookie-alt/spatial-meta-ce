@@ -1,4 +1,4 @@
-"""PRICE-style two-stage encoder; PG enters only the residual output anchor."""
+"""PRICE-style two-stage encoder with optional PG residual-head input."""
 
 from __future__ import annotations
 
@@ -48,8 +48,11 @@ class PriceResidualEstimator(nn.Module):
         dropout: float = 0.0,
         lora: bool = False,
         lora_seed: int = LORA_SEED,
+        pg_head_input: bool = False,
     ) -> None:
         super().__init__()
+        if type(pg_head_input) is not bool or (pg_head_input and arch != "price_lite"):
+            raise ValueError("PG head input requires price_lite and a boolean flag")
         expected_dim = 64 if arch == "price_lite" else 32
         if arch not in PRICE_ARCHES or d_model not in (None, expected_dim):
             raise ValueError("PRICE model_type/arch/d_model configuration mismatch")
@@ -72,8 +75,12 @@ class PriceResidualEstimator(nn.Module):
             "capacity": copy.deepcopy(self.capacity),
             "lora": lora,
             "lora_seed": lora_seed,
+            **({"pg_head_input": True} if pg_head_input else {}),
         }
-        self.model_type = f"{arch}_residual"
+        self.pg_head_input = pg_head_input
+        self.model_type = (
+            "price_lite_pg_residual" if pg_head_input else f"{arch}_residual"
+        )
         self.scale_embedding = ScaleEmbedding(*self.counts[:2], 40, expected_dim)
         self.filter_embedding = FilterEmbedding(*self.counts, 40, 4, 43, expected_dim)
         self.scale_encoder = Encoder(expected_dim, layers, heads, dropout)
@@ -86,6 +93,16 @@ class PriceResidualEstimator(nn.Module):
             nn.ReLU(),
             nn.Linear(64, 1),
         )
+        if pg_head_input:
+            original = self.head[0]
+            with torch.no_grad():
+                weight = torch.cat(
+                    [original.weight, original.weight.new_zeros(128, 1)], dim=1
+                )
+            self.head[0] = nn.Linear(original.in_features + 1, 128)
+            with torch.no_grad():
+                self.head[0].weight.copy_(weight)
+                self.head[0].bias.copy_(original.bias)
         nn.init.zeros_(self.head[-1].weight)
         nn.init.zeros_(self.head[-1].bias)
         if lora:
@@ -193,7 +210,10 @@ class PriceResidualEstimator(nn.Module):
         lengths = self.len_net(torch.log1p(batch["counts"]))
         tables = batch["groups"][2].masked_fill(~batch["masks"][2][..., None], 0)
         log_cartesian = tables[:, :, 0].sum(1, keepdim=True)
-        return torch.cat([cls, lengths, log_cartesian], dim=1)
+        features = [cls, lengths, log_cartesian]
+        if self.pg_head_input:
+            features.append(batch["pg_log"][:, None])
+        return torch.cat(features, dim=1)
 
     def head_features(self, batch: dict) -> torch.Tensor:
         return self.head[:-1](self._head_input(batch))

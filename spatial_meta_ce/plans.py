@@ -105,8 +105,11 @@ def build_training_plan(
     accumulation,
     support_sizes,
     query_size,
+    allow_empty_validation=False,
 ):
-    validate_splits(data_config["splits"])
+    validate_splits(
+        data_config["splits"], allow_empty_validation=allow_empty_validation
+    )
     train_databases = list(data_config["splits"]["train"])
     pool = StorePool(data_config["cache_root"], max_open=len(train_databases))
     stores = {db: pool.get("pretrain", db) for db in train_databases}
@@ -144,12 +147,16 @@ def build_training_plan(
         "episodes": episodes,
     }
     plan["plan_sha256"] = _plan_digest(plan)
-    validate_training_plan(plan, data_config)
+    validate_training_plan(
+        plan, data_config, allow_empty_validation=allow_empty_validation
+    )
     return plan
 
 
-def validate_training_plan(plan, data_config):
-    validate_splits(data_config["splits"])
+def validate_training_plan(plan, data_config, *, allow_empty_validation=False):
+    validate_splits(
+        data_config["splits"], allow_empty_validation=allow_empty_validation
+    )
     if not isinstance(plan, dict) or plan.get("schema") != TRAINING_SCHEMA:
         raise ValueError("Unsupported training plan schema")
     if plan.get("kind") != TRAINING_KIND:
@@ -272,9 +279,11 @@ def verify_plan_against_stores(plan, stores):
     return True
 
 
-def load_training_plan(path, data_config):
+def load_training_plan(path, data_config, *, allow_empty_validation=False):
     plan = json.loads(Path(path).read_text())
-    return validate_training_plan(plan, data_config)
+    return validate_training_plan(
+        plan, data_config, allow_empty_validation=allow_empty_validation
+    )
 
 
 def build_source_eval_plan(data_config, expected_unique=EXPECTED_UNIQUE, *, protocol=112):

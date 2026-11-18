@@ -820,6 +820,56 @@ class SamplerTests(unittest.TestCase):
         ):
             s.sample_process(worker, mode="gpu_preflight")
 
+    def test_stale_worker_cuda_telemetry_cannot_be_certified(self):
+        rows = {100: (1, 100, 100, 42, "S")}
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            path = output / "memory.json"
+            path.write_text(json.dumps({"max_allocated_bytes": 1880}))
+            stale = time.time() - s.TELEMETRY_STALE_SECONDS - 5
+            os.utime(path, (stale, stale))
+            with (
+                patch.object(s, "_process_rows", return_value=rows),
+                patch.object(s, "_gpu_bytes", return_value=0),
+                self.assertRaisesRegex(ValueError, "stale"),
+            ):
+                s.sample_process(
+                    SimpleNamespace(pid=100), mode="formal", output=output
+                )
+
+    def test_worker_cuda_telemetry_is_billed_when_driver_pid_is_invisible(self):
+        rows = {100: (1, 100, 100, 42, "S")}
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            (output / "memory.json").write_text(
+                json.dumps({"allocated_bytes": 900, "max_allocated_bytes": 1880})
+            )
+            with (
+                patch.object(s, "_process_rows", return_value=rows),
+                patch.object(s, "_gpu_bytes", return_value=0),
+            ):
+                sample = s.sample_process(
+                    SimpleNamespace(pid=100), mode="formal", output=output
+                )
+        self.assertEqual(sample, {"rss_bytes": 42, "vram_bytes": 1880})
+
+    def test_worker_cuda_telemetry_failure_or_corruption_fails_closed(self):
+        rows = {100: (1, 100, 100, 42, "S")}
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            path = output / "memory.json"
+            with (
+                patch.object(s, "_process_rows", return_value=rows),
+                patch.object(s, "_gpu_bytes", return_value=0),
+            ):
+                for payload in ('{"error": "RuntimeError: boom"}', "not json"):
+                    with self.subTest(payload=payload):
+                        path.write_text(payload)
+                        with self.assertRaises(ValueError):
+                            s.sample_process(
+                                SimpleNamespace(pid=100), mode="formal", output=output
+                            )
+
     def test_formal_gpu_sums_only_owned_pid_rows(self):
         result = SimpleNamespace(stdout="100, 2\n101, 3\n200, 999\n")
         with patch.object(s.subprocess, "run", return_value=result) as run:

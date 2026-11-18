@@ -26,7 +26,10 @@ from .plans import (
     load_source_eval_plan,
     verify_source_eval_plan_against_stores,
 )
-from .price_protocol import A_ARMS, validate_a_checkpoint, validate_a_plan
+from .price_protocol import (
+    A_ARMS, EXPLORATORY_ARM, validate_a_checkpoint, validate_a_plan,
+    validate_exploratory_checkpoint,
+)
 from .metrics import q_values, summarize
 from .train import FIXED_MODEL, FIXED_SELECTION, FIXED_STEPS
 
@@ -58,6 +61,8 @@ def _is_sha256(value):
 
 
 def validate_eval_checkpoint(state, arm, seed):
+    if arm == EXPLORATORY_ARM:
+        return validate_exploratory_checkpoint(state, seed)
     if arm in A_ARMS:
         return validate_a_checkpoint(state, arm, seed)
     if arm not in ARMS:
@@ -167,15 +172,20 @@ def evaluate_source(
     output_dir,
     device="cpu",
     batch_size=128,
+    on_unit=None,
 ):
-    if arm not in (*ARMS, *A_ARMS):
+    def report(state, unit_key):
+        if on_unit is not None:
+            on_unit(state, unit_key)
+
+    if arm not in (*ARMS, *A_ARMS, EXPLORATORY_ARM):
         raise ValueError(f"Unknown arm {arm!r}")
     if batch_size < 1:
         raise ValueError("batch_size must be positive")
     model, state = load_checkpoint(checkpoint, device)
     metadata = validate_eval_checkpoint(state, arm, seed)
     plan = load_source_eval_plan(plan_path, data_config)
-    if arm in A_ARMS:
+    if arm in (*A_ARMS, EXPLORATORY_ARM):
         validate_a_plan(plan, data_config)
         from .price_capacity import build_capacity, scan_source_capacity, UnsupportedCapacity
 
@@ -204,6 +214,7 @@ def evaluate_source(
             entry = plan["databases"][db]
             query = np.asarray(entry["query"], dtype=np.int64)
             base = OrderedDict(model.named_parameters())
+            report("start", f"{db}/k0")
             started = time.perf_counter()
             predictions = _predict(model, base, store, query, device, batch_size)
             predict_seconds = time.perf_counter() - started
@@ -219,11 +230,14 @@ def evaluate_source(
                     "predict_seconds": predict_seconds,
                     "unit_wall_seconds": time.perf_counter() - started,
                     **({"arm": arm, "seed": seed, "source_eval_plan_sha256": plan["plan_sha256"],
-                        **_unit_diagnostics(store, query, predictions, k0_predictions)} if arm in A_ARMS else {}),
+                        **_unit_diagnostics(store, query, predictions, k0_predictions)} if arm in (*A_ARMS, EXPLORATORY_ARM) else {}),
                 }
             )
+            report("done", f"{db}/k0")
             for k in (5, 20):
                 for run, block in enumerate(entry["support_blocks"], start=1):
+                    unit_key = f"{db}/k{k}-run{run}"
+                    report("start", unit_key)
                     started = time.perf_counter()
                     support = np.asarray(block["support"][:k], dtype=np.int64)
                     adapt_started = time.perf_counter()
@@ -259,12 +273,19 @@ def evaluate_source(
                                 "support_ids": block["support_ids"][:k],
                                 "support_hashes": block["support_hashes"][:k],
                                 **_unit_diagnostics(store, query, predictions, k0_predictions),
-                            } if arm in A_ARMS else {}),
+                            } if arm in (*A_ARMS, EXPLORATORY_ARM) else {}),
                         }
                     )
+                    report("done", unit_key)
     protocol = {
         "schema": 1,
-        "kind": "price_source_eval_122_a" if arm in A_ARMS else "fomaml_joint_source_eval_protocol",
+        "kind": (
+            "price_source_eval_122_pg_input_exploratory"
+            if arm == EXPLORATORY_ARM
+            else "price_source_eval_122_a"
+            if arm in A_ARMS
+            else "fomaml_joint_source_eval_protocol"
+        ),
         "arm": arm,
         "seed": seed,
         "checkpoint": str(Path(checkpoint).resolve()),

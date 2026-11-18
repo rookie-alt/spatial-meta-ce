@@ -126,6 +126,50 @@ class PriceModelTests(unittest.TestCase):
         self.assertEqual(sum(p.numel() for p in anchor.parameters()), 132417)
         self.assertEqual(old.head[0].in_features - anchor.head[0].in_features, 1)
 
+    def test_pg_head_input_is_opt_in_and_keeps_the_anchor(self):
+        batch = batch_samples([sample(2)])
+        torch.manual_seed(42)
+        baseline = self.model()
+        torch.manual_seed(42)
+        candidate = create_model(
+            {"arch": "price_lite", "capacity": self.binding, "pg_head_input": True}
+        )
+        changed = {**batch, "pg_log": batch["pg_log"] + 2}
+        self.assertTrue(
+            torch.equal(candidate.head[0].weight[:, :-1], baseline.head[0].weight)
+        )
+        self.assertTrue(torch.equal(candidate.head[0].bias, baseline.head[0].bias))
+        self.assertEqual(torch.count_nonzero(candidate.head[0].weight[:, -1]), 0)
+        self.assertTrue(torch.equal(candidate.head[2].weight, baseline.head[2].weight))
+        self.assertEqual(candidate.model_type, "price_lite_pg_residual")
+        self.assertEqual(baseline.model_type, "price_lite_residual")
+        self.assertNotIn("pg_head_input", baseline.config)
+        self.assertEqual(candidate.head[0].in_features, baseline.head[0].in_features + 1)
+        self.assertTrue(torch.equal(candidate(batch), batch["pg_log"]))
+        self.assertTrue(torch.equal(candidate._head_input(batch)[:, -1], batch["pg_log"]))
+        self.assertTrue(torch.equal(candidate._head_input(changed)[:, :-1], candidate._head_input(batch)[:, :-1]))
+        self.assertTrue(torch.equal(candidate._head_input(changed)[:, -1], changed["pg_log"]))
+        with torch.no_grad():
+            candidate.head[0].weight.zero_()
+            candidate.head[0].bias.zero_()
+            candidate.head[0].weight[0, -1] = 1
+            candidate.head[2].weight.zero_()
+            candidate.head[2].bias.zero_()
+            candidate.head[2].weight[0, 0] = 1
+            candidate.head[4].weight.zero_()
+            candidate.head[4].weight[0, 0] = 1
+        self.assertTrue(torch.allclose(candidate(changed) - candidate(batch), torch.tensor([4.0])))
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "pg-head.pt"
+            save_checkpoint(path, candidate, None, 0, None, 0, {"manifest_hashes": self.binding["cache_hashes"]})
+            restored, _ = load_checkpoint(path)
+            self.assertEqual(restored.config, candidate.config)
+            self.assertTrue(torch.equal(restored(batch), candidate(batch)))
+        with self.assertRaises(ValueError):
+            create_model({"arch": "price_tiny", "capacity": self.binding, "pg_head_input": True})
+        with self.assertRaises(ValueError):
+            create_model({"arch": "price_lite", "capacity": self.binding, "pg_head_input": 1})
+
     def test_price_padding_masks_raw_fanout_and_log_counts(self):
         model = self.live_head(self.model())
         single = sample(1)

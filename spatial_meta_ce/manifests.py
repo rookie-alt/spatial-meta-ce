@@ -20,11 +20,12 @@ def digest(value):
     ).hexdigest()
 
 
-def validate_splits(splits):
+def validate_splits(splits, *, allow_empty_validation=False):
     keys = ("train", "validation", "test")
     for key in keys:
         if not splits.get(key) or len(set(splits[key])) != len(splits[key]):
-            raise ValueError(f"Invalid database list: {key}")
+            if not (allow_empty_validation and key == "validation" and splits.get(key) == []):
+                raise ValueError(f"Invalid database list: {key}")
         if any("/" in db or db in (".", "..") for db in splits[key]):
             raise ValueError("Invalid database name")
     for i, key in enumerate(keys):

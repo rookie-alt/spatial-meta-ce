@@ -36,6 +36,8 @@ TRAIN_DATABASES = (
     "tubepricing",
 )
 SOURCE_DATABASES = ("chembl", "legalacts", "telstra")
+OFFICIAL_TRAIN_DATABASES = TRAIN_DATABASES + SOURCE_DATABASES
+OFFICIAL_CAPACITY_KIND = "price_train_capacity_122_official_26"
 GROUP_NAMES = ("join_hist", "fanout", "table", "filter")
 
 
@@ -131,18 +133,24 @@ def validate_capacity(capacity: dict, cache_hashes: dict | None = None) -> dict:
     payload = {k: v for k, v in capacity.items() if k != "capacity_sha256"}
     if capacity.get("capacity_sha256") != digest(payload):
         raise ValueError("PRICE capacity binding hash mismatch")
+    kind = capacity.get("kind")
+    if kind == OFFICIAL_CAPACITY_KIND:
+        expected = OFFICIAL_TRAIN_DATABASES
+    elif kind == "price_train_capacity_122":
+        expected = TRAIN_DATABASES
+    else:
+        raise ValueError("Invalid PRICE capacity source contract")
     if (
         capacity.get("schema") != 1
-        or capacity.get("kind") != "price_train_capacity_122"
         or capacity.get("split") != "pretrain"
         or capacity.get("transform") != TRANSFORM_VERSION
-        or capacity.get("databases") != list(TRAIN_DATABASES)
+        or capacity.get("databases") != list(expected)
     ):
         raise ValueError("Invalid PRICE capacity source contract")
     maxima = _counts(capacity.get("max_counts"))
     per_db = capacity.get("database_max_counts", {})
-    if set(per_db) != set(TRAIN_DATABASES):
-        raise ValueError("PRICE capacity requires all 23 training cache maxima")
+    if set(per_db) != set(expected):
+        raise ValueError("PRICE capacity requires all training cache maxima")
     for value in per_db.values():
         _counts(value)
     if maxima != [max(v[i] for v in per_db.values()) for i in range(4)]:
@@ -151,7 +159,7 @@ def validate_capacity(capacity: dict, cache_hashes: dict | None = None) -> dict:
         raise ValueError("PRICE capacity requires at least one table token")
     for field in ("cache_hashes", "manifest_sha256"):
         values = capacity.get(field, {})
-        if set(values) != set(TRAIN_DATABASES) or not all(
+        if set(values) != set(expected) or not all(
             _sha(v) for v in values.values()
         ):
             raise ValueError(f"Invalid PRICE capacity {field}")

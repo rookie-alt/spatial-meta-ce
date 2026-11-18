@@ -102,7 +102,7 @@ def load_checkpoint(path, device="cpu"):
         state["schema"] != 1
         or state["model_type"] not in (
             "grouped_set_residual", "sum_anchor_only_residual",
-            "price_lite_residual", "price_tiny_residual",
+            "price_lite_residual", "price_lite_pg_residual", "price_tiny_residual",
         )
         or state["transform"] != TRANSFORM_VERSION
     ):

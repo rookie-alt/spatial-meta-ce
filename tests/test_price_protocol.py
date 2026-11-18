@@ -116,6 +116,35 @@ class PriceProtocolTests(unittest.TestCase):
             with self.subTest(stage=stage), self.assertRaises(ValueError):
                 train(config, data, "unused")
 
+    def test_pg_input_candidate_requires_matching_stage_even_before_cache_io(self):
+        from spatial_meta_ce.train import train
+
+        config = json.loads((ROOT / "configs/fomaml_joint_sum_4k.json").read_text())
+        data = json.loads((ROOT / "configs/data.json").read_text())
+        model = {"arch": "price_lite", "pg_head_input": True}
+        config = {
+            **config,
+            "method": "erm",
+            "meta_objective": "post",
+            "model": model,
+            "fixed_stage": None,
+        }
+        with self.assertRaisesRegex(ValueError, "frozen fixed_stage"):
+            train(config, data, "unused")
+        with tempfile.TemporaryDirectory() as directory:
+            model = {
+                **a_model_config("A1", build_capacity(manifests(Path(directory)))),
+                "pg_head_input": True,
+            }
+            config = {
+                **config,
+                "fixed_stage": "122-A1",
+                "fixed_budget": True,
+                "model": model,
+            }
+            with self.assertRaisesRegex(ValueError, "frozen model"):
+                train(config, data, "unused")
+
     def test_capacity_uses_exactly_train_maxima_and_detects_source_overflow(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -223,6 +252,117 @@ class PriceProtocolTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 _validate_fixed_budget({**base, "model": a_model_config("A1", binding)})
 
+    def test_exploratory_pg_arm_uses_frozen_budget_without_changing_a_matrix(self):
+        from spatial_meta_ce.price_protocol import (
+            A_ARMS, EXPLORATORY_ARM, exploratory_model_config,
+        )
+
+        base = json.loads((ROOT / "configs/fomaml_joint_sum_4k.json").read_text())
+        with tempfile.TemporaryDirectory() as directory:
+            binding = build_capacity(manifests(Path(directory)))
+            self.assertNotIn(EXPLORATORY_ARM, A_ARMS)
+            model = exploratory_model_config(binding)
+            self.assertEqual(
+                model, {**a_model_config("A1", binding), "pg_head_input": True}
+            )
+            config = {
+                **base,
+                "method": "erm",
+                "meta_objective": "post",
+                "fixed_stage": "122-A1-PG",
+                "model": model,
+            }
+            _validate_fixed_budget(config)
+            for change in (
+                {"steps": 8000},
+                {"fixed_stage": "122-A1"},
+                {"model": a_model_config("A1", binding)},
+                {"method": "fomaml"},
+            ):
+                with self.subTest(change=change), self.assertRaises(ValueError):
+                    _validate_fixed_budget({**config, **change})
+
+    def test_exploratory_checkpoint_is_not_a_formal_a_checkpoint(self):
+        from spatial_meta_ce.price_protocol import (
+            exploratory_model_config, validate_a_checkpoint,
+            validate_exploratory_checkpoint,
+        )
+        from spatial_meta_ce.train import FIXED_SELECTION, FIXED_STEPS
+
+        with tempfile.TemporaryDirectory() as directory:
+            model = exploratory_model_config(build_capacity(manifests(Path(directory))))
+            base = json.loads((ROOT / "configs/fomaml_joint_sum_4k.json").read_text())
+            signature = {
+                **base, "method": "erm", "meta_objective": "post",
+                "fixed_stage": "122-A1-PG", "model": model,
+            }
+            state = {
+                "model_config": model, "next_step": FIXED_STEPS,
+                "metadata": {
+                    "training_signature": signature,
+                    "fixed_stage": "122-A1-PG",
+                    "fixed_steps": FIXED_STEPS,
+                    "selection": FIXED_SELECTION,
+                    "fixed_budget": True,
+                    "method": "erm", "seed": 42, "purpose": "research",
+                    "train_databases": list(TRAIN_DATABASES),
+                    "validation_databases": [], "selection_databases": [],
+                    "validation_monitor_reads": [],
+                    "training_plan_sha256": "a" * 64,
+                },
+            }
+            with self.assertRaises(ValueError):
+                validate_a_checkpoint(state, "A1", 42)
+            state = {**state, "model_type": "price_lite_pg_residual"}
+            self.assertEqual(
+                validate_exploratory_checkpoint(state, 42)["fixed_stage"],
+                "122-A1-PG",
+            )
+            with self.assertRaises(ValueError):
+                validate_a_checkpoint(state, "A1-PG", 42)
+            with self.assertRaises(ValueError):
+                validate_exploratory_checkpoint(
+                    {**state, "metadata": {**state["metadata"], "seed": 43}}, 42
+                )
+
+    def test_exploratory_source_evaluation_accepts_only_matching_checkpoint(self):
+        from spatial_meta_ce.price_protocol import (
+            exploratory_model_config, validate_exploratory_checkpoint,
+        )
+        from spatial_meta_ce.source_eval import validate_eval_checkpoint
+        from spatial_meta_ce.train import FIXED_SELECTION, FIXED_STEPS
+
+        with tempfile.TemporaryDirectory() as directory:
+            model = exploratory_model_config(build_capacity(manifests(Path(directory))))
+            base = json.loads((ROOT / "configs/fomaml_joint_sum_4k.json").read_text())
+            signature = {
+                **base, "method": "erm", "meta_objective": "post",
+                "fixed_stage": "122-A1-PG", "model": model,
+            }
+            state = {
+                "model_type": "price_lite_pg_residual",
+                "model_config": model, "next_step": FIXED_STEPS,
+                "metadata": {
+                    "training_signature": signature, "fixed_stage": "122-A1-PG",
+                    "fixed_steps": FIXED_STEPS, "selection": FIXED_SELECTION,
+                    "fixed_budget": True, "method": "erm", "seed": 42,
+                    "purpose": "research", "train_databases": list(TRAIN_DATABASES),
+                    "validation_databases": [], "selection_databases": [],
+                    "validation_monitor_reads": [], "training_plan_sha256": "a" * 64,
+                },
+            }
+            self.assertEqual(
+                validate_eval_checkpoint(state, "A1-PG", 42),
+                validate_exploratory_checkpoint(state, 42),
+            )
+            with self.assertRaises(ValueError):
+                validate_eval_checkpoint(state, "A1", 42)
+            with self.assertRaises(ValueError):
+                validate_eval_checkpoint(
+                    {**state, "model_config": a_model_config("A1", model["capacity"])},
+                    "A1-PG", 42,
+                )
+
     def test_122_plan_binds_ids_and_uses_nested_five_twenty_support(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -312,6 +452,47 @@ class PriceProtocolTests(unittest.TestCase):
                     },
                     {},
                 )
+
+    def test_exploratory_training_requires_new_preflight_authorization(self):
+        from spatial_meta_ce.manifests import file_hash
+        from spatial_meta_ce.price_protocol import validate_training_preflight
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "source_preflight.json"
+            report = {
+                "protocol": 122,
+                "status": "data_preflight_passed",
+                "p0_gate_passed": True,
+                "target_databases_read": [],
+                "coverage": {"full_population_supported": True, "unsupported": []},
+            }
+            path.write_text(json.dumps(report))
+            config = {
+                "fixed_stage": "122-A1-PG",
+                "source_preflight": str(path),
+                "source_preflight_sha256": file_hash(path),
+            }
+            with self.assertRaisesRegex(ValueError, "exploratory.*authorized"):
+                validate_training_preflight(config, {})
+
+    def test_forged_pg_preflight_boolean_is_not_training_authorization(self):
+        from spatial_meta_ce.manifests import file_hash
+        from spatial_meta_ce.price_protocol import validate_training_preflight
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            preflight = root / "preflight.json"
+            preflight.write_text(json.dumps({
+                "protocol": 122, "status": "data_preflight_passed",
+                "p0_gate_passed": True, "formal_training_authorized": True,
+                "exploratory_pg_head_input_authorized": True,
+                "coverage": {"full_population_supported": True, "unsupported": []},
+                "target_databases_read": [],
+            }))
+            config = {"fixed_stage": "122-A1-PG", "source_preflight": str(preflight),
+                      "source_preflight_sha256": file_hash(preflight)}
+            with self.assertRaisesRegex(ValueError, "execution evidence|snapshot|data_config"):
+                validate_training_preflight(config, {})
 
     def test_unit_diagnostics_match_independent_numpy_and_empty_bucket(self):
         from spatial_meta_ce.source_eval import _unit_diagnostics
@@ -497,12 +678,20 @@ class PriceProtocolTests(unittest.TestCase):
             )
             source_path = root / "source.json"
             source_path.write_text(json.dumps(source_plan))
+            data_path = root / "data_config_122.json"
+            data_path.write_text(json.dumps(data))
+            data_binding = {
+                "data_config": str(data_path.resolve()),
+                "data_config_sha256": file_hash(data_path),
+            }
             preflight_path = root / "preflight.json"
             preflight = {
                 "protocol": 122,
                 "status": "data_preflight_passed",
                 "capacity": binding,
                 "p0_gate_passed": True,
+                "formal_training_authorized": True,  # Synthetic fixture only.
+                **data_binding,
                 "purpose": "smoke-not-research synthetic fixture",
                 "coverage": scan_source_capacity(data, binding),
                 "target_databases_read": [],
@@ -511,6 +700,7 @@ class PriceProtocolTests(unittest.TestCase):
             preflight_path.write_text(json.dumps(preflight))
             config = {
                 **config,
+                **data_binding,
                 "training_plan": str(plan_path),
                 "source_preflight": str(preflight_path),
                 "source_preflight_sha256": file_hash(preflight_path),
@@ -525,6 +715,7 @@ class PriceProtocolTests(unittest.TestCase):
             with (
                 patch.object(training, "FIXED_STEPS", 2),
                 patch.object(StorePool, "get", train_only),
+                patch("scripts.run_price_meta_a.validate_execution_snapshot"),
             ):
                 result = training.train(config, data, root / "run", "cpu")
             self.assertEqual(result["last_step"], 2)
@@ -552,6 +743,48 @@ class PriceProtocolTests(unittest.TestCase):
                     if u["k"]
                 )
             )
+            from spatial_meta_ce.price_protocol import (
+                exploratory_model_config, validate_exploratory_checkpoint,
+            )
+
+            preflight_path.write_text(
+                json.dumps({**preflight, "exploratory_pg_head_input_authorized": True})
+            )
+            pg_config = {
+                **config,
+                "fixed_stage": "122-A1-PG",
+                "model": exploratory_model_config(binding),
+                "source_preflight_sha256": file_hash(preflight_path),
+            }
+            with (
+                patch.object(training, "FIXED_STEPS", 2),
+                patch.object(StorePool, "get", train_only),
+                patch("scripts.run_price_meta_a.validate_execution_snapshot"),
+            ):
+                pg_result = training.train(pg_config, data, root / "run-pg", "cpu")
+            self.assertEqual(pg_result["last_step"], 2)
+            _, pg_state = load_checkpoint(root / "run-pg/last.pt")
+            self.assertEqual(pg_state["model_type"], "price_lite_pg_residual")
+            with patch.object(training, "FIXED_STEPS", 2):
+                validate_exploratory_checkpoint(pg_state, 42)
+                progress = []
+                pg_evaluation = evaluate_source(
+                    root / "run-pg/last.pt", "A1-PG", 42, source_path,
+                    data, root / "eval-pg", batch_size=35,
+                    on_unit=lambda state, key: progress.append((state, key)),
+                )
+            self.assertEqual(len(progress), 66)
+            self.assertEqual(sum(state == "start" for state, _ in progress), 33)
+            self.assertEqual(sum(state == "done" for state, _ in progress), 33)
+            self.assertEqual(progress[0], ("start", "chembl/k0"))
+            self.assertEqual(len(pg_evaluation["units"]), 33)
+            self.assertEqual(pg_evaluation["target_databases_read"], [])
+            self.assertEqual(
+                pg_evaluation["kind"], "price_source_eval_122_pg_input_exploratory"
+            )
+            with patch.object(training, "FIXED_STEPS", 2):
+                with self.assertRaises(ValueError):
+                    validate_a_checkpoint(pg_state, "A1", 42)
             from scripts.price_meta_p0 import prepare
 
             plans_dir = root / "sealed"
