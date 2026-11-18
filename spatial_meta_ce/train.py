@@ -340,6 +340,16 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
     ]:
         if int(config[key]) < 1:
             raise ValueError(f"{key} must be positive")
+    snapshot_steps = config.get("snapshot_steps", [])
+    if not isinstance(snapshot_steps, list) or any(
+        isinstance(step, bool) or not isinstance(step, int) or step < 1
+        for step in snapshot_steps
+    ):
+        raise ValueError("snapshot_steps must be a list of positive integers")
+    if snapshot_steps != sorted(set(snapshot_steps)):
+        raise ValueError("snapshot_steps must be strictly increasing and unique")
+    if snapshot_steps and snapshot_steps[-1] > config["steps"]:
+        raise ValueError("snapshot_steps cannot exceed steps")
     if config["method"] not in ("fomaml", "erm") or min(config["support_sizes"]) < 1:
         raise ValueError("Invalid training method or support sizes")
     fixed_budget = bool(config.get("fixed_budget", False))
@@ -715,6 +725,18 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         if improved and not fixed_budget:
             save_checkpoint(
                 output_dir / "best.pt",
+                model,
+                optimizer,
+                last_step,
+                best,
+                bad,
+                metadata,
+                extra,
+            )
+        if last_step in snapshot_steps:
+            # Training-amount curve: one self-contained checkpoint per rung.
+            save_checkpoint(
+                output_dir / f"step-{last_step}.pt",
                 model,
                 optimizer,
                 last_step,

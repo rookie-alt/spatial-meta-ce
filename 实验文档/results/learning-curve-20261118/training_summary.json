@@ -1,0 +1,19 @@
+{
+  "last_step": 100000,
+  "counts": {
+    "support_presentations": 0,
+    "query_presentations": 40406990,
+    "backward_calls": 400000,
+    "optimizer_steps": 100000
+  },
+  "total_seconds": 13138.871381894918,
+  "best_metric": 2.5965026088768237,
+  "snapshots": [
+    4000,
+    8000,
+    20000,
+    40000,
+    60000,
+    100000
+  ]
+}
