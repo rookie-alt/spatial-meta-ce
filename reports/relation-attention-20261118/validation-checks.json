@@ -1,0 +1,65 @@
+{
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "results": [
+    {
+      "check": "full",
+      "command": [
+        "/opt/anaconda3/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "returncode": 0,
+      "log": "validation-full.log"
+    },
+    {
+      "check": "ruff",
+      "command": [
+        "ruff",
+        "check",
+        "scripts",
+        "tests",
+        "spatial_meta_ce"
+      ],
+      "returncode": 0,
+      "log": "validation-ruff.log"
+    },
+    {
+      "check": "ruff_changed",
+      "command": [
+        "ruff",
+        "check",
+        "--select",
+        "F,E",
+        "--ignore",
+        "E501",
+        "spatial_meta_ce/price_model.py",
+        "spatial_meta_ce/price_relations.py",
+        "spatial_meta_ce/model.py",
+        "spatial_meta_ce/checkpoints.py",
+        "tests/test_price_relation_attention.py",
+        "reports/relation-attention-20261118/verify.py"
+      ],
+      "returncode": 0,
+      "log": "validation-ruff_changed.log"
+    },
+    {
+      "check": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "validation-diff.log"
+    }
+  ]
+}

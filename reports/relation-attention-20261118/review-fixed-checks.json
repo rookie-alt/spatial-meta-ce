@@ -1,0 +1,64 @@
+{
+  "ruff-0.11.2": {
+    "command": [
+      "/Users/williamlin/.pyenv/versions/3.9.9/bin/ruff",
+      "check",
+      "scripts",
+      "tests",
+      "spatial_meta_ce"
+    ],
+    "returncode": 0,
+    "version": "ruff 0.11.2"
+  },
+  "ruff-0.17.5": {
+    "command": [
+      "/opt/anaconda3/bin/ruff",
+      "check",
+      "scripts",
+      "tests",
+      "spatial_meta_ce",
+      "--output-format=json"
+    ],
+    "returncode": 1,
+    "version": "ruff 0.17.5",
+    "issue_count": 624
+  },
+  "changed-fe": {
+    "command": [
+      "/opt/anaconda3/bin/ruff",
+      "check",
+      "--select",
+      "F,E",
+      "--ignore",
+      "E501",
+      "spatial_meta_ce/price_model.py",
+      "spatial_meta_ce/price_relations.py",
+      "spatial_meta_ce/model.py",
+      "spatial_meta_ce/checkpoints.py",
+      "tests/test_price_relation_attention.py"
+    ],
+    "returncode": 0
+  },
+  "diff": {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "returncode": 0
+  },
+  "protected": {
+    "command": [
+      "git",
+      "diff",
+      "--exit-code",
+      "HEAD",
+      "--",
+      "vendor",
+      "spatial_meta_ce/mappings.py",
+      "spatial_meta_ce/train.py",
+      "spatial_meta_ce/price_protocol.py"
+    ],
+    "returncode": 0
+  }
+}

@@ -12,6 +12,7 @@ from torch.nn import functional as F
 from vendor.price_baseline.module import Encoder, FilterEmbedding, ScaleEmbedding
 
 from .data import GROUP_DIMS
+from .manifests import digest
 from .price_capacity import GROUP_NAMES, UnsupportedCapacity, validate_capacity
 
 PRICE_ARCHES = ("price_lite", "price_tiny")
@@ -49,10 +50,15 @@ class PriceResidualEstimator(nn.Module):
         lora: bool = False,
         lora_seed: int = LORA_SEED,
         pg_head_input: bool = False,
+        relation_attention: bool = False,
     ) -> None:
         super().__init__()
         if type(pg_head_input) is not bool or (pg_head_input and arch != "price_lite"):
             raise ValueError("PG head input requires price_lite and a boolean flag")
+        if type(relation_attention) is not bool or (
+            relation_attention and (arch != "price_lite" or not pg_head_input)
+        ):
+            raise ValueError("Relation attention requires price_lite, PG head input and a boolean flag")
         expected_dim = 64 if arch == "price_lite" else 32
         if arch not in PRICE_ARCHES or d_model not in (None, expected_dim):
             raise ValueError("PRICE model_type/arch/d_model configuration mismatch")
@@ -76,8 +82,10 @@ class PriceResidualEstimator(nn.Module):
             "lora": lora,
             "lora_seed": lora_seed,
             **({"pg_head_input": True} if pg_head_input else {}),
+            **({"relation_attention": True} if relation_attention else {}),
         }
         self.pg_head_input = pg_head_input
+        self.relation_attention = relation_attention
         self.model_type = (
             "price_lite_pg_residual" if pg_head_input else f"{arch}_residual"
         )
@@ -116,6 +124,36 @@ class PriceResidualEstimator(nn.Module):
                         attention_head.Value = LoRALinear(
                             attention_head.Value, generator
                         )
+        if relation_attention:
+            from .price_relations import RELATION_MODEL_TYPE, RelationEncoder
+
+            self.model_type = RELATION_MODEL_TYPE
+            # Wrap only after base/LoRA initialization, preserving RNG and state keys.
+            self.scale_encoder = RelationEncoder(self.scale_encoder)
+            self.filter_encoder = RelationEncoder(self.filter_encoder)
+            self._relation_config = copy.deepcopy(self.config)
+            self._relation_state_shapes = {
+                name: tuple(value.shape) for name, value in self.state_dict().items()
+            }
+
+    def validate_relation_identity(self) -> None:
+        """Validate construction identity without constraining learned weight values."""
+        from .price_relations import RELATION_MODEL_TYPE
+
+        if (
+            self.model_type != RELATION_MODEL_TYPE
+            or self.relation_attention is not True
+            or self.pg_head_input is not True
+            or self.config != self._relation_config
+            or digest(self.config) != digest(self._relation_config)
+            or self.capacity != self._relation_config["capacity"]
+            or digest(self.capacity) != digest(self._relation_config["capacity"])
+            or self.counts != tuple(self._relation_config["capacity"]["max_counts"])
+            or {
+                name: tuple(value.shape) for name, value in self.state_dict().items()
+            } != self._relation_state_shapes
+        ):
+            raise ValueError("Noncanonical relation candidate identity/config/state")
 
     def _check_counts(self, batch: dict) -> None:
         counts = batch["counts"]
@@ -140,8 +178,16 @@ class PriceResidualEstimator(nn.Module):
 
     def price_inputs(self, batch: dict) -> tuple[torch.Tensor, torch.Tensor]:
         """Restore raw fanout, then pad to the checkpoint's fixed capacities."""
+        if self.relation_attention:
+            from .price_relations import validate_relation_batch
+
+            validate_relation_batch(batch, self.counts)
         self._check_counts(batch)
-        if "mapping" in batch or len(batch["groups"]) != 4 or len(batch["masks"]) != 4:
+        if (
+            ("mapping" in batch and not self.relation_attention)
+            or len(batch["groups"]) != 4
+            or len(batch["masks"]) != 4
+        ):
             raise ValueError(
                 "PRICE candidates require the four unmapped feature groups"
             )
@@ -193,9 +239,18 @@ class PriceResidualEstimator(nn.Module):
     def _head_input(self, batch: dict) -> torch.Tensor:
         x, mask = self.price_inputs(batch)
         scale = self.scale_embedding(x)
-        scale = self.scale_encoder(scale, mask[:, : 1 + sum(self.counts[:2])])
-        filtered = self.filter_embedding(scale, x)
-        cls = self.filter_encoder(filtered, mask)[:, 0, :]
+        scale_mask = mask[:, : 1 + sum(self.counts[:2])]
+        if self.relation_attention:
+            from .price_relations import build_relation_matrices
+
+            scale_relations, full_relations = build_relation_matrices(batch, self.counts)
+            scale = self.scale_encoder(scale, scale_mask, scale_relations)
+            filtered = self.filter_embedding(scale, x)
+            cls = self.filter_encoder(filtered, mask, full_relations)[:, 0, :]
+        else:
+            scale = self.scale_encoder(scale, scale_mask)
+            filtered = self.filter_embedding(scale, x)
+            cls = self.filter_encoder(filtered, mask)[:, 0, :]
         # A zero-capacity group has no vendor embedding call. Keep an explicit
         # zero derivative so strict functional SGD/audits work without dummy tokens.
         embeddings = (

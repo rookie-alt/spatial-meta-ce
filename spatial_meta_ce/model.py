@@ -278,7 +278,9 @@ def create_model(config: dict, model_type: str | None = None) -> nn.Module:
         raise ValueError("Model config must be a dictionary")
     arch = config.get("arch", "set")
     expected = (
-        "price_lite_pg_residual"
+        "price_lite_pg_relation_residual"
+        if arch == "price_lite" and config.get("relation_attention") is True
+        else "price_lite_pg_residual"
         if arch == "price_lite" and config.get("pg_head_input") is True
         else f"{arch}_residual"
         if arch in (*PRICE_ARCHES, "sum_anchor_only")

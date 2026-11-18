@@ -1,0 +1,33 @@
+{
+  "purpose": "synthetic-smoke-not-research",
+  "head": "11069d8060e99df4e96a276d3462a692ef378a95",
+  "worktree": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9",
+  "file_sha256": {
+    "spatial_meta_ce/price_model.py": "bb02c383da26e63591301c664fe2ecf1a6758bbaa3eb349819f1bdc73e59b35e",
+    "spatial_meta_ce/price_relations.py": "d63ed75a4b1cf7f01e849e3b74bf511677b9e86ee5b4b9738188e8725a84c90f",
+    "spatial_meta_ce/model.py": "9899f21b97ead25225218e8f99cb8f3fb91154aa10bb9fb0b8f6a4d719778cab",
+    "spatial_meta_ce/checkpoints.py": "b77b83cc0f2a91689c696970cd0ace11eca7e62cdb448d39c9c20cb5fed97855",
+    "tests/test_price_relation_attention.py": "53b1596d58750450a2077340a3d86e9df77300ece159d07d35cf5ac3b5c653d0",
+    "reports/relation-attention-20261118/README.md": "40a1db4d17642505c3b4ca8cd1b8bb05e7a3c4f6758d888b16a2569d6ec20ce8"
+  },
+  "log_sha256": {
+    "checkpoint-review-red.log": "c3727aa206be89d847810eb98165867bf2eda89367b6746afecd4a6beaa63df4",
+    "checkpoint-review-green.log": "9c45176457bdd493e468c4de929147e988e5e05eefd15a575b8977ac2586bb77",
+    "review-fixed-unittest.log": "cbfbdd43b553270236e95a53beb7b297cf3dafb8d563fdd53df3fb151137fcee",
+    "review-fixed-unittest.json": "2567eb467d992909a7be8e6e941199938fc0a7582729f540fddeb14b65aea66e",
+    "review-fixed-checks.json": "18d8bfa249db6c794b4ff78257adc8f490dffdd2ae6a42bc141ad4f6c36aa541"
+  },
+  "first_review": "failed-canonical-load-alias-and-mutable-save-identity",
+  "fixes": [
+    "canonical relation config digest equality on load",
+    "construction config/runtime/state structure validation before write"
+  ],
+  "validation": {
+    "price_tests": 109,
+    "full_tests": 1849,
+    "skipped": 16,
+    "returncode": 0
+  },
+  "independent_recheck": "pending",
+  "committed": false
+}

@@ -1,0 +1,40 @@
+{
+  "command": [
+    "/opt/anaconda3/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9",
+  "python_version": "Python 3.11.7",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "source_sha256_before": {
+    "spatial_meta_ce/price_model.py": "56e8e07a64c57353204680c11cc00f0e2bc0365572a91696a7d958bb25204dda",
+    "spatial_meta_ce/price_relations.py": "d63ed75a4b1cf7f01e849e3b74bf511677b9e86ee5b4b9738188e8725a84c90f",
+    "spatial_meta_ce/model.py": "9899f21b97ead25225218e8f99cb8f3fb91154aa10bb9fb0b8f6a4d719778cab",
+    "spatial_meta_ce/checkpoints.py": "b77b83cc0f2a91689c696970cd0ace11eca7e62cdb448d39c9c20cb5fed97855",
+    "tests/test_price_relation_attention.py": "283de9519d629dfbda8186b0869fdce4ad1c1827bd4def846e9661a8689c5bf3"
+  },
+  "source_sha256_after": {
+    "spatial_meta_ce/price_model.py": "56e8e07a64c57353204680c11cc00f0e2bc0365572a91696a7d958bb25204dda",
+    "spatial_meta_ce/price_relations.py": "d63ed75a4b1cf7f01e849e3b74bf511677b9e86ee5b4b9738188e8725a84c90f",
+    "spatial_meta_ce/model.py": "9899f21b97ead25225218e8f99cb8f3fb91154aa10bb9fb0b8f6a4d719778cab",
+    "spatial_meta_ce/checkpoints.py": "b77b83cc0f2a91689c696970cd0ace11eca7e62cdb448d39c9c20cb5fed97855",
+    "tests/test_price_relation_attention.py": "283de9519d629dfbda8186b0869fdce4ad1c1827bd4def846e9661a8689c5bf3"
+  },
+  "source_unchanged": true,
+  "returncode": 0,
+  "elapsed_seconds": 199.125,
+  "log_sha256": "69eff8d5fafd42436b0708e93c56430bd77d13a3b0aedfbf8b6e091831493037",
+  "purpose": "synthetic-smoke-not-research"
+}

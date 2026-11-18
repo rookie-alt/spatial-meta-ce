@@ -1,0 +1,43 @@
+{
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "results": [
+    {
+      "check": "focused",
+      "command": [
+        "/opt/anaconda3/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_price_relation_attention.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "log": "first-green-focused.log"
+    },
+    {
+      "check": "regression",
+      "command": [
+        "/opt/anaconda3/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_price_model.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "log": "first-green-regression.log"
+    }
+  ]
+}

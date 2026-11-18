@@ -1,0 +1,56 @@
+{
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "results": [
+    {
+      "check": "ruff_changed",
+      "command": [
+        "ruff",
+        "check",
+        "--select",
+        "F,E",
+        "--ignore",
+        "E501",
+        "spatial_meta_ce/price_model.py",
+        "spatial_meta_ce/price_relations.py",
+        "spatial_meta_ce/model.py",
+        "spatial_meta_ce/checkpoints.py",
+        "tests/test_price_relation_attention.py",
+        "reports/relation-attention-20261118/verify.py"
+      ],
+      "returncode": 0,
+      "log": "final-ruff_changed.log"
+    },
+    {
+      "check": "protected",
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "HEAD",
+        "--",
+        "vendor",
+        "spatial_meta_ce/mappings.py",
+        "spatial_meta_ce/train.py",
+        "spatial_meta_ce/price_protocol.py",
+        "\u5b9e\u9a8c\u6587\u6863/130-\u53cc\u5206\u652f\u6a21\u5757\u5b9e\u73b0\u8ba1\u5212.md",
+        "\u5b9e\u9a8c\u6587\u6863/99-\u8fdb\u5ea6\u4e0e\u4e0b\u4e00\u6b65.md"
+      ],
+      "returncode": 0,
+      "log": "final-protected.log"
+    },
+    {
+      "check": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "final-diff.log"
+    }
+  ]
+}

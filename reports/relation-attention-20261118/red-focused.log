@@ -1,0 +1,510 @@
+test_all_head_last_and_lora_adapt_scopes_and_outer_backward (test_price_relation_attention.RelationAttentionTests.test_all_head_last_and_lora_adapt_scopes_and_outer_backward) ... ERROR
+test_arbitrary_masked_padding_is_inert_and_batch_composition_invariant (test_price_relation_attention.RelationAttentionTests.test_arbitrary_masked_padding_is_inert_and_batch_composition_invariant) ... ERROR
+test_bad_group_batch_shape_device_prefix_and_counts_fail (test_price_relation_attention.RelationAttentionTests.test_bad_group_batch_shape_device_prefix_and_counts_fail) ... ERROR
+test_bias_is_added_before_key_mask_and_softmax_with_gradient (test_price_relation_attention.RelationAttentionTests.test_bias_is_added_before_key_mask_and_softmax_with_gradient) ... ERROR
+test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection (test_price_relation_attention.RelationAttentionTests.test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection) ... 
+  test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection (test_price_relation_attention.RelationAttentionTests.test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection) (lora=False) ... ERROR
+  test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection (test_price_relation_attention.RelationAttentionTests.test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection) (lora=True) ... ERROR
+test_direct_batch_api_rejects_targets_and_missing_identity (test_price_relation_attention.RelationAttentionTests.test_direct_batch_api_rejects_targets_and_missing_identity) ... ERROR
+test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation (test_price_relation_attention.RelationAttentionTests.test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation) ... 
+  test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation (test_price_relation_attention.RelationAttentionTests.test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation) (maxima=(4, 6, 3, 3)) ... ERROR
+  test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation (test_price_relation_attention.RelationAttentionTests.test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation) (maxima=(0, 0, 1, 0)) ... ERROR
+  test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation (test_price_relation_attention.RelationAttentionTests.test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation) (maxima=(3, 0, 1, 0)) ... ERROR
+  test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation (test_price_relation_attention.RelationAttentionTests.test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation) (maxima=(0, 2, 1, 2)) ... ERROR
+test_exact_relations_offsets_directions_and_padding (test_price_relation_attention.RelationAttentionTests.test_exact_relations_offsets_directions_and_padding) ... ERROR
+test_fanout_cannot_point_to_padded_join_or_have_incomplete_pair (test_price_relation_attention.RelationAttentionTests.test_fanout_cannot_point_to_padded_join_or_have_incomplete_pair) ... ERROR
+test_frozen_training_model_scope_does_not_authorize_candidate (test_price_relation_attention.RelationAttentionTests.test_frozen_training_model_scope_does_not_authorize_candidate) ... ERROR
+test_live_bias_changes_output_and_receives_trunk_gradient (test_price_relation_attention.RelationAttentionTests.test_live_bias_changes_output_and_receives_trunk_gradient) ... ERROR
+test_mapping_dtype_shape_device_padding_and_range_fail (test_price_relation_attention.RelationAttentionTests.test_mapping_dtype_shape_device_padding_and_range_fail) ... ERROR
+test_missing_invalid_mixed_mapping_modes_and_presence_fail (test_price_relation_attention.RelationAttentionTests.test_missing_invalid_mixed_mapping_modes_and_presence_fail) ... ERROR
+test_model_type_dispatch_rejects_baseline_and_unknown_feature_flags (test_price_relation_attention.RelationAttentionTests.test_model_type_dispatch_rejects_baseline_and_unknown_feature_flags) ... ERROR
+test_opt_in_identity_and_preserved_default_state (test_price_relation_attention.RelationAttentionTests.test_opt_in_identity_and_preserved_default_state) ... ERROR
+test_precedence_same_endpoint_fanout_pair_over_same_table (test_price_relation_attention.RelationAttentionTests.test_precedence_same_endpoint_fanout_pair_over_same_table) ... ERROR
+test_relations_ignore_features_pg_labels_and_database_names (test_price_relation_attention.RelationAttentionTests.test_relations_ignore_features_pg_labels_and_database_names) ... ERROR
+test_strict_functional_call_bias_parameters_and_pg_anchor (test_price_relation_attention.RelationAttentionTests.test_strict_functional_call_bias_parameters_and_pg_anchor) ... ERROR
+test_true_shuffled_use_identical_model_and_parameter_count (test_price_relation_attention.RelationAttentionTests.test_true_shuffled_use_identical_model_and_parameter_count) ... ERROR
+test_zero_bias_same_initialization_and_live_output_match_baseline (test_price_relation_attention.RelationAttentionTests.test_zero_bias_same_initialization_and_live_output_match_baseline) ... 
+  test_zero_bias_same_initialization_and_live_output_match_baseline (test_price_relation_attention.RelationAttentionTests.test_zero_bias_same_initialization_and_live_output_match_baseline) (lora=False) ... ERROR
+  test_zero_bias_same_initialization_and_live_output_match_baseline (test_price_relation_attention.RelationAttentionTests.test_zero_bias_same_initialization_and_live_output_match_baseline) (lora=True) ... ERROR
+
+======================================================================
+ERROR: test_all_head_last_and_lora_adapt_scopes_and_outer_backward (test_price_relation_attention.RelationAttentionTests.test_all_head_last_and_lora_adapt_scopes_and_outer_backward)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 441, in test_all_head_last_and_lora_adapt_scopes_and_outer_backward
+    model = self.live_head(self.model(lora=True))
+                           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_arbitrary_masked_padding_is_inert_and_batch_composition_invariant (test_price_relation_attention.RelationAttentionTests.test_arbitrary_masked_padding_is_inert_and_batch_composition_invariant)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 397, in test_arbitrary_masked_padding_is_inert_and_batch_composition_invariant
+    model = self.live_head(self.model())
+                           ^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_bad_group_batch_shape_device_prefix_and_counts_fail (test_price_relation_attention.RelationAttentionTests.test_bad_group_batch_shape_device_prefix_and_counts_fail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 334, in test_bad_group_batch_shape_device_prefix_and_counts_fail
+    model = self.model()
+            ^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_bias_is_added_before_key_mask_and_softmax_with_gradient (test_price_relation_attention.RelationAttentionTests.test_bias_is_added_before_key_mask_and_softmax_with_gradient)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 198, in test_bias_is_added_before_key_mask_and_softmax_with_gradient
+    from spatial_meta_ce.price_relations import RelationHead
+ModuleNotFoundError: No module named 'spatial_meta_ce.price_relations'
+
+======================================================================
+ERROR: test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection (test_price_relation_attention.RelationAttentionTests.test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection) (lora=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 468, in test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection
+    model = self.live_head(self.model(lora=lora))
+                           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection (test_price_relation_attention.RelationAttentionTests.test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection) (lora=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 468, in test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection
+    model = self.live_head(self.model(lora=lora))
+                           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_direct_batch_api_rejects_targets_and_missing_identity (test_price_relation_attention.RelationAttentionTests.test_direct_batch_api_rejects_targets_and_missing_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 382, in test_direct_batch_api_rejects_targets_and_missing_identity
+    model = self.model()
+            ^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation (test_price_relation_attention.RelationAttentionTests.test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation) (maxima=(4, 6, 3, 3))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 413, in test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation
+    model = self.live_head(self.model(capacity=synthetic_capacity(maxima)))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation (test_price_relation_attention.RelationAttentionTests.test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation) (maxima=(0, 0, 1, 0))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 413, in test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation
+    model = self.live_head(self.model(capacity=synthetic_capacity(maxima)))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation (test_price_relation_attention.RelationAttentionTests.test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation) (maxima=(3, 0, 1, 0))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 413, in test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation
+    model = self.live_head(self.model(capacity=synthetic_capacity(maxima)))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation (test_price_relation_attention.RelationAttentionTests.test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation) (maxima=(0, 2, 1, 2))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 413, in test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation
+    model = self.live_head(self.model(capacity=synthetic_capacity(maxima)))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_exact_relations_offsets_directions_and_padding (test_price_relation_attention.RelationAttentionTests.test_exact_relations_offsets_directions_and_padding)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 152, in test_exact_relations_offsets_directions_and_padding
+    from spatial_meta_ce.price_relations import build_relation_matrices
+ModuleNotFoundError: No module named 'spatial_meta_ce.price_relations'
+
+======================================================================
+ERROR: test_fanout_cannot_point_to_padded_join_or_have_incomplete_pair (test_price_relation_attention.RelationAttentionTests.test_fanout_cannot_point_to_padded_join_or_have_incomplete_pair)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 369, in test_fanout_cannot_point_to_padded_join_or_have_incomplete_pair
+    model = self.model()
+            ^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_frozen_training_model_scope_does_not_authorize_candidate (test_price_relation_attention.RelationAttentionTests.test_frozen_training_model_scope_does_not_authorize_candidate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 512, in test_frozen_training_model_scope_does_not_authorize_candidate
+    "model": self.model().config,
+             ^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_live_bias_changes_output_and_receives_trunk_gradient (test_price_relation_attention.RelationAttentionTests.test_live_bias_changes_output_and_receives_trunk_gradient)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 225, in test_live_bias_changes_output_and_receives_trunk_gradient
+    model = self.live_head(self.model())
+                           ^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_mapping_dtype_shape_device_padding_and_range_fail (test_price_relation_attention.RelationAttentionTests.test_mapping_dtype_shape_device_padding_and_range_fail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 300, in test_mapping_dtype_shape_device_padding_and_range_fail
+    model = self.model()
+            ^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_missing_invalid_mixed_mapping_modes_and_presence_fail (test_price_relation_attention.RelationAttentionTests.test_missing_invalid_mixed_mapping_modes_and_presence_fail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 276, in test_missing_invalid_mixed_mapping_modes_and_presence_fail
+    model = self.model()
+            ^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_model_type_dispatch_rejects_baseline_and_unknown_feature_flags (test_price_relation_attention.RelationAttentionTests.test_model_type_dispatch_rejects_baseline_and_unknown_feature_flags)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 500, in test_model_type_dispatch_rejects_baseline_and_unknown_feature_flags
+    candidate = self.model()
+                ^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_opt_in_identity_and_preserved_default_state (test_price_relation_attention.RelationAttentionTests.test_opt_in_identity_and_preserved_default_state)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 108, in test_opt_in_identity_and_preserved_default_state
+    disabled = create_model({**baseline.config, "relation_attention": False})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_precedence_same_endpoint_fanout_pair_over_same_table (test_price_relation_attention.RelationAttentionTests.test_precedence_same_endpoint_fanout_pair_over_same_table)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 184, in test_precedence_same_endpoint_fanout_pair_over_same_table
+    from spatial_meta_ce.price_relations import build_relation_matrices
+ModuleNotFoundError: No module named 'spatial_meta_ce.price_relations'
+
+======================================================================
+ERROR: test_relations_ignore_features_pg_labels_and_database_names (test_price_relation_attention.RelationAttentionTests.test_relations_ignore_features_pg_labels_and_database_names)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 263, in test_relations_ignore_features_pg_labels_and_database_names
+    from spatial_meta_ce.price_relations import build_relation_matrices
+ModuleNotFoundError: No module named 'spatial_meta_ce.price_relations'
+
+======================================================================
+ERROR: test_strict_functional_call_bias_parameters_and_pg_anchor (test_price_relation_attention.RelationAttentionTests.test_strict_functional_call_bias_parameters_and_pg_anchor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 426, in test_strict_functional_call_bias_parameters_and_pg_anchor
+    model = self.live_head(self.model())
+                           ^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_true_shuffled_use_identical_model_and_parameter_count (test_price_relation_attention.RelationAttentionTests.test_true_shuffled_use_identical_model_and_parameter_count)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 238, in test_true_shuffled_use_identical_model_and_parameter_count
+    from spatial_meta_ce.price_relations import build_relation_matrices
+ModuleNotFoundError: No module named 'spatial_meta_ce.price_relations'
+
+======================================================================
+ERROR: test_zero_bias_same_initialization_and_live_output_match_baseline (test_price_relation_attention.RelationAttentionTests.test_zero_bias_same_initialization_and_live_output_match_baseline) (lora=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 134, in test_zero_bias_same_initialization_and_live_output_match_baseline
+    candidate = self.live_head(self.model(lora=lora))
+                               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+======================================================================
+ERROR: test_zero_bias_same_initialization_and_live_output_match_baseline (test_price_relation_attention.RelationAttentionTests.test_zero_bias_same_initialization_and_live_output_match_baseline) (lora=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 290, in create_model
+    return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 134, in test_zero_bias_same_initialization_and_live_output_match_baseline
+    candidate = self.live_head(self.model(lora=lora))
+                               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 90, in model
+    return create_model(config)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/spatial_meta_ce/model.py", line 292, in create_model
+    raise ValueError(f"Invalid model configuration: {error}") from error
+ValueError: Invalid model configuration: PriceResidualEstimator.__init__() got an unexpected keyword argument 'relation_attention'
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.096s
+
+FAILED (errors=25)

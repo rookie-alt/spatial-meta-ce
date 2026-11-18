@@ -1,0 +1,26 @@
+{
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "results": [
+    {
+      "check": "focused",
+      "command": [
+        "/opt/anaconda3/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_price_relation_attention.py",
+        "-v"
+      ],
+      "returncode": 1,
+      "log": "red-focused.log"
+    }
+  ]
+}

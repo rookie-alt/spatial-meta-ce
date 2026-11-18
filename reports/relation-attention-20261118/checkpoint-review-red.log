@@ -1,0 +1,117 @@
+test_all_head_last_and_lora_adapt_scopes_and_outer_backward (test_price_relation_attention.RelationAttentionTests.test_all_head_last_and_lora_adapt_scopes_and_outer_backward) ... ok
+test_arbitrary_masked_padding_is_inert_and_batch_composition_invariant (test_price_relation_attention.RelationAttentionTests.test_arbitrary_masked_padding_is_inert_and_batch_composition_invariant) ... ok
+test_bad_group_batch_shape_device_prefix_and_counts_fail (test_price_relation_attention.RelationAttentionTests.test_bad_group_batch_shape_device_prefix_and_counts_fail) ... ok
+test_bias_is_added_before_key_mask_and_softmax_with_gradient (test_price_relation_attention.RelationAttentionTests.test_bias_is_added_before_key_mask_and_softmax_with_gradient) ... ok
+test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) ... 
+  test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=False, field='d_model', alias=64.0) ... FAIL
+  test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=False, field='dropout', alias=0) ... FAIL
+  test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=False, field='dropout', alias=False) ... FAIL
+  test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=True, field='d_model', alias=64.0) ... FAIL
+  test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=True, field='dropout', alias=0) ... FAIL
+  test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=True, field='dropout', alias=False) ... FAIL
+test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection (test_price_relation_attention.RelationAttentionTests.test_checkpoint_roundtrip_strict_type_hash_config_and_state_rejection) ... ok
+test_direct_batch_api_rejects_targets_and_missing_identity (test_price_relation_attention.RelationAttentionTests.test_direct_batch_api_rejects_targets_and_missing_identity) ... ok
+test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation (test_price_relation_attention.RelationAttentionTests.test_empty_and_zero_capacity_groups_finite_with_strict_full_adaptation) ... ok
+test_exact_relations_offsets_directions_and_padding (test_price_relation_attention.RelationAttentionTests.test_exact_relations_offsets_directions_and_padding) ... ok
+test_fanout_cannot_point_to_padded_join_or_have_incomplete_pair (test_price_relation_attention.RelationAttentionTests.test_fanout_cannot_point_to_padded_join_or_have_incomplete_pair) ... ok
+test_frozen_training_model_scope_does_not_authorize_candidate (test_price_relation_attention.RelationAttentionTests.test_frozen_training_model_scope_does_not_authorize_candidate) ... ok
+test_live_bias_changes_output_and_receives_trunk_gradient (test_price_relation_attention.RelationAttentionTests.test_live_bias_changes_output_and_receives_trunk_gradient) ... ok
+test_mapping_dtype_shape_device_padding_and_range_fail (test_price_relation_attention.RelationAttentionTests.test_mapping_dtype_shape_device_padding_and_range_fail) ... ok
+test_missing_invalid_mixed_mapping_modes_and_presence_fail (test_price_relation_attention.RelationAttentionTests.test_missing_invalid_mixed_mapping_modes_and_presence_fail) ... ok
+test_model_type_dispatch_rejects_baseline_and_unknown_feature_flags (test_price_relation_attention.RelationAttentionTests.test_model_type_dispatch_rejects_baseline_and_unknown_feature_flags) ... ok
+test_opt_in_identity_and_preserved_default_state (test_price_relation_attention.RelationAttentionTests.test_opt_in_identity_and_preserved_default_state) ... ok
+test_precedence_same_endpoint_fanout_pair_over_same_table (test_price_relation_attention.RelationAttentionTests.test_precedence_same_endpoint_fanout_pair_over_same_table) ... ok
+test_relations_ignore_features_pg_labels_and_database_names (test_price_relation_attention.RelationAttentionTests.test_relations_ignore_features_pg_labels_and_database_names) ... ok
+test_save_rejects_mutated_identity_before_replacing_existing_checkpoint (test_price_relation_attention.RelationAttentionTests.test_save_rejects_mutated_identity_before_replacing_existing_checkpoint) ... 
+  test_save_rejects_mutated_identity_before_replacing_existing_checkpoint (test_price_relation_attention.RelationAttentionTests.test_save_rejects_mutated_identity_before_replacing_existing_checkpoint) (lora=False, change='relation_config') ... FAIL
+  test_save_rejects_mutated_identity_before_replacing_existing_checkpoint (test_price_relation_attention.RelationAttentionTests.test_save_rejects_mutated_identity_before_replacing_existing_checkpoint) (lora=False) ... FAIL
+  test_save_rejects_mutated_identity_before_replacing_existing_checkpoint (test_price_relation_attention.RelationAttentionTests.test_save_rejects_mutated_identity_before_replacing_existing_checkpoint) (lora=True, change='relation_config') ... FAIL
+  test_save_rejects_mutated_identity_before_replacing_existing_checkpoint (test_price_relation_attention.RelationAttentionTests.test_save_rejects_mutated_identity_before_replacing_existing_checkpoint) (lora=True) ... FAIL
+test_strict_functional_call_bias_parameters_and_pg_anchor (test_price_relation_attention.RelationAttentionTests.test_strict_functional_call_bias_parameters_and_pg_anchor) ... ok
+test_true_shuffled_use_identical_model_and_parameter_count (test_price_relation_attention.RelationAttentionTests.test_true_shuffled_use_identical_model_and_parameter_count) ... ok
+test_zero_bias_same_initialization_and_live_output_match_baseline (test_price_relation_attention.RelationAttentionTests.test_zero_bias_same_initialization_and_live_output_match_baseline) ... ok
+
+======================================================================
+FAIL: test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=False, field='d_model', alias=64.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 619, in test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=False, field='dropout', alias=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 619, in test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=False, field='dropout', alias=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 619, in test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=True, field='d_model', alias=64.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 619, in test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=True, field='dropout', alias=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 619, in test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload (test_price_relation_attention.RelationAttentionTests.test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload) (lora=True, field='dropout', alias=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 619, in test_checkpoint_numeric_aliases_rejected_and_adapted_weights_reload
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_save_rejects_mutated_identity_before_replacing_existing_checkpoint (test_price_relation_attention.RelationAttentionTests.test_save_rejects_mutated_identity_before_replacing_existing_checkpoint) (lora=False, change='relation_config')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 665, in test_save_rejects_mutated_identity_before_replacing_existing_checkpoint
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_save_rejects_mutated_identity_before_replacing_existing_checkpoint (test_price_relation_attention.RelationAttentionTests.test_save_rejects_mutated_identity_before_replacing_existing_checkpoint) (lora=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 670, in test_save_rejects_mutated_identity_before_replacing_existing_checkpoint
+    self.assertEqual(path.read_bytes(), original_bytes)
+AssertionError: b'PK\[6355 chars]7f\x89uX\x05\x00\x00\x00modelq\x80ccollections[3500361 chars]\x00' != b'PK\[6355 chars]7f\x88uX\x05\x00\x00\x00modelq\x80ccollections[3501829 chars]\x00'
+
+======================================================================
+FAIL: test_save_rejects_mutated_identity_before_replacing_existing_checkpoint (test_price_relation_attention.RelationAttentionTests.test_save_rejects_mutated_identity_before_replacing_existing_checkpoint) (lora=True, change='relation_config')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 665, in test_save_rejects_mutated_identity_before_replacing_existing_checkpoint
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_save_rejects_mutated_identity_before_replacing_existing_checkpoint (test_price_relation_attention.RelationAttentionTests.test_save_rejects_mutated_identity_before_replacing_existing_checkpoint) (lora=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 670, in test_save_rejects_mutated_identity_before_replacing_existing_checkpoint
+    self.assertEqual(path.read_bytes(), original_bytes)
+AssertionError: b'PK\[6355 chars]7f\x89uX\x05\x00\x00\x00modelq\x80ccollections[3674567 chars]\x00' != b'PK\[6355 chars]7f\x88uX\x05\x00\x00\x00modelq\x80ccollections[3677754 chars]\x00'
+
+----------------------------------------------------------------------
+Ran 22 tests in 2.206s
+
+FAILED (failures=10)

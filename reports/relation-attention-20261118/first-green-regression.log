@@ -1,0 +1,18 @@
+test_candidate_checkpoint_malformed_metadata_is_a_value_error (test_price_model.PriceModelTests.test_candidate_checkpoint_malformed_metadata_is_a_value_error) ... ok
+test_candidate_uses_log_cardinality_never_price_label_conversion (test_price_model.PriceModelTests.test_candidate_uses_log_cardinality_never_price_label_conversion) ... ok
+test_capacity_equal_passes_and_overflow_is_explicit (test_price_model.PriceModelTests.test_capacity_equal_passes_and_overflow_is_explicit) ... ok
+test_lora_is_registered_qv_only_and_functionally_replaceable (test_price_model.PriceModelTests.test_lora_is_registered_qv_only_and_functionally_replaceable) ... ok
+test_lora_support_changes_only_fast_ab_and_outer_reaches_all_groups (test_price_model.PriceModelTests.test_lora_support_changes_only_fast_ab_and_outer_reaches_all_groups) ... ok
+test_lora_zero_head_and_b_zero_gradient_mathematics (test_price_model.PriceModelTests.test_lora_zero_head_and_b_zero_gradient_mathematics) ... ok
+test_meta_support_and_query_use_same_training_mode (test_price_model.PriceModelTests.test_meta_support_and_query_use_same_training_mode) ... ok
+test_new_and_legacy_checkpoint_roundtrip_and_rejections (test_price_model.PriceModelTests.test_new_and_legacy_checkpoint_roundtrip_and_rejections) ... ok
+test_only_anchor_reads_pg_and_sum_reference_still_reads_head_pg (test_price_model.PriceModelTests.test_only_anchor_reads_pg_and_sum_reference_still_reads_head_pg) ... ok
+test_parameter_counts_and_exact_pg_zero_step (test_price_model.PriceModelTests.test_parameter_counts_and_exact_pg_zero_step) ... ok
+test_pg_head_input_is_opt_in_and_keeps_the_anchor (test_price_model.PriceModelTests.test_pg_head_input_is_opt_in_and_keeps_the_anchor) ... ok
+test_price_padding_masks_raw_fanout_and_log_counts (test_price_model.PriceModelTests.test_price_padding_masks_raw_fanout_and_log_counts) ... ok
+test_scope_mode_isolation_and_nonfinite_fail_closed (test_price_model.PriceModelTests.test_scope_mode_isolation_and_nonfinite_fail_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.265s
+
+OK

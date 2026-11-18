@@ -1,0 +1,27 @@
+{
+  "purpose": "synthetic-smoke-not-research",
+  "head": "11069d8060e99df4e96a276d3462a692ef378a95",
+  "baseline": "11069d8060e99df4e96a276d3462a692ef378a95",
+  "worktree": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9",
+  "file_sha256": {
+    "spatial_meta_ce/price_model.py": "56e8e07a64c57353204680c11cc00f0e2bc0365572a91696a7d958bb25204dda",
+    "spatial_meta_ce/price_relations.py": "d63ed75a4b1cf7f01e849e3b74bf511677b9e86ee5b4b9738188e8725a84c90f",
+    "spatial_meta_ce/model.py": "9899f21b97ead25225218e8f99cb8f3fb91154aa10bb9fb0b8f6a4d719778cab",
+    "spatial_meta_ce/checkpoints.py": "b77b83cc0f2a91689c696970cd0ace11eca7e62cdb448d39c9c20cb5fed97855",
+    "tests/test_price_relation_attention.py": "283de9519d629dfbda8186b0869fdce4ad1c1827bd4def846e9661a8689c5bf3",
+    "reports/relation-attention-20261118/README.md": "9a2e6f49217312884e35451e371c91374ef05a24bf8e3768b9a091ddaf4a8d5a"
+  },
+  "evidence_sha256": {
+    "container-red.log": "45658a014c51ae4124e0a6def51092f8ed4f687a21872f47fe675541ed13a7bf",
+    "container-green.log": "bfff241557cb51b8f1bc5628ab922ca6e5b4f27569a7f8302aad78445667fc70",
+    "container-full-unittest.log": "69eff8d5fafd42436b0708e93c56430bd77d13a3b0aedfbf8b6e091831493037",
+    "container-full-unittest.json": "47eb1bba60ee6739cd24f5b274c6b52389ef5e327f163269a7a191266d2b50ed",
+    "container-checks.json": "e77849527d98a92144b332ced43bf01a9e2ebc50513527602c1c100da5ce3496"
+  },
+  "full_tests": 1850,
+  "focused_tests": 110,
+  "skipped": 16,
+  "returncode": 0,
+  "source_unchanged": true,
+  "recheck": "pending"
+}

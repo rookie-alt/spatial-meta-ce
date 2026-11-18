@@ -37,6 +37,10 @@ def save_checkpoint(
     metadata,
     extra=None,
 ):
+    from .price_model import PriceResidualEstimator
+
+    if isinstance(model, PriceResidualEstimator) and hasattr(model, "_relation_config"):
+        model.validate_relation_identity()
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     state = {
@@ -62,12 +66,19 @@ def save_checkpoint(
 
 
 def _validate_candidate_binding(model, state):
+    from .price_relations import RELATION_MODEL_TYPE
+
     if model.model_type == "grouped_set_residual":
         return
     if state.get("model_config_sha256") != digest(state["model_config"]):
         raise ValueError("Checkpoint model configuration hash mismatch")
     if model.config != state["model_config"]:
         raise ValueError("Checkpoint candidate config is not canonical")
+    if (
+        model.model_type == RELATION_MODEL_TYPE
+        and digest(model.config) != state["model_config_sha256"]
+    ):
+        raise ValueError("Checkpoint relation config is not canonical")
     if hasattr(model, "capacity"):
         from .price_capacity import validate_capacity
 
@@ -103,6 +114,7 @@ def load_checkpoint(path, device="cpu"):
         or state["model_type"] not in (
             "grouped_set_residual", "sum_anchor_only_residual",
             "price_lite_residual", "price_lite_pg_residual", "price_tiny_residual",
+            "price_lite_pg_relation_residual",
         )
         or state["transform"] != TRANSFORM_VERSION
     ):

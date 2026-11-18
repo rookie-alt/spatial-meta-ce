@@ -1,0 +1,241 @@
+{
+  "purpose": "synthetic-smoke-not-research",
+  "baseline_head": "11069d8060e99df4e96a276d3462a692ef378a95",
+  "branch": "feat/a1-pg-relation-attention-20261118",
+  "worktree": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9",
+  "torch_version": "2.3.0",
+  "python_version": "3.11.7 (main, Dec 15 2023, 12:09:04) [Clang 14.0.6 ]",
+  "parameters": {
+    "A1-PG": {
+      "model_type": "price_lite_pg_residual",
+      "parameters": 294033,
+      "relation_bias_parameters": 0,
+      "lora_parameters": 0,
+      "canonical_config_sha256": "741930c43ad83c76f02db4e0b75e8638ccd226d692177a8dec25ad09023dee17"
+    },
+    "relation": {
+      "model_type": "price_lite_pg_relation_residual",
+      "parameters": 294161,
+      "relation_bias_parameters": 128,
+      "lora_parameters": 0,
+      "canonical_config_sha256": "93ae1d11d4b795565d5cca75e8c82d6301adcd9d18fbd9efd5d548e622aa2497"
+    },
+    "relation_lora": {
+      "model_type": "price_lite_pg_relation_residual",
+      "parameters": 304401,
+      "relation_bias_parameters": 128,
+      "lora_parameters": 10240,
+      "canonical_config_sha256": "ff97220a4d30cd4cedf170994b5a5edfd20f18b6b36010de4cdc9abe0d7c2457"
+    }
+  },
+  "relation_classes": {
+    "0": "none",
+    "1": "self",
+    "2": "column_to_table",
+    "3": "table_to_column",
+    "4": "fanout_to_join",
+    "5": "join_to_fanout",
+    "6": "paired_fanout",
+    "7": "same_table"
+  },
+  "checks": {
+    "final-checks.json:ruff_changed": {
+      "check": "ruff_changed",
+      "command": [
+        "ruff",
+        "check",
+        "--select",
+        "F,E",
+        "--ignore",
+        "E501",
+        "spatial_meta_ce/price_model.py",
+        "spatial_meta_ce/price_relations.py",
+        "spatial_meta_ce/model.py",
+        "spatial_meta_ce/checkpoints.py",
+        "tests/test_price_relation_attention.py",
+        "reports/relation-attention-20261118/verify.py"
+      ],
+      "returncode": 0,
+      "log": "final-ruff_changed.log",
+      "tests": null,
+      "seconds": null,
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    "final-checks.json:protected": {
+      "check": "protected",
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "HEAD",
+        "--",
+        "vendor",
+        "spatial_meta_ce/mappings.py",
+        "spatial_meta_ce/train.py",
+        "spatial_meta_ce/price_protocol.py",
+        "实验文档/130-双分支模块实现计划.md",
+        "实验文档/99-进度与下一步.md"
+      ],
+      "returncode": 0,
+      "log": "final-protected.log",
+      "tests": null,
+      "seconds": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "final-checks.json:diff": {
+      "check": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "final-diff.log",
+      "tests": null,
+      "seconds": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "first-green-checks.json:focused": {
+      "check": "focused",
+      "command": [
+        "/opt/anaconda3/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_price_relation_attention.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "log": "first-green-focused.log",
+      "tests": 20,
+      "seconds": 1.487,
+      "log_sha256": "b5984fece857ef04bd267fd646feaac6a852a52e31ec76023dab9544af32d307"
+    },
+    "first-green-checks.json:regression": {
+      "check": "regression",
+      "command": [
+        "/opt/anaconda3/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_price_model.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "log": "first-green-regression.log",
+      "tests": 13,
+      "seconds": 1.265,
+      "log_sha256": "4c1ca3660f5722d1282cda4f975e949e622e961009ca5c181a1d30052147966f"
+    },
+    "red-checks.json:focused": {
+      "check": "focused",
+      "command": [
+        "/opt/anaconda3/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_price_relation_attention.py",
+        "-v"
+      ],
+      "returncode": 1,
+      "log": "red-focused.log",
+      "tests": 20,
+      "seconds": 0.096,
+      "log_sha256": "bda5bb69d0f3a2ba673276d5deaf270308008afec83bf60d30fead81284d6065"
+    },
+    "validation-checks.json:full": {
+      "check": "full",
+      "command": [
+        "/opt/anaconda3/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "returncode": 0,
+      "log": "validation-full.log",
+      "tests": 1847,
+      "seconds": 199.809,
+      "log_sha256": "622cd683d7aea7113e696ea67521a89c93bcbb347906d54d840aaa37c79f4904"
+    },
+    "validation-checks.json:ruff": {
+      "check": "ruff",
+      "command": [
+        "ruff",
+        "check",
+        "scripts",
+        "tests",
+        "spatial_meta_ce"
+      ],
+      "returncode": 0,
+      "log": "validation-ruff.log",
+      "tests": null,
+      "seconds": null,
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    "validation-checks.json:ruff_changed": {
+      "check": "ruff_changed",
+      "command": [
+        "ruff",
+        "check",
+        "--select",
+        "F,E",
+        "--ignore",
+        "E501",
+        "spatial_meta_ce/price_model.py",
+        "spatial_meta_ce/price_relations.py",
+        "spatial_meta_ce/model.py",
+        "spatial_meta_ce/checkpoints.py",
+        "tests/test_price_relation_attention.py",
+        "reports/relation-attention-20261118/verify.py"
+      ],
+      "returncode": 0,
+      "log": "validation-ruff_changed.log",
+      "tests": null,
+      "seconds": null,
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    "validation-checks.json:diff": {
+      "check": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "validation-diff.log",
+      "tests": null,
+      "seconds": null,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "source_sha256": {
+    "spatial_meta_ce/price_model.py": "7fe436a89b8f7abd8441f5c6b601920062ea3571687859fe9af29089f1db1f5b",
+    "spatial_meta_ce/price_relations.py": "d63ed75a4b1cf7f01e849e3b74bf511677b9e86ee5b4b9738188e8725a84c90f",
+    "spatial_meta_ce/model.py": "9899f21b97ead25225218e8f99cb8f3fb91154aa10bb9fb0b8f6a4d719778cab",
+    "spatial_meta_ce/checkpoints.py": "8535990b6bc6b2a37de3cef8e18974f1960fa7b5849d0eeab43060ebed775f4a",
+    "tests/test_price_relation_attention.py": "f56f8a917a0ab3f0d466054e1f5542a9b7b41b76ac75b2db55d613f9e8a8410b",
+    "reports/relation-attention-20261118/verify.py": "644117c21a7b84bc6245a017da71999a45c0f66e657185d080f41526fad2707f"
+  },
+  "source_mapping_certification": "pending",
+  "runtime_source_binding": "pending-no-train-or-fixed_model_scope-changes",
+  "independent_review": "pending-parent-read-only-review",
+  "target_sidecars_produced": [],
+  "committed": false,
+  "pushed": false
+}

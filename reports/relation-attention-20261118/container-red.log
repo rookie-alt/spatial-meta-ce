@@ -1,0 +1,24 @@
+test_container_aliases_rejected_before_checkpoint_or_directory_creation (test_price_relation_attention.RelationAttentionTests.test_container_aliases_rejected_before_checkpoint_or_directory_creation) ... 
+  test_container_aliases_rejected_before_checkpoint_or_directory_creation (test_price_relation_attention.RelationAttentionTests.test_container_aliases_rejected_before_checkpoint_or_directory_creation) (lora=False, location='config', field='max_counts', target='existing.pt') ... FAIL
+test_container_aliases_rejected_before_checkpoint_or_directory_creation (test_price_relation_attention.RelationAttentionTests.test_container_aliases_rejected_before_checkpoint_or_directory_creation) ... FAIL
+
+======================================================================
+FAIL: test_container_aliases_rejected_before_checkpoint_or_directory_creation (test_price_relation_attention.RelationAttentionTests.test_container_aliases_rejected_before_checkpoint_or_directory_creation) (lora=False, location='config', field='max_counts', target='existing.pt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 694, in test_container_aliases_rejected_before_checkpoint_or_directory_creation
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_container_aliases_rejected_before_checkpoint_or_directory_creation (test_price_relation_attention.RelationAttentionTests.test_container_aliases_rejected_before_checkpoint_or_directory_creation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-3d588399-9e6111f5ce74ddc9/tests/test_price_relation_attention.py", line 699, in test_container_aliases_rejected_before_checkpoint_or_directory_creation
+    self.assertEqual(path.read_bytes(), original_bytes)
+AssertionError: b'PK\[1478 chars]ntsq-(K\x04K\x06K\x03K\x03tq.X\x13\x00\x00\x00[3504874 chars]\x00' != b'PK\[1478 chars]ntsq-]q.(K\x04K\x06K\x03K\x03eX\x13\x00\x00\x0[3506354 chars]\x00'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.136s
+
+FAILED (failures=2)

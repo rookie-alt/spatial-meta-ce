@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/opt/anaconda3/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "python": "Python 3.11.7",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "source_sha256": {
+    "spatial_meta_ce/price_model.py": "bb02c383da26e63591301c664fe2ecf1a6758bbaa3eb349819f1bdc73e59b35e",
+    "spatial_meta_ce/price_relations.py": "d63ed75a4b1cf7f01e849e3b74bf511677b9e86ee5b4b9738188e8725a84c90f",
+    "spatial_meta_ce/model.py": "9899f21b97ead25225218e8f99cb8f3fb91154aa10bb9fb0b8f6a4d719778cab",
+    "spatial_meta_ce/checkpoints.py": "b77b83cc0f2a91689c696970cd0ace11eca7e62cdb448d39c9c20cb5fed97855",
+    "tests/test_price_relation_attention.py": "53b1596d58750450a2077340a3d86e9df77300ece159d07d35cf5ac3b5c653d0"
+  },
+  "returncode": 0,
+  "elapsed_seconds": 187.252,
+  "purpose": "synthetic-smoke-not-research",
+  "log_sha256": "cbfbdd43b553270236e95a53beb7b297cf3dafb8d563fdd53df3fb151137fcee"
+}

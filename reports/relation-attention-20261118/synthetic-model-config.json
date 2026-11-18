@@ -1,0 +1,239 @@
+{
+  "arch": "price_lite",
+  "d_model": 64,
+  "layers": 2,
+  "heads": 4,
+  "dropout": 0.0,
+  "capacity": {
+    "schema": 1,
+    "kind": "price_train_capacity_122",
+    "split": "pretrain",
+    "transform": "price40-group-logfanout-v1",
+    "databases": [
+      "accidents",
+      "airline",
+      "baseball",
+      "basketball",
+      "carcinogenesis",
+      "ccs",
+      "consumer",
+      "credit",
+      "employee",
+      "financial",
+      "fnhk",
+      "grants",
+      "hepatitis",
+      "hockey",
+      "movielens",
+      "sakila",
+      "sap",
+      "seznam",
+      "ssb",
+      "talkingdata",
+      "tournament",
+      "tpc_h",
+      "tubepricing"
+    ],
+    "max_counts": [
+      4,
+      6,
+      3,
+      3
+    ],
+    "database_max_counts": {
+      "accidents": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "airline": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "baseball": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "basketball": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "carcinogenesis": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "ccs": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "consumer": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "credit": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "employee": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "financial": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "fnhk": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "grants": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "hepatitis": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "hockey": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "movielens": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "sakila": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "sap": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "seznam": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "ssb": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "talkingdata": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "tournament": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "tpc_h": [
+        4,
+        6,
+        3,
+        3
+      ],
+      "tubepricing": [
+        4,
+        6,
+        3,
+        3
+      ]
+    },
+    "cache_hashes": {
+      "accidents": "bf9a323e974c984314487177fab582ee533d2396f6cd021002bd0262fbf125da",
+      "airline": "1d414d31038e97002576933f796961f2e28b0d82facbad4e1ac8f0ae7e2121d4",
+      "baseball": "d29cd693a97b4c526b9e677f69ff6c2e79c46ec79f26b3b515baabb6532ed08a",
+      "basketball": "4037d8e4e69f03a2222b36638a2f6160caca9d12c58ea8ca888a27780ac40fcc",
+      "carcinogenesis": "7c04dfcb4353aa58bf46835479228dd70298a05494234fef6e5eb3a4dd3a1c7c",
+      "ccs": "e51df411f7cffab4fbeb8e09dff508806cc3ca5e1c5783b615ad2a5a8e0757b9",
+      "consumer": "4bd1ba1760fc1cd9fea1c0ad6868fa6f3f422fec83eec9f292cd6b6c81811fea",
+      "credit": "187baf45a70421229887286a5edf7789f3cf3878623c9f4937208c91174eb81e",
+      "employee": "494972a79b401e7be01470ba787058b226d3e9a0f06eefb7504f59df2d7fb6b9",
+      "financial": "69a8c2f45c42c82f466cd9189cd3a99dcc1b1df0da1f83a58d8b05a03ecd2ad3",
+      "fnhk": "5a02b4c39715c5a0044b7eb97208a1f6b0eea7e548716dbb318e3274d8f0996d",
+      "grants": "6f9ea73e7572cd3cef79f2245f415a58a94d36abd6eb5a392ef6aa7879deb261",
+      "hepatitis": "d48e20652089ba47adcdbdf1e61b339c50d2a18c3e048e94193e4205dcdc00ce",
+      "hockey": "7bd731507c95fc4ba6131f33c2c78aec3e7d6a65e2a621294bda6229d07f5267",
+      "movielens": "816294ae0e1e04cb73a5a22b350d822724e1f412ae921546c0e135b53110c71b",
+      "sakila": "79568a59fb17f2117d1d0861ae0a1e6f50e76672d761cc9f4bf4fe554bd7e0c5",
+      "sap": "3d158c60f88c5e46c0767b72751a4d3ee8d61b1e9ca8680e485601a1ba008021",
+      "seznam": "74ca1eed7f35c6f70bbb2bf2b9fbf6abbf307afcc0ef82c65d6eae342380fc66",
+      "ssb": "3b2f727c23f3cbadbc6f917449a0da57ca2e8a42c027e3a10634839f23d2bb70",
+      "talkingdata": "82a6c7db4709e1bcbe40b7066a37c196e123319130fd9e1a9160422f05dc734c",
+      "tournament": "c2458d719ad9ea974f5f31db70defae56c07566e2d9896d04cf64849343aa637",
+      "tpc_h": "7e4e47886f4d3f41e07835e7b0c9e5bd43879a5718f23f4797832eee506769b5",
+      "tubepricing": "71810d3008c26b584e5b5fcdcf0dd48f5fc99f4a7611ad9f3a7f607c7e08a476"
+    },
+    "manifest_sha256": {
+      "accidents": "ff623e4260f7f0152ae7f46d3b99750d9538fb768333dedc28c37776f4a020c8",
+      "airline": "b066e57046218318278ee6b94afaaadd559c6de785d149bfe8a3dc64601d858b",
+      "baseball": "32b1087ddb4cc0023273104388edc61512edcc0ba8981c3eca253dc94620d388",
+      "basketball": "f815a7931144d3692829a8ec8b5727e29c0c64af62acc46602a2170bd1735964",
+      "carcinogenesis": "74d07c6f0775eb3f4633e6b5c48dec7166f14a79197aac5630f87348ef92ff95",
+      "ccs": "9fccd23781d38fac2fe5946572e692959db55f70ab9c3fe0d6cf35e01db7df46",
+      "consumer": "b019a90aa8d2081a889813f861816f9e4d18a05d33e97fb7fa239649de3687c3",
+      "credit": "b9739d5b72070e11f7e4659c0eb204d5fbd2e4424ebf32a0d868e6df4d591851",
+      "employee": "74abe4b8f4ebacc90c2d8631b4939bb0fe7b704846b25d05d6481a04211f1ea5",
+      "financial": "38193340944ebb2ad3cd1e362c84c76e36050cb9065ef46b89ac1c78f9d3cf6e",
+      "fnhk": "10718880d0f7974779c9925187ecec002a8df453dc1204e50429cae1d09dcd9f",
+      "grants": "85f117c0d218f8557849d4723598ba4b16392d2fa9dd2f8de5df521ff1389dc5",
+      "hepatitis": "0253f113c47555b76610e2383d9d1af13fd32766e5729aa29629914e04188984",
+      "hockey": "9ed771d6c575c318dd00bc3fea6d9c803d74ba0dca983db300c261a5e9a68ea8",
+      "movielens": "113ccf00c771a4dc4c0086d0a809ba0f1597d5a558a71f4af2700b5a98272467",
+      "sakila": "842f64f673de00d96b4e1f413de4707f48ba56ff76c3333bc36fe12625ebf284",
+      "sap": "0fc53c91ec50091eaef70d8af1c783636fec50074899cd76d54f3a3729b625e0",
+      "seznam": "6f1fe9f2e51b1a36302aa8a954d37bfa6b97e8a69ada123e7bd10e75436b259d",
+      "ssb": "f5bea62c69c8c469b9e9c8a97f838b366cda52a67c553cc9a06480bea2b9fdc3",
+      "talkingdata": "dd562ddac181865e50fa17919da444e5693375571985ddb2e726bb8a1ae36ab1",
+      "tournament": "1e1727f97ed9c5488521c59ae92108fd21f76dd43bb40c6742e44abeb47bffd0",
+      "tpc_h": "fc0dff2ca47f3f0954b1cc2b9fb0768af759e040fc331e318833a0289204229b",
+      "tubepricing": "6d32d8ececd22c06a8cfe14114b05d2d569914c3e5c1fa3a55731eb6b4ff236c"
+    },
+    "capacity_sha256": "dbf4f79e30dcab528f36047abcdd4d7356799ce3d7ea06a0874382e40b638d17"
+  },
+  "lora": false,
+  "lora_seed": 42,
+  "pg_head_input": true,
+  "relation_attention": true
+}
