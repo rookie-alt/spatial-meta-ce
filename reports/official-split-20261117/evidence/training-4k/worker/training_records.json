@@ -1,0 +1,70 @@
+{
+  "runs": [
+    {
+      "key": "A1-seed42",
+      "arm": "A1",
+      "seed": 42,
+      "checkpoint": "/gly/weilin/official-split-20261117/runs/worker/runs/A1-seed42/last.pt",
+      "checkpoint_sha256": "40492beae6598d295bf3b7d6ec223f98a41c7f03aa07e82f11f5e3485ba38108",
+      "training_plan_sha256": "81039d9d4e9f693297093814d97c03c0f5b74824827f24374f71a1e13e56fd0f",
+      "optimizer_steps": 4000,
+      "parameters": 293905,
+      "wall_seconds": 997.9334885331336
+    },
+    {
+      "key": "A1-seed43",
+      "arm": "A1",
+      "seed": 43,
+      "checkpoint": "/gly/weilin/official-split-20261117/runs/worker/runs/A1-seed43/last.pt",
+      "checkpoint_sha256": "aaec6923e76f53baf2c906c8bf2c9f2a67d220bb6a3011676053f5472c141ff0",
+      "training_plan_sha256": "5ce1900bab28718f09fcc78c74754741ce1d302f2eb879d75700eacee4a1c258",
+      "optimizer_steps": 4000,
+      "parameters": 293905,
+      "wall_seconds": 990.7883728281595
+    },
+    {
+      "key": "A1-seed44",
+      "arm": "A1",
+      "seed": 44,
+      "checkpoint": "/gly/weilin/official-split-20261117/runs/worker/runs/A1-seed44/last.pt",
+      "checkpoint_sha256": "31c31f213189b0ced5c2a8735b84af3a3ce6ca21eb59f4184e558d65cf2e1ec6",
+      "training_plan_sha256": "372f17782d71d2c90df021189bda1f919d3d9ddbba5c05e9a228cd3e586db744",
+      "optimizer_steps": 4000,
+      "parameters": 293905,
+      "wall_seconds": 1016.3024559679907
+    },
+    {
+      "key": "A1-PG-seed42",
+      "arm": "A1-PG",
+      "seed": 42,
+      "checkpoint": "/gly/weilin/official-split-20261117/runs/worker/runs/A1-PG-seed42/last.pt",
+      "checkpoint_sha256": "5c53dc12d65d4c64998de2ca5bd4fd5545d534307fd3f405c5996dfefbf7ac7e",
+      "training_plan_sha256": "81039d9d4e9f693297093814d97c03c0f5b74824827f24374f71a1e13e56fd0f",
+      "optimizer_steps": 4000,
+      "parameters": 294033,
+      "wall_seconds": 1002.0479952360038
+    },
+    {
+      "key": "A1-PG-seed43",
+      "arm": "A1-PG",
+      "seed": 43,
+      "checkpoint": "/gly/weilin/official-split-20261117/runs/worker/runs/A1-PG-seed43/last.pt",
+      "checkpoint_sha256": "65d54a9c2061493c6dda410a9f18b490301dc604aa4fb8ff01eeda2208c5c61f",
+      "training_plan_sha256": "5ce1900bab28718f09fcc78c74754741ce1d302f2eb879d75700eacee4a1c258",
+      "optimizer_steps": 4000,
+      "parameters": 294033,
+      "wall_seconds": 1006.7123722028919
+    },
+    {
+      "key": "A1-PG-seed44",
+      "arm": "A1-PG",
+      "seed": 44,
+      "checkpoint": "/gly/weilin/official-split-20261117/runs/worker/runs/A1-PG-seed44/last.pt",
+      "checkpoint_sha256": "9b4b2f1f8cd785aec20eb4bc6d153db08f304c87b041139fc370f20c99b0d525",
+      "training_plan_sha256": "372f17782d71d2c90df021189bda1f919d3d9ddbba5c05e9a228cd3e586db744",
+      "optimizer_steps": 4000,
+      "parameters": 294033,
+      "wall_seconds": 1001.0676805269904
+    }
+  ]
+}

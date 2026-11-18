@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "official-split-training",
+  "status": "signed",
+  "authorized": true,
+  "formal_training_authorized": true,
+  "spec_sha256": "f4bbc6bc63368530547d30f962b95b81a7cea1c111a0425fc65e94dddc3f45a4",
+  "budget_sha256": "ab967e14a63c20477a32683eaff8c8e721e241b5813d417069823a16854b61ca",
+  "output_dir": "/gly/weilin/official-split-20261117/runs-24k-seed42",
+  "granted_by": "linsen",
+  "granted_at": "2026-11-17T22:23:40+08:00",
+  "target_databases_read": [],
+  "notes": [
+    "Signed on the user's explicit instruction '三卡并行，拆好 spec 一起跑' in the 2026-11-17 session.",
+    "Authorizes one A1-PG run at 24,000 updates for this seed on the assigned GPU, under 实验文档/126.",
+    "Step count chosen from the training-loss trend only; no target-database metric was used.",
+    "Independent read-only review was not performed.",
+    "Rebound after the fixed-budget gate learned the pre-registered step budget; first attempt aborted at zero steps."
+  ]
+}

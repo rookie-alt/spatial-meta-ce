@@ -1,0 +1,15 @@
+{
+  "runs": [
+    {
+      "key": "A1-PG-seed42",
+      "arm": "A1-PG",
+      "seed": 42,
+      "checkpoint": "/gly/weilin/official-split-20261117/runs-24k-seed42/worker/runs/A1-PG-seed42/last.pt",
+      "checkpoint_sha256": "770cd4eb5876a17a37be11ef7c6a87bc43e71ed879f754ca2e554594e55843c5",
+      "training_plan_sha256": "86bba249e13db3b11faf60e06cff96e9721695dabcea88fb9224da883dc1a341",
+      "optimizer_steps": 24000,
+      "parameters": 294033,
+      "wall_seconds": 6587.485415393021
+    }
+  ]
+}

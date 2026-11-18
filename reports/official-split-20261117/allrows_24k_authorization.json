@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "purpose": "target-allrows-paper-comparison",
+  "protocol": "122-official-26",
+  "population": "all rows of each target workload (duplicates kept), matching PRICE Table 2",
+  "metric": "exp(|max(log_pred,0) - log(max(true,1))|), reported as percentiles",
+  "authorized": true,
+  "granted_by": "linsen",
+  "granted_at": "2026-11-18T14:26:49+08:00",
+  "authorization_instruction": "准备吧，跑 all-rows 口径",
+  "databases": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "split": "test",
+  "cache_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+  "price_maxima": [
+    12,
+    14,
+    8,
+    10
+  ],
+  "device": "cuda",
+  "cuda_device": "6",
+  "batch_size": 256,
+  "selection_use": "none",
+  "script": {
+    "path": "/gly/weilin/official-split-20261117/code/scripts/allrows_target_eval.py",
+    "sha256": "ee8228eb3e1383141917eb94305330069d1449bc93aa1d1b665d38b0e99ed035"
+  },
+  "checkpoints": {
+    "A1-PG-seed42": {
+      "path": "/gly/weilin/official-split-20261117/runs-24k-seed42/worker/runs/A1-PG-seed42/last.pt",
+      "sha256": "770cd4eb5876a17a37be11ef7c6a87bc43e71ed879f754ca2e554594e55843c5"
+    },
+    "A1-PG-seed43": {
+      "path": "/gly/weilin/official-split-20261117/runs-24k-seed43/worker/runs/A1-PG-seed43/last.pt",
+      "sha256": "ff9399ab0d778788a27e55df218a93ab83ab333b67e169d04b512a4f501035d7"
+    },
+    "A1-PG-seed44": {
+      "path": "/gly/weilin/official-split-20261117/runs-24k-seed44/worker/runs/A1-PG-seed44/last.pt",
+      "sha256": "d1aa42d598da195b934836c6ee55b69ad427237d6a425ba08796a842550458a1"
+    }
+  },
+  "outputs": {
+    "root": "/gly/weilin/official-split-20261117/allrows-24k",
+    "per_seed": "seed{42,43,44}/{summary,protocol}.json"
+  },
+  "notes": [
+    "Read-only audit path: allrows_target_eval.py has no supervisor or budget metering, same as its 2026-10-22 use.",
+    "The four target databases were already read on 2026-11-17 and 2026-11-18; this run re-aggregates the same population at the paper's convention and selects nothing.",
+    "The PRICE column is recomputed each run and must reproduce PRICE Table 2; a mismatch invalidates the panel."
+  ]
+}

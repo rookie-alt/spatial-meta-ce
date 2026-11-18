@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "target-zero-shot-baselines",
+  "status": "signed",
+  "authorized": true,
+  "evaluation_authorized": true,
+  "spec_sha256": "4b7bd43f628862af0955990d69046b1051431a0c676cd0db07c05233701759bc",
+  "budget_sha256": "24c2cfbd8a2e98fea4b95af7c7f661a110d7aaf262dcd7b03a8ab4429c582547",
+  "output_dir": "/gly/weilin/official-split-20261117/target-baselines",
+  "granted_by": "linsen",
+  "granted_at": "2026-11-17T21:27:42+08:00",
+  "target_databases_read": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "notes": [
+    "Signed on the user's explicit instruction '补 PG/PRICE 基线' in the 2026-11-17 session.",
+    "Authorizes K=0 zero-shot PG and PRICE baselines on the four test databases only.",
+    "Results must not feed back into training, selection or calibration.",
+    "Independent read-only review was not performed.",
+    "Rebound after: PRICE checkpoint bound as binary SHA only; PRICE padding now skips missing finetune splits (imdb has none)."
+  ]
+}

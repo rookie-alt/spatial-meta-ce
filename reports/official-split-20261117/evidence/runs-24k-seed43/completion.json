@@ -1,0 +1,51 @@
+{
+  "status": "official_split_completed",
+  "runs": 1,
+  "spec_sha256": "d2c50e9b15edc3649c833f7c8f7dcaee1f16611826d3c0b642e6d34f3deef6f5",
+  "authorization_sha256": "07c52256f5272a64bbd06b09c4bd0e26186f771bb2c9f8973f55174a0a57eb85",
+  "supervisor": {
+    "schema": 1,
+    "status": "completed",
+    "mode": "formal",
+    "command": [
+      "/gly/weilin/PRICE-master/venv/bin/python",
+      "-I",
+      "-B",
+      "/gly/weilin/official-split-20261117/code/scripts/run_official_split.py",
+      "worker",
+      "--spec",
+      "/gly/weilin/official-split-20261117/spec/official_split_training_spec_24k_seed43.json",
+      "--spec-sha256",
+      "d2c50e9b15edc3649c833f7c8f7dcaee1f16611826d3c0b642e6d34f3deef6f5",
+      "--authorization",
+      "/gly/weilin/official-split-20261117/spec/official_split_authorization_24k_seed43.json",
+      "--authorization-sha256",
+      "07c52256f5272a64bbd06b09c4bd0e26186f771bb2c9f8973f55174a0a57eb85",
+      "--output",
+      "/gly/weilin/official-split-20261117/runs-24k-seed43/worker"
+    ],
+    "output": "/gly/weilin/official-split-20261117/runs-24k-seed43/worker",
+    "pid": 67828,
+    "pgid": 67828,
+    "returncode": 0,
+    "elapsed": 6346.476853643078,
+    "peak_rss_bytes": 8089698304,
+    "peak_vram_bytes": 216006656,
+    "outputbytes": 13296640,
+    "phase": "certification",
+    "signals": [],
+    "received_signals": [],
+    "failure": null,
+    "supervisor_json": "/gly/weilin/official-split-20261117/runs-24k-seed43/worker.supervisor.json"
+  },
+  "budget_usage": {
+    "cpu_core_seconds": 6727.230008,
+    "gpu_allocated_seconds": 6291.055455,
+    "gpu_allocated_gib_seconds": 1255.694336,
+    "sampling_failed": null,
+    "samples": 10849,
+    "cpu_core_seconds_budget": 8000,
+    "gpu_allocated_seconds_budget": 7000
+  },
+  "target_databases_read": []
+}

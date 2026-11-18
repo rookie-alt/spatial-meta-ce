@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "official-split-training",
+  "status": "unsigned",
+  "runnable": false,
+  "blocked_on": [
+    "a dedicated official-split runner entry that verifies this spec",
+    "a signed authorization record"
+  ],
+  "arms": [
+    "A1",
+    "A1-PG"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "runs": 6,
+  "steps": 4000,
+  "meta_batch": 4,
+  "accumulation": 1,
+  "support_sizes": [
+    5,
+    10,
+    20,
+    50,
+    100
+  ],
+  "query_size": 64,
+  "checkpoint": "last.pt",
+  "device": "cuda",
+  "cuda_device": "6",
+  "target_databases_read": [],
+  "deviation_from_122": "chembl, legalacts and telstra move from source validation into training, matching the official 26/4 split; the four test databases remain unseen and outside every selection step.",
+  "gpu_metering": "worker torch.cuda counters in worker/memory.json, 30s staleness guard; no nvidia-smi PID attribution",
+  "budget": {
+    "total_seconds": 12600.0,
+    "phase_seconds": {
+      "preparation": 12000.0,
+      "evaluation": 1.0,
+      "certification": 300.0
+    },
+    "rss_bytes": 25769803776,
+    "vram_bytes": 2147483648,
+    "output_bytes": 1073741824,
+    "poll_seconds": 0.5,
+    "cpu_core_seconds": 12000,
+    "gpu_allocated_seconds": 9000,
+    "run_deadline_seconds": 1800.0,
+    "eval_deadline_seconds": 1.0
+  },
+  "budget_sha256": "76744ca2aa34f8709b15dda13850898d16138f716a048a276ad689dcc6cd17e5",
+  "bindings": {
+    "code_dir": "/gly/weilin/official-split-20261117/code",
+    "code_sha256": {
+      "scripts/run_official_split.py": "b3fec36e102610bdabf5c9aec2bd7f252293460d8c9c3959af0dadb8d2812b56",
+      "scripts/run_price_meta_a.py": "13cbbec8258b6eb5f845343d719a75ac182defb294705287218b88a40de9c228",
+      "scripts/meta65_joint_supervisor.py": "403e7c26746291a9ceb1446c602d33a32d35c82c58e35427da491c0da8115b48",
+      "spatial_meta_ce/official_split.py": "8f004621220e23bdb99c424379850b13e4a38b1611969daba14f5f6e18bed9b7",
+      "spatial_meta_ce/plans.py": "25f319854bd448fc8feedf61f771e76da5e3692cfe40ae9669808cd9774534f7",
+      "spatial_meta_ce/manifests.py": "6ca529a1a774a215b141ec2d5fd8e0b929a919448bd7cf62ffa084ab8cd70f65",
+      "spatial_meta_ce/train.py": "cc7951d555ee7c9f9be7bd3ebfce0e08e2a45620f14605cd655c9f4421266b2c",
+      "spatial_meta_ce/price_capacity.py": "ffcfaaeae92b30cafa06832a25e0cd769b6fef0a0db12583631af0589a400a94"
+    },
+    "split_manifest": {
+      "path": "/gly/weilin/official-split-20261117/plans/official_split_manifest.json",
+      "sha256": "6f257c75375e1150faacd54b185f2edf41ed36a46d46c2616a847203a1a874f7"
+    },
+    "data_config": {
+      "path": "/gly/weilin/official-split-20261117/plans/data_config_official_26.json",
+      "sha256": "84c5ac6b94bdbf7ada869b5e519f62469a96cdf365423d18099fb1385590f67a"
+    },
+    "capacity": {
+      "path": "/gly/weilin/official-split-20261117/plans/capacity_official_26.json",
+      "sha256": "134ba295bc87d4702245b4f094f6a3e0e10fd12c61536b730416fa2f6057d3bf",
+      "capacity_sha256": "b280c49f8917a5b30b4189587f55e3b915e6e105de5a4f00b1f344c6d1673ec5"
+    },
+    "templates": {
+      "42": {
+        "path": "/gly/weilin/122-engineering-closure-20261112/rebound/A1-seed42.json",
+        "sha256": "074bbd32c7c95c61c66470248ada769ba7e77b226733c84eb73b7a16ec7a60e9"
+      },
+      "43": {
+        "path": "/gly/weilin/122-engineering-closure-20261112/rebound/A1-seed43.json",
+        "sha256": "7cc7860897b0083e2401e7eed63f42fdea73a84bd2b0d3fd324a5361f3e55804"
+      },
+      "44": {
+        "path": "/gly/weilin/122-engineering-closure-20261112/rebound/A1-seed44.json",
+        "sha256": "465742e5e44bfa5f69755d0f95fb796907400a4806520cb31b03e48d7e12dca0"
+      }
+    },
+    "training_plans": {
+      "42": {
+        "path": "/gly/weilin/official-split-20261117/plans/training_plan_seed42.json",
+        "sha256": "7641042df9444bc2536e37232d401ac3b8618a86917b1c37ea382c4a3a1b0bd4",
+        "plan_sha256": "81039d9d4e9f693297093814d97c03c0f5b74824827f24374f71a1e13e56fd0f"
+      },
+      "43": {
+        "path": "/gly/weilin/official-split-20261117/plans/training_plan_seed43.json",
+        "sha256": "19c8927eb569ac558a30c394985f7f7eac79ee63006ff6502104f6b5079019b1",
+        "plan_sha256": "5ce1900bab28718f09fcc78c74754741ce1d302f2eb879d75700eacee4a1c258"
+      },
+      "44": {
+        "path": "/gly/weilin/official-split-20261117/plans/training_plan_seed44.json",
+        "sha256": "0044ec045cf59c86f3b6e4e443cd4326364b2581ace7a58327546142e8dca2ec",
+        "plan_sha256": "372f17782d71d2c90df021189bda1f919d3d9ddbba5c05e9a228cd3e586db744"
+      }
+    }
+  }
+}

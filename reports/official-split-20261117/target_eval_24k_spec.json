@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "target-zero-shot-d",
+  "status": "unsigned",
+  "preregistration": "实验文档/126-加训剂量实验预注册.md",
+  "shots": [
+    0
+  ],
+  "arms": [
+    "A1-PG"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "databases": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "batch_size": 128,
+  "device": "cuda",
+  "cuda_device": "6",
+  "selection_use": "none",
+  "budget": {
+    "total_seconds": 3600.0,
+    "phase_seconds": {
+      "preparation": 3000.0,
+      "evaluation": 1.0,
+      "certification": 300.0
+    },
+    "rss_bytes": 25769803776,
+    "vram_bytes": 2147483648,
+    "output_bytes": 1073741824,
+    "poll_seconds": 0.5,
+    "cpu_core_seconds": 4000,
+    "gpu_allocated_seconds": 3000,
+    "run_deadline_seconds": 1800.0,
+    "eval_deadline_seconds": 1200.0
+  },
+  "budget_sha256": "24c2cfbd8a2e98fea4b95af7c7f661a110d7aaf262dcd7b03a8ab4429c582547",
+  "bindings": {
+    "code_dir": "/gly/weilin/official-split-20261117/code",
+    "code_sha256": {
+      "scripts/run_target_eval_d.py": "9e8eab1ffd7fd77926206b6557e114f5058c40762db0736c09ed08a4ea578126",
+      "spatial_meta_ce/target_eval.py": "7552db8361f6530db94cefe9abbbc15899351e0db6ea6b5a86ae736eb52a9d7c",
+      "spatial_meta_ce/source_eval.py": "1913066c78f0e3640bcd6ad957753255a7914b8fa1765a5baf4cc3483a5aa6e7",
+      "spatial_meta_ce/checkpoints.py": "9ecd0442ee3263033123641f1111071815b065fba5173155bf266bc67b7fc645",
+      "spatial_meta_ce/official_split.py": "8f004621220e23bdb99c424379850b13e4a38b1611969daba14f5f6e18bed9b7",
+      "spatial_meta_ce/plans.py": "25f319854bd448fc8feedf61f771e76da5e3692cfe40ae9669808cd9774534f7",
+      "spatial_meta_ce/price_model.py": "d2140f9553a7f2277e238df6c261568938e3e56e823c2e61458eb4dd4d05a1c5"
+    },
+    "data_config": {
+      "path": "/gly/weilin/official-split-20261117/plans/data_config_official_26.json",
+      "sha256": "84c5ac6b94bdbf7ada869b5e519f62469a96cdf365423d18099fb1385590f67a"
+    },
+    "checkpoints": {
+      "A1-PG-seed42": {
+        "path": "/gly/weilin/official-split-20261117/runs-24k-seed42/worker/runs/A1-PG-seed42/last.pt",
+        "sha256": "770cd4eb5876a17a37be11ef7c6a87bc43e71ed879f754ca2e554594e55843c5"
+      },
+      "A1-PG-seed43": {
+        "path": "/gly/weilin/official-split-20261117/runs-24k-seed43/worker/runs/A1-PG-seed43/last.pt",
+        "sha256": "ff9399ab0d778788a27e55df218a93ab83ab333b67e169d04b512a4f501035d7"
+      },
+      "A1-PG-seed44": {
+        "path": "/gly/weilin/official-split-20261117/runs-24k-seed44/worker/runs/A1-PG-seed44/last.pt",
+        "sha256": "d1aa42d598da195b934836c6ee55b69ad427237d6a425ba08796a842550458a1"
+      }
+    }
+  }
+}

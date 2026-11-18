@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "official-split-training",
+  "status": "unsigned",
+  "authorized": false,
+  "formal_training_authorized": false,
+  "spec_sha256": "7f41225acdeec5d480782841b060fc98e02a8871760c84c6b82099bde71e18ae",
+  "budget_sha256": "76744ca2aa34f8709b15dda13850898d16138f716a048a276ad689dcc6cd17e5",
+  "output_dir": "/gly/weilin/official-split-20261117/runs",
+  "granted_by": "",
+  "granted_at": null,
+  "target_databases_read": [],
+  "notes": [
+    "Fill granted_by with the approving identity and granted_at with an ISO 8601 timestamp that includes a timezone.",
+    "Signing this record authorizes 6 training runs (A1 and A1-PG, seeds 42/43/44) and nothing else: no test-database read, no evaluation, no checkpoint selection.",
+    "The four test databases stay unread until a separate evaluation authorization exists."
+  ]
+}

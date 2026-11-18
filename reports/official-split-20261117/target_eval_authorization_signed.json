@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "target-zero-shot-d",
+  "status": "signed",
+  "authorized": true,
+  "evaluation_authorized": true,
+  "spec_sha256": "ffebb45be10b4b512fd297fcd27c97b11a80aef4a5bee5701dfc949621c95288",
+  "budget_sha256": "24c2cfbd8a2e98fea4b95af7c7f661a110d7aaf262dcd7b03a8ab4429c582547",
+  "output_dir": "/gly/weilin/official-split-20261117/target-eval",
+  "granted_by": "linsen",
+  "granted_at": "2026-11-17T21:24:44+08:00",
+  "target_databases_read": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "notes": [
+    "Signing authorizes one K=0 zero-shot evaluation of six sealed checkpoints on the four test databases.",
+    "Results must not feed back into training, selection, calibration or any later model choice.",
+    "This record does not certify independent review.",
+    "Signed on the user's explicit instruction '签，跑吧' in the 2026-11-17 session.",
+    "Independent read-only review was not performed before this evaluation.",
+    "Rebound after the first attempt: model_type allowlist and worker telemetry fixed; no predictions were produced before the failure."
+  ]
+}

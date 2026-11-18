@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "official-split-training",
+  "status": "unsigned",
+  "authorized": false,
+  "formal_training_authorized": false,
+  "spec_sha256": "5488ccc824d6f60fc427ba9aefd06cb8cbf2e440d7ed0d55d25291d41daa308a",
+  "budget_sha256": "2d3a51afdbb67e73f4596117c032b9e67b7839d157432310b151a27b70e77cd5",
+  "output_dir": "/gly/weilin/official-split-20261117/runs-24k",
+  "granted_by": "",
+  "granted_at": null,
+  "target_databases_read": [],
+  "notes": [
+    "Authorizes 3 A1-PG runs (seeds 42/43/44) at 24,000 updates under the pre-registered rule in 实验文档/126.",
+    "Step count came from the training-loss trend only; no target-database metric was used to choose it.",
+    "No target evaluation is authorized by this record."
+  ]
+}

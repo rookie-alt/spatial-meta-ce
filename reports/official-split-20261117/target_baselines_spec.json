@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "target-zero-shot-baselines",
+  "status": "unsigned",
+  "shots": [
+    0
+  ],
+  "baselines": [
+    "pg",
+    "price"
+  ],
+  "databases": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "batch_size": 128,
+  "device": "cuda",
+  "cuda_device": "6",
+  "selection_use": "none",
+  "budget": {
+    "total_seconds": 3600.0,
+    "phase_seconds": {
+      "preparation": 3000.0,
+      "evaluation": 1.0,
+      "certification": 300.0
+    },
+    "rss_bytes": 25769803776,
+    "vram_bytes": 2147483648,
+    "output_bytes": 1073741824,
+    "poll_seconds": 0.5,
+    "cpu_core_seconds": 4000,
+    "gpu_allocated_seconds": 3000,
+    "run_deadline_seconds": 1800.0,
+    "eval_deadline_seconds": 1200.0
+  },
+  "budget_sha256": "24c2cfbd8a2e98fea4b95af7c7f661a110d7aaf262dcd7b03a8ab4429c582547",
+  "bindings": {
+    "code_dir": "/gly/weilin/official-split-20261117/code",
+    "code_sha256": {
+      "scripts/run_target_baselines.py": "70b53b5cd9c5787ede020f5931b401d51f7a97e1af46d2cd317aba63af486b7e",
+      "spatial_meta_ce/target_eval.py": "7552db8361f6530db94cefe9abbbc15899351e0db6ea6b5a86ae736eb52a9d7c",
+      "spatial_meta_ce/baselines.py": "2fbbeed786b0c8224d9e99ad3eb607eae056db363877b1b6f92d023f9dd2f6ae",
+      "spatial_meta_ce/source_eval.py": "1913066c78f0e3640bcd6ad957753255a7914b8fa1765a5baf4cc3483a5aa6e7",
+      "spatial_meta_ce/checkpoints.py": "9ecd0442ee3263033123641f1111071815b065fba5173155bf266bc67b7fc645",
+      "spatial_meta_ce/official_split.py": "8f004621220e23bdb99c424379850b13e4a38b1611969daba14f5f6e18bed9b7",
+      "spatial_meta_ce/plans.py": "25f319854bd448fc8feedf61f771e76da5e3692cfe40ae9669808cd9774534f7"
+    },
+    "data_config": {
+      "path": "/gly/weilin/official-split-20261117/plans/data_config_official_26.json",
+      "sha256": "84c5ac6b94bdbf7ada869b5e519f62469a96cdf365423d18099fb1385590f67a"
+    },
+    "price_checkpoint": {
+      "path": "/gly/weilin/PRICE-master/results/model_params.pth",
+      "sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92"
+    }
+  }
+}

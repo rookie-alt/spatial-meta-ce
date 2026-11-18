@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "target-zero-shot-d",
+  "status": "unsigned",
+  "authorized": false,
+  "evaluation_authorized": false,
+  "spec_sha256": "a501ab4fb20a84d6457925582c7b6e3875eeae74750c582a3bb6cca02e1d045c",
+  "budget_sha256": "24c2cfbd8a2e98fea4b95af7c7f661a110d7aaf262dcd7b03a8ab4429c582547",
+  "output_dir": "/gly/weilin/official-split-20261117/target-eval",
+  "granted_by": "",
+  "granted_at": null,
+  "target_databases_read": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "notes": [
+    "Signing authorizes one K=0 zero-shot evaluation of six sealed checkpoints on the four test databases.",
+    "Results must not feed back into training, selection, calibration or any later model choice.",
+    "This record does not certify independent review."
+  ]
+}

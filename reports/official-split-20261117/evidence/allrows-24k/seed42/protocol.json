@@ -1,0 +1,358 @@
+{
+ "cache_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+ "split": "test",
+ "checkpoint": {
+  "path": "/gly/weilin/official-split-20261117/runs-24k-seed42/worker/runs/A1-PG-seed42/last.pt",
+  "sha256": "770cd4eb5876a17a37be11ef7c6a87bc43e71ed879f754ca2e554594e55843c5",
+  "seed": 42,
+  "method": "erm",
+  "train_databases": [
+   "accidents",
+   "airline",
+   "baseball",
+   "basketball",
+   "carcinogenesis",
+   "ccs",
+   "chembl",
+   "consumer",
+   "credit",
+   "employee",
+   "financial",
+   "fnhk",
+   "grants",
+   "hepatitis",
+   "hockey",
+   "legalacts",
+   "movielens",
+   "sakila",
+   "sap",
+   "seznam",
+   "ssb",
+   "talkingdata",
+   "telstra",
+   "tournament",
+   "tpc_h",
+   "tubepricing"
+  ],
+  "validation_databases": [],
+  "model_config": {
+   "arch": "price_lite",
+   "d_model": 64,
+   "layers": 2,
+   "heads": 4,
+   "dropout": 0.0,
+   "capacity": {
+    "cache_hashes": {
+     "accidents": "15340649a4e707d002e3ba2a00ae33593825a0b14feb064bb01b8ad9a5531d6e",
+     "airline": "f21cb657b1c7fb59dcfce51d1b5f6d81fc6ce8a571d9a8c09ca7c630f3ae8a29",
+     "baseball": "ff7566dbb8d1afd8272f5ba53a9ef08f6cc5d55a94749df80312318ba9e85782",
+     "basketball": "69a6e684afe6f0fe18c9384b9e729a3a3aeccc3d8069b8ae24b0771ccd9a8c02",
+     "carcinogenesis": "95bf4f593bc9b5cdbc61c298b86794044274e4968588ab9e7ff7b2f6429bea09",
+     "ccs": "9349038fd75d0f7fd79ccda64bfffe231a89af970fcd783303d59f359f1f28b2",
+     "chembl": "ab9ce1fc450a680d35a2f057887b194cd9b391b0cd26aaef2083230d70959061",
+     "consumer": "3a57a7bb019583114ea2c4e3f8f4afb7104f552482f40853e74272d205faa8c3",
+     "credit": "5bc1a63bcdf1d15f84152189b254371f4eae7da6f74159cd8a90846b06d5a062",
+     "employee": "050d4a02b589c9f42f4a64160ddfb617f7ea2ac4c98bc6e191e7da4c577e9d54",
+     "financial": "01c10ec9902f949314dfe504e48d0101b499e0f2c11de53c05b9838bd585e2b7",
+     "fnhk": "af9ff69a69d4d238cadde1a231806bd3fc177a68d02d7e4b1e1ffb9367cdacbd",
+     "grants": "c837b4c94df220d490b78c206a0fdb8a53436242df6c9e383b4421f7b7fcafd8",
+     "hepatitis": "10a50afe184ee2cc9584ce45e74446c12421048d43daf3ed5c55d51dae32befe",
+     "hockey": "e69d463154c37f11c206cf54fa46166cc74e3db9f8225107f9bcf681cc525220",
+     "legalacts": "cb7401d426d9a8156fb7f0298c83f15a862ce4745e9160d13c6459db3aa975a6",
+     "movielens": "d4ce55f6784a713bffdbfa51706e1952c120dfcc2bee8eb4d814c86ffc1635e7",
+     "sakila": "df675d3430167fdacfc74abc490483c09737709a907231e2ba0e87ebe28010da",
+     "sap": "6ee22c0067523d354eca8455d524051746f03bdd18b4fb442f094fa87a906d6f",
+     "seznam": "354cb78a73cf9580c3f42bc85d927851388500b90e1f7b0c5b56dedb7243c5b9",
+     "ssb": "90ecaf390673ad8d2f67e907e0a28f58aea69de0a0453cf688691518a2eeed6c",
+     "talkingdata": "dd49a6f0f273ba1a5dc01856d5bae999aa2c7f18f5bce54c9fae0ed90b130797",
+     "telstra": "9258ff2f7429833a22700d299b0210baad07308a459f863206ed965dbe375822",
+     "tournament": "a1609aebbca7afb9aa328c2a92c8dc4f95cc1621f9d757cdfcf7893f64e6d12e",
+     "tpc_h": "e10868b31986c1a053c34a93536873d982279129f6148a6a4e01879bd46fd5fb",
+     "tubepricing": "6e17d24ab0e7f63c7494a9223549c3599ffa754d612e392127ffb130fa883295"
+    },
+    "capacity_sha256": "b280c49f8917a5b30b4189587f55e3b915e6e105de5a4f00b1f344c6d1673ec5",
+    "database_max_counts": {
+     "accidents": [
+      3,
+      4,
+      3,
+      7
+     ],
+     "airline": [
+      12,
+      12,
+      7,
+      7
+     ],
+     "baseball": [
+      10,
+      12,
+      7,
+      7
+     ],
+     "basketball": [
+      10,
+      12,
+      7,
+      6
+     ],
+     "carcinogenesis": [
+      6,
+      10,
+      6,
+      6
+     ],
+     "ccs": [
+      7,
+      8,
+      5,
+      10
+     ],
+     "chembl": [
+      11,
+      12,
+      7,
+      10
+     ],
+     "consumer": [
+      3,
+      4,
+      3,
+      6
+     ],
+     "credit": [
+      9,
+      12,
+      7,
+      6
+     ],
+     "employee": [
+      7,
+      10,
+      6,
+      3
+     ],
+     "financial": [
+      10,
+      12,
+      7,
+      7
+     ],
+     "fnhk": [
+      3,
+      4,
+      3,
+      7
+     ],
+     "grants": [
+      10,
+      12,
+      7,
+      10
+     ],
+     "hepatitis": [
+      10,
+      12,
+      7,
+      7
+     ],
+     "hockey": [
+      9,
+      12,
+      7,
+      9
+     ],
+     "legalacts": [
+      5,
+      6,
+      4,
+      10
+     ],
+     "movielens": [
+      10,
+      12,
+      7,
+      7
+     ],
+     "sakila": [
+      12,
+      12,
+      7,
+      10
+     ],
+     "sap": [
+      5,
+      6,
+      4,
+      10
+     ],
+     "seznam": [
+      4,
+      6,
+      4,
+      7
+     ],
+     "ssb": [
+      8,
+      8,
+      5,
+      7
+     ],
+     "talkingdata": [
+      10,
+      12,
+      7,
+      10
+     ],
+     "telstra": [
+      5,
+      8,
+      5,
+      5
+     ],
+     "tournament": [
+      8,
+      12,
+      7,
+      7
+     ],
+     "tpc_h": [
+      11,
+      12,
+      7,
+      7
+     ],
+     "tubepricing": [
+      7,
+      10,
+      6,
+      10
+     ]
+    },
+    "databases": [
+     "accidents",
+     "airline",
+     "baseball",
+     "basketball",
+     "carcinogenesis",
+     "ccs",
+     "consumer",
+     "credit",
+     "employee",
+     "financial",
+     "fnhk",
+     "grants",
+     "hepatitis",
+     "hockey",
+     "movielens",
+     "sakila",
+     "sap",
+     "seznam",
+     "ssb",
+     "talkingdata",
+     "tournament",
+     "tpc_h",
+     "tubepricing",
+     "chembl",
+     "legalacts",
+     "telstra"
+    ],
+    "kind": "price_train_capacity_122_official_26",
+    "manifest_sha256": {
+     "accidents": "ff823dfdc94051780b91ef76c914da20566869c9e3967cb8ab2edf58343493c8",
+     "airline": "6589e7d1ce5cf600fed5dd66edaa8abaf65d8aa1a2d09bee220183c8a9512784",
+     "baseball": "f350876bc121289364d1cee386dc97bace304721a3e2fa093d11c19c61b78663",
+     "basketball": "c420cb4d1eee71ead3ade34e984da0383f79b6e8ed94ebe141fb7548e83425fb",
+     "carcinogenesis": "498e869ada2f116b16a4965c673d70853dc4a52c97fd1558a855639d3d3b8a8a",
+     "ccs": "3f9ae6a5525076144f5022421379e9acf2d0bf912a91c7c08184c57edbe35ca8",
+     "chembl": "7a936bbe92c1f919bb4a9d8e0276f1cba418f93e1bb0a5595b51cf0c8d837952",
+     "consumer": "0b0a636ba7d76732118dc945f41cec78ae5224c53323ab293f128a3f0a8b581a",
+     "credit": "f90d8a803685831149d93db11acce01b2dd4e87e83004cecadcaedfd0a0f7fe3",
+     "employee": "65f521f7bfcfdb10948d00c535448bda0ad74281ebedba9f0c18acba90164f62",
+     "financial": "65876ead6f557da3fce5436d5e50bb713d784778848e73444bc7187be6bb92a8",
+     "fnhk": "3ee5edd07c8dd9aa85a388464dfbe59a38f3caef12585743daf1b240d9b11144",
+     "grants": "24c2032c6e7c9acb4365a0125fcdc3cae5f7e6b99c487f642e5cb216609ed5dc",
+     "hepatitis": "e83a753d466350f365c6c6a6b493f23f9c086dd0018c24722f2215cf483d4e09",
+     "hockey": "81188aa035bf803d41e1568b47bf68f7f4da65c3acc69255c7d9a3c4d2673ede",
+     "legalacts": "a87b4ceb61d687f0f0525ea763422b4b8f29cad4bb56b664ee6d305f40e7d225",
+     "movielens": "0e76c11fa83601ecb4c938de42f2eb71a3670e3a729d8a61f5d97b126b36c2f4",
+     "sakila": "9a518b7c4b045457f93081106cb506942af8c8dbc775f5a8d43bc92bf129fcb5",
+     "sap": "9e12062c46ff20acd7677153f3f21dcabef189017bf5faf710647b536e3288a9",
+     "seznam": "f8440202f24c5cd2c1a968da575561aabf7fbad4fae37d33e2ad8b37c6282f1f",
+     "ssb": "b47234152f17846696b680d723336cb03e999c5a9902bff765a76dbbc4adb942",
+     "talkingdata": "bfb7e5e5be00b3400ad91b2459265469f45370d0608ee08d8a8293a6e9202d96",
+     "telstra": "3df79cbd9b0913d1cb8d6f7b0b58eca8bf9ef7094f2048657ade2fc49c8ec144",
+     "tournament": "907c45b0be134437de7e654388cd604795cd42434f69b1ed7e3e636b6008ebd9",
+     "tpc_h": "ac4e675c5f07232f453df70a7e082847b9286ecd750e0073469103e83be28760",
+     "tubepricing": "cb3460d9aefbb3c3e10ed5022185fd9050168eda1dd2a0864a351f6cbc31bc90"
+    },
+    "max_counts": [
+     12,
+     12,
+     7,
+     10
+    ],
+    "schema": 1,
+    "split": "pretrain",
+    "transform": "price40-group-logfanout-v1"
+   },
+   "lora": false,
+   "lora_seed": 42,
+   "pg_head_input": true
+  },
+  "transform": "price40-group-logfanout-v1",
+  "frozen": true,
+  "selection": "none (passed explicitly; this script never chooses)"
+ },
+ "price": {
+  "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+  "checkpoint_sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92",
+  "maxima": [
+   12,
+   14,
+   8,
+   10
+  ],
+  "decoding": "price_log_predictions(): log1p(card)+1 -> log(card)",
+  "adaptation": "none (K=0)"
+ },
+ "per_database": {
+  "imdb": {
+   "max_counts": [
+    5,
+    8,
+    5,
+    4
+   ],
+   "content_hash": "aa0e1628ed7aa637e90ffedfcd27c7a4c6703e98cb46083e6beef05e3d86d333"
+  },
+  "stats": {
+   "max_counts": [
+    8,
+    12,
+    7,
+    10
+   ],
+   "content_hash": "4f1726a2ddcd0f40a964cc6a5620073fa9fd05ad88e4daf8343d84f2e0248b22"
+  },
+  "genome": {
+   "max_counts": [
+    9,
+    10,
+    6,
+    7
+   ],
+   "content_hash": "f0f0f8660623fe3694b808916d1ec24b4ff51355723e13343a3d95cd897a07f9"
+  },
+  "ergastf1": {
+   "max_counts": [
+    8,
+    12,
+    7,
+    9
+   ],
+   "content_hash": "2a1c15b25326ccc7b4eb3b009c78f8178797ecce7e44d87245519776ac01697a"
+  }
+ },
+ "population_note": "doc 25 §1.2 fixes unique-query as the project's canonical metric; this file reports the all-rows population so the numbers can be placed next to the published PRICE table, which uses all rows"
+}

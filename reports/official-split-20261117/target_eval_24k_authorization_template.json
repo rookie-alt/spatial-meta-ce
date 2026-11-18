@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "target-zero-shot-d",
+  "status": "unsigned",
+  "authorized": false,
+  "evaluation_authorized": false,
+  "spec_sha256": "d0c38e1f37e7fb93301332eea3b157f24f89706ea5473ad4503a7430984b79de",
+  "budget_sha256": "24c2cfbd8a2e98fea4b95af7c7f661a110d7aaf262dcd7b03a8ab4429c582547",
+  "output_dir": "/gly/weilin/official-split-20261117/target-eval-24k",
+  "granted_by": null,
+  "granted_at": null,
+  "target_databases_read": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "notes": [
+    "Signing authorizes one K=0 zero-shot evaluation of the three 24k A1-PG checkpoints on the four test databases.",
+    "Runs once, after training is sealed; results are reported in full and never select a checkpoint.",
+    "Does not certify independent review."
+  ]
+}

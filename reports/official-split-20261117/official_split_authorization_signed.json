@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "official-split-training",
+  "status": "signed",
+  "authorized": true,
+  "formal_training_authorized": true,
+  "spec_sha256": "95415519811eb64e6b54a534f77014122f53d66b7ee15402448e12f4135b747d",
+  "budget_sha256": "76744ca2aa34f8709b15dda13850898d16138f716a048a276ad689dcc6cd17e5",
+  "output_dir": "/gly/weilin/official-split-20261117/runs",
+  "granted_by": "linsen",
+  "granted_at": "2026-11-17T19:18:49+08:00",
+  "target_databases_read": [],
+  "notes": [
+    "Signed on the user's explicit instruction '直接开始训练' in the 2026-11-17 session.",
+    "Authorizes 6 training runs (A1 and A1-PG, seeds 42/43/44) on GPU 6 and nothing else.",
+    "Independent read-only review was NOT performed before launch, at the user's explicit instruction; this record does not certify review.",
+    "The four test databases stay unread until a separate evaluation authorization exists.",
+    "Relaunch after the first attempt aborted at zero steps: train() plan loading needed the official empty-validation flag."
+  ]
+}

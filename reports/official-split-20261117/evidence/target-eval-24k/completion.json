@@ -1,0 +1,57 @@
+{
+  "status": "target_evaluation_completed",
+  "runs": 3,
+  "spec_sha256": "d0c38e1f37e7fb93301332eea3b157f24f89706ea5473ad4503a7430984b79de",
+  "authorization_sha256": "79c023902ce8471914cddb9f44569181a3964d5354bb30a561261fe2edcaeed6",
+  "supervisor": {
+    "schema": 1,
+    "status": "completed",
+    "mode": "formal",
+    "command": [
+      "/gly/weilin/PRICE-master/venv/bin/python",
+      "-I",
+      "-B",
+      "/gly/weilin/official-split-20261117/code/scripts/run_target_eval_d.py",
+      "worker",
+      "--spec",
+      "/gly/weilin/official-split-20261117/spec/target_eval_24k_spec.json",
+      "--spec-sha256",
+      "d0c38e1f37e7fb93301332eea3b157f24f89706ea5473ad4503a7430984b79de",
+      "--authorization",
+      "/gly/weilin/official-split-20261117/spec/target_eval_24k_authorization_signed.json",
+      "--authorization-sha256",
+      "79c023902ce8471914cddb9f44569181a3964d5354bb30a561261fe2edcaeed6",
+      "--output",
+      "/gly/weilin/official-split-20261117/target-eval-24k/worker"
+    ],
+    "output": "/gly/weilin/official-split-20261117/target-eval-24k/worker",
+    "pid": 6278,
+    "pgid": 6278,
+    "returncode": 0,
+    "elapsed": 8.640731306979433,
+    "peak_rss_bytes": 831561728,
+    "peak_vram_bytes": 54525952,
+    "outputbytes": 2365829,
+    "phase": "certification",
+    "signals": [],
+    "received_signals": [],
+    "failure": null,
+    "supervisor_json": "/gly/weilin/official-split-20261117/target-eval-24k/worker.supervisor.json"
+  },
+  "budget_usage": {
+    "cpu_core_seconds": 140.412553,
+    "gpu_allocated_seconds": 6.27493,
+    "gpu_allocated_gib_seconds": 0.318649,
+    "sampling_failed": null,
+    "samples": 16,
+    "cpu_core_seconds_budget": 4000,
+    "gpu_allocated_seconds_budget": 3000
+  },
+  "target_databases_read": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "selection_use": "none"
+}

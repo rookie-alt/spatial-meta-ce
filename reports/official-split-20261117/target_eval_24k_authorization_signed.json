@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "protocol": "122-official-26",
+  "purpose": "target-zero-shot-d",
+  "status": "signed",
+  "authorized": true,
+  "evaluation_authorized": true,
+  "spec_sha256": "d0c38e1f37e7fb93301332eea3b157f24f89706ea5473ad4503a7430984b79de",
+  "budget_sha256": "24c2cfbd8a2e98fea4b95af7c7f661a110d7aaf262dcd7b03a8ab4429c582547",
+  "output_dir": "/gly/weilin/official-split-20261117/target-eval-24k",
+  "granted_by": "linsen",
+  "granted_at": "2026-11-18T14:17:04+08:00",
+  "target_databases_read": [
+    "imdb",
+    "stats",
+    "genome",
+    "ergastf1"
+  ],
+  "notes": [
+    "Signing authorizes one K=0 zero-shot evaluation of the three 24k A1-PG checkpoints on the four test databases.",
+    "Runs once, after training is sealed; results are reported in full and never select a checkpoint.",
+    "This record does not certify independent review.",
+    "Signed on the user's explicit instruction '签，跑吧' in the 2026-11-18 session.",
+    "Independent read-only review was not performed before this evaluation.",
+    "Training inputs verified before signing: 26 training databases (23 + chembl/legalacts/telstra), validation empty, steps=24000, no target database in metadata."
+  ]
+}
