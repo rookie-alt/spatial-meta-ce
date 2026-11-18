@@ -162,10 +162,20 @@ class CoreTests(unittest.TestCase):
     def test_metrics_standard_and_shifted(self):
         r = summarize(np.array([0.0]), np.array([10.0]))
         self.assertAlmostEqual(r["q50"], 10.0)
-        self.assertAlmostEqual(r["q80"], 10.0)
         self.assertAlmostEqual(r["price_shifted_q50"], 5.5)
         with self.assertRaises(ValueError):
             summarize(np.array([np.nan]), np.array([1.0]))
+
+    def test_q80_is_its_own_percentile(self):
+        # A single point has q50 == q80 == q90, so it cannot tell the new key
+        # apart from a copy of another one. Spread the errors so each
+        # percentile has a different value.
+        truth = np.array([1.0])
+        pred = np.log(np.array([1.0, 2.0, 4.0, 8.0, 16.0]))
+        r = summarize(pred, np.repeat(truth, pred.size))
+        self.assertAlmostEqual(r["q80"], float(np.percentile([1, 2, 4, 8, 16], 80)))
+        self.assertLess(r["q50"], r["q80"])
+        self.assertLess(r["q80"], r["q90"])
 
     def test_checkpoint_roundtrip_strict(self):
         with tempfile.TemporaryDirectory() as d:

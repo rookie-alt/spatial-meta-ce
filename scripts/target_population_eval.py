@@ -215,6 +215,7 @@ def build_protocol(
                 "exp(abs(max(log_prediction, 0) - log(max(true_cardinality, 1))))"
             ),
             "q50": "percentile(q_error, 50) over the population",
+            "q80": "percentile(q_error, 80) over the population",
             "q95": "percentile(q_error, 95) over the population",
             "log_q95": (
                 "percentile(abs(max(log_prediction, 0) "
