@@ -12,12 +12,35 @@ from torch.nn import functional as F
 from vendor.price_baseline.module import Encoder, FilterEmbedding, ScaleEmbedding
 
 from .data import GROUP_DIMS
+from .manifests import digest
 from .price_capacity import GROUP_NAMES, UnsupportedCapacity, validate_capacity
 
 PRICE_ARCHES = ("price_lite", "price_tiny")
+GROUP_POOLING_MODES = ("none", "mean", "attention")
+GROUP_POOLING_MODEL_TYPES = (
+    "price_lite_pg_group_mean_residual",
+    "price_lite_pg_group_attention_residual",
+)
 LORA_RANK = 4
 LORA_ALPHA = 4
 LORA_SEED = 42
+
+
+def price_model_type(
+    arch: str, pg_head_input: bool = False, group_pooling: str = "none"
+) -> str:
+    """Validate opt-in readout controls and return their canonical identity."""
+    if type(pg_head_input) is not bool or (pg_head_input and arch != "price_lite"):
+        raise ValueError("PG head input requires price_lite and a boolean flag")
+    if type(group_pooling) is not str or group_pooling not in GROUP_POOLING_MODES:
+        raise ValueError("group_pooling must be 'none', 'mean' or 'attention'")
+    if group_pooling != "none":
+        if arch != "price_lite" or not pg_head_input:
+            raise ValueError(
+                "group pooling requires price_lite with pg_head_input=True"
+            )
+        return f"price_lite_pg_group_{group_pooling}_residual"
+    return "price_lite_pg_residual" if pg_head_input else f"{arch}_residual"
 
 
 class LoRALinear(nn.Linear):
@@ -49,10 +72,10 @@ class PriceResidualEstimator(nn.Module):
         lora: bool = False,
         lora_seed: int = LORA_SEED,
         pg_head_input: bool = False,
+        group_pooling: str = "none",
     ) -> None:
         super().__init__()
-        if type(pg_head_input) is not bool or (pg_head_input and arch != "price_lite"):
-            raise ValueError("PG head input requires price_lite and a boolean flag")
+        model_type = price_model_type(arch, pg_head_input, group_pooling)
         expected_dim = 64 if arch == "price_lite" else 32
         if arch not in PRICE_ARCHES or d_model not in (None, expected_dim):
             raise ValueError("PRICE model_type/arch/d_model configuration mismatch")
@@ -76,11 +99,11 @@ class PriceResidualEstimator(nn.Module):
             "lora": lora,
             "lora_seed": lora_seed,
             **({"pg_head_input": True} if pg_head_input else {}),
+            **({"group_pooling": group_pooling} if group_pooling != "none" else {}),
         }
         self.pg_head_input = pg_head_input
-        self.model_type = (
-            "price_lite_pg_residual" if pg_head_input else f"{arch}_residual"
-        )
+        self.group_pooling = group_pooling
+        self.model_type = model_type
         self.scale_embedding = ScaleEmbedding(*self.counts[:2], 40, expected_dim)
         self.filter_embedding = FilterEmbedding(*self.counts, 40, 4, 43, expected_dim)
         self.scale_encoder = Encoder(expected_dim, layers, heads, dropout)
@@ -116,6 +139,71 @@ class PriceResidualEstimator(nn.Module):
                         attention_head.Value = LoRALinear(
                             attention_head.Value, generator
                         )
+        if group_pooling != "none":
+            # Build the unchanged baseline first, preserving all shared initial
+            # parameters and RNG consumption when pooling is disabled. Append
+            # new columns so [CLS, lengths, Cartesian size, PG] keeps its order.
+            original = self.head[0]
+            self.head[0] = nn.Linear(original.in_features + 4 * expected_dim, 128)
+            with torch.no_grad():
+                self.head[0].weight[:, : original.in_features].copy_(
+                    original.weight
+                )
+                self.head[0].bias.copy_(original.bias)
+            if group_pooling == "attention":
+                self.group_scorers = nn.ModuleList(
+                    nn.Sequential(nn.Linear(64, 16), nn.Tanh(), nn.Linear(16, 1))
+                    for _ in GROUP_NAMES
+                )
+            self._pooling_config = copy.deepcopy(self.config)
+
+    def validate_pooling_identity(self) -> None:
+        """Fail closed on a mutated candidate identity/config before saving."""
+        expected = price_model_type("price_lite", True, self.group_pooling)
+        if (
+            self.model_type != expected
+            or self.group_pooling != self._pooling_config["group_pooling"]
+            or self.pg_head_input is not True
+            or digest(self.config) != digest(self._pooling_config)
+            or digest(self.capacity) != digest(self._pooling_config["capacity"])
+            or self.counts != tuple(self._pooling_config["capacity"]["max_counts"])
+            or self.head[0].in_features != 338
+            or (self.group_pooling == "attention") != hasattr(self, "group_scorers")
+        ):
+            raise ValueError("Noncanonical group pooling candidate identity/config")
+
+    def _pool_groups(self, tokens: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
+        """Read four final token groups at fixed capacity offsets, excluding CLS."""
+        if self.group_pooling == "none":
+            raise ValueError("Group pooling is disabled")
+        pooled = []
+        offset = 1
+        for group, width in enumerate(self.counts):
+            valid = mask[:, offset : offset + width]
+            # Mask before score/value arithmetic: padding can be nonzero, inf
+            # or NaN, so multiplying by a boolean is insufficient.
+            values = tokens[:, offset : offset + width].masked_fill(
+                ~valid[..., None], 0
+            )
+            if self.group_pooling == "mean":
+                summary = values.sum(1) / valid.sum(1, keepdim=True).clamp_min(1)
+            elif width == 0:
+                summary = values.sum(1)
+                # With no tokens this scorer is unused; expose its zero
+                # derivative to strict functional SGD without dummy tokens.
+                for parameter in self.group_scorers[group].parameters():
+                    summary = summary + 0 * parameter.sum()
+            else:
+                scores = self.group_scorers[group](values).squeeze(-1)
+                scores = scores.masked_fill(~valid, -torch.inf)
+                # Avoid softmax(-inf, ... -inf) on empty rows, then force
+                # every invalid weight to exact zero.
+                scores = torch.where(valid.any(1, keepdim=True), scores, 0)
+                weights = scores.softmax(1).masked_fill(~valid, 0)
+                summary = (values * weights[..., None]).sum(1)
+            pooled.append(summary)
+            offset += width
+        return torch.cat(pooled, dim=1)
 
     def _check_counts(self, batch: dict) -> None:
         counts = batch["counts"]
@@ -195,7 +283,8 @@ class PriceResidualEstimator(nn.Module):
         scale = self.scale_embedding(x)
         scale = self.scale_encoder(scale, mask[:, : 1 + sum(self.counts[:2])])
         filtered = self.filter_embedding(scale, x)
-        cls = self.filter_encoder(filtered, mask)[:, 0, :]
+        tokens = self.filter_encoder(filtered, mask)
+        cls = tokens[:, 0, :]
         # A zero-capacity group has no vendor embedding call. Keep an explicit
         # zero derivative so strict functional SGD/audits work without dummy tokens.
         embeddings = (
@@ -213,6 +302,8 @@ class PriceResidualEstimator(nn.Module):
         features = [cls, lengths, log_cartesian]
         if self.pg_head_input:
             features.append(batch["pg_log"][:, None])
+        if self.group_pooling != "none":
+            features.append(self._pool_groups(tokens, mask))
         return torch.cat(features, dim=1)
 
     def head_features(self, batch: dict) -> torch.Tensor:

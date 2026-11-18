@@ -272,21 +272,27 @@ class SetEstimator(nn.Module):
 
 def create_model(config: dict, model_type: str | None = None) -> nn.Module:
     """Dispatch explicitly; legacy grouped_set_residual keeps its strict keys."""
-    from .price_model import PRICE_ARCHES, PriceResidualEstimator
+    from .price_model import PRICE_ARCHES, PriceResidualEstimator, price_model_type
 
     if not isinstance(config, dict):
         raise ValueError("Model config must be a dictionary")
     arch = config.get("arch", "set")
     expected = (
-        "price_lite_pg_residual"
-        if arch == "price_lite" and config.get("pg_head_input") is True
+        price_model_type(
+            arch, config.get("pg_head_input", False), config.get("group_pooling", "none")
+        )
+        if arch in PRICE_ARCHES
         else f"{arch}_residual"
-        if arch in (*PRICE_ARCHES, "sum_anchor_only")
+        if arch == "sum_anchor_only"
         else "grouped_set_residual"
     )
     if model_type is not None and model_type != expected:
         raise ValueError("Checkpoint model_type/config mismatch")
     try:
-        return PriceResidualEstimator(**config) if arch in PRICE_ARCHES else SetEstimator(**config)
+        return (
+            PriceResidualEstimator(**config)
+            if arch in PRICE_ARCHES
+            else SetEstimator(**config)
+        )
     except TypeError as error:
         raise ValueError(f"Invalid model configuration: {error}") from error

@@ -1,0 +1,10 @@
+{
+  "command": [
+    "ruff",
+    "check",
+    "scripts",
+    "tests",
+    "spatial_meta_ce"
+  ],
+  "returncode": 0
+}

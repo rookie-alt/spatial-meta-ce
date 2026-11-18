@@ -1,0 +1,50 @@
+{
+  "ruff-old": {
+    "command": [
+      "ruff",
+      "check",
+      "scripts",
+      "tests",
+      "spatial_meta_ce"
+    ],
+    "returncode": 1
+  },
+  "ruff-new-changed": {
+    "command": [
+      "/opt/anaconda3/bin/ruff",
+      "check",
+      "spatial_meta_ce/price_model.py",
+      "spatial_meta_ce/model.py",
+      "spatial_meta_ce/checkpoints.py",
+      "tests/test_price_group_pooling.py"
+    ],
+    "returncode": 1
+  },
+  "ruff-fe": {
+    "command": [
+      "/opt/anaconda3/bin/ruff",
+      "check",
+      "--select",
+      "F,E",
+      "--ignore",
+      "E501",
+      "spatial_meta_ce/price_model.py",
+      "spatial_meta_ce/model.py",
+      "spatial_meta_ce/checkpoints.py",
+      "tests/test_price_group_pooling.py"
+    ],
+    "returncode": 0
+  },
+  "diff": {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "returncode": 0
+  },
+  "ruff-versions": {
+    "shell": "ruff 0.17.5",
+    "anaconda": "ruff 0.17.5"
+  }
+}

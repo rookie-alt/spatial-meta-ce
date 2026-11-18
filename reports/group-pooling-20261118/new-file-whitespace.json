@@ -1,0 +1,32 @@
+{
+  "all_clean": true,
+  "note": "no-index returncode 1 reports a new-file diff; no whitespace diagnostics were emitted",
+  "checks": [
+    {
+      "command": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "/dev/null",
+        "tests/test_price_group_pooling.py"
+      ],
+      "returncode": 1,
+      "output": "",
+      "clean": true
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--no-index",
+        "--check",
+        "/dev/null",
+        "reports/group-pooling-20261118/README.md"
+      ],
+      "returncode": 1,
+      "output": "",
+      "clean": true
+    }
+  ]
+}

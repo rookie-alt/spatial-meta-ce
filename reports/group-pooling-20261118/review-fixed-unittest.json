@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/opt/anaconda3/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 196.108,
+  "purpose": "synthetic-smoke-not-research"
+}

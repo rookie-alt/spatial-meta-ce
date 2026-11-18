@@ -1,0 +1,11 @@
+TRY004 Prefer `TypeError` exception for invalid type
+   --> spatial_meta_ce/model.py:278:9
+    |
+277 |     if not isinstance(config, dict):
+278 |         raise ValueError("Model config must be a dictionary")
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+279 |     arch = config.get("arch", "set")
+280 |     expected = (
+    |
+
+Found 1 error.

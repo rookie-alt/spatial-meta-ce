@@ -1,0 +1,23 @@
+{
+  "purpose": "smoke-not-research",
+  "counts": {
+    "none": {
+      "model_type": "price_lite_pg_residual",
+      "parameters": 294033,
+      "head_input_dim": 82,
+      "scorer_parameters": 0
+    },
+    "mean": {
+      "model_type": "price_lite_pg_group_mean_residual",
+      "parameters": 326801,
+      "head_input_dim": 338,
+      "scorer_parameters": 0
+    },
+    "attention": {
+      "model_type": "price_lite_pg_group_attention_residual",
+      "parameters": 331029,
+      "head_input_dim": 338,
+      "scorer_parameters": 4228
+    }
+  }
+}

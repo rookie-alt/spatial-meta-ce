@@ -1,0 +1,26 @@
+{
+  "ruff-0.11.2": {
+    "command": [
+      "/Users/williamlin/.pyenv/versions/3.9.9/bin/ruff",
+      "check",
+      "scripts",
+      "tests",
+      "spatial_meta_ce"
+    ],
+    "version": "ruff 0.11.2",
+    "returncode": 0
+  },
+  "ruff-0.17.5": {
+    "command": [
+      "/opt/anaconda3/bin/ruff",
+      "check",
+      "scripts",
+      "tests",
+      "spatial_meta_ce",
+      "--output-format=json"
+    ],
+    "version": "ruff 0.17.5",
+    "returncode": 1,
+    "issue_count": 624
+  }
+}

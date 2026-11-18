@@ -1,0 +1,93 @@
+{
+  "purpose": "smoke-not-research",
+  "cases": {
+    "price_lite-False-False": {
+      "config": {
+        "arch": "price_lite",
+        "d_model": 64,
+        "layers": 2,
+        "heads": 4,
+        "dropout": 0.0,
+        "lora": false,
+        "lora_seed": 42
+      },
+      "type": "price_lite_residual",
+      "parameters": 293905,
+      "rng_sha256": "fad5ef342738fa95f459ee3656e44de3ef0050d70085e557f0e8e5c396009162",
+      "initial_state_sha256": "23c91306144cd257be8cbf444a67d38af12945686c60ab19f07909b1f1ee9f58",
+      "features_sha256": "528329e25058efcb59beb933a999e5d840f428c46930ef803e9d86da60a7431e",
+      "predictions_sha256": "05e6b46e00189022b1c5ecf8a3eed8deb39cc8e9d8259f8a5522611ff1e97082"
+    },
+    "price_lite-True-False": {
+      "config": {
+        "arch": "price_lite",
+        "d_model": 64,
+        "layers": 2,
+        "heads": 4,
+        "dropout": 0.0,
+        "lora": false,
+        "lora_seed": 42,
+        "pg_head_input": true
+      },
+      "type": "price_lite_pg_residual",
+      "parameters": 294033,
+      "rng_sha256": "f5b2bb36b5274098189f72ba4f236571da905f945e08720a6adcc2ef18c1ff82",
+      "initial_state_sha256": "0ec5a71ed4c277c21e74cfb5b6ba878fe9ee035bb8e987853b3f2eb9e84d2545",
+      "features_sha256": "fd470ebf7b28e86266500465e8460439a6a046b20ba0fdf993d3782c9715f287",
+      "predictions_sha256": "c5ab95b32e21b574c4a81d847015fb2ddce929ed1e5ca6fc8de337bca4d5c22c"
+    },
+    "price_tiny-False-False": {
+      "config": {
+        "arch": "price_tiny",
+        "d_model": 32,
+        "layers": 2,
+        "heads": 4,
+        "dropout": 0.0,
+        "lora": false,
+        "lora_seed": 42
+      },
+      "type": "price_tiny_residual",
+      "parameters": 86769,
+      "rng_sha256": "abae8b62e57fbcf4d6cd38e91db7915480b737cfdeb725ca8f6603200d01b093",
+      "initial_state_sha256": "d8e05797e8110cc895fe76f443d6c855ba564bad15e9b6845984ca644305fce7",
+      "features_sha256": "662c0baa95336e8cf811b7465cf7a7f56e8b03a17e98f7b31fee00e928a8d1cf",
+      "predictions_sha256": "7114b4ada2b4247d6c25778b963e3e4fea615c1bbce9dea1e39bc0ec8585b95c"
+    },
+    "price_lite-False-True": {
+      "config": {
+        "arch": "price_lite",
+        "d_model": 64,
+        "layers": 2,
+        "heads": 4,
+        "dropout": 0.0,
+        "lora": true,
+        "lora_seed": 42
+      },
+      "type": "price_lite_residual",
+      "parameters": 304145,
+      "rng_sha256": "dbc6b43bcbc6515ac24e4fe4f53bb49a35170525c2034dcb157041257a4a4826",
+      "initial_state_sha256": "6db8ee8f06916473dadc864b3297ba5bf4d6eee931ad2ba434cec68aac514039",
+      "features_sha256": "528329e25058efcb59beb933a999e5d840f428c46930ef803e9d86da60a7431e",
+      "predictions_sha256": "6cb095a57f6622b3da1dc962e7eb9c976e7a8d37b4f50e9f8b5e496a3adbee3a"
+    },
+    "price_lite-True-True": {
+      "config": {
+        "arch": "price_lite",
+        "d_model": 64,
+        "layers": 2,
+        "heads": 4,
+        "dropout": 0.0,
+        "lora": true,
+        "lora_seed": 42,
+        "pg_head_input": true
+      },
+      "type": "price_lite_pg_residual",
+      "parameters": 304273,
+      "rng_sha256": "99e8b8797737abbb0fd3eac9e483a8239f1add85c177ecdfee2ba1f7b7f9977b",
+      "initial_state_sha256": "dcef0ea6d78d0c945ba7d3586e57b1ad34619f35bdf61db11b6af937eb7bcdd5",
+      "features_sha256": "fd470ebf7b28e86266500465e8460439a6a046b20ba0fdf993d3782c9715f287",
+      "predictions_sha256": "1b86a87cbe1791e8231c2982ebcb51377124c7b40cb9639054573e4fd982bd8c"
+    }
+  },
+  "all_match": true
+}

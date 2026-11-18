@@ -1,0 +1,83 @@
+{
+  "purpose": "smoke-not-research",
+  "worktree": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df",
+  "head": "11069d8060e99df4e96a276d3462a692ef378a95",
+  "branch": "feat/a1-pg-group-pooling-20261118",
+  "file_sha256": {
+    "spatial_meta_ce/price_model.py": "d4eec4b77451b1bd6e0b4b0b82cb5fb236fb083224e815f84d87f717a39fa1b6",
+    "spatial_meta_ce/model.py": "d60077ed891d61cada60932cfb5d3aa07b84c419457bc0e1eeb08ab2db29cb12",
+    "spatial_meta_ce/checkpoints.py": "7752f8449fbe74d19acb06d4d655fe73a047a00eeb6d1ec6e1332feffae55fac",
+    "tests/test_price_group_pooling.py": "66f66591f826f952d77d5ee8cce15ae4f3a9506fa33668ada373c78c73748fca",
+    "reports/group-pooling-20261118/README.md": "c082b1ad08b818e3aac7368f0d782f2f641843032f7a951c478d16232e0eb701"
+  },
+  "protected_paths_unchanged": [
+    "vendor",
+    "spatial_meta_ce/train.py",
+    "spatial_meta_ce/price_protocol.py",
+    "实验文档/99-进度与下一步.md",
+    "实验文档/130-双分支模块实现计划.md"
+  ],
+  "report_links_valid": true,
+  "diff_check_returncode": 0,
+  "final_validation": {
+    "focused-final": {
+      "purpose": "smoke-not-research",
+      "command": [
+        "/opt/anaconda3/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_price*.py",
+        "-v"
+      ],
+      "returncode": 0
+    },
+    "full-unittest-final": {
+      "purpose": "smoke-not-research",
+      "command": [
+        "/opt/anaconda3/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 196.242
+    },
+    "ruff-full-final": {
+      "command": [
+        "ruff",
+        "check",
+        "scripts",
+        "tests",
+        "spatial_meta_ce"
+      ],
+      "returncode": 0
+    },
+    "ruff-changed-fe-final": {
+      "command": [
+        "ruff",
+        "check",
+        "--select",
+        "F,E",
+        "--ignore",
+        "E501",
+        "spatial_meta_ce/price_model.py",
+        "spatial_meta_ce/model.py",
+        "spatial_meta_ce/checkpoints.py",
+        "tests/test_price_group_pooling.py"
+      ],
+      "returncode": 0
+    }
+  },
+  "independent_review": "pending_parent",
+  "committed": false,
+  "pushed": false
+}

@@ -1,0 +1,16 @@
+{
+  "purpose": "smoke-not-research",
+  "command": [
+    "/opt/anaconda3/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_price*.py",
+    "-v"
+  ],
+  "returncode": 0
+}

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "ruff",
+    "check",
+    "--select",
+    "F,E",
+    "--ignore",
+    "E501",
+    "spatial_meta_ce/price_model.py",
+    "spatial_meta_ce/model.py",
+    "spatial_meta_ce/checkpoints.py",
+    "tests/test_price_group_pooling.py"
+  ],
+  "returncode": 0
+}

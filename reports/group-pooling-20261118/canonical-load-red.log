@@ -1,0 +1,57 @@
+test_attention_is_masked_softmax_of_independent_group_mlp_scores (test_price_group_pooling.PriceGroupPoolingTests.test_attention_is_masked_softmax_of_independent_group_mlp_scores) ... ok
+test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights (test_price_group_pooling.PriceGroupPoolingTests.test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights) ... 
+  test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights (test_price_group_pooling.PriceGroupPoolingTests.test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights) (mode='mean', field='d_model') ... FAIL
+  test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights (test_price_group_pooling.PriceGroupPoolingTests.test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights) (mode='mean', field='dropout') ... FAIL
+  test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights (test_price_group_pooling.PriceGroupPoolingTests.test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights) (mode='attention', field='d_model') ... FAIL
+  test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights (test_price_group_pooling.PriceGroupPoolingTests.test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights) (mode='attention', field='dropout') ... FAIL
+test_checkpoint_roundtrip_and_identity_config_hash_rejections (test_price_group_pooling.PriceGroupPoolingTests.test_checkpoint_roundtrip_and_identity_config_hash_rejections) ... ok
+test_checkpoint_save_rejects_mutated_candidate_identity_or_config (test_price_group_pooling.PriceGroupPoolingTests.test_checkpoint_save_rejects_mutated_candidate_identity_or_config) ... ok
+test_counts_masks_and_mapping_fail_closed (test_price_group_pooling.PriceGroupPoolingTests.test_counts_masks_and_mapping_fail_closed) ... ok
+test_empty_rows_are_exact_zero_and_backward_is_finite (test_price_group_pooling.PriceGroupPoolingTests.test_empty_rows_are_exact_zero_and_backward_is_finite) ... ok
+test_explicit_modes_have_distinct_canonical_identities_and_dimensions (test_price_group_pooling.PriceGroupPoolingTests.test_explicit_modes_have_distinct_canonical_identities_and_dimensions) ... ok
+test_fixed_group_offsets_use_final_encoder_tokens_and_valid_counts (test_price_group_pooling.PriceGroupPoolingTests.test_fixed_group_offsets_use_final_encoder_tokens_and_valid_counts) ... ok
+test_global_zero_capacity_groups_have_differentiable_zero (test_price_group_pooling.PriceGroupPoolingTests.test_global_zero_capacity_groups_have_differentiable_zero) ... ok
+test_live_head_reaches_all_scorers_and_strict_functional_adaptation (test_price_group_pooling.PriceGroupPoolingTests.test_live_head_reaches_all_scorers_and_strict_functional_adaptation) ... ok
+test_mean_supports_strict_functional_adaptation (test_price_group_pooling.PriceGroupPoolingTests.test_mean_supports_strict_functional_adaptation) ... ok
+test_none_preserves_config_state_rng_and_baseline_forward (test_price_group_pooling.PriceGroupPoolingTests.test_none_preserves_config_state_rng_and_baseline_forward) ... ok
+test_old_122_and_pg_training_authorizations_reject_pooling_before_cache_io (test_price_group_pooling.PriceGroupPoolingTests.test_old_122_and_pg_training_authorizations_reject_pooling_before_cache_io) ... ok
+test_pooling_flag_and_pg_flag_validation_are_strict (test_price_group_pooling.PriceGroupPoolingTests.test_pooling_flag_and_pg_flag_validation_are_strict) ... ok
+test_pooling_keeps_shared_initialization_and_appends_features (test_price_group_pooling.PriceGroupPoolingTests.test_pooling_keeps_shared_initialization_and_appends_features) ... ok
+test_raw_padding_batch_invariance_and_nonzero_encoder_padding (test_price_group_pooling.PriceGroupPoolingTests.test_raw_padding_batch_invariance_and_nonzero_encoder_padding) ... ok
+
+======================================================================
+FAIL: test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights (test_price_group_pooling.PriceGroupPoolingTests.test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights) (mode='mean', field='d_model')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df/tests/test_price_group_pooling.py", line 503, in test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights (test_price_group_pooling.PriceGroupPoolingTests.test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights) (mode='mean', field='dropout')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df/tests/test_price_group_pooling.py", line 503, in test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights (test_price_group_pooling.PriceGroupPoolingTests.test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights) (mode='attention', field='d_model')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df/tests/test_price_group_pooling.py", line 503, in test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights
+    with (
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights (test_price_group_pooling.PriceGroupPoolingTests.test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights) (mode='attention', field='dropout')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df/tests/test_price_group_pooling.py", line 503, in test_checkpoint_rejects_numeric_aliases_and_reloads_adapted_weights
+    with (
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 16 tests in 1.635s
+
+FAILED (failures=4)

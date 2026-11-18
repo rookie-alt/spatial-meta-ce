@@ -1,0 +1,28 @@
+{
+  "purpose": "synthetic-smoke-not-research",
+  "head": "11069d8060e99df4e96a276d3462a692ef378a95",
+  "worktree": "/Users/williamlin/.t3/worktrees/spatial-meta-ce/t3-301bc0d8-051470e3a3f3b8df",
+  "file_sha256": {
+    "spatial_meta_ce/price_model.py": "d4eec4b77451b1bd6e0b4b0b82cb5fb236fb083224e815f84d87f717a39fa1b6",
+    "spatial_meta_ce/model.py": "d60077ed891d61cada60932cfb5d3aa07b84c419457bc0e1eeb08ab2db29cb12",
+    "spatial_meta_ce/checkpoints.py": "8cb14d2ccfcd45a06b2c0aa89db831362ec2f20e9f5bb3154bae364ab81cf788",
+    "tests/test_price_group_pooling.py": "e87fe163c6589a4cc091c3a1f06c9b9d3a317ff00ffefcda2b49b80f3c767a39",
+    "reports/group-pooling-20261118/README.md": "cfab4201a572207a880a96b72246f5e512b333eb490e3bf251b925cf878ac98d"
+  },
+  "log_sha256": {
+    "canonical-load-red.log": "eb485822f6fe687d681797251a85ee14ba96137c0605af9ecf38a02a80f1b663",
+    "canonical-load-green.log": "6cd705aede968266fda492078273d196bb70dad08601c2b8806a0ee0ac124dc9",
+    "review-fixed-unittest.log": "eafa64f38d5e4ac919db50b6547550bc1ab7925b9ed0bcf6979ced43b4ee3287",
+    "review-fixed-lint-versions.json": "c66fa37cbe4080b4fc7d952fe6162128c5ad3a209ec5f37fe5cd77bf01ff3247"
+  },
+  "first_review": "failed-canonical-load-digest-alias",
+  "fix": "new grouped model types require canonical config digest equality on load",
+  "validation": {
+    "price_tests": 103,
+    "full_tests": 1843,
+    "skipped": 16,
+    "returncode": 0
+  },
+  "independent_recheck": "pending",
+  "committed": false
+}
