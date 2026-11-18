@@ -23,7 +23,14 @@ def digest(value):
 def validate_splits(splits):
     keys = ("train", "validation", "test")
     for key in keys:
-        if not splits.get(key) or len(set(splits[key])) != len(splits[key]):
+        if not isinstance(splits.get(key), list):
+            raise ValueError(f"Invalid database list: {key}")
+        if len(set(splits[key])) != len(splits[key]):
+            raise ValueError(f"Invalid database list: {key}")
+        # A pre-registered no-selection protocol trains on every source
+        # database, so it has no validation split. Only validation may be
+        # empty; an empty train or test split is still a mistake.
+        if key != "validation" and not splits[key]:
             raise ValueError(f"Invalid database list: {key}")
         if any("/" in db or db in (".", "..") for db in splits[key]):
             raise ValueError("Invalid database name")

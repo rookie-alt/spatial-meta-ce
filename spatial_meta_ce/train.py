@@ -9,6 +9,7 @@ import torch
 
 from .checkpoints import load_checkpoint, restore_rng, save_checkpoint
 from .data import StorePool
+from .holdout import holdout_digest, holdout_validation_plan, split_holdout
 from .manifests import digest, episode_indices, file_hash, validate_splits
 from .meta import (
     JOINT_PRE_WEIGHT,
@@ -95,7 +96,9 @@ def gradient_sha256(model, gradients):
     return hasher.hexdigest()
 
 
-def _write_gradient_audit(model, training_plan, stores, config, tau, output_dir, device):
+def _write_gradient_audit(
+    model, training_plan, stores, config, tau, output_dir, device
+):
     episode = training_plan["episodes"][0]
     store = stores[episode["db"]]
     support = store.batch(np.asarray(episode["support"], dtype=np.int64), device)
@@ -131,7 +134,9 @@ def _write_gradient_audit(model, training_plan, stores, config, tau, output_dir,
         )
         pre_loss = None
         post_loss = float(total.detach())
-    parameters = [parameter for parameter in model.parameters() if parameter.requires_grad]
+    parameters = [
+        parameter for parameter in model.parameters() if parameter.requires_grad
+    ]
     gradients = torch.autograd.grad(total, parameters)
     payload = {
         "schema": 1,
@@ -184,9 +189,7 @@ def _validate_fixed_budget(config):
     if config["model"] != FIXED_MODEL:
         raise ValueError("fixed_budget requires the frozen model configuration")
     if "complex_query_weight" in config or "tail_risk_mode" in config:
-        raise ValueError(
-            "fixed_budget forbids complex_query_weight/tail_risk_mode"
-        )
+        raise ValueError("fixed_budget forbids complex_query_weight/tail_risk_mode")
     if config["seed"] not in FIXED_SEEDS:
         raise ValueError(f"fixed_budget requires seed in {FIXED_SEEDS}")
 
@@ -366,6 +369,43 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         raise ValueError("training_plan requires fixed_budget")
     if fixed_budget and resume:
         raise ValueError("fixed_budget does not authorize resume")
+    selection = config.get("selection", "validation")
+    if selection not in ("validation", "none", "holdout"):
+        raise ValueError("selection must be 'validation', 'none' or 'holdout'")
+    holdout_fraction = config.get("holdout_fraction")
+    if selection == "holdout":
+        if fixed_budget:
+            raise ValueError("selection=holdout is the non-fixed-budget path")
+        if data_config["splits"]["validation"]:
+            raise ValueError(
+                "selection=holdout requires an empty validation split; the "
+                "holdout replaces it instead of being mixed with it"
+            )
+        if not isinstance(holdout_fraction, (int, float)) or isinstance(
+            holdout_fraction, bool
+        ):
+            raise ValueError("selection=holdout requires a numeric holdout_fraction")
+    elif holdout_fraction is not None:
+        raise ValueError("holdout_fraction requires selection=holdout")
+    if selection == "none":
+        if fixed_budget:
+            raise ValueError("selection=none is the non-fixed-budget path")
+        if data_config["splits"]["validation"]:
+            raise ValueError("selection=none requires an empty validation split")
+        if config["patience"] <= config["steps"] // config["validate_every"]:
+            raise ValueError(
+                "selection=none must not early stop; patience must exceed the "
+                "number of validation checks"
+            )
+    if selection == "validation" and not data_config["splits"]["validation"]:
+        # validate_splits() allows an empty validation split so that
+        # pre-registered all-source runs can use a query-level holdout.  The
+        # default path still needs one, otherwise validate() would average an
+        # empty episode list and fail only after the whole run.
+        raise ValueError(
+            "selection=validation requires a non-empty validation split; "
+            "use selection='holdout' or 'none' for all-source training"
+        )
     mapped = config.get("model", {}).get("arch") == "sum_map"
     mapping_config = config.get("mapping")
     if mapped and not mapping_config:
@@ -383,7 +423,9 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         raise FileExistsError("Use a new run directory or explicit --resume")
     output_dir.mkdir(parents=True, exist_ok=True)
     splits = data_config["splits"]
-    sources = splits["train"] if fixed_budget else splits["train"] + splits["validation"]
+    sources = (
+        splits["train"] if fixed_budget else splits["train"] + splits["validation"]
+    )
     # Opening a mapped store parses its whole sidecar (~3.5s). Keep every source
     # store resident so uniform database sampling cannot thrash the LRU.
     pool = StorePool(
@@ -395,12 +437,28 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
     hashes = {}
     pools = {}
     stores = {}
+    holdout_entries = {}
     mapping_provenance = {}
     for db in sources:
         store = pool.get("pretrain", db)
         stores[db] = store
         hashes[db] = store.manifest["content_hash"]
-        pools[db] = store.unique_indices()
+        unique = store.unique_indices()
+        if selection == "holdout":
+            train_indices, held_indices = split_holdout(
+                unique, holdout_fraction, config["validation_seed"], db
+            )
+            pools[db] = train_indices
+            holdout_entries[db] = {
+                "content_hash": store.manifest["content_hash"],
+                "held": held_indices,
+                "held_hashes": [store.rows[int(i)]["query_hash"] for i in held_indices],
+                "train_hashes": [
+                    store.rows[int(i)]["query_hash"] for i in train_indices
+                ],
+            }
+        else:
+            pools[db] = unique
         if mapping_config:
             mapping_provenance[db] = store.mapping.provenance()
     signature = {k: v for k, v in config.items() if k not in ("steps", "data_config")}
@@ -415,9 +473,41 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         "selection": (
             FIXED_SELECTION
             if fixed_budget
-            else "source-validation macro mean log-Q95 after adaptation"
+            else (
+                "none (pre-registered, last.pt only)"
+                if selection == "none"
+                else (
+                    "source query-level holdout macro mean log-Q95"
+                    if selection == "holdout"
+                    else "source-validation macro mean log-Q95 after adaptation"
+                )
+            )
         ),
     }
+    if selection == "holdout":
+        for db, entry in holdout_entries.items():
+            if set(entry["held_hashes"]) & set(entry["train_hashes"]):
+                raise ValueError(
+                    f"{db} holdout shares query hashes with its training pool"
+                )
+        for db, entry in holdout_entries.items():
+            held = set(entry["held_hashes"])
+            for other_db, other_entry in holdout_entries.items():
+                leaked = held & set(other_entry["train_hashes"])
+                if leaked:
+                    raise ValueError(
+                        f"{db} holdout shares {len(leaked)} query hashes with "
+                        f"{other_db} training pool"
+                    )
+        metadata = {
+            **metadata,
+            "holdout_fraction": holdout_fraction,
+            "holdout_seed": config["validation_seed"],
+            "holdout_digest": holdout_digest(holdout_entries),
+            "holdout_queries": {
+                db: len(entry["held"]) for db, entry in holdout_entries.items()
+            },
+        }
     if fixed_budget:
         metadata = {
             **metadata,
@@ -502,7 +592,16 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         )
     else:
         training_plan = None
-        episodes = validation_plan(pool, splits["validation"], config)
+        if selection == "holdout":
+            episodes = holdout_validation_plan(
+                holdout_entries,
+                config["support_sizes"],
+                config["validation_runs"],
+                config["query_size"],
+                config["validation_seed"],
+            )
+        else:
+            episodes = validation_plan(pool, splits["validation"], config)
         (output_dir / "validation_manifest.json").write_text(
             json.dumps(episodes, indent=2)
         )
@@ -537,9 +636,7 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
                 else:
                     db = str(rng.choice(splits["train"]))
                     k = int(rng.choice(config["support_sizes"]))
-                    si, qi = episode_indices(
-                        pools[db], k, config["query_size"], rng
-                    )
+                    si, qi = episode_indices(pools[db], k, config["query_size"], rng)
                     store = pool.get("pretrain", db)
                     episode_hashes = {
                         "db": db,
@@ -610,8 +707,7 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
                             objective=objective,
                             pred=pred,
                             batch=batch,
-                            hashes=episode_hashes["support"]
-                            + episode_hashes["query"],
+                            hashes=episode_hashes["support"] + episode_hashes["query"],
                             steps=config["steps"],
                         )
                         loss_evidence = {
@@ -760,9 +856,7 @@ def train(config, data_config, output_dir, device="cpu", resume=None):
         "parameters": sum(p.numel() for p in model.parameters()),
         "purpose": metadata["purpose"],
         **(
-            {"gradient_stats": dict(gradient_stats)}
-            if s5 or s6 or fixed_budget
-            else {}
+            {"gradient_stats": dict(gradient_stats)} if s5 or s6 or fixed_budget else {}
         ),
         **({"loss_evidence": dict(loss_evidence)} if s6 else {}),
         **(
