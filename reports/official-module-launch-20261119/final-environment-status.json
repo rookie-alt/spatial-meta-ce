@@ -1,0 +1,106 @@
+{
+  "observed_at": "2026-11-19T01:33:56.691923+08:00",
+  "queue_status": "stopped exit=1",
+  "processes_alive": [],
+  "gpu1_nvml": "1, GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed, 1 MiB, 0 %",
+  "kernel_gpu0_failure_lines": [
+    "[1305748.801155] NVRM: Xid (PCI:0000:01:00): 79, pid=50231, name=nvidia-smi, GPU has fallen off the bus.",
+    "[1305748.801160] NVRM: GPU 0000:01:00.0: GPU has fallen off the bus."
+  ],
+  "runs": [
+    {
+      "key": "A1-PG-seed42",
+      "output_exists": true,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-seed43",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-seed44",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-GroupMean-seed42",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-GroupMean-seed43",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-GroupMean-seed44",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-GroupAttention-seed42",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-GroupAttention-seed43",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-GroupAttention-seed44",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-RelationTrue-seed42",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-RelationTrue-seed43",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-RelationTrue-seed44",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-RelationShuffled-seed42",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-RelationShuffled-seed43",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    },
+    {
+      "key": "A1-PG-RelationShuffled-seed44",
+      "output_exists": false,
+      "checkpoint_exists": false,
+      "completion_exists": false
+    }
+  ],
+  "completed_runs": 0,
+  "checkpoint_count": 0,
+  "target_model_evaluation_run": false,
+  "auto_retry_run": false
+}

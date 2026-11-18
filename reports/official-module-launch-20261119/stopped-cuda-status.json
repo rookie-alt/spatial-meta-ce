@@ -1,0 +1,55 @@
+{
+  "observed_at": "2026-11-19T01:31:36.530252+08:00",
+  "queue_status": "stopped exit=1",
+  "supervisor": {
+    "command": [
+      "/gly/weilin/PRICE-master/venv/bin/python",
+      "-I",
+      "-B",
+      "/gly/weilin/module26-prep-20261118/code-training/scripts/run_official_module_experiment.py",
+      "worker",
+      "--spec",
+      "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-seed42/training_spec.json",
+      "--spec-sha256",
+      "2505a409f72d3223cfa3b74074ade8d928e696c51cd8299e6e885430af85e221",
+      "--authorization",
+      "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-seed42/authorization.json",
+      "--authorization-sha256",
+      "18cfbaafa68d26256f88dd616f2b4b5bb900878ef8fa3b3b2c681bd66193bff9"
+    ],
+    "elapsed": 328.83315210114233,
+    "failure": "parent_signal",
+    "mode": "formal",
+    "output": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-seed42/worker",
+    "outputbytes": 5946,
+    "peak_rss_bytes": 2069487616,
+    "peak_vram_bytes": 0,
+    "pgid": 6083,
+    "phase": "preparation",
+    "pid": 6083,
+    "received_signals": [
+      15
+    ],
+    "returncode": -15,
+    "schema": 1,
+    "signals": [
+      15
+    ],
+    "status": "failed",
+    "supervisor_json": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-seed42/worker.supervisor.json"
+  },
+  "checkpoints": 0,
+  "processes_alive": [],
+  "queue_log_tail": [
+    "  File \"/gly/weilin/module26-prep-20261118/code-training/scripts/run_official_module_experiment.py\", line 1953, in <module>",
+    "    raise SystemExit(main())",
+    "                     ^^^^^^",
+    "  File \"/gly/weilin/module26-prep-20261118/code-training/scripts/run_official_module_experiment.py\", line 1861, in main",
+    "    return parent_main(args)",
+    "           ^^^^^^^^^^^^^^^^^",
+    "  File \"/gly/weilin/module26-prep-20261118/code-training/scripts/run_official_module_experiment.py\", line 1781, in parent_main",
+    "    raise RuntimeError(f\"Official module worker failed: {record.get('failure')}\")",
+    "RuntimeError: Official module worker failed: parent_signal",
+    "queue_end time=2026-11-19T01:31:15+08:00 exit=1"
+  ]
+}

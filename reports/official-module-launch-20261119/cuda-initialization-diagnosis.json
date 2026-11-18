@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "status": "blocked_cuda_initialization",
+  "observations": [
+    {
+      "observed_at": "2026-11-19T01:30:42.156929+08:00",
+      "probe": "ctypes.CDLL(libcuda.so.1).cuInit(0)",
+      "CUDA_VISIBLE_DEVICES": "1",
+      "returncode": 3,
+      "error_name": "CUDA_ERROR_NOT_INITIALIZED",
+      "error_text": "initialization error"
+    },
+    {
+      "observed_at": "2026-11-19T01:32+08:00",
+      "probe": "same driver init with CUDA_DEVICE_ORDER=PCI_BUS_ID and GPU UUID",
+      "CUDA_VISIBLE_DEVICES": "GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed",
+      "returncode": 3,
+      "error_name": "CUDA_ERROR_NOT_INITIALIZED"
+    },
+    {
+      "observed_at": "2026-11-19T01:32+08:00",
+      "probe": "same driver init with CUDA_DEVICE_ORDER=PCI_BUS_ID and numeric index",
+      "CUDA_VISIBLE_DEVICES": "1",
+      "returncode": 3,
+      "error_name": "CUDA_ERROR_NOT_INITIALIZED"
+    }
+  ],
+  "driver_library": "/usr/lib/x86_64-linux-gnu/libcuda.so.550.163.01",
+  "kernel_driver_version": "550.163.01",
+  "uvm_device_major": 230,
+  "proc_devices_uvm_major": 230,
+  "kernel_gpu0_xid": 79,
+  "causation": "The GPU0 off-bus event may be related; the host-level root cause is not independently proven. No GPU reset, module reload, reboot or retry was performed.",
+  "research_checkpoint_count": 0
+}

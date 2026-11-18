@@ -1,0 +1,9 @@
+{
+  "requested_at": "2026-11-19T01:31:04.218204+08:00",
+  "reason": "CUDA initialization failed on signed GPU1; independent cuInit returned CUDA_ERROR_NOT_INITIALIZED (3). Stop owned supervisor before any optimizer updates; do not retry.",
+  "supervisor_pid": 8518,
+  "worker_pid": 6083,
+  "signal": "SIGTERM",
+  "observed_checkpoints": 0,
+  "automatic_retry": false
+}
