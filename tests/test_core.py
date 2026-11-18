@@ -162,6 +162,7 @@ class CoreTests(unittest.TestCase):
     def test_metrics_standard_and_shifted(self):
         r = summarize(np.array([0.0]), np.array([10.0]))
         self.assertAlmostEqual(r["q50"], 10.0)
+        self.assertAlmostEqual(r["q80"], 10.0)
         self.assertAlmostEqual(r["price_shifted_q50"], 5.5)
         with self.assertRaises(ValueError):
             summarize(np.array([np.nan]), np.array([1.0]))

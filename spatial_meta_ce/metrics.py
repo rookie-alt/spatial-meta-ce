@@ -1,5 +1,10 @@
 import numpy as np
 
+# q80 is reported because Q-error comparisons run against percentile columns
+# published at 50/80/90 (e.g. PRICE Table 2); 90/95/99 stay the project's own
+# reporting set, so this list is additive and never drops a prior key.
+PERCENTILES = (50, 80, 90, 95, 99)
+
 
 def q_values(log_pred, true):
     log_pred = np.asarray(log_pred, dtype=np.float64).reshape(-1)
@@ -23,12 +28,9 @@ def q_values(log_pred, true):
 
 def summarize(log_pred, true):
     q, shifted, log_q = q_values(log_pred, true)
-    result = {f"q{p}": float(np.percentile(q, p)) for p in (50, 90, 95, 99)}
+    result = {f"q{p}": float(np.percentile(q, p)) for p in PERCENTILES}
     result.update(
-        {
-            f"price_shifted_q{p}": float(np.percentile(shifted, p))
-            for p in (50, 90, 95, 99)
-        }
+        {f"price_shifted_q{p}": float(np.percentile(shifted, p)) for p in PERCENTILES}
     )
     result.update(
         n=len(q), q_mean=float(q.mean()), log_q95=float(np.percentile(log_q, 95))

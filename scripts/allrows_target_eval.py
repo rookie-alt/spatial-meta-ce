@@ -34,7 +34,7 @@ from pathlib import Path
 import numpy as np
 
 ALLOWED_TARGETS = ("imdb", "stats", "genome", "ergastf1")
-PERCENTILES = (50, 90, 95, 99)
+PERCENTILES = (50, 80, 90, 95, 99)
 
 
 def sha256_file(path: str) -> str:
