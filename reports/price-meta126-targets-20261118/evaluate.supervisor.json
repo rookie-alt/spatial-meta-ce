@@ -1,0 +1,65 @@
+{
+  "budget": {
+    "max_output_bytes": 1073741824.0,
+    "max_rss_bytes": 25769803776.0,
+    "max_vram_bytes": 12884901888.0,
+    "max_wall_seconds": 10800.0,
+    "poll_seconds": 1.0
+  },
+  "cleanup": {
+    "attempted": false,
+    "error": null,
+    "residual_pids": [],
+    "signals": [],
+    "verified": false
+  },
+  "command": [
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-B",
+    "/gly/weilin/price-meta-126-targets-20261118/code/scripts/run_price_meta126.py",
+    "worker",
+    "--binding",
+    "/gly/weilin/price-meta-126-targets-20261118/inputs/binding.json",
+    "--authorization",
+    "/gly/weilin/price-meta-126-targets-20261118/inputs/authorization-evaluate.json",
+    "--output",
+    "/gly/weilin/price-meta-126-targets-20261118/outputs/evaluate"
+  ],
+  "completion": {
+    "binding_sha256": "aee21c8945b2d976bdd31dc93a6985047028f1cd5829e4e62d1c94c36136a105",
+    "cells": 242,
+    "imdb_fewshot_status": "unavailable_missing_independent_support",
+    "protocol": 126,
+    "schema": 1,
+    "selection_forbidden": true,
+    "status": "completed",
+    "summary_sha256": "024068f47d3502d9697ae2f18450058b5a85876cc22e8c180d222f9d1987dbf3",
+    "target_databases_read": [
+      "imdb",
+      "stats",
+      "ergastf1",
+      "genome"
+    ],
+    "units_sha256": "ca4bd225d4908d33fc5c1306feed78f544264ee4935375e8530f30fa03f3d1b8"
+  },
+  "cwd": "/gly/weilin/price-meta-126-targets-20261118/code",
+  "elapsed_seconds": 560.0775602818467,
+  "failure": null,
+  "gpu_index": 0,
+  "gpu_uuid": "GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d",
+  "output": "/gly/weilin/price-meta-126-targets-20261118/outputs/evaluate",
+  "output_bytes": 28847597,
+  "peak_rss_bytes": 1168842752,
+  "peak_vram_bytes": 773849088,
+  "pgid": 65430,
+  "pid": 65430,
+  "returncode": 0,
+  "samples": 518,
+  "schema": 1,
+  "status": "completed",
+  "supervisor_json": "/gly/weilin/price-meta-126-targets-20261118/outputs/evaluate.supervisor.json",
+  "supervisor_log": "/gly/weilin/price-meta-126-targets-20261118/outputs/evaluate.supervisor.log",
+  "supervisor_pid": 62462,
+  "vram_accounting": "device_total",
+  "vram_baseline_bytes": 1048576
+}

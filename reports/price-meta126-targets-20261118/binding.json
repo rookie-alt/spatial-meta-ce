@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "protocol": 126,
+  "root": "/gly/weilin/price-meta-126-targets-20261118",
+  "training_root": "/gly/weilin/price-meta-125-official26-20261117",
+  "training_seal_sha256": "299b0cbf63f41950f54d1abc94ac0d095eaf3fa2fce553b681280d457c7159f4",
+  "code_sha256": {
+    "实验文档/126-官方PRICE元学习四目标评估.md": "50953e60708faa76b893391b0198988a09c2e45ca5f7957f0dab22d507c75bbf",
+    "vendor/PROVENANCE.json": "99605f8f681541fe82d7735454805c1242e85e1cbb353d68a754525609985f88",
+    "scripts/run_price_meta126.py": "b525260621250540b4e0baab3220a85b375651ab37f972f8dd7e820b60d6f652",
+    "spatial_meta_ce/__init__.py": "55a36a2626f6a72992dd15a308304598a4f2e1007f6b06946f6810f2c4c0501f",
+    "spatial_meta_ce/baselines.py": "2fbbeed786b0c8224d9e99ad3eb607eae056db363877b1b6f92d023f9dd2f6ae",
+    "spatial_meta_ce/checkpoints.py": "146c0d385d865436ef8f05f90b6e2c4280d39977b34357e0ea4b20529d3059db",
+    "spatial_meta_ce/cli.py": "9d36dc0f83f1a924c0f2125adbf17f7d30dbaf1f5a1ef917928ad6963b140bfc",
+    "spatial_meta_ce/data.py": "0d2265cef5db36e8f0f4a7d49d96e8bf8522fffcfadbcd82a561ffb7a38c490c",
+    "spatial_meta_ce/direction.py": "f2f4e6154b3b1da9807f491692318d7e8dde22152a762429f6d19e38bc880148",
+    "spatial_meta_ce/evaluate.py": "1b24277f43ce2404bf89757fefeda93096a92966e2d91e60838a7af9040f651d",
+    "spatial_meta_ce/features.py": "5a11b0fdb0a684900294611c6ea6ffe62f5ac5763a9d1166137f26f0641fed1a",
+    "spatial_meta_ce/lowdim_adaptation.py": "fa289f7cf0f88f9eaf96cb6e3a6f5314bf6be98366cac8d674043ddab1ee808c",
+    "spatial_meta_ce/manifests.py": "1e7e41dcf3ec0b7346f956add9a177dc83cd84f6af2a12d1f84ccf1e7580a730",
+    "spatial_meta_ce/mappings.py": "fa52a3cc64b23cb14f704573bdb079569dab22ef18c137eab2800765d1ff07fe",
+    "spatial_meta_ce/meta.py": "21e8f0af625f0a2a6b6c8d1fd6f199267577e0d785298b5cff15705aeded344f",
+    "spatial_meta_ce/metrics.py": "db99399e61df1cf090ebfef0535b3386764737a468713fe2331ee9710ad8c4b3",
+    "spatial_meta_ce/model.py": "e3aa34b9f31db3161590cfb7f5190627f0e90c82d1a308b8a1a64478a2fce43f",
+    "spatial_meta_ce/plans.py": "e0de561349f788ee3b71d6f2a0ad7720093b962b505917fd409acd7881db5415",
+    "spatial_meta_ce/price_meta123_model.py": "a9480d23c15d17a92e6c692821d023ae76479f671e7bd10d9c28bf3323e1cd25",
+    "spatial_meta_ce/price_meta123_plans.py": "3ad1bb135862ba8fa417fb0a1276ae6dd7a37c5da2509f5bd335ed4197a2888a",
+    "spatial_meta_ce/price_meta123_results.py": "488e66f2dadd503b89c1f6f6de9b8bdc9caf38cd35cb18379cce90258a264d98",
+    "spatial_meta_ce/price_meta123_runtime.py": "67729224a682e22548d9898cab687328e4073430e0399b16b9a55a542a9d220d",
+    "spatial_meta_ce/price_meta123_supervisor.py": "c8c7e40053d62a6c9b06c1a04adad9e403cc14894366ac90fd86ae189c84773e",
+    "spatial_meta_ce/price_meta125_plans.py": "021203287526f626375480bed43b77f1b0ed4456a200be78330027a1f39f6776",
+    "spatial_meta_ce/price_meta125_runtime.py": "78d0f99a3184bf4fc123be7839bd59041873cf45af3147e20cd239efc1e4ca79",
+    "spatial_meta_ce/price_meta126_plans.py": "8ea0a31b151b0658d96a4c688070a7baefae3c1c4f6c230646c43195f2eb0671",
+    "spatial_meta_ce/price_meta126_results.py": "7386ec1bae1e5dde2f75216bf769c0db5925ef25c6ea7e3c9bc49fb16ccef59f",
+    "spatial_meta_ce/price_meta126_runtime.py": "1316404832a76fc4685f699bc6a7cdebbc6abae045806dae9b21dbd6fa3edd97",
+    "spatial_meta_ce/s8_contract.py": "e974215e032e49d5eace9c78d9091765bb7a8132474304155147294ef1eedb2d",
+    "spatial_meta_ce/s8_probe.py": "ca1bda34270a44bb8f516cf266eb3e5e5e057590ddc34185e398022b34ebc134",
+    "spatial_meta_ce/s8_state.py": "229efeb8a4c6b515b96db8d6cbc820e8b684976237ce18e2bf12143dd38a7d34",
+    "spatial_meta_ce/source_eval.py": "89b432c1f8f919b84e838dc63624fe0ee5787673db4e424f87dd785837f1506c",
+    "spatial_meta_ce/source_summary.py": "55e56addb21fa893331dbbe63807603a712aee06f22f06f25a66f07cd1800b5a",
+    "spatial_meta_ce/struct_summary.py": "fd98e4e420b238410ebe328273b2291b2615460fbe429d8163bc5771158203bb",
+    "spatial_meta_ce/tail_risk.py": "108eee6fb0c6d2d2c8bd1a435ea94a3d3a9228e06d86854adb8a30f2065a35df",
+    "spatial_meta_ce/train.py": "f2393cd90afae7af6646aae8525a05f4d443fc0a4a318f1ade4b47236f82670a",
+    "vendor/price_baseline/encoder.py": "94f3060996cd9a9b3d60da08d525cc4ab8e1666c1eb4d53b3f610f5c248c6bce",
+    "vendor/price_baseline/module.py": "15d98eb2f1aed939dc53002302016098394e0602719e0d56df6c351a29f4f66e"
+  },
+  "protocol_sha256": "50953e60708faa76b893391b0198988a09c2e45ca5f7957f0dab22d507c75bbf",
+  "models": {
+    "P-0": {
+      "arm": "P",
+      "stream": 0,
+      "checkpoint": "/gly/weilin/PRICE-master/results/model_params.pth",
+      "sha256": "4f889c4df269d1bca5a50dadd83de7c801a607fe84228b6c21fb3371ae053f92"
+    },
+    "E-42": {
+      "arm": "E",
+      "stream": 42,
+      "checkpoint": "/gly/weilin/price-meta-125-official26-20261117/outputs/train-E-42/last.pt",
+      "sha256": "220e90825eb1475f3b4c7a45ef388efc12eefbbe67cc31d92352852dbeeb418f"
+    },
+    "E-43": {
+      "arm": "E",
+      "stream": 43,
+      "checkpoint": "/gly/weilin/price-meta-125-official26-20261117/outputs/train-E-43/last.pt",
+      "sha256": "e20c27553d575197b9b06102394aebeb7cf3f94e836a2b72f185577cb095e852"
+    },
+    "E-44": {
+      "arm": "E",
+      "stream": 44,
+      "checkpoint": "/gly/weilin/price-meta-125-official26-20261117/outputs/train-E-44/last.pt",
+      "sha256": "72ae98a208e0a22e7ec9e26370a56d30e949cf088f10db3eb6e036cf23d885e8"
+    },
+    "M-42": {
+      "arm": "M",
+      "stream": 42,
+      "checkpoint": "/gly/weilin/price-meta-125-official26-20261117/outputs/train-M-42/last.pt",
+      "sha256": "ab395efc3d4c91a907853b629d714ab91a40581444416297d3f43a906d3c3161"
+    },
+    "M-43": {
+      "arm": "M",
+      "stream": 43,
+      "checkpoint": "/gly/weilin/price-meta-125-official26-20261117/outputs/train-M-43/last.pt",
+      "sha256": "986ee860e592ea131cf4dda4a13d533214d32fb160399c794d95f7f35d31d8f9"
+    },
+    "M-44": {
+      "arm": "M",
+      "stream": 44,
+      "checkpoint": "/gly/weilin/price-meta-125-official26-20261117/outputs/train-M-44/last.pt",
+      "sha256": "c25e0edaacb1cf9cfeb8d49d860eec0d28a28b6462dab8c26ad08f46cc33f66a"
+    }
+  },
+  "cache_root": "/gly/weilin/spatial-meta-ce/artifacts/cache",
+  "plan": "/gly/weilin/price-meta-126-targets-20261118/inputs/target-plan.json",
+  "plan_sha256": "1c53d098cde95ef8601b47ba0e972dbeea76a7df2bfbf78702efc79b9d7d65b0",
+  "allowed_targets": [
+    "imdb",
+    "stats",
+    "ergastf1",
+    "genome"
+  ],
+  "alpha": 1e-06,
+  "steps": 5,
+  "selection_forbidden": true,
+  "binding_sha256": "aee21c8945b2d976bdd31dc93a6985047028f1cd5829e4e62d1c94c36136a105"
+}

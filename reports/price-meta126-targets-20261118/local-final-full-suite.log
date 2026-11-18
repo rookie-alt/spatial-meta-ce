@@ -1,0 +1,470 @@
+usage: python -m unittest [-h] --cache-root CACHE_ROOT [--split SPLIT]
+                          [--databases DATABASES [DATABASES ...]]
+python -m unittest: error: Invalid database name '../synth'
+usage: python -m unittest [-h] --cache-root CACHE_ROOT [--split SPLIT]
+                          --databases DATABASES [DATABASES ...] --checkpoint
+                          SEED=PATH
+python -m unittest: error: --checkpoint wants SEED=PATH, got 'not-a-seed-path'
+usage: python -m unittest [-h] --cache-root CACHE_ROOT [--split SPLIT]
+                          --databases DATABASES [DATABASES ...] --checkpoint
+                          SEED=PATH
+python -m unittest: error: Invalid database name '../synth'
+synth: MISSING sidecar
+synth: MISSING sidecar
+[]
+synth: rows=2 ok=True
+tiny: rows=2 unique=2 eligible=1 (50.00%) sampled=1
+plan_sha256=46c875ba021fce54979b9aed3f55d134f58f9c5dd824f5419c2dbe1b28462eda
+tiny: rows=2 unique=2 eligible=1 (50.00%) sampled=1
+tiny: rows=1 unique=1 eligible=1 (100.00%) sampled=1
+plan_sha256=6c9c4b089d8efe61b7ab8db676b4d642632fdd484a3337ea5c2242482feca673
+tiny: scored 1 queries (run_rejected=1)
+tiny: independent recheck 0 ok
+tiny: rows=2 unique=2 eligible=2 (100.00%) sampled=2
+plan_sha256=239c69b192b5b377ee8dd5d1510bd795a10a3e265a3a9a07655d8fb07c41a5d6
+tiny: scored 2 queries (run_rejected=1)
+tiny: independent recheck 1 ok
+{
+  "b0": {
+    "median": 1.0,
+    "q95": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+  },
+  "c_uncond": {
+    "median": 1.0,
+    "q95": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+  },
+  "c_cond": {
+    "median": 1.0,
+    "q95": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+  }
+}
+verdict=blocked
+tiny: rows=2 unique=2 eligible=1 (50.00%) sampled=1
+plan_sha256=4fe6bfc7c9476ffe8c02b1cb5c0d1f79ed0fb413e1d38ea7077afe0a5594991a
+tiny: rows=2 unique=2 eligible=1 (50.00%) sampled=1
+plan_sha256=4fe6bfc7c9476ffe8c02b1cb5c0d1f79ed0fb413e1d38ea7077afe0a5594991a
+tiny: scored 1 queries (run_rejected=0)
+tiny: independent recheck 1 ok
+{
+  "u_indep": {
+    "median": 1.0,
+    "q95": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+  },
+  "u_joint": {
+    "median": 1.0,
+    "q95": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+  },
+  "f_indep": {
+    "median": 1.0,
+    "q95": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+  },
+  "f_joint": {
+    "median": 1.0,
+    "q95": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+  }
+}
+verdict=neither_threshold_met
+{"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+n_features: 8!
+{"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 1.3620862364768982, "validation_macro_log_q95": 1.9069673708527402, "counts": {"support_presentations": 0, "query_presentations": 6, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 1.3098021745681763, "validation_macro_log_q95": 1.8971889308541134, "counts": {"support_presentations": 0, "query_presentations": 12, "backward_calls": 4, "optimizer_steps": 2}}
+{"arm": "sum", "seed": 42, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "true", "seed": 42, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "shuffled", "seed": 42, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "sum", "seed": 43, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "true", "seed": 43, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "shuffled", "seed": 43, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "sum", "seed": 44, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "true", "seed": 44, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"arm": "shuffled", "seed": 44, "optimizer_steps": 4000, "seconds": 1.0, "peak_memory_bytes": 1024}
+{"step": 1, "train_loss": 1.5149455666542053, "validation_macro_log_q95": 1.9119241527169064, "counts": {"support_presentations": 0, "query_presentations": 6, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 1.4275348782539368, "validation_macro_log_q95": 1.9055337003319577, "counts": {"support_presentations": 0, "query_presentations": 12, "backward_calls": 4, "optimizer_steps": 2}}
+{"step": 3, "train_loss": 1.3542115092277527, "validation_macro_log_q95": 1.8968057921974972, "counts": {"support_presentations": 0, "query_presentations": 18, "backward_calls": 6, "optimizer_steps": 3}}
+{"step": 4, "train_loss": 1.3335239887237549, "validation_macro_log_q95": 1.8854380539505795, "counts": {"support_presentations": 0, "query_presentations": 24, "backward_calls": 8, "optimizer_steps": 4}}
+{"step": 5, "train_loss": 1.2987321019172668, "validation_macro_log_q95": 1.8708851626961545, "counts": {"support_presentations": 0, "query_presentations": 30, "backward_calls": 10, "optimizer_steps": 5}}
+{"step": 6, "train_loss": 1.2581694722175598, "validation_macro_log_q95": 1.8525303295700863, "counts": {"support_presentations": 0, "query_presentations": 36, "backward_calls": 12, "optimizer_steps": 6}}
+{"step": 7, "train_loss": 1.318471074104309, "validation_macro_log_q95": 1.829648583277972, "counts": {"support_presentations": 0, "query_presentations": 42, "backward_calls": 14, "optimizer_steps": 7}}
+{"step": 8, "train_loss": 1.3161792755126953, "validation_macro_log_q95": 1.8013938954918698, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 16, "optimizer_steps": 8}}
+{"step": 9, "train_loss": 1.407762348651886, "validation_macro_log_q95": 1.7667564443199948, "counts": {"support_presentations": 0, "query_presentations": 54, "backward_calls": 18, "optimizer_steps": 9}}
+{"step": 10, "train_loss": 1.347410261631012, "validation_macro_log_q95": 1.7244708231537655, "counts": {"support_presentations": 0, "query_presentations": 60, "backward_calls": 20, "optimizer_steps": 10}}
+{"step": 11, "train_loss": 1.224141538143158, "validation_macro_log_q95": 1.6733362964241818, "counts": {"support_presentations": 0, "query_presentations": 66, "backward_calls": 22, "optimizer_steps": 11}}
+{"step": 12, "train_loss": 1.1881309747695923, "validation_macro_log_q95": 1.611722557887347, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 24, "optimizer_steps": 12}}
+{"database": "t", "queries_measured": 2, "extraction_p50": 0.01056250766851008, "ours_total_p50": 0.9012080263346434, "verified": 2}
+wrote /var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpxodc8_ee/estimation.json
+{"database": "t", "queries_measured": 1, "extraction_p50": 0.005417037755250931, "ours_total_p50": 0.005417037755250931, "verified": 0}
+wrote /var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpb8ufk4x9/estimation.json
+{"database": "t", "queries_measured": 1, "extraction_p50": 0.006374961230903864, "ours_total_p50": 0.5919169634580612, "verified": 1}
+wrote /var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmp8y4eiuof/estimation.json
+{"database": "t", "queries_measured": 1, "extraction_p50": 0.006749993190169334, "ours_total_p50": 0.6470420048572123, "verified": 1}
+wrote /var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpa_om1li2/estimation.json
+{"database": "t", "ours_p50": 0.5145829927641898, "ours_p99": 0.9058118000393733, "stability": 0.0217, "stability_ok": true}
+wrote /var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpiuzt6bki/latency.json
+usage: python -m unittest [-h] --output OUTPUT
+                          [--mode {formal,cpu_preflight,gpu_preflight}]
+                          [--root ROOT] [--grace GRACE]
+                          ...
+python -m unittest: error: unrecognized arguments: --total-seconds
+{
+  "purpose": "dry-run-not-execution",
+  "mode": "endpoint_completion_only",
+  "C_cells": 75,
+  "combined_cells": 225,
+  "timeout_seconds": 3000,
+  "new_training_updates": 0
+}
+{
+  "status": "failed"
+}
+{"probe": "{\"failure\": \"record_write_error\", \"errno\": 28}"}
+usage: python -m unittest [-h] --output OUTPUT
+                          [--mode {formal,cpu_preflight,gpu_preflight}]
+                          [--gpu-uuid GPU_UUID]
+                          ...
+python -m unittest: error: unrecognized arguments: --budget-override
+usage: python -m unittest [-h] --output OUTPUT
+                          [--mode {formal,cpu_preflight,gpu_preflight}]
+                          [--gpu-uuid GPU_UUID]
+                          ...
+python -m unittest: error: unrecognized arguments: --total-seconds
+usage: python -m unittest [-h] --output OUTPUT
+                          [--mode {formal,cpu_preflight,gpu_preflight}]
+                          [--gpu-uuid GPU_UUID]
+                          ...
+python -m unittest: error: unrecognized arguments: --grace
+{"database": "synthetic", "run": 0, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 0, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 0, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 0, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 0, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 0, "k": 5, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 1, "k": 5, "q50": 9.999999999999996, "q95": 10.000000000000002, "unique_q95": 10.0}
+{"database": "synthetic", "run": 0, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 0, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 0, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"database": "synthetic", "run": 1, "k": 5, "q50": 1.0, "q95": 8.649999999999999, "unique_q95": 9.100000000000001}
+{"step": 1, "train_loss": 1.416424036026001, "validation_macro_log_q95": 2.1039036754264067, "counts": {"support_presentations": 0, "query_presentations": 5, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 1.5086106061935425, "validation_macro_log_q95": 2.102668011535568, "counts": {"support_presentations": 0, "query_presentations": 10, "backward_calls": 2, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.7040436267852783, "validation_macro_log_q95": 2.1039036754264067, "counts": {"support_presentations": 0, "query_presentations": 5, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 4.072964668273926, "validation_macro_log_q95": 2.102668011535568, "counts": {"support_presentations": 0, "query_presentations": 10, "backward_calls": 2, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 1.416424036026001, "validation_macro_log_q95": 2.1039119008673857, "counts": {"support_presentations": 0, "query_presentations": 5, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 1.5086188316345215, "validation_macro_log_q95": 2.1025043967856596, "counts": {"support_presentations": 0, "query_presentations": 10, "backward_calls": 2, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.7040436267852783, "validation_macro_log_q95": 2.1039119008673857, "counts": {"support_presentations": 0, "query_presentations": 5, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 4.072997093200684, "validation_macro_log_q95": 2.1025043967856596, "counts": {"support_presentations": 0, "query_presentations": 10, "backward_calls": 2, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+{"database": "t", "run": 0, "k": 0, "q50": 14.637452250667394, "q95": 18.879832479250652, "unique_q95": 18.879832479250652}
+{"database": "t", "run": 0, "k": 5, "q50": 14.442243963984282, "q95": 18.62804687557972, "unique_q95": 18.62804687557972}
+{"database": "t", "run": 1, "k": 0, "q50": 14.637452250667394, "q95": 18.879832479250652, "unique_q95": 18.879832479250652}
+{"database": "t", "run": 1, "k": 5, "q50": 14.442243963984282, "q95": 18.62804687557972, "unique_q95": 18.62804687557972}
+{"step": 1, "train_loss": 2.1423349380493164, "validation_macro_log_q95": 2.6883070518076844, "counts": {"support_presentations": 0, "query_presentations": 9, "backward_calls": 1, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.1124517917633057, "validation_macro_log_q95": 2.6841183950007386, "counts": {"support_presentations": 0, "query_presentations": 18, "backward_calls": 2, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.2030081748962402, "validation_macro_log_q95": 2.687054817825598, "counts": {"support_presentations": 5, "query_presentations": 4, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.0748791694641113, "validation_macro_log_q95": 2.681879406124396, "counts": {"support_presentations": 10, "query_presentations": 8, "backward_calls": 4, "optimizer_steps": 2}}
+{"database": "t", "run": 0, "k": 0, "q50": 14.749999971906352, "q95": 19.02499996376395, "unique_q95": 19.02499996376395}
+{"purpose": "S2 dry-run, no inputs opened or analysis executed", "output": "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmp6src881j/runs/dry", "timeout_seconds": 1800, "address_space_bytes": 4294967296}
+{"purpose": "S3 dry-run, no inputs opened or analysis executed", "output": "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpn9j5blt5/runs/dry", "timeout_seconds": 1800, "address_space_bytes": 4294967296}
+{"step": 2, "train_loss": 2.147360175848007, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 1}}
+{"step": 3, "train_loss": 2.126892626285553, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 2}}
+{"step": 2, "train_loss": 2.1521103978157043, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 1}}
+{"step": 3, "train_loss": 2.131400167942047, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 2}}
+{"step": 2, "train_loss": 2.1521103978157043, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 1}}
+{"step": 3, "train_loss": 2.131400167942047, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.146284818649292, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 24, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.143505573272705, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 3, "train_loss": 2.1204333901405334, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 3}}
+{"step": 1, "train_loss": 2.146284818649292, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 24, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.143505573272705, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 3, "train_loss": 2.1204333901405334, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 3}}
+{"step": 2, "train_loss": 2.147360175848007, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 48, "backward_calls": 8, "optimizer_steps": 1}}
+{"step": 3, "train_loss": 2.126892626285553, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 72, "backward_calls": 12, "optimizer_steps": 2}}
+{"step": 4, "train_loss": 2.215827226638794, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 96, "backward_calls": 16, "optimizer_steps": 3}}
+{"step": 1, "train_loss": 3.364321708679199, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.328742742538452, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.364321708679199, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.328742742538452, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.364321708679199, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.328742742538452, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.364321708679199, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.328742742538452, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.7036197185516357, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.685289978981018, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.7036197185516357, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.685289978981018, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 3.7036197185516357, "validation_macro_log_q95": 4.541152825144719, "counts": {"support_presentations": 0, "query_presentations": 276, "backward_calls": 4, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 3.685289978981018, "validation_macro_log_q95": 4.533836593417119, "counts": {"support_presentations": 0, "query_presentations": 552, "backward_calls": 8, "optimizer_steps": 2}}
+usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: Worker output must be the frozen new proof directory
+usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: Only the frozen package contract path may be read; no data/checkpoint as contract
+usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: the following arguments are required: --contract
+usage: python -m unittest [-h] --contract CONTRACT
+                          [--contract-sha256 CONTRACT_SHA256]
+                          [--output OUTPUT] [--execute]
+python -m unittest: error: Only the frozen package contract path may be read; no data/checkpoint as contract
+{
+  "status": "prepared_not_executed",
+  "saved_P_read": false,
+  "input_paths_if_approved": [
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpz6cdzpgk/old-failed/P-h.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpz6cdzpgk/old-failed/P-x.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpz6cdzpgk/old-failed/P-label.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpz6cdzpgk/old-failed/P-pg_log.npy",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpz6cdzpgk/old-failed/status.json",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpz6cdzpgk/old-failed/contract.json",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpz6cdzpgk/old-failed/panels.json",
+    "/private/var/folders/zr/_hzj42bd6754czshsgzj9rm80000gn/T/tmpz6cdzpgk/old-failed/preflight.json"
+  ],
+  "contract_sha256": "825b52f4cc10a7273cf154c050625d05ebed38752d729db2a0d4bb4e0a808c8b",
+  "budget": {
+    "threads": 4,
+    "wall_seconds": 900,
+    "address_space_bytes": 12884901888,
+    "rss_stop_bytes": 12884901888,
+    "cuda_visible_devices": "",
+    "attempts": 1
+  },
+  "formal_ready": false
+}
+synth: summarised 2 tables
+{
+  "queries_checked": 1,
+  "unfiltered_queries": 0,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "bit_identical": true
+}
+synth: summarised 2 tables
+ok
+{"step": 1, "train_loss": 2.643152117729187, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 12, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.6454055309295654, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 24, "backward_calls": 4, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.143152117729187, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 12, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.142952799797058, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 24, "backward_calls": 4, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.643152117729187, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 12, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.642952799797058, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 24, "backward_calls": 4, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.1145217418670654, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 12, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.1143622398376465, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 24, "backward_calls": 4, "optimizer_steps": 2}}
+{"step": 1, "train_loss": 2.3788368701934814, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 12, "backward_calls": 2, "optimizer_steps": 1}}
+{"step": 2, "train_loss": 2.378657341003418, "validation_macro_log_q95": 1.0, "counts": {"support_presentations": 0, "query_presentations": 24, "backward_calls": 4, "optimizer_steps": 2}}
+----------------------------------------------------------------------
+Ran 1929 tests in 344.257s
+
+OK (skipped=22)
+{
+  "databases": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "median_q95_ratio_price_over_ours": {
+    "value": 0.5,
+    "min": 0.5,
+    "max": 0.5
+  },
+  "median_q95_ratio_pg_over_ours": {
+    "value": 5.0,
+    "min": 5.0,
+    "max": 5.0
+  },
+  "every_seed_loses_to_price_on_q95": false,
+  "total_seed_database_pairs": 12,
+  "seed_database_pairs_beating_price": 1,
+  "seed_database_pairs_beating_pg": 12
+}
+{
+  "databases": [
+    "stats",
+    "ergastf1",
+    "imdb"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "median_q95_ratio_price_over_ours": {
+    "value": 0.5,
+    "min": 0.5,
+    "max": 0.5
+  },
+  "median_q95_ratio_pg_over_ours": {
+    "value": 5.0,
+    "min": 5.0,
+    "max": 5.0
+  },
+  "every_seed_loses_to_price_on_q95": true,
+  "total_seed_database_pairs": 9,
+  "seed_database_pairs_beating_price": 0,
+  "seed_database_pairs_beating_pg": 9
+}
+{
+  "databases": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "median_q95_ratio_price_over_ours": {
+    "value": 0.5,
+    "min": 0.5,
+    "max": 0.5
+  },
+  "median_q95_ratio_pg_over_ours": {
+    "value": 5.0,
+    "min": 5.0,
+    "max": 5.0
+  },
+  "every_seed_loses_to_price_on_q95": true,
+  "total_seed_database_pairs": 12,
+  "seed_database_pairs_beating_price": 0,
+  "seed_database_pairs_beating_pg": 12
+}
+{
+  "databases": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "median_q95_ratio_price_over_ours": {
+    "value": 0.5,
+    "min": 0.5,
+    "max": 0.5
+  },
+  "median_q95_ratio_pg_over_ours": {
+    "value": 5.0,
+    "min": 5.0,
+    "max": 5.0
+  },
+  "every_seed_loses_to_price_on_q95": true,
+  "total_seed_database_pairs": 12,
+  "seed_database_pairs_beating_price": 0,
+  "seed_database_pairs_beating_pg": 12
+}
+{
+  "databases": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "median_q95_ratio_price_over_ours": {
+    "value": 1.0,
+    "min": 1.0,
+    "max": 1.0
+  },
+  "median_q95_ratio_pg_over_ours": {
+    "value": 10.0,
+    "min": 10.0,
+    "max": 10.0
+  },
+  "every_seed_loses_to_price_on_q95": true,
+  "total_seed_database_pairs": 12,
+  "seed_database_pairs_beating_price": 0,
+  "seed_database_pairs_beating_pg": 12
+}
+{
+  "databases": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "median_q95_ratio_price_over_ours": {
+    "value": 0.5,
+    "min": 0.5,
+    "max": 0.5
+  },
+  "median_q95_ratio_pg_over_ours": {
+    "value": 5.0,
+    "min": 5.0,
+    "max": 5.0
+  },
+  "every_seed_loses_to_price_on_q95": true,
+  "total_seed_database_pairs": 12,
+  "seed_database_pairs_beating_price": 0,
+  "seed_database_pairs_beating_pg": 12
+}
+{
+  "databases": [
+    "stats",
+    "genome",
+    "ergastf1",
+    "imdb"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "median_q95_ratio_price_over_ours": {
+    "value": 0.9090909090909091,
+    "min": 0.9090909090909091,
+    "max": 0.9090909090909091
+  },
+  "median_q95_ratio_pg_over_ours": {
+    "value": 9.090909090909092,
+    "min": 9.090909090909092,
+    "max": 9.090909090909092
+  },
+  "every_seed_loses_to_price_on_q95": true,
+  "total_seed_database_pairs": 12,
+  "seed_database_pairs_beating_price": 0,
+  "seed_database_pairs_beating_pg": 12
+}

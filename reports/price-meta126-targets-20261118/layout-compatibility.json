@@ -1,0 +1,191 @@
+{
+  "status": "verified",
+  "kind": "layout_compatibility_not_accuracy_evaluation",
+  "all_seven_models": {
+    "P-0": {
+      "query_count": 2603,
+      "max_abs_difference": 3.814697265625e-06,
+      "tolerance_rtol": 2e-05,
+      "tolerance_atol": 2e-05,
+      "same_state_keys_shapes_and_bytes": true
+    },
+    "E-42": {
+      "query_count": 2603,
+      "max_abs_difference": 3.814697265625e-06,
+      "tolerance_rtol": 2e-05,
+      "tolerance_atol": 2e-05,
+      "same_state_keys_shapes_and_bytes": true
+    },
+    "E-43": {
+      "query_count": 2603,
+      "max_abs_difference": 3.814697265625e-06,
+      "tolerance_rtol": 2e-05,
+      "tolerance_atol": 2e-05,
+      "same_state_keys_shapes_and_bytes": true
+    },
+    "E-44": {
+      "query_count": 2603,
+      "max_abs_difference": 3.814697265625e-06,
+      "tolerance_rtol": 2e-05,
+      "tolerance_atol": 2e-05,
+      "same_state_keys_shapes_and_bytes": true
+    },
+    "M-42": {
+      "query_count": 2603,
+      "max_abs_difference": 3.814697265625e-06,
+      "tolerance_rtol": 2e-05,
+      "tolerance_atol": 2e-05,
+      "same_state_keys_shapes_and_bytes": true
+    },
+    "M-43": {
+      "query_count": 2603,
+      "max_abs_difference": 3.814697265625e-06,
+      "tolerance_rtol": 2e-05,
+      "tolerance_atol": 2e-05,
+      "same_state_keys_shapes_and_bytes": true
+    },
+    "M-44": {
+      "query_count": 2603,
+      "max_abs_difference": 3.814697265625e-06,
+      "tolerance_rtol": 2e-05,
+      "tolerance_atol": 2e-05,
+      "same_state_keys_shapes_and_bytes": true
+    }
+  },
+  "stats_test_unique": 2603,
+  "support_maxima_actual_offsets": [
+    12,
+    14,
+    8,
+    6
+  ],
+  "long_support_rows_total": 29,
+  "long_support_rows_forwarded": 20,
+  "long_support_complete_feature_counts": [
+    [
+      12.0,
+      14.0,
+      8.0,
+      5.0
+    ],
+    [
+      10.0,
+      14.0,
+      8.0,
+      2.0
+    ],
+    [
+      12.0,
+      14.0,
+      8.0,
+      3.0
+    ],
+    [
+      10.0,
+      14.0,
+      8.0,
+      3.0
+    ],
+    [
+      11.0,
+      14.0,
+      8.0,
+      2.0
+    ],
+    [
+      11.0,
+      14.0,
+      8.0,
+      5.0
+    ],
+    [
+      10.0,
+      14.0,
+      8.0,
+      4.0
+    ],
+    [
+      11.0,
+      14.0,
+      8.0,
+      4.0
+    ],
+    [
+      11.0,
+      14.0,
+      8.0,
+      2.0
+    ],
+    [
+      10.0,
+      14.0,
+      8.0,
+      5.0
+    ],
+    [
+      11.0,
+      14.0,
+      8.0,
+      3.0
+    ],
+    [
+      11.0,
+      14.0,
+      8.0,
+      2.0
+    ],
+    [
+      11.0,
+      14.0,
+      8.0,
+      4.0
+    ],
+    [
+      11.0,
+      14.0,
+      8.0,
+      3.0
+    ],
+    [
+      12.0,
+      14.0,
+      8.0,
+      2.0
+    ],
+    [
+      10.0,
+      14.0,
+      8.0,
+      3.0
+    ],
+    [
+      10.0,
+      14.0,
+      8.0,
+      3.0
+    ],
+    [
+      10.0,
+      14.0,
+      8.0,
+      2.0
+    ],
+    [
+      12.0,
+      14.0,
+      8.0,
+      3.0
+    ],
+    [
+      10.0,
+      14.0,
+      8.0,
+      5.0
+    ]
+  ],
+  "imdb_finetune_exists": false,
+  "target_databases_read": [
+    "stats"
+  ],
+  "elapsed_seconds": 499.9045793649275
+}

@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "protocol": 125,
+  "status": "completed",
+  "pid": 87746,
+  "binding_sha256": "220400d2d1a8797d3124e084caba4f1d7e1baac5ea953274884899c3206f0e17",
+  "continuation_sha256": "8277b6a8e5eac34b68c0189841c570a079b29f71234c130105bb9ff0706da473",
+  "started_at": "2026-11-17T09:01:50.363350+00:00",
+  "actions": [
+    "train:E:42",
+    "train:M:42",
+    "train:E:43",
+    "train:M:43",
+    "train:E:44",
+    "train:M:44",
+    "seal-training"
+  ],
+  "completed": [
+    {
+      "action": "train:E:42",
+      "completion_sha256": "0df6dc273832fd51cabafa98cefe79c7f8bceb29510741143ebbc99eb32b43f8",
+      "elapsed_seconds": 1288.666996404063
+    },
+    {
+      "action": "train:M:42",
+      "completion_sha256": "8946e19317436d12d03d91327e6b74415c4db17d450c575534ba464d0f1e6fdc",
+      "elapsed_seconds": 12358.237828107085
+    },
+    {
+      "action": "train:E:43",
+      "completion_sha256": "b09a74d1bc9f6a6628049b8f245adf4c083785c8e16694ea9be4a58b96e24322",
+      "elapsed_seconds": 1333.4118744269945
+    },
+    {
+      "action": "train:M:43",
+      "completion_sha256": "da067e41b20f1f9d8d9e1f0102627085cdd4fb20b560665492dc832155663554",
+      "elapsed_seconds": 12686.009571357165
+    },
+    {
+      "action": "train:E:44",
+      "completion_sha256": "25d8c59b1b771957b9e4244e4bb4d08cf7052771d075069a0d9a109c113782c8",
+      "elapsed_seconds": 1334.0028809090145
+    },
+    {
+      "action": "train:M:44",
+      "completion_sha256": "a82782a75a330e26d3aeb8ae2b09a77de149d563fb92c92949e6b94f36a4e883",
+      "elapsed_seconds": 12333.44886742998
+    },
+    {
+      "action": "seal-training",
+      "completion_sha256": "299b0cbf63f41950f54d1abc94ac0d095eaf3fa2fce553b681280d457c7159f4",
+      "elapsed_seconds": 19.165160089032724
+    }
+  ],
+  "current_action": null,
+  "authorization_sha256": {
+    "train:E:42": "f2bc1ed72a72c42fe835e4ea02e34e57750d01f076d687318e24d1276bbf597e",
+    "train:M:42": "9ca90123cc56c978c50ff02775c8c1c18bbef743021727015b8711429e920256",
+    "train:E:43": "995d86bedead1111a98103ee385d937a9a456eed1f11d2580a561cee5d2c4ca3",
+    "train:M:43": "608add365f4f93a47a5136fbd19cf038751bab95d37edc7ecf46aa0b665a54ae",
+    "train:E:44": "6e90c255e6228aebfe31f27f81e119cb00fa685e3928c52430115af673eb6fa8",
+    "train:M:44": "d7ab96a3c5db9a64e7f95c3696e5ac8b605e48d798d2645d96cc83fd11b344bb",
+    "seal-training": "0bdda02505d6f7ebb88a823569d63a1549dd110dc23f883561577317f2855c26"
+  },
+  "target_databases_read": []
+}

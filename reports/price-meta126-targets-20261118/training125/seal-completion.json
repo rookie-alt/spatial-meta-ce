@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "protocol": 125,
+  "status": "completed",
+  "action": "seal-training",
+  "binding_sha256": "220400d2d1a8797d3124e084caba4f1d7e1baac5ea953274884899c3206f0e17",
+  "target_databases_read": [],
+  "alpha": 1e-06,
+  "runs": {
+    "E-42": {
+      "checkpoint_sha256": "220e90825eb1475f3b4c7a45ef388efc12eefbbe67cc31d92352852dbeeb418f",
+      "completion_sha256": "0df6dc273832fd51cabafa98cefe79c7f8bceb29510741143ebbc99eb32b43f8"
+    },
+    "E-43": {
+      "checkpoint_sha256": "e20c27553d575197b9b06102394aebeb7cf3f94e836a2b72f185577cb095e852",
+      "completion_sha256": "b09a74d1bc9f6a6628049b8f245adf4c083785c8e16694ea9be4a58b96e24322"
+    },
+    "E-44": {
+      "checkpoint_sha256": "72ae98a208e0a22e7ec9e26370a56d30e949cf088f10db3eb6e036cf23d885e8",
+      "completion_sha256": "25d8c59b1b771957b9e4244e4bb4d08cf7052771d075069a0d9a109c113782c8"
+    },
+    "M-42": {
+      "checkpoint_sha256": "ab395efc3d4c91a907853b629d714ab91a40581444416297d3f43a906d3c3161",
+      "completion_sha256": "8946e19317436d12d03d91327e6b74415c4db17d450c575534ba464d0f1e6fdc"
+    },
+    "M-43": {
+      "checkpoint_sha256": "986ee860e592ea131cf4dda4a13d533214d32fb160399c794d95f7f35d31d8f9",
+      "completion_sha256": "da067e41b20f1f9d8d9e1f0102627085cdd4fb20b560665492dc832155663554"
+    },
+    "M-44": {
+      "checkpoint_sha256": "c25e0edaacb1cf9cfeb8d49d860eec0d28a28b6462dab8c26ad08f46cc33f66a",
+      "completion_sha256": "a82782a75a330e26d3aeb8ae2b09a77de149d563fb92c92949e6b94f36a4e883"
+    }
+  },
+  "validation_databases": []
+}

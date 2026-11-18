@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "protocol": 126,
+  "authorized": true,
+  "root": "/gly/weilin/price-meta-126-targets-20261118",
+  "binding_sha256": "aee21c8945b2d976bdd31dc93a6985047028f1cd5829e4e62d1c94c36136a105",
+  "actions": [
+    "evaluate"
+  ],
+  "allowed_targets": [
+    "imdb",
+    "stats",
+    "ergastf1",
+    "genome"
+  ],
+  "selection_forbidden": true,
+  "granted_by": "user",
+  "granted_at": "2026-11-18T06:43:44.066931+00:00",
+  "user_instruction": "那就开始四个目标库的评估吧，看看效果怎么样",
+  "scope": "Frozen target evaluation only: seven sealed PRICE models; four databases K0, three with independent support K5/K20 five shared blocks, four PG.242cells. No hyperparameter/checkpoint selection, no public model training, no retry/limit escalation. IMDB few-shot unavailable and test never substitutes support.",
+  "attempts": 1,
+  "cuda_device": 0,
+  "cuda_uuid": "GPU-5f45cd6f-7394-ebe4-a644-cf628e18cb6d",
+  "budget": {
+    "max_wall_seconds": 10800,
+    "max_rss_bytes": 25769803776,
+    "max_vram_bytes": 12884901888,
+    "max_output_bytes": 1073741824,
+    "poll_seconds": 1
+  }
+}

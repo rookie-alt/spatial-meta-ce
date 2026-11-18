@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "protocol": 126,
+  "status": "completed",
+  "binding_sha256": "aee21c8945b2d976bdd31dc93a6985047028f1cd5829e4e62d1c94c36136a105",
+  "cells": 242,
+  "units_sha256": "ca4bd225d4908d33fc5c1306feed78f544264ee4935375e8530f30fa03f3d1b8",
+  "summary_sha256": "024068f47d3502d9697ae2f18450058b5a85876cc22e8c180d222f9d1987dbf3",
+  "target_databases_read": [
+    "imdb",
+    "stats",
+    "ergastf1",
+    "genome"
+  ],
+  "selection_forbidden": true,
+  "imdb_fewshot_status": "unavailable_missing_independent_support"
+}

@@ -1,0 +1,57 @@
+{
+  "status": "independently_verified",
+  "binding_sha256": "aee21c8945b2d976bdd31dc93a6985047028f1cd5829e4e62d1c94c36136a105",
+  "cells": 242,
+  "prediction_rows": 437848,
+  "metric_quantiles_verified": [
+    50,
+    90,
+    95,
+    99
+  ],
+  "ratios": {
+    "M20/E20": {
+      "ratio": 0.875725616409404,
+      "percent_change": -12.427438359059595,
+      "improved_streams": 2
+    },
+    "M20/P20": {
+      "ratio": 0.9829745863579694,
+      "percent_change": -1.7025413642030585,
+      "improved_streams": 1
+    },
+    "M20/M0": {
+      "ratio": 1.0736038622100241,
+      "percent_change": 7.360386221002413,
+      "improved_streams": 1
+    },
+    "M20/P0": {
+      "ratio": 1.3246914602495663,
+      "percent_change": 32.46914602495663,
+      "improved_streams": 0
+    },
+    "M20/E0": {
+      "ratio": 0.8930968202481825,
+      "percent_change": -10.69031797518175,
+      "improved_streams": 2
+    }
+  },
+  "k0_four_database_ratios": {
+    "M0/P0": 1.4393317275742286,
+    "M0/E0": 0.894476743318107,
+    "E0/P0": 1.609132644673303
+  },
+  "negative_transfer_blocks": 21,
+  "negative_transfer_blocks_total": 45,
+  "decision_reported": "partial_target_signal",
+  "no_production_metric_or_aggregate_imports": true,
+  "external_peak_vram_bytes": 773849088,
+  "elapsed_seconds": 560.0775602818467,
+  "target_databases_read": [
+    "imdb",
+    "stats",
+    "ergastf1",
+    "genome"
+  ],
+  "selection_forbidden": true
+}

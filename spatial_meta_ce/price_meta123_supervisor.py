@@ -1061,7 +1061,11 @@ def supervise(
     """
     if not _is_linux():
         raise UnsupportedPlatformError("resource supervision requires Linux /proc")
-    if type(completion_protocol) is not int or completion_protocol not in (123, 125):
+    if type(completion_protocol) is not int or completion_protocol not in (
+        123,
+        125,
+        126,
+    ):
         raise ValueError("Unsupported worker completion protocol")
     limits = _validate_budget(budget)
     argv = _validate_command(command)
