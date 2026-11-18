@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "launched_at": "2026-11-19T01:21:41.791925+08:00",
+  "queue_pid": 8503,
+  "queue_start_ticks": "132816414",
+  "gpu_before_launch": "1, GPU-722d57aa-e2e6-8b0a-6c6f-94e99f3031ed, 1, 0",
+  "queue_sha256": "794ed4e1b321ad0984d1fd001b78c035ee747fb379c7a8ad796ffb65ef214a1e",
+  "launcher_sha256": "85ee4cb40355e604cee3bbfc1bd66f104acf7d4d23ddb0f759ddf75fbfaf391a",
+  "code_commit": "21e6be5451ab778c97c895ff80220c0fe8821288",
+  "run_count": 15,
+  "device": "cuda",
+  "cuda_device": 1,
+  "first_run": "A1-PG-seed42",
+  "output_root": "/gly/weilin/module26-prep-20261118/outputs",
+  "authorization": "explicit user instruction 2026-11-19",
+  "target_databases_read": [],
+  "state": "queue_launched; awaiting frozen runner input verification"
+}

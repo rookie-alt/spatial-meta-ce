@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "protocol": "official-module-26-4-v1",
+  "purpose": "official-module-training",
+  "action": "train",
+  "authorized": true,
+  "formal_training_authorized": true,
+  "formal_evaluation_authorized": false,
+  "spec_sha256": "411ab95d02b49c4cea077263d96eb8b1d69e84c6fdb52ee1c2677ba6d3796adb",
+  "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5",
+  "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-GroupMean-seed43",
+  "execution_keys": [
+    "A1-PG-GroupMean-seed43"
+  ],
+  "target_databases_read": [],
+  "selection_use": "none",
+  "granted_by": "user (explicit training instruction 2026-11-19)",
+  "granted_at": "2026-11-19T01:13:28.754909+08:00"
+}

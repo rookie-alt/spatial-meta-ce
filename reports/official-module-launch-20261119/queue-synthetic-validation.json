@@ -1,0 +1,23 @@
+{
+  "launcher_sha256": "1f01c7e3fb7df8335708bd59254dd72a12cec15372e56963cd32e839e6893800",
+  "returncode": 0,
+  "result": {
+    "linux_operational_queue_fixture": [
+      {
+        "scenario": "success",
+        "returncode": 0,
+        "runner_calls": 3,
+        "rerun_rejected": true,
+        "status": "completed"
+      },
+      {
+        "scenario": "failure_stops",
+        "returncode": 7,
+        "runner_calls": 2,
+        "rerun_rejected": true,
+        "status": "running"
+      }
+    ],
+    "research_training_started": false
+  }
+}

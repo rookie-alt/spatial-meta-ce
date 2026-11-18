@@ -1,0 +1,24 @@
+{
+  "reviewer": "/root/launch_final_review",
+  "verdict": "passed",
+  "unresolved_blockers": [],
+  "recorded_at": "2026-11-19T01:18:42.448331+08:00",
+  "scope": "Operational serial launch script, 15 authorizations and frozen bindings; not model accuracy or server runtime.",
+  "launcher_sha256": "85ee4cb40355e604cee3bbfc1bd66f104acf7d4d23ddb0f759ddf75fbfaf391a",
+  "queue_sha256": "794ed4e1b321ad0984d1fd001b78c035ee747fb379c7a8ad796ffb65ef214a1e",
+  "actual_checks": [
+    "bash -n",
+    "15 validate_authorization calls",
+    "Template field deltas",
+    "All spec/auth and 37 code hashes",
+    "Unique 5x3 matrix GPU1/24k/unchanged budgets/no target reads",
+    "Read Linux synthetic evidence: failure stop, tamper reject, rerun reject"
+  ],
+  "not_run": [
+    "SSH",
+    "GPU",
+    "research training",
+    "real cache",
+    "full unittest rerun"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "launcher_sha256": "85ee4cb40355e604cee3bbfc1bd66f104acf7d4d23ddb0f759ddf75fbfaf391a",
+  "returncode": 0,
+  "result": {
+    "linux_operational_queue_fixture": [
+      {
+        "scenario": "success",
+        "returncode": 0,
+        "runner_calls": 3,
+        "rerun_rejected": true,
+        "status": "completed",
+        "code_tree_unmodified": true
+      },
+      {
+        "scenario": "failure_stops",
+        "returncode": 7,
+        "runner_calls": 2,
+        "rerun_rejected": true,
+        "status": "stopped exit=7",
+        "code_tree_unmodified": true
+      },
+      {
+        "scenario": "tamper_rejected",
+        "returncode": 1,
+        "runner_calls": 0
+      }
+    ],
+    "research_training_started": false
+  }
+}

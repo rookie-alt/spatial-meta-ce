@@ -1,0 +1,270 @@
+{
+  "schema": 1,
+  "protocol": "official-module-26-4-v1",
+  "action": "train",
+  "authorization_source": "user_message",
+  "user_instruction": "开始训练吧，先检查一下 GPU，按这个方案跑。",
+  "recorded_at": "2026-11-19T01:13:28.754909+08:00",
+  "code_commit": "21e6be5451ab778c97c895ff80220c0fe8821288",
+  "cuda_device": 1,
+  "serial": true,
+  "run_count": 15,
+  "steps_per_run": 24000,
+  "queue_sha256": "794ed4e1b321ad0984d1fd001b78c035ee747fb379c7a8ad796ffb65ef214a1e",
+  "launcher_sha256": "85ee4cb40355e604cee3bbfc1bd66f104acf7d4d23ddb0f759ddf75fbfaf391a",
+  "code_sha256": {
+    "scripts/run_official_module_experiment.py": "57bdc61fa4ab13cd7f9eabc72d1e20e38bebb4c8eafcc9951c5fe0b2105d9d64",
+    "scripts/run_price_meta_a.py": "13cbbec8258b6eb5f845343d719a75ac182defb294705287218b88a40de9c228",
+    "scripts/meta65_joint_supervisor.py": "403e7c26746291a9ceb1446c602d33a32d35c82c58e35427da491c0da8115b48",
+    "scripts/verify_p0_certificate.py": "c59e3c6111f5a85a1ab506e7b4d2de8c71ab377da6c3e29520b82d4df1787bae",
+    "scripts/prepare_official_module_inputs.py": "4f35fb98326f139896c90308c4379116f05e8bd92410525837760272fe02157d",
+    "scripts/prepare_official_module_inputs_parallel.py": "2de91bd4717b32098ef17e1d3d36b929196ecc4a3ce9434a193f086f81d2a24c",
+    "scripts/build_official_split_plans.py": "79a3041e2b2fdcc03400bd116559b23d3fcca8f1e04dfe2066af580f29156702",
+    "scripts/audit_input_mapping.py": "f705d000a03ff866f426a1826abea5ec561ecad29cdd6254ad10fd8c24e8d255",
+    "scripts/build_mapping_sidecar.py": "a34ca69a5793c295f900652ff8b0a7764b63b52b4fa18ace64bbe32356bc244b",
+    "spatial_meta_ce/__init__.py": "55a36a2626f6a72992dd15a308304598a4f2e1007f6b06946f6810f2c4c0501f",
+    "spatial_meta_ce/module_experiment.py": "61068dac5a82641fd9a64a5bdf09c8442f9ad6599e13c2c1a4f3becf9fd32419",
+    "spatial_meta_ce/official_mappings.py": "134ed8f9ab81dae844a67a90723093db692d0a8fef164bf6952ff10bfb397da3",
+    "spatial_meta_ce/official_split.py": "8f004621220e23bdb99c424379850b13e4a38b1611969daba14f5f6e18bed9b7",
+    "spatial_meta_ce/train.py": "25add0a191357f8d86d623c285685ac94add87e5a8d2395cf3de67605655d0d4",
+    "spatial_meta_ce/model.py": "879659d2f5f7a77cdf7858c0e5bd7cd8b7d206106427f9fbe9ec3365caf4746f",
+    "spatial_meta_ce/price_model.py": "4d9cf20f727530daf89fcdc027e42ed38a647f9712f68aa9ecc6cd67a123c7c1",
+    "spatial_meta_ce/price_relations.py": "7e2b08c545753595badaa4f137594f825aa3df54ffdad1f74dba4bddffc7e307",
+    "spatial_meta_ce/checkpoints.py": "5bbeb14e2c285c3241fb983e43b1432e3c8440f0aa677529108efa795a8b231d",
+    "spatial_meta_ce/price_protocol.py": "56233fa830a991441abe829c2fdf53c8134bf9cb0ec35d07888f420f05750361",
+    "spatial_meta_ce/price_capacity.py": "ffcfaaeae92b30cafa06832a25e0cd769b6fef0a0db12583631af0589a400a94",
+    "spatial_meta_ce/source_eval.py": "1913066c78f0e3640bcd6ad957753255a7914b8fa1765a5baf4cc3483a5aa6e7",
+    "spatial_meta_ce/data.py": "4caf69ea8b43b721e6034a8a15df9c6a31b80f0c041bdd59da9657ed5576c99a",
+    "spatial_meta_ce/meta.py": "d5bb3e236503d7e599bfc53da94aecb821b137b4cdfaa8b6de81df865b51dee0",
+    "spatial_meta_ce/plans.py": "25f319854bd448fc8feedf61f771e76da5e3692cfe40ae9669808cd9774534f7",
+    "spatial_meta_ce/metrics.py": "db99399e61df1cf090ebfef0535b3386764737a468713fe2331ee9710ad8c4b3",
+    "spatial_meta_ce/manifests.py": "6ca529a1a774a215b141ec2d5fd8e0b929a919448bd7cf62ffa084ab8cd70f65",
+    "spatial_meta_ce/mappings.py": "fa52a3cc64b23cb14f704573bdb079569dab22ef18c137eab2800765d1ff07fe",
+    "spatial_meta_ce/tail_risk.py": "108eee6fb0c6d2d2c8bd1a435ea94a3d3a9228e06d86854adb8a30f2065a35df",
+    "spatial_meta_ce/features.py": "5a11b0fdb0a684900294611c6ea6ffe62f5ac5763a9d1166137f26f0641fed1a",
+    "spatial_meta_ce/cli.py": "bda8f55d085a7dc99c1c8105bf2921d2a47a00b3488fc0e83226b7109c18a1e3",
+    "spatial_meta_ce/evaluate.py": "aea8a268a925a3c7a2f53cea046754c65d5dd817ea5fd18f958203c0c8e897ce",
+    "spatial_meta_ce/baselines.py": "2fbbeed786b0c8224d9e99ad3eb607eae056db363877b1b6f92d023f9dd2f6ae",
+    "vendor/price_baseline/module.py": "15d98eb2f1aed939dc53002302016098394e0602719e0d56df6c351a29f4f66e",
+    "vendor/price_baseline/encoder.py": "94f3060996cd9a9b3d60da08d525cc4ab8e1666c1eb4d53b3f610f5c248c6bce",
+    "vendor/price_features/features_tool.py": "88a6450d32fabe2ebb9f180697937d1679fe4f5e974b23bab41a36d34a932fe4",
+    "reports/official-module-prep-20261118/input-producer-official-mappings.py.txt": "9b70883188be122ae101aa2e30e663f67b3fcbb87a66492e9b7ba201831172a4",
+    "reports/official-module-prep-20261118/input-producer-parallel-v3-mappings.py.txt": "79b9ff74eefec4ed47f8c5e19f8e0530ac8571dbf65a19d741442be54e339804"
+  },
+  "budget_per_run": {
+    "total_seconds": 30000.0,
+    "phase_seconds": {
+      "preparation": 29000.0,
+      "evaluation": 1.0,
+      "certification": 999.0
+    },
+    "rss_bytes": 25769803776,
+    "vram_bytes": 2147483648,
+    "output_bytes": 2147483648,
+    "poll_seconds": 1.0,
+    "cpu_core_seconds": 30000,
+    "gpu_allocated_seconds": 24000,
+    "run_deadline_seconds": 18000.0,
+    "eval_deadline_seconds": 600.0
+  },
+  "gpu_allocated_seconds_total_upper_bound": 360000,
+  "target_databases_read": [],
+  "selection_use": "none",
+  "runs": [
+    {
+      "key": "A1-PG-seed42",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-seed42/training_spec.json",
+        "sha256": "2505a409f72d3223cfa3b74074ade8d928e696c51cd8299e6e885430af85e221"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-seed42/authorization.json",
+        "sha256": "18cfbaafa68d26256f88dd616f2b4b5bb900878ef8fa3b3b2c681bd66193bff9"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-seed42",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-seed43",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-seed43/training_spec.json",
+        "sha256": "4162d644191ec65c12550070140e8abf6256e1385235f4a1a0eb48ee93a02dd3"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-seed43/authorization.json",
+        "sha256": "4d25d29ccc89c21ecf5baea8ca8261727d67f83fcb26d1554cae7ac7eb00fcc1"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-seed43",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-seed44",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-seed44/training_spec.json",
+        "sha256": "01f42a4480b76ff0a34675cdb9e7e0e6b176d3ab24921f252cc9b26f618d8212"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-seed44/authorization.json",
+        "sha256": "e11d99084876c7af15cf1956bf7f015fece6b1e106079caca028a38629ea8ff7"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-seed44",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-GroupMean-seed42",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-GroupMean-seed42/training_spec.json",
+        "sha256": "9882cc6cf326aa0b871c5d1e8ac5b9fb287553669fe553f7b5d884fecf8e2efd"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-GroupMean-seed42/authorization.json",
+        "sha256": "92e8809ed6cdc2edc06d9d7a8f5138774a68827472a154e56618de1f5a6133a8"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-GroupMean-seed42",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-GroupMean-seed43",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-GroupMean-seed43/training_spec.json",
+        "sha256": "411ab95d02b49c4cea077263d96eb8b1d69e84c6fdb52ee1c2677ba6d3796adb"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-GroupMean-seed43/authorization.json",
+        "sha256": "4ad0da3672e4dfdcb06190648efd5dcaa5775a5488ee1a2dd34b3e918b3d93d8"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-GroupMean-seed43",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-GroupMean-seed44",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-GroupMean-seed44/training_spec.json",
+        "sha256": "764ed437f3af0bf663e5f19f9c7695efaa61c21db4eb44fa9c4ea4a92e6f52da"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-GroupMean-seed44/authorization.json",
+        "sha256": "ab4584570a32529cd2e7f957eee9dc7ec3888d57b5db3d12de324162c563c80f"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-GroupMean-seed44",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-GroupAttention-seed42",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-GroupAttention-seed42/training_spec.json",
+        "sha256": "07717da27a5e113df5adf92736f1ed08fded056f6ee693584ddb6e4744f76ed0"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-GroupAttention-seed42/authorization.json",
+        "sha256": "aac05251fb9fa75aade212e02f6e21d6815f172dabf4b9303094c0b93c5d1d81"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-GroupAttention-seed42",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-GroupAttention-seed43",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-GroupAttention-seed43/training_spec.json",
+        "sha256": "7475a2a8bdb8bb710c1e6880b19105edee3587f505c09421cfc9c6db08cb4980"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-GroupAttention-seed43/authorization.json",
+        "sha256": "67599e657ce91b3abc1cd65304977da2463b5382c1ab97381731a5f22d67da59"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-GroupAttention-seed43",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-GroupAttention-seed44",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-GroupAttention-seed44/training_spec.json",
+        "sha256": "8154136f11fe96e7711a7d08cdc9e5f2a25c131d5fa2b7855ace6d442bdae2a9"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-GroupAttention-seed44/authorization.json",
+        "sha256": "cfac3113edae3029c1b3702fa03044dc032f31088f3441dbf942fd49814cddbf"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-GroupAttention-seed44",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-RelationTrue-seed42",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-RelationTrue-seed42/training_spec.json",
+        "sha256": "135fe4d456815d542cd4a6c076004e1d29855e5e8e4f076cab77d1600deff168"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-RelationTrue-seed42/authorization.json",
+        "sha256": "4620e3eac5dd81b69f286c7d612d98c5a76628f5d6fa2d87fc8a0bb5625d8a69"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-RelationTrue-seed42",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-RelationTrue-seed43",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-RelationTrue-seed43/training_spec.json",
+        "sha256": "a91b892a220be0015c6e7de049f8ed34684483e9d5703e81f9ce0ab8b46ae326"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-RelationTrue-seed43/authorization.json",
+        "sha256": "6dfb57969067e8d4f9e22861cd05392aa2a9ca2ec380f90e081b278b5288132c"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-RelationTrue-seed43",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-RelationTrue-seed44",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-RelationTrue-seed44/training_spec.json",
+        "sha256": "17d6fc6e7031416526d6edb7ec770b3c1a254288a57ef9a20c2779d5ac05d1cd"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-RelationTrue-seed44/authorization.json",
+        "sha256": "bc7f60a4cba2ce1306c43b5127fa019426bcc855c5019c3953b6dcfb60dcd550"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-RelationTrue-seed44",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-RelationShuffled-seed42",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-RelationShuffled-seed42/training_spec.json",
+        "sha256": "47daa070555fdcc9362aebc379f81e8ac2744c789ef73e59991a559c0a299512"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-RelationShuffled-seed42/authorization.json",
+        "sha256": "eb02e876ebfcd4df154e86d6c8fe723c17e37d03400515df256e0f3b32227343"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-RelationShuffled-seed42",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-RelationShuffled-seed43",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-RelationShuffled-seed43/training_spec.json",
+        "sha256": "c6bd6ed8a9dd3f1c63a4d308f75eb9627416b69028f26aebc3154a845f55aa4f"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-RelationShuffled-seed43/authorization.json",
+        "sha256": "6c95ef4b3f95cf7260920ae487dcbccf138c2f2a3299f3853f034c4d74c1939e"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-RelationShuffled-seed43",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    },
+    {
+      "key": "A1-PG-RelationShuffled-seed44",
+      "spec": {
+        "path": "/gly/weilin/module26-prep-20261118/training-ready-v2/A1-PG-RelationShuffled-seed44/training_spec.json",
+        "sha256": "e81295cfcdf1b9e42d7e3649f80c43f9b76505f2eab2c14c4dea3c39eac74783"
+      },
+      "authorization": {
+        "path": "/gly/weilin/module26-prep-20261118/training-launch-20261119/authorizations/A1-PG-RelationShuffled-seed44/authorization.json",
+        "sha256": "9ff23223a047282b63fbdbb5200bf7ed5cdc9abc9ef0acf7a210f3bfe503a812"
+      },
+      "output_dir": "/gly/weilin/module26-prep-20261118/outputs/A1-PG-RelationShuffled-seed44",
+      "budget_sha256": "35ee6d4293e47c9e05314de96608a51d6b0f319ce626f11fcfc9cfb9bc1e66b5"
+    }
+  ]
+}
