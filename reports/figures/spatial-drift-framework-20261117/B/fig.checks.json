@@ -1,0 +1,38 @@
+{
+  "svg": "/Users/williamlin/Downloads/13/spatial-meta-ce/reports/figures/spatial-drift-framework-20261117/B/fig.svg",
+  "print_size_pt": [
+    640.0,
+    426.6666666666667
+  ],
+  "text_count": 72,
+  "parts": 0,
+  "errors": [],
+  "warnings": [],
+  "pdf": {
+    "page_count": 1,
+    "fonts": [
+      {
+        "name": "",
+        "type": "Type3"
+      },
+      {
+        "name": "",
+        "type": "Type3"
+      },
+      {
+        "name": "",
+        "type": "Type3"
+      },
+      {
+        "name": "",
+        "type": "Type3"
+      },
+      {
+        "name": "CAAAAA+Helvetica-Bold",
+        "type": "Type0"
+      }
+    ],
+    "images": 0
+  },
+  "scope": "Measured text bounds, intersections, print font size, and PDF structure. Connections and visual fidelity require actual image inspection."
+}

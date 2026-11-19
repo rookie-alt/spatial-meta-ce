@@ -1,0 +1,46 @@
+<Slide style={{ width: 1280, height: 720, padding: 60, background: '#FFFFFF', fontFamily: 'Source Han Sans SC', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Box style={{ height: 68, borderBottom: '1px solid #D6DCE5', justifyContent: 'space-between' }}>
+    <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A2230' }}>研究问题与总体目标</Text>
+      <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>03 / 10</Text>
+    </Box>
+    <Text style={{ fontSize: 16, color: '#4A5568' }}>围绕跨库迁移与动态演化，兼顾估计精度、适应成本与推理开销</Text>
+  </Box>
+
+  <Box style={{ height: 460, flexDirection: 'column', gap: 30 }}>
+    <Box style={{ height: 350, flexDirection: 'row', gap: 24 }}>
+      <Box style={{ flex: 1, border: '1px solid #D6DCE5', borderRadius: 8, padding: 20, background: '#F7F9FC', gap: 10 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>01　新数据库上的少样本适应</Text>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1E4FA8' }}>现有问题</Text>
+        <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>• 估计器绑定固定表结构，跨库泛化难<br />• 重型跨库模型训练与适应代价高</Text>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1E4FA8' }}>研究目标</Text>
+        <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>• 利用多源经验学习共享查询表示与初始化<br />• 在有限标注查询下快速适应目标数据库</Text>
+        <Box style={{ background: '#E8EFF8', borderRadius: 6, padding: '10px 14px' }}>
+          <Text style={{ fontSize: 19, color: '#0E3F8C', fontWeight: 'bold' }}>研究路径：轻量查询编码＋元学习初始化</Text>
+        </Box>
+      </Box>
+
+      <Box style={{ flex: 1, border: '1px solid #D6DCE5', borderRadius: 8, padding: 20, background: '#F7F9FC', gap: 10 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>02　数据持续变化时的反馈校准</Text>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1E4FA8' }}>现有问题</Text>
+        <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>• 增删改和负载切换使静态模型逐步失效<br />• 周期性重训练难以兼顾成本与稳定性</Text>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1E4FA8' }}>研究目标</Text>
+        <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>• 利用近期查询及真实基数感知当前分布<br />• 减少参数更新，平衡校准效果与延迟</Text>
+        <Box style={{ background: '#E8EFF8', borderRadius: 6, padding: '10px 14px' }}>
+          <Text style={{ fontSize: 19, color: '#0E3F8C', fontWeight: 'bold' }}>研究路径：历史反馈＋上下文在线校准</Text>
+        </Box>
+      </Box>
+    </Box>
+
+    <Box style={{ height: 80, background: '#0E3F8C', borderRadius: 8, padding: '16px 24px', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 22, color: '#FFFFFF', textAlign: 'center', lineHeight: 1.4 }}>
+        当前阶段聚焦<span style={{ fontWeight: 'bold' }}>跨数据库少样本估计</span>，后续复用查询特征、模型主干与评价指标推进时间漂移研究
+      </Text>
+    </Box>
+  </Box>
+
+  <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>魏林｜硕士学位论文中期汇报</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>研究背景</Text>
+  </Box>
+</Slide>

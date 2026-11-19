@@ -1,0 +1,200 @@
+{
+  "svg": "/Users/williamlin/Downloads/13/spatial-meta-ce/reports/figures/spatial-drift-framework-20261117/B/diagram.svg",
+  "print_size_pt": [
+    468.0,
+    587.3994831682004
+  ],
+  "text_count": 189,
+  "parts": 0,
+  "errors": [
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+02",
+        "10"
+      ],
+      "overlap": [
+        16.3,
+        13.3
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+02",
+        "2"
+      ],
+      "overlap": [
+        5.2,
+        7.7
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+03",
+        "10"
+      ],
+      "overlap": [
+        16.3,
+        14.6
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+03",
+        "3"
+      ],
+      "overlap": [
+        5.2,
+        9.6
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+03",
+        "Total"
+      ],
+      "overlap": [
+        10.6,
+        16.9
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+04",
+        "10"
+      ],
+      "overlap": [
+        16.3,
+        14.6
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+04",
+        "4"
+      ],
+      "overlap": [
+        5.2,
+        9.2
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+04",
+        "GPU"
+      ],
+      "overlap": [
+        10.6,
+        14.6
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+05",
+        "10"
+      ],
+      "overlap": [
+        16.3,
+        15.9
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+05",
+        "5"
+      ],
+      "overlap": [
+        5.2,
+        10.1
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+05",
+        "Hours"
+      ],
+      "overlap": [
+        10.6,
+        16.9
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+06",
+        "10"
+      ],
+      "overlap": [
+        16.3,
+        14.0
+      ]
+    },
+    {
+      "type": "text-overlap",
+      "texts": [
+        "1.E+06",
+        "6"
+      ],
+      "overlap": [
+        5.2,
+        10.1
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "type": "small-print-text",
+      "text": "2",
+      "pt": 6.99
+    },
+    {
+      "type": "small-print-text",
+      "text": "4",
+      "pt": 7.01
+    },
+    {
+      "type": "small-print-text",
+      "text": "5",
+      "pt": 6.99
+    },
+    {
+      "type": "small-print-text",
+      "text": "6",
+      "pt": 6.99
+    },
+    {
+      "type": "small-print-text",
+      "text": "3",
+      "pt": 7.01
+    }
+  ],
+  "pdf": {
+    "page_count": 1,
+    "fonts": [
+      {
+        "name": "AAAAAA+Carlito-Bold",
+        "type": "Type0"
+      },
+      {
+        "name": "BAAAAA+DejaVuSans-Bold",
+        "type": "Type0"
+      },
+      {
+        "name": "CAAAAA+Carlito",
+        "type": "Type0"
+      }
+    ],
+    "images": 0
+  },
+  "scope": "Measured text bounds, intersections, print font size, and PDF structure. Connections and visual fidelity require actual image inspection."
+}

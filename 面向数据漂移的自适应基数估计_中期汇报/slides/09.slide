@@ -1,0 +1,35 @@
+<Slide style={{ width: 1280, height: 720, padding: 60, background: '#FFFFFF', fontFamily: 'Source Han Sans SC', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Box style={{ height: 68, borderBottom: '1px solid #D6DCE5', justifyContent: 'space-between' }}>
+    <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A2230' }}>下一阶段计划与预期成果</Text>
+      <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>09 / 10</Text>
+    </Box>
+    <Text style={{ fontSize: 16, color: '#4A5568' }}>算法完善、实验验证、章节撰写与送审准备依次推进</Text>
+  </Box>
+
+  <Box style={{ height: 460, flexDirection: 'column', gap: 24 }}>
+    <Table
+      style={{ width: 1160, height: 350 }}
+      defaultTextStyle={{ fontSize: 18, textAlign: 'left', color: '#1A2230', fontFamily: 'Source Han Sans SC' }}
+      defaultCellStyle={{ padding: 9, border: { left: { width: 1, color: '#D6DCE5' }, right: { width: 1, color: '#D6DCE5' }, top: { width: 1, color: '#D6DCE5' }, bottom: { width: 1, color: '#D6DCE5' } } }}
+      cells={[
+        [{ text: '时间', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#0E3F8C' } } }, { text: '主要工作', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#0E3F8C' } } }, { text: '阶段产出', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#0E3F8C' } } }],
+        [{ text: '2026.11—12', textStyle: { bold: true, color: '#1E4FA8' } }, '补齐源侧对照、结构锚点与误差分桶分析', '实验报告、方法修订方案'],
+        [{ text: '2027.01', textStyle: { bold: true, color: '#1E4FA8' }, cellStyle: { background: { color: '#F7F9FC' } } }, { text: '完成四目标库评估；跑通时序切分和无注意力滑动窗口基线', cellStyle: { background: { color: '#F7F9FC' } } }, { text: '跨库结果、校准基线', cellStyle: { background: { color: '#F7F9FC' } } }],
+        [{ text: '2027.02', textStyle: { bold: true, color: '#1E4FA8' } }, '上下文校准训练与消融；补齐论文方法、实验章节', '章节初稿、图表定稿'],
+        [{ text: '2027.03', textStyle: { bold: true, color: '#1E4FA8' }, cellStyle: { background: { color: '#F7F9FC' } } }, { text: '整合全文、相关工作与结论，补齐文献综述', cellStyle: { background: { color: '#F7F9FC' } } }, { text: '学位论文完整初稿', cellStyle: { background: { color: '#F7F9FC' } } }],
+        [{ text: '2027.04', textStyle: { bold: true, color: '#1E4FA8' } }, '根据导师意见修改，完成格式审查与查重', '学位论文送审稿']
+      ]}
+    />
+
+    <Box style={{ height: 86, background: '#E8EFF8', borderRadius: 8, padding: '14px 24px', justifyContent: 'center', gap: 6 }}>
+      <Text style={{ fontSize: 20, color: '#0E3F8C', fontWeight: 'bold' }}>预期成果</Text>
+      <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.35 }}>完成学位论文；形成Q-error、查询延迟与模型更新开销评测结果及可复现实验；力争发表1–2篇学术论文。</Text>
+    </Box>
+  </Box>
+
+  <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>魏林｜硕士学位论文中期汇报</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>未来规划</Text>
+  </Box>
+</Slide>

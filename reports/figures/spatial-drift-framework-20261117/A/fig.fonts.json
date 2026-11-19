@@ -1,0 +1,21 @@
+{
+  "profile": "project-cjk",
+  "svg_embeds_font_files": true,
+  "roles": [
+    {
+      "role": "cjk-sans-regular",
+      "family": "Source Han Sans CN",
+      "postscript_name": "SourceHanSansCN-Regular"
+    },
+    {
+      "role": "cjk-sans-bold",
+      "family": "Source Han Sans CN",
+      "postscript_name": "SourceHanSansCN-Bold"
+    }
+  ],
+  "pdf_fonts": [
+    "SourceHanSansCN-Bold"
+  ],
+  "pdf_fonts_embedded": true,
+  "pdf_matches_declared_fonts": false
+}

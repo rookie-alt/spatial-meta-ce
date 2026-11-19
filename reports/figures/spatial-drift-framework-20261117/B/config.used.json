@@ -1,0 +1,8 @@
+{
+  "content_status": "protocol-schematic",
+  "print_width": 640,
+  "labels": {},
+  "components": {},
+  "elements": {},
+  "caption": "面向空间漂移的跨数据库基数估计元学习框架（协议设计示意，非实测结果）。源库元训练产出密封共享参数，目标库仅在其副本上做 K-shot 适应；目标库最终成绩尚未产生。"
+}

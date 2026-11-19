@@ -1,0 +1,35 @@
+<Slide style={{ width: 1280, height: 720, padding: 60, background: '#F7F9FC', fontFamily: 'Source Han Sans SC', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Box style={{ height: 60, borderBottom: '1px solid #D6DCE5', justifyContent: 'center' }}>
+    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C', letterSpacing: 1 }}>中期总结</Text>
+  </Box>
+
+  <Box style={{ height: 450, flexDirection: 'row', alignItems: 'stretch', gap: 48 }}>
+    <Box style={{ flex: 1, justifyContent: 'center', gap: 24 }}>
+      <Box style={{ gap: 6 }}>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1E4FA8' }}>01</Text>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1A2230' }}>研究链路已建立</Text>
+        <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.4 }}>完成统一框架、数据库级划分、模型训练与可复现评估流程。</Text>
+      </Box>
+      <Box style={{ gap: 6 }}>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1E4FA8' }}>02</Text>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1A2230' }}>轻量化价值与精度边界已验证</Text>
+        <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.4 }}>参数约PRICE的1/80，三个目标库优于PG；四库仍落后PRICE。</Text>
+      </Box>
+      <Box style={{ gap: 6 }}>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1E4FA8' }}>03</Text>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1A2230' }}>后续改进路径已明确</Text>
+        <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.4 }}>围绕负迁移、适应稳定性、误差诊断与时间漂移校准继续验证。</Text>
+      </Box>
+    </Box>
+
+    <Box style={{ width: 400, background: '#0E3F8C', borderRadius: 10, justifyContent: 'center', alignItems: 'center', padding: 40, gap: 18 }}>
+      <Text style={{ fontSize: 38, fontWeight: 'bold', color: '#FFFFFF', textAlign: 'center', lineHeight: 1.35 }}>请各位老师<br />批评指正</Text>
+      <Text style={{ fontSize: 17, color: '#E8EFF8', letterSpacing: 2 }}>THANK YOU</Text>
+    </Box>
+  </Box>
+
+  <Box style={{ height: 40, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+    <Text style={{ fontSize: 15, color: '#8B97A8' }}>魏林 · 东北大学软件学院</Text>
+    <Text style={{ fontSize: 15, color: '#8B97A8' }}>2026 年 11 月</Text>
+  </Box>
+</Slide>

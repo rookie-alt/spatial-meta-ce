@@ -1,0 +1,61 @@
+<Slide style={{ width: 1280, height: 720, padding: 60, background: '#FFFFFF', fontFamily: 'Source Han Sans SC', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Box style={{ height: 68, borderBottom: '1px solid #D6DCE5', justifyContent: 'space-between' }}>
+    <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A2230' }}>阶段性总结与待解决问题</Text>
+      <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>08 / 10</Text>
+    </Box>
+    <Text style={{ fontSize: 16, color: '#4A5568' }}>既确认实验链路与轻量模型的可行性，也明确当前方法边界</Text>
+  </Box>
+
+  <Box style={{ height: 460, flexDirection: 'column', gap: 24 }}>
+    <Box style={{ height: 360, flexDirection: 'row', gap: 24 }}>
+      <Box style={{ flex: 1, border: '1px solid #D6DCE5', borderRadius: 8, padding: 20, background: '#F7F9FC', gap: 14 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E4FA8' }}>已完成的工作</Text>
+        <Box style={{ gap: 4 }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230' }}>01　数据与评估流程</Text>
+          <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.35 }}>完成跨库划分、查询去重和统一指标评估</Text>
+        </Box>
+        <Box style={{ gap: 4 }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230' }}>02　模型与少样本适应</Text>
+          <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.35 }}>实现轻量编码器、FOMAML与独立支持集适应</Text>
+        </Box>
+        <Box style={{ gap: 4 }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230' }}>03　结构对照与误差分析</Text>
+          <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.35 }}>已开展编码方式、适应效果和运行开销分析</Text>
+        </Box>
+        <Box style={{ background: '#E8EFF8', borderRadius: 6, padding: '10px 14px', marginTop: 2 }}>
+          <Text style={{ fontSize: 18, color: '#0E3F8C', fontWeight: 'bold' }}>结果：形成可复现的跨库训练与评估链路</Text>
+        </Box>
+      </Box>
+
+      <Box style={{ flex: 1, border: '1px solid #D6DCE5', borderRadius: 8, padding: 20, background: '#FFFFFF', gap: 14 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#D9534F' }}>需要解决的问题</Text>
+        <Box style={{ gap: 4 }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230' }}>01　适应效果存在数据库差异</Text>
+          <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.35 }}>既有对照中Genome有改善，STATS仍存在负迁移</Text>
+        </Box>
+        <Box style={{ gap: 4 }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230' }}>02　元学习收益依赖具体设置</Text>
+          <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.35 }}>收益随架构和样本预算变化，尚未形成普遍优势</Text>
+        </Box>
+        <Box style={{ gap: 4 }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230' }}>03　结构改进仍需验证</Text>
+          <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.35 }}>PRICE式编码器初步源侧对照尚未显示总体收益</Text>
+        </Box>
+        <Box style={{ background: '#F0F5FC', borderRadius: 6, padding: '10px 14px', marginTop: 2 }}>
+          <Text style={{ fontSize: 18, color: '#0E3F8C', fontWeight: 'bold' }}>判断：需要误差分桶与消融来定位改进来源</Text>
+        </Box>
+      </Box>
+    </Box>
+
+    <Box style={{ height: 76, background: '#0E3F8C', borderRadius: 8, padding: '14px 24px', justifyContent: 'center', alignItems: 'center', gap: 4 }}>
+      <Text style={{ fontSize: 22, color: '#FFFFFF', fontWeight: 'bold', textAlign: 'center' }}>下一阶段重点是精度与适应稳定性，而非继续扩展研究分支</Text>
+      <Text style={{ fontSize: 16, color: '#E8EFF8', textAlign: 'center' }}>先冻结对照与消融方案，再完成目标库少样本评估和时序漂移校准</Text>
+    </Box>
+  </Box>
+
+  <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>魏林｜硕士学位论文中期汇报</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>当前进度</Text>
+  </Box>
+</Slide>

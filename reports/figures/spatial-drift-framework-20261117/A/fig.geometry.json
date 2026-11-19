@@ -1,0 +1,1926 @@
+{
+  "coordinate_space": "svg-viewbox",
+  "fonts": [
+    "\"Source Han Sans CN\""
+  ],
+  "texts": [
+    {
+      "text": "源域 SOURCE · 元训练",
+      "box": [
+        1444.68359375,
+        39.25,
+        1703.31640625,
+        73.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "源域 SOURCE · 元训练",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "1396 36 356 46",
+      "constraint_box": [
+        1396,
+        36,
+        1752,
+        82
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "源域 SOURCE · 元训练",
+      "box": [
+        1444.68359375,
+        405.2500305175781,
+        1703.31640625,
+        439.7500305175781
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "源域 SOURCE · 元训练",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "1396 402 356 46",
+      "constraint_box": [
+        1396,
+        402,
+        1752,
+        448
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "目标域 TARGET · 评估",
+      "box": [
+        1447.5078125,
+        861.25,
+        1700.4921875,
+        895.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "目标域 TARGET · 评估",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "1396 858 356 46",
+      "constraint_box": [
+        1396,
+        858,
+        1752,
+        904
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "(a)",
+      "box": [
+        44,
+        27.500003814697266,
+        84.41797256469727,
+        71.00000381469727
+      ],
+      "font": 30,
+      "font_runs": [
+        {
+          "text": "(a)",
+          "font": 30,
+          "font_scale": 1,
+          "font_viewbox": 30,
+          "print_font_pt": 30.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 30.0
+    },
+    {
+      "text": "源域任务构建与原始 PRICE 特征/模型通路",
+      "box": [
+        100.00000762939453,
+        25.250003814697266,
+        701.2187576293945,
+        71.00000381469727
+      ],
+      "font": 32,
+      "font_runs": [
+        {
+          "text": "源域任务构建与原始 PRICE 特征/模型通路",
+          "font": 32,
+          "font_scale": 1,
+          "font_viewbox": 32,
+          "print_font_pt": 32.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 32.0
+    },
+    {
+      "text": "(b)",
+      "box": [
+        44,
+        393.5,
+        86.00000381469727,
+        437
+      ],
+      "font": 30,
+      "font_runs": [
+        {
+          "text": "(b)",
+          "font": 30,
+          "font_scale": 1,
+          "font_viewbox": 30,
+          "print_font_pt": 30.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 30.0
+    },
+    {
+      "text": "FOMAML 嵌套循环：内循环更新 φ，外循环更新共享 θ",
+      "box": [
+        100.00000762939453,
+        391.25,
+        880.1406326293945,
+        437
+      ],
+      "font": 32,
+      "font_runs": [
+        {
+          "text": "FOMAML 嵌套循环：内循环更新 φ，外循环更新共享 θ",
+          "font": 32,
+          "font_scale": 1,
+          "font_viewbox": 32,
+          "print_font_pt": 32.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 32.0
+    },
+    {
+      "text": "(c)",
+      "box": [
+        44,
+        849.5000610351562,
+        82.49609756469727,
+        893.0000610351562
+      ],
+      "font": 30,
+      "font_runs": [
+        {
+          "text": "(c)",
+          "font": 30,
+          "font_scale": 1,
+          "font_viewbox": 30,
+          "print_font_pt": 30.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 30.0
+    },
+    {
+      "text": "目标域支持集适应与不相交唯一查询评估",
+      "box": [
+        100.00000762939453,
+        847.2500610351562,
+        675.9179763793945,
+        893.0000610351562
+      ],
+      "font": 32,
+      "font_runs": [
+        {
+          "text": "目标域支持集适应与不相交唯一查询评估",
+          "font": 32,
+          "font_scale": 1,
+          "font_viewbox": 32,
+          "print_font_pt": 32.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 32.0
+    },
+    {
+      "text": "源域数据库（26 个训练库）",
+      "box": [
+        72,
+        81.75,
+        419.3671875,
+        122.25
+      ],
+      "font": 28,
+      "font_runs": [
+        {
+          "text": "源域数据库（26 个训练库）",
+          "font": 28,
+          "font_scale": 1,
+          "font_viewbox": 28,
+          "print_font_pt": 28.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 28.0
+    },
+    {
+      "text": "支持集 support",
+      "box": [
+        96,
+        139.75,
+        295.62890625,
+        180.25
+      ],
+      "font": 28,
+      "font_runs": [
+        {
+          "text": "支持集 support",
+          "font": 28,
+          "font_scale": 1,
+          "font_viewbox": 28,
+          "print_font_pt": 28.0
+        }
+      ],
+      "constraint": "76 132 316 84",
+      "constraint_box": [
+        76,
+        132,
+        392,
+        216
+      ],
+      "print_font_pt": 28.0
+    },
+    {
+      "text": "20 条查询 · 进入内循环",
+      "box": [
+        96,
+        174.25,
+        356.671875,
+        208.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "20 条查询 · 进入内循环",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "76 132 316 84",
+      "constraint_box": [
+        76,
+        132,
+        392,
+        216
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "查询集 query",
+      "box": [
+        492,
+        139.75,
+        663.15234375,
+        180.25
+      ],
+      "font": 28,
+      "font_runs": [
+        {
+          "text": "查询集 query",
+          "font": 28,
+          "font_scale": 1,
+          "font_viewbox": 28,
+          "print_font_pt": 28.0
+        }
+      ],
+      "constraint": "472 132 316 84",
+      "constraint_box": [
+        472,
+        132,
+        788,
+        216
+      ],
+      "print_font_pt": 28.0
+    },
+    {
+      "text": "64 条查询 · 进入外层损失",
+      "box": [
+        492,
+        174.25,
+        776.671875,
+        208.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "64 条查询 · 进入外层损失",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "472 132 316 84",
+      "constraint_box": [
+        472,
+        132,
+        788,
+        216
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "不相交",
+      "box": [
+        396,
+        152.25,
+        468,
+        186.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "不相交",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "支持集与查询集在任务内按 query_hash 不相交",
+      "box": [
+        76,
+        224.25,
+        586.5625,
+        258.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "支持集与查询集在任务内按 query_hash 不相交",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "每任务等概率取一个源库；无独立源验证库",
+      "box": [
+        76,
+        258.25,
+        532,
+        292.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "每任务等概率取一个源库；无独立源验证库",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "不据此早停或选择 checkpoint",
+      "box": [
+        76,
+        292.25,
+        405.8124694824219,
+        326.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "不据此早停或选择 checkpoint",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "原始 PRICE 架构（结构与预训练权重不变）",
+      "box": [
+        904,
+        81.75,
+        1447.26953125,
+        122.25
+      ],
+      "font": 28,
+      "font_runs": [
+        {
+          "text": "原始 PRICE 架构（结构与预训练权重不变）",
+          "font": 28,
+          "font_scale": 1,
+          "font_viewbox": 28,
+          "print_font_pt": 28.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 28.0
+    },
+    {
+      "text": "连接列直方图",
+      "box": [
+        926.0117797851562,
+        138,
+        1081.9883422851562,
+        175.5
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "连接列直方图",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "904 130 200 60",
+      "constraint_box": [
+        904,
+        130,
+        1104,
+        190
+      ],
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "扇出 fanout",
+      "box": [
+        1149.615234375,
+        138,
+        1292.384765625,
+        175.5
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "扇出 fanout",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "1121 130 200 60",
+      "constraint_box": [
+        1121,
+        130,
+        1321,
+        190
+      ],
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "表特征",
+      "box": [
+        1399.005859375,
+        138,
+        1476.994140625,
+        175.5
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "表特征",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "1338 130 200 60",
+      "constraint_box": [
+        1338,
+        130,
+        1538,
+        190
+      ],
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "过滤特征",
+      "box": [
+        1603.009765625,
+        138,
+        1706.990234375,
+        175.5
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "过滤特征",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "1555 130 200 60",
+      "constraint_box": [
+        1555,
+        130,
+        1755,
+        190
+      ],
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "PRICE 编码器（结构不变）",
+      "box": [
+        1159.533203125,
+        211.75,
+        1500.466796875,
+        252.25
+      ],
+      "font": 28,
+      "font_runs": [
+        {
+          "text": "PRICE 编码器（结构不变）",
+          "font": 28,
+          "font_scale": 1,
+          "font_viewbox": 28,
+          "print_font_pt": 28.0
+        }
+      ],
+      "constraint": "904 204 851 62",
+      "constraint_box": [
+        904,
+        204,
+        1755,
+        266
+      ],
+      "print_font_pt": 28.0
+    },
+    {
+      "text": "回归头",
+      "box": [
+        1082,
+        287.75,
+        1166,
+        328.25
+      ],
+      "font": 28,
+      "font_runs": [
+        {
+          "text": "回归头",
+          "font": 28,
+          "font_scale": 1,
+          "font_viewbox": 28,
+          "print_font_pt": 28.0
+        }
+      ],
+      "constraint": "904 288 440 64",
+      "constraint_box": [
+        904,
+        288,
+        1344,
+        352
+      ],
+      "print_font_pt": 28.0
+    },
+    {
+      "text": "z = log1p(cardinality) + 1，MSE",
+      "box": [
+        957.5527954101562,
+        318.5,
+        1290.4473266601562,
+        350
+      ],
+      "font": 22,
+      "font_runs": [
+        {
+          "text": "z = log1p(cardinality) + 1，MSE",
+          "font": 22,
+          "font_scale": 1,
+          "font_viewbox": 22,
+          "print_font_pt": 22.0
+        }
+      ],
+      "constraint": "904 288 440 64",
+      "constraint_box": [
+        904,
+        288,
+        1344,
+        352
+      ],
+      "print_font_pt": 22.0
+    },
+    {
+      "text": "PG 估计 + token 计数",
+      "box": [
+        1483.5157470703125,
+        298.25,
+        1716.4844970703125,
+        332.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "PG 估计 + token 计数",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "1444 288 311 64",
+      "constraint_box": [
+        1444,
+        288,
+        1755,
+        352
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "①",
+      "box": [
+        56.000003814697266,
+        448.25,
+        80.00000381469727,
+        482.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "①",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "内循环 · 只用支持集标签",
+      "box": [
+        100.00000762939453,
+        447.75,
+        420.68363189697266,
+        488.25
+      ],
+      "font": 28,
+      "font_runs": [
+        {
+          "text": "内循环 · 只用支持集标签",
+          "font": 28,
+          "font_scale": 1,
+          "font_viewbox": 28,
+          "print_font_pt": 28.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 28.0
+    },
+    {
+      "text": "②",
+      "box": [
+        916,
+        448.25,
+        940,
+        482.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "②",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "外循环 · 只用查询集标签",
+      "box": [
+        960,
+        447.75,
+        1280.68359375,
+        488.25
+      ],
+      "font": 28,
+      "font_runs": [
+        {
+          "text": "外循环 · 只用查询集标签",
+          "font": 28,
+          "font_scale": 1,
+          "font_viewbox": 28,
+          "print_font_pt": 28.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 28.0
+    },
+    {
+      "text": "③",
+      "box": [
+        1522,
+        448.25,
+        1546.0000915527344,
+        482.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "③",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "φ0 = θ",
+      "box": [
+        76,
+        511.5,
+        161.3359375,
+        564.75
+      ],
+      "font": 30,
+      "font_runs": [
+        {
+          "text": "φ",
+          "font": 30,
+          "font_scale": 1,
+          "font_viewbox": 30,
+          "print_font_pt": 30.0
+        },
+        {
+          "text": "0",
+          "font": 18.6,
+          "font_scale": 1,
+          "font_viewbox": 18.6,
+          "print_font_pt": 18.6
+        },
+        {
+          "text": " = θ",
+          "font": 30,
+          "font_scale": 1,
+          "font_viewbox": 30,
+          "print_font_pt": 30.0
+        }
+      ],
+      "constraint": "56 498 236 84",
+      "constraint_box": [
+        56,
+        498,
+        292,
+        582
+      ],
+      "print_font_pt": 18.6
+    },
+    {
+      "text": "共享参数副本",
+      "box": [
+        76,
+        546.25,
+        220,
+        580.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "共享参数副本",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "56 498 236 84",
+      "constraint_box": [
+        56,
+        498,
+        292,
+        582
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "5 步全参数 SGD",
+      "box": [
+        360,
+        516,
+        544.546875,
+        553.5
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "5 步全参数 SGD",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "340 498 256 84",
+      "constraint_box": [
+        340,
+        498,
+        596,
+        582
+      ],
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "α = 1e-6",
+      "box": [
+        360,
+        546.25,
+        452.40234375,
+        580.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "α = 1e-6",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "340 498 256 84",
+      "constraint_box": [
+        340,
+        498,
+        596,
+        582
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "φ5 适应后参数",
+      "box": [
+        664,
+        516,
+        830.6875,
+        562.125
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "φ",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        },
+        {
+          "text": "5",
+          "font": 16.12,
+          "font_scale": 1,
+          "font_viewbox": 16.12,
+          "print_font_pt": 16.12
+        },
+        {
+          "text": " 适应后参数",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "644 498 224 84",
+      "constraint_box": [
+        644,
+        498,
+        868,
+        582
+      ],
+      "print_font_pt": 16.12
+    },
+    {
+      "text": "全参数",
+      "box": [
+        664,
+        546.25,
+        736,
+        580.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "全参数",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "644 498 224 84",
+      "constraint_box": [
+        644,
+        498,
+        868,
+        582
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "查询集损失",
+      "box": [
+        936,
+        516,
+        1065.984375,
+        553.5
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "查询集损失",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "916 498 300 84",
+      "constraint_box": [
+        916,
+        498,
+        1216,
+        582
+      ],
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "适应后计算 MSE",
+      "box": [
+        936,
+        546.25,
+        1111.6640625,
+        580.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "适应后计算 MSE",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "916 498 300 84",
+      "constraint_box": [
+        916,
+        498,
+        1216,
+        582
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "一阶梯度",
+      "box": [
+        1284,
+        516,
+        1387.98046875,
+        553.5
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "一阶梯度",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "1264 498 210 84",
+      "constraint_box": [
+        1264,
+        498,
+        1474,
+        582
+      ],
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "回传经过 φ",
+      "box": [
+        1284,
+        546.25,
+        1405.11328125,
+        580.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "回传经过 φ",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "1264 498 210 84",
+      "constraint_box": [
+        1264,
+        498,
+        1474,
+        582
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "Adam 更新 θ",
+      "box": [
+        1542,
+        516,
+        1695.609375,
+        553.5
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "Adam 更新 θ",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "1522 498 234 84",
+      "constraint_box": [
+        1522,
+        498,
+        1756,
+        582
+      ],
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "lr = 2.85e-5",
+      "box": [
+        1542,
+        546.25,
+        1672.640625,
+        580.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "lr = 2.85e-5",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "1522 498 234 84",
+      "constraint_box": [
+        1522,
+        498,
+        1756,
+        582
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "内循环在支持集上算 MSE；一阶近似下内层梯度被 detach",
+      "box": [
+        56.000003814697266,
+        620.25,
+        677.9609413146973,
+        654.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "内循环在支持集上算 MSE；一阶近似下内层梯度被 detach",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "内循环不改变 θ，也不改变已封存的 θ*",
+      "box": [
+        56.000003814697266,
+        654.25,
+        468.59375381469727,
+        688.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "内循环不改变 θ，也不改变已封存的 θ*",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "支持集标签只进入内循环",
+      "box": [
+        108,
+        702.25,
+        372,
+        736.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "支持集标签只进入内循环",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "查询集标签只进入外层损失",
+      "box": [
+        592,
+        702.25,
+        880,
+        736.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "查询集标签只进入外层损失",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "θ 由外循环更新，P 与 θ* 不被更新",
+      "box": [
+        1082,
+        702.25,
+        1449.48828125,
+        736.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "θ 由外循环更新，P 与 θ* 不被更新",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "每次外更新串行累积 4 个任务；共 2000 次外更新；固定取最后一次 checkpoint，不早停、不选最优",
+      "box": [
+        76,
+        732.25,
+        1146.40234375,
+        766.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "每次外更新串行累积 4 个任务；共 2000 次外更新；固定取最后一次 checkpoint，不早停、不选最优",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "无泄漏边界：目标库不进入训练与选择",
+      "box": [
+        679.037109375,
+        794.0000610351562,
+        1120.962890625,
+        831.5000610351562
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "无泄漏边界：目标库不进入训练与选择",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "650 794 500 44",
+      "constraint_box": [
+        650,
+        794,
+        1150,
+        838
+      ],
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "目标库（不参与训练与选择）",
+      "box": [
+        56.000003814697266,
+        893.7500610351562,
+        419.97266006469727,
+        934.2500610351562
+      ],
+      "font": 28,
+      "font_runs": [
+        {
+          "text": "目标库（不参与训练与选择）",
+          "font": 28,
+          "font_scale": 1,
+          "font_viewbox": 28,
+          "print_font_pt": 28.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 28.0
+    },
+    {
+      "text": "目标支持集",
+      "box": [
+        76,
+        964,
+        205.984375,
+        1001.5
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "目标支持集",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "56 946 210 84",
+      "constraint_box": [
+        56,
+        946,
+        266,
+        1030
+      ],
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "仅用于适应",
+      "box": [
+        76,
+        994.2500610351562,
+        196,
+        1028.7500610351562
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "仅用于适应",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "56 946 210 84",
+      "constraint_box": [
+        56,
+        946,
+        266,
+        1030
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "φt = θ* 副本",
+      "box": [
+        332,
+        964,
+        474.2890625,
+        1010.125
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "φ",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        },
+        {
+          "text": "t",
+          "font": 16.12,
+          "font_scale": 1,
+          "font_viewbox": 16.12,
+          "print_font_pt": 16.12
+        },
+        {
+          "text": " = θ* 副本",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "312 946 252 84",
+      "constraint_box": [
+        312,
+        946,
+        564,
+        1030
+      ],
+      "print_font_pt": 16.12
+    },
+    {
+      "text": "全参数适应",
+      "box": [
+        332,
+        994.2500610351562,
+        452,
+        1028.7500610351562
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "全参数适应",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "312 946 252 84",
+      "constraint_box": [
+        312,
+        946,
+        564,
+        1030
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "估计测试查询",
+      "box": [
+        630,
+        964,
+        785.9765625,
+        1001.5
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "估计测试查询",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": "610 946 258 84",
+      "constraint_box": [
+        610,
+        946,
+        868,
+        1030
+      ],
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "不相交唯一查询",
+      "box": [
+        630,
+        994.2500610351562,
+        798,
+        1028.7500610351562
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "不相交唯一查询",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "610 946 258 84",
+      "constraint_box": [
+        610,
+        946,
+        868,
+        1030
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "适应强度 K（含 K = 0）",
+      "box": [
+        56.000003814697266,
+        1054,
+        327.91016006469727,
+        1091.5
+      ],
+      "font": 26,
+      "font_runs": [
+        {
+          "text": "适应强度 K（含 K = 0）",
+          "font": 26,
+          "font_scale": 1,
+          "font_viewbox": 26,
+          "print_font_pt": 26.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 26.0
+    },
+    {
+      "text": "K > 0",
+      "box": [
+        342.15625,
+        1056.25,
+        397.84375,
+        1090.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "K > 0",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "300 1046 140 56",
+      "constraint_box": [
+        300,
+        1046,
+        440,
+        1102
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "K = 0 零样本",
+      "box": [
+        483.4316711425781,
+        1056.25,
+        616.5683898925781,
+        1090.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "K = 0 零样本",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "460 1046 180 56",
+      "constraint_box": [
+        460,
+        1046,
+        640,
+        1102
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "K 的具体取值按最终目标协议确定，本图不预设",
+      "box": [
+        56.000003814697266,
+        1104.25,
+        557.9140663146973,
+        1138.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "K 的具体取值按最终目标协议确定，本图不预设",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "目标支持集与测试查询不相交；测试标签只用于最终评分",
+      "box": [
+        56.000003814697266,
+        1132.25,
+        656.0000038146973,
+        1166.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "目标支持集与测试查询不相交；测试标签只用于最终评分",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "P / E / M 并列比较（计划）",
+      "box": [
+        916,
+        893.7500610351562,
+        1253.20703125,
+        934.2500610351562
+      ],
+      "font": 28,
+      "font_runs": [
+        {
+          "text": "P / E / M 并列比较（计划）",
+          "font": 28,
+          "font_scale": 1,
+          "font_viewbox": 28,
+          "print_font_pt": 28.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 28.0
+    },
+    {
+      "text": "P",
+      "box": [
+        1036.65625,
+        956.25,
+        1059.34375,
+        1005.75
+      ],
+      "font": 34,
+      "font_runs": [
+        {
+          "text": "P",
+          "font": 34,
+          "font_scale": 1,
+          "font_viewbox": 34,
+          "print_font_pt": 34.0
+        }
+      ],
+      "constraint": "916 946 264 120",
+      "constraint_box": [
+        916,
+        946,
+        1180,
+        1066
+      ],
+      "print_font_pt": 34.0
+    },
+    {
+      "text": "官方 PRICE 权重",
+      "box": [
+        959.1484375,
+        1002.25,
+        1136.8515625,
+        1036.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "官方 PRICE 权重",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "916 946 264 120",
+      "constraint_box": [
+        916,
+        946,
+        1180,
+        1066
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "不继续训练",
+      "box": [
+        993.00390625,
+        1032.5,
+        1102.99609375,
+        1064
+      ],
+      "font": 22,
+      "font_runs": [
+        {
+          "text": "不继续训练",
+          "font": 22,
+          "font_scale": 1,
+          "font_viewbox": 22,
+          "print_font_pt": 22.0
+        }
+      ],
+      "constraint": "916 946 264 120",
+      "constraint_box": [
+        916,
+        946,
+        1180,
+        1066
+      ],
+      "print_font_pt": 22.0
+    },
+    {
+      "text": "E",
+      "box": [
+        1321.541015625,
+        956.25,
+        1342.458984375,
+        1005.75
+      ],
+      "font": 34,
+      "font_runs": [
+        {
+          "text": "E",
+          "font": 34,
+          "font_scale": 1,
+          "font_viewbox": 34,
+          "print_font_pt": 34.0
+        }
+      ],
+      "constraint": "1200 946 264 120",
+      "constraint_box": [
+        1200,
+        946,
+        1464,
+        1066
+      ],
+      "print_font_pt": 34.0
+    },
+    {
+      "text": "普通继续训练",
+      "box": [
+        1260,
+        1002.25,
+        1404,
+        1036.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "普通继续训练",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "1200 946 264 120",
+      "constraint_box": [
+        1200,
+        946,
+        1464,
+        1066
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "监督 support+query",
+      "box": [
+        1226.34375,
+        1032.5,
+        1437.65625,
+        1064
+      ],
+      "font": 22,
+      "font_runs": [
+        {
+          "text": "监督 support+query",
+          "font": 22,
+          "font_scale": 1,
+          "font_viewbox": 22,
+          "print_font_pt": 22.0
+        }
+      ],
+      "constraint": "1200 946 264 120",
+      "constraint_box": [
+        1200,
+        946,
+        1464,
+        1066
+      ],
+      "print_font_pt": 22.0
+    },
+    {
+      "text": "M",
+      "box": [
+        1601.498046875,
+        956.25,
+        1630.501953125,
+        1005.75
+      ],
+      "font": 34,
+      "font_runs": [
+        {
+          "text": "M",
+          "font": 34,
+          "font_scale": 1,
+          "font_viewbox": 34,
+          "print_font_pt": 34.0
+        }
+      ],
+      "constraint": "1484 946 264 120",
+      "constraint_box": [
+        1484,
+        946,
+        1748,
+        1066
+      ],
+      "print_font_pt": 34.0
+    },
+    {
+      "text": "全参数 FOMAML",
+      "box": [
+        1526.05859375,
+        1002.25,
+        1705.94140625,
+        1036.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "全参数 FOMAML",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": "1484 946 264 120",
+      "constraint_box": [
+        1484,
+        946,
+        1748,
+        1066
+      ],
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "即本图 (b)",
+      "box": [
+        1565.10546875,
+        1032.5,
+        1666.89453125,
+        1064
+      ],
+      "font": 22,
+      "font_runs": [
+        {
+          "text": "即本图 (b)",
+          "font": 22,
+          "font_scale": 1,
+          "font_viewbox": 22,
+          "print_font_pt": 22.0
+        }
+      ],
+      "constraint": "1484 946 264 120",
+      "constraint_box": [
+        1484,
+        946,
+        1748,
+        1066
+      ],
+      "print_font_pt": 22.0
+    },
+    {
+      "text": "同一协议：相同 support / query 身份与 K 设置，主口径 Q95",
+      "box": [
+        936,
+        1088.25,
+        1593.6328125,
+        1122.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "同一协议：相同 support / query 身份与 K 设置，主口径 Q95",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    },
+    {
+      "text": "目标评估尚未运行；本图仅表示协议设计，不含实测结果",
+      "box": [
+        936,
+        1120.25,
+        1536,
+        1154.75
+      ],
+      "font": 24,
+      "font_runs": [
+        {
+          "text": "目标评估尚未运行；本图仅表示协议设计，不含实测结果",
+          "font": 24,
+          "font_scale": 1,
+          "font_viewbox": 24,
+          "print_font_pt": 24.0
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 24.0
+    }
+  ],
+  "groups": []
+}

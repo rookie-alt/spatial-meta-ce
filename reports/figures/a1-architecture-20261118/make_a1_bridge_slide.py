@@ -1,0 +1,269 @@
+#!/usr/bin/env python3
+"""Build the chapter-1 -> chapter-2 bridge slide (how the two chapters connect)."""
+
+from __future__ import annotations
+
+import subprocess
+from pathlib import Path
+
+from PIL import Image
+from pptx import Presentation
+from pptx.util import Inches
+
+
+OUT = Path(__file__).resolve().parent
+CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+W, H = 1920, 1080
+
+# (tag, title, sub) — same four-beat structure on both sides, so the
+# difference between the two chapters reads as a column-by-column shift.
+LEFT_ROWS = [
+    ("问题", "训练库与目标库分布不同", "库与库之间：空间漂移"),
+    ("方法", "episode 元学习", "LoRA Q/V + FOMAML"),
+    ("适应", "更新参数", "内循环 5 步，改权重"),
+    ("目标", "新数据库少样本", "K = 5 / 20，跨库泛化"),
+]
+RIGHT_ROWS = [
+    ("问题", "同一数据库随时间变化", "同库不同时刻：时间漂移"),
+    ("方法", "上下文池 + 跨注意力", "读取历史 (q, N) 对"),
+    ("适应", "输入条件化", "不更新参数，改输入"),
+    ("目标", "预测时刻前 M 条历史", "在线滚动，随 t 更新"),
+]
+TAG_COLORS = {
+    "问题": ("#eef1f6", "#66738a"),
+    "方法": ("#e8f1ff", "#3f6fb5"),
+    "适应": ("#f0edff", "#6b63c4"),
+    "目标": ("#e6f7ef", "#2f8a6e"),
+}
+
+
+def rows_html(rows: list[tuple[str, str, str]], x: int) -> str:
+    out = []
+    for i, (tag, title, sub) in enumerate(rows):
+        bg, fg = TAG_COLORS[tag]
+        out.append(
+            f'  <div class="row" style="left:{x}px;top:{340 + i * 110}px;">'
+            f'<span class="tag" style="background:{bg};color:{fg};">{tag}</span>'
+            f'<div class="row-title">{title}</div>'
+            f'<div class="row-sub">{sub}</div>'
+            "</div>"
+        )
+    return "\n".join(out)
+
+
+CSS = """
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { width: 3840px; height: 2160px; overflow: hidden; background: #f6f8fc; }
+.stage {
+  position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+  transform: scale(2); transform-origin: top left; overflow: hidden;
+  background: linear-gradient(135deg, #f8f9fd 0%, #f5f7fc 55%, #f1f4fa 100%);
+  color: #1f2a44;
+  font-family: "PingFang SC", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.blob { position: absolute; border-radius: 50%; }
+.blob.a { left: -90px; top: -90px; width: 600px; height: 320px; background: radial-gradient(circle, #ece9ff 0%, rgba(236,233,255,0) 70%); }
+.blob.b { right: -140px; bottom: -120px; width: 700px; height: 360px; background: radial-gradient(circle, #e5f8ef 0%, rgba(229,248,239,0) 70%); }
+.blob.c { right: -80px; top: -80px; width: 480px; height: 260px; background: radial-gradient(circle, #fff0e5 0%, rgba(255,240,229,0) 70%); }
+
+.badge {
+  position: absolute; left: 64px; top: 44px; height: 32px; padding: 0 18px;
+  border-radius: 16px; background: #eef1fb; border: 1px solid #ccd6ec;
+  color: #4f6aa8; font-size: 14px; font-weight: 700; letter-spacing: .5px;
+  display: flex; align-items: center;
+}
+h1 { position: absolute; left: 64px; top: 64px; margin: 0; font-size: 60px; line-height: 1.12; font-weight: 700; letter-spacing: -1px; }
+.subtitle { position: absolute; left: 64px; top: 148px; margin: 0; font-size: 28px; color: #66738a; }
+.rule { position: absolute; left: 64px; top: 198px; width: 1792px; height: 1.5px; background: #d8e0ec; }
+
+.panel { position: absolute; top: 230px; height: 640px; border-radius: 32px; border: 1.6px dashed; z-index: 0; }
+.panel.left { left: 64px; width: 720px; background: linear-gradient(180deg,#f8f6ff 0%,#f2f7ff 100%); border-color: #cfc8f0; }
+.panel.right { left: 1136px; width: 720px; background: linear-gradient(180deg,#f3fcf8 0%,#f1faff 100%); border-color: #bfe4d3; }
+
+.panel-title {
+  position: absolute; top: 250px; height: 52px; border-radius: 26px;
+  color: #fff; font-size: 25px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 5px 14px rgba(27,42,74,.12); z-index: 3;
+}
+.panel-title.left { left: 92px; width: 340px; background: linear-gradient(90deg,#948ae0,#6e7ccb); }
+.panel-title.right { left: 1164px; width: 340px; background: linear-gradient(90deg,#67c2a6,#3f9c86); }
+
+.row {
+  position: absolute; width: 664px; height: 100px; background: #fff;
+  border: 1.2px solid #d8e0ec; border-radius: 20px;
+  box-shadow: 0 5px 14px rgba(27,42,74,.08); z-index: 2;
+}
+.tag {
+  position: absolute; left: 20px; top: 18px; width: 66px; height: 30px;
+  border-radius: 15px; font-size: 15px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.row-title { position: absolute; left: 106px; top: 15px; font-size: 22px; font-weight: 600; white-space: nowrap; }
+.row-sub { position: absolute; left: 106px; top: 50px; font-size: 17px; color: #66738a; white-space: nowrap; }
+
+.bridge {
+  position: absolute; left: 824px; top: 340px; width: 272px; height: 460px;
+  background: #fff; border: 1.2px solid #d8e0ec; border-radius: 24px;
+  box-shadow: 0 6px 18px rgba(27,42,74,.10); z-index: 3; padding: 0 20px;
+}
+.bridge .b-title { position: absolute; left: 20px; top: 16px; font-size: 23px; font-weight: 700; }
+.bridge .b-sub { position: absolute; left: 20px; top: 52px; font-size: 14px; color: #66738a; }
+.pill {
+  position: absolute; left: 20px; width: 232px; height: 44px;
+  border-radius: 12px; background: linear-gradient(135deg,#fff,#eef5ff);
+  border: 1.2px solid #c9daf2; font-size: 18px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.bridge .divider { position: absolute; left: 20px; top: 268px; width: 232px; height: 1.5px; background: #e2e8f2; }
+.bridge .b-change { position: absolute; left: 20px; top: 288px; font-size: 14px; font-weight: 700; color: #d98258; letter-spacing: .5px; }
+.bridge .b-a { position: absolute; left: 20px; top: 314px; font-size: 17px; color: #66738a; }
+.bridge .b-arrow { position: absolute; left: 20px; top: 344px; font-size: 17px; color: #95a1b5; }
+.bridge .b-b { position: absolute; left: 20px; top: 366px; font-size: 18px; font-weight: 600; color: #6b63c4; }
+.bridge .b-foot { position: absolute; left: 20px; top: 412px; font-size: 14px; color: #66738a; }
+
+.band {
+  position: absolute; left: 64px; top: 890px; width: 1792px; height: 150px;
+  background: #fff; border: 1.2px solid #d8e0ec; border-radius: 24px;
+  box-shadow: 0 6px 18px rgba(27,42,74,.08); z-index: 3;
+}
+.band-title {
+  position: absolute; left: 28px; top: 30px; width: 140px; height: 48px;
+  border-radius: 24px; background: linear-gradient(90deg,#948ae0,#6e7ccb);
+  color: #fff; font-size: 22px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 5px 14px rgba(27,42,74,.12);
+}
+.band-line1 { position: absolute; left: 216px; top: 26px; font-size: 24px; font-weight: 600; }
+.band-line2 { position: absolute; left: 216px; top: 66px; font-size: 24px; font-weight: 600; }
+.band-shared { position: absolute; left: 216px; top: 110px; font-size: 15px; color: #66738a; }
+.band-line1 .k { color: #6e7ccb; }
+.band-line2 .k { color: #3f9c86; }
+
+.connectors { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; z-index: 4; pointer-events: none; }
+.connectors > path { fill: none; stroke: #6b7890; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
+.connectors marker path { fill: #6b7890; stroke: none; }
+.connectors .arrow { marker-end: url(#arrow); }
+"""
+
+
+html = f"""<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><style>{CSS}</style></head>
+<body>
+<div class="stage">
+  <div class="blob a"></div><div class="blob b"></div><div class="blob c"></div>
+
+  <div class="badge">章节衔接</div>
+  <h1>从空间漂移走向时间漂移</h1>
+  <p class="subtitle">同一套模型骨架，换一种适应方式</p>
+  <div class="rule"></div>
+
+  <div class="panel left"></div>
+  <div class="panel right"></div>
+  <div class="panel-title left">第一章 · 跨库空间漂移</div>
+  <div class="panel-title right">第二章 · 同库时间漂移</div>
+
+{rows_html(LEFT_ROWS, 92)}
+{rows_html(RIGHT_ROWS, 1164)}
+
+  <div class="bridge">
+    <div class="b-title">共享骨架</div>
+    <div class="b-sub">两章共用，不重复训练</div>
+    <div class="pill" style="top:96px;">查询编码器</div>
+    <div class="pill" style="top:148px;">预测头</div>
+    <div class="pill" style="top:200px;">PG 锚点</div>
+    <div class="divider"></div>
+    <div class="b-change">唯一的改变</div>
+    <div class="b-a">第一章：更新参数</div>
+    <div class="b-arrow">↓</div>
+    <div class="b-b">第二章：输入上下文</div>
+    <div class="b-foot">骨架不变，只换适应对象</div>
+  </div>
+
+  <div class="band">
+    <div class="band-title">一句话</div>
+    <div class="band-line1"><span class="k">第一章</span>　换库 → 学「怎么更新参数」</div>
+    <div class="band-line2"><span class="k">第二章</span>　同库随时间 → 学「怎么用上下文适应」</div>
+    <div class="band-shared">共享：查询编码器 / 预测头 / PG 锚点　·　只在「适应」这一格换做法</div>
+  </div>
+
+  <svg class="connectors" viewBox="0 0 1920 1080">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+        <path d="M0 0L10 5L0 10Z"/>
+      </marker>
+    </defs>
+    <path class="arrow" d="M784 570H824"/>
+    <path class="arrow" d="M1096 570H1136"/>
+  </svg>
+</div>
+</body></html>
+"""
+
+html_path = OUT / "a1-bridge-slide.html"
+png_path = OUT / "a1-bridge-slide.png"
+preview_path = OUT / "a1-bridge-slide-preview.png"
+pptx_path = OUT / "A1-bridge-slide.pptx"
+deck_path = OUT / "A1-ch1-bridge-ch2-slides.pptx"
+
+html_path.write_text(html, encoding="utf-8")
+
+subprocess.run(
+    [
+        CHROME,
+        "--headless",
+        "--disable-gpu",
+        "--hide-scrollbars",
+        "--window-size=3840,2160",
+        f"--screenshot={png_path}",
+        f"file://{html_path}",
+    ],
+    check=True,
+    capture_output=True,
+)
+
+Image.open(png_path).convert("RGB").resize((W, H), Image.LANCZOS).save(preview_path)
+
+
+def add_picture_slide(presentation: Presentation, source: Path, descr: str, notes: str) -> None:
+    slide = presentation.slides.add_slide(presentation.slide_layouts[6])
+    picture = slide.shapes.add_picture(
+        str(source), 0, 0, width=presentation.slide_width, height=presentation.slide_height
+    )
+    picture._element.nvPicPr.cNvPr.set("descr", descr)
+    slide.notes_slide.notes_text_frame.text = notes
+
+
+BRIDGE_NOTES = (
+    "本页是第一章到第二章的衔接页。两章共用同一套模型骨架：查询编码器、预测头、PG 锚点。"
+    "唯一的改变在「适应」这一格：第一章靠 episode 元学习更新参数（LoRA Q/V + FOMAML，内循环 5 步），"
+    "第二章改为输入条件化——上下文池 + 跨注意力，不更新参数。"
+    "因此第一章面向跨库空间漂移，第二章面向同库时间漂移。目标库不参与训练/选择。"
+)
+
+single = Presentation()
+single.slide_width = Inches(13.333)
+single.slide_height = Inches(7.5)
+add_picture_slide(single, png_path, "A1 两章衔接：从空间漂移走向时间漂移", BRIDGE_NOTES)
+single.core_properties.title = "A1 两章衔接"
+single.core_properties.author = "williamlin"
+single.save(pptx_path)
+
+deck = Presentation()
+deck.slide_width = Inches(13.333)
+deck.slide_height = Inches(7.5)
+for png, descr, notes in [
+    (OUT / "a1-slide.png", "A1 跨库空间漂移架构", "第一章：跨库空间漂移。"),
+    (png_path, "A1 两章衔接：从空间漂移走向时间漂移", BRIDGE_NOTES),
+    (OUT / "a1-time-slide.png", "A1 时间漂移适应", "第二章：同库时间漂移。"),
+]:
+    add_picture_slide(deck, png, descr, notes)
+deck.core_properties.title = "A1 两章架构（含衔接页）"
+deck.core_properties.author = "williamlin"
+deck.save(deck_path)
+
+for path in (html_path, png_path, preview_path, pptx_path, deck_path):
+    print(path)

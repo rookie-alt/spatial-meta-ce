@@ -1,0 +1,61 @@
+<Slide style={{ width: 1280, height: 720, padding: 60, background: '#FFFFFF', fontFamily: 'Source Han Sans SC', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Box style={{ height: 68, borderBottom: '1px solid #D6DCE5', justifyContent: 'space-between' }}>
+    <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A2230' }}>轻量查询编码与模型设计</Text>
+      <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>05 / 10</Text>
+    </Box>
+    <Text style={{ fontSize: 16, color: '#4A5568' }}>以变长集合编码适配异构表结构，以PG估计为锚点学习残差修正量</Text>
+  </Box>
+
+  <Box style={{ height: 460, flexDirection: 'column', gap: 24 }}>
+    <Box style={{ height: 360, flexDirection: 'row', gap: 24 }}>
+      <Box style={{ width: 740, height: 360, border: '1px solid #D6DCE5', borderRadius: 8, padding: 14, background: '#F7F9FC', gap: 6 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>四组变长输入 → 定长查询表示</Text>
+        <Box style={{ height: 58, flexDirection: 'row', gap: 10 }}>
+          <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 18, color: '#1A2230', textAlign: 'center' }}>连接列直方图</Text></Box>
+          <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 18, color: '#1A2230', textAlign: 'center' }}>Fanout 特征</Text></Box>
+          <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 18, color: '#1A2230', textAlign: 'center' }}>表级统计</Text></Box>
+          <Box style={{ flex: 1, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 18, color: '#1A2230', textAlign: 'center' }}>过滤条件</Text></Box>
+        </Box>
+        <Text style={{ fontSize: 18, color: '#3D7BD9', textAlign: 'center', lineHeight: 1.0 }}>↓</Text>
+        <Box style={{ height: 42, background: '#E8EFF8', borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ fontSize: 20, color: '#0E3F8C', fontWeight: 'bold' }}>各组独立 Token MLP 编码</Text>
+        </Box>
+        <Text style={{ fontSize: 18, color: '#3D7BD9', textAlign: 'center', lineHeight: 1.0 }}>↓</Text>
+        <Box style={{ height: 42, background: '#E8EFF8', borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ fontSize: 20, color: '#0E3F8C', fontWeight: 'bold' }}>掩码池化（mean / max / sum）＋特征拼接</Text>
+        </Box>
+        <Text style={{ fontSize: 18, color: '#3D7BD9', textAlign: 'center', lineHeight: 1.0 }}>↓</Text>
+        <Box style={{ height: 42, background: '#0E3F8C', borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ fontSize: 20, color: '#FFFFFF', fontWeight: 'bold' }}>回归头输出修正量 Δ</Text>
+        </Box>
+        <Text style={{ fontSize: 16, color: '#4A5568', textAlign: 'center' }}>不依赖训练集中的最大表数与列数，增强异构数据库适配能力</Text>
+      </Box>
+
+      <Box style={{ width: 396, height: 360, flexDirection: 'column', gap: 12 }}>
+        <Box style={{ height: 106, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: '14px 20px', justifyContent: 'center', gap: 4 }}>
+          <Text style={{ fontSize: 38, fontWeight: 'bold', color: '#1E4FA8' }}>132,545</Text>
+          <Text style={{ fontSize: 17, color: '#4A5568' }}>模型参数量</Text>
+        </Box>
+        <Box style={{ height: 106, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: '14px 20px', justifyContent: 'center', gap: 4 }}>
+          <Text style={{ fontSize: 38, fontWeight: 'bold', color: '#1E4FA8' }}>约 1 / 80</Text>
+          <Text style={{ fontSize: 17, color: '#4A5568' }}>参数规模约为 PRICE 的八十分之一</Text>
+        </Box>
+        <Box style={{ height: 112, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: '12px 20px', justifyContent: 'center', gap: 4 }}>
+          <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E4FA8' }}>约 20 分钟</Text>
+          <Text style={{ fontSize: 16, color: '#4A5568' }}>单张RTX 3090，4000步<br />PRICE：8×A100，约5小时</Text>
+        </Box>
+      </Box>
+    </Box>
+
+    <Box style={{ height: 76, background: '#E8EFF8', borderRadius: 8, padding: '12px 24px', justifyContent: 'center', alignItems: 'center', gap: 4 }}>
+      <Text style={{ fontSize: 24, color: '#0E3F8C', fontWeight: 'bold' }}>预测对数基数 ＝ PG 对数估计 ＋ 修正量 Δ</Text>
+      <Text style={{ fontSize: 16, color: '#4A5568' }}>轻量化设计降低训练与部署门槛，但最终收益仍需结合目标库精度验证</Text>
+    </Box>
+  </Box>
+
+  <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>魏林｜硕士学位论文中期汇报</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>当前进度</Text>
+  </Box>
+</Slide>

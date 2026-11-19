@@ -1,0 +1,61 @@
+<Slide style={{ width: 1280, height: 720, padding: 60, background: '#FFFFFF', fontFamily: 'Source Han Sans SC', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Box style={{ height: 68, borderBottom: '1px solid #D6DCE5', justifyContent: 'space-between' }}>
+    <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A2230' }}>总体技术路线与中期进展</Text>
+      <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>04 / 10</Text>
+    </Box>
+    <Text style={{ fontSize: 16, color: '#4A5568' }}>离线学习共享初始化，目标域少样本适应，最终在独立数据库上评估精度与开销</Text>
+  </Box>
+
+  <Box style={{ height: 460, flexDirection: 'column', gap: 24 }}>
+    <Box style={{ height: 120, flexDirection: 'row', alignItems: 'stretch', gap: 10 }}>
+      <Box style={{ flex: 1, background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: 18, justifyContent: 'center', gap: 8 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>多源数据库</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568' }}>查询与统计特征<br />数据库级无交叉划分</Text>
+      </Box>
+      <Text style={{ fontSize: 26, color: '#3D7BD9', alignSelf: 'center' }}>→</Text>
+      <Box style={{ flex: 1, background: '#E8EFF8', border: '1px solid #3D7BD9', borderRadius: 8, padding: 18, justifyContent: 'center', gap: 8 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>离线训练</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568' }}>ERM 与 FOMAML<br />学习共享模型参数</Text>
+      </Box>
+      <Text style={{ fontSize: 26, color: '#3D7BD9', alignSelf: 'center' }}>→</Text>
+      <Box style={{ flex: 1, background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: 18, justifyContent: 'center', gap: 8 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>目标域适应</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568' }}>少量支持查询微调<br />K=0 / 5 / … / 100</Text>
+      </Box>
+      <Text style={{ fontSize: 26, color: '#3D7BD9', alignSelf: 'center' }}>→</Text>
+      <Box style={{ flex: 1, background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: 18, justifyContent: 'center', gap: 8 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>独立测试</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568' }}>unique-query Q95<br />兼顾适应与推理开销</Text>
+      </Box>
+    </Box>
+
+    <Box style={{ height: 316, flexDirection: 'row', gap: 24 }}>
+      <Table
+        style={{ width: 790, height: 316 }}
+        defaultTextStyle={{ fontSize: 18, textAlign: 'left', color: '#1A2230', fontFamily: 'Source Han Sans SC' }}
+        defaultCellStyle={{ padding: 10, border: { left: { width: 1, color: '#D6DCE5' }, right: { width: 1, color: '#D6DCE5' }, top: { width: 1, color: '#D6DCE5' }, bottom: { width: 1, color: '#D6DCE5' } } }}
+        cells={[
+          [{ text: '研究模块', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#0E3F8C' } } }, { text: '已完成内容', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#0E3F8C' } } }, { text: '状态', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#0E3F8C' } } }],
+          ['数据与协议', '数据库划分、查询去重、统一评价口径', { text: '已建立', textStyle: { bold: true, color: '#1E4FA8' }, cellStyle: { background: { color: '#F0F5FC' } } }],
+          ['模型与训练', '轻量编码器、ERM 与 FOMAML', { text: '已实现', textStyle: { bold: true, color: '#1E4FA8' }, cellStyle: { background: { color: '#F0F5FC' } } }],
+          ['跨库评估', '四库零样本、三库少样本对照', { text: '已有结果', textStyle: { bold: true, color: '#1E4FA8' }, cellStyle: { background: { color: '#F0F5FC' } } }],
+          ['方法改进', '结构对照、适应分析与误差诊断', '持续完善'],
+          ['时间漂移', '近期反馈与上下文校准方案', '待实现']
+        ]}
+      />
+
+      <Box style={{ width: 346, height: 316, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: 18, gap: 10 }}>
+        <Text style={{ fontSize: 18, color: '#4A5568', fontWeight: 'bold' }}>论文全部工作</Text>
+        <Text style={{ fontSize: 66, color: '#1E4FA8', fontWeight: 'bold', lineHeight: 1.1 }}>60<span style={{ fontSize: 30 }}>%</span></Text>
+        <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.45 }}>第一部分：主体已完成<br />第二部分：方案设计约30%<br />学术论文：初稿1篇，修改中</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568', lineHeight: 1.4 }}>当前重点是完善跨库精度与少样本适应，而非扩展新的研究分支。</Text>
+      </Box>
+    </Box>
+  </Box>
+
+  <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>魏林｜硕士学位论文中期汇报</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>当前进度</Text>
+  </Box>
+</Slide>

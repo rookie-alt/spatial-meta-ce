@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { width: 3840px; height: 2160px; overflow: hidden; background: #f6f8fc; }
+.stage {
+  position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+  transform: scale(2); transform-origin: top left; overflow: hidden;
+  background: linear-gradient(135deg, #f8f9fd 0%, #f5f7fc 55%, #f1f4fa 100%);
+  color: #1f2a44;
+  font-family: "PingFang SC", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.blob { position: absolute; border-radius: 50%; }
+.blob.a { left: -90px; top: -90px; width: 600px; height: 320px; background: radial-gradient(circle, #ece9ff 0%, rgba(236,233,255,0) 70%); }
+.blob.b { right: -140px; bottom: -120px; width: 700px; height: 360px; background: radial-gradient(circle, #e5f8ef 0%, rgba(229,248,239,0) 70%); }
+.blob.c { right: -80px; top: -80px; width: 480px; height: 260px; background: radial-gradient(circle, #fff0e5 0%, rgba(255,240,229,0) 70%); }
+
+.badge {
+  position: absolute; left: 64px; top: 44px; height: 32px; padding: 0 18px;
+  border-radius: 16px; background: #fff1e6; border: 1px solid #f1d2bc;
+  color: #d98258; font-size: 14px; font-weight: 700; letter-spacing: .5px;
+  display: flex; align-items: center;
+}
+h1 { position: absolute; left: 64px; top: 64px; margin: 0; font-size: 64px; line-height: 1.12; font-weight: 700; letter-spacing: -1px; }
+.subtitle { position: absolute; left: 64px; top: 148px; margin: 0; font-size: 28px; color: #66738a; }
+.rule { position: absolute; left: 64px; top: 198px; width: 1792px; height: 1.5px; background: #d8e0ec; }
+
+.relation {
+  position: absolute; left: 1310px; top: 38px; width: 546px; height: 142px;
+  background: #fff; border: 1.2px solid #d8e0ec; border-radius: 24px;
+  box-shadow: 0 6px 18px rgba(27,42,74,.08); padding: 14px 20px;
+}
+.relation .ch { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 600; }
+.relation .ch1 { color: #66738a; }
+.relation .ch2 { color: #d98258; }
+.relation .arrow { color: #95a1b5; }
+.relation .legend { display: flex; align-items: center; gap: 16px; margin-top: 8px; font-size: 13px; color: #66738a; }
+.swatch { width: 14px; height: 14px; border-radius: 3px; display: inline-block; margin-right: 6px; vertical-align: middle; }
+.swatch.blue { background: #eaf3ff; border: 1.2px solid #4f78b8; }
+.swatch.orange { background: #fff8e4; border: 1.5px dashed #b8892f; }
+.relation .line { margin-top: 5px; font-size: 14px; color: #66738a; white-space: nowrap; }
+
+.panel { position: absolute; top: 220px; height: 680px; border-radius: 32px; border: 1.6px dashed; z-index: 0; }
+.panel.ctx { left: 64px; width: 520px; background: linear-gradient(180deg,#f8f6ff 0%,#f2f7ff 100%); border-color: #cfc8f0; }
+.panel.query { left: 610px; width: 740px; background: linear-gradient(180deg,#f3fcf8 0%,#f1faff 100%); border-color: #bfe4d3; }
+.panel.out { left: 1376px; width: 480px; background: linear-gradient(180deg,#fff9f3 0%,#fff4f0 100%); border-color: #f1d2bc; }
+
+.panel-title {
+  position: absolute; top: 244px; height: 52px; border-radius: 26px;
+  color: #fff; font-size: 26px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 5px 14px rgba(27,42,74,.12); z-index: 3;
+}
+.panel-title.ctx { left: 92px; width: 300px; background: linear-gradient(90deg,#948ae0,#6e7ccb); }
+.panel-title.query { left: 638px; width: 360px; background: linear-gradient(90deg,#67c2a6,#3f9c86); }
+.panel-title.out { left: 1404px; width: 300px; background: linear-gradient(90deg,#eda477,#d98258); }
+
+.card {
+  position: absolute; background: #fff; border: 1.2px solid #d8e0ec;
+  border-radius: 20px; box-shadow: 0 5px 14px rgba(27,42,74,.08); z-index: 2;
+}
+.card .title { position: absolute; font-weight: 600; white-space: nowrap; }
+.card .sub { position: absolute; color: #66738a; white-space: nowrap; }
+.card.ctx { background: #fff8e4; border: 1.5px dashed #ead7a0; }
+.card.reuse { background: linear-gradient(135deg,#fff,#eef5ff); border: 1.2px solid #c9daf2; }
+
+.card.context { width: 400px; height: 90px; }
+.card.context .title { left: 24px; top: 14px; font-size: 22px; }
+.card.context .sub { left: 24px; top: 48px; font-size: 16px; }
+.card.tokens { width: 400px; height: 80px; }
+.card.tokens .title { left: 24px; top: 12px; font-size: 20px; }
+.card.tokens .sub { left: 24px; top: 44px; font-size: 16px; }
+.card.stack { width: 260px; height: 70px; }
+.card.stack .title { left: 22px; top: 8px; font-size: 20px; }
+.card.stack .sub { left: 22px; top: 38px; font-size: 16px; }
+.card.cross { width: 300px; height: 120px; }
+.card.cross .title { left: 24px; top: 14px; font-size: 26px; }
+.card.cross .sub { left: 24px; font-size: 16px; }
+.card.concat { width: 300px; height: 80px; }
+.card.concat .title { left: 22px; top: 12px; font-size: 24px; }
+.card.concat .sub { left: 22px; top: 44px; font-size: 16px; }
+.card.callout2 { width: 420px; height: 90px; background: #fff1e6; border: 1.2px solid #f1d2bc; box-shadow: none; }
+.card.callout2 .title { left: 24px; top: 12px; font-size: 22px; color: #d98258; }
+.card.callout2 .sub { left: 24px; top: 44px; font-size: 17px; }
+.card.head { width: 420px; height: 120px; }
+.card.head .title { left: 26px; top: 14px; font-size: 26px; }
+.card.head .sub { left: 26px; top: 50px; font-size: 20px; }
+.card.head .note { position: absolute; left: 26px; top: 84px; font-size: 16px; color: #66738a; }
+.card.gate { width: 200px; height: 70px; }
+.card.gate .title { left: 20px; top: 10px; font-size: 24px; font-family: "SF Mono", Menlo, monospace; }
+.card.gate .sub { left: 20px; top: 42px; font-size: 16px; }
+.card.anchor { width: 180px; height: 70px; }
+.card.anchor .title { left: 20px; top: 10px; font-size: 20px; }
+.card.anchor .sub { left: 20px; top: 40px; font-size: 16px; font-family: "SF Mono", Menlo, monospace; }
+.card.final { width: 420px; height: 100px; background: linear-gradient(135deg,#f3fcf7,#dff3e9); border: 1.2px solid #9fd6bc; }
+.card.final .formula { position: absolute; left: 24px; top: 18px; font-family: "SF Mono", Menlo, monospace; font-size: 22px; font-weight: 600; }
+.card.final .sub { left: 24px; top: 66px; font-size: 16px; }
+
+.timeline { position: absolute; left: 90px; top: 740px; width: 400px; height: 80px; z-index: 2; }
+.timeline .axis { position: absolute; left: 0; top: 28px; width: 400px; height: 2px; background: #cfd8e6; }
+.timeline .dot { position: absolute; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid #3f9c86; }
+.timeline .label { position: absolute; top: 0; font-size: 16px; color: #66738a; white-space: nowrap; }
+.timeline .label.right { right: 0; }
+
+.label { position: absolute; color: #66738a; font-size: 16px; font-weight: 500; z-index: 4; white-space: nowrap; }
+.label.center { text-align: center; }
+
+.meta-band {
+  position: absolute; left: 64px; top: 920px; width: 1792px; height: 120px;
+  background: #fff; border: 1.2px solid #d8e0ec; border-radius: 24px;
+  box-shadow: 0 6px 18px rgba(27,42,74,.08); z-index: 3;
+}
+.meta-title {
+  position: absolute; left: 20px; top: 24px; width: 180px; height: 48px;
+  border-radius: 24px; background: linear-gradient(90deg,#eda477,#d98258);
+  color: #fff; font-size: 24px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 5px 14px rgba(27,42,74,.12);
+}
+.meta {
+  position: absolute; top: 16px; width: 300px; height: 88px;
+  background: #fff; border: 1.2px solid #d8e0ec; border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(27,42,74,.06); padding: 10px 18px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.meta .step { font-size: 12px; color: #4f78b8; font-weight: 700; letter-spacing: 1px; margin-bottom: 2px; }
+.meta .title { font-size: 22px; font-weight: 600; white-space: nowrap; }
+.meta .sub { font-size: 16px; color: #66738a; margin-top: 4px; white-space: nowrap; }
+.meta-arrow { position: absolute; top: 54px; width: 30px; text-align: center; color: #6b7890; font-size: 24px; }
+.meta-loop {
+  position: absolute; left: 1700px; top: 28px; width: 140px; height: 32px;
+  border-radius: 16px; background: #fff1e6; border: 1px solid #f1d2bc;
+  color: #d98258; font-size: 15px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.connectors { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; z-index: 1; pointer-events: none; }
+.connectors > path { fill: none; stroke: #6b7890; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.connectors marker path { fill: #6b7890; stroke: none; }
+.connectors .arrow { marker-end: url(#arrow); }
+</style></head>
+<body>
+<div class="stage">
+  <div class="blob a"></div><div class="blob b"></div><div class="blob c"></div>
+
+  <div class="badge">第二章 · 时间漂移</div>
+  <h1>A1 时间漂移适应</h1>
+  <p class="subtitle">上下文记忆 + 跨注意力 + PG 残差锚</p>
+  <div class="rule"></div>
+
+  <div class="relation">
+    <div class="ch"><span class="ch1">Ch.1 跨库空间漂移</span><span class="arrow">→</span><span class="ch2">Ch.2 同库时间漂移</span></div>
+    <div class="legend">
+      <span><span class="swatch blue"></span>第一章已有</span>
+      <span><span class="swatch orange"></span>第二章新增</span>
+    </div>
+    <div class="line">复用：查询编码 / 掩码池化 / 预测头 / PG 锚点</div>
+    <div class="line">新增：上下文池 / 上下文编码器 / 跨注意力 / 拼接 / 门控</div>
+  </div>
+
+  <div class="panel ctx"></div>
+  <div class="panel query"></div>
+  <div class="panel out"></div>
+  <div class="panel-title ctx">① 历史上下文</div>
+  <div class="panel-title query">② 查询与跨注意力</div>
+  <div class="panel-title out">③ 预测与锚定</div>
+
+  <div class="card ctx tokens" style="left:90px;top:340px;">
+    <div class="title">context tokens</div>
+    <div class="sub">M × d · 供跨注意力读取</div>
+  </div>
+  <div class="card ctx context" style="left:90px;top:470px;">
+    <div class="title">上下文编码器</div>
+    <div class="sub">参数独立 · 输出 context tokens</div>
+  </div>
+  <div class="card ctx context" style="left:90px;top:600px;">
+    <div class="title">上下文池 C</div>
+    <div class="sub">已观测 (q, N) 对 · 预测时刻前 M 条</div>
+  </div>
+
+  <div class="timeline">
+    <div class="axis"></div>
+    <div class="dot" style="left:0;"></div>
+    <div class="dot" style="left:180px;"></div>
+    <div class="dot" style="left:386px;"></div>
+    <div class="label" style="left:0;">历史窗口 t−M … t−1</div>
+    <div class="label right">预测 t</div>
+  </div>
+
+  <div class="card reuse stack" style="left:640px;top:470px;">
+    <div class="title">查询 q</div><div class="sub">连接 / 扇出 / 表 / 过滤</div>
+  </div>
+  <div class="card reuse stack" style="left:640px;top:560px;">
+    <div class="title">查询编码器</div><div class="sub">4×MLP · 64 维</div>
+  </div>
+  <div class="card reuse stack" style="left:640px;top:650px;">
+    <div class="title">掩码池化</div><div class="sub">分组均值 / 最大值</div>
+  </div>
+  <div class="card reuse stack" style="left:640px;top:740px;">
+    <div class="title">query token x</div><div class="sub">64 维</div>
+  </div>
+
+  <div class="card ctx cross" style="left:980px;top:330px;">
+    <div class="title">跨注意力</div>
+    <div class="sub" style="top:56px;">Q: query token</div>
+    <div class="sub" style="top:78px;">K,V: context token</div>
+  </div>
+  <div class="card ctx concat" style="left:980px;top:490px;">
+    <div class="title">拼接 [x;c]</div><div class="sub">64 + 64 = 128</div>
+  </div>
+
+  <div class="label" style="left:1145px;top:462px;">c (64 维)</div>
+  <div class="label center" style="left:1310px;top:512px;width:60px;">128 维</div>
+
+  <div class="card callout2" style="left:1400px;top:330px;">
+    <div class="title">时间漂移</div>
+    <div class="sub">历史上下文只修正残差，不改变 PG 锚点</div>
+  </div>
+  <div class="card reuse head" style="left:1400px;top:470px;">
+    <div class="title">预测头</div>
+    <div class="sub">128 → 64 → 1</div>
+    <div class="note">末层零初始化</div>
+  </div>
+  <div class="card ctx gate" style="left:1400px;top:620px;">
+    <div class="title">g(q)·Δ</div><div class="sub">门控残差</div>
+  </div>
+  <div class="card reuse anchor" style="left:1640px;top:620px;">
+    <div class="title">PG 锚点</div><div class="sub">log N_PG</div>
+  </div>
+  <div class="card final" style="left:1400px;top:740px;">
+    <div class="formula">log N = log N_PG + g(q)·Δ</div>
+    <div class="sub">初始输出 = PG</div>
+  </div>
+  <div class="label" style="left:1400px;top:866px;font-size:16px;">目标库不参与训练/选择</div>
+
+  <div class="meta-band">
+    <div class="meta-title">④ 时间漂移</div>
+    <div class="meta" style="left:300px;">
+      <div class="step">STEP 1</div>
+      <div class="title">观测历史</div>
+      <div class="sub">预测时刻前 M 条 (q,N)</div>
+    </div>
+    <div class="meta-arrow" style="left:610px;">→</div>
+    <div class="meta" style="left:660px;">
+      <div class="step">STEP 2</div>
+      <div class="title">编码上下文</div>
+      <div class="sub">参数独立 → context tokens</div>
+    </div>
+    <div class="meta-arrow" style="left:970px;">→</div>
+    <div class="meta" style="left:1020px;">
+      <div class="step">STEP 3</div>
+      <div class="title">跨注意力</div>
+      <div class="sub">query token 读取 context</div>
+    </div>
+    <div class="meta-arrow" style="left:1330px;">→</div>
+    <div class="meta" style="left:1380px;">
+      <div class="step">STEP 4</div>
+      <div class="title">残差预测</div>
+      <div class="sub">[x;c] → head；PG 锚定</div>
+    </div>
+    <div class="meta-loop">↻ 在线更新</div>
+  </div>
+
+  <svg class="connectors" viewBox="0 0 1920 1080">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+        <path d="M0 0L10 5L0 10Z"/>
+      </marker>
+    </defs>
+    <path class="arrow" d="M290 600V560"/>
+    <path class="arrow" d="M290 470V420"/>
+    <path class="arrow" d="M490 380H980"/>
+    <path class="arrow" d="M770 540V560"/>
+    <path class="arrow" d="M770 630V650"/>
+    <path class="arrow" d="M770 720V740"/>
+    <path d="M900 775H940V430"/>
+    <path class="arrow" d="M940 530H980"/>
+    <path class="arrow" d="M940 430H980"/>
+    <path class="arrow" d="M1130 450V490"/>
+    <path class="arrow" d="M1280 530H1400"/>
+    <path class="arrow" d="M1500 590V620"/>
+    <path class="arrow" d="M1500 690V740"/>
+    <path class="arrow" d="M1730 690V740"/>
+  </svg>
+</div>
+</body></html>

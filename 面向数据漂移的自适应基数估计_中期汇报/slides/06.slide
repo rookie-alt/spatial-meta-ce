@@ -1,0 +1,68 @@
+<Slide style={{ width: 1280, height: 720, padding: 60, background: '#FFFFFF', fontFamily: 'Source Han Sans SC', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Box style={{ height: 68, borderBottom: '1px solid #D6DCE5', justifyContent: 'space-between' }}>
+    <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A2230' }}>实验设置与评价方法</Text>
+      <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>06 / 10</Text>
+    </Box>
+    <Text style={{ fontSize: 16, color: '#4A5568' }}>基于PRICE公开数据，采用数据库级隔离与unique-query评价口径</Text>
+  </Box>
+
+  <Box style={{ height: 460, flexDirection: 'column', gap: 24 }}>
+    <Box style={{ height: 130, flexDirection: 'row', gap: 24 }}>
+      <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: 12, justifyContent: 'center', gap: 2 }}>
+        <Text style={{ fontSize: 42, fontWeight: 'bold', color: '#1E4FA8', lineHeight: 1.1 }}>23</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230' }}>源训练数据库</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568' }}>训练模型与共享初始化</Text>
+      </Box>
+      <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: 12, justifyContent: 'center', gap: 2 }}>
+        <Text style={{ fontSize: 42, fontWeight: 'bold', color: '#1E4FA8', lineHeight: 1.1 }}>3</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230' }}>源验证数据库</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568' }}>Chembl / Legalacts / Telstra</Text>
+      </Box>
+      <Box style={{ flex: 1, background: '#F0F5FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: 12, justifyContent: 'center', gap: 2 }}>
+        <Text style={{ fontSize: 42, fontWeight: 'bold', color: '#1E4FA8', lineHeight: 1.1 }}>4</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230' }}>目标测试数据库</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568' }}>IMDB / STATS / Genome / ErgastF1</Text>
+      </Box>
+    </Box>
+
+    <Box style={{ height: 306, flexDirection: 'row', gap: 24 }}>
+      <Box style={{ flex: 1, border: '1px solid #D6DCE5', borderRadius: 8, padding: 18, background: '#FFFFFF', gap: 10 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>对照基线与少样本训练</Text>
+        <Box style={{ gap: 6 }}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1E4FA8' }}>对照方法</Text>
+          <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>PG、PRICE参考、轻量ERM、轻量FOMAML</Text>
+        </Box>
+        <Box style={{ gap: 6 }}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1E4FA8' }}>支持集样本预算</Text>
+          <Text style={{ fontSize: 20, color: '#1A2230' }}>K = 0 / 5 / 10 / 20 / 50 / 100</Text>
+        </Box>
+        <Box style={{ gap: 6 }}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1E4FA8' }}>元训练协议</Text>
+          <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>每个meta-step采样4个源库；support前向5步，query计算元损失</Text>
+        </Box>
+      </Box>
+
+      <Box style={{ flex: 1, border: '1px solid #D6DCE5', borderRadius: 8, padding: 14, background: '#F7F9FC', gap: 8 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#0E3F8C' }}>主评价指标与隔离协议</Text>
+        <Box style={{ gap: 6 }}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1E4FA8' }}>估计精度</Text>
+          <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>全量unique-query Q95，越低越好；同时记录推理与适应开销</Text>
+        </Box>
+        <Box style={{ gap: 6 }}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1E4FA8' }}>目标库隔离</Text>
+          <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>目标库不参与元训练与选参，仅用于适应与评估</Text>
+        </Box>
+        <Box style={{ gap: 6 }}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1E4FA8' }}>查询隔离</Text>
+          <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.4 }}>支持集与测试集按查询身份隔离，避免泄漏</Text>
+        </Box>
+      </Box>
+    </Box>
+  </Box>
+
+  <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>魏林｜硕士学位论文中期汇报</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>当前进度</Text>
+  </Box>
+</Slide>

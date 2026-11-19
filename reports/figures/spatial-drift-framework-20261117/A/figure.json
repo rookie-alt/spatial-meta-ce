@@ -1,0 +1,10 @@
+{
+  "content_status": "protocol-design-not-results",
+  "print_width": 1800,
+  "palette": "original",
+  "labels": {},
+  "components": {},
+  "elements": {},
+  "caption": "空间漂移下的跨数据库少样本基数估计框架（协议 125 路线）。本图只表示协议设计：源域元训练、FOMAML 内/外循环、目标域支持集适应与不相交唯一查询评估。目标评估尚未运行，不含任何实测结果。",
+  "figure_note": "Protocol-design schematic for the spatial-meta-ce protocol 125 route (official 26-database training split, no held-out source validation, 4 target databases held out). No measured results, no fake charts. See README.md for the frozen recipe."
+}

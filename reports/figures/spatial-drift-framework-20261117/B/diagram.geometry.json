@@ -1,0 +1,4169 @@
+{
+  "coordinate_space": "svg-viewbox",
+  "fonts": [
+    "VividSource-Carlito-Bold",
+    "VividSource-Arimo-Bold",
+    "VividSource-Carlito-Regular"
+  ],
+  "texts": [
+    {
+      "text": "Embedding",
+      "box": [
+        53.24301147460943,
+        36.071044921875,
+        136.71005249023438,
+        54.0965576171875
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Embedding",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Layer",
+      "box": [
+        141.14303588867188,
+        36.071044921875,
+        181.27542114257812,
+        54.0965576171875
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Layer",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Transformer",
+      "box": [
+        42.84304809570318,
+        89.57098388671864,
+        133.92239379882812,
+        107.59643554687489
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Transformer",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Block",
+      "box": [
+        137.89303588867188,
+        89.57098388671864,
+        178.01809692382812,
+        107.59643554687489
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Block",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "1",
+      "box": [
+        182.26303100585938,
+        89.57098388671864,
+        191.39899158477783,
+        107.59646224975575
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "1",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Transformer",
+      "box": [
+        41.47302246093756,
+        157.09088134765614,
+        132.55239868164062,
+        175.1163330078124
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Transformer",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Block",
+      "box": [
+        136.52310180664062,
+        157.09088134765614,
+        176.64810180664062,
+        175.1163330078124
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Block",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "N",
+      "box": [
+        180.89303588867188,
+        157.09088134765614,
+        192.75746250152588,
+        175.11635971069325
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "N",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "LM",
+      "box": [
+        61.912994384765625,
+        211.0909423828124,
+        85.16787719726562,
+        229.11639404296864
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "LM",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Head",
+      "box": [
+        89.44302368164062,
+        211.0909423828124,
+        128.34329223632812,
+        229.11639404296864
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Head",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Layer",
+      "box": [
+        132.44302368164062,
+        211.0909423828124,
+        172.57540893554688,
+        229.11639404296864
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Layer",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "…",
+      "box": [
+        112.61658096313477,
+        122.96002197265614,
+        130.64205932617188,
+        135.77501010894764
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "…",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Norm Layer",
+      "box": [
+        255.12393188476562,
+        96.00933837890614,
+        273.1493835449219,
+        182.61004638671864
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Norm Layer",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Feed",
+      "box": [
+        588.2930603027343,
+        45.2640380859375,
+        619.9754333496093,
+        59.909729003906136
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Feed",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Forward",
+      "box": [
+        576.4429626464843,
+        57.637512207031136,
+        631.4777526855468,
+        74.53637695312489
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Forward",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Key (K)",
+      "box": [
+        316.2731018066406,
+        123.17071533203114,
+        362.3863830566406,
+        138.23980712890614
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Key (K)",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Generation",
+      "box": [
+        302.0930480957031,
+        138.2175292968749,
+        376.4994812011719,
+        155.11639404296864
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Generation",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Query (Q)",
+      "box": [
+        305.9430847167969,
+        55.5875244140625,
+        371.5267639160156,
+        72.48638916015614
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Query (Q)",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Generation",
+      "box": [
+        301.5929870605469,
+        71.33752441406239,
+        375.9995422363281,
+        88.23638916015614
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Generation",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Value (V)",
+      "box": [
+        309.1430358886719,
+        193.54071044921864,
+        368.7226867675781,
+        208.60980224609364
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Value (V)",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Generation",
+      "box": [
+        301.8930969238281,
+        209.7141113281249,
+        376.2896423339844,
+        224.35980224609364
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Generation",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Norm Layer",
+      "box": [
+        530.0539245605469,
+        96.18066406249989,
+        548.0793762207031,
+        182.76007080078114
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Norm Layer",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "MoE",
+      "box": [
+        588.9629821777343,
+        221.2441406249999,
+        619.1465759277343,
+        235.88983154296864
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "MoE",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Activation",
+      "box": [
+        573.7129821777343,
+        99.72070312499989,
+        633.0691833496093,
+        113.23980712890614
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "Activation",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "Linear",
+      "box": [
+        584.5230407714843,
+        80.54071044921864,
+        620.3299255371093,
+        94.05981445312489
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "Linear",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "Linear",
+      "box": [
+        584.5230407714843,
+        119.34069824218739,
+        620.3299255371093,
+        132.85980224609364
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "Linear",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "…",
+      "box": [
+        607.3429870605468,
+        154.61407470703114,
+        617.4999217987059,
+        169.25977611541737
+      ],
+      "font": 14.275,
+      "font_runs": [
+        {
+          "text": "…",
+          "font": 14.275,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.274999999999999,
+          "print_font_pt": 9.503358445081163
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.503358445081163
+    },
+    {
+      "text": "(a)",
+      "box": [
+        8.843048095703182,
+        10.0108642578125,
+        28.714416503906307,
+        28.036376953125
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "(a)",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "(b)",
+      "box": [
+        8.463012695312557,
+        275.2409667968749,
+        29.072387695312557,
+        293.26641845703114
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "(b)",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Tensor",
+      "box": [
+        267.5429992675781,
+        300.54095458984364,
+        316.6825256347656,
+        318.5664062499999
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Tensor",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Parallel",
+      "box": [
+        320.7430114746094,
+        300.54095458984364,
+        376.1009826660156,
+        318.5664062499999
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Parallel",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "(TP)",
+      "box": [
+        380.0130310058594,
+        300.54095458984364,
+        409.5863952636719,
+        318.5664062499999
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "(TP)",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Attention",
+      "box": [
+        405.9729919433594,
+        220.7175292968749,
+        468.4064636230469,
+        237.61639404296864
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Attention",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Multi",
+      "box": [
+        399.5730285644531,
+        45.6175537109375,
+        435.7389831542969,
+        62.516418457031136
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Multi",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "-",
+      "box": [
+        435.4629821777344,
+        45.6175537109375,
+        440.30380868911743,
+        62.5164394378661
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "-",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "head",
+      "box": [
+        440.3429870605469,
+        45.6175537109375,
+        473.5294494628906,
+        62.516418457031136
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "head",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Grouped",
+      "box": [
+        406.1430358886719,
+        146.9941406249999,
+        464.0492858886719,
+        161.63983154296864
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Grouped",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Query",
+      "box": [
+        414.7730407714844,
+        159.3675537109374,
+        455.9497375488281,
+        176.26641845703114
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Query",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Data",
+      "box": [
+        416.5630187988281,
+        300.54095458984364,
+        451.6785583496094,
+        318.5664062499999
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Data",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Parallel",
+      "box": [
+        455.7430114746094,
+        300.54095458984364,
+        511.1009826660156,
+        318.5664062499999
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Parallel",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "(DP)",
+      "box": [
+        515.0130310058594,
+        300.54095458984364,
+        547.5923767089844,
+        318.5664062499999
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "(DP)",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Expert",
+      "box": [
+        554.0730285644531,
+        300.54095458984364,
+        602.2799987792968,
+        318.5664062499999
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Expert",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Parallel",
+      "box": [
+        606.4629821777343,
+        300.54095458984364,
+        661.8211364746093,
+        318.5664062499999
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Parallel",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "(EP)",
+      "box": [
+        665.7430114746093,
+        300.54095458984364,
+        695.3163757324218,
+        318.5664062499999
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "(EP)",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Pipeline",
+      "box": [
+        299.0630187988281,
+        456.44097900390614,
+        359.0667419433594,
+        474.4664306640624
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Pipeline",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Parallel",
+      "box": [
+        363.2229919433594,
+        456.44097900390614,
+        418.5796813964844,
+        474.4664306640624
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Parallel",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "(PP)",
+      "box": [
+        422.4930725097656,
+        456.44097900390614,
+        452.8207092285156,
+        474.4664306640624
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "(PP)",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Sequence",
+      "box": [
+        502.2430114746094,
+        456.44097900390614,
+        574.2906188964843,
+        474.4664306640624
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Sequence",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Parallel",
+      "box": [
+        578.2730407714843,
+        456.44097900390614,
+        633.6311950683593,
+        474.4664306640624
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Parallel",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "(SP)",
+      "box": [
+        637.5430603027343,
+        456.44097900390614,
+        667.1164245605468,
+        474.4664306640624
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "(SP)",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Training",
+      "box": [
+        83.07302856445312,
+        280.7409667968749,
+        142.53250122070312,
+        298.76641845703114
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Training",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Steps",
+      "box": [
+        146.52304077148438,
+        280.7409667968749,
+        186.68112182617188,
+        298.76641845703114
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Steps",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Optimizer",
+      "box": [
+        215.19711303710938,
+        338.7186279296874,
+        229.84280395507812,
+        404.3100585937499
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Optimizer",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Input",
+      "box": [
+        56.57299804687506,
+        313.96405029296864,
+        92.01992797851562,
+        328.6097412109374
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Input",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Sequence",
+      "box": [
+        95.84298706054688,
+        313.96405029296864,
+        159.96212768554688,
+        328.6097412109374
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Sequence",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Output",
+      "box": [
+        38.74301147460943,
+        414.8641357421874,
+        86.17568969726562,
+        429.50982666015614
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Output",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Expected",
+      "box": [
+        121.09298706054688,
+        414.1175537109374,
+        181.23892211914062,
+        431.01641845703114
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Expected",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Weight",
+      "box": [
+        28.127105712890682,
+        348.17596435546864,
+        42.77279663085943,
+        395.64007568359364
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Weight",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Error",
+      "box": [
+        125.47714233398438,
+        354.56439208984364,
+        140.12283325195312,
+        388.01007080078114
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Error",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Gradient",
+      "box": [
+        174.50711059570312,
+        343.5662841796874,
+        189.15280151367188,
+        401.63006591796864
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Gradient",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "①",
+      "box": [
+        21.373016357421932,
+        436.6643066406249,
+        34.71609497070318,
+        454.689785003662
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "①",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Forward",
+      "box": [
+        37.37304687500006,
+        440.0440673828124,
+        92.38137817382812,
+        454.68975830078114
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Forward",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "②",
+      "box": [
+        103.91299438476562,
+        436.6643066406249,
+        117.25607299804688,
+        454.689785003662
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "②",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Backward",
+      "box": [
+        119.91299438476562,
+        440.0440673828124,
+        184.56021118164062,
+        454.68975830078114
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Backward",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "③",
+      "box": [
+        194.34298706054688,
+        436.6643066406249,
+        207.68606567382812,
+        454.689785003662
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "③",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Update",
+      "box": [
+        210.34298706054688,
+        440.0440673828124,
+        258.7436828613281,
+        454.68975830078114
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Update",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Inference",
+      "box": [
+        41.79299926757818,
+        464.29095458984364,
+        111.71047973632812,
+        482.3164062499999
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Inference",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "/",
+      "box": [
+        115.80465698242188,
+        464.29095458984364,
+        123.8794174194336,
+        482.31643295288075
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "/",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Serving",
+      "box": [
+        127.84298706054688,
+        464.29095458984364,
+        182.84848022460938,
+        482.3164062499999
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Serving",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Steps",
+      "box": [
+        187.02310180664062,
+        464.29095458984364,
+        227.20846557617188,
+        482.3164062499999
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Steps",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Input",
+      "box": [
+        17.397094726562557,
+        519.1630859374999,
+        32.04278564453131,
+        554.6100463867186
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Input",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Sequence",
+      "box": [
+        29.770507812500057,
+        504.60943603515614,
+        46.66940307617193,
+        568.9300537109374
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Sequence",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Prefill",
+      "box": [
+        74.59298706054688,
+        500.7441406249999,
+        112.92666625976562,
+        515.3898315429686
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Prefill",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Stage",
+      "box": [
+        75.79299926757812,
+        513.1175537109374,
+        112.28646850585938,
+        530.0164184570311
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Stage",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Key",
+      "box": [
+        61.773040771484375,
+        560.5375366210936,
+        85.73916625976562,
+        577.4364318847654
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Key",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "-",
+      "box": [
+        85.71298217773438,
+        560.5375366210936,
+        90.55380868911743,
+        577.4364223480222
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "-",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Value",
+      "box": [
+        90.59298706054688,
+        560.5375366210936,
+        127.78054809570312,
+        577.4364318847654
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Value",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "(KV)",
+      "box": [
+        131.22299194335938,
+        560.5375366210936,
+        159.37265014648438,
+        577.4364318847654
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "(KV)",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Cache",
+      "box": [
+        163.12301635742188,
+        560.5375366210936,
+        202.55068969726562,
+        577.4364318847654
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Cache",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Decode",
+      "box": [
+        150.39309692382812,
+        499.46417236328114,
+        200.29013061523438,
+        514.1098632812499
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Decode",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Stage",
+      "box": [
+        157.26303100585938,
+        511.8375244140624,
+        193.67770385742188,
+        528.7363891601561
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Stage",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Output",
+      "box": [
+        222.57711791992188,
+        513.6213378906249,
+        237.22280883789062,
+        561.1800537109374
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Output",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Sequence",
+      "box": [
+        236.07705688476562,
+        505.3109130859374,
+        250.72274780273438,
+        569.4300537109373
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Sequence",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Parallelism",
+      "box": [
+        401.3930358886719,
+        278.14093017578114,
+        482.6949768066406,
+        296.1663818359374
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Parallelism",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Strategies",
+      "box": [
+        486.7929992675781,
+        278.14093017578114,
+        559.9461975097656,
+        296.1663818359374
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "Strategies",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "GPU1",
+      "box": [
+        268.3930358886719,
+        360.8641357421874,
+        305.6167907714844,
+        375.50982666015614
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "GPU1",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "GPU2",
+      "box": [
+        267.8730773925781,
+        409.89410400390614,
+        305.0968322753906,
+        424.5397949218749
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "GPU2",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "x",
+      "box": [
+        310.7129821777344,
+        326.94415283203114,
+        317.9654207229614,
+        341.58985424041737
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "x",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "=",
+      "box": [
+        355.1430358886719,
+        327.1175537109374,
+        363.0115795135498,
+        344.0164394378661
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "=",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "x",
+      "box": [
+        340.0630798339844,
+        357.41412353515614,
+        347.3155183792114,
+        372.05982494354237
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "x",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "x",
+      "box": [
+        340.5231018066406,
+        407.5975341796874,
+        347.7755403518677,
+        424.4964199066161
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "x",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "GPU1",
+      "box": [
+        419.9129943847656,
+        367.26409912109364,
+        457.1367492675781,
+        381.9097900390624
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "GPU1",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "GPU2",
+      "box": [
+        419.3930969238281,
+        416.29412841796864,
+        456.6167907714844,
+        430.9398193359374
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "GPU2",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Model",
+      "box": [
+        459.7929992675781,
+        329.68756103515614,
+        502.6474914550781,
+        346.5864257812499
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Model",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "GPU1",
+      "box": [
+        554.1230163574219,
+        371.2375488281249,
+        591.3634948730468,
+        388.13641357421864
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "GPU1",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "GPU2",
+      "box": [
+        555.6630554199219,
+        417.77410888671864,
+        592.8868103027343,
+        432.4197998046874
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "GPU2",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "FFN1",
+      "box": [
+        611.8730163574218,
+        372.8741455078124,
+        645.3167419433593,
+        387.51983642578114
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "FFN1",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "FFN2",
+      "box": [
+        611.8730163574218,
+        418.16754150390614,
+        645.3273620605468,
+        435.0664062499999
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "FFN2",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "GPU1",
+      "box": [
+        276.7930603027344,
+        519.1441040039061,
+        314.0168151855469,
+        533.7897949218749
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "GPU1",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "GPU2",
+      "box": [
+        278.3429870605469,
+        563.3975219726561,
+        315.5834655761719,
+        580.2964172363279
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "GPU2",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Layer",
+      "box": [
+        347.0429992675781,
+        485.04412841796864,
+        382.6305847167969,
+        499.6898193359374
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Layer",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "1",
+      "box": [
+        386.2129821777344,
+        485.04412841796864,
+        394.2047472000122,
+        499.68982982635487
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "1",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Layer",
+      "box": [
+        417.1629943847656,
+        484.0975341796874,
+        452.8139343261719,
+        500.99639892578114
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Layer",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "2",
+      "box": [
+        456.3429870605469,
+        484.0975341796874,
+        464.35235500335693,
+        500.9964199066161
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "2",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Micro",
+      "box": [
+        272.8730163574219,
+        476.01409912109364,
+        311.3123474121094,
+        490.6597900390624
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Micro",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "batch",
+      "box": [
+        273.7730407714844,
+        491.7640380859374,
+        310.7003479003906,
+        506.40972900390614
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "batch",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Norm",
+      "box": [
+        600.0430603027343,
+        484.66412353515614,
+        637.5697937011718,
+        499.3098144531249
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Norm",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Sequence",
+      "box": [
+        487.2731018066406,
+        476.3441162109374,
+        551.3921813964844,
+        490.98980712890614
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Sequence",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "token",
+      "box": [
+        500.4930114746094,
+        492.0941162109374,
+        538.1762390136719,
+        506.73980712890614
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "token",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "GPU1",
+      "box": [
+        512.2730407714844,
+        520.5875244140624,
+        549.5135192871094,
+        537.4863891601561
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "GPU1",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "GPU2",
+      "box": [
+        511.7430725097656,
+        563.2941284179686,
+        548.9668273925781,
+        577.9398193359373
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "GPU2",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "(c)",
+      "box": [
+        12.193054199218807,
+        617.120910644531,
+        31.327148437500057,
+        635.1463928222654
+      ],
+      "font": 18.025,
+      "font_runs": [
+        {
+          "text": "(c)",
+          "font": 18.025,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 18.024999999999995,
+          "print_font_pt": 11.999862414892325
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.999862414892325
+    },
+    {
+      "text": "Profiling",
+      "box": [
+        42.26300048828131,
+        622.4409484863279,
+        104.69259643554688,
+        640.4664306640623
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Profiling",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "-",
+      "box": [
+        104.69302368164062,
+        622.4409484863279,
+        110.2027645111084,
+        640.466426849365
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "-",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "based",
+      "box": [
+        110.19302368164062,
+        622.4409484863279,
+        154.32705688476562,
+        640.4664306640623
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "based",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Tuning",
+      "box": [
+        158.57302856445312,
+        622.4409484863279,
+        208.31246948242188,
+        640.4664306640623
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Tuning",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Flow",
+      "box": [
+        212.41299438476562,
+        622.4409484863279,
+        248.29055786132812,
+        640.4664306640623
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Flow",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Initial",
+      "box": [
+        74.24301147460938,
+        652.5141296386716,
+        111.83663940429688,
+        667.1598205566404
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Initial",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Configuration",
+      "box": [
+        115.77304077148438,
+        652.5141296386716,
+        205.91976928710938,
+        667.1598205566404
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Configuration",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Optimized",
+      "box": [
+        59.712982177734375,
+        833.6141357421873,
+        128.12460327148438,
+        848.2598419189451
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Optimized",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Configuration",
+      "box": [
+        131.74301147460938,
+        833.6141357421873,
+        221.88973999023438,
+        848.2598419189451
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Configuration",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "GPU",
+      "box": [
+        145.14303588867188,
+        783.8641662597654,
+        174.18331909179688,
+        798.5098571777341
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "GPU",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "GPU",
+      "box": [
+        193.92306518554688,
+        784.9941406249998,
+        222.96322631835938,
+        799.6398315429685
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "GPU",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Cluster",
+      "box": [
+        149.74301147460938,
+        707.164123535156,
+        195.83590698242188,
+        721.8098144531248
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Cluster",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "-",
+      "box": [
+        196.02304077148438,
+        707.164123535156,
+        200.8462643623352,
+        721.8098249435423
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "-",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "level",
+      "box": [
+        200.89309692382812,
+        707.164123535156,
+        231.72964477539062,
+        721.8098144531248
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "level",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Profiling",
+      "box": [
+        163.04306030273438,
+        719.5375366210935,
+        218.48013305664062,
+        736.4364318847654
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Profiling",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Experiments",
+      "box": [
+        149.52304077148438,
+        734.1941223144529,
+        232.21047973632812,
+        748.8398132324216
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Experiments",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Experienced",
+      "box": [
+        36.34301757812506,
+        698.8441162109373,
+        117.46487426757812,
+        713.489807128906
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Experienced",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Engineers",
+      "box": [
+        44.82299804687506,
+        712.3441162109373,
+        108.78390502929688,
+        726.989807128906
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Engineers",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Multiple",
+      "box": [
+        65.14303588867188,
+        783.9941406249998,
+        121.79660034179688,
+        798.6398315429685
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Multiple",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "iterations",
+      "box": [
+        61.662994384765625,
+        796.3675537109373,
+        125.03878784179688,
+        813.2664489746091
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "iterations",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Profiling",
+      "box": [
+        279.4930114746094,
+        623.1209411621091,
+        341.9225769042969,
+        641.1464233398435
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Profiling",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "-",
+      "box": [
+        341.9129943847656,
+        623.1209411621091,
+        347.4227352142334,
+        641.1464195251463
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "-",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "based",
+      "box": [
+        347.4129943847656,
+        623.1209411621091,
+        391.5470275878906,
+        641.1464233398435
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "based",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Tuning",
+      "box": [
+        395.7929992675781,
+        623.1209411621091,
+        445.5324401855469,
+        641.1464233398435
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Tuning",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Cost",
+      "box": [
+        449.6430969238281,
+        623.1209411621091,
+        482.1181945800781,
+        641.1464233398435
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Cost",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "on",
+      "box": [
+        486.0929870605469,
+        623.1209411621091,
+        505.5076599121094,
+        641.1464233398435
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "on",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "Cluster",
+      "box": [
+        509.4729919433594,
+        623.1209411621091,
+        561.5824279785156,
+        641.1464233398435
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "Cluster",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "with",
+      "box": [
+        565.4430236816406,
+        623.1209411621091,
+        599.0651550292968,
+        641.1464233398435
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "with",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": ">10k",
+      "box": [
+        603.1929626464843,
+        623.1209411621091,
+        638.8360290527343,
+        641.1464233398435
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": ">10k",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "GPUs",
+      "box": [
+        643.2129821777343,
+        623.1209411621091,
+        683.3709411621093,
+        641.1464233398435
+      ],
+      "font": 18,
+      "font_runs": [
+        {
+          "text": "GPUs",
+          "font": 18,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 17.999999999999996,
+          "print_font_pt": 11.983219055093587
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 11.983219055093587
+    },
+    {
+      "text": "1",
+      "box": [
+        617.8730163574218,
+        819.6941223144529,
+        625.8647813796996,
+        834.3398237228391
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "1",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "10",
+      "box": [
+        617.8730163574218,
+        778.0375366210935,
+        634.1327819824218,
+        794.9364318847654
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "10",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "100",
+      "box": [
+        617.8730163574218,
+        738.6641540527341,
+        642.3645935058593,
+        753.3098449707029
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "100",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "1000",
+      "box": [
+        617.8730163574218,
+        697.0175476074216,
+        649.8444519042968,
+        713.9164428710935
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "1000",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "10000",
+      "box": [
+        617.8730163574218,
+        657.6441345214841,
+        658.0738220214843,
+        672.2898254394529
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "10000",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "1.E+02",
+      "box": [
+        296.4430236816406,
+        819.6941223144529,
+        340.3920593261719,
+        834.3398284912107
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "1.E+02",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "1.E+03",
+      "box": [
+        296.4430236816406,
+        778.0375366210935,
+        340.4036560058594,
+        794.9364318847654
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "1.E+03",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "1.E+04",
+      "box": [
+        296.4430236816406,
+        738.6641540527341,
+        340.3920593261719,
+        753.3098449707029
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "1.E+04",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "1.E+05",
+      "box": [
+        296.4430236816406,
+        697.0175476074216,
+        340.4036560058594,
+        713.9164428710935
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "1.E+05",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "1.E+06",
+      "box": [
+        296.4430236816406,
+        657.6441345214841,
+        340.3920593261719,
+        672.2898254394529
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "1.E+06",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "GPU Hours",
+      "box": [
+        396.2730407714844,
+        658.4441223144529,
+        466.8673400878906,
+        673.0898132324216
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "GPU Hours",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Design Space",
+      "box": [
+        396.2730407714844,
+        678.6141357421873,
+        481.2674865722656,
+        693.259826660156
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Design Space",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "GPU Types",
+      "box": [
+        356.8730163574219,
+        831.3175201416013,
+        427.6158142089844,
+        848.2164001464841
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "GPU Types",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "+Parallelism ",
+      "box": [
+        435.0230407714844,
+        829.9641265869138,
+        518.7953186035156,
+        844.6098327636716
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "+Parallelism ",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Types",
+      "box": [
+        456.1430358886719,
+        842.3375396728513,
+        493.9161071777344,
+        859.2364196777341
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Types",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "+Parallelism ",
+      "box": [
+        524.1930236816406,
+        829.5741271972654,
+        608.1075134277343,
+        844.2198333740232
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "+Parallelism ",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Sizes",
+      "box": [
+        542.5230407714844,
+        841.9475402832029,
+        574.3016052246093,
+        858.8464202880857
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Sizes",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "*",
+      "box": [
+        574.4930114746093,
+        841.9475402832029,
+        582.3615550994872,
+        858.8464260101316
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "*",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "10",
+      "box": [
+        318.9430236816406,
+        818.3641357421873,
+        335.2098693847656,
+        833.0098419189451
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "10",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "2",
+      "box": [
+        335.2130432128906,
+        817.2438964843748,
+        340.5467538833618,
+        827.3832283020017
+      ],
+      "font": 10.5,
+      "font_runs": [
+        {
+          "text": "2",
+          "font": 10.5,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 10.499999999999998,
+          "print_font_pt": 6.990211115471259
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 6.990211115471259
+    },
+    {
+      "text": "10",
+      "box": [
+        318.9430236816406,
+        737.7675476074216,
+        335.2279968261719,
+        754.6664428710935
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "10",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "4",
+      "box": [
+        335.2130432128906,
+        737.7739257812498,
+        340.5467538833618,
+        747.9132575988767
+      ],
+      "font": 10.525,
+      "font_runs": [
+        {
+          "text": "4",
+          "font": 10.525,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 10.524999999999999,
+          "print_font_pt": 7.00685447527
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 7.00685447527
+    },
+    {
+      "text": "10",
+      "box": [
+        318.9430236816406,
+        698.0375366210935,
+        335.2279968261719,
+        714.9364318847654
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "10",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "5",
+      "box": [
+        335.2130432128906,
+        698.0438842773435,
+        340.5467538833618,
+        708.1832160949705
+      ],
+      "font": 10.5,
+      "font_runs": [
+        {
+          "text": "5",
+          "font": 10.5,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 10.499999999999998,
+          "print_font_pt": 6.990211115471259
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 6.990211115471259
+    },
+    {
+      "text": "10",
+      "box": [
+        318.9430236816406,
+        658.3175354003904,
+        335.2279968261719,
+        675.2164306640623
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "10",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "6",
+      "box": [
+        335.2130432128906,
+        658.3239135742185,
+        340.5467538833618,
+        668.4632453918455
+      ],
+      "font": 10.5,
+      "font_runs": [
+        {
+          "text": "6",
+          "font": 10.5,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 10.499999999999998,
+          "print_font_pt": 6.990211115471259
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 6.990211115471259
+    },
+    {
+      "text": "10",
+      "box": [
+        318.9430236816406,
+        778.6441345214841,
+        335.2098693847656,
+        793.2898254394529
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "10",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "3",
+      "box": [
+        335.2130432128906,
+        777.5039062499998,
+        340.5467538833618,
+        787.6432380676267
+      ],
+      "font": 10.525,
+      "font_runs": [
+        {
+          "text": "3",
+          "font": 10.525,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 10.524999999999999,
+          "print_font_pt": 7.00685447527
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 7.00685447527
+    },
+    {
+      "text": "Total",
+      "box": [
+        292.3571472167969,
+        766.1156921386716,
+        307.0028381347656,
+        798.4800720214841
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Total",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "GPU",
+      "box": [
+        292.3571472167969,
+        733.5997924804685,
+        307.0028381347656,
+        762.6400451660154
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "GPU",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Hours",
+      "box": [
+        292.3571472167969,
+        690.4810485839841,
+        307.0028381347656,
+        729.7300720214841
+      ],
+      "font": 15.75,
+      "font_runs": [
+        {
+          "text": "Hours",
+          "font": 15.75,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.749999999999998,
+          "print_font_pt": 10.485316673206889
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.485316673206889
+    },
+    {
+      "text": "Total",
+      "box": [
+        659.7005310058593,
+        788.2101135253904,
+        676.5994567871093,
+        820.5900573730466
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Total",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Design",
+      "box": [
+        659.7005310058593,
+        740.2917785644529,
+        676.5994567871093,
+        784.7100524902341
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Design",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Space",
+      "box": [
+        659.7005310058593,
+        697.7595520019529,
+        676.5994567871093,
+        736.4300231933591
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Space",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "Size",
+      "box": [
+        659.7005310058593,
+        668.7114257812498,
+        676.5994567871093,
+        693.9100341796873
+      ],
+      "font": 15.775,
+      "font_runs": [
+        {
+          "text": "Size",
+          "font": 15.775,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 15.774999999999999,
+          "print_font_pt": 10.50196003300563
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 10.50196003300563
+    },
+    {
+      "text": "*",
+      "box": [
+        315.8429870605469,
+        861.9736480712888,
+        322.93699836730957,
+        875.5398416519163
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "*",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "Suppose",
+      "box": [
+        322.8429870605469,
+        862.0207214355466,
+        372.0053405761719,
+        875.5398254394529
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "Suppose",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "for",
+      "box": [
+        375.2430114746094,
+        862.0207214355466,
+        392.3111877441406,
+        875.5398254394529
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "for",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "each",
+      "box": [
+        395.0429992675781,
+        862.0207214355466,
+        422.1800231933594,
+        875.5398254394529
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "each",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "parallelism",
+      "box": [
+        425.4230041503906,
+        862.0207214355466,
+        489.4635925292969,
+        875.5398254394529
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "parallelism",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "type,",
+      "box": [
+        492.5130920410156,
+        862.0207214355466,
+        522.3977966308594,
+        875.5398254394529
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "type,",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "the",
+      "box": [
+        525.2731018066406,
+        862.0207214355466,
+        545.1802673339844,
+        875.5398254394529
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "the",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "parallel",
+      "box": [
+        547.7730407714844,
+        862.0207214355466,
+        591.0050964355468,
+        875.5398254394529
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "parallel",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "size",
+      "box": [
+        594.3429870605468,
+        862.0207214355466,
+        615.7608337402343,
+        875.5398254394529
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "size",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "has",
+      "box": [
+        618.9629821777343,
+        862.0207214355466,
+        638.8986511230468,
+        875.5398254394529
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "has",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "4",
+      "box": [
+        642.1230163574218,
+        862.0207214355466,
+        649.3578519821166,
+        875.5398302078245
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "4",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    },
+    {
+      "text": "choices",
+      "box": [
+        652.3730163574218,
+        862.0207214355466,
+        695.4936218261718,
+        875.5398254394529
+      ],
+      "font": 14.25,
+      "font_runs": [
+        {
+          "text": "choices",
+          "font": 14.25,
+          "font_scale": 0.9999999999999999,
+          "font_viewbox": 14.249999999999998,
+          "print_font_pt": 9.486715085282423
+        }
+      ],
+      "constraint": null,
+      "constraint_box": null,
+      "print_font_pt": 9.486715085282423
+    }
+  ],
+  "groups": []
+}

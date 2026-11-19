@@ -1,0 +1,25 @@
+<Slide style={{ width: 1280, height: 720, padding: 60, background: '#F7F9FC', fontFamily: 'Source Han Sans SC', display: 'flex', flexDirection: 'column' }}>
+  <Box style={{ height: 74, borderBottom: '1px solid #D6DCE5', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>东北大学 · 软件学院</Text>
+    <Text style={{ fontSize: 16, color: '#4A5568', letterSpacing: 1 }}>软件工程硕士学位论文中期汇报</Text>
+  </Box>
+  <Box style={{ height: 330, justifyContent: 'center', gap: 24 }}>
+    <Text style={{ fontSize: 18, color: '#1E4FA8', fontWeight: 'bold', letterSpacing: 2 }}>MASTER'S THESIS MID-TERM REVIEW</Text>
+    <Text style={{ fontSize: 50, lineHeight: 1.28, fontWeight: 'bold', color: '#1A2230' }}>
+      面向数据漂移的自适应<br />基数估计方法研究与实现
+    </Text>
+    <Text style={{ fontSize: 20, lineHeight: 1.5, color: '#4A5568' }}>
+      Adaptive Cardinality Estimation under Spatial and Temporal Data Drift
+    </Text>
+  </Box>
+  <Box style={{ height: 136, background: '#FFFFFF', border: '1px solid #D6DCE5', borderRadius: 8, padding: '24px 28px', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+    <Box style={{ gap: 12 }}>
+      <Text style={{ fontSize: 20, color: '#1A2230' }}>汇报人：<span style={{ fontWeight: 'bold' }}>魏林</span>　　学号：2471778</Text>
+      <Text style={{ fontSize: 18, color: '#4A5568' }}>指导教师：王蓓蕾　　副导师：郭朝鹏</Text>
+    </Box>
+    <Box style={{ alignItems: 'flex-end', gap: 10 }}>
+      <Text style={{ fontSize: 18, color: '#0E3F8C', fontWeight: 'bold' }}>2026 年 11 月 21 日</Text>
+      <Text style={{ fontSize: 15, color: '#8B97A8' }}>NORTHEASTERN UNIVERSITY</Text>
+    </Box>
+  </Box>
+</Slide>

@@ -1,0 +1,59 @@
+<Slide style={{ width: 1280, height: 720, padding: 60, background: '#FFFFFF', fontFamily: 'Source Han Sans SC', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Box style={{ height: 68, borderBottom: '1px solid #D6DCE5', justifyContent: 'space-between' }}>
+    <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1A2230' }}>数据变化带来的基数估计挑战</Text>
+      <Text style={{ fontSize: 14, color: '#1E4FA8', fontWeight: 'bold' }}>02 / 10</Text>
+    </Box>
+    <Text style={{ fontSize: 16, color: '#4A5568' }}>研究背景｜基数估计影响执行计划，数据漂移削弱静态模型的长期有效性</Text>
+  </Box>
+
+  <Box style={{ height: 460, flexDirection: 'column', gap: 20 }}>
+    <Box style={{ height: 100, flexDirection: 'row', alignItems: 'stretch', gap: 10 }}>
+      <Box style={{ flex: 1, background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: '14px 18px', justifyContent: 'center', gap: 6 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>SQL 查询</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568' }}>解析表、连接与谓词</Text>
+      </Box>
+      <Text style={{ fontSize: 26, color: '#3D7BD9', alignSelf: 'center' }}>→</Text>
+      <Box style={{ flex: 1, background: '#E8EFF8', border: '1px solid #3D7BD9', borderRadius: 8, padding: '14px 18px', justifyContent: 'center', gap: 6 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>基数估计</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568' }}>预测中间结果行数</Text>
+      </Box>
+      <Text style={{ fontSize: 26, color: '#3D7BD9', alignSelf: 'center' }}>→</Text>
+      <Box style={{ flex: 1, background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: '14px 18px', justifyContent: 'center', gap: 6 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>执行计划选择</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568' }}>确定连接顺序与算子</Text>
+      </Box>
+      <Text style={{ fontSize: 26, color: '#3D7BD9', alignSelf: 'center' }}>→</Text>
+      <Box style={{ flex: 1, background: '#F7F9FC', border: '1px solid #D6DCE5', borderRadius: 8, padding: '14px 18px', justifyContent: 'center', gap: 6 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#0E3F8C' }}>数据库执行</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568' }}>影响延迟与执行效率</Text>
+      </Box>
+    </Box>
+
+    <Box style={{ height: 250, flexDirection: 'row', gap: 24 }}>
+      <Box style={{ flex: 1, border: '1px solid #D6DCE5', borderRadius: 8, padding: 22, background: '#FFFFFF', gap: 13 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E4FA8' }}>空间漂移｜跨数据库分布变化</Text>
+        <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.4 }}>• 表结构、属性分布与查询模式存在差异</Text>
+        <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.4 }}>• 模型直接迁移到新库时精度下降</Text>
+        <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.4 }}>• 逐库重训带来数据与计算开销</Text>
+      </Box>
+      <Box style={{ flex: 1, border: '1px solid #D6DCE5', borderRadius: 8, padding: 22, background: '#FFFFFF', gap: 13 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E4FA8' }}>时间漂移｜同一数据库持续演化</Text>
+        <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.4 }}>• 增删改与负载切换使分布持续演化</Text>
+        <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.4 }}>• 历史统计信息与静态模型逐渐过期</Text>
+        <Text style={{ fontSize: 22, color: '#1A2230', lineHeight: 1.4 }}>• 频繁全量重训练增加系统负担</Text>
+      </Box>
+    </Box>
+
+    <Box style={{ height: 70, background: '#E8EFF8', borderRadius: 8, padding: '14px 24px', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 22, color: '#0E3F8C', lineHeight: 1.4, textAlign: 'center' }}>
+        核心问题：不仅要提高静态估计精度，更要让模型以<span style={{ fontWeight: 'bold' }}>较低成本适应分布变化</span>
+      </Text>
+    </Box>
+  </Box>
+
+  <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>魏林｜硕士学位论文中期汇报</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>研究背景</Text>
+  </Box>
+</Slide>
