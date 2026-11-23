@@ -1,0 +1,15 @@
+test_existing_run_root_refused_before_preparation_writes (test_migration_training_prep.MigrationTrainingPrepTests.test_existing_run_root_refused_before_preparation_writes) ... ok
+test_preparation_does_not_execute_training_or_construct_model (test_migration_training_prep.MigrationTrainingPrepTests.test_preparation_does_not_execute_training_or_construct_model) ... ok
+test_preparation_reads_only_source_training_split (test_migration_training_prep.MigrationTrainingPrepTests.test_preparation_reads_only_source_training_split) ... ok
+test_preparation_refuses_existing_output_and_overlapping_roots (test_preparation_refuses_existing_output_and_overlapping_roots) ... ok
+test_preparation_refuses_output_paths_overlapping_readonly_roots (test_preparation_refuses_output_paths_overlapping_readonly_roots) ... ok
+test_preparation_writes_fifteen_unsigned_specs_without_training (test_preparation_writes_fifteen_unsigned_specs_without_training) ... ok
+test_unsafe_paths_refused_before_preparation_writes (test_unsafe_paths_refused_before_preparation_writes) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 3.800s
+
+OK
+{"prepared": true, "runs": 15, "authorized": false}
+{"prepared": true, "runs": 15, "authorized": false}
+{"prepared": true, "runs": 15, "authorized": false}
