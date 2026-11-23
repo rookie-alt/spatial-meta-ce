@@ -1,0 +1,144 @@
+{
+  "draft": true,
+  "tag": "module26-migration-20261123",
+  "target_commit": "26d7056935e445c5c3d27926fd5e90e6dd5f4e06",
+  "uploaded_assets_verified": [
+    {
+      "name": "SHA256SUMS",
+      "bytes": 446,
+      "sha256": "d49bccb81dbc79044d3fd5c076b85bbc306f07952227cb3cb68dcca363fdf086"
+    },
+    {
+      "name": "DEPLOYMENT.md",
+      "bytes": 10933,
+      "sha256": "d121afd2d35790e4808ba1b149491e8d6c04a448ec971e737659b22595fc8f55"
+    },
+    {
+      "name": "GITHUB-DOWNLOAD.md",
+      "bytes": 2433,
+      "sha256": "dd2943d1148f5e591389bef39a8b440367d95589bd79cea9349dee51d7cc5406"
+    },
+    {
+      "name": "PARTS-SHA256SUMS",
+      "bytes": 327,
+      "sha256": "73eb31ad58b299fb0a30c74a510169f7459e3ce395305e7364dabf430d734fa8"
+    },
+    {
+      "name": "PACKAGE-README.md",
+      "bytes": 5157,
+      "sha256": "ac834518fc057a6d9b5266e0b31dbe79f132bc1e739064d44fda292e298bc28d"
+    },
+    {
+      "name": "TOOL-SHA256SUMS",
+      "bytes": 344,
+      "sha256": "cf2f01ffe6775ed31c16d1cf47002063fe69c128120899896d4b928b6888e434"
+    },
+    {
+      "name": "deployment-independent-review.json",
+      "bytes": 1943,
+      "sha256": "66e5d976ba1d69d9a58f2f020b0bc700757ce6b78e6e25bcd85c4b2cad9ca3c1"
+    },
+    {
+      "name": "deployment-path-fix-validation.json",
+      "bytes": 692,
+      "sha256": "f88b455f457174e80db1b4942005265c33781c405b66d939f17389ff137fb545"
+    },
+    {
+      "name": "deployment-review-initial.json",
+      "bytes": 1435,
+      "sha256": "85e4a83e2773842f7eaa31fcfcbe8c9bac8be87ee7d54efcda89128e0b266163"
+    },
+    {
+      "name": "deployment-syntax-validation.json",
+      "bytes": 588,
+      "sha256": "2e4eb369f6c96c121776098f574f6ed6914b0e0ceba0bde5c1b1335f8497e716"
+    },
+    {
+      "name": "full-unittest.json",
+      "bytes": 61838,
+      "sha256": "be291a2148ccbbd80cee7993d4a39367758e25c6ae27c0956bdfb34bc7a1e6fa"
+    },
+    {
+      "name": "file-manifest.json",
+      "bytes": 231093,
+      "sha256": "4eeb74ea1e1e600710d6aa3f5bb1b4f34bd45b75e8f77ac8b9d44201171f3e79"
+    },
+    {
+      "name": "full-unittest.log",
+      "bytes": 309470,
+      "sha256": "639469946c944bb79521b259dd2b413f6074fe35ac8638ee137b8e9230ca1821"
+    },
+    {
+      "name": "helper-green.log",
+      "bytes": 1535,
+      "sha256": "bd78b04a60c24f69f20dd0814855654992dde7ec5ff1913731d75c6658795f8c"
+    },
+    {
+      "name": "helper-red.log",
+      "bytes": 3605,
+      "sha256": "49694c5bdeb7c0e7c039843c2561a75e868f28d71a75ce7ade0b842de30b3f74"
+    },
+    {
+      "name": "local-copy-verification.json",
+      "bytes": 1122,
+      "sha256": "1afdf95c078a5b5438b671d7a0e6cab20d47d218a05c001ec00c07d80bc0b983"
+    },
+    {
+      "name": "local-full-readback.json",
+      "bytes": 333,
+      "sha256": "8b0eb3c787b02b2cefd444a27cd492ac7a44604e736111197f0dc76aa2a13525"
+    },
+    {
+      "name": "package-independent-review.json",
+      "bytes": 1317,
+      "sha256": "b12c7a451da468d9dc53987672716a3d21e173522103ac0ad6a03aaa85d00b52"
+    },
+    {
+      "name": "package-result.json",
+      "bytes": 759,
+      "sha256": "41faf0a75a219b73daea8e4a6fcc216f0a910808f02e260fc813f53e60022923"
+    },
+    {
+      "name": "payload.sha256",
+      "bytes": 93536,
+      "sha256": "554f6ce0236edb2208e05efd319842eaef2c638fec4cb7f4be97006188ea8e16"
+    },
+    {
+      "name": "prepare_new_server.py",
+      "bytes": 9172,
+      "sha256": "790d0180d417aa099368e1713c8908e77fcb0ab0261884da04810bb5fe4e8e6f"
+    },
+    {
+      "name": "readback-verification.json",
+      "bytes": 332,
+      "sha256": "fa78c53238840384389e598a1d42db4e8a8751506df1c0fd1304ff9b7d90c85d"
+    },
+    {
+      "name": "release-parts.json",
+      "bytes": 966,
+      "sha256": "731022e054b1b397b676ef8848de9827bf8e9100e76b385b2300339489428957"
+    },
+    {
+      "name": "required-code-sha256.json",
+      "bytes": 4073,
+      "sha256": "774bc2d5e33cbc563cae475b9e5db822036460140ce7391ce1520f8d366c0e72"
+    },
+    {
+      "name": "synthetic-inner-archive-validation.json",
+      "bytes": 755,
+      "sha256": "3fd188e42ad817649d250f1fcea242bab2e159b457695754c0541621efbc8b69"
+    },
+    {
+      "name": "synthetic-package-validation.json",
+      "bytes": 870,
+      "sha256": "c566e9c7fd43fb862d6537b121e1b9431ab1b8c55b589b950eee30e4e00d3b79"
+    },
+    {
+      "name": "verify_archive.py",
+      "bytes": 4840,
+      "sha256": "81f0cc119d6bc2bffd8ad013407ea07e6683c439890a9f56cb6f69c66f283556"
+    }
+  ],
+  "asset_count": 27,
+  "parts_upload_pending": true
+}

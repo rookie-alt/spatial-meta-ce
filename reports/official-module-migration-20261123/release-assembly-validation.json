@@ -1,0 +1,9 @@
+{
+  "test": "release parts ordered concatenation command",
+  "synthetic": true,
+  "ordered_concatenation_preserved_bytes": true,
+  "existing_archive_rejected_on_repeat": true,
+  "bash_syntax_passed": true,
+  "original_data_reprocessed": false,
+  "training_run": false
+}

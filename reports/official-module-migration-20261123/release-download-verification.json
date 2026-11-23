@@ -1,0 +1,10 @@
+{
+  "gh_release_download_passed": true,
+  "downloaded_assets_equal_local": [
+    "DEPLOYMENT.md",
+    "PARTS-SHA256SUMS",
+    "verify_archive.py"
+  ],
+  "large_assets_verified_by_github_sha256_digest": true,
+  "large_assets_not_redownloaded_in_this_check": true
+}

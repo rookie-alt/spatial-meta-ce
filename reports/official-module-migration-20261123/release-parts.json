@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-23T16:56:56.848977+08:00",
+  "split_kind": "raw-byte chunks; concatenate in listed order, not independent tar archives",
+  "original_name": "module26-official26-4-inputs.tar.gz",
+  "original_bytes": 3049224614,
+  "original_sha256": "9077240a3e1b560aed7eb0366049f6195629f26c647ae04224028c2613aaea73",
+  "part_bytes_max": 1073741824,
+  "parts": [
+    {
+      "name": "module26-official26-4-inputs.tar.gz.part01",
+      "bytes": 1073741824,
+      "sha256": "b28e4005832aed1733da66957ccaecd7a9497a364a0f9d7c9a10d3f9348ef412"
+    },
+    {
+      "name": "module26-official26-4-inputs.tar.gz.part02",
+      "bytes": 1073741824,
+      "sha256": "35623de3301048116b81e258422193f43a002e1f48f04ea020581d08d9de6ab4"
+    },
+    {
+      "name": "module26-official26-4-inputs.tar.gz.part03",
+      "bytes": 901740966,
+      "sha256": "87cbac2efcaf3d36f4654f614d005f92e0acaf8cc16e8577a721a55187d0a7b2"
+    }
+  ],
+  "data_modified": false
+}

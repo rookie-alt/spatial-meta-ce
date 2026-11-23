@@ -1,5 +1,7 @@
 # 官方 26/4 模块实验迁移包
 
+**GitHub 下载已就绪：** [Release 页面](https://github.com/rookie-alt/spatial-meta-ce/releases/tag/module26-migration-20261123) 提供三个字节分卷及 27 个配套附件，共 30 项；公开下载入口和 GitHub CLI 下载已验证。[下载与合并说明](../../docs/module26-github-download.md) 给出完整命令，合并后原包 SHA 不变。每项远端 SHA/大小均与本地一致，见[上传验证](release-upload-verification.json)、[发布记录](github-release-publication.json)与[下载验证](release-download-verification.json)。
+
 用户要求：“那你先帮我把需要迁移的数据打包好，再写个新服务器的部署说明”。本次只打包和准备部署材料，没有研究训练、模型推理、驱动修改或新服务器部署。
 
 ## 包和校验
@@ -12,7 +14,7 @@
 
 [文件清单](file-manifest.json) 和 [逐文件 SHA](payload.sha256) 绑定实际来源与包内路径；[压缩结果](package-result.json) 表明打包时全部源文件字节匹配原认证 SHA。[服务器完整回读](readback-verification.json) 重新解压并核对 634/634 文件、总字节、两份内嵌 metadata、tar 成员类型/路径及 gzip 完整性，结果通过。
 
-`package-result.json` 的状态保留打包完成时的 `packaged_not_yet_readback_verified`，不追改历史记录；最终回读状态由 `readback-verification.json` 给出。`SHA256SUMS` 绑定压缩包和四个配套文件；压缩包本身只保存在上述交付目录，不提交 GitHub。
+`package-result.json` 的状态保留打包完成时的 `packaged_not_yet_readback_verified`，不追改历史记录；最终回读状态由 `readback-verification.json` 给出。`SHA256SUMS` 绑定压缩包和四个配套文件；大文件不进入 Git 历史，通过 Release 三个分卷分发，并保留上述原包副本。`release-preparation-validation.json` 和 `release-small-assets-verification.json` 中 draft/pending 字段是上传期间快照；最终发布状态以 `github-release-publication.json` 为准。
 
 ## 内容范围
 

@@ -10,6 +10,8 @@
 
 旧服务器目录：`myserver:/gly/weilin/module26-migration-20261123/`。
 
+GitHub 已发布同一数据包的三个分卷和配套材料：[Release 下载页](https://github.com/rookie-alt/spatial-meta-ce/releases/tag/module26-migration-20261123)。新服务器可按[GitHub 下载与合并说明](module26-github-download.md)获取全部资产、校验并合并，再从本文第 4 节继续；无需访问旧服务器。Release 中的 `DEPLOYMENT.md` 保留首次打包时的已校验版本，下载与合并步骤见额外的 `GITHUB-DOWNLOAD.md`。
+
 主归档 `module26-official26-4-inputs.tar.gz`：**3,049,224,614 bytes（2.84 GiB）**。
 
 SHA256：`9077240a3e1b560aed7eb0366049f6195629f26c647ae04224028c2613aaea73`。
@@ -47,7 +49,7 @@ rsync -a --partial -e 'ssh -o ControlMaster=no -o ControlPath=none' \
   /gly/weilin/module26-migration-20261123/
 ```
 
-不要把本机 SSH 私钥或密码放进迁移包/Git 仓库。GitHub 克隆需有私有仓库访问权限。
+不要把本机 SSH 私钥或密码放进迁移包/Git 仓库。仓库在 2026-11-23 发布时为公开，HTTPS clone 和公开 Release 附件可匿名读取；以后若改为私有，需先配置相应访问权限。
 
 ## 4. 校验、隔离解包、恢复输入
 

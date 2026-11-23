@@ -1,0 +1,30 @@
+{
+  "verdict": "passed",
+  "reviewer": "/root/github_release_review",
+  "reviewed_at": "2026-11-23T17:10:41.694375+08:00",
+  "confirmed_blockers": [],
+  "scope": "Split asset manifests, download/reassembly docs and unchanged input/code contracts",
+  "checks": [
+    "Part names/sizes/SHA consistent across 3 manifests; sum 3,049,224,614bytes",
+    "All parts under GitHub 2GiB limit",
+    "Original archive SHA identical in docs and manifests",
+    "27 uploaded small assets digests match local files",
+    "Explicit part01/02/03 concatenation and existing-file guard",
+    "11 cross-boundary byte samples match original archive",
+    "DEPLOYMENT section4 continuation correct",
+    "37 training-file hashes unchanged across frozen commits",
+    "No training/auth/permission changes"
+  ],
+  "not_run": [
+    "Remote large asset download or digest verification by reviewer",
+    "Full 3GB reassembly/readback by reviewer",
+    "Full unittest rerun"
+  ],
+  "source_sha256": {
+    "docs/module26-github-download.md": "dd2943d1148f5e591389bef39a8b440367d95589bd79cea9349dee51d7cc5406",
+    "reports/official-module-migration-20261123/github-release-notes.md": "22d8ea1ae82e18f6b6d45f515b915e799702efe927a6e679ed74fc70c986d189",
+    "reports/official-module-migration-20261123/release-parts.json": "731022e054b1b397b676ef8848de9827bf8e9100e76b385b2300339489428957",
+    "reports/official-module-migration-20261123/PARTS-SHA256SUMS": "73eb31ad58b299fb0a30c74a510169f7459e3ce395305e7364dabf430d734fa8"
+  },
+  "historical_evidence_note": "Draft/pending flags in preparation evidence describe the capture stage; final publication evidence is recorded separately."
+}

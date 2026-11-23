@@ -1,0 +1,36 @@
+{
+  "published": true,
+  "recorded_at": "2026-11-23T17:13:34.185385+08:00",
+  "release_id": 455180704,
+  "tag": "module26-migration-20261123",
+  "url": "https://github.com/rookie-alt/spatial-meta-ce/releases/tag/module26-migration-20261123",
+  "published_at": "2026-11-23T09:12:32Z",
+  "target_commit": "26d7056935e445c5c3d27926fd5e90e6dd5f4e06",
+  "repository_public": true,
+  "asset_count": 30,
+  "all_uploaded_assets_digests_verified": "release-upload-verification.json",
+  "public_without_token_checksum_download_verified": true,
+  "cli_download_verified": "release-download-verification.json",
+  "parts": [
+    {
+      "name": "module26-official26-4-inputs.tar.gz.part01",
+      "size": 1073741824,
+      "digest": "sha256:b28e4005832aed1733da66957ccaecd7a9497a364a0f9d7c9a10d3f9348ef412",
+      "browser_download_url": "https://github.com/rookie-alt/spatial-meta-ce/releases/download/module26-migration-20261123/module26-official26-4-inputs.tar.gz.part01"
+    },
+    {
+      "name": "module26-official26-4-inputs.tar.gz.part02",
+      "size": 1073741824,
+      "digest": "sha256:35623de3301048116b81e258422193f43a002e1f48f04ea020581d08d9de6ab4",
+      "browser_download_url": "https://github.com/rookie-alt/spatial-meta-ce/releases/download/module26-migration-20261123/module26-official26-4-inputs.tar.gz.part02"
+    },
+    {
+      "name": "module26-official26-4-inputs.tar.gz.part03",
+      "size": 901740966,
+      "digest": "sha256:87cbac2efcaf3d36f4654f614d005f92e0acaf8cc16e8577a721a55187d0a7b2",
+      "browser_download_url": "https://github.com/rookie-alt/spatial-meta-ce/releases/download/module26-migration-20261123/module26-official26-4-inputs.tar.gz.part03"
+    }
+  ],
+  "original_archive_sha256": "9077240a3e1b560aed7eb0366049f6195629f26c647ae04224028c2613aaea73",
+  "no_training_run": true
+}

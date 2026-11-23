@@ -1,0 +1,35 @@
+{
+  "tag": "module26-migration-20261123",
+  "target_commit": "26d7056935e445c5c3d27926fd5e90e6dd5f4e06",
+  "repository_public": true,
+  "repository_admin_access": true,
+  "github_official_limit_url": "https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases",
+  "max_asset_bytes_exclusive": 2147483648,
+  "parts": [
+    {
+      "name": "module26-official26-4-inputs.tar.gz.part01",
+      "bytes": 1073741824,
+      "sha256": "b28e4005832aed1733da66957ccaecd7a9497a364a0f9d7c9a10d3f9348ef412"
+    },
+    {
+      "name": "module26-official26-4-inputs.tar.gz.part02",
+      "bytes": 1073741824,
+      "sha256": "35623de3301048116b81e258422193f43a002e1f48f04ea020581d08d9de6ab4"
+    },
+    {
+      "name": "module26-official26-4-inputs.tar.gz.part03",
+      "bytes": 901740966,
+      "sha256": "87cbac2efcaf3d36f4654f614d005f92e0acaf8cc16e8577a721a55187d0a7b2"
+    }
+  ],
+  "stream_reassembled_original_sha256": "9077240a3e1b560aed7eb0366049f6195629f26c647ae04224028c2613aaea73",
+  "local_parts_rehash_passed": true,
+  "docs_bash_syntax_passed": true,
+  "release_published": false,
+  "source_sha256": {
+    "docs/module26-github-download.md": "dd2943d1148f5e591389bef39a8b440367d95589bd79cea9349dee51d7cc5406",
+    "reports/official-module-migration-20261123/github-release-notes.md": "22d8ea1ae82e18f6b6d45f515b915e799702efe927a6e679ed74fc70c986d189",
+    "reports/official-module-migration-20261123/release-parts.json": "731022e054b1b397b676ef8848de9827bf8e9100e76b385b2300339489428957",
+    "reports/official-module-migration-20261123/PARTS-SHA256SUMS": "73eb31ad58b299fb0a30c74a510169f7459e3ce395305e7364dabf430d734fa8"
+  }
+}
