@@ -1,0 +1,40 @@
+{
+  "source_sha256": {
+    "package_inputs.py": "08a670afa1282cfffb92c1a7da9fb263e218c07d6930f8c9bd4c3062375b043c",
+    "verify_archive.py": "81f0cc119d6bc2bffd8ad013407ea07e6683c439890a9f56cb6f69c66f283556"
+  },
+  "cases": [
+    {
+      "case": "build_and_full_readback",
+      "passed": true
+    },
+    {
+      "case": "existing_output_refused",
+      "passed": true
+    },
+    {
+      "case": "source_sha_drift_refused",
+      "passed": true
+    },
+    {
+      "case": "symlink_source_refused",
+      "passed": true
+    },
+    {
+      "case": "unsafe_tar_path_refused",
+      "path": "/absolute",
+      "passed": true
+    },
+    {
+      "case": "unsafe_tar_path_refused",
+      "path": "rootfs/../outside",
+      "passed": true
+    },
+    {
+      "case": "corrupt_archive_refused",
+      "passed": true
+    }
+  ],
+  "real_data_read": false,
+  "training_run": false
+}

@@ -1,0 +1,38 @@
+{
+  "verified_at": "2026-11-23T15:52:04.652270+08:00",
+  "local_directory": "/Users/williamlin/Downloads/module26-migration-20261123",
+  "file_checks": [
+    {
+      "name": "module26-official26-4-inputs.tar.gz",
+      "bytes": 3049224614,
+      "sha256": "9077240a3e1b560aed7eb0366049f6195629f26c647ae04224028c2613aaea73",
+      "passed": true
+    },
+    {
+      "name": "file-manifest.json",
+      "bytes": 231093,
+      "sha256": "4eeb74ea1e1e600710d6aa3f5bb1b4f34bd45b75e8f77ac8b9d44201171f3e79",
+      "passed": true
+    },
+    {
+      "name": "payload.sha256",
+      "bytes": 93536,
+      "sha256": "554f6ce0236edb2208e05efd319842eaef2c638fec4cb7f4be97006188ea8e16",
+      "passed": true
+    },
+    {
+      "name": "required-code-sha256.json",
+      "bytes": 4073,
+      "sha256": "774bc2d5e33cbc563cae475b9e5db822036460140ce7391ce1520f8d366c0e72",
+      "passed": true
+    },
+    {
+      "name": "package-result.json",
+      "bytes": 759,
+      "sha256": "41faf0a75a219b73daea8e4a6fcc216f0a910808f02e260fc813f53e60022923",
+      "passed": true
+    }
+  ],
+  "downloaded_bytes": 3049554075,
+  "training_run": false
+}

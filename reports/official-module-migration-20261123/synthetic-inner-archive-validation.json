@@ -1,0 +1,26 @@
+{
+  "cases": [
+    {
+      "case": "changed_member_valid_gzip",
+      "rejected": "Payload checksum mismatch: rootfs/gly/weilin/example/data",
+      "outer_archive_sha_recomputed": true
+    },
+    {
+      "case": "missing_member",
+      "rejected": "Missing payload members or byte count mismatch",
+      "outer_archive_sha_recomputed": true
+    },
+    {
+      "case": "duplicate_member",
+      "rejected": "Unsafe or repeated archive member: rootfs/gly/weilin/example/data",
+      "outer_archive_sha_recomputed": true
+    },
+    {
+      "case": "parent_traversal_member",
+      "rejected": "Unsafe or repeated archive member: rootfs/../../escape",
+      "outer_archive_sha_recomputed": true
+    }
+  ],
+  "all_rejected": true,
+  "real_data_read": false
+}

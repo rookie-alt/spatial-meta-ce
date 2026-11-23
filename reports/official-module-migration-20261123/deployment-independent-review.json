@@ -1,0 +1,39 @@
+{
+  "verdict": "passed",
+  "reviewer": "/root/migration_path_fix_review",
+  "reviewed_at": "2026-11-23T16:26:03.906530+08:00",
+  "scope": "Closure of the deployment tool bootstrap path blocker; previous review had passed helper contracts and input/budget constraints.",
+  "closed_findings": [
+    {
+      "issue": "Newly added tools unavailable from the previous GitHub tip",
+      "resolution": "Transfer entire delivery directory first; verify TOOL-SHA256SUMS; use absolute delivery-tool paths; clone GitHub only for frozen training code.",
+      "independent_result": "closed"
+    }
+  ],
+  "confirmed_unresolved_blockers": [],
+  "independent_checks": [
+    "Local delivery tools present; TOOL-SHA256SUMS 4/4 match",
+    "All 37 training code hashes match frozen commit",
+    "Guide order restores inputs before cloning final code path",
+    "New checksum inventory does not change original 5-file archive checksum contract",
+    "Repository guide and delivery guide differ only by one relative documentation link"
+  ],
+  "not_run": [
+    "New-server SSH/deployment",
+    "Archive full readback by reviewer",
+    "1935 full unittest rerun by reviewer"
+  ],
+  "source_sha256": {
+    "docs/module26-new-server-deployment.md": "007cd6eda524e470238ce9dd7d9a8f0d9cd142759974d4b9278e078fbda77bb7",
+    "reports/official-module-migration-20261123/prepare_new_server.py": "790d0180d417aa099368e1713c8908e77fcb0ab0261884da04810bb5fe4e8e6f",
+    "tests/test_migration_training_prep.py": "77f342e90a694dfb3decc63d995d26a7e1259639f6909ec97adb1e7b48f6b139",
+    "reports/official-module-migration-20261123/TOOL-SHA256SUMS": "cf2f01ffe6775ed31c16d1cf47002063fe69c128120899896d4b928b6888e434"
+  },
+  "prior_review": "deployment-review-initial.json",
+  "fix_validation": "deployment-path-fix-validation.json",
+  "full_regression": "full-unittest.json",
+  "real_archive_verification": [
+    "readback-verification.json",
+    "local-full-readback.json"
+  ]
+}

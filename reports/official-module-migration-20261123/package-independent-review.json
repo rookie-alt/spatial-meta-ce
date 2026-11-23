@@ -1,0 +1,27 @@
+{
+  "reviewer": "/root/migration_package_review",
+  "scope": "package_inputs.py, verify_archive.py, manifests and synthetic checks",
+  "verdict": "passed",
+  "confirmed_blockers": [],
+  "required_deployment_conditions": [
+    "Obtain all 37 exact code files and two tracked producer snapshots from GitHub; data archive is not self-contained code.",
+    "Restore the original /gly/weilin input directory layout without symlinks; otherwise re-certify relocated inputs."
+  ],
+  "independent_checks": [
+    "Reconstructed expected 634-file input inventory; no missing or extra entries or SHA conflicts",
+    "37 code files match git tree at 9e40dd571c225269d7f781ca5d019c9fcdf66556",
+    "7 malformed archive member classes rejected",
+    "Trailing gzip garbage/second member rejected",
+    "15 included auth templates unsigned; no signed authorization/queue/weights/venv",
+    "Ruff and Python compilation"
+  ],
+  "not_independently_run": [
+    "3 GB real archive readback",
+    "New-server end-to-end extraction and input verification"
+  ],
+  "source_sha256": {
+    "package_inputs.py": "08a670afa1282cfffb92c1a7da9fb263e218c07d6930f8c9bd4c3062375b043c",
+    "verify_archive.py": "81f0cc119d6bc2bffd8ad013407ea07e6683c439890a9f56cb6f69c66f283556"
+  },
+  "real_package_readback_evidence": "readback-verification.json"
+}

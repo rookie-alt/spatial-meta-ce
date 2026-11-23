@@ -1,0 +1,23 @@
+{
+  "started_at": "2026-11-23T15:40:16.438231+08:00",
+  "pid": 92781,
+  "command": [
+    "/usr/bin/timeout",
+    "--signal=TERM",
+    "--kill-after=15s",
+    "3600s",
+    "/usr/bin/nice",
+    "-n",
+    "10",
+    "/gly/weilin/PRICE-master/venv/bin/python",
+    "-I",
+    "-B",
+    "/gly/weilin/module26-migration-tools-20261123/package_inputs.py",
+    "--output",
+    "/gly/weilin/module26-migration-20261123"
+  ],
+  "timeout_seconds": 3600,
+  "python_address_space_bytes": 2147483648,
+  "max_parallel_packagers": 1,
+  "training_run": false
+}

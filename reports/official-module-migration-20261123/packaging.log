@@ -1,0 +1,30 @@
+{"inventory_files": 634, "bytes": 17012110734}
+{"packed_files": 100, "total_files": 634}
+{"packed_files": 200, "total_files": 634}
+{"packed_files": 300, "total_files": 634}
+{"packed_files": 400, "total_files": 634}
+{"packed_files": 500, "total_files": 634}
+{"packed_files": 600, "total_files": 634}
+{
+  "state": "packaged_not_yet_readback_verified",
+  "archive": "/gly/weilin/module26-migration-20261123/module26-official26-4-inputs.tar.gz",
+  "archive_bytes": 3049224614,
+  "archive_sha256": "9077240a3e1b560aed7eb0366049f6195629f26c647ae04224028c2613aaea73",
+  "file_count": 634,
+  "uncompressed_bytes": 17012110734,
+  "category_bytes": {
+    "reference": 176760,
+    "statistics": 9892712,
+    "workloads": 400903943,
+    "features": 7433190703,
+    "producer_evidence": 57045,
+    "budget": 376,
+    "official_mapping": 1706344979,
+    "sealed_plans_and_configs": 2686311711,
+    "cache": 3076730765,
+    "original_mapping": 1698501740
+  },
+  "all_packaged_bytes_matched_certified_sha256": true,
+  "seconds": 285.8368786049541,
+  "training_run": false
+}

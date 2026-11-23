@@ -1,0 +1,32 @@
+{
+  "verdict": "failed_before_path_fix",
+  "reviewer": "/root/migration_deployment_review",
+  "confirmed_findings": [
+    {
+      "severity": "blocking",
+      "issue": "Guide fetched newly added tools from the old GitHub branch tip, where they did not exist yet.",
+      "fix": "Use the included external delivery tools, with TOOL-SHA256SUMS and absolute paths; clone GitHub only for the 37 frozen training files.",
+      "closure_pending_narrow_review": true
+    }
+  ],
+  "passed_scope": [
+    "helper contract and 15 unsigned specs",
+    "source-only training validation and no model construction/training",
+    "existing and overlapping output paths refused",
+    "absolute provenance paths and 37-file closure",
+    "unchanged resource budgets",
+    "package/reference consistency",
+    "new spec dry-run without execute"
+  ],
+  "not_executed": [
+    "new-server installation",
+    "real input verification on new server",
+    "1935 test full rerun by reviewer"
+  ],
+  "original_reviewed_sha256": {
+    "docs/module26-new-server-deployment.md": "475e392cbd90eb3fb01f1eab48f950564ef49616ca41283d5854ee4dd2eb6c7e",
+    "reports/official-module-migration-20261123/prepare_new_server.py": "790d0180d417aa099368e1713c8908e77fcb0ab0261884da04810bb5fe4e8e6f",
+    "tests/test_migration_training_prep.py": "77f342e90a694dfb3decc63d995d26a7e1259639f6909ec97adb1e7b48f6b139"
+  },
+  "fix_validation": "deployment-path-fix-validation.json"
+}

@@ -1,0 +1,10 @@
+{
+  "state": "verified",
+  "verified_at": "2026-11-23T15:55:03.325859+08:00",
+  "archive_sha256": "9077240a3e1b560aed7eb0366049f6195629f26c647ae04224028c2613aaea73",
+  "verified_payload_files": 634,
+  "verified_payload_bytes": 17012110734,
+  "embedded_metadata_members": 2,
+  "seconds": 108.15730279206764,
+  "training_run": false
+}

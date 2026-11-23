@@ -1,0 +1,12 @@
+{
+  "blocker": "Tool files unavailable from old GitHub tip",
+  "resolution": "Upload included tools with migration bundle before GitHub clone; use absolute tool paths and TOOL-SHA256SUMS",
+  "tool_files_exist_and_hash_match": true,
+  "bash_blocks_syntax_checked": 8,
+  "source_sha256": {
+    "docs/module26-new-server-deployment.md": "007cd6eda524e470238ce9dd7d9a8f0d9cd142759974d4b9278e078fbda77bb7",
+    "reports/official-module-migration-20261123/prepare_new_server.py": "790d0180d417aa099368e1713c8908e77fcb0ab0261884da04810bb5fe4e8e6f",
+    "tests/test_migration_training_prep.py": "77f342e90a694dfb3decc63d995d26a7e1259639f6909ec97adb1e7b48f6b139"
+  },
+  "new_server_deployed": false
+}
