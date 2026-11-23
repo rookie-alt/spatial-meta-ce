@@ -1,0 +1,29 @@
+{
+  "canonical_root": "/home/liushuaixi/weilin",
+  "old_root_exists": false,
+  "source_config_bound": "/home/liushuaixi/weilin/official-split-20261117/plans-24k/data_config_122_relocated.json",
+  "plans": [
+    {
+      "seed": "42",
+      "path": "/home/liushuaixi/weilin/official-split-20261117/plans-24k/training_plan_seed42.json",
+      "sha256": "7036e34b0a6a1fee486273fb7f37904af5be742385c422ec77e2fb4bc8c6edb7",
+      "episodes": 96000
+    },
+    {
+      "seed": "43",
+      "path": "/home/liushuaixi/weilin/official-split-20261117/plans-24k/training_plan_seed43.json",
+      "sha256": "b46ba078b37edd49578c47523651b3997ec7253f15477c42daa6594a8588e092",
+      "episodes": 96000
+    },
+    {
+      "seed": "44",
+      "path": "/home/liushuaixi/weilin/official-split-20261117/plans-24k/training_plan_seed44.json",
+      "sha256": "931f6a2e50592020abca0ed754695bc6bac254baf9c81ca6df40af3d4e7bced6",
+      "episodes": 96000
+    }
+  ],
+  "training_run": false,
+  "state": "paths_rebound_environment_pending",
+  "source_config_provenance": "Reconstructed from the frozen official 26+0 configuration and the fixed 23+3 split rules; this is not a byte-verified copy of the historical protocol-122 source file.",
+  "original_source_config_sha256": "a6907d602ed92fdfe42abe2828bbbac9369be07de04241c17cf6a3bd61544283"
+}

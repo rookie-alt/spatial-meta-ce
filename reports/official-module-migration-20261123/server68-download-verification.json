@@ -1,0 +1,47 @@
+{
+  "state": "verified",
+  "training_run": false,
+  "release_tag": "module26-migration-20261123",
+  "bundle_directory": "/home/liushuaixi/weilin/module26-migration-20261123",
+  "assets_verified": 30,
+  "code": {
+    "state": "verified",
+    "commit": "26d7056935e445c5c3d27926fd5e90e6dd5f4e06",
+    "directory": "/home/liushuaixi/weilin/spatial-meta-ce-release-26d7056",
+    "source_archive_bytes": 33363895,
+    "source_archive_sha256": "6fc8a9fe6cc764e0f3d3d042512f10a08ad88f084ce7afda3ee5d6c9bdcfbf83",
+    "extracted_regular_files": 2350,
+    "required_files_verified": 37,
+    "training_run": false,
+    "git_history_included": false,
+    "runtime_directory": "/home/liushuaixi/weilin/module26-prep-20261118/code-training"
+  },
+  "archive": {
+    "state": "verified",
+    "verified_at": "2026-11-23T18:36:40.596219+08:00",
+    "archive_sha256": "9077240a3e1b560aed7eb0366049f6195629f26c647ae04224028c2613aaea73",
+    "verified_payload_files": 634,
+    "verified_payload_bytes": 17012110734,
+    "embedded_metadata_members": 2,
+    "seconds": 59.61172508588061,
+    "training_run": false
+  },
+  "data_extracted": true,
+  "environment_installed": true,
+  "free_bytes": 5409335115776,
+  "recorded_at": "2026-11-23T18:36:42+0800",
+  "temporary_transfer_files_removed": [
+    "download-ranges",
+    "missing-segments-batch1.tar",
+    "missing-segments-batch2.tar",
+    "spatial-meta-ce-26d7056935e445c5c3d27926fd5e90e6dd5f4e06.tar.gz",
+    "module26-official26-4-inputs.tar.gz.part01.download",
+    "module26-official26-4-inputs.tar.gz.part01.redirect-url",
+    "module26-official26-4-inputs.tar.gz.part02.download",
+    "module26-official26-4-inputs.tar.gz.part02.redirect-url",
+    "module26-official26-4-inputs.tar.gz.part03.download",
+    "module26-official26-4-inputs.tar.gz.part03.redirect-url"
+  ],
+  "current_root": "/home/liushuaixi/weilin",
+  "deployment_state": "prepared_no_training"
+}

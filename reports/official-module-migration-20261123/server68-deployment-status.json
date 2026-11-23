@@ -1,0 +1,15 @@
+{
+  "phase": "ready_no_training",
+  "training_run": false,
+  "updated_at": "2026-11-23T19:42:08+0800",
+  "input_report": "/home/liushuaixi/weilin/module26-prep-20261118/inputs-parallel-v3/official_module_inputs.json",
+  "mapping_files_unchanged": 30,
+  "unsigned_specs": 15,
+  "authorized": false,
+  "model_predictions_run": false,
+  "output_directory_exists": false,
+  "cuda_verification": "deferred_all_gpus_busy",
+  "environment": "/home/liushuaixi/weilin/module26-runtime/venv",
+  "code_directory": "/home/liushuaixi/weilin/module26-prep-20261118/code-training",
+  "old_root_exists": false
+}

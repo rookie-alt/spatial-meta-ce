@@ -1,0 +1,8 @@
+{
+  "dry_run": true,
+  "executed": false,
+  "authorization": "not_provided",
+  "runs": [
+    "A1-PG-seed42"
+  ]
+}
