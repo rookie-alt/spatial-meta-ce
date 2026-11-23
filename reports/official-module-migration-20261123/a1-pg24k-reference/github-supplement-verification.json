@@ -1,0 +1,40 @@
+{
+  "verified_at": "2026-11-23T22:04:34.083885+08:00",
+  "release_url": "https://github.com/rookie-alt/spatial-meta-ce/releases/tag/module26-migration-20261123",
+  "new_assets": [
+    {
+      "name": "old-a1-pg24k-reference.tar.gz",
+      "bytes": 13725084,
+      "sha256": "f082cd5a63f3997ffd2bf01afd92234bd205f750866628e585b5c68a5602dda2",
+      "url": "https://github.com/rookie-alt/spatial-meta-ce/releases/download/module26-migration-20261123/old-a1-pg24k-reference.tar.gz"
+    },
+    {
+      "name": "OLD-A1-PG24K-MANIFEST.json",
+      "bytes": 11597,
+      "sha256": "3b2d29643443679d80c9e52f5187d3a5148c6b70b64da17499b762ed9fac8f69",
+      "url": "https://github.com/rookie-alt/spatial-meta-ce/releases/download/module26-migration-20261123/OLD-A1-PG24K-MANIFEST.json"
+    },
+    {
+      "name": "OLD-A1-PG24K-VALIDATION.json",
+      "bytes": 4829,
+      "sha256": "9211d381b437cdb652466b4f0c00aab0d2ea18b8a2f5576b6cf64bba5b7978a7",
+      "url": "https://github.com/rookie-alt/spatial-meta-ce/releases/download/module26-migration-20261123/OLD-A1-PG24K-VALIDATION.json"
+    },
+    {
+      "name": "OLD-A1-PG24K-SHA256SUMS",
+      "bytes": 284,
+      "sha256": "e41f54263db55e3db79782869805e276309ba47602df9ff39d3a14d2ea3d3ff1",
+      "url": "https://github.com/rookie-alt/spatial-meta-ce/releases/download/module26-migration-20261123/OLD-A1-PG24K-SHA256SUMS"
+    },
+    {
+      "name": "OLD-A1-PG24K-README.md",
+      "bytes": 3921,
+      "sha256": "64835d7919ac31ad27691c2fd072ab93680bb91e09922cdbb4eb9935c6ec1685",
+      "url": "https://github.com/rookie-alt/spatial-meta-ce/releases/download/module26-migration-20261123/OLD-A1-PG24K-README.md"
+    }
+  ],
+  "total_assets": 35,
+  "all_previous_30_assets_unchanged": true,
+  "github_download_all_5_assets_byte_equal_local": true,
+  "new_training_run": false
+}

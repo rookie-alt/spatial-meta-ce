@@ -1,0 +1,32 @@
+{
+  "verdict": "passed",
+  "reviewer": "/root/old_weights_migration_review",
+  "reviewed_at": "2026-11-23T22:00:44.933092+08:00",
+  "confirmed_blockers": [],
+  "checks": [
+    "All three seed checkpoint hashes agree with original training and evaluation records",
+    "Original training records/completions/spec hashes agree with source-expectations.json",
+    "All three completions successful with no target training reads",
+    "26 training libraries/validation empty and 24000 actual step evidence agree",
+    "Supplement size/hash and 24-file manifest agree with local artifact",
+    "Legacy 4000 metadata is hardcoded by historical trainer, explicitly disclosed without rewriting",
+    "Historical reference only, no substitution for 132-module26 runs or initialization changes",
+    "Download pattern and isolated extraction location consistent"
+  ],
+  "not_run": [
+    "SSH",
+    "Remote asset download",
+    "Archive extraction or checkpoint load",
+    "Unittest"
+  ],
+  "source_sha256": {
+    "docs/old-a1-pg24k-weights.md": "738efb84b3065990ee5e7084d38462d39f169cba249dc7479e3a09099a1a16a3",
+    "reports/official-module-migration-20261123/a1-pg24k-reference/OLD-A1-PG24K-MANIFEST.json": "3b2d29643443679d80c9e52f5187d3a5148c6b70b64da17499b762ed9fac8f69",
+    "reports/official-module-migration-20261123/a1-pg24k-reference/OLD-A1-PG24K-VALIDATION.json": "9211d381b437cdb652466b4f0c00aab0d2ea18b8a2f5576b6cf64bba5b7978a7",
+    "reports/official-module-migration-20261123/a1-pg24k-reference/OLD-A1-PG24K-SHA256SUMS": "e41f54263db55e3db79782869805e276309ba47602df9ff39d3a14d2ea3d3ff1"
+  },
+  "nonblocking_notes": [
+    "Checksum list binds archive/manifest/validation; README verified by GitHub digest separately",
+    "Historical 24k files are reference-readable via load_checkpoint, not formal122 4000-step certificate-compatible"
+  ]
+}

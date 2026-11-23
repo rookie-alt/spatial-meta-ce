@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-11-23T21:52:09.204046+08:00",
+  "archive_sha256": "f082cd5a63f3997ffd2bf01afd92234bd205f750866628e585b5c68a5602dda2",
+  "payload_members_verified": 24,
+  "embedded_metadata_members_verified": 2,
+  "strict_cpu_loads": [
+    {
+      "seed": 42,
+      "strict_load": true,
+      "checkpoint_sha256": "770cd4eb5876a17a37be11ef7c6a87bc43e71ed879f754ca2e554594e55843c5",
+      "step": 24000,
+      "parameters": 294033
+    },
+    {
+      "seed": 43,
+      "strict_load": true,
+      "checkpoint_sha256": "ff9399ab0d778788a27e55df218a93ab83ab333b67e169d04b512a4f501035d7",
+      "step": 24000,
+      "parameters": 294033
+    },
+    {
+      "seed": 44,
+      "strict_load": true,
+      "checkpoint_sha256": "d1aa42d598da195b934836c6ee55b69ad427237d6a425ba08796a842550458a1",
+      "step": 24000,
+      "parameters": 294033
+    }
+  ],
+  "no_inference_or_training_run": true,
+  "original_data_archive_unchanged": true
+}

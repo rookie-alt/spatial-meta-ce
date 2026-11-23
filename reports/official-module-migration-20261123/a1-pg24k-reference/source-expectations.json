@@ -1,0 +1,50 @@
+{
+  "42": {
+    "run": {
+      "key": "A1-PG-seed42",
+      "arm": "A1-PG",
+      "seed": 42,
+      "checkpoint": "/gly/weilin/official-split-20261117/runs-24k-seed42/worker/runs/A1-PG-seed42/last.pt",
+      "checkpoint_sha256": "770cd4eb5876a17a37be11ef7c6a87bc43e71ed879f754ca2e554594e55843c5",
+      "training_plan_sha256": "86bba249e13db3b11faf60e06cff96e9721695dabcea88fb9224da883dc1a341",
+      "optimizer_steps": 24000,
+      "parameters": 294033,
+      "wall_seconds": 6587.485415393021
+    },
+    "records_sha256": "8f81703d74ad004c7623730b5cd1a1b55accdacf027f5cc1791cf5b202465713",
+    "completion_sha256": "4961b7e4054583d157124bfe4513e39626022329a904afbb537a4f5be9d49a8f",
+    "spec_sha256": "f4bbc6bc63368530547d30f962b95b81a7cea1c111a0425fc65e94dddc3f45a4"
+  },
+  "43": {
+    "run": {
+      "key": "A1-PG-seed43",
+      "arm": "A1-PG",
+      "seed": 43,
+      "checkpoint": "/gly/weilin/official-split-20261117/runs-24k-seed43/worker/runs/A1-PG-seed43/last.pt",
+      "checkpoint_sha256": "ff9399ab0d778788a27e55df218a93ab83ab333b67e169d04b512a4f501035d7",
+      "training_plan_sha256": "5aa56f0a12290110d391985342a7cd8f8a7e7126e87cb293df233d21facc437d",
+      "optimizer_steps": 24000,
+      "parameters": 294033,
+      "wall_seconds": 6238.260420063045
+    },
+    "records_sha256": "fd6470b0fed3e0166fa97d6e9de7eb2af85fd161bf5a336c8a6fbc3a6399f7aa",
+    "completion_sha256": "e1fa4dc7194028d05d4eefd265a88ec69a0fa3c68c17a9f25ba6b4ad5055f314",
+    "spec_sha256": "d2c50e9b15edc3649c833f7c8f7dcaee1f16611826d3c0b642e6d34f3deef6f5"
+  },
+  "44": {
+    "run": {
+      "key": "A1-PG-seed44",
+      "arm": "A1-PG",
+      "seed": 44,
+      "checkpoint": "/gly/weilin/official-split-20261117/runs-24k-seed44/worker/runs/A1-PG-seed44/last.pt",
+      "checkpoint_sha256": "d1aa42d598da195b934836c6ee55b69ad427237d6a425ba08796a842550458a1",
+      "training_plan_sha256": "0ff11853d6c166c24ad4add89845a9c51de827d94888bcfc4f9308e772192622",
+      "optimizer_steps": 24000,
+      "parameters": 294033,
+      "wall_seconds": 6159.677702086978
+    },
+    "records_sha256": "676d3abb03020e042da01615f20b59f3ea7055967464584e56062b9b47524510",
+    "completion_sha256": "e514f6c24b15343f8295e131a0970f524369529c54803c744bef9a35c51dacf3",
+    "spec_sha256": "140bf8c6026dac091b0e7e8097eca705ec996bd263dc8e7d6dc647aabd5c370c"
+  }
+}

@@ -22,6 +22,8 @@ SHA256：`9077240a3e1b560aed7eb0366049f6195629f26c647ae04224028c2613aaea73`。
 
 归档布局为 `rootfs/gly/weilin/...`；`references/` 中的旧 spec/template/readiness 只作记录。包不含训练代码 checkout、旧 signed 授权、旧队列、失败训练输出、checkpoint、Python 环境或 SSH 凭据。代码需从 GitHub 拉取，不需要搬整个 PostgreSQL 数据库或原始表。
 
+旧 A1-PG 24k seed42/43/44 权重另有独立补充包，见[权重下载与加载说明](old-a1-pg24k-weights.md)。它不在上述 634 文件数据归档内；历史权重仅作原实验复现/对照，不替代新五臂矩阵的从头训练。
+
 ## 2. 新服务器要求
 
 - Linux，Python 3.11；至少 32 GiB RAM，建议至少 100 GiB 空闲磁盘，容纳包、staging、数据副本、CUDA 环境和 15 次输出。

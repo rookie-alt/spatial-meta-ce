@@ -1,5 +1,7 @@
 # 官方 26/4 模块实验迁移包
 
+**旧权重补充：** 原 634 文件输入包没有包含 checkpoint；现另提供 `old-a1-pg24k-reference.tar.gz`，约 13.1 MiB，含旧 A1-PG 24k seed42/43/44 三个 `last.pt` 及原配置/完成记录/审计。它以 5 个独立资产加入同一 Release，现共 35 项，原 30 资产不变。下载及历史元数据限制见[补充说明](../../docs/old-a1-pg24k-weights.md)，SHA/严格 CPU 加载证据见[本机验证](a1-pg24k-reference/local-checkpoint-verification.json)，[独立审查](a1-pg24k-reference/independent-review.json) passed；旧权重不替代新五臂矩阵的从头训练。
+
 **GitHub 下载已就绪：** [Release 页面](https://github.com/rookie-alt/spatial-meta-ce/releases/tag/module26-migration-20261123) 提供三个字节分卷及 27 个配套附件，共 30 项；公开下载入口和 GitHub CLI 下载已验证。[下载与合并说明](../../docs/module26-github-download.md) 给出完整命令，合并后原包 SHA 不变。每项远端 SHA/大小均与本地一致，见[上传验证](release-upload-verification.json)、[发布记录](github-release-publication.json)与[下载验证](release-download-verification.json)。
 
 用户要求：“那你先帮我把需要迁移的数据打包好，再写个新服务器的部署说明”。本次只打包和准备部署材料，没有研究训练、模型推理、驱动修改或新服务器部署。

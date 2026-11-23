@@ -1,0 +1,14 @@
+{
+  "archive": "/gly/weilin/module26-a1-pg24k-supplement-20261123/old-a1-pg24k-reference.tar.gz",
+  "archive_bytes": 13725084,
+  "archive_sha256": "f082cd5a63f3997ffd2bf01afd92234bd205f750866628e585b5c68a5602dda2",
+  "payload_files": 24,
+  "all_original_sha_and_archive_readback_passed": true,
+  "strict_cpu_loads_passed": 3,
+  "checkpoint_steps": [
+    24000,
+    24000,
+    24000
+  ],
+  "new_training_run": false
+}

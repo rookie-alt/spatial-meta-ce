@@ -35,3 +35,13 @@ Then follow `DEPLOYMENT.md` from section 4 for full archive readback, isolated e
 The required 37 training source files match commit `26d7056935e445c5c3d27926fd5e90e6dd5f4e06` on branch `feat/official-module-training-prep-20261118`. The data archive preserves the earlier certification provenance without rewriting it.
 
 This is an offline feature-training bundle; no PostgreSQL database service, raw database table installation or previous checkpoint is required. The original input archive and downloaded local copy were both fully read back and checked, 634/634 files. New-server CUDA availability and deployment must still be verified on that server.
+
+## Historical A1-PG 24k checkpoint supplement
+
+`old-a1-pg24k-reference.tar.gz` adds all three original A1-PG seed42/43/44 `last.pt` checkpoints and their original configs, training/completion records and audits. It is **13,725,084 bytes**, SHA256 `f082cd5a63f3997ffd2bf01afd92234bd205f750866628e585b5c68a5602dda2`.
+
+Download that archive plus `OLD-A1-PG24K-*` assets, check `OLD-A1-PG24K-SHA256SUMS`, and follow `OLD-A1-PG24K-README.md`. Already-downloaded input parts do not need to be downloaded again. The supplement contains 24 original files and two embedded metadata records, preserves original checkpoint bytes, and does not change any of the initial 30 assets.
+
+Each checkpoint strictly loads on CPU as `price_lite_pg_residual`, with `next_step=24000`, `optimizer_steps=24000` and 294,033 parameters. Original metadata `fixed_steps=4000` and selection text are stale legacy fields; actual step counters, configs, preregistered budgets, sealed plans and completion records confirm 24,000. This discrepancy is disclosed rather than rewriting the original files.
+
+These are historical reference checkpoints from the earlier `122-official-26 / 122-A1-PG` exploratory experiment. They are not completion artifacts for the new `132-module26` five-arm matrix and do not change its from-scratch initialization. Migration does not launch training or evaluation.

@@ -1,0 +1,8 @@
+{
+  "doc_links_and_bash_syntax_passed": true,
+  "original_training_record_hashes_match_all_3_seeds": true,
+  "actual_steps_confirmed": 24000,
+  "stale_metadata_explicitly_disclosed": true,
+  "training_code_closure_files_unchanged": 37,
+  "new_training_run": false
+}

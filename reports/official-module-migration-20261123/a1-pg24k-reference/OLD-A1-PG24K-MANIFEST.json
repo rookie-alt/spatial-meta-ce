@@ -1,0 +1,297 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed42/worker/runs/A1-PG-seed42/last.pt",
+      "archive_path": "a1-pg24k-reference/seed42/last.pt",
+      "bytes": 3754694,
+      "sha256": "770cd4eb5876a17a37be11ef7c6a87bc43e71ed879f754ca2e554594e55843c5"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed42/worker/runs/A1-PG-seed42/config.json",
+      "archive_path": "a1-pg24k-reference/seed42/config.json",
+      "bytes": 10266,
+      "sha256": "0da284b5a6d9d92ba9857462c2498bfc0110f2b8c83ed090995c65a5fb491253"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed42/worker/runs/A1-PG-seed42/history.json",
+      "archive_path": "a1-pg24k-reference/seed42/history.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed42/worker/runs/A1-PG-seed42/gradient_audit.json",
+      "archive_path": "a1-pg24k-reference/seed42/gradient_audit.json",
+      "bytes": 14025,
+      "sha256": "ffa1a23a6a3efd83861de80c6f70fa65e192fdd7ff8556d5108bcc4d97a35fc4"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed42/worker/runs/A1-PG-seed42/loss_audit.jsonl",
+      "archive_path": "a1-pg24k-reference/seed42/loss_audit.jsonl",
+      "bytes": 8271781,
+      "sha256": "355a3ef6babdadd5c42b7e57b6b7e529eeb03f9082afb11d8ce1d0e22f9d69a8"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed42/completion.json",
+      "archive_path": "a1-pg24k-reference/seed42/completion.json",
+      "bytes": 1809,
+      "sha256": "4961b7e4054583d157124bfe4513e39626022329a904afbb537a4f5be9d49a8f"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed42/worker/training_records.json",
+      "archive_path": "a1-pg24k-reference/seed42/training_records.json",
+      "bytes": 502,
+      "sha256": "8f81703d74ad004c7623730b5cd1a1b55accdacf027f5cc1791cf5b202465713"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/spec/official_split_training_spec_24k_seed42.json",
+      "archive_path": "a1-pg24k-reference/seed42/original_training_spec.json",
+      "bytes": 4114,
+      "sha256": "f4bbc6bc63368530547d30f962b95b81a7cea1c111a0425fc65e94dddc3f45a4"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed43/worker/runs/A1-PG-seed43/last.pt",
+      "archive_path": "a1-pg24k-reference/seed43/last.pt",
+      "bytes": 3754694,
+      "sha256": "ff9399ab0d778788a27e55df218a93ab83ab333b67e169d04b512a4f501035d7"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed43/worker/runs/A1-PG-seed43/config.json",
+      "archive_path": "a1-pg24k-reference/seed43/config.json",
+      "bytes": 10266,
+      "sha256": "68878e8164352a7d658d3b49d8cb9283f4bf818be648940250790abf89262ef8"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed43/worker/runs/A1-PG-seed43/history.json",
+      "archive_path": "a1-pg24k-reference/seed43/history.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed43/worker/runs/A1-PG-seed43/gradient_audit.json",
+      "archive_path": "a1-pg24k-reference/seed43/gradient_audit.json",
+      "bytes": 9878,
+      "sha256": "c3b2d68769a7f3a886264717337f58e61b0b7af61a139c8957e56c20526df109"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed43/worker/runs/A1-PG-seed43/loss_audit.jsonl",
+      "archive_path": "a1-pg24k-reference/seed43/loss_audit.jsonl",
+      "bytes": 8273465,
+      "sha256": "e745ad108ae63428a3a99a9319783f15e90c7fbe90723dbebb44a4dfa0050b36"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed43/completion.json",
+      "archive_path": "a1-pg24k-reference/seed43/completion.json",
+      "bytes": 1810,
+      "sha256": "e1fa4dc7194028d05d4eefd265a88ec69a0fa3c68c17a9f25ba6b4ad5055f314"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed43/worker/training_records.json",
+      "archive_path": "a1-pg24k-reference/seed43/training_records.json",
+      "bytes": 502,
+      "sha256": "fd6470b0fed3e0166fa97d6e9de7eb2af85fd161bf5a336c8a6fbc3a6399f7aa"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/spec/official_split_training_spec_24k_seed43.json",
+      "archive_path": "a1-pg24k-reference/seed43/original_training_spec.json",
+      "bytes": 4114,
+      "sha256": "d2c50e9b15edc3649c833f7c8f7dcaee1f16611826d3c0b642e6d34f3deef6f5"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed44/worker/runs/A1-PG-seed44/last.pt",
+      "archive_path": "a1-pg24k-reference/seed44/last.pt",
+      "bytes": 3754694,
+      "sha256": "d1aa42d598da195b934836c6ee55b69ad427237d6a425ba08796a842550458a1"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed44/worker/runs/A1-PG-seed44/config.json",
+      "archive_path": "a1-pg24k-reference/seed44/config.json",
+      "bytes": 10266,
+      "sha256": "8a15b3acae9fe962fdc4dbebcdaf75c6fb53b07e10033d0e12f05d5e2fb415f8"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed44/worker/runs/A1-PG-seed44/history.json",
+      "archive_path": "a1-pg24k-reference/seed44/history.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed44/worker/runs/A1-PG-seed44/gradient_audit.json",
+      "archive_path": "a1-pg24k-reference/seed44/gradient_audit.json",
+      "bytes": 7398,
+      "sha256": "4532479b5ed6c87848c6ccd0446911e0585ce8251715976951719b04c6bb3fb2"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed44/worker/runs/A1-PG-seed44/loss_audit.jsonl",
+      "archive_path": "a1-pg24k-reference/seed44/loss_audit.jsonl",
+      "bytes": 8271078,
+      "sha256": "8e7a5faa78ecb3a9580b5f5a05eb283e1a6ef3cca53f278faa81c3832de40203"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed44/completion.json",
+      "archive_path": "a1-pg24k-reference/seed44/completion.json",
+      "bytes": 1810,
+      "sha256": "e514f6c24b15343f8295e131a0970f524369529c54803c744bef9a35c51dacf3"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/runs-24k-seed44/worker/training_records.json",
+      "archive_path": "a1-pg24k-reference/seed44/training_records.json",
+      "bytes": 502,
+      "sha256": "676d3abb03020e042da01615f20b59f3ea7055967464584e56062b9b47524510"
+    },
+    {
+      "source_path": "/gly/weilin/official-split-20261117/spec/official_split_training_spec_24k_seed44.json",
+      "archive_path": "a1-pg24k-reference/seed44/original_training_spec.json",
+      "bytes": 4114,
+      "sha256": "140bf8c6026dac091b0e7e8097eca705ec996bd263dc8e7d6dc647aabd5c370c"
+    }
+  ],
+  "file_count": 24,
+  "uncompressed_bytes": 36161788,
+  "runs": [
+    {
+      "seed": 42,
+      "archive_checkpoint": "a1-pg24k-reference/seed42/last.pt",
+      "checkpoint_sha256": "770cd4eb5876a17a37be11ef7c6a87bc43e71ed879f754ca2e554594e55843c5",
+      "checkpoint_bytes": 3754694,
+      "model_type": "price_lite_pg_residual",
+      "next_step": 24000,
+      "optimizer_steps": 24000,
+      "parameters": 294033,
+      "training_plan_sha256": "86bba249e13db3b11faf60e06cff96e9721695dabcea88fb9224da883dc1a341",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing",
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "validation_databases": [],
+      "strict_cpu_load_passed": true,
+      "original_config_steps": 24000,
+      "original_preregistered_step_budget": 24000,
+      "historical_metadata_fixed_steps": 4000,
+      "historical_metadata_selection": "none (fixed 4000 updates, last.pt only)",
+      "original_completion_status": "official_split_completed",
+      "original_supervisor_returncode": 0
+    },
+    {
+      "seed": 43,
+      "archive_checkpoint": "a1-pg24k-reference/seed43/last.pt",
+      "checkpoint_sha256": "ff9399ab0d778788a27e55df218a93ab83ab333b67e169d04b512a4f501035d7",
+      "checkpoint_bytes": 3754694,
+      "model_type": "price_lite_pg_residual",
+      "next_step": 24000,
+      "optimizer_steps": 24000,
+      "parameters": 294033,
+      "training_plan_sha256": "5aa56f0a12290110d391985342a7cd8f8a7e7126e87cb293df233d21facc437d",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing",
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "validation_databases": [],
+      "strict_cpu_load_passed": true,
+      "original_config_steps": 24000,
+      "original_preregistered_step_budget": 24000,
+      "historical_metadata_fixed_steps": 4000,
+      "historical_metadata_selection": "none (fixed 4000 updates, last.pt only)",
+      "original_completion_status": "official_split_completed",
+      "original_supervisor_returncode": 0
+    },
+    {
+      "seed": 44,
+      "archive_checkpoint": "a1-pg24k-reference/seed44/last.pt",
+      "checkpoint_sha256": "d1aa42d598da195b934836c6ee55b69ad427237d6a425ba08796a842550458a1",
+      "checkpoint_bytes": 3754694,
+      "model_type": "price_lite_pg_residual",
+      "next_step": 24000,
+      "optimizer_steps": 24000,
+      "parameters": 294033,
+      "training_plan_sha256": "0ff11853d6c166c24ad4add89845a9c51de827d94888bcfc4f9308e772192622",
+      "train_databases": [
+        "accidents",
+        "airline",
+        "baseball",
+        "basketball",
+        "carcinogenesis",
+        "ccs",
+        "consumer",
+        "credit",
+        "employee",
+        "financial",
+        "fnhk",
+        "grants",
+        "hepatitis",
+        "hockey",
+        "movielens",
+        "sakila",
+        "sap",
+        "seznam",
+        "ssb",
+        "talkingdata",
+        "tournament",
+        "tpc_h",
+        "tubepricing",
+        "chembl",
+        "legalacts",
+        "telstra"
+      ],
+      "validation_databases": [],
+      "strict_cpu_load_passed": true,
+      "original_config_steps": 24000,
+      "original_preregistered_step_budget": 24000,
+      "historical_metadata_fixed_steps": 4000,
+      "historical_metadata_selection": "none (fixed 4000 updates, last.pt only)",
+      "original_completion_status": "official_split_completed",
+      "original_supervisor_returncode": 0
+    }
+  ],
+  "original_files_modified": false,
+  "old_signed_authorizations_included": false,
+  "purpose": "Historical A1-PG24k checkpoint migration, all three seeds; reference-only and not the new five-arm training checkpoints."
+}
