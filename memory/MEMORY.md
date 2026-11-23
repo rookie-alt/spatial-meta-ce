@@ -7,11 +7,13 @@
 1. [项目指令](../AGENTS.md)。
 2. [项目背景与范围](spatial-meta-ce-project.md)。
 3. [进度与下一步](../实验文档/99-进度与下一步.md) 和 [证据状态入口](current-state.md)。
-4. 按具体任务读取下表；不要把所有历史记忆当作当前运行状态。
+4. 在 Windows/server68 环境接手时，补读 [server68 环境与模块实验接手](server68-handoff-20261123.md)。
+5. 按具体任务读取下表；不要把所有历史记忆当作当前运行状态。
 
 | 项目内记忆 | 对应 Claude 原文件 |
 |---|---|
 | [项目背景、范围和数据边界](spatial-meta-ce-project.md) | `spatial-meta-ce-project.md` |
+| [Windows/server68 环境、四组实验决策与证据入口](server68-handoff-20261123.md) | 2026-11-23 项目接手补充，非 Claude 原记忆副本 |
 | [分支开发、交付后快进 main、协作与同步](spatial-meta-ce-workflow.md) | `spatial-meta-ce-workflow.md` |
 | [收尾记录与新会话接手](spatial-meta-ce-progress-sync.md) | `spatial-meta-ce-progress-sync.md` |
 | [证据图谱更新与历史查询经验](spatial-meta-ce-graphify.md) | `spatial-meta-ce-graphify.md` |
