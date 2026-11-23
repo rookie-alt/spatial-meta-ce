@@ -9,12 +9,13 @@
 
 ## 项目位置
 
-- 本地仓库：`/Users/williamlin/Downloads/13/spatial-meta-ce`。
-- 工作区入口：`/Users/williamlin/Downloads/13`，本身不是 Git 仓库。
-- 服务器项目：`/gly/weilin/spatial-meta-ce`。
-- 只读原项目与数据源：`/gly/weilin/PRICE-master`。
-- 私有 Git 远程：Gitee `william-forest/spatial-meta-ce`；实际 remote 以 `git remote` 核对。
-- 项目指令入口：[AGENTS.md](../AGENTS.md)；Claude 原入口：[CLAUDE.md](../CLAUDE.md)。
+> 2026-11-23 更新：本轮已迁移到 Windows/server68；旧路径保留为历史来源。
+
+- Windows 工作区：`E:\weilin`；代码副本：`E:\weilin\code-training`。核对时两者均无 `.git`，不能把文件落盘视作 Git 提交。
+- server68 项目根：`/home/liushuaixi/weilin`；训练代码：`module26-prep-20261118/code-training`；环境：`module26-runtime/venv`，均相对该根目录。
+- 当前使用的 GitHub 仓库：`rookie-alt/spatial-meta-ce`；训练准备来源分支：`feat/official-module-training-prep-20261118`。Gitee 历史远程为 `william-forest/spatial-meta-ce`；同步状态按远端核对，不能互相替代。
+- 历史 Mac 仓库：`/Users/williamlin/Downloads/13/spatial-meta-ce`；旧服务器项目与只读数据源分别为 `/gly/weilin/spatial-meta-ce`、`/gly/weilin/PRICE-master`。这些不是 server68 的活跃部署路径。
+- 环境、实验范围与证据入口详见 [server68 接手记忆](server68-handoff-20261123.md)；项目指令入口为 [AGENTS.md](../AGENTS.md) 与 [CLAUDE.md](../CLAUDE.md)。
 
 ## 长期实验约束
 
