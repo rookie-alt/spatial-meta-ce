@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-11-24T16:58:45.606284+08:00",
+  "purpose": "Complete completed doc132/server68 training and historical comparison backup; active doc133 is excluded.",
+  "archive": "module26-complete-artifacts-20261124.tar.gz",
+  "archive_bytes": 116877756,
+  "archive_sha256": "42bd447fcdea72d27f3ac718cf12b2410b0838a77feb00071140aafcce75d302",
+  "payload_files": 483,
+  "payload_bytes": 257961994,
+  "new_checkpoints": 12,
+  "historical_checkpoints": 3,
+  "new_training_runs_completed": 12,
+  "evaluation_predictions": 15,
+  "frozen_source_files": 37,
+  "release_tag": "module26-results-20261124",
+  "release_url": "https://github.com/rookie-alt/spatial-meta-ce/releases/tag/module26-results-20261124",
+  "manifest": "MODULE26-ARTIFACT-MANIFEST.json",
+  "manifest_bytes": 103772,
+  "manifest_sha256": "8d32d6a26cb9bdab113d70da380100b980ee9915f457d0d3ef0edbfa524ce5c9",
+  "payload_hashes_verified": 483,
+  "results_evidence": {
+    "file": "results-evidence-20261124.tar.gz",
+    "bytes": 11059863,
+    "sha256": "f6209d012e2a3a66d281c32e5789134fc0779f333689eac492e9a4bb09307c46"
+  },
+  "binary_assets_in_git": false,
+  "status_note": "Expected Release assets; a source commit alone does not certify attachment upload."
+}

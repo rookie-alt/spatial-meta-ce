@@ -1,0 +1,53 @@
+{
+  "base_commit": "02b71c943f7d64fc4672bda5b9c534d42e33e787",
+  "scope": "New reports/module26-server68-20261124 plus append-only reports/STATUS.md; excludes active doc133 and existing model code.",
+  "archive_sha256": "42bd447fcdea72d27f3ac718cf12b2410b0838a77feb00071140aafcce75d302",
+  "archive_file_entries_checked": 483,
+  "archive_uncompressed_bytes": 257961994,
+  "all_archive_entries_sha_and_size_match": true,
+  "archive_path_traversal_or_doc133": false,
+  "price_macro_recomputed": 3.22364351461223,
+  "posthoc_best_seed": "44",
+  "price_comparison_arithmetic_checked": true,
+  "metric_definition": "percentile(log Q,95) then mean across four databases; not log(percentile(Q,95))",
+  "source_statistics_record": "independent-statistics-verification.json",
+  "training_or_inference_rerun": false,
+  "publish_stage_files": [
+    {
+      "path": "reports/module26-server68-20261124/artifact-index.json",
+      "bytes": 1230,
+      "sha256": "9a80a6c7c6c112f752051e26d9f7aa3fff9115cf03aa687869a3dbb3bed11755"
+    },
+    {
+      "path": "reports/module26-server68-20261124/comparison.json",
+      "bytes": 1821,
+      "sha256": "79de613d14cd42794d3e53013f94f5b0b8511f0a182d7bad03f5337febe6e7aa"
+    },
+    {
+      "path": "reports/module26-server68-20261124/execution-and-provenance.md",
+      "bytes": 4878,
+      "sha256": "d19e2d67a49acbf2e7b985849c59f374546d1bb27a4bc8a8392fd29d0d2c1a5b"
+    },
+    {
+      "path": "reports/module26-server68-20261124/independent-statistics-verification.json",
+      "bytes": 1493,
+      "sha256": "f110085a1d5d1fb81f257c3c45b1f8ce0fac68456d5f1c8ff51cf8912f282d27"
+    },
+    {
+      "path": "reports/module26-server68-20261124/price-reference.json",
+      "bytes": 5775,
+      "sha256": "50f4118f3365dd861809ab26536ca2f6507217d4e9ce863d93f7c9920845c653"
+    },
+    {
+      "path": "reports/module26-server68-20261124/README.md",
+      "bytes": 7015,
+      "sha256": "dddd5177d92e29ddf4ca5d11494433c3762c70b4d18e506e7953c4817b63819c"
+    },
+    {
+      "path": "reports/STATUS.md",
+      "bytes": 4777,
+      "sha256": "f7c28302441ef713388d6ffe9ae5833e4e03fa13178e5a6e85db0d68fd902be2"
+    }
+  ],
+  "text_secret_pattern_scan_findings": 0
+}
