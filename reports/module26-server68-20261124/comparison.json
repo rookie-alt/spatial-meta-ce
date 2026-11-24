@@ -1,0 +1,64 @@
+{
+  "protocol": "module26-historical-baseline-comparison-v1",
+  "strict_new132_matrix": false,
+  "selection_use": "none",
+  "n_training_seeds": 3,
+  "historical_baseline_differences": {
+    "A1-PG-GroupMean": {
+      "deltas": {
+        "42": 0.45896569244749763,
+        "43": -0.14866976537191512,
+        "44": 0.4910539803743901
+      },
+      "mean": 0.2671166358166575,
+      "sample_sd": 0.36043884795555586,
+      "lower_is_better": true,
+      "negative_seed_count": 1
+    },
+    "A1-PG-GroupAttention": {
+      "deltas": {
+        "42": 0.2198105452664092,
+        "43": -0.32017964636140306,
+        "44": -0.01693446906023821
+      },
+      "mean": -0.03910119005174403,
+      "sample_sd": 0.27067669719278903,
+      "lower_is_better": true,
+      "negative_seed_count": 2
+    },
+    "A1-PG-RelationTrue": {
+      "deltas": {
+        "42": 0.39214562196954006,
+        "43": -0.25681032870267195,
+        "44": 0.4763818885376465
+      },
+      "mean": 0.20390572726817155,
+      "sample_sd": 0.4012086742872471,
+      "lower_is_better": true,
+      "negative_seed_count": 1
+    },
+    "A1-PG-RelationShuffled": {
+      "deltas": {
+        "42": 0.8434417578268638,
+        "43": -0.7121448546619922,
+        "44": -0.4533704476227651
+      },
+      "mean": -0.10735784815263116,
+      "sample_sd": 0.8335202255990541,
+      "lower_is_better": true,
+      "negative_seed_count": 2
+    }
+  },
+  "relation_true_minus_shuffled": {
+    "deltas": {
+      "42": -0.45129613585732375,
+      "43": 0.4553345259593202,
+      "44": 0.9297523361604116
+    },
+    "mean": 0.3112635754208027,
+    "sample_sd": 0.7017058141468078,
+    "lower_is_better": true,
+    "negative_seed_count": 1
+  },
+  "interpretation": "Historical A1-PG comparison; no causal or significance claim. RelationTrue/Shuffled are same-round arms."
+}

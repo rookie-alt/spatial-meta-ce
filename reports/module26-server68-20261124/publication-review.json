@@ -1,0 +1,84 @@
+{
+  "review_agent": "publication_review",
+  "decision": "passed_no_open_blockers_for_text_publication",
+  "base_commit": "02b71c943f7d64fc4672bda5b9c534d42e33e787",
+  "read_only": true,
+  "reviewed_stage_files": [
+    {
+      "path": "reports/module26-server68-20261124/artifact-index.json",
+      "bytes": 1230,
+      "sha256": "9a80a6c7c6c112f752051e26d9f7aa3fff9115cf03aa687869a3dbb3bed11755"
+    },
+    {
+      "path": "reports/module26-server68-20261124/comparison.json",
+      "bytes": 1821,
+      "sha256": "79de613d14cd42794d3e53013f94f5b0b8511f0a182d7bad03f5337febe6e7aa"
+    },
+    {
+      "path": "reports/module26-server68-20261124/execution-and-provenance.md",
+      "bytes": 4878,
+      "sha256": "d19e2d67a49acbf2e7b985849c59f374546d1bb27a4bc8a8392fd29d0d2c1a5b"
+    },
+    {
+      "path": "reports/module26-server68-20261124/independent-statistics-verification.json",
+      "bytes": 1493,
+      "sha256": "f110085a1d5d1fb81f257c3c45b1f8ce0fac68456d5f1c8ff51cf8912f282d27"
+    },
+    {
+      "path": "reports/module26-server68-20261124/price-reference.json",
+      "bytes": 5775,
+      "sha256": "50f4118f3365dd861809ab26536ca2f6507217d4e9ce863d93f7c9920845c653"
+    },
+    {
+      "path": "reports/module26-server68-20261124/README.md",
+      "bytes": 7015,
+      "sha256": "dddd5177d92e29ddf4ca5d11494433c3762c70b4d18e506e7953c4817b63819c"
+    },
+    {
+      "path": "reports/STATUS.md",
+      "bytes": 4777,
+      "sha256": "f7c28302441ef713388d6ffe9ae5833e4e03fa13178e5a6e85db0d68fd902be2"
+    },
+    {
+      "path": "reports/module26-server68-20261124/publication-verification.json",
+      "bytes": 2183,
+      "sha256": "f2cb4bc5553e45d773c5048f2377503f58aaca5e42df3152735037b9a15fdbe2"
+    }
+  ],
+  "independent_csv_recompute": {
+    "files": 15,
+    "units": 120,
+    "rows": 199800,
+    "unique_rows": 91215,
+    "all_rows": 108585,
+    "numeric_checks": 763,
+    "maximum_absolute_error": 3.637978807091713e-12,
+    "identity_population_finite_checks_passed": true,
+    "production_statistics_called": false,
+    "exit_code": 0
+  },
+  "archive_verified": {
+    "files": 483,
+    "uncompressed_bytes": 257961994,
+    "all_entry_sha256_match": true,
+    "exit_code": 0
+  },
+  "training_records_checked": 12,
+  "frozen_source_sha_checked": 37,
+  "price_source_and_all_comparison_arithmetic_match": true,
+  "status_append_only_verified": true,
+  "closed_findings": [
+    {
+      "severity": "important",
+      "issue": "Two recovery instructions named code-training/ instead of the actual frozen-training-source/ archive directory.",
+      "resolution": "Both instructions corrected and final file hashes rechecked by reviewer."
+    }
+  ],
+  "open_blockers": [],
+  "limitations": [
+    "Release attachments not uploaded or publicly downloaded at review time; text commit does not certify complete GitHub backup.",
+    "No GPU, training, inference, model reload, or rerun of the archived 14+11 tool tests.",
+    "Complete training arrays and historical code/initialization/environment equivalence not recertified.",
+    "External GitHub links and future remote commit not independently checked by reviewer."
+  ]
+}
